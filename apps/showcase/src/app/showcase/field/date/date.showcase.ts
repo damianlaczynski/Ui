@@ -53,6 +53,7 @@ const DATE_TYPES: DateFieldType[] = ['date', 'datetime-local', 'time', 'month', 
                 <ui-date
                   [label]="dateType"
                   [dateType]="dateType"
+                  [placeholder]="getPlaceholderByDateType(dateType)"
                   [size]="dateTypeForm().size"
                   [readonly]="dateTypeForm().readonly"
                   [required]="dateTypeForm().required"
@@ -77,6 +78,7 @@ const DATE_TYPES: DateFieldType[] = ['date', 'datetime-local', 'time', 'month', 
                 <ui-date
                   [label]="size"
                   [dateType]="sizeForm().dateType"
+                  [placeholder]="getPlaceholderByDateType(sizeForm().dateType)"
                   [size]="size"
                   [readonly]="sizeForm().readonly"
                   [required]="sizeForm().required"
@@ -99,6 +101,7 @@ const DATE_TYPES: DateFieldType[] = ['date', 'datetime-local', 'time', 'month', 
                 <ui-date
                   [label]="state.label"
                   [dateType]="statesForm().dateType"
+                  [placeholder]="getPlaceholderByDateType(statesForm().dateType)"
                   [size]="statesForm().size"
                   [readonly]="state.readonly"
                   [required]="state.required"
@@ -238,6 +241,15 @@ export class DateShowcaseComponent {
 
   getStateControl(id: string): FormControl<string | null> {
     return this.stateControls[id] ?? new FormControl<string | null>('');
+  }
+
+  getPlaceholderByDateType(dateType: DateFieldType): string {
+    if (dateType === 'date') return 'YYYY-MM-DD';
+    if (dateType === 'datetime-local') return 'YYYY-MM-DD HH:mm';
+    if (dateType === 'time') return 'HH:mm';
+    if (dateType === 'month') return 'YYYY-MM';
+    if (dateType === 'week') return 'YYYY-Www';
+    return 'Select date';
   }
 
   private setControlsDisabled(

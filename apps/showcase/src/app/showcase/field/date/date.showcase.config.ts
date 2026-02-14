@@ -32,6 +32,16 @@ const DATE_CONTROL_DEFS: SharedControlDef[] = [
     drawer: false,
   },
   {
+    key: 'placeholder',
+    label: 'Placeholder',
+    type: 'text',
+    description: 'Placeholder text',
+    defaultValue: 'YYYY-MM-DD',
+    placeholder: 'Enter placeholder',
+    group: 'content',
+    drawer: false,
+  },
+  {
     key: 'dateType',
     label: 'Date Type',
     type: 'dropdown',

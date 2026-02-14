@@ -19,6 +19,7 @@ import { DATE_SHOWCASE_CONFIG } from './date.showcase.config';
       <div preview>
         <ui-date
           [label]="currentLabel()"
+          [placeholder]="currentPlaceholder()"
           [dateType]="currentDateType()"
           [size]="currentSize()"
           [disabled]="currentDisabled()"
@@ -41,6 +42,7 @@ export class DateInteractiveComponent {
 
   private values = signal<Record<string, unknown>>({
     label: 'Select Date',
+    placeholder: 'YYYY-MM-DD',
     helpText: '',
     dateType: 'date',
     size: 'medium',
@@ -50,6 +52,7 @@ export class DateInteractiveComponent {
   });
 
   currentLabel = computed(() => this.values()['label'] as string);
+  currentPlaceholder = computed(() => this.values()['placeholder'] as string);
   currentHelpText = computed(() => this.values()['helpText'] as string);
   currentDateType = computed(() => this.values()['dateType'] as DateFieldType);
   currentSize = computed(() => this.values()['size'] as Size);
