@@ -2,7 +2,7 @@ import { Component, input, output, model } from '@angular/core';
 import { Variant, Appearance, Size } from '../utils';
 import { ToastPosition } from './models/toast.model';
 import { IconComponent } from '../icon/icon.component';
-import { IconName } from '../icon/icon-name.type';
+import { IconName } from '../icon/generated/icon-name.type';
 import { ButtonComponent } from 'angular-ui';
 
 @Component({

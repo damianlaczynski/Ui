@@ -3,6 +3,7 @@ import { Component, computed, effect, ElementRef, inject, signal, viewChild } fr
 import { FormsModule } from '@angular/forms';
 import {
   ALL_ICON_NAMES,
+  ICON_SPRITE_SYMBOLS,
   IconComponent,
   IconName,
   SearchComponent,
@@ -16,6 +17,95 @@ import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { SIZES } from '@shared/utils/showcase/component-options.utils';
 import { ICON_DRAWER_CONFIGS, ICON_VARIANTS } from './icon.showcase.config';
 import { IconInteractiveComponent } from './icon.interactive';
+
+type IconMetadata = {
+  sizeLabel: string;
+  variantLabel: string;
+  hasDirection: boolean;
+  hasLocale: boolean;
+};
+
+const ICON_SYMBOL_PATTERN = /^(.*)_(16|20|24)_(regular|filled)$/;
+const AUTO_DIRECTIONAL_NAME_PATTERN = /^(.*)_(ltr|rtl)$/;
+const ALL_ICON_NAME_SET = new Set<IconName>(ALL_ICON_NAMES as IconName[]);
+
+const ICON_METADATA_MAP: Record<string, IconMetadata> = buildIconMetadata();
+
+function buildIconMetadata(): Record<string, IconMetadata> {
+  const perIcon = new Map<
+    string,
+    {
+      sizes: Set<number>;
+      variants: Set<'regular' | 'filled'>;
+      hasDirection: boolean;
+      hasLocale: boolean;
+    }
+  >();
+
+  const ensure = (iconName: string) => {
+    if (!perIcon.has(iconName)) {
+      perIcon.set(iconName, {
+        sizes: new Set<number>(),
+        variants: new Set<'regular' | 'filled'>(),
+        hasDirection: false,
+        hasLocale: false,
+      });
+    }
+    return perIcon.get(iconName)!;
+  };
+
+  for (const symbolId of Object.keys(ICON_SPRITE_SYMBOLS)) {
+    const directMatch = symbolId.match(ICON_SYMBOL_PATTERN);
+    if (directMatch) {
+      const [, iconName, sizeRaw, variantRaw] = directMatch;
+      const data = ensure(iconName);
+      data.sizes.add(Number(sizeRaw));
+      data.variants.add(variantRaw as 'regular' | 'filled');
+
+      const directionalMatch = iconName.match(AUTO_DIRECTIONAL_NAME_PATTERN);
+      if (directionalMatch) {
+        const [, baseIconName] = directionalMatch;
+        if (ALL_ICON_NAME_SET.has(baseIconName as IconName)) {
+          ensure(baseIconName).hasDirection = true;
+        }
+      }
+
+      continue;
+    }
+
+    const localeMatch = symbolId.match(/^locale-([a-z0-9-]+)-(.+)$/);
+    if (localeMatch) {
+      const [, , base] = localeMatch;
+      const baseMatch = base.match(ICON_SYMBOL_PATTERN);
+      if (!baseMatch) {
+        continue;
+      }
+      const [, iconName] = baseMatch;
+      ensure(iconName).hasLocale = true;
+    }
+  }
+
+  const metadata: Record<string, IconMetadata> = {};
+  perIcon.forEach((value, iconName) => {
+    const sizes = Array.from(value.sizes).sort((a, b) => a - b);
+    const variants = Array.from(value.variants);
+    metadata[iconName] = {
+      sizeLabel: sizes.join('/'),
+      variantLabel:
+        variants.length === 2
+          ? 'R/F'
+          : variants[0] === 'filled'
+            ? 'F'
+            : variants[0] === 'regular'
+              ? 'R'
+              : '-',
+      hasDirection: value.hasDirection,
+      hasLocale: value.hasLocale,
+    };
+  });
+
+  return metadata;
+}
 
 @Component({
   selector: 'app-icon-showcase',
@@ -43,9 +133,10 @@ import { IconInteractiveComponent } from './icon.interactive';
       <div class="showcase-content">
         <app-showcase-header title="Icon" />
         <p class="showcase__description">
-          The Icon component renders Fluent icons in regular or filled style with preset sizes
-          (small, medium, large) and optional custom pixel sizing. Use icons to support navigation,
-          actions, and status communication across UI components.
+          The Icon component renders Fluent SVG symbols from a sprite with automatic fallback across
+          size and variant. It supports preset sizes (<code>small</code>, <code>medium</code>,
+          <code>large</code>), optional <code>sizePx</code> override, accessibility labels, and
+          auto-direction for RTL locales.
         </p>
 
         <app-section-with-drawer
@@ -75,7 +166,13 @@ import { IconInteractiveComponent } from './icon.interactive';
                 @for (column of overviewColumns; track column.variant + column.size) {
                   <div class="showcase__icons-matrix__cell">
                     <div class="showcase__icon-showcase__icon-wrapper">
-                      <ui-icon [icon]="iconName" [size]="column.size" [variant]="column.variant" />
+                      <ui-icon
+                        [icon]="iconName"
+                        [size]="column.size"
+                        [variant]="column.variant"
+                        [direction]="testDirection()"
+                        [locale]="testLocale()"
+                      />
                     </div>
                     @if (overviewForm().showLabels) {
                       <div class="showcase__icon-showcase__name">{{ iconName }}</div>
@@ -98,7 +195,13 @@ import { IconInteractiveComponent } from './icon.interactive';
             @for (size of sizes; track size) {
               <div class="showcase__icon-showcase__item">
                 <div class="showcase__icon-showcase__icon-wrapper">
-                  <ui-icon [icon]="sizeForm().icon" [size]="size" [variant]="sizeForm().variant" />
+                  <ui-icon
+                    [icon]="sizeForm().icon"
+                    [size]="size"
+                    [variant]="sizeForm().variant"
+                    [direction]="testDirection()"
+                    [locale]="testLocale()"
+                  />
                 </div>
                 @if (sizeForm().showLabels) {
                   <div class="showcase__icon-showcase__name">{{ size | titlecase }}</div>
@@ -123,6 +226,8 @@ import { IconInteractiveComponent } from './icon.interactive';
                     [icon]="variantForm().icon"
                     [size]="variantForm().size"
                     [variant]="variant"
+                    [direction]="testDirection()"
+                    [locale]="testLocale()"
                   />
                 </div>
                 @if (variantForm().showLabels) {
@@ -135,7 +240,7 @@ import { IconInteractiveComponent } from './icon.interactive';
 
         <app-section-with-drawer
           sectionTitle="Icon Browser"
-          sectionDescription="Search through all available icons. Click any icon to copy its name. Use the drawer to change preview size and variant for the browser grid."
+          sectionDescription="Search through all available sprite icons. Click any icon to copy its name. Use the drawer to change preview size and variant for the browser grid."
           [formConfig]="browserDrawerFormConfig"
           [formValues]="browserFormValues()"
           (formValuesChange)="browserFormValues.set($event)"
@@ -150,52 +255,77 @@ import { IconInteractiveComponent } from './icon.interactive';
 
           <div class="showcase__icon-showcase__results">
             <p>
-              Showing <strong>{{ displayedIcons().length }}</strong> of
-              <strong>{{ filteredIcons().length }}</strong> icons
-              @if (filteredIcons().length < ALL_ICON_NAMES.length) {
-                <span>(filtered from {{ ALL_ICON_NAMES.length }})</span>
+              Showing <strong>{{ filteredIcons().length }}</strong>
+              @if (filteredIcons().length < browserIconNames.length) {
+                <span> of {{ browserIconNames.length }} available icons</span>
               }
             </p>
           </div>
 
-          @if (filteredIcons().length > 0) {
-            <div class="showcase__icon-showcase__grid" #scrollContainer (scroll)="onScroll()">
-              @for (iconName of displayedIcons(); track iconName) {
-                <button
-                  type="button"
-                  class="showcase__icon-showcase__item"
-                  [title]="iconName"
-                  (click)="copyIconName(iconName)"
-                >
-                  <div class="showcase__icon-showcase__icon-wrapper">
-                    <ui-icon
-                      [icon]="iconName"
-                      [size]="browserForm().size"
-                      [variant]="browserForm().variant"
-                    />
-                  </div>
-                  <div class="showcase__icon-showcase__name">{{ iconName }}</div>
-                </button>
-              }
-            </div>
-
-            @if (isLoadingMore()) {
-              <div class="showcase__icon-showcase__loading">
-                <p>Loading more icons...</p>
+          <div class="showcase__icon-showcase__viewport">
+            @if (filteredIcons().length > 0) {
+              <div class="showcase__icon-showcase__grid" #scrollContainer>
+                @for (iconName of filteredIcons(); track iconName) {
+                  <button
+                    type="button"
+                    class="showcase__icon-showcase__item"
+                    [title]="iconName"
+                    (click)="copyIconName(iconName)"
+                  >
+                    <div class="showcase__icon-showcase__icon-wrapper">
+                      <ui-icon
+                        [icon]="iconName"
+                        [size]="browserForm().size"
+                        [variant]="browserForm().variant"
+                        [direction]="testDirection()"
+                        [locale]="testLocale()"
+                      />
+                    </div>
+                    <div class="showcase__icon-showcase__meta">
+                      <span class="showcase__icon-showcase__badge">
+                        {{ iconMetadata(iconName).sizeLabel }}
+                      </span>
+                      <span class="showcase__icon-showcase__badge">
+                        {{ iconMetadata(iconName).variantLabel }}
+                      </span>
+                      @if (iconMetadata(iconName).hasDirection) {
+                        <span class="showcase__icon-showcase__badge">DIR</span>
+                      }
+                      @if (iconMetadata(iconName).hasLocale) {
+                        <span class="showcase__icon-showcase__badge">LOC</span>
+                      }
+                    </div>
+                    <div class="showcase__icon-showcase__name">{{ iconName }}</div>
+                  </button>
+                }
+              </div>
+            } @else {
+              <div class="showcase__icon-showcase__empty">
+                <p>No icons found matching "{{ searchQueryValue }}"</p>
               </div>
             }
-
-            @if (hasMoreIcons() === false && displayedIcons().length > 0) {
-              <div class="showcase__icon-showcase__end">
-                <p>All icons loaded</p>
-              </div>
-            }
-          } @else {
-            <div class="showcase__icon-showcase__empty">
-              <p>No icons found matching "{{ searchQueryValue }}"</p>
-            </div>
-          }
+          </div>
         </app-section-with-drawer>
+
+        <section id="how-it-works" class="showcase__section">
+          <h2 class="showcase__section__title">How It Works</h2>
+          <p class="showcase__section__description">
+            <code>ui-icon</code> resolves a best-match symbol in this order: locale-specific symbol,
+            directional icon variant from the main icon set (<code>_ltr</code>/<code>_rtl</code>),
+            then base icon symbol. It tries requested size/variant first and then fallback
+            combinations. Direction can be forced via <code>[direction]</code>, locale can be
+            overridden via <code>[locale]</code>. Icons are rendered only from sprite symbols.
+          </p>
+          <ul class="showcase__list">
+            <li><code>icon</code>: icon name from Fluent set (required for rendering)</li>
+            <li><code>size</code>: <code>small | medium | large</code> (maps to 16/20/24)</li>
+            <li><code>sizePx</code>: custom pixel size override</li>
+            <li><code>variant</code>: <code>regular | filled</code></li>
+            <li><code>direction</code>: <code>ltr | rtl</code> forced direction override</li>
+            <li><code>locale</code>: locale override for locale-specific symbols</li>
+            <li><code>ariaLabel</code>: enables semantic icon mode (<code>role="img"</code>)</li>
+          </ul>
+        </section>
 
         <section id="interactive-demo" class="showcase__section">
           <h2 class="showcase__section__title">Interactive Demo</h2>
@@ -206,16 +336,19 @@ import { IconInteractiveComponent } from './icon.interactive';
           <app-icon-interactive />
         </section>
       </div>
-
-      <ui-toast-container position="top-right"></ui-toast-container>
     </div>
+    <ui-toast-container position="top-right"></ui-toast-container>
   `,
 })
 export class IconShowcaseComponent {
-  readonly ALL_ICON_NAMES = ALL_ICON_NAMES;
+  readonly ALL_ICON_NAMES = ALL_ICON_NAMES as IconName[];
+  readonly browserIconNames = this.ALL_ICON_NAMES;
+  readonly localeQuickPick = ['ar', 'en', 'en-US', 'sr-Cyrl', 'sr-Latn', 'zh'];
 
   private toastService = inject(ToastService);
   private searchQuery = signal('');
+  private testDirectionState = signal<'auto' | 'ltr' | 'rtl'>('auto');
+  private testLocaleState = signal('');
 
   sizes = SIZES;
   iconVariants = ICON_VARIANTS;
@@ -229,9 +362,6 @@ export class IconShowcaseComponent {
   variantDrawerFormConfig = ICON_DRAWER_CONFIGS.variant;
   browserDrawerFormConfig = ICON_DRAWER_CONFIGS.browser;
 
-  readonly batchSize = 48;
-  displayedCount = signal<number>(this.batchSize);
-  isLoadingMore = signal<boolean>(false);
   scrollContainer = viewChild<ElementRef<HTMLDivElement>>('scrollContainer');
 
   get searchQueryValue(): string {
@@ -240,6 +370,34 @@ export class IconShowcaseComponent {
   set searchQueryValue(value: string) {
     this.searchQuery.set(value);
   }
+
+  get testDirectionValue(): 'auto' | 'ltr' | 'rtl' {
+    return this.testDirectionState();
+  }
+  set testDirectionValue(value: string) {
+    if (value === 'ltr' || value === 'rtl') {
+      this.testDirectionState.set(value);
+      return;
+    }
+    this.testDirectionState.set('auto');
+  }
+
+  get testLocaleValue(): string {
+    return this.testLocaleState();
+  }
+  set testLocaleValue(value: string) {
+    this.testLocaleState.set(value ?? '');
+  }
+
+  testDirection = computed<'ltr' | 'rtl' | undefined>(() => {
+    const value = this.testDirectionState();
+    return value === 'auto' ? undefined : value;
+  });
+
+  testLocale = computed<string | undefined>(() => {
+    const trimmed = this.testLocaleState().trim();
+    return trimmed || undefined;
+  });
 
   overviewFormValues = signal<Record<string, unknown>>({
     showLabels: true,
@@ -298,23 +456,16 @@ export class IconShowcaseComponent {
   filteredIcons = computed<IconName[]>(() => {
     const query = this.searchQuery().toLowerCase().trim();
     if (!query) {
-      return this.ALL_ICON_NAMES as IconName[];
+      return this.browserIconNames;
     }
-    return this.ALL_ICON_NAMES.filter(iconName =>
+    return this.browserIconNames.filter(iconName =>
       iconName.toLowerCase().includes(query),
     ) as IconName[];
   });
 
-  displayedIcons = computed<IconName[]>(() => {
-    return this.filteredIcons().slice(0, this.displayedCount());
-  });
-
-  hasMoreIcons = computed<boolean>(() => this.displayedCount() < this.filteredIcons().length);
-
   constructor() {
     effect(() => {
-      const filteredLength = this.filteredIcons().length;
-      this.displayedCount.set(Math.min(this.batchSize, filteredLength));
+      this.searchQuery();
 
       queueMicrotask(() => {
         const container = this.scrollContainer()?.nativeElement;
@@ -323,19 +474,6 @@ export class IconShowcaseComponent {
         }
       });
     });
-  }
-
-  onScroll(): void {
-    const container = this.scrollContainer()?.nativeElement;
-    if (!container || this.isLoadingMore() || !this.hasMoreIcons()) {
-      return;
-    }
-
-    const scrollPercentage =
-      (container.scrollTop + container.clientHeight) / container.scrollHeight;
-    if (scrollPercentage > 0.8) {
-      this.loadMoreIcons();
-    }
   }
 
   copyIconName(iconName: IconName): void {
@@ -367,19 +505,14 @@ export class IconShowcaseComponent {
       });
   }
 
-  private loadMoreIcons(): void {
-    if (this.isLoadingMore() || !this.hasMoreIcons()) {
-      return;
-    }
-
-    this.isLoadingMore.set(true);
-    setTimeout(() => {
-      const newCount = Math.min(
-        this.displayedCount() + this.batchSize,
-        this.filteredIcons().length,
-      );
-      this.displayedCount.set(newCount);
-      this.isLoadingMore.set(false);
-    }, 100);
+  iconMetadata(iconName: IconName): IconMetadata {
+    return (
+      ICON_METADATA_MAP[iconName] ?? {
+        sizeLabel: '-',
+        variantLabel: '-',
+        hasDirection: false,
+        hasLocale: false,
+      }
+    );
   }
 }

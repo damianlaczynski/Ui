@@ -19,6 +19,10 @@ import { ICON_SHOWCASE_CONFIG, ICON_VARIANTS } from './icon.showcase.config';
           [size]="currentSize()"
           [variant]="currentVariant()"
           [sizePx]="currentSizePx()"
+          [rotate]="currentRotate()"
+          [ariaLabel]="currentAriaLabel()"
+          [direction]="currentDirection()"
+          [locale]="currentLocale()"
         />
       </div>
     </app-interactive-showcase>
@@ -31,7 +35,11 @@ export class IconInteractiveComponent {
     icon: 'home',
     size: 'medium',
     variant: 'regular',
+    direction: 'auto',
+    locale: '',
     sizePx: 0,
+    rotate: 0,
+    ariaLabel: '',
   });
 
   currentIcon = computed(() => {
@@ -49,6 +57,26 @@ export class IconInteractiveComponent {
   currentSizePx = computed(() => {
     const sizePx = Number(this.values()['sizePx']);
     return Number.isFinite(sizePx) && sizePx > 0 ? sizePx : undefined;
+  });
+
+  currentRotate = computed(() => {
+    const rotate = Number(this.values()['rotate']);
+    return Number.isFinite(rotate) ? rotate : undefined;
+  });
+
+  currentAriaLabel = computed(() => {
+    const label = (this.values()['ariaLabel'] as string | undefined)?.trim();
+    return label ? label : undefined;
+  });
+
+  currentDirection = computed(() => {
+    const direction = (this.values()['direction'] as string | undefined)?.trim();
+    return direction === 'ltr' || direction === 'rtl' ? direction : undefined;
+  });
+
+  currentLocale = computed(() => {
+    const locale = (this.values()['locale'] as string | undefined)?.trim();
+    return locale ? locale : undefined;
   });
 
   onValuesChange(newValues: Record<string, unknown>): void {

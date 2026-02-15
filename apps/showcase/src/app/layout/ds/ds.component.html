@@ -55,6 +55,25 @@
             }
           </div>
         </div>
+        <!-- TODO: Add direction support -->
+        <!-- <div class="ds__direction-switcher" role="group" aria-label="Layout direction">
+          <button
+            type="button"
+            class="ds__direction-switcher__button"
+            [class.ds__direction-switcher__button--active]="direction() === 'ltr'"
+            (click)="setDirection('ltr')"
+          >
+            LTR
+          </button>
+          <button
+            type="button"
+            class="ds__direction-switcher__button"
+            [class.ds__direction-switcher__button--active]="direction() === 'rtl'"
+            (click)="setDirection('rtl')"
+          >
+            RTL
+          </button>
+        </div> -->
       </div>
       @if (isMobile()) {
         <ui-button
