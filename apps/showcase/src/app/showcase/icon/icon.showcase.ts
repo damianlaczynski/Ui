@@ -3,7 +3,6 @@ import { Component, computed, effect, ElementRef, inject, signal, viewChild } fr
 import { FormsModule } from '@angular/forms';
 import {
   ALL_ICON_NAMES,
-  ICON_SPRITE_SYMBOLS,
   IconComponent,
   IconName,
   SearchComponent,
@@ -18,94 +17,7 @@ import { SIZES } from '@shared/utils/showcase/component-options.utils';
 import { ICON_DRAWER_CONFIGS, ICON_VARIANTS } from './icon.showcase.config';
 import { IconInteractiveComponent } from './icon.interactive';
 
-type IconMetadata = {
-  sizeLabel: string;
-  variantLabel: string;
-  hasDirection: boolean;
-  hasLocale: boolean;
-};
-
-const ICON_SYMBOL_PATTERN = /^(.*)_(16|20|24)_(regular|filled)$/;
-const AUTO_DIRECTIONAL_NAME_PATTERN = /^(.*)_(ltr|rtl)$/;
-const ALL_ICON_NAME_SET = new Set<IconName>(ALL_ICON_NAMES as IconName[]);
-
-const ICON_METADATA_MAP: Record<string, IconMetadata> = buildIconMetadata();
-
-function buildIconMetadata(): Record<string, IconMetadata> {
-  const perIcon = new Map<
-    string,
-    {
-      sizes: Set<number>;
-      variants: Set<'regular' | 'filled'>;
-      hasDirection: boolean;
-      hasLocale: boolean;
-    }
-  >();
-
-  const ensure = (iconName: string) => {
-    if (!perIcon.has(iconName)) {
-      perIcon.set(iconName, {
-        sizes: new Set<number>(),
-        variants: new Set<'regular' | 'filled'>(),
-        hasDirection: false,
-        hasLocale: false,
-      });
-    }
-    return perIcon.get(iconName)!;
-  };
-
-  for (const symbolId of Object.keys(ICON_SPRITE_SYMBOLS)) {
-    const directMatch = symbolId.match(ICON_SYMBOL_PATTERN);
-    if (directMatch) {
-      const [, iconName, sizeRaw, variantRaw] = directMatch;
-      const data = ensure(iconName);
-      data.sizes.add(Number(sizeRaw));
-      data.variants.add(variantRaw as 'regular' | 'filled');
-
-      const directionalMatch = iconName.match(AUTO_DIRECTIONAL_NAME_PATTERN);
-      if (directionalMatch) {
-        const [, baseIconName] = directionalMatch;
-        if (ALL_ICON_NAME_SET.has(baseIconName as IconName)) {
-          ensure(baseIconName).hasDirection = true;
-        }
-      }
-
-      continue;
-    }
-
-    const localeMatch = symbolId.match(/^locale-([a-z0-9-]+)-(.+)$/);
-    if (localeMatch) {
-      const [, , base] = localeMatch;
-      const baseMatch = base.match(ICON_SYMBOL_PATTERN);
-      if (!baseMatch) {
-        continue;
-      }
-      const [, iconName] = baseMatch;
-      ensure(iconName).hasLocale = true;
-    }
-  }
-
-  const metadata: Record<string, IconMetadata> = {};
-  perIcon.forEach((value, iconName) => {
-    const sizes = Array.from(value.sizes).sort((a, b) => a - b);
-    const variants = Array.from(value.variants);
-    metadata[iconName] = {
-      sizeLabel: sizes.join('/'),
-      variantLabel:
-        variants.length === 2
-          ? 'R/F'
-          : variants[0] === 'filled'
-            ? 'F'
-            : variants[0] === 'regular'
-              ? 'R'
-              : '-',
-      hasDirection: value.hasDirection,
-      hasLocale: value.hasLocale,
-    };
-  });
-
-  return metadata;
-}
+const ICON_BROWSER_BATCH_SIZE = 96;
 
 @Component({
   selector: 'app-icon-showcase',
@@ -255,7 +167,8 @@ function buildIconMetadata(): Record<string, IconMetadata> {
 
           <div class="showcase__icon-showcase__results">
             <p>
-              Showing <strong>{{ filteredIcons().length }}</strong>
+              Showing <strong>{{ visibleIcons().length }}</strong>
+              <span> of {{ filteredIcons().length }} matching icons</span>
               @if (filteredIcons().length < browserIconNames.length) {
                 <span> of {{ browserIconNames.length }} available icons</span>
               }
@@ -264,8 +177,12 @@ function buildIconMetadata(): Record<string, IconMetadata> {
 
           <div class="showcase__icon-showcase__viewport">
             @if (filteredIcons().length > 0) {
-              <div class="showcase__icon-showcase__grid" #scrollContainer>
-                @for (iconName of filteredIcons(); track iconName) {
+              <div
+                class="showcase__icon-showcase__grid"
+                #scrollContainer
+                (scroll)="onIconGridScroll($event)"
+              >
+                @for (iconName of visibleIcons(); track iconName) {
                   <button
                     type="button"
                     class="showcase__icon-showcase__item"
@@ -280,20 +197,6 @@ function buildIconMetadata(): Record<string, IconMetadata> {
                         [direction]="testDirection()"
                         [locale]="testLocale()"
                       />
-                    </div>
-                    <div class="showcase__icon-showcase__meta">
-                      <span class="showcase__icon-showcase__badge">
-                        {{ iconMetadata(iconName).sizeLabel }}
-                      </span>
-                      <span class="showcase__icon-showcase__badge">
-                        {{ iconMetadata(iconName).variantLabel }}
-                      </span>
-                      @if (iconMetadata(iconName).hasDirection) {
-                        <span class="showcase__icon-showcase__badge">DIR</span>
-                      }
-                      @if (iconMetadata(iconName).hasLocale) {
-                        <span class="showcase__icon-showcase__badge">LOC</span>
-                      }
                     </div>
                     <div class="showcase__icon-showcase__name">{{ iconName }}</div>
                   </button>
@@ -347,6 +250,7 @@ export class IconShowcaseComponent {
 
   private toastService = inject(ToastService);
   private searchQuery = signal('');
+  private visibleIconsCount = signal(ICON_BROWSER_BATCH_SIZE);
   private testDirectionState = signal<'auto' | 'ltr' | 'rtl'>('auto');
   private testLocaleState = signal('');
 
@@ -463,9 +367,18 @@ export class IconShowcaseComponent {
     ) as IconName[];
   });
 
+  visibleIcons = computed<IconName[]>(() =>
+    this.filteredIcons().slice(0, this.visibleIconsCount()),
+  );
+
+  hasMoreVisibleIcons = computed<boolean>(
+    () => this.visibleIcons().length < this.filteredIcons().length,
+  );
+
   constructor() {
     effect(() => {
       this.searchQuery();
+      this.visibleIconsCount.set(ICON_BROWSER_BATCH_SIZE);
 
       queueMicrotask(() => {
         const container = this.scrollContainer()?.nativeElement;
@@ -474,6 +387,22 @@ export class IconShowcaseComponent {
         }
       });
     });
+  }
+
+  loadMoreVisibleIcons(): void {
+    this.visibleIconsCount.update(count => count + ICON_BROWSER_BATCH_SIZE);
+  }
+
+  onIconGridScroll(event: Event): void {
+    const container = event.target as HTMLDivElement | null;
+    if (!container || !this.hasMoreVisibleIcons()) {
+      return;
+    }
+
+    const distanceToBottom = container.scrollHeight - container.scrollTop - container.clientHeight;
+    if (distanceToBottom <= 320) {
+      this.loadMoreVisibleIcons();
+    }
   }
 
   copyIconName(iconName: IconName): void {
@@ -503,16 +432,5 @@ export class IconShowcaseComponent {
           document.body.removeChild(textArea);
         }
       });
-  }
-
-  iconMetadata(iconName: IconName): IconMetadata {
-    return (
-      ICON_METADATA_MAP[iconName] ?? {
-        sizeLabel: '-',
-        variantLabel: '-',
-        hasDirection: false,
-        hasLocale: false,
-      }
-    );
   }
 }

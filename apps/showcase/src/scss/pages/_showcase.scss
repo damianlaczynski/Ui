@@ -990,8 +990,10 @@
     }
 
     &__viewport {
-      height: clamp(420px, 60vh, 760px);
-      min-height: 420px;
+      height: 640px;
+      min-height: 640px;
+      max-height: 640px;
+      overflow: hidden;
     }
 
     &__grid {
@@ -1120,8 +1122,9 @@
     // Responsive styles
     @include respond-to(medium) {
       &__viewport {
-        height: clamp(320px, 52vh, 620px);
-        min-height: 320px;
+        height: 520px;
+        min-height: 520px;
+        max-height: 520px;
       }
 
       &__grid {

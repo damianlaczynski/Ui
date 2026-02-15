@@ -220,7 +220,7 @@ async function buildSpriteData(iconNames, mode) {
     }
 
     const folderName = entry.name;
-    // Skip LTR and RTL folders. Already this icons are included in the root directory.
+    // Skip LTR and RTL folders. Already these icons are included in the root directory.
     if (folderName === 'LTR' || folderName === 'RTL') {
       continue;
     }
