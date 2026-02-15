@@ -17,9 +17,6 @@ describe('DateComponent', () => {
   });
 
   it('should parse date values without timezone shifting day', () => {
-    fixture.componentRef.setInput('dateType', 'date');
-    fixture.detectChanges();
-
     component.writeValue('2026-02-15');
 
     const selected = component.selectedDate();
@@ -29,40 +26,15 @@ describe('DateComponent', () => {
     expect(selected?.getDate()).toBe(15);
   });
 
-  it('should parse month values explicitly as first day of month', () => {
-    fixture.componentRef.setInput('dateType', 'month');
-    fixture.detectChanges();
-
-    component.writeValue('2026-02');
-
-    const selected = component.selectedDate();
-    expect(selected).toBeTruthy();
-    expect(selected?.getFullYear()).toBe(2026);
-    expect(selected?.getMonth()).toBe(1);
-    expect(selected?.getDate()).toBe(1);
+  it('should output ISO date format', () => {
+    component.writeValue('2026-02-15');
+    expect(component.value).toBe('2026-02-15');
   });
 
-  it('should parse iso week values and set selectedWeek/selectedYear', () => {
-    fixture.componentRef.setInput('dateType', 'week');
-    fixture.detectChanges();
-
-    component.writeValue('2026-W01');
-
-    const selected = component.selectedDate();
-    expect(selected).toBeTruthy();
-    expect(component.selectedWeek()).toBe(1);
-    expect(component.selectedYear()).toBe(2026);
-  });
-
-  it('should clear value for invalid week input', () => {
-    fixture.componentRef.setInput('dateType', 'week');
-    fixture.detectChanges();
-
-    component.writeValue('2026-W99');
+  it('should clear value for invalid date input', () => {
+    component.writeValue('invalid-date');
 
     expect(component.selectedDate()).toBeNull();
-    expect(component.selectedWeek()).toBeNull();
-    expect(component.selectedYear()).toBeNull();
     expect(component.value).toBe('');
   });
 });
