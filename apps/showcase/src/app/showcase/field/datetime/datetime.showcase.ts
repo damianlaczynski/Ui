@@ -1,23 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, effect, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { DateComponent, Size, TableOfContentComponent } from 'angular-ui';
+import { DatetimeComponent, Size, TableOfContentComponent } from 'angular-ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
-import { DateInteractiveComponent } from './date.interactive';
-import { DATE_DRAWER_CONFIGS } from './date.showcase.config';
+import { DatetimeInteractiveComponent } from './datetime.interactive';
+import { DATETIME_DRAWER_CONFIGS } from './datetime.showcase.config';
 import { SIZES } from '@shared/utils/showcase/component-options.utils';
 
 @Component({
-  selector: 'app-date-showcase',
+  selector: 'app-datetime-showcase',
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    DateComponent,
+    DatetimeComponent,
     TableOfContentComponent,
     SectionWithDrawerComponent,
     ShowcaseHeaderComponent,
-    DateInteractiveComponent,
+    DatetimeInteractiveComponent,
   ],
   template: `
     <div class="showcase showcase--responsive showcase__with-toc">
@@ -29,14 +29,14 @@ import { SIZES } from '@shared/utils/showcase/component-options.utils';
         [maxLevel]="2"
       />
       <div class="showcase-content">
-        <app-showcase-header title="Date" />
+        <app-showcase-header title="Datetime" />
         <p class="showcase__description">
-          Date field for single-day selection with calendar overlay.
+          Datetime field combines date calendar and time wheel picker in one control.
         </p>
 
         <app-section-with-drawer
           sectionTitle="Overview"
-          sectionDescription="Date field in different sizes and states."
+          sectionDescription="Datetime field in different sizes and states."
           [formConfig]="overviewDrawerFormConfig"
           [formValues]="overviewFormValues()"
           (formValuesChange)="overviewFormValues.set($event)"
@@ -44,10 +44,12 @@ import { SIZES } from '@shared/utils/showcase/component-options.utils';
           <div class="showcase__grid">
             @for (size of sizes; track size) {
               <div class="showcase__item">
-                <ui-date
+                <ui-datetime
                   [label]="size"
-                  [placeholder]="'YYYY-MM-DD'"
+                  [placeholder]="'YYYY-MM-DD HH:mm'"
                   [size]="size"
+                  [step]="overviewForm().step"
+                  [use24HourFormat]="overviewForm().use24HourFormat"
                   [readonly]="overviewForm().readonly"
                   [required]="overviewForm().required"
                   [formControl]="getSizeControl(size)"
@@ -59,15 +61,15 @@ import { SIZES } from '@shared/utils/showcase/component-options.utils';
 
         <section id="interactive-demo" class="showcase__section">
           <h2 class="showcase__section__title">Interactive Demo</h2>
-          <app-date-interactive />
+          <app-datetime-interactive />
         </section>
       </div>
     </div>
   `,
 })
-export class DateShowcaseComponent {
+export class DatetimeShowcaseComponent {
   sizes = SIZES;
-  overviewDrawerFormConfig = DATE_DRAWER_CONFIGS.overview;
+  overviewDrawerFormConfig = DATETIME_DRAWER_CONFIGS.overview;
 
   sizeControls: Record<string, FormControl<string | null>> = {
     small: new FormControl<string | null>(''),
@@ -77,6 +79,8 @@ export class DateShowcaseComponent {
 
   overviewFormValues = signal<Record<string, unknown>>({
     size: 'medium',
+    step: 60,
+    use24HourFormat: true,
     disabled: false,
     readonly: false,
     required: false,
@@ -84,6 +88,8 @@ export class DateShowcaseComponent {
 
   overviewForm = computed(() => ({
     size: (this.overviewFormValues()['size'] as Size) || 'medium',
+    step: (this.overviewFormValues()['step'] as number) || 60,
+    use24HourFormat: (this.overviewFormValues()['use24HourFormat'] as boolean) ?? true,
     disabled: (this.overviewFormValues()['disabled'] as boolean) ?? false,
     readonly: (this.overviewFormValues()['readonly'] as boolean) ?? false,
     required: (this.overviewFormValues()['required'] as boolean) ?? false,

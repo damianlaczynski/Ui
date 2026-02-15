@@ -32,6 +32,7 @@
       [attr.aria-invalid]="!!errorText()"
       [attr.aria-expanded]="isOpen()"
       [attr.aria-haspopup]="'dialog'"
+      (click)="togglePanel()"
       (input)="onTimeSpanInputChange($event)"
       (blur)="onBlur($event)"
       (focus)="onFocus($event)"
@@ -62,39 +63,34 @@
     <div class="timespan-panel__content">
       @for (unit of availableUnits(); track unit.key) {
         <div class="timespan-panel__unit">
-          <div class="timespan-panel__unit-controls">
-            <ui-button
-              appearance="subtle"
-              [size]="size()"
-              icon="chevron_up"
-              [disabled]="disabled() || readonly()"
-              (click)="incrementUnit(unit.key); $event.stopPropagation()"
-            />
-            <div class="input-wrapper" [class]="wrapperClasses">
-              <input
-                class="input number-input"
-                type="number"
-                inputmode="numeric"
-                [id]="id() + '-' + unit.key"
-                [name]="name() + '-' + unit.key"
-                [placeholder]="'0'"
-                [required]="false"
-                [disabled]="disabled()"
-                [readonly]="readonly()"
-                [value]="getUnitValue(unit.key) ?? ''"
-                [attr.min]="0"
-                [attr.aria-label]="unit.label"
-                (input)="onUnitInputChange(unit.key, $event); $event.stopPropagation()"
-                (click)="$event.stopPropagation()"
-              />
+          <div class="time-span-wheel">
+            <div
+              #wheelElement
+              class="time-span-wheel__wheel"
+              role="listbox"
+              [attr.aria-label]="unit.label"
+              [attr.tabindex]="disabled() || readonly() ? -1 : 0"
+              [class.time-span-wheel__wheel--dragging]="isUnitDragging(unit.key)"
+              (wheel)="onUnitWheel(unit.key, $event)"
+              (keydown)="onWheelKeyDown(unit.key, $event)"
+              (pointerdown)="onWheelPointerDown(unit.key, $event)"
+              (pointermove)="onWheelPointerMove(unit.key, wheelElement, $event)"
+              (pointerup)="onWheelPointerUp(unit.key, wheelElement, $event)"
+              (pointercancel)="onWheelPointerUp(unit.key, wheelElement, $event)"
+            >
+              @for (option of getWheelOptions(unit.key); track $index) {
+                <button
+                  type="button"
+                  [disabled]="disabled() || readonly() || option.value === null"
+                  [class]="getOptionClass(option)"
+                  [attr.aria-selected]="option.isSelected"
+                  (click)="onOptionClick(unit.key, wheelElement, $event)"
+                >
+                  {{ formatWheelOption(unit.key, option.value) }}
+                </button>
+              }
             </div>
-            <ui-button
-              appearance="subtle"
-              [size]="size()"
-              icon="chevron_down"
-              [disabled]="disabled() || readonly()"
-              (click)="decrementUnit(unit.key); $event.stopPropagation()"
-            />
+            <div class="time-span-wheel__selection" aria-hidden="true"></div>
           </div>
           <span class="timespan-panel__unit-short-label">{{ unit.shortLabel }}</span>
         </div>

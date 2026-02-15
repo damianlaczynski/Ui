@@ -1,0 +1,101 @@
+<ui-field
+  [fieldType]="'datetime'"
+  [label]="label()"
+  [placeholder]="placeholder()"
+  [helpText]="helpText()"
+  [(errorText)]="errorText"
+  [required]="required()"
+  [disabled]="disabled()"
+  [readonly]="readonly()"
+  [id]="id()"
+  [name]="name()"
+  [size]="size()"
+  [inputVariant]="inputVariant()"
+>
+  <div class="input-wrapper" [class]="wrapperClasses">
+    <input
+      #triggerElement
+      class="input"
+      type="text"
+      [id]="id()"
+      [name]="name()"
+      [placeholder]="placeholder()"
+      [required]="required()"
+      [disabled]="disabled()"
+      [readonly]="readonly()"
+      [value]="displayText()"
+      [attr.tabindex]="getTabIndex()"
+      [attr.aria-label]="ariaLabel() || label()"
+      [attr.aria-describedby]="ariaDescribedBy()"
+      [attr.aria-invalid]="!!errorText()"
+      [attr.aria-expanded]="isOpen()"
+      [attr.aria-haspopup]="'dialog'"
+      (click)="togglePanel()"
+      (input)="onDatetimeInputChange($event)"
+      (blur)="onBlur($event)"
+      (focus)="onFocus($event)"
+      (keydown)="onKeyDown($event)"
+    />
+    @if (!disabled() && !readonly()) {
+      <div class="field__actions">
+        <ui-action-button
+          [size]="size()"
+          [icon]="getIcon()"
+          (click)="togglePanel()"
+        ></ui-action-button>
+        @if (value) {
+          <ui-action-button [icon]="'dismiss'" [size]="size()" (click)="clear()"></ui-action-button>
+        }
+      </div>
+    }
+  </div>
+</ui-field>
+
+<ng-template #panelTemplate>
+  <div class="date-panel" [attr.data-size]="size()" cdkTrapFocus>
+    <div class="datetime-panel">
+      <div class="datetime-panel__content">
+        <div class="datetime-panel__calendar">
+          <ui-calendar
+            [currentMonth]="currentMonth()"
+            [selectedDate]="selectedDate()"
+            [calendarView]="calendarView()"
+            [min]="min()"
+            [max]="max()"
+            [size]="size()"
+            [showMonthYearPicker]="true"
+            (dateSelect)="onCalendarDateSelect($event)"
+            (monthSelect)="onCalendarMonthSelect($event)"
+            (yearSelect)="onCalendarYearSelect($event)"
+            (previousMonth)="onCalendarPreviousMonth()"
+            (nextMonth)="onCalendarNextMonth()"
+            (previousYear)="onCalendarPreviousYear()"
+            (nextYear)="onCalendarNextYear()"
+            (previousYearRange)="onCalendarPreviousYearRange()"
+            (nextYearRange)="onCalendarNextYearRange()"
+            (switchToMonthsView)="onCalendarSwitchToMonthsView()"
+            (switchToYearsView)="onCalendarSwitchToYearsView()"
+            (switchToDaysView)="onCalendarSwitchToDaysView()"
+          ></ui-calendar>
+        </div>
+
+        <div class="datetime-panel__time">
+          <ui-time-picker
+            [value]="selectedTime()"
+            [step]="step()"
+            [size]="size()"
+            [use24HourFormat]="use24HourFormat()"
+            [showLabel]="false"
+            [label]="'Time'"
+            (timeChange)="onTimeChange($event)"
+          ></ui-time-picker>
+        </div>
+      </div>
+
+      <div class="date-calendar__footer datetime-panel__footer">
+        <ui-button [size]="size()" appearance="outline" (click)="clear()"> Clear </ui-button>
+        <ui-button [size]="size()" appearance="outline" (click)="goToNow()"> Now </ui-button>
+      </div>
+    </div>
+  </div>
+</ng-template>

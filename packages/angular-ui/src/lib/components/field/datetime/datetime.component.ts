@@ -21,6 +21,7 @@ import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import { FieldComponent } from '../field/field.component';
 import { ActionButtonComponent } from '../action-button.component';
 import { CalendarComponent, CalendarDay, CalendarView } from '../../calendar';
+import { TimePickerComponent } from '../../time-picker';
 import {
   DEFAULT_CONNECTED_POSITIONS,
   DEFAULT_VIEWPORT_MARGIN,
@@ -30,18 +31,8 @@ import {
 import { ButtonComponent } from '../../button';
 import { IconName } from '../../icon';
 
-export type DateFieldType = 'date' | 'month' | 'week';
-
-interface CalendarWeek {
-  weekNumber: number;
-  startDate: Date;
-  endDate: Date;
-  year: number;
-  isSelected: boolean;
-}
-
 @Component({
-  selector: 'ui-date',
+  selector: 'ui-datetime',
   imports: [
     CommonModule,
     A11yModule,
@@ -49,16 +40,17 @@ interface CalendarWeek {
     FieldComponent,
     ActionButtonComponent,
     CalendarComponent,
+    TimePickerComponent,
     ButtonComponent,
   ],
-  templateUrl: './date.component.html',
+  templateUrl: './datetime.component.html',
   host: {
     '[style.display]': '"block"',
   },
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DateComponent),
+      useExisting: forwardRef(() => DatetimeComponent),
       multi: true,
     },
   ],
@@ -70,66 +62,47 @@ interface CalendarWeek {
     `,
   ],
 })
-export class DateComponent extends FieldComponent implements OnDestroy {
+export class DatetimeComponent extends FieldComponent implements OnDestroy {
   private overlay = inject(Overlay);
   private viewContainerRef = inject(ViewContainerRef);
   private scrollDispatcher = inject(ScrollDispatcher);
   private ngZone = inject(NgZone);
   private overlayHandle: OverlayHandle | null = null;
 
-  dateType = input<DateFieldType>('date');
   min = input<string>('');
   max = input<string>('');
-  panelWidth = input<number>(300);
+  step = input<number | string>('');
+  panelWidth = input<number | undefined>(undefined);
+  use24HourFormat = input<boolean>(true);
 
   isOpen = signal<boolean>(false);
   currentMonth = signal<Date>(new Date());
   selectedDate = signal<Date | null>(null);
+  selectedTime = signal<string>('');
   calendarView = signal<CalendarView>('days');
-  selectedWeek = signal<number | null>(null);
-  selectedYear = signal<number | null>(null);
 
   @ViewChild('triggerElement') triggerElement!: ElementRef;
   @ViewChild('panelTemplate') panelTemplate!: TemplateRef<unknown>;
 
   displayText = computed(() => {
     const date = this.selectedDate();
-    const type = this.dateType();
-
-    if (!date) {
+    const time = this.selectedTime();
+    if (!date && !time) {
       return '';
     }
-
-    if (type === 'month') {
-      return this.formatMonth(date);
+    if (date && time) {
+      return `${this.formatDate(date)} ${time}`;
     }
-
-    if (type === 'week') {
-      return this.formatWeek(date);
-    }
-
-    return this.formatDate(date);
+    return date ? this.formatDate(date) : time;
   });
-
-  calendarWeeks = computed(() => this.generateCalendarWeeks());
 
   constructor() {
     super();
 
     effect(() => {
       const date = this.selectedDate();
-      const type = this.dateType();
-
-      if (!date) {
-        this.value = '';
-      } else if (type === 'month') {
-        this.value = this.toISOMonth(date);
-      } else if (type === 'week') {
-        this.value = this.toISOWeek(date);
-      } else {
-        this.value = this.toISODate(date);
-      }
-
+      const time = this.selectedTime();
+      this.value = date && time ? `${this.toISODate(date)}T${time}` : '';
       this.onChange(this.value);
     });
   }
@@ -168,7 +141,7 @@ export class DateComponent extends FieldComponent implements OnDestroy {
     }
   }
 
-  onDateInputChange(event: Event): void {
+  onDatetimeInputChange(event: Event): void {
     if (this.disabled() || this.readonly()) {
       return;
     }
@@ -179,34 +152,32 @@ export class DateComponent extends FieldComponent implements OnDestroy {
       return;
     }
 
-    const parsedDate = this.parseDateFromInput(inputValue);
-    if (parsedDate) {
-      this.selectedDate.set(parsedDate);
+    const parts = inputValue.includes('T') ? inputValue.split('T') : inputValue.split(' ');
+    if (parts.length < 2) {
+      return;
     }
+
+    const parsedDate = this.parseDateFromInput(parts[0]);
+    if (!parsedDate) {
+      return;
+    }
+
+    this.selectedDate.set(parsedDate);
+    this.selectedTime.set(parts[1]);
   }
 
   onCalendarDateSelect(day: CalendarDay): void {
     if (day.isDisabled) {
       return;
     }
-
     this.selectedDate.set(day.date);
-    if (this.dateType() === 'date') {
-      this.closePanel(false);
-    }
   }
 
   onCalendarMonthSelect(monthIndex: number): void {
     const newDate = new Date(this.currentMonth());
     newDate.setMonth(monthIndex);
-
-    if (this.dateType() === 'month') {
-      this.selectedDate.set(newDate);
-      this.closePanel(false);
-    } else {
-      this.currentMonth.set(newDate);
-      this.calendarView.set('days');
-    }
+    this.currentMonth.set(newDate);
+    this.calendarView.set('days');
   }
 
   onCalendarYearSelect(year: number): void {
@@ -214,13 +185,6 @@ export class DateComponent extends FieldComponent implements OnDestroy {
     newDate.setFullYear(year);
     this.currentMonth.set(newDate);
     this.calendarView.set('months');
-  }
-
-  selectWeek(week: CalendarWeek): void {
-    this.selectedWeek.set(week.weekNumber);
-    this.selectedYear.set(week.year);
-    this.selectedDate.set(week.startDate);
-    this.closePanel(false);
   }
 
   onCalendarSwitchToMonthsView(): void {
@@ -271,34 +235,42 @@ export class DateComponent extends FieldComponent implements OnDestroy {
     this.currentMonth.set(newMonth);
   }
 
+  onTimeChange(timeStr: string): void {
+    this.selectedTime.set(timeStr);
+  }
+
   goToToday(): void {
-    const today = new Date();
-    this.currentMonth.set(today);
-    this.selectedDate.set(today);
+    const now = new Date();
+    this.currentMonth.set(now);
+    this.selectedDate.set(now);
+  }
 
-    if (this.dateType() === 'week') {
-      this.selectedWeek.set(this.getWeekNumber(today));
-      this.selectedYear.set(today.getFullYear());
-    }
-
-    this.closePanel(false);
+  goToNow(): void {
+    const now = new Date();
+    this.currentMonth.set(now);
+    this.selectedDate.set(now);
+    this.selectedTime.set(
+      `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`,
+    );
   }
 
   override writeValue(value: unknown): void {
     if (!value) {
       this.selectedDate.set(null);
+      this.selectedTime.set('');
       super.writeValue('');
       return;
     }
 
-    this.selectedDate.set(new Date(String(value)));
+    const parsed = this.parseIncomingDatetime(String(value));
+    this.selectedDate.set(parsed.date);
+    this.selectedTime.set(parsed.time);
     super.writeValue(value);
   }
 
   override clear(): void {
     this.selectedDate.set(null);
-    this.selectedWeek.set(null);
-    this.selectedYear.set(null);
+    this.selectedTime.set('');
     super.clear();
   }
 
@@ -310,8 +282,7 @@ export class DateComponent extends FieldComponent implements OnDestroy {
     if (this.selectedDate()) {
       this.currentMonth.set(new Date(this.selectedDate()!));
     }
-
-    this.calendarView.set(this.dateType() === 'month' ? 'months' : 'days');
+    this.calendarView.set('days');
 
     this.overlayHandle = openConnectedOverlay({
       overlay: this.overlay,
@@ -323,7 +294,7 @@ export class DateComponent extends FieldComponent implements OnDestroy {
       config: {
         positions: DEFAULT_CONNECTED_POSITIONS,
         viewportMargin: DEFAULT_VIEWPORT_MARGIN,
-        width: this.panelWidth(),
+        width: this.panelWidth() ? this.panelWidth() : undefined,
         hasBackdrop: false,
       },
       onClose: focusTrigger => {
@@ -339,13 +310,7 @@ export class DateComponent extends FieldComponent implements OnDestroy {
   }
 
   getIcon(): IconName {
-    if (this.dateType() === 'month') {
-      return 'calendar_month';
-    }
-    if (this.dateType() === 'week') {
-      return 'calendar_week_numbers';
-    }
-    return 'calendar';
+    return 'calendar_clock';
   }
 
   private parseDateFromInput(inputValue: string): Date | null {
@@ -382,58 +347,12 @@ export class DateComponent extends FieldComponent implements OnDestroy {
     return null;
   }
 
-  private generateCalendarWeeks(): CalendarWeek[] {
-    const currentYear = this.currentMonth().getFullYear();
-    const weeks: CalendarWeek[] = [];
-    const firstDay = new Date(currentYear, 0, 1);
-    const lastDay = new Date(currentYear, 11, 31);
-    const currentDate = new Date(firstDay);
-    const dayOfWeek = currentDate.getDay();
-    const daysToMonday = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
-    currentDate.setDate(currentDate.getDate() + daysToMonday);
-
-    while (currentDate <= lastDay || currentDate.getFullYear() === currentYear) {
-      const weekStart = new Date(currentDate);
-      const weekEnd = new Date(currentDate);
-      weekEnd.setDate(weekEnd.getDate() + 6);
-      const weekNumber = this.getWeekNumber(weekStart);
-      const isSelected = this.selectedWeek() === weekNumber && this.selectedYear() === currentYear;
-
-      weeks.push({
-        weekNumber,
-        startDate: weekStart,
-        endDate: weekEnd,
-        year: currentYear,
-        isSelected,
-      });
-
-      currentDate.setDate(currentDate.getDate() + 7);
-      if (currentDate.getFullYear() > currentYear) {
-        break;
-      }
-    }
-
-    return weeks;
-  }
-
   private formatDate(date: Date): string {
-    return date.toLocaleDateString('en-US', {
+    return date.toLocaleDateString(undefined, {
       year: 'numeric',
       month: '2-digit',
       day: '2-digit',
     });
-  }
-
-  private formatMonth(date: Date): string {
-    return date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-    });
-  }
-
-  private formatWeek(date: Date): string {
-    const week = this.getWeekNumber(date);
-    return `Week ${week}, ${date.getFullYear()}`;
   }
 
   private toISODate(date: Date): string {
@@ -443,22 +362,37 @@ export class DateComponent extends FieldComponent implements OnDestroy {
     return `${year}-${month}-${day}`;
   }
 
-  private toISOMonth(date: Date): string {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    return `${year}-${month}`;
-  }
+  private parseIncomingDatetime(value: string): { date: Date | null; time: string } {
+    const localPattern = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})(?::\d{2})?$/;
+    const localMatch = value.match(localPattern);
+    if (localMatch) {
+      const year = parseInt(localMatch[1], 10);
+      const month = parseInt(localMatch[2], 10) - 1;
+      const day = parseInt(localMatch[3], 10);
+      const hour = parseInt(localMatch[4], 10);
+      const minute = parseInt(localMatch[5], 10);
+      return {
+        date: new Date(year, month, day),
+        time: `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`,
+      };
+    }
 
-  private toISOWeek(date: Date): string {
-    const week = this.getWeekNumber(date);
-    return `${date.getFullYear()}-W${String(week).padStart(2, '0')}`;
-  }
+    const parsed = new Date(value);
+    if (!isNaN(parsed.getTime())) {
+      return {
+        date: new Date(parsed.getFullYear(), parsed.getMonth(), parsed.getDate()),
+        time: `${String(parsed.getHours()).padStart(2, '0')}:${String(parsed.getMinutes()).padStart(2, '0')}`,
+      };
+    }
 
-  private getWeekNumber(date: Date): number {
-    const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
-    const dayNum = d.getUTCDay() || 7;
-    d.setUTCDate(d.getUTCDate() + 4 - dayNum);
-    const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
-    return Math.ceil(((d.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
+    const [datePart, timePart] = value.includes('T') ? value.split('T') : value.split(' ');
+    if (!datePart) {
+      return { date: null, time: '' };
+    }
+
+    return {
+      date: this.parseDateFromInput(datePart),
+      time: (timePart || '').slice(0, 5),
+    };
   }
 }

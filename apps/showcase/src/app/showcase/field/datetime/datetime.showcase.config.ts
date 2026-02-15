@@ -7,7 +7,13 @@ import {
 } from '@shared/utils/showcase/showcase-controls.utils';
 import { SHOWCASE_GROUP_ICONS, SIZES } from '@shared/utils/showcase/component-options.utils';
 
-const DATE_CONTROL_DEFS: SharedControlDef[] = [
+const DATETIME_STEPS = [
+  { value: 60, label: '1 min' },
+  { value: 300, label: '5 min' },
+  { value: 900, label: '15 min' },
+] as const;
+
+const DATETIME_CONTROL_DEFS: SharedControlDef[] = [
   {
     key: 'size',
     label: 'Size',
@@ -15,6 +21,21 @@ const DATE_CONTROL_DEFS: SharedControlDef[] = [
     options: SIZES.map(size => ({ value: size, label: size })),
     defaultValue: 'medium',
     group: 'appearance',
+  },
+  {
+    key: 'step',
+    label: 'Step',
+    type: 'dropdown',
+    options: DATETIME_STEPS.map(step => ({ value: step.value, label: step.label })),
+    defaultValue: 60,
+    group: 'behavior',
+  },
+  {
+    key: 'use24HourFormat',
+    label: '24-Hour Format',
+    type: 'switch',
+    defaultValue: true,
+    group: 'behavior',
   },
   {
     key: 'disabled',
@@ -39,14 +60,14 @@ const DATE_CONTROL_DEFS: SharedControlDef[] = [
   },
 ];
 
-const ALL_CONTROLS = toDrawerFormControls(DATE_CONTROL_DEFS);
+const ALL_CONTROLS = toDrawerFormControls(DATETIME_CONTROL_DEFS);
 
-export const DATE_DRAWER_CONFIGS = createDrawerFormConfigs(ALL_CONTROLS, {
+export const DATETIME_DRAWER_CONFIGS = createDrawerFormConfigs(ALL_CONTROLS, {
   overview: { excludeKeys: [] },
 });
 
-export const DATE_SHOWCASE_CONFIG: ShowcaseConfig = {
-  componentSelector: 'ui-date',
+export const DATETIME_SHOWCASE_CONFIG: ShowcaseConfig = {
+  componentSelector: 'ui-datetime',
   controlGroups: [
     {
       id: 'appearance',
@@ -54,7 +75,13 @@ export const DATE_SHOWCASE_CONFIG: ShowcaseConfig = {
       icon: SHOWCASE_GROUP_ICONS['appearance'],
       expanded: true,
     },
+    {
+      id: 'behavior',
+      label: 'Behavior',
+      icon: SHOWCASE_GROUP_ICONS['behavior'],
+      expanded: true,
+    },
     { id: 'state', label: 'State', icon: SHOWCASE_GROUP_ICONS['state'], expanded: true },
   ],
-  controls: toShowcaseControls(DATE_CONTROL_DEFS),
+  controls: toShowcaseControls(DATETIME_CONTROL_DEFS),
 };

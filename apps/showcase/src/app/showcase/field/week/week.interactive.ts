@@ -1,13 +1,13 @@
 import { Component, computed, signal, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DateComponent, Size } from 'angular-ui';
+import { Size, WeekComponent } from 'angular-ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
-import { DATE_SHOWCASE_CONFIG } from './date.showcase.config';
+import { WEEK_SHOWCASE_CONFIG } from './week.showcase.config';
 
 @Component({
-  selector: 'app-date-interactive',
-  imports: [DateComponent, FormsModule, InteractiveShowcaseComponent],
+  selector: 'app-week-interactive',
+  imports: [WeekComponent, FormsModule, InteractiveShowcaseComponent],
   template: `
     <app-interactive-showcase
       #showcase
@@ -17,15 +17,15 @@ import { DATE_SHOWCASE_CONFIG } from './date.showcase.config';
       (resetRequested)="onReset()"
     >
       <div preview>
-        <ui-date
-          [label]="'Select Date'"
-          [placeholder]="'YYYY-MM-DD'"
+        <ui-week
+          [label]="'Select Week'"
+          [placeholder]="'YYYY-Www'"
           [size]="currentSize()"
           [disabled]="currentDisabled()"
           [readonly]="currentReadonly()"
           [required]="currentRequired()"
           [(ngModel)]="currentValue"
-          (change)="onDateChange($event)"
+          (change)="onWeekChange($event)"
         />
         <p style="margin-top: 12px;">
           Current value: <strong>{{ getCurrentValuePreview() }}</strong>
@@ -34,10 +34,10 @@ import { DATE_SHOWCASE_CONFIG } from './date.showcase.config';
     </app-interactive-showcase>
   `,
 })
-export class DateInteractiveComponent {
+export class WeekInteractiveComponent {
   private showcase = viewChild<InteractiveShowcaseComponent>('showcase');
 
-  showcaseConfig: ShowcaseConfig = DATE_SHOWCASE_CONFIG;
+  showcaseConfig: ShowcaseConfig = WEEK_SHOWCASE_CONFIG;
   currentValue = '';
 
   private values = signal<Record<string, unknown>>({
@@ -77,7 +77,7 @@ export class DateInteractiveComponent {
     this.currentValue = '';
   }
 
-  onDateChange(value: string): void {
+  onWeekChange(value: string): void {
     this.showcase()?.logEvent('change', { value });
   }
 }

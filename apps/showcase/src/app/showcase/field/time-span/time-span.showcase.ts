@@ -60,6 +60,7 @@ import type { InputVariant, Size } from 'angular-ui';
                 <h3 class="showcase__item__title">{{ preset.label }}</h3>
                 <ui-time-span
                   [label]="preset.label"
+                  [placeholder]="'1h 30m'"
                   [showYears]="preset.showYears"
                   [showMonths]="preset.showMonths"
                   [showDays]="preset.showDays"
@@ -96,6 +97,7 @@ import type { InputVariant, Size } from 'angular-ui';
                 <h3 class="showcase__item__title">{{ size | titlecase }}</h3>
                 <ui-time-span
                   [label]="size + ' Time Span'"
+                  [placeholder]="'1h 30m'"
                   [size]="size"
                   [showDays]="true"
                   [showHours]="true"
@@ -125,6 +127,7 @@ import type { InputVariant, Size } from 'angular-ui';
                 <h3 class="showcase__item__title">{{ variant | titlecase }}</h3>
                 <ui-time-span
                   [label]="variant + ' variant'"
+                  [placeholder]="'1h 30m'"
                   [inputVariant]="variant"
                   [showDays]="true"
                   [showHours]="true"
@@ -154,6 +157,7 @@ import type { InputVariant, Size } from 'angular-ui';
                 <h3 class="showcase__item__title">{{ state.label }}</h3>
                 <ui-time-span
                   [label]="state.label"
+                  [placeholder]="'1h 30m'"
                   [showDays]="true"
                   [showHours]="true"
                   [showMinutes]="true"
@@ -183,7 +187,7 @@ import type { InputVariant, Size } from 'angular-ui';
               formControlName="accessTokenExpiration"
               inputVariant="filled"
               placeholder="Set expiration time"
-              helpText="Output: ISO 8601 duration string (e.g., 'PT1H30M' for 1 hour 30 minutes)"
+              helpText="Output: ISO 8601 duration string (e.g., '1h 30m' for 1 hour 30 minutes)"
             />
             <ui-time-span
               label="Refresh Token Expiration"
