@@ -31,7 +31,6 @@
       [attr.aria-expanded]="isOpen()"
       [attr.aria-haspopup]="'dialog'"
       (click)="togglePanel()"
-      (input)="onDateInputChange($event)"
       (blur)="onBlur($event)"
       (focus)="onFocus($event)"
       (keydown)="onKeyDown($event)"
@@ -54,33 +53,27 @@
 
 <ng-template #panelTemplate>
   <div class="date-panel" [attr.data-size]="size()" cdkTrapFocus>
-    <div class="date-calendar">
-      <ui-calendar
-        [currentMonth]="currentMonth()"
-        [selectedDate]="selectedDate()"
-        [calendarView]="calendarView()"
-        [min]="min()"
-        [max]="max()"
-        [size]="size()"
-        [showMonthYearPicker]="true"
-        (dateSelect)="onCalendarDateSelect($event)"
-        (monthSelect)="onCalendarMonthSelect($event)"
-        (yearSelect)="onCalendarYearSelect($event)"
-        (previousMonth)="onCalendarPreviousMonth()"
-        (nextMonth)="onCalendarNextMonth()"
-        (previousYear)="onCalendarPreviousYear()"
-        (nextYear)="onCalendarNextYear()"
-        (previousYearRange)="onCalendarPreviousYearRange()"
-        (nextYearRange)="onCalendarNextYearRange()"
-        (switchToMonthsView)="onCalendarSwitchToMonthsView()"
-        (switchToYearsView)="onCalendarSwitchToYearsView()"
-        (switchToDaysView)="onCalendarSwitchToDaysView()"
-      ></ui-calendar>
+    <ui-calendar
+      [currentMonth]="currentMonth()"
+      [selectedDate]="selectedDate()"
+      [calendarView]="calendarView()"
+      [min]="min()"
+      [max]="max()"
+      [size]="size()"
+      [showMonthYearPicker]="true"
+      (monthSelect)="onCalendarMonthSelect($event)"
+      (yearSelect)="onCalendarYearSelect($event)"
+      (previousYear)="onCalendarPreviousYear()"
+      (nextYear)="onCalendarNextYear()"
+      (previousYearRange)="onCalendarPreviousYearRange()"
+      (nextYearRange)="onCalendarNextYearRange()"
+      (switchToMonthsView)="onCalendarSwitchToMonthsView()"
+      (switchToYearsView)="onCalendarSwitchToYearsView()"
+    ></ui-calendar>
 
-      <div class="date-calendar__footer">
-        <ui-button [size]="size()" appearance="outline" (click)="clear()"> Clear </ui-button>
-        <ui-button [size]="size()" appearance="outline" (click)="goToToday()"> Today </ui-button>
-      </div>
+    <div class="date-calendar__footer">
+      <ui-button [size]="size()" appearance="outline" (click)="clear()">Clear</ui-button>
+      <ui-button [size]="size()" appearance="outline" (click)="goToToday()">This Month</ui-button>
     </div>
   </div>
 </ng-template>

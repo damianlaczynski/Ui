@@ -17,6 +17,18 @@ const WEEK_CONTROL_DEFS: SharedControlDef[] = [
     group: 'appearance',
   },
   {
+    key: 'displayFormat',
+    label: 'Display Format',
+    type: 'dropdown',
+    options: [
+      { value: 'date-range', label: 'Date Range (6-12 Jan 2026)' },
+      { value: 'week-year', label: 'Week/Year (1/2026)' },
+      { value: 'iso', label: 'ISO (2026-W01)' },
+    ],
+    defaultValue: 'date-range',
+    group: 'appearance',
+  },
+  {
     key: 'disabled',
     label: 'Disabled',
     type: 'switch',

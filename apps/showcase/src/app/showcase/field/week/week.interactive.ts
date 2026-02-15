@@ -19,8 +19,9 @@ import { WEEK_SHOWCASE_CONFIG } from './week.showcase.config';
       <div preview>
         <ui-week
           [label]="'Select Week'"
-          [placeholder]="'YYYY-Www'"
+          [placeholder]="'Select week'"
           [size]="currentSize()"
+          [displayFormat]="currentDisplayFormat()"
           [disabled]="currentDisabled()"
           [readonly]="currentReadonly()"
           [required]="currentRequired()"
@@ -42,12 +43,16 @@ export class WeekInteractiveComponent {
 
   private values = signal<Record<string, unknown>>({
     size: 'medium',
+    displayFormat: 'date-range',
     disabled: false,
     readonly: false,
     required: false,
   });
 
   currentSize = computed(() => this.values()['size'] as Size);
+  currentDisplayFormat = computed(
+    () => this.values()['displayFormat'] as 'date-range' | 'week-year' | 'iso',
+  );
   currentDisabled = computed(() => this.values()['disabled'] as boolean);
   currentReadonly = computed(() => this.values()['readonly'] as boolean);
   currentRequired = computed(() => this.values()['required'] as boolean);

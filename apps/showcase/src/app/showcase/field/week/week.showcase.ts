@@ -44,8 +44,9 @@ import { SIZES } from '@shared/utils/showcase/component-options.utils';
               <div class="showcase__item">
                 <ui-week
                   [label]="size"
-                  [placeholder]="'YYYY-Www'"
+                  [placeholder]="'Select week'"
                   [size]="size"
+                  [displayFormat]="overviewForm().displayFormat"
                   [readonly]="overviewForm().readonly"
                   [required]="overviewForm().required"
                   [formControl]="getSizeControl(size)"
@@ -75,6 +76,7 @@ export class WeekShowcaseComponent {
 
   overviewFormValues = signal<Record<string, unknown>>({
     size: 'medium',
+    displayFormat: 'date-range',
     disabled: false,
     readonly: false,
     required: false,
@@ -82,6 +84,9 @@ export class WeekShowcaseComponent {
 
   overviewForm = computed(() => ({
     size: (this.overviewFormValues()['size'] as Size) || 'medium',
+    displayFormat:
+      (this.overviewFormValues()['displayFormat'] as 'date-range' | 'week-year' | 'iso') ||
+      'date-range',
     disabled: (this.overviewFormValues()['disabled'] as boolean) ?? false,
     readonly: (this.overviewFormValues()['readonly'] as boolean) ?? false,
     required: (this.overviewFormValues()['required'] as boolean) ?? false,

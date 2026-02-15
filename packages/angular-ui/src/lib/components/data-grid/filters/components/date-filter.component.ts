@@ -26,7 +26,6 @@ import { DataGridFilterTemplateContext } from '../../models/data-grid-config.mod
       />
     } @else {
       <ui-date
-        [dateType]="'date'"
         [placeholder]="context().placeholder"
         [size]="size()"
         [inputVariant]="'filled-gray'"
