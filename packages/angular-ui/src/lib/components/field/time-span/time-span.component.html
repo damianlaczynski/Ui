@@ -82,6 +82,7 @@
                 <button
                   type="button"
                   role="option"
+                  tabindex="-1"
                   [disabled]="disabled() || readonly() || option.value === null"
                   [class]="getOptionClass(option)"
                   [attr.aria-selected]="option.isSelected"
