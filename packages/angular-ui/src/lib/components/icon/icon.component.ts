@@ -22,25 +22,27 @@ import {
 @Component({
   selector: 'ui-icon',
   template: `
-    <svg
-      [attr.width]="displaySize() + 'px'"
-      [attr.height]="displaySize() + 'px'"
-      [attr.fill]="'currentColor'"
-      [attr.role]="ariaLabel() ? 'img' : null"
-      [attr.aria-label]="ariaLabel() || null"
-      [attr.aria-hidden]="ariaLabel() ? null : 'true'"
-      [style.transform]="rotationTransform()"
-      [style.transform-origin]="'center'"
-      [style.transform-box]="'fill-box'"
-    >
-      @if (resolvedSpriteHref()) {
-        <use
-          [attr.href]="resolvedSpriteHref()"
-          [attr.xlink:href]="resolvedSpriteHref()"
-          [attr.fill]="'currentColor'"
-        ></use>
-      }
-    </svg>
+    @if (icon()) {
+      <svg
+        [attr.width]="displaySize() + 'px'"
+        [attr.height]="displaySize() + 'px'"
+        [attr.fill]="'currentColor'"
+        [attr.role]="ariaLabel() ? 'img' : null"
+        [attr.aria-label]="ariaLabel() || null"
+        [attr.aria-hidden]="ariaLabel() ? null : 'true'"
+        [style.transform]="rotationTransform()"
+        [style.transform-origin]="'center'"
+        [style.transform-box]="'fill-box'"
+      >
+        @if (resolvedSpriteHref()) {
+          <use
+            [attr.href]="resolvedSpriteHref()"
+            [attr.xlink:href]="resolvedSpriteHref()"
+            [attr.fill]="'currentColor'"
+          ></use>
+        }
+      </svg>
+    }
   `,
   styles: [
     `
@@ -226,7 +228,7 @@ export class IconComponent {
       const symbolId = this.resolvedSymbolId();
       const missingKey = `${icon}|${this.variant()}|${this.size()}|${this.sizePx() ?? ''}|${this.direction() ?? ''}|${this.locale() ?? ''}`;
 
-      if (icon || symbolId || this.lastMissingIconLogKey === missingKey) {
+      if (!icon || symbolId || this.lastMissingIconLogKey === missingKey) {
         return;
       }
 
