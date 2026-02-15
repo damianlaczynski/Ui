@@ -66,8 +66,14 @@ function getPublicIconName(iconName) {
   return directionalMatch[1];
 }
 
+function sortDirEntries(entries) {
+  return [...entries].sort((a, b) => a.name.localeCompare(b.name));
+}
+
 async function readAllIconNames() {
-  const rootEntries = await fs.readdir(ICON_SOURCE_DIR, { withFileTypes: true });
+  const rootEntries = sortDirEntries(
+    await fs.readdir(ICON_SOURCE_DIR, { withFileTypes: true }),
+  );
   const iconNames = new Set();
 
   for (const entry of rootEntries) {
@@ -91,7 +97,7 @@ async function readAllIconNames() {
 }
 
 async function walkFiles(dir, collector) {
-  const entries = await fs.readdir(dir, { withFileTypes: true });
+  const entries = sortDirEntries(await fs.readdir(dir, { withFileTypes: true }));
   for (const entry of entries) {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
@@ -155,7 +161,9 @@ async function buildSpriteData(iconNames, mode) {
   const localeFolderMap = {};
   const availableSizes = new Set();
 
-  const rootEntries = await fs.readdir(ICON_SOURCE_DIR, { withFileTypes: true });
+  const rootEntries = sortDirEntries(
+    await fs.readdir(ICON_SOURCE_DIR, { withFileTypes: true }),
+  );
   const shouldIncludeRootIcon = iconName => {
     if (ANGLE_ROTATE_ICON_REGEX.test(iconName)) {
       return false;
@@ -226,7 +234,7 @@ async function buildSpriteData(iconNames, mode) {
     }
 
     const folderPath = path.join(ICON_SOURCE_DIR, folderName);
-    const files = await fs.readdir(folderPath, { withFileTypes: true });
+    const files = sortDirEntries(await fs.readdir(folderPath, { withFileTypes: true }));
     const normalizedLocaleFolder = folderName.toLowerCase();
 
     localeFolderMap[normalizedLocaleFolder] = true;
