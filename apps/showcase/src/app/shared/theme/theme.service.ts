@@ -6,6 +6,7 @@ export enum ThemeMode {
 }
 
 export enum ThemeVariant {
+  Fluent = 'fluent',
   Ocean = 'ocean',
   Forest = 'forest',
   Sunset = 'sunset',
@@ -27,6 +28,12 @@ export interface ThemeVariantOption {
 const THEME_KEY = 'theme';
 const THEME_VARIANT_KEY = 'theme-variant';
 const THEME_VARIANTS: ThemeVariantOption[] = [
+  {
+    id: ThemeVariant.Fluent,
+    label: 'Fluent',
+    previewPrimary: '#0078d4',
+    previewSecondary: '#106ebe',
+  },
   {
     id: ThemeVariant.Ocean,
     label: 'Ocean',
@@ -122,7 +129,11 @@ export class ThemeService {
 
   setThemeVariant(variant: ThemeVariant): void {
     this._themeVariant.set(variant);
-    localStorage.setItem(THEME_VARIANT_KEY, variant);
+    if (variant === ThemeVariant.Fluent) {
+      localStorage.removeItem(THEME_VARIANT_KEY);
+    } else {
+      localStorage.setItem(THEME_VARIANT_KEY, variant);
+    }
     this.applyThemeVariant(variant);
   }
 
@@ -152,7 +163,7 @@ export class ThemeService {
       return savedVariant;
     }
 
-    return ThemeVariant.Ocean;
+    return ThemeVariant.Fluent;
   }
 
   /**
@@ -180,6 +191,11 @@ export class ThemeService {
   }
 
   private applyThemeVariant(variant: ThemeVariant): void {
+    if (variant === ThemeVariant.Fluent) {
+      document.documentElement.removeAttribute('data-theme-variant');
+      return;
+    }
+
     document.documentElement.setAttribute('data-theme-variant', variant);
   }
 }
