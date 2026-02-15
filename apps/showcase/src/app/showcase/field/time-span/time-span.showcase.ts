@@ -187,7 +187,7 @@ import type { InputVariant, Size } from 'angular-ui';
               formControlName="accessTokenExpiration"
               inputVariant="filled"
               placeholder="Set expiration time"
-              helpText="Output: ISO 8601 duration string (e.g., '1h 30m' for 1 hour 30 minutes)"
+              helpText="Output: ISO 8601 duration string (e.g., 'PT1H30M' for 1 hour 30 minutes)"
             />
             <ui-time-span
               label="Refresh Token Expiration"

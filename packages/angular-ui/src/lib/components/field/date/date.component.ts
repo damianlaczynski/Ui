@@ -40,6 +40,12 @@ interface CalendarWeek {
   isSelected: boolean;
 }
 
+interface ParsedDateValue {
+  date: Date;
+  weekNumber?: number;
+  weekYear?: number;
+}
+
 @Component({
   selector: 'ui-date',
   imports: [
@@ -287,11 +293,33 @@ export class DateComponent extends FieldComponent implements OnDestroy {
   override writeValue(value: unknown): void {
     if (!value) {
       this.selectedDate.set(null);
+      this.selectedWeek.set(null);
+      this.selectedYear.set(null);
       super.writeValue('');
       return;
     }
 
-    this.selectedDate.set(new Date(String(value)));
+    const input = String(value).trim();
+    const parsedValue = this.parseValueForType(input, this.dateType());
+
+    if (!parsedValue) {
+      this.selectedDate.set(null);
+      this.selectedWeek.set(null);
+      this.selectedYear.set(null);
+      super.writeValue('');
+      return;
+    }
+
+    this.selectedDate.set(parsedValue.date);
+
+    if (this.dateType() === 'week') {
+      this.selectedWeek.set(parsedValue.weekNumber ?? this.getWeekNumber(parsedValue.date));
+      this.selectedYear.set(parsedValue.weekYear ?? parsedValue.date.getFullYear());
+    } else {
+      this.selectedWeek.set(null);
+      this.selectedYear.set(null);
+    }
+
     super.writeValue(value);
   }
 
@@ -380,6 +408,88 @@ export class DateComponent extends FieldComponent implements OnDestroy {
     }
 
     return null;
+  }
+
+  private parseValueForType(value: string, type: DateFieldType): ParsedDateValue | null {
+    if (type === 'month') {
+      const date = this.parseISOMonthValue(value);
+      return date ? { date } : null;
+    }
+
+    if (type === 'week') {
+      return this.parseISOWeekValue(value);
+    }
+
+    const date = this.parseISODateValue(value);
+    return date ? { date } : null;
+  }
+
+  private parseISODateValue(value: string): Date | null {
+    const match = value.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (!match) {
+      return null;
+    }
+
+    const year = parseInt(match[1], 10);
+    const month = parseInt(match[2], 10);
+    const day = parseInt(match[3], 10);
+    if (month < 1 || month > 12 || day < 1 || day > 31) {
+      return null;
+    }
+
+    const date = new Date(year, month - 1, day);
+    if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day) {
+      return null;
+    }
+
+    return date;
+  }
+
+  private parseISOMonthValue(value: string): Date | null {
+    const match = value.match(/^(\d{4})-(\d{2})$/);
+    if (!match) {
+      return null;
+    }
+
+    const year = parseInt(match[1], 10);
+    const month = parseInt(match[2], 10);
+    if (month < 1 || month > 12) {
+      return null;
+    }
+
+    return new Date(year, month - 1, 1);
+  }
+
+  private parseISOWeekValue(value: string): ParsedDateValue | null {
+    const match = value.match(/^(\d{4})-W(\d{2})$/);
+    if (!match) {
+      return null;
+    }
+
+    const year = parseInt(match[1], 10);
+    const week = parseInt(match[2], 10);
+    if (week < 1 || week > 53) {
+      return null;
+    }
+
+    // ISO week 1 is the week containing Jan 4th; return Monday of requested week.
+    const jan4 = new Date(year, 0, 4);
+    const jan4Day = jan4.getDay() || 7;
+    const week1Monday = new Date(jan4);
+    week1Monday.setDate(jan4.getDate() - (jan4Day - 1));
+
+    const result = new Date(week1Monday);
+    result.setDate(week1Monday.getDate() + (week - 1) * 7);
+
+    if (this.getWeekNumber(result) !== week) {
+      return null;
+    }
+
+    return {
+      date: result,
+      weekNumber: week,
+      weekYear: year,
+    };
   }
 
   private generateCalendarWeeks(): CalendarWeek[] {

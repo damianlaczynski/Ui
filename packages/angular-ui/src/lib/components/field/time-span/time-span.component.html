@@ -81,6 +81,7 @@
               @for (option of getWheelOptions(unit.key); track $index) {
                 <button
                   type="button"
+                  role="option"
                   [disabled]="disabled() || readonly() || option.value === null"
                   [class]="getOptionClass(option)"
                   [attr.aria-selected]="option.isSelected"
