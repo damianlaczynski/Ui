@@ -13,6 +13,7 @@ module.exports = [
       "**/dist/**",
       "**/.angular/**",
       "**/coverage/**",
+      "packages/angular-ui/src/lib/components/icon/generated/**",
     ],
   },
   ...tsRecommended.map((c) => ({ ...c, files: ["**/*.ts"] })),

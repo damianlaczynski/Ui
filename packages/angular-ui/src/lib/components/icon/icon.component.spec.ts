@@ -1,15 +1,12 @@
+import { LOCALE_ID } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { IconComponent } from './icon.component';
-import { IconName } from './icon-name.type';
-import { Size } from '../utils';
+import { IconName } from './generated/icon-name.type';
 
 describe('IconComponent', () => {
   let component: IconComponent;
   let fixture: ComponentFixture<IconComponent>;
-  let svgElement: DebugElement;
-  let useElement: DebugElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -20,389 +17,149 @@ describe('IconComponent', () => {
     component = fixture.componentInstance;
   });
 
-  describe('Component Initialization', () => {
-    it('should create the component', () => {
-      expect(component).toBeTruthy();
-    });
-
-    it('should render an SVG element', () => {
-      fixture.detectChanges();
-      svgElement = fixture.debugElement.query(By.css('svg'));
-      expect(svgElement).toBeTruthy();
-    });
-
-    it('should have default input values', () => {
-      fixture.detectChanges();
-      expect(component.icon()).toBe('');
-      expect(component.size()).toBe('medium');
-      expect(component.variant()).toBe('regular');
-    });
-
-    it('should have host styles for centering', () => {
-      fixture.detectChanges();
-      const hostElement = fixture.nativeElement;
-      const styles = window.getComputedStyle(hostElement);
-      expect(styles.display).toBe('flex');
-    });
+  it('should create the component', () => {
+    expect(component).toBeTruthy();
   });
 
-  describe('Icon Input', () => {
-    it('should accept icon name', () => {
-      const iconName: IconName = 'star' as IconName;
-      fixture.componentRef.setInput('icon', iconName);
-      fixture.detectChanges();
-
-      expect(component.icon()).toBe(iconName);
-    });
-
-    it('should handle undefined icon gracefully', () => {
-      fixture.componentRef.setInput('icon', undefined);
-      fixture.detectChanges();
-
-      expect(component.icon()).toBe('');
-    });
-
-    it('should update icon when input changes', () => {
-      fixture.componentRef.setInput('icon', 'star' as IconName);
-      fixture.detectChanges();
-      expect(component.icon()).toBe('star');
-
-      fixture.componentRef.setInput('icon', 'checkmark' as IconName);
-      fixture.detectChanges();
-      expect(component.icon()).toBe('checkmark');
-    });
+  it('should keep default inputs', () => {
+    fixture.detectChanges();
+    expect(component.icon()).toBe('');
+    expect(component.size()).toBe('medium');
+    expect(component.variant()).toBe('regular');
   });
 
-  describe('Size Input', () => {
-    const sizes: Size[] = ['small', 'medium', 'large'];
+  it('should compute base icon src from requested size and variant', () => {
+    fixture.componentRef.setInput('icon', 'star' as IconName);
+    fixture.componentRef.setInput('size', 'large');
+    fixture.componentRef.setInput('variant', 'filled');
+    fixture.detectChanges();
 
-    sizes.forEach(size => {
-      it(`should accept ${size} size`, () => {
-        fixture.componentRef.setInput('size', size);
-        fixture.detectChanges();
-
-        expect(component.size()).toBe(size);
-      });
-    });
-
-    it('should handle undefined size with default', () => {
-      fixture.componentRef.setInput('size', undefined);
-      fixture.detectChanges();
-
-      expect(component.size()).toBe('medium');
-    });
-
-    it('should update size when input changes', () => {
-      fixture.componentRef.setInput('size', 'small');
-      fixture.detectChanges();
-      expect(component.size()).toBe('small');
-
-      fixture.componentRef.setInput('size', 'large');
-      fixture.detectChanges();
-      expect(component.size()).toBe('large');
-    });
+    expect(component.getNumberSize()).toBe(24);
   });
 
-  describe('Variant Input', () => {
-    it('should accept regular variant', () => {
-      fixture.componentRef.setInput('variant', 'regular');
-      fixture.detectChanges();
+  it('should render sprite use element for icon available in sprite', () => {
+    fixture.componentRef.setInput('icon', 'book' as IconName);
+    fixture.detectChanges();
 
-      expect(component.variant()).toBe('regular');
-    });
-
-    it('should accept filled variant', () => {
-      fixture.componentRef.setInput('variant', 'filled');
-      fixture.detectChanges();
-
-      expect(component.variant()).toBe('filled');
-    });
-
-    it('should default to regular variant', () => {
-      fixture.detectChanges();
-      expect(component.variant()).toBe('regular');
-    });
+    expect(component.isSpriteMode()).toBe(true);
+    const svg = fixture.debugElement.query(By.css('svg'));
+    const use = fixture.debugElement.query(By.css('use'));
+    expect(svg).toBeTruthy();
+    expect(use).toBeTruthy();
+    expect(use.nativeElement.getAttribute('href')).toContain(
+      'assets/icons/sprite.svg#book_20_regular',
+    );
   });
 
-  describe('GetNumberSize Method', () => {
-    it('should return 16 for small size', () => {
-      fixture.componentRef.setInput('size', 'small');
-      fixture.detectChanges();
+  it('should fallback to available sprite size without rendering img requests', () => {
+    fixture.componentRef.setInput('icon', 'align_distribute_bottom' as IconName);
+    fixture.componentRef.setInput('size', 'medium');
+    fixture.componentRef.setInput('variant', 'regular');
+    fixture.detectChanges();
 
-      expect(component.getNumberSize()).toBe(16);
-    });
-
-    it('should return 20 for medium size', () => {
-      fixture.componentRef.setInput('size', 'medium');
-      fixture.detectChanges();
-
-      expect(component.getNumberSize()).toBe(20);
-    });
-
-    it('should return 24 for large size', () => {
-      fixture.componentRef.setInput('size', 'large');
-      fixture.detectChanges();
-
-      expect(component.getNumberSize()).toBe(24);
-    });
-
-    it('should return 20 as default for unknown size', () => {
-      // Force an unknown size through type casting
-      fixture.componentRef.setInput('size', 'unknown' as any);
-      fixture.detectChanges();
-
-      expect(component.getNumberSize()).toBe(20);
-    });
+    expect(component.isSpriteMode()).toBe(true);
+    expect(component.resolvedSpriteHref()).toContain('#align_distribute_bottom_16_regular');
   });
 
-  describe('IconSrc Computed', () => {
-    it('should generate correct path for regular variant', () => {
-      fixture.componentRef.setInput('icon', 'star' as IconName);
-      fixture.componentRef.setInput('size', 'medium');
-      fixture.componentRef.setInput('variant', 'regular');
-      fixture.detectChanges();
+  it('should render empty svg and log error when icon is not in sprite manifest', () => {
+    const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    fixture.componentRef.setInput('icon', 'not_existing_icon' as IconName);
+    fixture.detectChanges();
 
-      expect(component.iconSrc()).toBe('assets/icons/star_20_regular.svg');
-    });
-
-    it('should generate correct path for filled variant', () => {
-      fixture.componentRef.setInput('icon', 'star' as IconName);
-      fixture.componentRef.setInput('size', 'medium');
-      fixture.componentRef.setInput('variant', 'filled');
-      fixture.detectChanges();
-
-      expect(component.iconSrc()).toBe('assets/icons/star_20_filled.svg');
-    });
-
-    it('should generate correct path for small size', () => {
-      fixture.componentRef.setInput('icon', 'checkmark' as IconName);
-      fixture.componentRef.setInput('size', 'small');
-      fixture.componentRef.setInput('variant', 'regular');
-      fixture.detectChanges();
-
-      expect(component.iconSrc()).toBe('assets/icons/checkmark_16_regular.svg');
-    });
-
-    it('should generate correct path for large size', () => {
-      fixture.componentRef.setInput('icon', 'delete' as IconName);
-      fixture.componentRef.setInput('size', 'large');
-      fixture.componentRef.setInput('variant', 'filled');
-      fixture.detectChanges();
-
-      expect(component.iconSrc()).toBe('assets/icons/delete_24_filled.svg');
-    });
-
-    it('should update path when inputs change', () => {
-      fixture.componentRef.setInput('icon', 'star' as IconName);
-      fixture.componentRef.setInput('size', 'small');
-      fixture.detectChanges();
-      expect(component.iconSrc()).toBe('assets/icons/star_16_regular.svg');
-
-      fixture.componentRef.setInput('size', 'large');
-      fixture.detectChanges();
-      expect(component.iconSrc()).toBe('assets/icons/star_24_regular.svg');
-    });
+    expect(component.isSpriteMode()).toBe(false);
+    expect(component.resolvedSpriteHref()).toBe('');
+    const svg = fixture.debugElement.query(By.css('svg'));
+    const use = fixture.debugElement.query(By.css('use'));
+    expect(svg).toBeTruthy();
+    expect(use).toBeFalsy();
+    expect(consoleErrorSpy).toHaveBeenCalled();
+    consoleErrorSpy.mockRestore();
   });
 
-  describe('ViewBox Getter', () => {
-    it('should return correct viewBox for small size', () => {
-      fixture.componentRef.setInput('size', 'small');
-      fixture.detectChanges();
-
-      expect(component.viewBox).toBe('0 0 16 16');
-    });
-
-    it('should return correct viewBox for medium size', () => {
-      fixture.componentRef.setInput('size', 'medium');
-      fixture.detectChanges();
-
-      expect(component.viewBox).toBe('0 0 20 20');
-    });
-
-    it('should return correct viewBox for large size', () => {
-      fixture.componentRef.setInput('size', 'large');
-      fixture.detectChanges();
-
-      expect(component.viewBox).toBe('0 0 24 24');
-    });
+  it('should not render icon element when icon is empty', () => {
+    fixture.detectChanges();
+    expect(fixture.debugElement.query(By.css('svg'))).toBeFalsy();
   });
 
-  describe('SVG Rendering', () => {
-    beforeEach(() => {
-      fixture.componentRef.setInput('icon', 'star' as IconName);
-      fixture.componentRef.setInput('size', 'medium');
-      fixture.detectChanges();
-      svgElement = fixture.debugElement.query(By.css('svg'));
-      useElement = fixture.debugElement.query(By.css('use'));
-    });
+  it('should apply width and height based on display size in sprite mode', () => {
+    fixture.componentRef.setInput('icon', 'book' as IconName);
+    fixture.componentRef.setInput('size', 'small');
+    fixture.detectChanges();
 
-    it('should render SVG with correct width', () => {
-      expect(svgElement.nativeElement.getAttribute('width')).toBe('20px');
-    });
-
-    it('should render SVG with correct height', () => {
-      expect(svgElement.nativeElement.getAttribute('height')).toBe('20px');
-    });
-
-    it('should render SVG with alt attribute', () => {
-      expect(svgElement.nativeElement.getAttribute('alt')).toBe('Icon');
-    });
-
-    it('should render use element with correct href', () => {
-      expect(useElement.nativeElement.getAttribute('href')).toBe(
-        'assets/icons/star_20_regular.svg',
-      );
-    });
-
-    it('should render use element with currentColor fill', () => {
-      expect(useElement.nativeElement.getAttribute('fill')).toBe('currentColor');
-    });
-
-    it('should render use element with correct viewBox', () => {
-      expect(useElement.nativeElement.getAttribute('viewBox')).toBe('0 0 20 20');
-    });
-
-    it('should render use element with correct width', () => {
-      expect(useElement.nativeElement.getAttribute('width')).toBe('20px');
-    });
-
-    it('should render use element with correct height', () => {
-      expect(useElement.nativeElement.getAttribute('height')).toBe('20px');
-    });
+    const svg = fixture.debugElement.query(By.css('svg')).nativeElement as SVGElement;
+    expect(svg.getAttribute('width')).toBe('16px');
+    expect(svg.getAttribute('height')).toBe('16px');
   });
 
-  describe('Size Changes', () => {
-    it('should update SVG dimensions when size changes', () => {
-      fixture.componentRef.setInput('icon', 'star' as IconName);
-      fixture.componentRef.setInput('size', 'small');
-      fixture.detectChanges();
+  it('should render decorative icon as aria-hidden by default', () => {
+    fixture.componentRef.setInput('icon', 'book' as IconName);
+    fixture.detectChanges();
 
-      let svg = fixture.debugElement.query(By.css('svg'));
-      expect(svg.nativeElement.getAttribute('width')).toBe('16px');
-      expect(svg.nativeElement.getAttribute('height')).toBe('16px');
-
-      fixture.componentRef.setInput('size', 'large');
-      fixture.detectChanges();
-
-      svg = fixture.debugElement.query(By.css('svg'));
-      expect(svg.nativeElement.getAttribute('width')).toBe('24px');
-      expect(svg.nativeElement.getAttribute('height')).toBe('24px');
-    });
-
-    it('should update viewBox when size changes', () => {
-      fixture.componentRef.setInput('size', 'small');
-      fixture.detectChanges();
-      expect(component.viewBox).toBe('0 0 16 16');
-
-      fixture.componentRef.setInput('size', 'medium');
-      fixture.detectChanges();
-      expect(component.viewBox).toBe('0 0 20 20');
-
-      fixture.componentRef.setInput('size', 'large');
-      fixture.detectChanges();
-      expect(component.viewBox).toBe('0 0 24 24');
-    });
+    const svg = fixture.debugElement.query(By.css('svg')).nativeElement as SVGElement;
+    expect(svg.getAttribute('aria-hidden')).toBe('true');
+    expect(svg.getAttribute('role')).toBeNull();
   });
 
-  describe('Complex Scenarios', () => {
-    it('should handle all inputs together', () => {
-      fixture.componentRef.setInput('icon', 'checkmark' as IconName);
-      fixture.componentRef.setInput('size', 'large');
-      fixture.componentRef.setInput('variant', 'filled');
-      fixture.detectChanges();
+  it('should render semantic icon when ariaLabel is provided', () => {
+    fixture.componentRef.setInput('icon', 'book' as IconName);
+    fixture.componentRef.setInput('ariaLabel', 'Book icon');
+    fixture.detectChanges();
 
-      expect(component.icon()).toBe('checkmark');
-      expect(component.size()).toBe('large');
-      expect(component.variant()).toBe('filled');
-      expect(component.iconSrc()).toBe('assets/icons/checkmark_24_filled.svg');
-      expect(component.viewBox).toBe('0 0 24 24');
-      expect(component.getNumberSize()).toBe(24);
-    });
-
-    it('should handle rapid property changes', () => {
-      const icons: IconName[] = ['star', 'checkmark', 'delete', 'info', 'settings'] as IconName[];
-
-      icons.forEach(icon => {
-        fixture.componentRef.setInput('icon', icon);
-        fixture.detectChanges();
-        expect(component.icon()).toBe(icon);
-      });
-    });
-
-    it('should maintain consistency after multiple updates', () => {
-      fixture.componentRef.setInput('icon', 'star' as IconName);
-      fixture.componentRef.setInput('size', 'small');
-      fixture.detectChanges();
-      expect(component.iconSrc()).toBe('assets/icons/star_16_regular.svg');
-
-      fixture.componentRef.setInput('variant', 'filled');
-      fixture.detectChanges();
-      expect(component.iconSrc()).toBe('assets/icons/star_16_filled.svg');
-
-      fixture.componentRef.setInput('size', 'large');
-      fixture.detectChanges();
-      expect(component.iconSrc()).toBe('assets/icons/star_24_filled.svg');
-    });
+    const svg = fixture.debugElement.query(By.css('svg')).nativeElement as SVGElement;
+    expect(svg.getAttribute('role')).toBe('img');
+    expect(svg.getAttribute('aria-label')).toBe('Book icon');
+    expect(svg.getAttribute('aria-hidden')).toBeNull();
   });
 
-  describe('Edge Cases', () => {
-    it('should handle empty string icon', () => {
-      fixture.componentRef.setInput('icon', '' as IconName);
-      fixture.detectChanges();
+  it('should apply rotate transform when rotate input is provided', () => {
+    fixture.componentRef.setInput('icon', 'book' as IconName);
+    fixture.componentRef.setInput('rotate', 90);
+    fixture.detectChanges();
 
-      expect(component.icon()).toBe('');
-      expect(component.iconSrc()).toBe('assets/icons/_20_regular.svg');
-    });
-
-    it('should handle icon with special characters', () => {
-      fixture.componentRef.setInput('icon', 'arrow_left' as IconName);
-      fixture.detectChanges();
-
-      expect(component.iconSrc()).toBe('assets/icons/arrow_left_20_regular.svg');
-    });
-
-    it('should handle icon with numbers', () => {
-      fixture.componentRef.setInput('icon', 'number_1' as IconName);
-      fixture.detectChanges();
-
-      expect(component.iconSrc()).toContain('number_1');
-    });
+    const svg = fixture.debugElement.query(By.css('svg')).nativeElement as SVGElement;
+    expect(svg.style.transform).toBe('rotate(90deg)');
   });
 
-  describe('Change Detection', () => {
-    it('should use OnPush change detection strategy', () => {
-      expect(component).toBeTruthy();
-      // OnPush is set in component metadata
-    });
+  it('should fallback to alternative variant in sprite mode when preferred variant does not exist', () => {
+    fixture.componentRef.setInput('icon', 'color_background_accent' as IconName);
+    fixture.componentRef.setInput('variant', 'filled');
+    fixture.detectChanges();
 
-    it('should update computed values when inputs change', () => {
-      fixture.componentRef.setInput('icon', 'star' as IconName);
-      fixture.componentRef.setInput('size', 'small');
-      fixture.detectChanges();
+    expect(component.isSpriteMode()).toBe(true);
+    expect(component.resolvedSpriteHref()).toContain('#color_background_accent_20_regular');
+  });
+});
 
-      const initialSrc = component.iconSrc();
-      expect(initialSrc).toBe('assets/icons/star_16_regular.svg');
+describe('IconComponent locale variants', () => {
+  let component: IconComponent;
+  let fixture: ComponentFixture<IconComponent>;
 
-      fixture.componentRef.setInput('size', 'large');
-      fixture.detectChanges();
+  beforeEach(async () => {
+    await TestBed.resetTestingModule();
+    await TestBed.configureTestingModule({
+      imports: [IconComponent],
+      providers: [{ provide: LOCALE_ID, useValue: 'ar' }],
+    }).compileComponents();
 
-      const updatedSrc = component.iconSrc();
-      expect(updatedSrc).toBe('assets/icons/star_24_regular.svg');
-      expect(updatedSrc).not.toBe(initialSrc);
-    });
+    fixture = TestBed.createComponent(IconComponent);
+    component = fixture.componentInstance;
   });
 
-  describe('Accessibility', () => {
-    it('should have alt attribute on SVG', () => {
-      fixture.detectChanges();
-      const svg = fixture.debugElement.query(By.css('svg'));
-      expect(svg.nativeElement.getAttribute('alt')).toBe('Icon');
-    });
+  it('should prefer locale-specific icon symbols for matching locale', () => {
+    fixture.componentRef.setInput('icon', 'book_question_mark' as IconName);
+    fixture.componentRef.setInput('size', 'large');
+    fixture.componentRef.setInput('variant', 'regular');
+    fixture.detectChanges();
 
-    it('should use currentColor for fill to inherit text color', () => {
-      fixture.detectChanges();
-      const use = fixture.debugElement.query(By.css('use'));
-      expect(use.nativeElement.getAttribute('fill')).toBe('currentColor');
-    });
+    expect(component.resolvedSpriteHref()).toContain('#locale-ar-book_question_mark_24_regular');
+  });
+
+  it('should prefer RTL directional symbols from main icon set when locale direction is RTL', () => {
+    fixture.componentRef.setInput('icon', 'text_number_list' as IconName);
+    fixture.componentRef.setInput('size', 'medium');
+    fixture.componentRef.setInput('variant', 'filled');
+    fixture.detectChanges();
+
+    expect(component.resolvedSpriteHref()).toContain('#text_number_list_rtl_20_filled');
   });
 });

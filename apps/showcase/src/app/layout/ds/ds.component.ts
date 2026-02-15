@@ -17,6 +17,7 @@ import { IconComponent } from 'angular-ui';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Subscription } from 'rxjs';
 import { ScrollService } from '@shared/scroll/scroll.service';
+import { Direction, DirectionService } from '@shared/direction/direction.service';
 import { ThemeMode, ThemeService, ThemeVariant } from '@shared/theme/theme.service';
 
 @Component({
@@ -31,6 +32,7 @@ export class DsComponent implements OnInit, OnDestroy, AfterViewInit {
   private readonly breakpointObserver = inject(BreakpointObserver);
   private readonly router = inject(Router);
   private readonly scrollService = inject(ScrollService);
+  private readonly directionService = inject(DirectionService);
   private readonly themeService = inject(ThemeService);
 
   readonly version = '1.0.0';
@@ -53,6 +55,7 @@ export class DsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   isSidebarOpen = signal<boolean>(false);
   isMobile = signal<boolean>(false);
+  direction = this.directionService.$direction;
 
   ngAfterViewInit(): void {
     if (this.mainContent?.nativeElement) {
@@ -109,6 +112,10 @@ export class DsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   setThemeVariant(variant: ThemeVariant): void {
     this.themeService.setThemeVariant(variant);
+  }
+
+  setDirection(direction: Direction): void {
+    this.directionService.setDirection(direction);
   }
 
   private syncHeaderHeight(): void {

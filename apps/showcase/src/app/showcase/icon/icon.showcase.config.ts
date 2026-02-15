@@ -13,6 +13,7 @@ import {
 } from '@shared/utils/showcase/component-options.utils';
 
 const ICON_VARIANTS = ['regular', 'filled'] as const;
+const ICON_DIRECTIONS = ['auto', 'ltr', 'rtl'] as const;
 
 const ICON_CONTROL_DEFS: SharedControlDef[] = [
   {
@@ -22,6 +23,16 @@ const ICON_CONTROL_DEFS: SharedControlDef[] = [
     description: 'Icon name from the Fluent icon set',
     defaultValue: 'home',
     placeholder: 'e.g. home',
+    group: 'content',
+    drawer: false,
+  },
+  {
+    key: 'ariaLabel',
+    label: 'Aria Label',
+    type: 'text',
+    description: 'Accessible label for semantic icon usage',
+    defaultValue: '',
+    placeholder: 'e.g. Settings icon',
     group: 'content',
     drawer: false,
   },
@@ -54,6 +65,24 @@ const ICON_CONTROL_DEFS: SharedControlDef[] = [
     group: 'appearance',
   },
   {
+    key: 'direction',
+    label: 'Direction',
+    type: 'dropdown',
+    options: toOptions([...ICON_DIRECTIONS]),
+    description: 'Auto uses document/locale; ltr/rtl forces directional variant',
+    defaultValue: 'auto',
+    group: 'appearance',
+  },
+  {
+    key: 'locale',
+    label: 'Locale',
+    type: 'text',
+    description: 'Optional locale override for locale-specific symbols (e.g. ar, en-US)',
+    defaultValue: '',
+    placeholder: 'e.g. ar, en-US',
+    group: 'appearance',
+  },
+  {
     key: 'sizePx',
     label: 'Size Px',
     type: 'number',
@@ -64,6 +93,17 @@ const ICON_CONTROL_DEFS: SharedControlDef[] = [
     step: 1,
     group: 'layout',
     drawer: false,
+  },
+  {
+    key: 'rotate',
+    label: 'Rotate',
+    type: 'number',
+    description: 'Optional icon rotation in degrees',
+    defaultValue: 0,
+    min: -360,
+    max: 360,
+    step: 5,
+    group: 'layout',
   },
   {
     key: 'showLabels',
