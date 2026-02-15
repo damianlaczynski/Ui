@@ -8,5 +8,20 @@
       [ngModelOptions]="{ standalone: true }"
     ></ui-search>
   </div>
+
+  <div class="ds-sidebar__grouping">
+    <ui-radio-button-group
+      id="sidebar-view-mode"
+      [items]="viewModeOptions"
+      [(ngModel)]="viewMode"
+      [ngModelOptions]="{ standalone: true }"
+      orientation="horizontal"
+      layout="separate"
+      variant="secondary"
+      appearance="outline"
+      size="small"
+    />
+  </div>
+
   <ui-nav [items]="navItems()"></ui-nav>
 </div>

@@ -5,59 +5,6 @@
 @use '../utils/variables' as *;
 @use '../utils/mixins' as *;
 
-// Calendar Icon Button
-.field__action--calendar {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  margin: 0;
-  outline: none;
-  @include transition-colors($duration-ultra-fast);
-  color: var(--color-neutral-foreground2-rest);
-  width: $spacing-5;
-  height: $spacing-5;
-  min-width: $spacing-5;
-  min-height: $spacing-5;
-  border-radius: $border-radius-200;
-
-  svg,
-  ng-icon {
-    width: $spacing-4;
-    height: $spacing-4;
-    stroke-width: 1.5;
-  }
-
-  &:hover {
-    color: var(--color-neutral-foreground-rest);
-    background-color: var(--color-subtle-background-hover);
-  }
-
-  &:active {
-    color: var(--color-neutral-foreground-rest);
-    background-color: var(--color-subtle-background-pressed);
-  }
-
-  @include focus-ring(2px, $border-radius-200);
-
-  // Disabled state
-  .input-wrapper--disabled & {
-    color: var(--color-neutral-foreground-disabled);
-    cursor: not-allowed;
-    pointer-events: none;
-  }
-
-  // Read-only state
-  .input-wrapper--read-only & {
-    color: var(--color-neutral-foreground-disabled);
-    cursor: not-allowed;
-    pointer-events: none;
-  }
-}
-
 // Date Panel Container (rendered via CDK Overlay)
 .date-panel {
   background: var(--color-neutral-background-rest);
@@ -121,38 +68,6 @@
 
     @include focus-ring(2px, $border-radius-400);
   }
-}
-
-.date-calendar__nav {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: $spacing-6;
-  height: $spacing-6;
-  background: transparent;
-  border: none;
-  border-radius: $border-radius-400;
-  cursor: pointer;
-  color: var(--color-neutral-foreground2-rest);
-  @include transition-colors($duration-ultra-fast);
-
-  svg,
-  ng-icon {
-    width: $spacing-4;
-    height: $spacing-4;
-  }
-
-  &:hover {
-    background-color: var(--color-subtle-background-hover);
-    color: var(--color-neutral-foreground-rest);
-  }
-
-  &:active {
-    background-color: var(--color-subtle-background-pressed);
-  }
-
-  // Focus state - Fluent 2 Design System
-  @include focus-ring(2px, $border-radius-400);
 }
 
 // Week Days Header
@@ -262,34 +177,43 @@
 // Calendar Footer
 .date-calendar__footer {
   display: flex;
-  justify-content: center;
+  justify-content: end;
   padding-top: $spacing-2;
   border-top: 1px solid var(--color-neutral-stroke-rest);
   margin-top: $spacing-1;
+  gap: $spacing-1;
 }
 
-.date-calendar__today-btn {
-  padding: $spacing-1 $spacing-3;
-  background: transparent;
-  border: 1px solid var(--color-neutral-stroke-rest);
-  border-radius: $border-radius-400;
-  cursor: pointer;
-  font-size: $font-size-300;
-  font-weight: $font-weight-semibold;
-  color: var(--color-brand-primary);
-  @include transition-colors($duration-ultra-fast);
+// Datetime panel
+.datetime-panel {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2;
+  min-width: 560px;
+}
 
-  &:hover {
-    background-color: var(--color-subtle-background-hover);
-    border-color: var(--color-brand-primary);
-  }
+.datetime-panel__content {
+  display: flex;
+  align-items: center;
+  gap: $spacing-3;
+}
 
-  &:active {
-    background-color: var(--color-subtle-background-pressed);
-  }
+.datetime-panel__calendar {
+  flex: 1 1 auto;
+  min-width: 300px;
+}
 
-  // Focus state - Fluent 2 Design System
-  @include focus-ring(2px, $border-radius-400);
+.datetime-panel__time {
+  flex: 0 0 auto;
+  min-width: 210px;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.datetime-panel__footer {
+  margin-top: 0;
 }
 
 // Month Picker
@@ -401,53 +325,6 @@
   max-height: 400px;
   overflow-y: auto;
   padding-right: $spacing-1;
-}
-
-.date-calendar__week {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: $spacing-2 $spacing-3;
-  background: transparent;
-  border: 1px solid var(--color-neutral-stroke-rest);
-  border-radius: $border-radius-400;
-  cursor: pointer;
-  font-size: $font-size-300;
-  color: var(--color-neutral-foreground-rest);
-  @include transition-colors($duration-ultra-fast);
-
-  &:hover {
-    background-color: var(--color-subtle-background-hover);
-    border-color: var(--color-brand-primary);
-  }
-
-  &:active {
-    background-color: var(--color-subtle-background-pressed);
-  }
-
-  // Focus state - Fluent 2 Design System
-  @include focus-ring(2px, $border-radius-400);
-
-  &--selected {
-    background-color: var(--color-brand-primary);
-    color: var(--color-neutral-background-rest);
-    border-color: var(--color-brand-primary);
-    font-weight: $font-weight-semibold;
-
-    &:hover {
-      background-color: var(--color-brand-primary-hover);
-    }
-  }
-}
-
-.date-calendar__week-number {
-  font-weight: $font-weight-semibold;
-  min-width: $spacing-8;
-}
-
-.date-calendar__week-range {
-  font-size: $font-size-200;
-  opacity: 0.8;
 }
 
 // Custom Time Picker
@@ -599,9 +476,7 @@
 // Reduced motion support
 @media (prefers-reduced-motion: reduce) {
   .field__action--calendar,
-  .date-calendar__nav,
   .date-calendar__day,
-  .date-calendar__today-btn,
   .date-panel__month,
   .date-panel__time-input {
     transition: none;
@@ -614,5 +489,41 @@
     background: var(--color-neutral-background-rest);
     border-color: var(--color-neutral-stroke-rest);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.date-calendar__week {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-1;
+}
+
+.date-calendar__week-number {
+  font-weight: $font-weight-semibold;
+  min-width: $spacing-8;
+}
+
+.date-calendar__week-range {
+  font-size: $font-size-200;
+  opacity: 0.8;
+}
+
+@media (max-width: 900px) {
+  .datetime-panel {
+    min-width: 0;
+  }
+
+  .datetime-panel__content {
+    flex-direction: column;
+    gap: $spacing-2;
+  }
+
+  .datetime-panel__calendar,
+  .datetime-panel__time {
+    min-width: 0;
+    width: 100%;
   }
 }

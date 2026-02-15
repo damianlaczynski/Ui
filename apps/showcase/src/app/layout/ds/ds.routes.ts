@@ -5,8 +5,12 @@ import { ButtonShowcaseComponent } from '@showcase/button/button.showcase';
 import { CalendarShowcaseComponent } from '@showcase/calendar/calendar.showcase';
 import { CommandPaletteShowcaseComponent } from '@showcase/command-palette/command-palette.showcase';
 import { TimeShowcaseComponent } from '@showcase/time/time.showcase';
+import { TimePickerShowcaseComponent } from '@showcase/time-picker/time-picker.showcase';
 import { DateShowcaseComponent } from '@showcase/field/date/date.showcase';
+import { DatetimeShowcaseComponent } from '@showcase/field/datetime/datetime.showcase';
+import { MonthShowcaseComponent } from '@showcase/field/month/month.showcase';
 import { TimeSpanShowcaseComponent } from '@showcase/field/time-span/time-span.showcase';
+import { WeekShowcaseComponent } from '@showcase/field/week/week.showcase';
 import { DateRangeShowcaseComponent } from '@showcase/field/date-range/date-range.showcase';
 import { DropdownShowcaseComponent } from '@showcase/field/dropdown/dropdown.showcase';
 import { NumberShowcaseComponent } from '@showcase/field/number/number.showcase';
@@ -163,6 +167,14 @@ export const dsRoutes: Routes = [
     component: DateShowcaseComponent,
   },
   {
+    path: 'datetime',
+    component: DatetimeShowcaseComponent,
+  },
+  {
+    path: 'month',
+    component: MonthShowcaseComponent,
+  },
+  {
     path: 'date-range',
     component: DateRangeShowcaseComponent,
   },
@@ -279,8 +291,16 @@ export const dsRoutes: Routes = [
     component: TimeShowcaseComponent,
   },
   {
+    path: 'time-picker',
+    component: TimePickerShowcaseComponent,
+  },
+  {
     path: 'time-span',
     component: TimeSpanShowcaseComponent,
+  },
+  {
+    path: 'week',
+    component: WeekShowcaseComponent,
   },
   {
     path: 'toast',

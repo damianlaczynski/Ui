@@ -3,21 +3,21 @@
   <div class="calendar__month-picker">
     <div class="calendar__header">
       <ui-button
-        appearance="subtle"
+        appearance="outline"
         [size]="size()"
         icon="chevron_left"
         (click)="onPreviousYear($event)"
       />
       <ui-button
-        appearance="subtle"
+        appearance="outline"
         [size]="size()"
-        class="calendar__title-button"
+        [fullWidth]="true"
         (click)="onSwitchToYearsView($event)"
       >
         {{ currentMonth().getFullYear() }}
       </ui-button>
       <ui-button
-        appearance="subtle"
+        appearance="outline"
         [size]="size()"
         icon="chevron_right"
         (click)="onNextYear($event)"
@@ -25,13 +25,15 @@
     </div>
     <div class="calendar__months">
       @for (month of calendarMonths(); track month.index) {
-        <button
-          type="button"
-          [class]="getMonthClasses(month)"
+        <ui-button
+          [size]="size()"
+          [variant]="month.isSelected ? 'primary' : 'secondary'"
+          [appearance]="month.isSelected ? 'filled' : 'outline'"
+          [fullWidth]="true"
           (click)="onMonthClick(month.index, $event)"
         >
           {{ month.name }}
-        </button>
+        </ui-button>
       }
     </div>
   </div>
@@ -40,14 +42,14 @@
   <div class="calendar__year-picker">
     <div class="calendar__header">
       <ui-button
-        appearance="subtle"
+        appearance="outline"
         [size]="size()"
         icon="chevron_left"
         (click)="onPreviousYearRange($event)"
       />
       <span class="calendar__title">{{ getYearRangeText() }}</span>
       <ui-button
-        appearance="subtle"
+        appearance="outline"
         [size]="size()"
         icon="chevron_right"
         (click)="onNextYearRange($event)"
@@ -55,13 +57,15 @@
     </div>
     <div class="calendar__years">
       @for (yearItem of calendarYears(); track yearItem.year) {
-        <button
-          type="button"
-          [class]="getYearClasses(yearItem)"
+        <ui-button
+          [size]="size()"
+          [variant]="yearItem.isSelected ? 'primary' : 'secondary'"
+          [appearance]="yearItem.isSelected ? 'filled' : 'outline'"
+          [fullWidth]="true"
           (click)="onYearClick(yearItem.year, $event)"
         >
           {{ yearItem.year }}
-        </button>
+        </ui-button>
       }
     </div>
   </div>
@@ -71,16 +75,16 @@
     <!-- Calendar Header -->
     <div class="calendar__header">
       <ui-button
-        appearance="subtle"
+        appearance="outline"
         [size]="size()"
         icon="chevron_left"
         (click)="onPreviousMonth($event)"
       />
       @if (showMonthYearPicker()) {
         <ui-button
-          appearance="subtle"
+          appearance="outline"
           [size]="size()"
-          class="calendar__title-button"
+          [fullWidth]="true"
           (click)="onSwitchToMonthsView($event)"
         >
           {{ monthYearText() }}
@@ -89,7 +93,7 @@
         <span class="calendar__title"> {{ monthYearText() }} </span>
       }
       <ui-button
-        appearance="subtle"
+        appearance="outline"
         [size]="size()"
         icon="chevron_right"
         (click)="onNextMonth($event)"
@@ -106,16 +110,19 @@
     <!-- Calendar Days Grid -->
     <div class="calendar__grid">
       @for (day of calendarDays(); track trackByDate($index, day)) {
-        <button
-          type="button"
+        <ui-button
+          [size]="size()"
           [class]="getDayClasses(day)"
+          [variant]="getDayVariant(day)"
+          [appearance]="getDayAppearance(day)"
           [disabled]="day.isDisabled"
+          [fullWidth]="true"
           (click)="onDateClick(day, $event)"
           (mouseenter)="onDateHover(day)"
           (mouseleave)="onDateLeave()"
         >
           {{ day.day }}
-        </button>
+        </ui-button>
       }
     </div>
   </div>

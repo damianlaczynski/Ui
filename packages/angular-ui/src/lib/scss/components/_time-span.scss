@@ -13,11 +13,11 @@
 // Time Span Panel (rendered via CDK Overlay)
 .timespan-panel {
   background: var(--color-neutral-background-rest);
+  border: 1px solid var(--color-neutral-stroke-rest);
   border-radius: $border-radius-400;
   box-shadow:
     0px 0px 2px rgba(0, 0, 0, 0.12),
     0px 8px 16px rgba(0, 0, 0, 0.14);
-  max-width: 500px;
   @include slide-down($duration-normal, $easing-decelerate-min);
 
   &--small {
@@ -40,7 +40,7 @@
     padding: $spacing-3;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     gap: $spacing-3;
     flex-wrap: wrap;
@@ -52,39 +52,9 @@
 
   &__unit {
     display: flex;
-    align-items: center;
-  }
-
-  // =============================================================================
-  // Unit Controls (buttons + number input + label)
-  // =============================================================================
-
-  &__unit-controls {
-    display: flex;
     flex-direction: column;
     align-items: center;
-
-    // Limit width of input wrapper
-    .input-wrapper {
-      max-width: $spacing-10;
-      display: flex;
-      flex-shrink: 0;
-    }
-
-    // Style the number input
-    .number-input {
-      text-align: center;
-      width: 100%;
-
-      // Remove spinner arrows from number input
-      -moz-appearance: textfield;
-
-      &::-webkit-outer-spin-button,
-      &::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-      }
-    }
+    gap: $spacing-2;
   }
 
   // =============================================================================
@@ -96,8 +66,127 @@
     font-weight: $font-weight-semibold;
     line-height: $line-height-300;
     color: var(--color-neutral-foreground-rest);
-    margin-left: $spacing-1;
-    min-width: $spacing-4;
+    min-width: $spacing-5;
     text-align: center;
   }
+}
+
+.time-span-wheel {
+  --wheel-item-height: 40px;
+  --wheel-visible-items: 5;
+
+  position: relative;
+  width: 84px;
+  height: calc(var(--wheel-item-height) * var(--wheel-visible-items));
+  border-radius: $border-radius-600;
+  border: 1px solid var(--color-neutral-stroke-rest);
+  background: var(--color-neutral-background-rest);
+  overflow: hidden;
+
+  .timespan-panel--small & {
+    --wheel-item-height: 32px;
+  }
+
+  .timespan-panel--medium & {
+    --wheel-item-height: 40px;
+  }
+
+  .timespan-panel--large & {
+    --wheel-item-height: 48px;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: calc(var(--wheel-item-height) * 1.4);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  &::before {
+    top: 0;
+    background: linear-gradient(
+      to bottom,
+      var(--color-neutral-background-rest) 25%,
+      color-mix(in srgb, var(--color-neutral-background-rest) 0%, transparent)
+    );
+  }
+
+  &::after {
+    bottom: 0;
+    background: linear-gradient(
+      to top,
+      var(--color-neutral-background-rest) 25%,
+      color-mix(in srgb, var(--color-neutral-background-rest) 0%, transparent)
+    );
+  }
+}
+
+.time-span-wheel__wheel {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: grab;
+  touch-action: none;
+
+  &--dragging {
+    cursor: grabbing;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: inset 0 0 0 2px var(--color-focus-border);
+  }
+}
+
+.time-span-wheel__option {
+  width: 100%;
+  height: var(--wheel-item-height);
+  border: none;
+  background: transparent;
+  color: var(--color-neutral-foreground3-rest);
+  font-family: $font-family-base;
+  font-size: $font-size-400;
+  font-weight: $font-weight-medium;
+  line-height: 1;
+  transition:
+    color 120ms ease,
+    transform 120ms ease;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: none;
+    color: var(--color-neutral-foreground-rest);
+  }
+}
+
+.time-span-wheel__option--selected {
+  color: var(--color-neutral-foreground-rest);
+  font-weight: $font-weight-semibold;
+  transform: scale(1.06);
+}
+
+.time-span-wheel__option--empty {
+  cursor: default;
+  color: transparent;
+}
+
+.time-span-wheel__selection {
+  position: absolute;
+  left: $spacing-1;
+  right: $spacing-1;
+  top: 50%;
+  height: var(--wheel-item-height);
+  transform: translateY(-50%);
+  border-radius: $border-radius-400;
+  border: 1px solid var(--color-brand-stroke-rest);
+  background: color-mix(in srgb, var(--color-neutral-background1-rest) 72%, transparent);
+  pointer-events: none;
+  z-index: 3;
 }

@@ -361,8 +361,7 @@ export class CalendarComponent {
     }
 
     // Check both confirmed range and hover preview range
-    const hoverFn = this.isDayInHoverRangeFn();
-    const isInHoverRange = hoverFn ? hoverFn(day) : false;
+    const isInHoverRange = this.isInHoverRange(day);
     if (day.isInRange || isInHoverRange) {
       classes.push('calendar__day--in-range');
     }
@@ -380,29 +379,35 @@ export class CalendarComponent {
     return classes.join(' ');
   }
 
-  getMonthClasses(month: CalendarMonth): string {
-    const classes = ['calendar__month'];
-
-    if (month.isSelected) {
-      classes.push('calendar__month--selected');
+  getDayVariant(day: CalendarDay): 'primary' | 'secondary' {
+    if (
+      day.isSelected ||
+      day.isRangeStart ||
+      day.isRangeEnd ||
+      day.isInRange ||
+      this.isInHoverRange(day)
+    ) {
+      return 'primary';
     }
 
-    return classes.join(' ');
+    return 'secondary';
   }
 
-  getYearClasses(yearItem: CalendarYear): string {
-    const classes = ['calendar__year'];
-
-    if (yearItem.isSelected) {
-      classes.push('calendar__year--selected');
+  getDayAppearance(day: CalendarDay): 'filled' | 'outline' | 'tint' {
+    if (day.isSelected || day.isRangeStart || day.isRangeEnd) {
+      return 'filled';
     }
 
-    const currentYear = new Date().getFullYear();
-    if (yearItem.year === currentYear) {
-      classes.push('calendar__year--current');
+    if (day.isInRange || this.isInHoverRange(day)) {
+      return 'tint';
     }
 
-    return classes.join(' ');
+    return 'outline';
+  }
+
+  private isInHoverRange(day: CalendarDay): boolean {
+    const hoverFn = this.isDayInHoverRangeFn();
+    return hoverFn ? hoverFn(day) : false;
   }
 
   onDateClick(day: CalendarDay, event?: Event): void {

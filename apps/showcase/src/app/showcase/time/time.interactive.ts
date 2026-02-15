@@ -1,4 +1,5 @@
 import { Component, computed, signal, viewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Size, TimeComponent } from 'angular-ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
@@ -6,7 +7,7 @@ import { TIME_SHOWCASE_CONFIG } from './time.showcase.config';
 
 @Component({
   selector: 'app-time-interactive',
-  imports: [TimeComponent, InteractiveShowcaseComponent],
+  imports: [FormsModule, TimeComponent, InteractiveShowcaseComponent],
   template: `
     <app-interactive-showcase
       #showcase
@@ -17,15 +18,14 @@ import { TIME_SHOWCASE_CONFIG } from './time.showcase.config';
     >
       <div preview>
         <ui-time
-          [value]="selectedTime()"
+          [ngModel]="selectedTime()"
+          (ngModelChange)="onTimeChange($event)"
           [size]="currentSize()"
-          [step]="currentStep()"
-          [use24HourFormat]="currentUse24HourFormat()"
-          [inline]="currentInline()"
-          [showLabel]="currentShowLabel()"
-          [label]="'Select Time'"
+          [label]="currentLabel()"
+          [placeholder]="'HH:mm'"
+          [required]="currentRequired()"
+          [readonly]="currentReadonly()"
           [disabled]="currentDisabled()"
-          (timeChange)="onTimeChange($event)"
         />
         <p style="margin-top: 12px; text-align: center;">
           Selected time: <strong>{{ selectedTime() || 'Not set' }}</strong>
@@ -42,18 +42,16 @@ export class TimeInteractiveComponent {
   selectedTime = signal('');
   private values = signal<Record<string, unknown>>({
     size: 'medium',
-    step: 60,
-    use24HourFormat: true,
-    inline: false,
-    showLabel: false,
+    label: 'Select time',
+    required: false,
+    readonly: false,
     disabled: false,
   });
 
   currentSize = computed(() => this.values()['size'] as Size);
-  currentStep = computed(() => this.values()['step'] as number);
-  currentUse24HourFormat = computed(() => this.values()['use24HourFormat'] as boolean);
-  currentInline = computed(() => this.values()['inline'] as boolean);
-  currentShowLabel = computed(() => this.values()['showLabel'] as boolean);
+  currentLabel = computed(() => this.values()['label'] as string);
+  currentRequired = computed(() => this.values()['required'] as boolean);
+  currentReadonly = computed(() => this.values()['readonly'] as boolean);
   currentDisabled = computed(() => this.values()['disabled'] as boolean);
 
   onValuesChange(newValues: Record<string, unknown>): void {
@@ -66,6 +64,6 @@ export class TimeInteractiveComponent {
 
   onTimeChange(time: string): void {
     this.selectedTime.set(time);
-    this.showcase()?.logEvent('timeChange', { value: time });
+    this.showcase()?.logEvent('ngModelChange', { value: time });
   }
 }
