@@ -62,6 +62,14 @@ describe('TimeSpanComponent', () => {
     expect(component.toTimeSpanString(parsed)).toBe('P1DT2H30M');
   });
 
+  it('should display readable text in input while keeping ISO conversion', () => {
+    component.writeValue('P1DT2H30M');
+    expect(component.displayText()).toBe('1d 2h 30m');
+    expect(component.toTimeSpanString(component.parseTimeSpanString('P1DT2H30M'))).toBe(
+      'P1DT2H30M',
+    );
+  });
+
   it('should step up by one on click below selected area', () => {
     const wheel = createWheelElement();
     const option = createOptionElement(150);
@@ -117,6 +125,20 @@ describe('TimeSpanComponent', () => {
     component.updateUnit('minutes', 30);
 
     expect(emitted[emitted.length - 1]).toBe('PT1H30M');
+  });
+
+  it('should parse readable input and emit ISO value', () => {
+    const emitted: string[] = [];
+    component.valueChange.subscribe(value => emitted.push(value));
+
+    const event = {
+      target: { value: '2d 4h 15m' },
+    } as unknown as Event;
+
+    component.onTimeSpanInputChange(event);
+
+    expect(component.displayText()).toBe('2d 4h 15m');
+    expect(emitted[emitted.length - 1]).toBe('P2DT4H15M');
   });
 
   it('should drag wheel and change value', () => {

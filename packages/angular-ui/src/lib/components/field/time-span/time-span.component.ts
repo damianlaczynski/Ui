@@ -150,11 +150,10 @@ export class TimeSpanComponent extends FieldComponent implements OnDestroy {
     return units;
   });
 
-  // Display text for the input - shows ISO 8601 format
+  // Display text for the input - shows user-friendly format
   displayText = computed(() => {
     const val = this.internalValue();
-    const isoString = this.toTimeSpanString(val);
-    return isoString ?? '';
+    return this.toReadableTimeSpanString(val);
   });
 
   // Check if value is empty
@@ -703,6 +702,43 @@ export class TimeSpanComponent extends FieldComponent implements OnDestroy {
     return result;
   }
 
+  private parseReadableTimeSpanString(input: string): TimeSpanValue {
+    const normalized = input.trim().toLowerCase();
+    if (!normalized) {
+      return {};
+    }
+
+    const result: TimeSpanValue = {};
+    const tokenRegex =
+      /(\d+)\s*(years?|yrs?|yr|y|months?|mos?|mo|days?|day|d|hours?|hrs?|hr|h|minutes?|mins?|min|m|seconds?|secs?|sec|s)\b/g;
+
+    let match: RegExpExecArray | null = tokenRegex.exec(normalized);
+    while (match) {
+      const value = parseInt(match[1], 10);
+      const unitToken = match[2];
+
+      if (!isNaN(value)) {
+        if (/(^years?$)|(^yrs?$)|(^yr$)|(^y$)/.test(unitToken)) {
+          result.years = value;
+        } else if (/(^months?$)|(^mos?$)|(^mo$)/.test(unitToken)) {
+          result.months = value;
+        } else if (/(^days?$)|(^day$)|(^d$)/.test(unitToken)) {
+          result.days = value;
+        } else if (/(^hours?$)|(^hrs?$)|(^hr$)|(^h$)/.test(unitToken)) {
+          result.hours = value;
+        } else if (/(^minutes?$)|(^mins?$)|(^min$)|(^m$)/.test(unitToken)) {
+          result.minutes = value;
+        } else if (/(^seconds?$)|(^secs?$)|(^sec$)|(^s$)/.test(unitToken)) {
+          result.seconds = value;
+        }
+      }
+
+      match = tokenRegex.exec(normalized);
+    }
+
+    return this.normalizeTimeSpanValue(result);
+  }
+
   private splitIso8601Parts(timeSpanString: string): {
     datePart: string;
     timePart: string;
@@ -810,7 +846,7 @@ export class TimeSpanComponent extends FieldComponent implements OnDestroy {
       return;
     }
 
-    const parsedValue = this.parseTimeSpanString(inputValue);
+    const parsedValue = this.parseInputTimeSpanString(inputValue);
 
     if (this.hasValidTimeSpanValue(parsedValue)) {
       this.internalValue.set(parsedValue);
@@ -828,6 +864,43 @@ export class TimeSpanComponent extends FieldComponent implements OnDestroy {
       value.minutes ||
       value.seconds
     );
+  }
+
+  private parseInputTimeSpanString(inputValue: string): TimeSpanValue {
+    const isoParsed = this.parseTimeSpanString(inputValue);
+    if (this.hasValidTimeSpanValue(isoParsed)) {
+      return isoParsed;
+    }
+
+    return this.parseReadableTimeSpanString(inputValue);
+  }
+
+  private toReadableTimeSpanString(value: TimeSpanValue): string {
+    if (!value || this.isTimeSpanValueEmpty(value)) {
+      return '';
+    }
+
+    const parts: string[] = [];
+    if (value.years) {
+      parts.push(`${value.years}y`);
+    }
+    if (value.months) {
+      parts.push(`${value.months}mo`);
+    }
+    if (value.days) {
+      parts.push(`${value.days}d`);
+    }
+    if (value.hours) {
+      parts.push(`${value.hours}h`);
+    }
+    if (value.minutes) {
+      parts.push(`${value.minutes}m`);
+    }
+    if (value.seconds) {
+      parts.push(`${value.seconds}s`);
+    }
+
+    return parts.join(' ');
   }
 
   /**
