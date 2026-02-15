@@ -326,4 +326,8 @@ export const dsRoutes: Routes = [
     path: 'video',
     component: VideoShowcaseComponent,
   },
+  {
+    path: '**',
+    redirectTo: 'getting-started',
+  },
 ];

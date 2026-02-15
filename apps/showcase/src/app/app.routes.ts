@@ -13,4 +13,9 @@ export const routes: Routes = [
     component: DsComponent,
     children: dsRoutes,
   },
+  {
+    path: '**',
+    redirectTo: '',
+    pathMatch: 'full',
+  },
 ];
