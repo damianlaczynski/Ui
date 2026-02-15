@@ -1,6 +1,6 @@
 <div class="time-picker" [class.time-picker--inline]="inline()">
   @if (showLabel()) {
-    <label [attr.for]="'time-picker-input'" class="time-picker__label">{{ label() }}</label>
+    <label [attr.for]="'time-picker-hour-wheel'" class="time-picker__label">{{ label() }}</label>
   }
 
   <div class="time-picker__wheels" [class]="'time-picker__wheels time-picker__wheels--' + size()">
@@ -23,9 +23,11 @@
         @for (hour of hourWheelOptions; track $index) {
           <button
             type="button"
+            role="option"
+            tabindex="-1"
             [disabled]="disabled()"
             [class]="getHourClass($index, hour)"
-            [attr.aria-selected]="hour === selectedHour()"
+            [attr.aria-selected]="isHourSelected($index, hour)"
             (click)="onOptionClick('hour', $event)"
           >
             {{ formatHourLabel(hour) }}
@@ -40,6 +42,7 @@
     <div class="time-picker__wheel-shell" [class.time-picker__wheel-shell--disabled]="disabled()">
       <div
         #minuteWheel
+        [attr.id]="'time-picker-minute-wheel'"
         class="time-picker__wheel"
         role="listbox"
         aria-label="Minutes"
@@ -55,9 +58,11 @@
         @for (minute of minuteWheelOptions; track $index) {
           <button
             type="button"
+            role="option"
+            tabindex="-1"
             [disabled]="disabled()"
             [class]="getMinuteClass($index, minute)"
-            [attr.aria-selected]="minute === selectedMinute()"
+            [attr.aria-selected]="isMinuteSelected($index, minute)"
             (click)="onOptionClick('minute', $event)"
           >
             {{ formatMinuteLabel(minute) }}

@@ -65,8 +65,6 @@ export class TimePickerComponent implements AfterViewInit, OnDestroy {
   };
 
   private isViewReady = false;
-  private isSyncingHourScroll = false;
-  private isSyncingMinuteScroll = false;
 
   private hourAnimationFrameId: number | null = null;
   private minuteAnimationFrameId: number | null = null;
@@ -350,7 +348,7 @@ export class TimePickerComponent implements AfterViewInit, OnDestroy {
     return this.minuteWheelRef?.nativeElement ?? null;
   }
 
-  private isHourSelected(index: number, value: number): boolean {
+  isHourSelected(index: number, value: number): boolean {
     if (this.hourVisualIndex != null) {
       return index === this.hourVisualIndex;
     }
@@ -359,7 +357,7 @@ export class TimePickerComponent implements AfterViewInit, OnDestroy {
     );
   }
 
-  private isMinuteSelected(index: number, value: number): boolean {
+  isMinuteSelected(index: number, value: number): boolean {
     if (this.minuteVisualIndex != null) {
       return index === this.minuteVisualIndex;
     }
@@ -416,24 +414,7 @@ export class TimePickerComponent implements AfterViewInit, OnDestroy {
     }
 
     const top = index * this.getItemHeight();
-    if (type === 'hour') {
-      this.isSyncingHourScroll = true;
-    } else {
-      this.isSyncingMinuteScroll = true;
-    }
-
     this.setWheelScrollTop(type, element, top, smooth);
-
-    setTimeout(
-      () => {
-        if (type === 'hour') {
-          this.isSyncingHourScroll = false;
-        } else {
-          this.isSyncingMinuteScroll = false;
-        }
-      },
-      smooth ? 180 : 0,
-    );
   }
 
   private changeByStep(type: WheelType, delta: number, smooth: boolean, emit: boolean): void {

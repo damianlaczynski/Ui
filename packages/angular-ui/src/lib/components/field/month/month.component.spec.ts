@@ -20,7 +20,18 @@ describe('MonthComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should default to month dateType', () => {
-    expect(component.dateType()).toBe('month');
+  it('should parse month values as first day of month', () => {
+    component.writeValue('2026-02');
+
+    const selected = component.selectedDate();
+    expect(selected).toBeTruthy();
+    expect(selected?.getFullYear()).toBe(2026);
+    expect(selected?.getMonth()).toBe(1);
+    expect(selected?.getDate()).toBe(1);
+  });
+
+  it('should output ISO month format', () => {
+    component.writeValue('2026-02');
+    expect(component.value).toBe('2026-02');
   });
 });

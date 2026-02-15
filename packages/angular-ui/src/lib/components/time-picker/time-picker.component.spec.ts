@@ -278,4 +278,30 @@ describe('TimePickerComponent', () => {
 
     expect(component.selectedMinute()).toBe(prev);
   });
+
+  it('should associate label with hour wheel id when label is shown', () => {
+    fixture.componentRef.setInput('showLabel', true);
+    fixture.componentRef.setInput('label', 'Pick time');
+    fixture.detectChanges();
+
+    const label = fixture.nativeElement.querySelector('.time-picker__label') as HTMLLabelElement;
+    const hourWheel = fixture.nativeElement.querySelector(
+      '#time-picker-hour-wheel',
+    ) as HTMLDivElement;
+
+    expect(label).toBeTruthy();
+    expect(hourWheel).toBeTruthy();
+    expect(label.getAttribute('for')).toBe('time-picker-hour-wheel');
+  });
+
+  it('should mark only one option as selected per wheel', () => {
+    fixture.detectChanges();
+
+    const { hourWheel, minuteWheel } = getWheels();
+    const selectedHours = hourWheel.querySelectorAll('[role="option"][aria-selected="true"]');
+    const selectedMinutes = minuteWheel.querySelectorAll('[role="option"][aria-selected="true"]');
+
+    expect(selectedHours.length).toBe(1);
+    expect(selectedMinutes.length).toBe(1);
+  });
 });

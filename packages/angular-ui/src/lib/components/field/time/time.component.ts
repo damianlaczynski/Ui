@@ -135,7 +135,6 @@ export class TimeComponent extends FieldComponent implements OnDestroy {
 
   onTimeChange(timeStr: string): void {
     this.selectedTime.set(timeStr);
-    this.closePanel(false);
   }
 
   override writeValue(value: unknown): void {
