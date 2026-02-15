@@ -33,6 +33,9 @@ import { NUMBER_SHOWCASE_CONFIG } from './number.showcase.config';
           [helpText]="currentHelpText()"
           (change)="onNumberChange($event)"
         />
+        <p style="margin-top: 12px;">
+          Current value: <strong>{{ getCurrentValuePreview() }}</strong>
+        </p>
       </div>
     </app-interactive-showcase>
   `,
@@ -69,7 +72,24 @@ export class NumberInteractiveComponent {
   currentDisabled = computed(() => this.values()['disabled'] as boolean);
   currentReadonly = computed(() => this.values()['readonly'] as boolean);
   currentRequired = computed(() => this.values()['required'] as boolean);
+  getCurrentValuePreview(): string {
+    const source = (this as unknown as { currentValue?: unknown }).currentValue;
+    const value = typeof source === 'function' ? (source as () => unknown)() : source;
 
+    if (value === null || value === undefined || value === '') {
+      return 'Not set';
+    }
+
+    if (typeof value === 'string') {
+      return value;
+    }
+
+    try {
+      return JSON.stringify(value);
+    } catch {
+      return String(value);
+    }
+  }
   onValuesChange(newValues: Record<string, unknown>): void {
     this.values.set(newValues);
   }
