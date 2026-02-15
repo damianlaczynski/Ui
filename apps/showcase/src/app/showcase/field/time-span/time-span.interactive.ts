@@ -19,7 +19,7 @@ import { TIMESPAN_SHOWCASE_CONFIG } from './time-span.showcase.config';
       <div preview>
         <ui-time-span
           [label]="currentLabel()"
-          [placeholder]="'PT1H30M'"
+          [placeholder]="'1h 30m'"
           [inputVariant]="currentVariant()"
           [size]="currentSize()"
           [showYears]="currentShowYears()"
