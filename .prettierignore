@@ -5,3 +5,4 @@ coverage
 package-lock.json
 *.min.js
 *.md
+packages/angular-ui/src/lib/components/icon/generated
