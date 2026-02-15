@@ -17,9 +17,8 @@ import { A11yModule } from '@angular/cdk/a11y';
 import { Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import { FieldComponent } from '../field/field.component';
-import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ActionButtonComponent } from '../action-button.component';
-import { ButtonComponent } from '../../button';
 import {
   openConnectedOverlay,
   OverlayHandle,
@@ -41,6 +40,19 @@ export interface TimeSpanUnit {
   label: string;
   shortLabel: string;
   enabled: boolean;
+}
+
+interface WheelOption {
+  value: number | null;
+  isSelected: boolean;
+}
+
+interface DragState {
+  pointerId: number;
+  startY: number;
+  lastY: number;
+  pixelRemainder: number;
+  dragging: boolean;
 }
 
 const TIME_SPAN_UNITS: Record<keyof TimeSpanValue, Omit<TimeSpanUnit, 'enabled'>> = {
@@ -66,14 +78,7 @@ const MONTHS_PER_YEAR = 12;
 
 @Component({
   selector: 'ui-time-span',
-  imports: [
-    A11yModule,
-    OverlayModule,
-    FieldComponent,
-    FormsModule,
-    ActionButtonComponent,
-    ButtonComponent,
-  ],
+  imports: [A11yModule, OverlayModule, FieldComponent, ActionButtonComponent],
   templateUrl: './time-span.component.html',
   host: {
     '[style.display]': '"block"',
@@ -111,9 +116,18 @@ export class TimeSpanComponent extends FieldComponent implements OnDestroy {
   // State
   isOpen = signal<boolean>(false);
   internalValue = signal<TimeSpanValue>({});
+  private draggingState = signal<Partial<Record<keyof TimeSpanValue, boolean>>>({});
+  private dragStates: Partial<Record<keyof TimeSpanValue, DragState>> = {};
 
   @ViewChild('triggerElement') triggerElement!: ElementRef;
   @ViewChild('panelTemplate') panelTemplate!: TemplateRef<any>;
+
+  private readonly sizeToItemHeight: Record<'small' | 'medium' | 'large', number> = {
+    small: 32,
+    medium: 40,
+    large: 48,
+  };
+  private readonly dragActivationPx = 4;
 
   // Computed units based on configuration
   availableUnits = computed<TimeSpanUnit[]>(() => {
@@ -158,7 +172,7 @@ export class TimeSpanComponent extends FieldComponent implements OnDestroy {
   }
 
   togglePanel(): void {
-    if (this.disabled()) {
+    if (this.disabled() || this.readonly()) {
       return;
     }
     if (this.isOpen()) {
@@ -209,6 +223,184 @@ export class TimeSpanComponent extends FieldComponent implements OnDestroy {
   // Get value for a specific unit
   getUnitValue(unit: keyof TimeSpanValue): number | null {
     return this.internalValue()[unit] || null;
+  }
+
+  getWheelOptions(unit: keyof TimeSpanValue): WheelOption[] {
+    const current = this.getCurrentUnitValue(unit);
+    const options: WheelOption[] = [];
+
+    for (let offset = -2; offset <= 2; offset += 1) {
+      const candidate = current + offset;
+      options.push({
+        value: candidate >= 0 ? candidate : null,
+        isSelected: offset === 0,
+      });
+    }
+
+    return options;
+  }
+
+  getOptionClass(option: WheelOption): string {
+    const classes = ['time-span-wheel__option'];
+    if (option.isSelected) {
+      classes.push('time-span-wheel__option--selected');
+    }
+    if (option.value === null) {
+      classes.push('time-span-wheel__option--empty');
+    }
+    return classes.join(' ');
+  }
+
+  formatWheelOption(unit: keyof TimeSpanValue, value: number | null): string {
+    if (value === null) {
+      return '';
+    }
+
+    if (unit === 'hours' || unit === 'minutes' || unit === 'seconds') {
+      return String(value).padStart(2, '0');
+    }
+
+    return String(value);
+  }
+
+  isUnitDragging(unit: keyof TimeSpanValue): boolean {
+    return !!this.draggingState()[unit];
+  }
+
+  onOptionClick(unit: keyof TimeSpanValue, wheelElement: HTMLDivElement, event: MouseEvent): void {
+    if (this.disabled() || this.readonly()) {
+      return;
+    }
+
+    const wheelRect = wheelElement.getBoundingClientRect();
+    const wheelCenterY = wheelRect.top + wheelRect.height / 2;
+    const target = event.currentTarget as HTMLElement | null;
+    const targetCenterY = target
+      ? target.getBoundingClientRect().top + target.getBoundingClientRect().height / 2
+      : event.clientY;
+    const step = targetCenterY < wheelCenterY ? -1 : targetCenterY > wheelCenterY ? 1 : 0;
+
+    if (step !== 0) {
+      this.changeByStep(unit, step);
+    }
+  }
+
+  onWheelKeyDown(unit: keyof TimeSpanValue, event: KeyboardEvent): void {
+    if (this.disabled() || this.readonly()) {
+      return;
+    }
+
+    switch (event.key) {
+      case 'ArrowUp':
+        event.preventDefault();
+        this.changeByStep(unit, -1);
+        break;
+      case 'ArrowDown':
+        event.preventDefault();
+        this.changeByStep(unit, 1);
+        break;
+      case 'PageUp':
+        event.preventDefault();
+        this.changeByStep(unit, -5);
+        break;
+      case 'PageDown':
+        event.preventDefault();
+        this.changeByStep(unit, 5);
+        break;
+      default:
+        break;
+    }
+  }
+
+  onUnitWheel(unit: keyof TimeSpanValue, event: WheelEvent): void {
+    if (this.disabled() || this.readonly()) {
+      return;
+    }
+
+    const normalizedDelta = this.normalizeWheelDelta(event);
+    if (normalizedDelta === 0) {
+      return;
+    }
+
+    event.preventDefault();
+    const step = normalizedDelta > 0 ? 1 : -1;
+    this.changeByStep(unit, step);
+  }
+
+  onWheelPointerDown(unit: keyof TimeSpanValue, event: PointerEvent): void {
+    if (this.disabled() || this.readonly()) {
+      return;
+    }
+
+    if (event.pointerType === 'mouse' && event.button !== 0) {
+      return;
+    }
+
+    this.dragStates[unit] = {
+      pointerId: event.pointerId,
+      startY: event.clientY,
+      lastY: event.clientY,
+      pixelRemainder: 0,
+      dragging: false,
+    };
+  }
+
+  onWheelPointerMove(
+    unit: keyof TimeSpanValue,
+    wheelElement: HTMLDivElement,
+    event: PointerEvent,
+  ): void {
+    const state = this.dragStates[unit];
+    if (!state || state.pointerId !== event.pointerId) {
+      return;
+    }
+
+    const travelFromStart = Math.abs(event.clientY - state.startY);
+    if (!state.dragging && travelFromStart >= this.dragActivationPx) {
+      state.dragging = true;
+      wheelElement.setPointerCapture(event.pointerId);
+      this.setUnitDragging(unit, true);
+    }
+
+    if (!state.dragging) {
+      return;
+    }
+
+    const deltaY = event.clientY - state.lastY;
+    state.lastY = event.clientY;
+    state.pixelRemainder += deltaY;
+
+    const dragThreshold = this.getDragThreshold();
+    let steps = 0;
+    while (Math.abs(state.pixelRemainder) >= dragThreshold) {
+      const step = state.pixelRemainder > 0 ? -1 : 1;
+      state.pixelRemainder -= state.pixelRemainder > 0 ? dragThreshold : -dragThreshold;
+      steps += step;
+    }
+
+    if (steps !== 0) {
+      this.changeByStep(unit, steps);
+    }
+
+    event.preventDefault();
+  }
+
+  onWheelPointerUp(
+    unit: keyof TimeSpanValue,
+    wheelElement: HTMLDivElement,
+    event: PointerEvent,
+  ): void {
+    const state = this.dragStates[unit];
+    if (!state || state.pointerId !== event.pointerId) {
+      return;
+    }
+
+    if (state.dragging && wheelElement.hasPointerCapture(event.pointerId)) {
+      wheelElement.releasePointerCapture(event.pointerId);
+    }
+
+    delete this.dragStates[unit];
+    this.setUnitDragging(unit, false);
   }
 
   // Increment value for a specific unit
@@ -332,6 +524,52 @@ export class TimeSpanComponent extends FieldComponent implements OnDestroy {
     this.value = outputValue;
     this.onChange(outputValue);
     this.valueChange.emit(outputValue);
+  }
+
+  private changeByStep(unit: keyof TimeSpanValue, delta: number): void {
+    if (delta === 0) {
+      return;
+    }
+
+    const current = this.getCurrentUnitValue(unit);
+    const next = Math.max(0, current + delta);
+    this.updateUnit(unit, next);
+  }
+
+  private getCurrentUnitValue(unit: keyof TimeSpanValue): number {
+    return this.internalValue()[unit] ?? 0;
+  }
+
+  private setUnitDragging(unit: keyof TimeSpanValue, dragging: boolean): void {
+    this.draggingState.update(current => {
+      const next = { ...current };
+      if (dragging) {
+        next[unit] = true;
+      } else {
+        delete next[unit];
+      }
+      return next;
+    });
+  }
+
+  private getItemHeight(): number {
+    return this.sizeToItemHeight[this.size()] ?? this.sizeToItemHeight.medium;
+  }
+
+  private getDragThreshold(): number {
+    return Math.max(8, this.getItemHeight() * 0.33);
+  }
+
+  private normalizeWheelDelta(event: WheelEvent): number {
+    if (event.deltaMode === 1) {
+      return event.deltaY * 16;
+    }
+
+    if (event.deltaMode === 2) {
+      return event.deltaY * this.getItemHeight();
+    }
+
+    return event.deltaY;
   }
 
   /**

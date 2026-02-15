@@ -3,7 +3,6 @@
 // ==========================================================================
 
 @use '../utils/variables' as *;
-@use '../utils/mixins' as *;
 
 // Calendar Container
 .calendar {
@@ -15,14 +14,8 @@
 // Calendar Header
 .calendar__header {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  gap: $spacing-1;
   margin-bottom: $spacing-1;
-
-  // Navigation buttons (using button component)
-  ui-button {
-    flex-shrink: 0;
-  }
 }
 
 .calendar__title {
@@ -32,28 +25,6 @@
   flex: 1;
   text-align: center;
   padding: $spacing-1 $spacing-2;
-}
-
-.calendar__title-button {
-  flex: 1;
-  text-align: center;
-  font-size: $font-size-300;
-  font-weight: $font-weight-semibold;
-  color: var(--color-neutral-foreground-rest);
-  border-radius: $border-radius-400;
-  @include transition-colors($duration-ultra-fast);
-
-  &:hover {
-    background-color: var(--color-subtle-background-hover);
-    color: var(--color-brand-primary);
-  }
-
-  &:active {
-    background-color: var(--color-subtle-background-pressed);
-  }
-
-  // Focus state - Fluent 2 Design System
-  @include focus-ring(2px, $border-radius-400);
 }
 
 // Week Days Header
@@ -79,142 +50,59 @@
   gap: $spacing-05;
 }
 
-// Calendar Day
+// Calendar Day (host class is on ui-button, actual styles must target inner .button)
 .calendar__day {
-  aspect-ratio: 1;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: $border-radius-400;
-  cursor: pointer;
-  font-size: $font-size-300;
-  font-weight: $font-weight-regular;
-  color: var(--color-neutral-foreground-rest);
-  @include transition-colors($duration-ultra-fast);
-  position: relative;
-  padding: 0;
+  display: block;
   min-width: $spacing-7;
   min-height: $spacing-7;
 
-  &:hover:not(&--disabled) {
-    background-color: var(--color-subtle-background-hover);
-    color: var(--color-neutral-foreground-rest);
+  > .button {
+    width: 100%;
+    min-height: inherit;
+    padding: 0;
   }
 
-  &:active:not(&--disabled) {
-    background-color: var(--color-subtle-background-pressed);
-  }
-
-  // Focus state - Fluent 2 Design System
-  @include focus-ring(2px, $border-radius-400);
-
-  &:focus-visible {
-    z-index: 1; // Z-index dla overlay focus
-  }
-
-  // Other month days
-  &--other-month {
+  &--other-month > .button {
     color: var(--color-neutral-foreground-disabled);
     opacity: 0.6;
   }
 
-  // Today
-  &--today {
+  &--today > .button {
     border-color: var(--color-brand-primary);
     font-weight: $font-weight-semibold;
   }
 
-  // In range (between start and end)
-  &--in-range {
-    background-color: var(--color-neutral-background-brand-hover);
+  &--in-range > .button {
     border-radius: 0;
-
-    &:hover {
-      background-color: var(--color-neutral-background-brand-selected);
-    }
   }
 
-  // Range start
-  &--range-start {
-    background-color: var(--color-brand-primary);
-    color: var(--color-neutral-background-rest);
-    font-weight: $font-weight-semibold;
-    border-top-left-radius: $border-radius-400;
-    border-bottom-left-radius: $border-radius-400;
+  &--range-start > .button {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-
-    &:hover {
-      background-color: var(--color-brand-primary-hover);
-      color: var(--color-neutral-background-rest);
-    }
-
-    &:active {
-      background-color: var(--color-brand-primary-pressed);
-    }
-
-    // If also range end (single day selection)
-    &.calendar__day--range-end {
-      border-radius: $border-radius-400;
-    }
   }
 
-  // Range end
-  &--range-end {
-    background-color: var(--color-brand-primary);
-    color: var(--color-neutral-background-rest);
-    font-weight: $font-weight-semibold;
-    border-top-right-radius: $border-radius-400;
-    border-bottom-right-radius: $border-radius-400;
+  &--range-end > .button {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-
-    &:hover {
-      background-color: var(--color-brand-primary-hover);
-      color: var(--color-neutral-background-rest);
-    }
-
-    &:active {
-      background-color: var(--color-brand-primary-pressed);
-    }
   }
 
-  // Selected day
-  &--selected {
-    &:not(&--range-start):not(&--range-end) {
-      background-color: var(--color-brand-primary);
-      color: var(--color-neutral-background-rest);
-      font-weight: $font-weight-semibold;
-
-      &:hover {
-        background-color: var(--color-brand-primary-hover);
-        color: var(--color-neutral-background-rest);
-      }
-
-      &:active {
-        background-color: var(--color-brand-primary-pressed);
-      }
-    }
+  &--range-start.calendar__day--range-end > .button {
+    border-radius: $border-radius-400;
   }
 
-  // Disabled day
-  &--disabled {
+  &--disabled > .button {
     color: var(--color-neutral-foreground-disabled);
     cursor: not-allowed;
-    pointer-events: none;
     opacity: 0.4;
   }
 
-  // Size variants
-  &--small {
+  &--small > .button {
     min-width: $spacing-6;
     min-height: $spacing-6;
     font-size: $font-size-200;
   }
 
-  &--large {
+  &--large > .button {
     min-width: $spacing-8;
     min-height: $spacing-8;
     font-size: $font-size-400;
@@ -234,41 +122,6 @@
   gap: $spacing-1;
 }
 
-.calendar__month {
-  padding: $spacing-2;
-  background: transparent;
-  border: 1px solid var(--color-neutral-stroke-rest);
-  border-radius: $border-radius-400;
-  cursor: pointer;
-  font-size: $font-size-300;
-  font-weight: $font-weight-regular;
-  color: var(--color-neutral-foreground-rest);
-  @include transition-colors($duration-ultra-fast);
-
-  &:hover {
-    background-color: var(--color-subtle-background-hover);
-    border-color: var(--color-brand-primary);
-  }
-
-  &:active {
-    background-color: var(--color-subtle-background-pressed);
-  }
-
-  // Focus state - Fluent 2 Design System
-  @include focus-ring(2px, $border-radius-400);
-
-  &--selected {
-    background-color: var(--color-brand-primary);
-    color: var(--color-neutral-background-rest);
-    border-color: var(--color-brand-primary);
-    font-weight: $font-weight-semibold;
-
-    &:hover {
-      background-color: var(--color-brand-primary-hover);
-    }
-  }
-}
-
 // Year Picker
 .calendar__year-picker {
   display: flex;
@@ -280,77 +133,4 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: $spacing-1;
-}
-
-.calendar__year {
-  padding: $spacing-2;
-  background: transparent;
-  border: 1px solid var(--color-neutral-stroke-rest);
-  border-radius: $border-radius-400;
-  cursor: pointer;
-  font-size: $font-size-300;
-  font-weight: $font-weight-regular;
-  color: var(--color-neutral-foreground-rest);
-  @include transition-colors($duration-ultra-fast);
-
-  &:hover {
-    background-color: var(--color-subtle-background-hover);
-    border-color: var(--color-brand-primary);
-  }
-
-  &:active {
-    background-color: var(--color-subtle-background-pressed);
-  }
-
-  // Focus state - Fluent 2 Design System
-  @include focus-ring(2px, $border-radius-400);
-
-  &--selected {
-    background-color: var(--color-brand-primary);
-    color: var(--color-neutral-background-rest);
-    border-color: var(--color-brand-primary);
-    font-weight: $font-weight-semibold;
-
-    &:hover {
-      background-color: var(--color-brand-primary-hover);
-    }
-  }
-
-  &--current {
-    border-color: var(--color-brand-primary);
-    font-weight: $font-weight-semibold;
-  }
-}
-
-// High contrast mode support
-@media (prefers-contrast: high) {
-  .calendar__day {
-    border: 1px solid currentColor;
-
-    &--range-start,
-    &--range-end,
-    &--selected {
-      background-color: var(--color-neutral-foreground-rest);
-      color: var(--color-neutral-background-rest);
-      border-color: var(--color-neutral-foreground-rest);
-    }
-
-    &--in-range {
-      border-style: dashed;
-    }
-
-    &--today {
-      border-width: 2px;
-    }
-  }
-}
-
-// Reduced motion support
-@media (prefers-reduced-motion: reduce) {
-  .calendar__nav,
-  .calendar__day,
-  .calendar__month,
-  .calendar__year {
-    transition: none;
-  }
 }

@@ -7,7 +7,7 @@ import {
 } from '@shared/utils/showcase/showcase-controls.utils';
 import { SHOWCASE_GROUP_ICONS, SIZES } from '@shared/utils/showcase/component-options.utils';
 
-const DATE_CONTROL_DEFS: SharedControlDef[] = [
+const WEEK_CONTROL_DEFS: SharedControlDef[] = [
   {
     key: 'size',
     label: 'Size',
@@ -39,14 +39,14 @@ const DATE_CONTROL_DEFS: SharedControlDef[] = [
   },
 ];
 
-const ALL_CONTROLS = toDrawerFormControls(DATE_CONTROL_DEFS);
+const ALL_CONTROLS = toDrawerFormControls(WEEK_CONTROL_DEFS);
 
-export const DATE_DRAWER_CONFIGS = createDrawerFormConfigs(ALL_CONTROLS, {
+export const WEEK_DRAWER_CONFIGS = createDrawerFormConfigs(ALL_CONTROLS, {
   overview: { excludeKeys: [] },
 });
 
-export const DATE_SHOWCASE_CONFIG: ShowcaseConfig = {
-  componentSelector: 'ui-date',
+export const WEEK_SHOWCASE_CONFIG: ShowcaseConfig = {
+  componentSelector: 'ui-week',
   controlGroups: [
     {
       id: 'appearance',
@@ -56,5 +56,5 @@ export const DATE_SHOWCASE_CONFIG: ShowcaseConfig = {
     },
     { id: 'state', label: 'State', icon: SHOWCASE_GROUP_ICONS['state'], expanded: true },
   ],
-  controls: toShowcaseControls(DATE_CONTROL_DEFS),
+  controls: toShowcaseControls(WEEK_CONTROL_DEFS),
 };

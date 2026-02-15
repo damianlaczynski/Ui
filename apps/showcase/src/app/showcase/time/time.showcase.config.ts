@@ -1,20 +1,9 @@
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
-import { createDrawerFormConfigs } from '@shared/utils/showcase/drawer-form-config.utils';
 import { SHOWCASE_GROUP_ICONS, SIZES } from '@shared/utils/showcase/component-options.utils';
 import {
-  toDrawerFormControls,
   toShowcaseControls,
   type SharedControlDef,
 } from '@shared/utils/showcase/showcase-controls.utils';
-
-export const TIME_STEPS = [60, 300, 900, 1800] as const;
-
-const TIME_STEP_OPTIONS = [
-  { value: 60, label: '1 min' },
-  { value: 300, label: '5 min' },
-  { value: 900, label: '15 min' },
-  { value: 1800, label: '30 min' },
-];
 
 const TIME_CONTROL_DEFS: SharedControlDef[] = [
   {
@@ -26,33 +15,25 @@ const TIME_CONTROL_DEFS: SharedControlDef[] = [
     group: 'appearance',
   },
   {
-    key: 'step',
-    label: 'Step',
-    type: 'dropdown',
-    options: TIME_STEP_OPTIONS,
-    defaultValue: 60,
-    group: 'behavior',
+    key: 'label',
+    label: 'Label',
+    type: 'text',
+    defaultValue: 'Select time',
+    group: 'appearance',
   },
   {
-    key: 'use24HourFormat',
-    label: '24-Hour Format',
-    type: 'switch',
-    defaultValue: true,
-    group: 'behavior',
-  },
-  {
-    key: 'inline',
-    label: 'Inline',
+    key: 'required',
+    label: 'Required',
     type: 'switch',
     defaultValue: false,
-    group: 'layout',
+    group: 'state',
   },
   {
-    key: 'showLabel',
-    label: 'Show Label',
+    key: 'readonly',
+    label: 'Readonly',
     type: 'switch',
     defaultValue: false,
-    group: 'layout',
+    group: 'state',
   },
   {
     key: 'disabled',
@@ -63,17 +44,6 @@ const TIME_CONTROL_DEFS: SharedControlDef[] = [
   },
 ];
 
-const ALL_CONTROLS = toDrawerFormControls(TIME_CONTROL_DEFS);
-
-export const TIME_DRAWER_CONFIGS = createDrawerFormConfigs(ALL_CONTROLS, {
-  overview: { excludeKeys: [] },
-  format: { excludeKey: 'use24HourFormat' },
-  size: { excludeKey: 'size' },
-  step: { excludeKey: 'step' },
-  inlineLabel: { excludeKeys: ['inline', 'showLabel'] },
-  state: { excludeKey: 'disabled' },
-});
-
 export const TIME_SHOWCASE_CONFIG: ShowcaseConfig = {
   componentSelector: 'ui-time',
   controlGroups: [
@@ -83,9 +53,12 @@ export const TIME_SHOWCASE_CONFIG: ShowcaseConfig = {
       icon: SHOWCASE_GROUP_ICONS['appearance'],
       expanded: true,
     },
-    { id: 'behavior', label: 'Behavior', icon: SHOWCASE_GROUP_ICONS['behavior'], expanded: true },
-    { id: 'layout', label: 'Layout', icon: SHOWCASE_GROUP_ICONS['layout'] },
-    { id: 'state', label: 'State', icon: SHOWCASE_GROUP_ICONS['state'] },
+    {
+      id: 'state',
+      label: 'State',
+      icon: SHOWCASE_GROUP_ICONS['state'],
+      expanded: true,
+    },
   ],
   controls: toShowcaseControls(TIME_CONTROL_DEFS),
 };

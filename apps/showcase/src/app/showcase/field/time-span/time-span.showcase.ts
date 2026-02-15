@@ -60,6 +60,7 @@ import type { InputVariant, Size } from 'angular-ui';
                 <h3 class="showcase__item__title">{{ preset.label }}</h3>
                 <ui-time-span
                   [label]="preset.label"
+                  [placeholder]="'PT1H30M'"
                   [showYears]="preset.showYears"
                   [showMonths]="preset.showMonths"
                   [showDays]="preset.showDays"
@@ -96,6 +97,7 @@ import type { InputVariant, Size } from 'angular-ui';
                 <h3 class="showcase__item__title">{{ size | titlecase }}</h3>
                 <ui-time-span
                   [label]="size + ' Time Span'"
+                  [placeholder]="'PT1H30M'"
                   [size]="size"
                   [showDays]="true"
                   [showHours]="true"
@@ -125,6 +127,7 @@ import type { InputVariant, Size } from 'angular-ui';
                 <h3 class="showcase__item__title">{{ variant | titlecase }}</h3>
                 <ui-time-span
                   [label]="variant + ' variant'"
+                  [placeholder]="'PT1H30M'"
                   [inputVariant]="variant"
                   [showDays]="true"
                   [showHours]="true"
@@ -154,6 +157,7 @@ import type { InputVariant, Size } from 'angular-ui';
                 <h3 class="showcase__item__title">{{ state.label }}</h3>
                 <ui-time-span
                   [label]="state.label"
+                  [placeholder]="'PT1H30M'"
                   [showDays]="true"
                   [showHours]="true"
                   [showMinutes]="true"

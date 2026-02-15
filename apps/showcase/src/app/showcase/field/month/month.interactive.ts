@@ -1,13 +1,13 @@
 import { Component, computed, signal, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DateComponent, Size } from 'angular-ui';
+import { MonthComponent, Size } from 'angular-ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
-import { DATE_SHOWCASE_CONFIG } from './date.showcase.config';
+import { MONTH_SHOWCASE_CONFIG } from './month.showcase.config';
 
 @Component({
-  selector: 'app-date-interactive',
-  imports: [DateComponent, FormsModule, InteractiveShowcaseComponent],
+  selector: 'app-month-interactive',
+  imports: [MonthComponent, FormsModule, InteractiveShowcaseComponent],
   template: `
     <app-interactive-showcase
       #showcase
@@ -17,15 +17,15 @@ import { DATE_SHOWCASE_CONFIG } from './date.showcase.config';
       (resetRequested)="onReset()"
     >
       <div preview>
-        <ui-date
-          [label]="'Select Date'"
-          [placeholder]="'YYYY-MM-DD'"
+        <ui-month
+          [label]="'Select Month'"
+          [placeholder]="'YYYY-MM'"
           [size]="currentSize()"
           [disabled]="currentDisabled()"
           [readonly]="currentReadonly()"
           [required]="currentRequired()"
           [(ngModel)]="currentValue"
-          (change)="onDateChange($event)"
+          (change)="onMonthChange($event)"
         />
         <p style="margin-top: 12px;">
           Current value: <strong>{{ getCurrentValuePreview() }}</strong>
@@ -34,10 +34,10 @@ import { DATE_SHOWCASE_CONFIG } from './date.showcase.config';
     </app-interactive-showcase>
   `,
 })
-export class DateInteractiveComponent {
+export class MonthInteractiveComponent {
   private showcase = viewChild<InteractiveShowcaseComponent>('showcase');
 
-  showcaseConfig: ShowcaseConfig = DATE_SHOWCASE_CONFIG;
+  showcaseConfig: ShowcaseConfig = MONTH_SHOWCASE_CONFIG;
   currentValue = '';
 
   private values = signal<Record<string, unknown>>({
@@ -77,7 +77,7 @@ export class DateInteractiveComponent {
     this.currentValue = '';
   }
 
-  onDateChange(value: string): void {
+  onMonthChange(value: string): void {
     this.showcase()?.logEvent('change', { value });
   }
 }

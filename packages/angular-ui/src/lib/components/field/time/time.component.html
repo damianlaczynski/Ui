@@ -1,0 +1,64 @@
+<ui-field
+  [fieldType]="'time'"
+  [label]="label()"
+  [placeholder]="placeholder()"
+  [helpText]="helpText()"
+  [(errorText)]="errorText"
+  [required]="required()"
+  [disabled]="disabled()"
+  [readonly]="readonly()"
+  [id]="id()"
+  [name]="name()"
+  [size]="size()"
+  [inputVariant]="inputVariant()"
+>
+  <div class="input-wrapper" [class]="wrapperClasses">
+    <input
+      #triggerElement
+      class="input"
+      type="text"
+      [id]="id()"
+      [name]="name()"
+      [placeholder]="placeholder()"
+      [required]="required()"
+      [disabled]="disabled()"
+      [readonly]="readonly()"
+      [value]="displayText()"
+      [attr.tabindex]="getTabIndex()"
+      [attr.aria-label]="ariaLabel() || label()"
+      [attr.aria-describedby]="ariaDescribedBy()"
+      [attr.aria-invalid]="!!errorText()"
+      [attr.aria-expanded]="isOpen()"
+      [attr.aria-haspopup]="'dialog'"
+      (click)="togglePanel()"
+      (input)="onTimeInputChange($event)"
+      (blur)="onBlur($event)"
+      (focus)="onFocus($event)"
+      (keydown)="onKeyDown($event)"
+    />
+    @if (!disabled() && !readonly()) {
+      <div class="field__actions">
+        <ui-action-button
+          [size]="size()"
+          [icon]="'clock'"
+          (click)="togglePanel()"
+        ></ui-action-button>
+        @if (value) {
+          <ui-action-button [icon]="'dismiss'" [size]="size()" (click)="clear()"></ui-action-button>
+        }
+      </div>
+    }
+  </div>
+</ui-field>
+
+<ng-template #panelTemplate>
+  <div class="date-panel" [attr.data-size]="size()" cdkTrapFocus>
+    <ui-time-picker
+      [value]="selectedTime()"
+      [step]="step()"
+      [size]="size()"
+      [use24HourFormat]="use24HourFormat()"
+      (timeChange)="onTimeChange($event)"
+    ></ui-time-picker>
+  </div>
+</ng-template>
