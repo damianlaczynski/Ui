@@ -38,6 +38,9 @@ const INTERACTIVE_STEPS: Step[] = [
           [clickable]="currentClickable()"
           (stepChange)="onStepChange($event)"
         />
+        <p style="margin-top: 12px;">
+          Current value: <strong>{{ getCurrentValuePreview() }}</strong>
+        </p>
       </div>
     </app-interactive-showcase>
   `,
@@ -48,6 +51,7 @@ export class StepperInteractiveComponent {
   steps = INTERACTIVE_STEPS;
   showcaseConfig: ShowcaseConfig = STEPPER_SHOWCASE_CONFIG;
   activeStepIndex = signal(0);
+  currentValue = computed(() => this.activeStepIndex());
 
   private values = signal<Record<string, unknown>>({
     orientation: 'horizontal',
@@ -66,7 +70,24 @@ export class StepperInteractiveComponent {
   currentShowDescriptions = computed(() => !!this.values()['showDescriptions']);
   currentLinear = computed(() => !!this.values()['linear']);
   currentClickable = computed(() => !!this.values()['clickable']);
+  getCurrentValuePreview(): string {
+    const source = (this as unknown as { currentValue?: unknown }).currentValue;
+    const value = typeof source === 'function' ? (source as () => unknown)() : source;
 
+    if (value === null || value === undefined || value === '') {
+      return 'Not set';
+    }
+
+    if (typeof value === 'string') {
+      return value;
+    }
+
+    try {
+      return JSON.stringify(value);
+    } catch {
+      return String(value);
+    }
+  }
   onValuesChange(newValues: Record<string, unknown>): void {
     this.values.set(newValues);
   }
