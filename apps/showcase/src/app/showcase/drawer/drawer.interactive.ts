@@ -3,7 +3,9 @@ import {
   ButtonComponent,
   DrawerComponent,
   type DrawerBackdrop,
+  type DrawerModalType,
   type DrawerPosition,
+  type DrawerType,
   type QuickAction,
 } from 'angular-ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
@@ -32,6 +34,8 @@ type DrawerSize = 'small' | 'medium' | 'large';
           [size]="currentSize()"
           [closable]="currentClosable()"
           [backdrop]="currentBackdrop()"
+          [type]="currentType()"
+          [modalType]="currentModalType()"
           [primaryAction]="primaryAction()"
           [secondaryAction]="secondaryAction()"
           [additionalActions]="additionalActions()"
@@ -56,6 +60,8 @@ export class DrawerInteractiveComponent {
     size: 'medium',
     closable: true,
     backdrop: 'dynamic',
+    type: 'overlay',
+    modalType: 'modal',
     showPrimaryAction: true,
     showSecondaryAction: true,
     showAdditionalActions: false,
@@ -67,6 +73,8 @@ export class DrawerInteractiveComponent {
   currentSize = computed(() => this.values()['size'] as DrawerSize);
   currentClosable = computed(() => this.values()['closable'] as boolean);
   currentBackdrop = computed(() => this.values()['backdrop'] as DrawerBackdrop);
+  currentType = computed(() => (this.values()['type'] as DrawerType) ?? 'overlay');
+  currentModalType = computed(() => (this.values()['modalType'] as DrawerModalType) ?? 'modal');
   currentShowPrimaryAction = computed(() => this.values()['showPrimaryAction'] as boolean);
   currentShowSecondaryAction = computed(() => this.values()['showSecondaryAction'] as boolean);
   currentShowAdditionalActions = computed(() => this.values()['showAdditionalActions'] as boolean);
