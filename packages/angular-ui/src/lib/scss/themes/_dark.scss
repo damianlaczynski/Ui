@@ -9,168 +9,152 @@
 :root[data-theme='dark'],
 :root.dark,
 body.dark-theme {
-  // Brand Colors - Dark theme (same as light mode for consistency)
-  --color-brand-primary: #0078d4; // Same as light mode
-  --color-brand-primary-hover: #106ebe;
-  --color-brand-primary-pressed: #005a9e;
-  --color-brand-primary-selected: #0d5fa6;
+  --color-brand-primary: #18599b;
+  --color-brand-primary-hover: #1267b4;
+  --color-brand-primary-pressed: #193253;
+  --color-brand-primary-selected: #1b4c82;
 
-  --color-brand-foreground: #0078d4; // Same as light mode
-  --color-brand-foreground-hover: #106ebe;
-  --color-brand-foreground-pressed: #005a9e;
+  --color-brand-foreground: #6790cf;
+  --color-brand-foreground-hover: #92acdc;
+  --color-brand-foreground-pressed: #cdd8ef;
 
-  --color-compound-brand-background: #0078d4;
-  --color-compound-brand-background-hover: #106ebe;
-  --color-compound-brand-background-pressed: #005a9e;
-  --color-compound-brand-foreground: #0078d4;
-  --color-compound-brand-foreground-hover: #106ebe;
-  --color-compound-brand-foreground-pressed: #005a9e;
-  --color-compound-brand-stroke: #0078d4;
-  --color-compound-brand-stroke-hover: #106ebe;
-  --color-compound-brand-stroke-pressed: #005a9e;
+  --color-compound-brand-background: #4f82c8;
+  --color-compound-brand-background-hover: #6790cf;
+  --color-compound-brand-background-pressed: #3174c2;
+  --color-compound-brand-foreground: #4f82c8;
+  --color-compound-brand-foreground-hover: #6790cf;
+  --color-compound-brand-foreground-pressed: #3174c2;
+  --color-compound-brand-stroke: #4f82c8;
+  --color-compound-brand-stroke-hover: #6790cf;
+  --color-compound-brand-stroke-pressed: #3174c2;
 
-  // Accent Colors (alias for brand)
-  --color-accent-primary: #0078d4;
-  --color-accent-primary-hover: #106ebe;
-  --color-accent-primary-pressed: #005a9e;
-  --color-accent-primary-selected: #0d5fa6;
+  --color-accent-primary: #18599b;
+  --color-accent-primary-hover: #1267b4;
+  --color-accent-primary-pressed: #193253;
+  --color-accent-primary-selected: #1b4c82;
 
-  // Neutral Colors - Foreground - Dark theme (from colors.md Dark column)
-  --color-neutral-foreground-rest: #ffffff; // colorNeutralForeground1 (Dark)
-  --color-neutral-foreground-hover: #ffffff; // colorNeutralForeground1Hover (Dark)
-  --color-neutral-foreground-pressed: #ffffff; // colorNeutralForeground1Pressed (Dark)
-  --color-neutral-foreground-selected: #ffffff; // colorNeutralForeground1Selected (Dark)
-  --color-neutral-foreground-disabled: #5c5c5c; // colorNeutralForegroundDisabled (Dark)
-  --color-neutral-foreground-on-brand: #ffffff; // colorNeutralForegroundOnBrand (Dark)
+  --color-neutral-foreground-rest: #ffffff;
+  --color-neutral-foreground-hover: #ffffff;
+  --color-neutral-foreground-pressed: #ffffff;
+  --color-neutral-foreground-selected: #ffffff;
+  --color-neutral-foreground-disabled: #5c5c5c;
+  --color-neutral-foreground-on-brand: #ffffff;
 
-  --color-neutral-foreground2-rest: #d6d6d6; // colorNeutralForeground2 (Dark)
-  --color-neutral-foreground2-hover: #ffffff; // colorNeutralForeground2Hover (Dark)
-  --color-neutral-foreground2-pressed: #ffffff; // colorNeutralForeground2Pressed (Dark)
-  --color-neutral-foreground2-selected: #ffffff; // colorNeutralForeground2Selected (Dark)
-  --color-neutral-foreground2-brand-hover: #0078d4; // Same as light mode
-  --color-neutral-foreground2-brand-pressed: #106ebe;
-  --color-neutral-foreground2-brand-selected: #0078d4;
+  --color-neutral-foreground2-rest: #d6d6d6;
+  --color-neutral-foreground2-hover: #ffffff;
+  --color-neutral-foreground2-pressed: #ffffff;
+  --color-neutral-foreground2-selected: #ffffff;
+  --color-neutral-foreground2-brand-hover: #4f82c8;
+  --color-neutral-foreground2-brand-pressed: #3174c2;
+  --color-neutral-foreground2-brand-selected: #4f82c8;
 
-  --color-neutral-foreground3-rest: #adadad; // colorNeutralForeground3 (Dark)
-  --color-neutral-foreground3-hover: #d6d6d6; // colorNeutralForeground3Hover (Dark)
-  --color-neutral-foreground3-pressed: #d6d6d6; // colorNeutralForeground3Pressed (Dark)
-  --color-neutral-foreground3-selected: #d6d6d6; // colorNeutralForeground3Selected (Dark)
-  --color-neutral-foreground3-brand-hover: #0078d4; // Same as light mode
-  --color-neutral-foreground3-brand-pressed: #106ebe;
-  --color-neutral-foreground3-brand-selected: #0078d4;
+  --color-neutral-foreground3-rest: #adadad;
+  --color-neutral-foreground3-hover: #d6d6d6;
+  --color-neutral-foreground3-pressed: #d6d6d6;
+  --color-neutral-foreground3-selected: #d6d6d6;
+  --color-neutral-foreground3-brand-hover: #4f82c8;
+  --color-neutral-foreground3-brand-pressed: #3174c2;
+  --color-neutral-foreground3-brand-selected: #4f82c8;
 
-  --color-neutral-foreground4-rest: #999999; // colorNeutralForeground4 (Dark)
+  --color-neutral-foreground4-rest: #999999;
 
-  // Neutral Colors - Background - Dark theme (from colors.md Dark column)
-  --color-neutral-background2-rest: #1f1f1f; // colorNeutralBackground2 (Dark)
-  --color-neutral-background2-hover: #333333; // colorNeutralBackground2Hover (Dark)
-  --color-neutral-background2-pressed: #141414; // colorNeutralBackground2Pressed (Dark)
-  --color-neutral-background2-selected: #2e2e2e; // colorNeutralBackground2Selected (Dark)
+  --color-neutral-background2-rest: #1f1f1f;
+  --color-neutral-background2-hover: #333333;
+  --color-neutral-background2-pressed: #141414;
+  --color-neutral-background2-selected: #2e2e2e;
 
-  --color-neutral-background3-rest: #141414; // colorNeutralBackground3 (Dark)
-  --color-neutral-background3-hover: #292929; // colorNeutralBackground3Hover (Dark)
-  --color-neutral-background3-pressed: #0a0a0a; // colorNeutralBackground3Pressed (Dark)
-  --color-neutral-background3-selected: #242424; // colorNeutralBackground3Selected (Dark)
-  --color-neutral-background-rest: #292929; // colorNeutralBackground1 (Dark)
-  --color-neutral-background-hover: #3d3d3d; // colorNeutralBackground1Hover (Dark)
-  --color-neutral-background-pressed: #1f1f1f; // colorNeutralBackground1Pressed (Dark)
-  --color-neutral-background-selected: #383838; // colorNeutralBackground1Selected (Dark)
-  --color-neutral-background-disabled: #141414; // colorNeutralBackgroundDisabled (Dark)
+  --color-neutral-background3-rest: #141414;
+  --color-neutral-background3-hover: #292929;
+  --color-neutral-background3-pressed: #0a0a0a;
+  --color-neutral-background3-selected: #242424;
+  --color-neutral-background-rest: #292929;
+  --color-neutral-background-hover: #3d3d3d;
+  --color-neutral-background-pressed: #1f1f1f;
+  --color-neutral-background-selected: #383838;
+  --color-neutral-background-disabled: #141414;
 
-  --color-neutral-background-brand-selected: #0f1e2e; // Darker tint background for brand
-  --color-neutral-background-brand-hover: #1a3552; // colorBrandBackground2Hover (Dark)
-  --color-neutral-background-brand-pressed: #0a1420; // colorBrandBackground2Pressed (Dark)
+  --color-neutral-background-brand-selected: #111723;
+  --color-neutral-background-brand-hover: #193253;
+  --color-neutral-background-brand-pressed: #020305;
 
-  --color-subtle-background-hover: #383838; // colorSubtleBackgroundHover (Dark)
-  --color-subtle-background-pressed: #2e2e2e; // colorSubtleBackgroundPressed (Dark)
-  --color-subtle-background-selected: #333333; // colorSubtleBackgroundSelected (Dark)
+  --color-subtle-background-hover: #383838;
+  --color-subtle-background-pressed: #2e2e2e;
+  --color-subtle-background-selected: #333333;
 
-  // Stroke Colors - Dark theme (from colors.md Dark column)
-  --color-neutral-stroke-rest: #666666; // colorNeutralStroke1 (Dark)
-  --color-neutral-stroke-hover: #757575; // colorNeutralStroke1Hover (Dark)
-  --color-neutral-stroke-pressed: #6b6b6b; // colorNeutralStroke1Pressed (Dark)
-  --color-neutral-stroke-selected: #707070; // colorNeutralStroke1Selected (Dark)
-  --color-neutral-stroke-disabled: #424242; // colorNeutralStrokeDisabled (Dark)
-  --color-neutral-stroke-accessible: #adadad; // colorNeutralStrokeAccessible (Dark)
-  --color-neutral-stroke-accessible-hover: #bdbdbd; // colorNeutralStrokeAccessibleHover (Dark)
-  --color-neutral-stroke-accessible-pressed: #b3b3b3; // colorNeutralStrokeAccessiblePressed (Dark)
-  --color-neutral-stroke-accessible-selected: #0078d4; // Same as light mode
+  --color-neutral-stroke-rest: #666666;
+  --color-neutral-stroke-hover: #757575;
+  --color-neutral-stroke-pressed: #6b6b6b;
+  --color-neutral-stroke-selected: #707070;
+  --color-neutral-stroke-disabled: #424242;
+  --color-neutral-stroke-accessible: #adadad;
+  --color-neutral-stroke-accessible-hover: #bdbdbd;
+  --color-neutral-stroke-accessible-pressed: #b3b3b3;
+  --color-neutral-stroke-accessible-selected: #4f82c8;
 
-  --color-brand-stroke-rest: #0078d4; // Same as light mode
-  --color-brand-stroke-hover: #106ebe;
-  --color-brand-stroke-pressed: #005a9e;
-  --color-brand-stroke-selected: #0078d4;
+  --color-brand-stroke-rest: #4f82c8;
+  --color-brand-stroke-hover: #1b3f6a;
+  --color-brand-stroke-pressed: #16263d;
+  --color-brand-stroke-selected: #4f82c8;
 
-  // Shared Colors - Dark theme (same as light mode for consistency)
-  // Red Palette (Danger)
-  --color-shared-red-foreground: #d13438; // Same as light mode
-  --color-shared-red-foreground-hover: #bc2f32;
-  --color-shared-red-foreground-pressed: #a52a2d;
-  --color-shared-red-foreground-selected: #c42f32;
-  --color-shared-red-background: #2d0a0a; // Dark tint background
-  --color-shared-red-border: #8c2828;
+  --color-shared-red-foreground: #d13438;
+  --color-shared-red-foreground-hover: #e37d80;
+  --color-shared-red-foreground-pressed: #751d1f;
+  --color-shared-red-foreground-selected: #e37d80;
+  --color-shared-red-background: #3f1011;
+  --color-shared-red-border: #d13438;
 
-  // Dark Orange Palette (Warning)
-  --color-shared-orange-foreground: #da3b01; // Same as light mode
-  --color-shared-orange-foreground-hover: #c43501;
-  --color-shared-orange-foreground-pressed: #a62d01;
-  --color-shared-orange-foreground-selected: #ce3701;
-  --color-shared-orange-background: #2d1000; // Dark tint background
-  --color-shared-orange-border: #8c3000;
+  --color-shared-orange-foreground: #da3b01;
+  --color-shared-orange-foreground-hover: #e9835e;
+  --color-shared-orange-foreground-pressed: #7a2101;
+  --color-shared-orange-foreground-selected: #e9835e;
+  --color-shared-orange-background: #411200;
+  --color-shared-orange-border: #da3b01;
 
-  // Yellow Palette
-  --color-shared-yellow-foreground: #fde300; // Same as light mode
-  --color-shared-yellow-background: #2d2800; // Dark tint background
-  --color-shared-yellow-border: #998800;
+  --color-shared-yellow-foreground: #fde300;
+  --color-shared-yellow-background: #4c4400;
+  --color-shared-yellow-border: #fde300;
 
-  // Green Palette (Success)
-  --color-shared-green-foreground: #107c10; // Same as light mode
-  --color-shared-green-foreground-hover: #0b6a0b;
-  --color-shared-green-foreground-pressed: #085808;
-  --color-shared-green-foreground-selected: #0d6e0d;
-  --color-shared-green-background: #0a200a; // Dark tint background
-  --color-shared-green-border: #156015;
+  --color-shared-green-foreground: #107c10;
+  --color-shared-green-foreground-hover: #54b054;
+  --color-shared-green-foreground-pressed: #094509;
+  --color-shared-green-foreground-selected: #9fd89f;
+  --color-shared-green-background: #052505;
+  --color-shared-green-border: #107c10;
 
-  // Teal Palette
-  --color-shared-cyan-foreground: #038387; // Same as light mode
-  --color-shared-cyan-background: #022a2c; // Dark tint background
-  --color-shared-cyan-border: #067578;
+  --color-shared-cyan-foreground: #038387;
+  --color-shared-cyan-background: #02494c;
+  --color-shared-cyan-border: #038387;
 
-  // Blue Palette (Info)
-  --color-shared-blue-foreground: #0078d4; // Same as light mode
-  --color-shared-blue-foreground-hover: #106ebe;
-  --color-shared-blue-foreground-pressed: #005a9e;
-  --color-shared-blue-foreground-selected: #0d5fa6;
-  --color-shared-blue-background: #002040; // Dark tint background
-  --color-shared-blue-border: #0066b8;
+  --color-shared-blue-foreground: #6790cf;
+  --color-shared-blue-foreground-hover: #92acdc;
+  --color-shared-blue-foreground-pressed: #cdd8ef;
+  --color-shared-blue-foreground-selected: #cdd8ef;
+  --color-shared-blue-background: #004377;
+  --color-shared-blue-border: #5caae5;
 
-  // Purple Palette
-  --color-shared-purple-foreground: #5c2e91; // Same as light mode
-  --color-shared-purple-background: #1a0d2d; // Dark tint background
-  --color-shared-purple-border: #5a3080;
+  --color-shared-purple-foreground: #5c2e91;
+  --color-shared-purple-background: #341a51;
+  --color-shared-purple-border: #9470bd;
 
-  // Pink Palette
-  --color-shared-pink-foreground: #e43ba6; // Same as light mode
-  --color-shared-pink-background: #2d0a20; // Dark tint background
-  --color-shared-pink-border: #b03888;
+  --color-shared-pink-foreground: #e43ba6;
+  --color-shared-pink-background: #3a1136;
+  --color-shared-pink-border: #d161c4;
 
-  // Focus border color (dark mode - white)
   --color-focus-border: #ffffff;
 
-  // Fluent 2 CSS Variables (for compatibility)
-  --Neutral-Foreground-1-Rest: #f5f5f5;
-  --Neutral-Foreground-Disabled-Rest: #6b6b6b;
-  --Neutral-Background-1-Rest: #1c1c1c;
-  --Neutral-Background-Selected-Rest: #2d2d2d;
-  --Neutral-Stroke-Accessible-Rest: #616161;
-  --Neutral-Stroke-Accessible-Hover: #6b6b6b;
-  --Neutral-Stroke-Accessible-Pressed: #757575;
+  --Neutral-Foreground-1-Rest: #ffffff;
+  --Neutral-Foreground-Disabled-Rest: #5c5c5c;
+  --Neutral-Background-1-Rest: #292929;
+  --Neutral-Background-Selected-Rest: #383838;
+  --Neutral-Stroke-Accessible-Rest: #adadad;
+  --Neutral-Stroke-Accessible-Hover: #bdbdbd;
+  --Neutral-Stroke-Accessible-Pressed: #b3b3b3;
   --Neutral-Stroke-Disabled-Rest: #424242;
-  --Brand-Background-Compound-Rest: #0078d4;
-  --Brand-Background-Compound-Hover: #106ebe;
-  --Brand-Background-Compound-Pressed: #005a9e;
+  --Brand-Background-Compound-Rest: #4f82c8;
+  --Brand-Background-Compound-Hover: #6790cf;
+  --Brand-Background-Compound-Pressed: #3174c2;
   --Colors-Neutral-White: #ffffff;
-  --Stroke-Focus-2: #60cdff;
+  --Stroke-Focus-2: #ffffff;
   --Shared-Red-Foreground: #d13438;
 }
 
