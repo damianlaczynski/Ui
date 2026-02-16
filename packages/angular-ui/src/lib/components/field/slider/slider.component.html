@@ -14,55 +14,56 @@
   [inputVariant]="inputVariant()"
 >
   <div class="slider-wrapper" [ngClass]="sliderClasses">
-    <!-- Slider container -->
-    <div class="slider-container">
-      <!-- Slider input wrapper -->
+    <div class="slider-container" [class.slider-container--with-minmax]="showMinMax()">
+      @if (showMinMax()) {
+        <span class="slider-minmax slider-minmax--min" [attr.aria-hidden]="true">{{
+          formatValue()(min())
+        }}</span>
+      }
       <div class="slider-input-wrapper" (mousedown)="onMouseDown()" (mouseup)="onMouseUp()">
-        <!-- Native range input (hidden) -->
         <input
           #sliderInput
           [id]="id()"
           [name]="name()"
           type="range"
           class="slider-input"
+          [class.slider-input--readonly]="readonly()"
+          [attr.orient]="vertical() ? 'vertical' : 'horizontal'"
           [min]="min()"
           [max]="max()"
           [step]="step()"
           [value]="currentValue"
           [required]="required()"
           [disabled]="disabled()"
-          [readonly]="readonly()"
+          [attr.aria-readonly]="readonly() ? 'true' : null"
           [attr.aria-label]="ariaLabel() || label()"
           [attr.aria-describedby]="ariaDescribedBy()"
           [attr.aria-valuemin]="min()"
           [attr.aria-valuemax]="max()"
           [attr.aria-valuenow]="currentValue"
+          [attr.aria-valuetext]="getAriaValueText()"
           (input)="onSliderInput($event)"
           (change)="onSliderChange($event)"
+          (keydown)="onSliderKeyDown($event)"
           (focus)="onFocus($event)"
           (blur)="onBlur($event)"
         />
 
-        <!-- Custom slider visualization -->
-        <div class="slider-visual">
-          <!-- Rail (unfilled track) -->
-          <div class="slider-rail">
-            <div class="slider-rail-fill"></div>
-          </div>
-
-          <!-- Track (filled part) -->
-          <div class="slider-track-wrapper" [style.width.%]="getFillPercentage()">
-            <div class="slider-track">
-              <div class="slider-track-fill"></div>
-            </div>
-          </div>
-
-          <!-- Thumb (draggable handle) -->
-          <div class="slider-thumb-wrapper" [style.left.%]="getThumbPosition()">
+        <div
+          class="slider-visual"
+          [class.slider-visual--with-steps]="showStepMarkers()"
+          [ngStyle]="getVisualStyle()"
+        >
+          <div class="slider-thumb-wrapper" [ngStyle]="getThumbWrapperStyle()">
             <div class="slider-thumb"></div>
           </div>
         </div>
       </div>
+      @if (showMinMax()) {
+        <span class="slider-minmax slider-minmax--max" [attr.aria-hidden]="true">{{
+          formatValue()(max())
+        }}</span>
+      }
     </div>
   </div>
 </ui-field>
