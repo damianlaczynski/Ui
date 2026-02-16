@@ -28,6 +28,9 @@ export class SliderComponent extends FieldComponent implements ControlValueAcces
   unit = input<string>('');
   formatValue = input<(value: number) => string>(value => value.toString());
   vertical = input<boolean>(false);
+  ariaValueText = input<string | ((value: number) => string) | null>(null);
+  showStepMarkers = input<boolean>(false);
+  showMinMax = input<boolean>(false);
 
   protected _isDragging = false;
 
@@ -65,6 +68,51 @@ export class SliderComponent extends FieldComponent implements ControlValueAcces
     return this.getFillPercentage();
   }
 
+  getAriaValueText(): string | null {
+    const aria = this.ariaValueText();
+    if (!aria) return null;
+    if (typeof aria === 'function') return aria(this.currentValue);
+    return aria;
+  }
+
+  getStepsPercent(): string | null {
+    if (!this.showStepMarkers()) return null;
+    const s = this.step();
+    const minVal = this.min();
+    const maxVal = this.max();
+    if (s <= 0 || maxVal <= minVal) return null;
+    const range = maxVal - minVal;
+    const numSteps = Math.round(range / s);
+    if (numSteps < 2) return null;
+    return `${100 / numSteps}%`;
+  }
+
+  getSliderDirection(): string {
+    return this.vertical() ? '0deg' : '90deg';
+  }
+
+  getVisualStyle(): Record<string, string> {
+    const progress = `${this.getFillPercentage()}%`;
+    const direction = this.getSliderDirection();
+    const stepsPercent = this.getStepsPercent();
+    const style: Record<string, string> = {
+      '--slider-progress': progress,
+      '--slider-direction': direction,
+    };
+    if (stepsPercent) {
+      style['--slider-steps-percent'] = stepsPercent;
+    }
+    return style;
+  }
+
+  getThumbWrapperStyle(): Record<string, string> {
+    const progress = `${this.getFillPercentage()}%`;
+    const position = `clamp(var(--slider-thumb-radius), ${progress}, calc(100% - var(--slider-thumb-radius)))`;
+    return this.vertical()
+      ? { bottom: position, transform: 'translate(-50%, 50%)' }
+      : { left: position, transform: 'translate(-50%, -50%)' };
+  }
+
   get currentValue(): number {
     return this.valueModel() !== undefined && this.valueModel() !== null
       ? this.valueModel()!
@@ -81,23 +129,27 @@ export class SliderComponent extends FieldComponent implements ControlValueAcces
   }
 
   onSliderInput(event: Event): void {
+    if (this.disabled() || this.readonly()) return;
     const target = event.target as HTMLInputElement;
     const newValue = parseFloat(target.value);
-
-    // Validate the value before setting
     if (isFinite(newValue) && !isNaN(newValue)) {
       this.setCurrentValue(newValue);
     }
   }
 
   onSliderChange(event: Event): void {
+    if (this.disabled() || this.readonly()) return;
     const target = event.target as HTMLInputElement;
     const newValue = parseFloat(target.value);
-
-    // Validate the value before setting and emitting
     if (isFinite(newValue) && !isNaN(newValue)) {
       this.setCurrentValue(newValue);
       this.change.emit(newValue);
+    }
+  }
+
+  onSliderKeyDown(event: KeyboardEvent): void {
+    if (this.disabled() || this.readonly()) {
+      event.preventDefault();
     }
   }
 
@@ -119,9 +171,9 @@ export class SliderComponent extends FieldComponent implements ControlValueAcces
   }
 
   // ControlValueAccessor methods
-  override writeValue(value: any): void {
+  override writeValue(value: unknown): void {
     if (value !== null && value !== undefined) {
-      const numValue = parseFloat(value);
+      const numValue = typeof value === 'number' ? value : parseFloat(String(value));
       if (this.valueModel() !== undefined && this.valueModel() !== null) {
         this.valueModel.set(numValue);
       } else {

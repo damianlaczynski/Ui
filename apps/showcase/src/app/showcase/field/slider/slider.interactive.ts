@@ -23,6 +23,10 @@ import { SLIDER_SHOWCASE_CONFIG } from './slider.showcase.config';
           [min]="currentMin()"
           [max]="currentMax()"
           [step]="currentStep()"
+          [vertical]="currentVertical()"
+          [showStepMarkers]="currentShowStepMarkers()"
+          [showMinMax]="currentShowMinMax()"
+          [ariaValueText]="currentAriaValueText() ? getAriaValueText : null"
           [disabled]="currentDisabled()"
           [readonly]="currentReadonly()"
           [required]="currentRequired()"
@@ -51,6 +55,10 @@ export class SliderInteractiveComponent {
     max: 100,
     step: 1,
     size: 'medium',
+    vertical: false,
+    showStepMarkers: false,
+    showMinMax: false,
+    ariaValueText: false,
     disabled: false,
     readonly: false,
     required: false,
@@ -62,9 +70,15 @@ export class SliderInteractiveComponent {
   currentMax = computed(() => this.values()['max'] as number);
   currentStep = computed(() => this.values()['step'] as number);
   currentSize = computed(() => this.values()['size'] as Size);
+  currentVertical = computed(() => this.values()['vertical'] as boolean);
+  currentShowStepMarkers = computed(() => this.values()['showStepMarkers'] as boolean);
+  currentShowMinMax = computed(() => this.values()['showMinMax'] as boolean);
+  currentAriaValueText = computed(() => this.values()['ariaValueText'] as boolean);
   currentDisabled = computed(() => this.values()['disabled'] as boolean);
   currentReadonly = computed(() => this.values()['readonly'] as boolean);
   currentRequired = computed(() => this.values()['required'] as boolean);
+
+  getAriaValueText = (value: number): string => `Value is ${value}`;
   getCurrentValuePreview(): string {
     const source = (this as unknown as { currentValue?: unknown }).currentValue;
     const value = typeof source === 'function' ? (source as () => unknown)() : source;

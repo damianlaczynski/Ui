@@ -138,6 +138,110 @@ import type { Size } from 'angular-ui';
         </app-section-with-drawer>
 
         <app-section-with-drawer
+          sectionTitle="Step"
+          sectionDescription="Use showStepMarkers to display discrete step points on the track. Value snaps to multiples of step."
+          [formConfig]="basicDrawerFormConfig"
+          [formValues]="stepFormValues()"
+          (formValuesChange)="stepFormValues.set($event)"
+        >
+          <div class="showcase__grid">
+            <div class="showcase__item">
+              <h3 class="showcase__item__title">Step Example</h3>
+              <ui-slider
+                label="Step Example"
+                [min]="0"
+                [max]="12"
+                [step]="3"
+                [showStepMarkers]="true"
+                [size]="stepForm().size"
+                [disabled]="stepForm().disabled"
+                [readonly]="stepForm().readonly"
+                [(ngModel)]="stepValue"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+        </app-section-with-drawer>
+
+        <app-section-with-drawer
+          sectionTitle="Min/Max"
+          sectionDescription="Display min and max values next to the slider for context."
+          [formConfig]="basicDrawerFormConfig"
+          [formValues]="minmaxFormValues()"
+          (formValuesChange)="minmaxFormValues.set($event)"
+        >
+          <div class="showcase__grid">
+            <div class="showcase__item">
+              <h3 class="showcase__item__title">Min/Max Example</h3>
+              <ui-slider
+                label="Min/Max Example"
+                [min]="10"
+                [max]="50"
+                [showMinMax]="true"
+                [size]="minmaxForm().size"
+                [disabled]="minmaxForm().disabled"
+                [readonly]="minmaxForm().readonly"
+                [(ngModel)]="minmaxValue"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+        </app-section-with-drawer>
+
+        <app-section-with-drawer
+          sectionTitle="Vertical"
+          sectionDescription="Vertical orientation with max value at top. Use for compact layouts."
+          [formConfig]="basicDrawerFormConfig"
+          [formValues]="verticalFormValues()"
+          (formValuesChange)="verticalFormValues.set($event)"
+        >
+          <div class="showcase__grid">
+            <div class="showcase__item">
+              <h3 class="showcase__item__title">Vertical Example</h3>
+              <ui-slider
+                label="Vertical Example"
+                [vertical]="true"
+                [min]="0"
+                [max]="10"
+                [step]="2"
+                [showStepMarkers]="true"
+                [size]="verticalForm().size"
+                [disabled]="verticalForm().disabled"
+                [readonly]="verticalForm().readonly"
+                [(ngModel)]="verticalValue"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </div>
+        </app-section-with-drawer>
+
+        <app-section-with-drawer
+          sectionTitle="Accessibility"
+          sectionDescription="ariaValueText provides custom accessible value description for screen readers."
+          [formConfig]="basicDrawerFormConfig"
+          [formValues]="a11yFormValues()"
+          (formValuesChange)="a11yFormValues.set($event)"
+        >
+          <div class="showcase__grid">
+            <div class="showcase__item">
+              <h3 class="showcase__item__title">ariaValueText</h3>
+              <ui-slider
+                label="Control Slider"
+                [ariaValueText]="getAriaValueText"
+                [min]="20"
+                [max]="200"
+                [size]="a11yForm().size"
+                [disabled]="a11yForm().disabled"
+                [readonly]="a11yForm().readonly"
+                [(ngModel)]="a11yValue"
+                [ngModelOptions]="{ standalone: true }"
+              />
+              <p class="showcase__item__meta">Current value: {{ a11yValue }}</p>
+            </div>
+          </div>
+        </app-section-with-drawer>
+
+        <app-section-with-drawer
           sectionTitle="States"
           sectionDescription="Normal, error, disabled, readonly, and required states. Use the Customize drawer to adjust size across all examples."
           [formConfig]="statesDrawerFormConfig"
@@ -296,6 +400,12 @@ export class SliderShowcaseComponent {
   basicValues = { volume: 50, brightness: 75 };
   sizeValues: Record<string, number> = { small: 30, medium: 50, large: 70 };
   rangePresetValues: Record<string, number> = { rating: 5, opacity: 0.5, custom: 100 };
+  stepValue = 6;
+  minmaxValue = 20;
+  verticalValue = 6;
+  a11yValue = 160;
+
+  getAriaValueText = (value: number): string => `Value is ${value}`;
   stateValues: Record<string, number> = {
     normal: 50,
     error: 90,
@@ -344,6 +454,38 @@ export class SliderShowcaseComponent {
     size: 'medium',
   });
   statesForm = computed(() => this.toForm(this.statesFormValues()));
+
+  stepFormValues = signal<Record<string, unknown>>({
+    size: 'medium',
+    disabled: false,
+    readonly: false,
+    required: false,
+  });
+  stepForm = computed(() => this.toForm(this.stepFormValues()));
+
+  minmaxFormValues = signal<Record<string, unknown>>({
+    size: 'medium',
+    disabled: false,
+    readonly: false,
+    required: false,
+  });
+  minmaxForm = computed(() => this.toForm(this.minmaxFormValues()));
+
+  verticalFormValues = signal<Record<string, unknown>>({
+    size: 'medium',
+    disabled: false,
+    readonly: false,
+    required: false,
+  });
+  verticalForm = computed(() => this.toForm(this.verticalFormValues()));
+
+  a11yFormValues = signal<Record<string, unknown>>({
+    size: 'medium',
+    disabled: false,
+    readonly: false,
+    required: false,
+  });
+  a11yForm = computed(() => this.toForm(this.a11yFormValues()));
 
   private toForm(v: Record<string, unknown>): {
     size: Size;
