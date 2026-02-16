@@ -1,13 +1,15 @@
 @if (visible()) {
   <div
     [class]="drawerClasses()"
-    role="dialog"
-    [attr.aria-modal]="true"
+    [attr.role]="isOverlay() ? 'dialog' : 'region'"
+    [attr.aria-modal]="isOverlay() && isModal()"
     [attr.aria-hidden]="!visible()"
     [attr.aria-labelledby]="title() ? 'drawer-title' : null"
   >
-    <div [class]="backdropClasses()" (click)="onBackdropClick($event)"></div>
-    <div [class]="contentClasses()" role="document">
+    @if (isOverlay()) {
+      <div [class]="backdropClasses()" (click)="onBackdropClick($event)"></div>
+    }
+    <div [class]="contentClasses()" [attr.role]="isOverlay() ? 'document' : null">
       <!-- Header -->
       <div [class]="headerClasses()">
         @if (title()) {

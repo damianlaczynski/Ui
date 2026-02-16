@@ -6,7 +6,9 @@ import {
   DrawerComponent,
   TableOfContentComponent,
   type DrawerBackdrop,
+  type DrawerModalType,
   type DrawerPosition,
+  type DrawerType,
   type QuickAction,
 } from 'angular-ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
@@ -21,6 +23,8 @@ interface DrawerSectionForm {
   size: DrawerSize;
   closable: boolean;
   backdrop: DrawerBackdrop;
+  type?: DrawerType;
+  modalType?: DrawerModalType;
   showPrimaryAction: boolean;
   showSecondaryAction: boolean;
   showAdditionalActions: boolean;
@@ -71,6 +75,8 @@ interface DrawerSectionForm {
             [size]="overviewForm().size"
             [closable]="overviewForm().closable"
             [backdrop]="overviewForm().backdrop"
+            [type]="overviewForm().type ?? 'overlay'"
+            [modalType]="overviewForm().modalType ?? 'modal'"
             [primaryAction]="overviewPrimaryAction()"
             [secondaryAction]="overviewSecondaryAction()"
             [additionalActions]="overviewAdditionalActions()"
@@ -130,6 +136,33 @@ interface DrawerSectionForm {
             [secondaryAction]="sizesSecondaryAction()"
             [additionalActions]="sizesAdditionalActions()"
             [(visible)]="sizeDrawerVisible"
+          />
+        </app-section-with-drawer>
+
+        <app-section-with-drawer
+          sectionTitle="Type & Modal"
+          sectionDescription="Type: overlay (full screen) vs inline (within container). Modal type: modal blocks interaction, non-modal allows background interaction, alert cannot close via ESC or backdrop."
+          [formConfig]="typeModalDrawerFormConfig"
+          [formValues]="typeModalFormValues()"
+          (formValuesChange)="typeModalFormValues.set($event)"
+        >
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <ui-button appearance="outline" (click)="typeModalVisible.set(true)">
+              Open Drawer
+            </ui-button>
+          </div>
+          <ui-drawer
+            title="Type & Modal Drawer"
+            bodyText="Try different type and modalType combinations. Alert mode: only the close button can close the drawer."
+            [position]="typeModalForm().position"
+            [size]="typeModalForm().size"
+            [closable]="typeModalForm().closable"
+            [backdrop]="typeModalForm().backdrop"
+            [type]="typeModalForm().type ?? 'overlay'"
+            [modalType]="typeModalForm().modalType ?? 'modal'"
+            [primaryAction]="typeModalPrimaryAction()"
+            [secondaryAction]="typeModalSecondaryAction()"
+            [(visible)]="typeModalVisible"
           />
         </app-section-with-drawer>
 
@@ -301,6 +334,7 @@ export class DrawerShowcaseComponent {
   overviewDrawerFormConfig = DRAWER_DRAWER_CONFIGS.overview;
   positionsDrawerFormConfig = DRAWER_DRAWER_CONFIGS.positions;
   sizesDrawerFormConfig = DRAWER_DRAWER_CONFIGS.sizes;
+  typeModalDrawerFormConfig = DRAWER_DRAWER_CONFIGS.typeModal;
   behaviorDrawerFormConfig = DRAWER_DRAWER_CONFIGS.behavior;
   actionsDrawerFormConfig = DRAWER_DRAWER_CONFIGS.actions;
   customContentDrawerFormConfig = DRAWER_DRAWER_CONFIGS.customContent;
@@ -310,6 +344,8 @@ export class DrawerShowcaseComponent {
     size: 'medium',
     closable: true,
     backdrop: 'dynamic',
+    type: 'overlay',
+    modalType: 'modal',
     showPrimaryAction: true,
     showSecondaryAction: true,
     showAdditionalActions: false,
@@ -328,6 +364,18 @@ export class DrawerShowcaseComponent {
     position: 'right',
     closable: true,
     backdrop: 'dynamic',
+    showPrimaryAction: true,
+    showSecondaryAction: true,
+    showAdditionalActions: false,
+  });
+
+  typeModalFormValues = signal<Record<string, unknown>>({
+    position: 'right',
+    size: 'medium',
+    closable: true,
+    backdrop: 'dynamic',
+    type: 'overlay',
+    modalType: 'modal',
     showPrimaryAction: true,
     showSecondaryAction: true,
     showAdditionalActions: false,
@@ -356,6 +404,7 @@ export class DrawerShowcaseComponent {
   overviewForm = computed(() => this.toForm(this.overviewFormValues()));
   positionsForm = computed(() => this.toForm(this.positionsFormValues()));
   sizesForm = computed(() => this.toForm(this.sizesFormValues()));
+  typeModalForm = computed(() => this.toForm(this.typeModalFormValues()));
   behaviorForm = computed(() => this.toForm(this.behaviorFormValues()));
   actionsForm = computed(() => this.toForm(this.actionsFormValues()));
   customContentForm = computed(() => this.toForm(this.customContentFormValues()));
@@ -363,6 +412,7 @@ export class DrawerShowcaseComponent {
   overviewVisible = model(false);
   positionDrawerVisible = model(false);
   sizeDrawerVisible = model(false);
+  typeModalVisible = model(false);
   behaviorDynamicVisible = model(false);
   behaviorStaticVisible = model(false);
   behaviorLockedVisible = model(false);
@@ -377,6 +427,7 @@ export class DrawerShowcaseComponent {
   private closeOverview = (): void => this.overviewVisible.set(false);
   private closePositions = (): void => this.positionDrawerVisible.set(false);
   private closeSizes = (): void => this.sizeDrawerVisible.set(false);
+  private closeTypeModal = (): void => this.typeModalVisible.set(false);
   private closeCustomContent = (): void => this.customContentVisible.set(false);
   private closeBehaviorDynamic = (): void => this.behaviorDynamicVisible.set(false);
   private closeBehaviorStatic = (): void => this.behaviorStaticVisible.set(false);
@@ -410,6 +461,13 @@ export class DrawerShowcaseComponent {
   );
   sizesAdditionalActions = computed(() =>
     this.resolveAdditionalActions(this.sizesForm(), this.closeSizes),
+  );
+
+  typeModalPrimaryAction = computed(() =>
+    this.resolvePrimaryAction(this.typeModalForm(), this.closeTypeModal),
+  );
+  typeModalSecondaryAction = computed(() =>
+    this.resolveSecondaryAction(this.typeModalForm(), this.closeTypeModal),
   );
 
   customContentPrimaryAction = computed(() =>
@@ -523,6 +581,8 @@ export class DrawerShowcaseComponent {
       size: (v['size'] as DrawerSize) ?? 'medium',
       closable: v['closable'] === undefined ? true : !!v['closable'],
       backdrop: (v['backdrop'] as DrawerBackdrop) ?? 'dynamic',
+      type: (v['type'] as DrawerType) ?? 'overlay',
+      modalType: (v['modalType'] as DrawerModalType) ?? 'modal',
       showPrimaryAction: v['showPrimaryAction'] === undefined ? true : !!v['showPrimaryAction'],
       showSecondaryAction:
         v['showSecondaryAction'] === undefined ? true : !!v['showSecondaryAction'],

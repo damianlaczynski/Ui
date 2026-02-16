@@ -1,4 +1,4 @@
-import type { DrawerBackdrop, DrawerPosition } from 'angular-ui';
+import type { DrawerBackdrop, DrawerModalType, DrawerPosition, DrawerType } from 'angular-ui';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { createDrawerFormConfigs } from '@shared/utils/showcase/drawer-form-config.utils';
 import {
@@ -12,6 +12,8 @@ import { SHOWCASE_GROUP_ICONS } from '@shared/utils/showcase/component-options.u
 const DRAWER_POSITIONS: DrawerPosition[] = ['left', 'right', 'top', 'bottom'];
 const DRAWER_SIZES = ['small', 'medium', 'large'] as const;
 const DRAWER_BACKDROPS: DrawerBackdrop[] = ['dynamic', 'static'];
+const DRAWER_TYPES: DrawerType[] = ['overlay', 'inline'];
+const DRAWER_MODAL_TYPES: DrawerModalType[] = ['modal', 'non-modal', 'alert'];
 
 const DRAWER_CONTROL_DEFS: SharedControlDef[] = [
   {
@@ -71,6 +73,25 @@ const DRAWER_CONTROL_DEFS: SharedControlDef[] = [
     group: 'behavior',
   },
   {
+    key: 'type',
+    label: 'Type',
+    type: 'dropdown',
+    options: toOptions([...DRAWER_TYPES]),
+    description: 'Overlay (full screen) or inline (within container)',
+    defaultValue: 'overlay',
+    group: 'behavior',
+  },
+  {
+    key: 'modalType',
+    label: 'Modal Type',
+    type: 'dropdown',
+    options: toOptions([...DRAWER_MODAL_TYPES]),
+    description:
+      'modal: block interaction, ESC/backdrop close. non-modal: allow background interaction. alert: only close button closes.',
+    defaultValue: 'modal',
+    group: 'behavior',
+  },
+  {
     key: 'showPrimaryAction',
     label: 'Primary Action',
     type: 'switch',
@@ -102,6 +123,7 @@ export const DRAWER_DRAWER_CONFIGS = createDrawerFormConfigs(ALL_CONTROLS, {
   overview: { excludeKeys: [] },
   positions: { excludeKey: 'position' },
   sizes: { excludeKey: 'size' },
+  typeModal: { excludeKeys: [] },
   behavior: {
     excludeKeys: [
       'closable',
