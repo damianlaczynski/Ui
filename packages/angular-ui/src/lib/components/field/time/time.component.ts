@@ -16,6 +16,7 @@ import {
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { A11yModule } from '@angular/cdk/a11y';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import { FieldComponent } from '../field/field.component';
@@ -27,9 +28,13 @@ import {
   OverlayHandle,
   openConnectedOverlay,
 } from '../../overlay/open-connected-overlay';
+import { Subscription } from 'rxjs';
+
+const MOBILE_BREAKPOINT = '(max-width: 768px)';
 
 @Component({
   selector: 'ui-time',
+  standalone: true,
   imports: [
     CommonModule,
     A11yModule,
@@ -62,14 +67,18 @@ export class TimeComponent extends FieldComponent implements OnDestroy {
   private viewContainerRef = inject(ViewContainerRef);
   private scrollDispatcher = inject(ScrollDispatcher);
   private ngZone = inject(NgZone);
+  private breakpointObserver = inject(BreakpointObserver);
   private overlayHandle: OverlayHandle | null = null;
 
   step = input<number | string>('');
   panelWidth = input<number>(220);
   use24HourFormat = input<boolean>(true);
+  useNativeOnMobile = input<boolean>(true);
 
   isOpen = signal<boolean>(false);
+  isMobile = signal(false);
   selectedTime = signal<string>('');
+  private breakpointSub?: Subscription;
   displayText = computed(() => this.selectedTime());
 
   @ViewChild('triggerElement') triggerElement!: ElementRef;
@@ -77,6 +86,10 @@ export class TimeComponent extends FieldComponent implements OnDestroy {
 
   constructor() {
     super();
+
+    this.breakpointSub = this.breakpointObserver.observe(MOBILE_BREAKPOINT).subscribe(result => {
+      this.isMobile.set(result.matches);
+    });
 
     effect(() => {
       const time = this.selectedTime();
@@ -86,6 +99,7 @@ export class TimeComponent extends FieldComponent implements OnDestroy {
   }
 
   override ngOnDestroy(): void {
+    this.breakpointSub?.unsubscribe();
     this.overlayHandle?.destroy();
   }
 
@@ -133,6 +147,17 @@ export class TimeComponent extends FieldComponent implements OnDestroy {
     this.selectedTime.set(inputValue);
   }
 
+  onNativeTimeChange(event: Event): void {
+    if (this.disabled() || this.readonly()) {
+      return;
+    }
+
+    const target = event.target as HTMLInputElement;
+    const inputValue = target.value.trim();
+    this.selectedTime.set(inputValue);
+    this.onChange(inputValue);
+  }
+
   onTimeChange(timeStr: string): void {
     this.selectedTime.set(timeStr);
   }
@@ -151,6 +176,12 @@ export class TimeComponent extends FieldComponent implements OnDestroy {
   override clear(): void {
     this.selectedTime.set('');
     super.clear();
+  }
+
+  getNativeTimeStep(): string {
+    const s = this.step();
+    if (s === '' || s === undefined) return '60';
+    return String(typeof s === 'number' ? s : parseInt(String(s), 10) || 60);
   }
 
   openPanel(): void {

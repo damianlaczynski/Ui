@@ -13,6 +13,8 @@ import {
   TemplateRef,
   NgZone,
 } from '@angular/core';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { Subscription } from 'rxjs';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { A11yModule } from '@angular/cdk/a11y';
 import { Overlay, OverlayModule } from '@angular/cdk/overlay';
@@ -29,6 +31,8 @@ import {
 
 export type ColorFormat = 'hex' | 'rgb' | 'hsl';
 
+const MOBILE_BREAKPOINT = '(max-width: 768px)';
+
 interface ColorValue {
   hex: string;
   rgb: { r: number; g: number; b: number };
@@ -38,7 +42,7 @@ interface ColorValue {
 
 @Component({
   selector: 'ui-color',
-
+  standalone: true,
   imports: [A11yModule, OverlayModule, FieldComponent, ActionButtonComponent, IconComponent],
   templateUrl: './color.component.html',
   host: {
@@ -64,16 +68,19 @@ export class ColorComponent extends FieldComponent implements OnDestroy {
   private viewContainerRef = inject(ViewContainerRef);
   private scrollDispatcher = inject(ScrollDispatcher);
   private ngZone = inject(NgZone);
+  private breakpointObserver = inject(BreakpointObserver);
   private overlayHandle: OverlayHandle | null = null;
 
   format = input<ColorFormat>('hex');
   showAlpha = input<boolean>(true);
   showEyeDropper = input<boolean>(true);
+  useNativeOnMobile = input<boolean>(true);
 
-  // Panel width control
   panelWidth = input<number>(280);
 
   isExpanded = signal<boolean>(false);
+  isMobile = signal(false);
+  private breakpointSub?: Subscription;
   currentColor = signal<ColorValue>({
     hex: '#000000',
     rgb: { r: 0, g: 0, b: 0 },
@@ -126,7 +133,10 @@ export class ColorComponent extends FieldComponent implements OnDestroy {
   constructor() {
     super();
 
-    // Effect to update field value when color changes
+    this.breakpointSub = this.breakpointObserver.observe(MOBILE_BREAKPOINT).subscribe(result => {
+      this.isMobile.set(result.matches);
+    });
+
     effect(() => {
       const displayVal = this.colorDisplayValue();
       // Only update if we have a valid color (not the default empty state)
@@ -138,6 +148,7 @@ export class ColorComponent extends FieldComponent implements OnDestroy {
   }
 
   override ngOnDestroy(): void {
+    this.breakpointSub?.unsubscribe();
     this.overlayHandle?.destroy();
   }
 
@@ -439,7 +450,17 @@ export class ColorComponent extends FieldComponent implements OnDestroy {
     };
   }
 
-  // Handle input value change
+  onNativeColorChange(event: Event): void {
+    if (this.disabled() || this.readonly()) {
+      return;
+    }
+    const target = event.target as HTMLInputElement;
+    const hex = target.value;
+    if (hex) {
+      this.parseAndSetColor(hex);
+    }
+  }
+
   onColorInputChange(event: Event): void {
     if (this.disabled() || this.readonly()) {
       return;
