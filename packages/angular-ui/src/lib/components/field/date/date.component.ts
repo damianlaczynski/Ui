@@ -14,6 +14,7 @@ import {
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { A11yModule } from '@angular/cdk/a11y';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { DateFieldOverlayService } from '../base-date-field/base-date-field.component';
 import { FieldComponent } from '../field/field.component';
@@ -21,9 +22,13 @@ import { ActionButtonComponent } from '../action-button.component';
 import { CalendarComponent, CalendarDay, CalendarView } from '../../calendar';
 import { ButtonComponent } from '../../button';
 import { IconName } from '../../icon';
+import { Subscription } from 'rxjs';
+
+const MOBILE_BREAKPOINT = '(max-width: 768px)';
 
 @Component({
   selector: 'ui-date',
+  standalone: true,
   imports: [
     CommonModule,
     A11yModule,
@@ -55,12 +60,16 @@ import { IconName } from '../../icon';
 })
 export class DateComponent extends FieldComponent implements OnDestroy {
   private overlayService = inject(DateFieldOverlayService);
+  private breakpointObserver = inject(BreakpointObserver);
 
   min = input<string>('');
   max = input<string>('');
   panelWidth = input<number>(300);
+  useNativeOnMobile = input<boolean>(true);
 
   isOpen = this.overlayService.isOpen;
+  isMobile = signal(false);
+  private breakpointSub?: Subscription;
 
   @ViewChild('triggerElement') triggerElement!: ElementRef;
   @ViewChild('panelTemplate') panelTemplate!: TemplateRef<unknown>;
@@ -80,6 +89,10 @@ export class DateComponent extends FieldComponent implements OnDestroy {
   constructor() {
     super();
 
+    this.breakpointSub = this.breakpointObserver.observe(MOBILE_BREAKPOINT).subscribe(result => {
+      this.isMobile.set(result.matches);
+    });
+
     effect(() => {
       const date = this.selectedDate();
       this.value = date ? this.toISODate(date) : '';
@@ -88,6 +101,7 @@ export class DateComponent extends FieldComponent implements OnDestroy {
   }
 
   override ngOnDestroy(): void {
+    this.breakpointSub?.unsubscribe();
     this.overlayService.ngOnDestroy();
     super.ngOnDestroy();
   }
@@ -123,6 +137,26 @@ export class DateComponent extends FieldComponent implements OnDestroy {
     const parsedDate = this.parseDateFromInput(inputValue);
     if (parsedDate) {
       this.selectedDate.set(parsedDate);
+    }
+  }
+
+  onNativeDateChange(event: Event): void {
+    if (this.disabled() || this.readonly()) {
+      return;
+    }
+
+    const target = event.target as HTMLInputElement;
+    const inputValue = target.value.trim();
+    if (!inputValue) {
+      this.selectedDate.set(null);
+      this.onChange('');
+      return;
+    }
+
+    const parsedDate = this.parseISODateValue(inputValue);
+    if (parsedDate) {
+      this.selectedDate.set(parsedDate);
+      this.onChange(inputValue);
     }
   }
 

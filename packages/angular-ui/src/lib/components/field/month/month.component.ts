@@ -14,7 +14,9 @@ import {
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { A11yModule } from '@angular/cdk/a11y';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { Subscription } from 'rxjs';
 import { DateFieldOverlayService } from '../base-date-field/base-date-field.component';
 import { FieldComponent } from '../field/field.component';
 import { ActionButtonComponent } from '../action-button.component';
@@ -22,8 +24,11 @@ import { CalendarComponent, CalendarView } from '../../calendar';
 import { ButtonComponent } from '../../button';
 import { IconName } from '../../icon';
 
+const MOBILE_BREAKPOINT = '(max-width: 768px)';
+
 @Component({
   selector: 'ui-month',
+  standalone: true,
   imports: [
     CommonModule,
     A11yModule,
@@ -53,12 +58,16 @@ import { IconName } from '../../icon';
 })
 export class MonthComponent extends FieldComponent implements OnDestroy {
   private overlayService = inject(DateFieldOverlayService);
+  private breakpointObserver = inject(BreakpointObserver);
 
   min = input<string>('');
   max = input<string>('');
   panelWidth = input<number>(300);
+  useNativeOnMobile = input<boolean>(true);
 
   isOpen = this.overlayService.isOpen;
+  isMobile = signal(false);
+  private breakpointSub?: Subscription;
 
   @ViewChild('triggerElement') triggerElement!: ElementRef;
   @ViewChild('panelTemplate') panelTemplate!: TemplateRef<unknown>;
@@ -78,6 +87,10 @@ export class MonthComponent extends FieldComponent implements OnDestroy {
   constructor() {
     super();
 
+    this.breakpointSub = this.breakpointObserver.observe(MOBILE_BREAKPOINT).subscribe(result => {
+      this.isMobile.set(result.matches);
+    });
+
     effect(() => {
       const date = this.selectedDate();
       this.value = date ? this.toISOMonth(date) : '';
@@ -86,6 +99,7 @@ export class MonthComponent extends FieldComponent implements OnDestroy {
   }
 
   override ngOnDestroy(): void {
+    this.breakpointSub?.unsubscribe();
     this.overlayService.ngOnDestroy();
     super.ngOnDestroy();
   }
@@ -196,6 +210,26 @@ export class MonthComponent extends FieldComponent implements OnDestroy {
 
   getIcon(): IconName {
     return 'calendar_month';
+  }
+
+  onNativeMonthChange(event: Event): void {
+    if (this.disabled() || this.readonly()) {
+      return;
+    }
+
+    const target = event.target as HTMLInputElement;
+    const inputValue = target.value.trim();
+    if (!inputValue) {
+      this.selectedDate.set(null);
+      this.onChange('');
+      return;
+    }
+
+    const date = this.parseISOMonthValue(inputValue);
+    if (date) {
+      this.selectedDate.set(date);
+      this.onChange(inputValue);
+    }
   }
 
   private parseISOMonthValue(value: string): Date | null {

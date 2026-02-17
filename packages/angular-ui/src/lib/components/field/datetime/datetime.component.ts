@@ -16,6 +16,7 @@ import {
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { A11yModule } from '@angular/cdk/a11y';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import { FieldComponent } from '../field/field.component';
@@ -30,9 +31,13 @@ import {
 } from '../../overlay/open-connected-overlay';
 import { ButtonComponent } from '../../button';
 import { IconName } from '../../icon';
+import { Subscription } from 'rxjs';
+
+const MOBILE_BREAKPOINT = '(max-width: 768px)';
 
 @Component({
   selector: 'ui-datetime',
+  standalone: true,
   imports: [
     CommonModule,
     A11yModule,
@@ -67,6 +72,7 @@ export class DatetimeComponent extends FieldComponent implements OnDestroy {
   private viewContainerRef = inject(ViewContainerRef);
   private scrollDispatcher = inject(ScrollDispatcher);
   private ngZone = inject(NgZone);
+  private breakpointObserver = inject(BreakpointObserver);
   private overlayHandle: OverlayHandle | null = null;
 
   min = input<string>('');
@@ -74,8 +80,11 @@ export class DatetimeComponent extends FieldComponent implements OnDestroy {
   step = input<number | string>('');
   panelWidth = input<number | undefined>(undefined);
   use24HourFormat = input<boolean>(true);
+  useNativeOnMobile = input<boolean>(true);
 
   isOpen = signal<boolean>(false);
+  isMobile = signal(false);
+  private breakpointSub?: Subscription;
   currentMonth = signal<Date>(new Date());
   selectedDate = signal<Date | null>(null);
   selectedTime = signal<string>('');
@@ -99,6 +108,10 @@ export class DatetimeComponent extends FieldComponent implements OnDestroy {
   constructor() {
     super();
 
+    this.breakpointSub = this.breakpointObserver.observe(MOBILE_BREAKPOINT).subscribe(result => {
+      this.isMobile.set(result.matches);
+    });
+
     effect(() => {
       const date = this.selectedDate();
       const time = this.selectedTime();
@@ -108,6 +121,7 @@ export class DatetimeComponent extends FieldComponent implements OnDestroy {
   }
 
   override ngOnDestroy(): void {
+    this.breakpointSub?.unsubscribe();
     this.overlayHandle?.destroy();
   }
 
@@ -139,6 +153,26 @@ export class DatetimeComponent extends FieldComponent implements OnDestroy {
         // no-op
       }
     }
+  }
+
+  onNativeDatetimeChange(event: Event): void {
+    if (this.disabled() || this.readonly()) {
+      return;
+    }
+
+    const target = event.target as HTMLInputElement;
+    const inputValue = target.value.trim();
+    if (!inputValue) {
+      this.selectedDate.set(null);
+      this.selectedTime.set('');
+      this.onChange('');
+      return;
+    }
+
+    const parsed = this.parseIncomingDatetime(inputValue);
+    this.selectedDate.set(parsed.date);
+    this.selectedTime.set(parsed.time);
+    this.onChange(inputValue);
   }
 
   onDatetimeInputChange(event: Event): void {
@@ -311,6 +345,24 @@ export class DatetimeComponent extends FieldComponent implements OnDestroy {
 
   getIcon(): IconName {
     return 'calendar_clock';
+  }
+
+  getNativeDatetimeMin(): string | null {
+    const m = this.min();
+    if (!m) return null;
+    return m.includes('T') ? m : `${m}T00:00`;
+  }
+
+  getNativeDatetimeMax(): string | null {
+    const m = this.max();
+    if (!m) return null;
+    return m.includes('T') ? m : `${m}T23:59`;
+  }
+
+  getNativeDatetimeStep(): string {
+    const s = this.step();
+    if (s === '' || s === undefined) return '60';
+    return String(typeof s === 'number' ? s : parseInt(String(s), 10) || 60);
   }
 
   private parseDateFromInput(inputValue: string): Date | null {
