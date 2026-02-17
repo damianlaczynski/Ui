@@ -10,11 +10,14 @@ import {
   computed,
 } from '@angular/core';
 
-import { Router, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import { DsSidebarComponent } from './components/ds-sidebar/ds-sidebar.component';
-import { ButtonComponent } from 'angular-ui';
+import { ThemeDrawerComponent } from './components/theme-drawer/theme-drawer.component';
+import { ButtonComponent, DrawerComponent } from 'angular-ui';
+import { ThemeBuilderService } from '@shared/theme/theme-builder.service';
 import { IconComponent } from 'angular-ui';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { Subscription } from 'rxjs';
 import { ScrollService } from '@shared/scroll/scroll.service';
 import { Direction, DirectionService } from '@shared/direction/direction.service';
@@ -22,7 +25,14 @@ import { ThemeMode, ThemeService, ThemeVariant } from '@shared/theme/theme.servi
 
 @Component({
   selector: 'app-ds',
-  imports: [RouterOutlet, DsSidebarComponent, ButtonComponent, IconComponent],
+  imports: [
+    RouterOutlet,
+    DsSidebarComponent,
+    ThemeDrawerComponent,
+    ButtonComponent,
+    DrawerComponent,
+    IconComponent,
+  ],
   templateUrl: './ds.component.html',
 })
 export class DsComponent implements OnInit, OnDestroy, AfterViewInit {
@@ -34,6 +44,7 @@ export class DsComponent implements OnInit, OnDestroy, AfterViewInit {
   private readonly scrollService = inject(ScrollService);
   private readonly directionService = inject(DirectionService);
   private readonly themeService = inject(ThemeService);
+  readonly themeBuilder = inject(ThemeBuilderService);
 
   readonly version = '1.0.0';
   readonly githubUrl = 'https://github.com/DamianLaczynski/angular-ui';
@@ -53,7 +64,7 @@ export class DsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private headerResizeObserver?: ResizeObserver;
 
-  isSidebarOpen = signal<boolean>(false);
+  isSidebarOpen = signal<boolean>(true);
   isMobile = signal<boolean>(false);
   direction = this.directionService.$direction;
 
@@ -70,26 +81,35 @@ export class DsComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+  private navSubscription?: Subscription;
+
+  private readonly mobileBreakpoint = '(max-width: 1279.98px)';
+
   ngOnInit(): void {
-    // Monitor breakpoint changes
     this.breakpointSubscription = this.breakpointObserver
-      .observe([Breakpoints.Handset, Breakpoints.Tablet])
+      .observe(this.mobileBreakpoint)
       .subscribe(result => {
         this.isMobile.set(result.matches);
-        // Close sidebar when switching to mobile
         if (result.matches) {
           this.isSidebarOpen.set(false);
         } else {
-          // On desktop, sidebar should always be visible
           this.isSidebarOpen.set(true);
         }
-
         this.syncHeaderHeight();
+      });
+
+    this.navSubscription = this.router.events
+      .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
+      .subscribe(() => {
+        if (this.isMobile()) {
+          this.closeSidebar();
+        }
       });
   }
 
   ngOnDestroy(): void {
     this.breakpointSubscription?.unsubscribe();
+    this.navSubscription?.unsubscribe();
     this.headerResizeObserver?.disconnect();
     this.scrollService.unregister();
   }
