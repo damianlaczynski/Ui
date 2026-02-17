@@ -225,6 +225,10 @@
     &.drawer__body {
       flex-grow: 1;
     }
+
+    &--no-scroll {
+      overflow: hidden;
+    }
   }
 
   &__text {

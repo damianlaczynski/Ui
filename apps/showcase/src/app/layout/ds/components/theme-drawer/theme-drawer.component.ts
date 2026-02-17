@@ -1,4 +1,13 @@
-import { Component, inject, effect, ViewChild, ElementRef, computed, signal } from '@angular/core';
+import {
+  Component,
+  inject,
+  effect,
+  ViewChild,
+  ElementRef,
+  computed,
+  signal,
+  input,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ThemeBuilderService } from '@shared/theme/theme-builder.service';
 import { ThemeService, ThemeVariant } from '@shared/theme/theme.service';
@@ -13,6 +22,7 @@ import type { QuickAction } from 'angular-ui';
   styleUrls: ['./theme-drawer.component.scss'],
 })
 export class ThemeDrawerComponent {
+  readonly isMobile = input<boolean>(false);
   @ViewChild('fileInput') fileInput?: ElementRef<HTMLInputElement>;
 
   private themeBuilder = inject(ThemeBuilderService);

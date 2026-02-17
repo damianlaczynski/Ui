@@ -2,16 +2,14 @@
   <!-- Header -->
   <header #headerRef class="ds__header">
     <div class="ds__header__left">
-      @if (isMobile() || !isSidebarOpen()) {
-        <ui-button
-          class="ds__header__menu-button"
-          variant="primary"
-          [icon]="isSidebarOpen() ? 'dismiss' : 'navigation'"
-          size="medium"
-          (click)="toggleSidebar()"
-          [attr.aria-label]="isSidebarOpen() ? 'Close sidebar' : 'Open sidebar'"
-        ></ui-button>
-      }
+      <ui-button
+        class="ds__header__menu-button"
+        variant="primary"
+        [icon]="isSidebarOpen() ? 'dismiss' : 'navigation'"
+        size="medium"
+        (click)="toggleSidebar()"
+        [attr.aria-label]="isSidebarOpen() ? 'Close sidebar' : 'Open sidebar'"
+      ></ui-button>
       <h1 class="ds__header__title" (click)="navigateToHome()">Angular UI</h1>
     </div>
     <div class="ds__header__right">
@@ -119,8 +117,10 @@
       [type]="isMobile() ? 'overlay' : 'inline'"
       position="left"
       size="medium"
-      [closable]="true"
+      [modalType]="isMobile() ? 'modal' : 'alert'"
+      [bodyScrollable]="false"
       [visible]="isSidebarOpen()"
+      [closable]="isMobile() ? true : false"
       (close)="closeSidebar()"
     >
       <app-ds-sidebar></app-ds-sidebar>
@@ -132,7 +132,7 @@
     </div>
 
     <div class="ds__theme-drawer-wrapper">
-      <app-theme-drawer />
+      <app-theme-drawer [isMobile]="isMobile()" />
     </div>
   </div>
 </div>
