@@ -76,7 +76,7 @@ export function openConnectedOverlay(params: {
 
   const overlayRef = overlay.create({
     positionStrategy,
-    scrollStrategy: overlay.scrollStrategies.reposition(),
+    scrollStrategy: overlay.scrollStrategies.close(),
     panelClass,
     minWidth: config.minWidth,
     maxWidth: config.maxWidth,

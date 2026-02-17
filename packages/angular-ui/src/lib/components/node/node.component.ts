@@ -53,6 +53,7 @@ export class NodeComponent<T extends Node> {
   // Inputs - Behavior Configuration
   asButton = input<boolean>(false);
   selectOnClick = input<boolean>(true);
+  ariaCurrent = input<string | null>(null);
 
   // Inputs - Quick Actions
   showQuickActions = input<boolean>(false);

@@ -22,6 +22,7 @@ export class DrawerComponent {
   closable = input<boolean>(true);
   size = input<'small' | 'medium' | 'large'>('medium');
   type = input<DrawerType>('overlay');
+  bodyScrollable = input<boolean>(true);
   modalType = input<DrawerModalType>('modal');
   visible = model<boolean>(false);
 
@@ -81,7 +82,11 @@ export class DrawerComponent {
   });
 
   bodyClasses = computed(() => {
-    return 'drawer__body';
+    const classes = ['drawer__body'];
+    if (!this.bodyScrollable()) {
+      classes.push('drawer__body--no-scroll');
+    }
+    return classes.join(' ');
   });
 
   footerClasses = computed(() => {

@@ -7,42 +7,44 @@
   [additionalActions]="additionalActions()"
 >
   <div class="theme-drawer__body">
-    <div class="theme-drawer__section">
-      <span class="theme-drawer__section-label">Mode</span>
-      <button
-        type="button"
-        class="theme-drawer__mode-button"
-        (click)="toggleTheme()"
-        [attr.aria-label]="themeMode() === 'dark' ? 'Light mode' : 'Dark mode'"
-      >
-        <ui-icon
-          [icon]="themeMode() === 'dark' ? 'weather_sunny' : 'weather_moon'"
-          size="small"
-        ></ui-icon>
-        <span>{{ themeMode() === 'dark' ? 'Light' : 'Dark' }}</span>
-      </button>
-    </div>
-    <div class="theme-drawer__section">
-      <span class="theme-drawer__section-label">Variant</span>
-      <div class="theme-drawer__variants" role="radiogroup" aria-label="Theme variants">
-        @for (variant of themeVariants; track variant.id) {
-          <button
-            type="button"
-            class="theme-drawer__variant"
-            [class.theme-drawer__variant--active]="currentThemeVariant() === variant.id"
-            [style.--variant-primary]="variant.previewPrimary"
-            [style.--variant-secondary]="variant.previewSecondary"
-            [attr.aria-label]="variant.label"
-            [attr.title]="variant.label"
-            [attr.aria-checked]="currentThemeVariant() === variant.id"
-            role="radio"
-            (click)="setThemeVariant(variant.id)"
-          >
-            <span class="theme-drawer__variant-swatch"></span>
-          </button>
-        }
+    @if (isMobile()) {
+      <div class="theme-drawer__section">
+        <span class="theme-drawer__section-label">Mode</span>
+        <button
+          type="button"
+          class="theme-drawer__mode-button"
+          (click)="toggleTheme()"
+          [attr.aria-label]="themeMode() === 'dark' ? 'Light mode' : 'Dark mode'"
+        >
+          <ui-icon
+            [icon]="themeMode() === 'dark' ? 'weather_sunny' : 'weather_moon'"
+            size="small"
+          ></ui-icon>
+          <span>{{ themeMode() === 'dark' ? 'Light' : 'Dark' }}</span>
+        </button>
       </div>
-    </div>
+      <div class="theme-drawer__section">
+        <span class="theme-drawer__section-label">Variant</span>
+        <div class="theme-drawer__variants" role="radiogroup" aria-label="Theme variants">
+          @for (variant of themeVariants; track variant.id) {
+            <button
+              type="button"
+              class="theme-drawer__variant"
+              [class.theme-drawer__variant--active]="currentThemeVariant() === variant.id"
+              [style.--variant-primary]="variant.previewPrimary"
+              [style.--variant-secondary]="variant.previewSecondary"
+              [attr.aria-label]="variant.label"
+              [attr.title]="variant.label"
+              [attr.aria-checked]="currentThemeVariant() === variant.id"
+              role="radio"
+              (click)="setThemeVariant(variant.id)"
+            >
+              <span class="theme-drawer__variant-swatch"></span>
+            </button>
+          }
+        </div>
+      </div>
+    }
     <div class="theme-drawer__simple">
       <div class="theme-drawer__field">
         <ui-color

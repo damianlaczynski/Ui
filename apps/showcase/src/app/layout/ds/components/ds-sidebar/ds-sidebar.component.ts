@@ -12,6 +12,9 @@ type SidebarViewMode = 'functional' | 'visual' | 'alphabetical';
   selector: 'app-ds-sidebar',
   imports: [NavComponent, SearchComponent, RadioButtonGroupComponent, FormsModule],
   templateUrl: './ds-sidebar.component.html',
+  host: {
+    class: 'ds-sidebar-host',
+  },
 })
 export class DsSidebarComponent {
   private readonly router = inject(Router);

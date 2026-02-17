@@ -4,11 +4,19 @@
 
 @use 'utils/variables' as *;
 
+.ds-sidebar-host {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
 .ds-sidebar {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  min-height: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
   position: relative;
   overflow: hidden;
 
@@ -21,10 +29,12 @@
   }
 
   &__search {
+    flex-shrink: 0;
     padding: $spacing-4 $spacing-4 $spacing-2 $spacing-4;
   }
 
   &__grouping {
+    flex-shrink: 0;
     padding: $spacing-4 $spacing-4 $spacing-2 $spacing-4;
     display: flex;
     justify-content: flex-start;
