@@ -1,7 +1,19 @@
 <div class="ds">
   <!-- Header -->
   <header #headerRef class="ds__header">
-    <h1 class="ds__header__title" (click)="navigateToHome()">Angular UI</h1>
+    <div class="ds__header__left">
+      @if (isMobile() || !isSidebarOpen()) {
+        <ui-button
+          class="ds__header__menu-button"
+          variant="primary"
+          [icon]="isSidebarOpen() ? 'dismiss' : 'navigation'"
+          size="medium"
+          (click)="toggleSidebar()"
+          [attr.aria-label]="isSidebarOpen() ? 'Close sidebar' : 'Open sidebar'"
+        ></ui-button>
+      }
+      <h1 class="ds__header__title" (click)="navigateToHome()">Angular UI</h1>
+    </div>
     <div class="ds__header__right">
       <div class="ds__header__meta">
         <span class="ds__header__version">v{{ version }}</span>
@@ -23,38 +35,60 @@
         >
           <ui-icon icon="arrow_download" size="small"></ui-icon>
         </a>
-        <div class="ds__theme-switcher">
-          <button
-            type="button"
-            class="ds__theme-switcher__mode"
-            (click)="toggleTheme()"
-            [attr.aria-label]="themeLabel()"
-          >
-            <ui-icon [icon]="themeIcon()" size="small"></ui-icon>
-            <span>{{ themeLabel() }}</span>
-          </button>
+        @if (!isMobile()) {
+          <ui-button
+            variant="primary"
+            appearance="transparent"
+            size="medium"
+            text="Theme builder"
+            (click)="themeBuilder.toggleDrawer()"
+            [attr.aria-label]="
+              themeBuilder.drawerOpen() ? 'Close theme builder' : 'Open theme builder'
+            "
+          />
+          <div class="ds__theme-switcher">
+            <button
+              type="button"
+              class="ds__theme-switcher__mode"
+              (click)="toggleTheme()"
+              [attr.aria-label]="themeLabel()"
+            >
+              <ui-icon [icon]="themeIcon()" size="small"></ui-icon>
+              <span>{{ themeLabel() }}</span>
+            </button>
 
-          <span class="ds__theme-switcher__label">{{ currentThemeVariantLabel() }}</span>
+            <span class="ds__theme-switcher__label">{{ currentThemeVariantLabel() }}</span>
 
-          <div class="ds__theme-switcher__variants" role="radiogroup" aria-label="Theme variants">
-            @for (variant of themeVariants; track variant.id) {
-              <button
-                type="button"
-                class="ds__theme-switcher__variant"
-                [class.ds__theme-switcher__variant--active]="currentThemeVariant() === variant.id"
-                [style.--variant-primary]="variant.previewPrimary"
-                [style.--variant-secondary]="variant.previewSecondary"
-                [attr.aria-label]="variant.label"
-                [attr.title]="variant.label"
-                [attr.aria-checked]="currentThemeVariant() === variant.id"
-                role="radio"
-                (click)="setThemeVariant(variant.id)"
-              >
-                <span class="ds__theme-switcher__swatch"></span>
-              </button>
-            }
+            <div class="ds__theme-switcher__variants" role="radiogroup" aria-label="Theme variants">
+              @for (variant of themeVariants; track variant.id) {
+                <button
+                  type="button"
+                  class="ds__theme-switcher__variant"
+                  [class.ds__theme-switcher__variant--active]="currentThemeVariant() === variant.id"
+                  [style.--variant-primary]="variant.previewPrimary"
+                  [style.--variant-secondary]="variant.previewSecondary"
+                  [attr.aria-label]="variant.label"
+                  [attr.title]="variant.label"
+                  [attr.aria-checked]="currentThemeVariant() === variant.id"
+                  role="radio"
+                  (click)="setThemeVariant(variant.id)"
+                >
+                  <span class="ds__theme-switcher__swatch"></span>
+                </button>
+              }
+            </div>
           </div>
-        </div>
+        }
+        @if (isMobile()) {
+          <ui-button
+            variant="primary"
+            appearance="transparent"
+            size="medium"
+            icon="color"
+            (click)="themeBuilder.toggleDrawer()"
+            [attr.aria-label]="themeBuilder.drawerOpen() ? 'Close theme' : 'Open theme'"
+          />
+        }
         <!-- TODO: Add direction support -->
         <!-- <div class="ds__direction-switcher" role="group" aria-label="Layout direction">
           <button
@@ -75,40 +109,30 @@
           </button>
         </div> -->
       </div>
-      @if (isMobile()) {
-        <ui-button
-          class="ds__header__menu-button"
-          variant="primary"
-          [icon]="isSidebarOpen() ? 'dismiss' : 'navigation'"
-          size="medium"
-          (click)="toggleSidebar()"
-          [attr.aria-label]="isSidebarOpen() ? 'Close sidebar' : 'Open sidebar'"
-        ></ui-button>
-      }
     </div>
   </header>
 
-  <!-- Overlay (visible on mobile when sidebar is open) -->
-  <div
-    class="ds__overlay"
-    [class.ds__overlay--visible]="isSidebarOpen() && isMobile()"
-    (click)="closeSidebar()"
-    [attr.aria-hidden]="!isSidebarOpen() || !isMobile()"
-  ></div>
-
   <!-- Content Area -->
   <div class="ds__content">
-    <!-- Sidebar Wrapper -->
-    <div
-      class="ds__sidebar-wrapper"
-      [class.ds__sidebar-wrapper--open]="isSidebarOpen() && isMobile()"
+    <ui-drawer
+      title="Navigation"
+      [type]="isMobile() ? 'overlay' : 'inline'"
+      position="left"
+      size="medium"
+      [closable]="true"
+      [visible]="isSidebarOpen()"
+      (close)="closeSidebar()"
     >
       <app-ds-sidebar></app-ds-sidebar>
-    </div>
+    </ui-drawer>
 
     <!-- Main Content -->
     <div #mainContent class="ds__main-content">
       <router-outlet></router-outlet>
+    </div>
+
+    <div class="ds__theme-drawer-wrapper">
+      <app-theme-drawer />
     </div>
   </div>
 </div>

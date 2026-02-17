@@ -1,0 +1,99 @@
+<ui-drawer
+  title="Theme Builder"
+  type="inline"
+  position="right"
+  [(visible)]="drawerVisible"
+  (close)="onDrawerClose()"
+  [additionalActions]="additionalActions()"
+>
+  <div class="theme-drawer__body">
+    <div class="theme-drawer__section">
+      <span class="theme-drawer__section-label">Mode</span>
+      <button
+        type="button"
+        class="theme-drawer__mode-button"
+        (click)="toggleTheme()"
+        [attr.aria-label]="themeMode() === 'dark' ? 'Light mode' : 'Dark mode'"
+      >
+        <ui-icon
+          [icon]="themeMode() === 'dark' ? 'weather_sunny' : 'weather_moon'"
+          size="small"
+        ></ui-icon>
+        <span>{{ themeMode() === 'dark' ? 'Light' : 'Dark' }}</span>
+      </button>
+    </div>
+    <div class="theme-drawer__section">
+      <span class="theme-drawer__section-label">Variant</span>
+      <div class="theme-drawer__variants" role="radiogroup" aria-label="Theme variants">
+        @for (variant of themeVariants; track variant.id) {
+          <button
+            type="button"
+            class="theme-drawer__variant"
+            [class.theme-drawer__variant--active]="currentThemeVariant() === variant.id"
+            [style.--variant-primary]="variant.previewPrimary"
+            [style.--variant-secondary]="variant.previewSecondary"
+            [attr.aria-label]="variant.label"
+            [attr.title]="variant.label"
+            [attr.aria-checked]="currentThemeVariant() === variant.id"
+            role="radio"
+            (click)="setThemeVariant(variant.id)"
+          >
+            <span class="theme-drawer__variant-swatch"></span>
+          </button>
+        }
+      </div>
+    </div>
+    <div class="theme-drawer__simple">
+      <div class="theme-drawer__field">
+        <ui-color
+          [label]="'Base color'"
+          [ngModel]="simpleState().baseColor"
+          (ngModelChange)="onBaseColorChange($event)"
+          [showAlpha]="false"
+        />
+      </div>
+      <div class="theme-drawer__field">
+        <ui-slider
+          [label]="'Hue Torsion (' + simpleState().hueTorsion + ')'"
+          [min]="-50"
+          [max]="50"
+          [step]="1"
+          [showMinMax]="true"
+          [ngModel]="simpleState().hueTorsion"
+          (ngModelChange)="onHueTorsionChange($event)"
+        />
+      </div>
+      <div class="theme-drawer__field">
+        <ui-slider
+          [label]="'Vibrancy (' + simpleState().vibrancy + ')'"
+          [min]="-50"
+          [max]="50"
+          [step]="1"
+          [showMinMax]="true"
+          [ngModel]="simpleState().vibrancy"
+          (ngModelChange)="onVibrancyChange($event)"
+        />
+      </div>
+    </div>
+
+    <div class="theme-drawer__usage">
+      <p class="theme-drawer__usage-text">
+        Save the exported file (e.g. <code>src/theme.scss</code>) and add it to
+        <code>angular.json</code> after the library styles.
+      </p>
+      <pre class="theme-drawer__code"><code>"styles": [
+  "node_modules/angular-ui/styles/main.scss",
+  "src/theme.scss",
+  "src/styles.scss"
+]</code></pre>
+    </div>
+  </div>
+
+  <input
+    #fileInput
+    type="file"
+    accept=".scss,.css"
+    class="theme-drawer__file-input"
+    (change)="onFileSelected($event)"
+  />
+</ui-drawer>
