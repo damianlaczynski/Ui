@@ -18,7 +18,7 @@ import { BreadcrumbInteractiveComponent } from './breadcrumb.interactive';
 const BASIC_BREADCRUMB: Breadcrumb[] = [
   { id: 'home', label: 'Home', icon: 'home' },
   { id: 'products', label: 'Products', icon: 'shopping_bag' },
-  { id: 'electronics', label: 'Electronics', icon: 'device_eq' },
+  { id: 'electronics', label: 'Electronics', icon: 'device_eq', selected: true },
 ];
 
 const SELECTED_BREADCRUMB: Breadcrumb[] = [
@@ -30,29 +30,48 @@ const SELECTED_BREADCRUMB: Breadcrumb[] = [
 const DISABLED_BREADCRUMB: Breadcrumb[] = [
   { id: 'home', label: 'Home', icon: 'home' },
   { id: 'products', label: 'Products', icon: 'shopping_bag', disabled: true },
-  { id: 'electronics', label: 'Electronics', icon: 'device_eq' },
+  { id: 'electronics', label: 'Electronics', icon: 'device_eq', selected: true },
 ];
 
 const FILE_SYSTEM_BREADCRUMB: Breadcrumb[] = [
   { id: 'root', label: 'My Computer', icon: 'counter' },
   { id: 'users', label: 'Users', icon: 'people' },
-  { id: 'documents', label: 'Documents', icon: 'folder' },
+  { id: 'documents', label: 'Documents', icon: 'folder', selected: true },
 ];
 
 const ECOMMERCE_BREADCRUMB: Breadcrumb[] = [
   { id: 'home', label: 'Home', icon: 'home' },
   { id: 'shop', label: 'Shop', icon: 'shopping_bag' },
-  { id: 'phones', label: 'Phones', icon: 'phone' },
+  { id: 'phones', label: 'Phones', icon: 'phone', selected: true },
 ];
 
 const SETTINGS_BREADCRUMB: Breadcrumb[] = [
   { id: 'settings', label: 'Settings', icon: 'settings' },
   { id: 'account', label: 'Account', icon: 'person' },
-  { id: 'security', label: 'Security', icon: 'shield' },
+  { id: 'security', label: 'Security', icon: 'shield', selected: true },
+];
+
+const OVERFLOW_BREADCRUMB: Breadcrumb[] = [
+  { id: '1', label: 'Home', icon: 'home' },
+  { id: '2', label: 'Products', icon: 'folder' },
+  { id: '3', label: 'Electronics', icon: 'device_eq' },
+  { id: '4', label: 'Phones', icon: 'phone' },
+  { id: '5', label: 'Smartphones', icon: 'phone' },
+  { id: '6', label: 'Current', icon: 'folder', selected: true },
 ];
 
 @Component({
   selector: 'app-breadcrumb-showcase',
+  styles: [
+    `
+      .breadcrumb-responsive-demo {
+        width: 100%;
+        min-width: 200px;
+        overflow: hidden;
+        resize: horizontal;
+      }
+    `,
+  ],
   imports: [
     BreadcrumbComponent,
     CommonModule,
@@ -354,6 +373,29 @@ const SETTINGS_BREADCRUMB: Breadcrumb[] = [
                 (itemClick)="onItemClick($event)"
               />
             </div>
+            <div class="showcase__item">
+              <h3 class="showcase__item__title">With Overflow</h3>
+              <ui-breadcrumb
+                [items]="overflowBreadcrumb"
+                [maxDisplayedItems]="4"
+                [responsiveOverflow]="false"
+                appearance="subtle"
+                [showIcons]="true"
+                (itemClick)="onItemClick($event)"
+              />
+            </div>
+            <div class="showcase__item">
+              <h3 class="showcase__item__title">Responsive Overflow</h3>
+              <div class="breadcrumb-responsive-demo">
+                <ui-breadcrumb
+                  [items]="overflowBreadcrumb"
+                  [responsiveOverflow]="true"
+                  appearance="subtle"
+                  [showIcons]="true"
+                  (itemClick)="onItemClick($event)"
+                />
+              </div>
+            </div>
           </div>
         </app-section-with-drawer>
 
@@ -382,6 +424,7 @@ export class BreadcrumbShowcaseComponent {
   fileSystemBreadcrumb = FILE_SYSTEM_BREADCRUMB;
   ecommerceBreadcrumb = ECOMMERCE_BREADCRUMB;
   settingsBreadcrumb = SETTINGS_BREADCRUMB;
+  overflowBreadcrumb = OVERFLOW_BREADCRUMB;
 
   overviewDrawerFormConfig = BREADCRUMB_DRAWER_CONFIGS.overview;
   appearanceVariantDrawerFormConfig = BREADCRUMB_DRAWER_CONFIGS.appearanceVariant;

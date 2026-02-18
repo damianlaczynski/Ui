@@ -84,7 +84,7 @@
   box-sizing: border-box;
   vertical-align: middle;
   border-radius: $border-radius-400;
-  gap: $spacing-05;
+  gap: $spacing-0_5;
   align-items: stretch;
 
   input,
@@ -340,7 +340,7 @@
   &--small {
     .field__actions {
       padding-right: $spacing-1;
-      gap: $spacing-05;
+      gap: $spacing-0_5;
     }
   }
 

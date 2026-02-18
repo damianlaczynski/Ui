@@ -1,1 +1,1 @@
-export * from './tooltip.component';
+export { TooltipDirective, type TooltipPosition, type TooltipSize } from './tooltip.directive';

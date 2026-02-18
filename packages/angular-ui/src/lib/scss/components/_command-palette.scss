@@ -75,7 +75,7 @@
     align-items: center;
     min-width: 0;
     padding: $spacing-2 $spacing-4 $spacing-1;
-    margin-bottom: $spacing-05;
+    margin-bottom: $spacing-0_5;
     color: var(--color-neutral-foreground3-rest);
     font-size: $font-size-200;
     font-family: $font-family-base;
@@ -213,7 +213,7 @@
 
   // Item description
   &__item-description {
-    margin-top: $spacing-05;
+    margin-top: $spacing-0_5;
     color: var(--color-neutral-foreground2-rest);
     font-size: $font-size-200;
     font-family: $font-family-base;

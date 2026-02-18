@@ -200,7 +200,7 @@
     position: relative;
     display: flex;
     align-items: center;
-    gap: $spacing-05;
+    gap: $spacing-0_5;
     border: 2px solid transparent;
     @include transition-colors($duration-fast);
 
@@ -295,7 +295,7 @@
 
   &__quick-actions {
     display: flex;
-    gap: $spacing-05;
+    gap: $spacing-0_5;
     padding: $spacing-1;
     margin-left: auto;
     opacity: 0;

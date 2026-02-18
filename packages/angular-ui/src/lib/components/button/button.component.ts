@@ -19,7 +19,7 @@ import { SpinnerComponent } from '../spinner';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[attr.tabindex]': '"-1"',
-    '[style.width]': 'fullWidth() ? "100%" : null',
+    '[style.width]': 'fullWidth() ? "100%" : "fit-content"',
   },
 })
 export class ButtonComponent {

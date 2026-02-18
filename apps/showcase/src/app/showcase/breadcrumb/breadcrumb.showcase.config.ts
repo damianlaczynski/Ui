@@ -70,6 +70,42 @@ const BREADCRUMB_CONTROL_DEFS: SharedControlDef[] = [
     defaultValue: 'horizontal',
     group: 'appearance',
   },
+  {
+    key: 'focusMode',
+    label: 'Focus Mode',
+    type: 'dropdown',
+    options: [
+      { value: 'tab', label: 'Tab' },
+      { value: 'arrow', label: 'Arrow' },
+    ],
+    defaultValue: 'tab',
+    group: 'layout',
+  },
+  {
+    key: 'responsiveOverflow',
+    label: 'Responsive Overflow',
+    type: 'switch',
+    defaultValue: true,
+    group: 'layout',
+  },
+  {
+    key: 'truncateLength',
+    label: 'Truncate Length',
+    type: 'number',
+    defaultValue: 0,
+    min: 0,
+    description: '0 = no truncation',
+    group: 'layout',
+  },
+  {
+    key: 'maxDisplayedItems',
+    label: 'Max Displayed Items',
+    type: 'number',
+    defaultValue: 0,
+    min: 0,
+    description: '0 = auto/responsive',
+    group: 'layout',
+  },
 ];
 
 const ALL_CONTROLS = toDrawerFormControls(BREADCRUMB_CONTROL_DEFS);

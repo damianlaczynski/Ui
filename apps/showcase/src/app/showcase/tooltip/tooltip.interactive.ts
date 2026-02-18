@@ -1,12 +1,12 @@
 import { Component, computed, signal } from '@angular/core';
-import { ButtonComponent, TooltipComponent, TooltipPosition, TooltipSize } from 'angular-ui';
+import { ButtonComponent, TooltipDirective, TooltipPosition, TooltipSize } from 'angular-ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { TOOLTIP_SHOWCASE_CONFIG } from './tooltip.showcase.config';
 
 @Component({
   selector: 'app-tooltip-interactive',
-  imports: [TooltipComponent, ButtonComponent, InteractiveShowcaseComponent],
+  imports: [TooltipDirective, ButtonComponent, InteractiveShowcaseComponent],
   template: `
     <app-interactive-showcase
       [config]="showcaseConfig"
@@ -15,15 +15,16 @@ import { TOOLTIP_SHOWCASE_CONFIG } from './tooltip.showcase.config';
       (resetRequested)="onReset()"
     >
       <div preview>
-        <ui-tooltip
-          [text]="currentText()"
-          [position]="currentPosition()"
-          [size]="currentSize()"
-          [disabled]="currentDisabled()"
-          [delay]="currentDelay()"
+        <ui-button
+          variant="primary"
+          [uiTooltip]="currentText()"
+          [uiTooltipPosition]="currentPosition()"
+          [uiTooltipSize]="currentSize()"
+          [uiTooltipDisabled]="currentDisabled()"
+          [uiTooltipDelay]="currentDelay()"
         >
-          <ui-button variant="primary">Hover me</ui-button>
-        </ui-tooltip>
+          Hover me
+        </ui-button>
       </div>
     </app-interactive-showcase>
   `,
@@ -32,18 +33,18 @@ export class TooltipInteractiveComponent {
   showcaseConfig: ShowcaseConfig = TOOLTIP_SHOWCASE_CONFIG;
 
   private values = signal<Record<string, unknown>>({
-    text: 'This is a helpful tooltip',
-    position: 'top',
-    size: 'medium',
-    disabled: false,
-    delay: 300,
+    uiTooltip: 'This is a helpful tooltip',
+    uiTooltipPosition: 'top',
+    uiTooltipSize: 'medium',
+    uiTooltipDisabled: false,
+    uiTooltipDelay: 300,
   });
 
-  currentText = computed(() => this.values()['text'] as string);
-  currentPosition = computed(() => this.values()['position'] as TooltipPosition);
-  currentSize = computed(() => this.values()['size'] as TooltipSize);
-  currentDisabled = computed(() => !!this.values()['disabled']);
-  currentDelay = computed(() => this.values()['delay'] as number);
+  currentText = computed(() => this.values()['uiTooltip'] as string);
+  currentPosition = computed(() => this.values()['uiTooltipPosition'] as TooltipPosition);
+  currentSize = computed(() => this.values()['uiTooltipSize'] as TooltipSize);
+  currentDisabled = computed(() => !!this.values()['uiTooltipDisabled']);
+  currentDelay = computed(() => this.values()['uiTooltipDelay'] as number);
 
   onValuesChange(newValues: Record<string, unknown>): void {
     this.values.set(newValues);
