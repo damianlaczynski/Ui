@@ -1,7 +1,7 @@
 import { Component, inject, computed } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { ToastContainerComponent, IconComponent } from 'angular-ui';
+import { ToastContainerComponent, IconComponent } from 'ui';
 import { ScrollService } from '@shared/scroll/scroll.service';
 
 @Component({

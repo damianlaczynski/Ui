@@ -1,10 +1,10 @@
 {
-  "name": "@laczynski/angular-ui",
+  "name": "ui",
   "version": "1.0.0",
-  "description": "Angular UI component library",
-  "main": "./fesm2022/angular-ui.mjs",
+  "description": "ui component library",
+  "main": "./fesm2022/ui.mjs",
   "types": "./index.d.ts",
-  "module": "./fesm2022/angular-ui.mjs",
+  "module": "./fesm2022/ui.mjs",
   "files": [
     "**/*"
   ],

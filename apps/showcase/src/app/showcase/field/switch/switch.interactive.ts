@@ -1,6 +1,6 @@
 import { Component, signal, computed, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SwitchComponent, Size, ContentPosition } from 'angular-ui';
+import { SwitchComponent, Size, ContentPosition } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { SWITCH_SHOWCASE_CONFIG } from './switch.showcase.config';

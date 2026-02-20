@@ -14,7 +14,7 @@ import {
   TabsComponent,
   TagComponent,
   TotpComponent,
-} from 'angular-ui';
+} from 'ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { CarouselInteractiveComponent } from './carousel.interactive';
@@ -567,7 +567,7 @@ export class CarouselShowcaseComponent {
   autoPlayForm = computed(() => this.toForm(this.autoPlayFormValues()));
   loopForm = computed(() => this.toForm(this.loopFormValues()));
 
-  usageExample = `import { CarouselComponent, type CarouselItem } from 'angular-ui';
+  usageExample = `import { CarouselComponent, type CarouselItem } from 'ui';
 
 @Component({
   template: \`

@@ -7,7 +7,7 @@ import {
   type DrawerPosition,
   type DrawerType,
   type QuickAction,
-} from 'angular-ui';
+} from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { DRAWER_SHOWCASE_CONFIG } from './drawer.showcase.config';

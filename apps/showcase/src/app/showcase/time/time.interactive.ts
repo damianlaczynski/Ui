@@ -1,6 +1,6 @@
 import { Component, computed, signal, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Size, TimeComponent } from 'angular-ui';
+import { Size, TimeComponent } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { TIME_SHOWCASE_CONFIG } from './time.showcase.config';

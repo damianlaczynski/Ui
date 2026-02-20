@@ -1,5 +1,5 @@
 import { Component, computed, signal, viewChild } from '@angular/core';
-import { CalendarComponent, CalendarDay, CalendarView } from 'angular-ui';
+import { CalendarComponent, CalendarDay, CalendarView } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { CALENDAR_SHOWCASE_CONFIG } from './calendar.showcase.config';

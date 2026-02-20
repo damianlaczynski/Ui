@@ -1,5 +1,5 @@
 import { Component, computed, signal } from '@angular/core';
-import { Alignment, DividerComponent, Orientation, TableOfContentComponent } from 'angular-ui';
+import { Alignment, DividerComponent, Orientation, TableOfContentComponent } from 'ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { ORIENTATIONS } from '@shared/utils/showcase/component-options.utils';

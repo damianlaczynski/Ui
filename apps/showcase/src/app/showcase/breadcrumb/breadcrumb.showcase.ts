@@ -1,7 +1,7 @@
 import { Component, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import type { Breadcrumb } from 'angular-ui';
+import type { Breadcrumb } from 'ui';
 import {
   APPEARANCES,
   SHAPES,
@@ -10,8 +10,8 @@ import {
 } from '@shared/utils/showcase/component-options.utils';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
-import { BreadcrumbComponent } from 'angular-ui';
-import { TableOfContentComponent } from 'angular-ui';
+import { BreadcrumbComponent } from 'ui';
+import { TableOfContentComponent } from 'ui';
 import { BREADCRUMB_DRAWER_CONFIGS } from './breadcrumb.showcase.config';
 import { BreadcrumbInteractiveComponent } from './breadcrumb.interactive';
 
@@ -445,12 +445,11 @@ export class BreadcrumbShowcaseComponent {
   overviewForm = computed(() => {
     const v = this.overviewFormValues();
     return {
-      size: v['size'] as import('angular-ui').Size,
-      shape: v['shape'] as import('angular-ui').Shape,
+      size: v['size'] as import('ui').Size,
+      shape: v['shape'] as import('ui').Shape,
       showIcons: !!v['showIcons'],
       showIndicator: !!v['showIndicator'],
-      indicatorPosition:
-        (v['indicatorPosition'] as import('angular-ui').Orientation) || 'horizontal',
+      indicatorPosition: (v['indicatorPosition'] as import('ui').Orientation) || 'horizontal',
     };
   });
 
@@ -465,12 +464,11 @@ export class BreadcrumbShowcaseComponent {
   appearanceVariantForm = computed(() => {
     const v = this.appearanceVariantFormValues();
     return {
-      size: v['size'] as import('angular-ui').Size,
-      shape: v['shape'] as import('angular-ui').Shape,
+      size: v['size'] as import('ui').Size,
+      shape: v['shape'] as import('ui').Shape,
       showIcons: !!v['showIcons'],
       showIndicator: !!v['showIndicator'],
-      indicatorPosition:
-        (v['indicatorPosition'] as import('angular-ui').Orientation) || 'horizontal',
+      indicatorPosition: (v['indicatorPosition'] as import('ui').Orientation) || 'horizontal',
     };
   });
 
@@ -486,13 +484,12 @@ export class BreadcrumbShowcaseComponent {
   iconForm = computed(() => {
     const v = this.iconFormValues();
     return {
-      variant: v['variant'] as import('angular-ui').Variant,
-      appearance: v['appearance'] as import('angular-ui').Appearance,
-      size: v['size'] as import('angular-ui').Size,
-      shape: v['shape'] as import('angular-ui').Shape,
+      variant: v['variant'] as import('ui').Variant,
+      appearance: v['appearance'] as import('ui').Appearance,
+      size: v['size'] as import('ui').Size,
+      shape: v['shape'] as import('ui').Shape,
       showIndicator: !!v['showIndicator'],
-      indicatorPosition:
-        (v['indicatorPosition'] as import('angular-ui').Orientation) || 'horizontal',
+      indicatorPosition: (v['indicatorPosition'] as import('ui').Orientation) || 'horizontal',
     };
   });
 
@@ -508,13 +505,12 @@ export class BreadcrumbShowcaseComponent {
   sizeForm = computed(() => {
     const v = this.sizeFormValues();
     return {
-      variant: v['variant'] as import('angular-ui').Variant,
-      appearance: v['appearance'] as import('angular-ui').Appearance,
-      shape: v['shape'] as import('angular-ui').Shape,
+      variant: v['variant'] as import('ui').Variant,
+      appearance: v['appearance'] as import('ui').Appearance,
+      shape: v['shape'] as import('ui').Shape,
       showIcons: !!v['showIcons'],
       showIndicator: !!v['showIndicator'],
-      indicatorPosition:
-        (v['indicatorPosition'] as import('angular-ui').Orientation) || 'horizontal',
+      indicatorPosition: (v['indicatorPosition'] as import('ui').Orientation) || 'horizontal',
     };
   });
 
@@ -530,13 +526,12 @@ export class BreadcrumbShowcaseComponent {
   shapeForm = computed(() => {
     const v = this.shapeFormValues();
     return {
-      variant: v['variant'] as import('angular-ui').Variant,
-      appearance: v['appearance'] as import('angular-ui').Appearance,
-      size: v['size'] as import('angular-ui').Size,
+      variant: v['variant'] as import('ui').Variant,
+      appearance: v['appearance'] as import('ui').Appearance,
+      size: v['size'] as import('ui').Size,
       showIcons: !!v['showIcons'],
       showIndicator: !!v['showIndicator'],
-      indicatorPosition:
-        (v['indicatorPosition'] as import('angular-ui').Orientation) || 'horizontal',
+      indicatorPosition: (v['indicatorPosition'] as import('ui').Orientation) || 'horizontal',
     };
   });
 
@@ -551,10 +546,10 @@ export class BreadcrumbShowcaseComponent {
   statesForm = computed(() => {
     const v = this.statesFormValues();
     return {
-      variant: v['variant'] as import('angular-ui').Variant,
-      appearance: v['appearance'] as import('angular-ui').Appearance,
-      size: v['size'] as import('angular-ui').Size,
-      shape: v['shape'] as import('angular-ui').Shape,
+      variant: v['variant'] as import('ui').Variant,
+      appearance: v['appearance'] as import('ui').Appearance,
+      size: v['size'] as import('ui').Size,
+      shape: v['shape'] as import('ui').Shape,
       showIcons: !!v['showIcons'],
     };
   });
@@ -572,14 +567,13 @@ export class BreadcrumbShowcaseComponent {
   selectionIndicatorsForm = computed(() => {
     const v = this.selectionIndicatorsFormValues();
     return {
-      variant: v['variant'] as import('angular-ui').Variant,
-      appearance: v['appearance'] as import('angular-ui').Appearance,
-      size: v['size'] as import('angular-ui').Size,
-      shape: v['shape'] as import('angular-ui').Shape,
+      variant: v['variant'] as import('ui').Variant,
+      appearance: v['appearance'] as import('ui').Appearance,
+      size: v['size'] as import('ui').Size,
+      shape: v['shape'] as import('ui').Shape,
       showIcons: !!v['showIcons'],
       showIndicator: !!v['showIndicator'],
-      indicatorPosition:
-        (v['indicatorPosition'] as import('angular-ui').Orientation) || 'horizontal',
+      indicatorPosition: (v['indicatorPosition'] as import('ui').Orientation) || 'horizontal',
     };
   });
 
@@ -594,12 +588,11 @@ export class BreadcrumbShowcaseComponent {
   examplesForm = computed(() => {
     const v = this.examplesFormValues();
     return {
-      size: v['size'] as import('angular-ui').Size,
-      shape: v['shape'] as import('angular-ui').Shape,
+      size: v['size'] as import('ui').Size,
+      shape: v['shape'] as import('ui').Shape,
       showIcons: !!v['showIcons'],
       showIndicator: !!v['showIndicator'],
-      indicatorPosition:
-        (v['indicatorPosition'] as import('angular-ui').Orientation) || 'horizontal',
+      indicatorPosition: (v['indicatorPosition'] as import('ui').Orientation) || 'horizontal',
     };
   });
 

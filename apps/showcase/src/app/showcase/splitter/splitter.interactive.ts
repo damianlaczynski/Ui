@@ -1,16 +1,11 @@
 import { Component, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  SplitterComponent,
-  SplitterPanelDirective,
-  SplitterPanel,
-  SplitterResizeEvent,
-} from 'angular-ui';
+import { SplitterComponent, SplitterPanelDirective, SplitterPanel, SplitterResizeEvent } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import { ShowcaseDemoCardComponent } from '@shared/components/showcase-demo-card';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { SPLITTER_SHOWCASE_CONFIG } from './splitter.showcase.config';
-import type { Orientation } from 'angular-ui';
+import type { Orientation } from 'ui';
 
 @Component({
   selector: 'app-splitter-interactive',

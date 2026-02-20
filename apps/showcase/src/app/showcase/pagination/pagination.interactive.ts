@@ -1,5 +1,5 @@
 import { Component, computed, signal, viewChild } from '@angular/core';
-import { PaginationComponent, PaginationConfig, Size } from 'angular-ui';
+import { PaginationComponent, PaginationConfig, Size } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { PAGINATION_SHOWCASE_CONFIG } from './pagination.showcase.config';

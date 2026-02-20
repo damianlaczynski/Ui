@@ -1,5 +1,5 @@
 import { Component, computed, signal, viewChild } from '@angular/core';
-import { ContentPosition, ExtendedSize, SpinnerComponent, Variant } from 'angular-ui';
+import { ContentPosition, ExtendedSize, SpinnerComponent, Variant } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { SPINNER_SHOWCASE_CONFIG } from './spinner.showcase.config';

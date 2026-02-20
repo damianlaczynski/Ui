@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, inject, signal } from '@angular/core';
-import { ButtonComponent, ToastComponent, ToastContainerComponent, ToastService } from 'angular-ui';
-import { Appearance, Size, TableOfContentComponent, Variant } from 'angular-ui';
+import { ButtonComponent, ToastComponent, ToastContainerComponent, ToastService } from 'ui';
+import { Appearance, Size, TableOfContentComponent, Variant } from 'ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { APPEARANCES, SIZES, VARIANTS } from '@shared/utils/showcase/component-options.utils';

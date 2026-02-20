@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { ToastService } from 'angular-ui';
+import { ToastService } from 'ui';
 import { Observable, throwError } from 'rxjs';
 
 @Injectable({

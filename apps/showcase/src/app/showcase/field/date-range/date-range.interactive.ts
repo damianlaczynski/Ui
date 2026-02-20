@@ -1,6 +1,6 @@
 import { Component, signal, computed, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DateRangeComponent, DateRange, InputVariant, Size } from 'angular-ui';
+import { DateRangeComponent, DateRange, InputVariant, Size } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { DATE_RANGE_SHOWCASE_CONFIG } from './date-range.showcase.config';

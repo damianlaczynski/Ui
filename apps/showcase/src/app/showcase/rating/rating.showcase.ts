@@ -1,13 +1,13 @@
 import { Component, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RatingComponent } from 'angular-ui';
-import { TableOfContentComponent } from 'angular-ui';
+import { RatingComponent } from 'ui';
+import { TableOfContentComponent } from 'ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { SIZES } from '@shared/utils/showcase/component-options.utils';
 import { RATING_DRAWER_CONFIGS } from './rating.showcase.config';
 import { RatingInteractiveComponent } from './rating.interactive';
-import type { Size } from 'angular-ui';
+import type { Size } from 'ui';
 
 @Component({
   selector: 'app-rating-showcase',

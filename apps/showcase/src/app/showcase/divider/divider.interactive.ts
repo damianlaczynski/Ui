@@ -1,5 +1,5 @@
 import { Component, computed, signal } from '@angular/core';
-import { Alignment, DividerComponent, Orientation } from 'angular-ui';
+import { Alignment, DividerComponent, Orientation } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { DIVIDER_SHOWCASE_CONFIG } from './divider.showcase.config';

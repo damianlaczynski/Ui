@@ -18,9 +18,7 @@
     "target": "ES2022",
     "module": "ES2022",
     "paths": {
-      "angular-ui": [
-        "./packages/angular-ui/src/public-api.ts"
-      ]
+      "ui": ["./packages/ui/src/public-api.ts"]
     }
   },
   "angularCompilerOptions": {
@@ -32,7 +30,7 @@
   },
   "references": [
     {
-      "path": "./packages/angular-ui/tsconfig.lib.json"
+      "path": "./packages/ui/tsconfig.lib.json"
     },
     {
       "path": "./apps/showcase/tsconfig.app.json"

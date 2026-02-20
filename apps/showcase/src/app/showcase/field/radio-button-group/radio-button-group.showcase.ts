@@ -10,8 +10,8 @@ import {
   type Shape,
   type Size,
   type Variant,
-} from 'angular-ui';
-import { TableOfContentComponent } from 'angular-ui';
+} from 'ui';
+import { TableOfContentComponent } from 'ui';
 import {
   VARIANTS,
   APPEARANCES,

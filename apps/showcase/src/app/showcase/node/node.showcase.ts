@@ -11,7 +11,7 @@ import {
   Size,
   TableOfContentComponent,
   Variant,
-} from 'angular-ui';
+} from 'ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import {

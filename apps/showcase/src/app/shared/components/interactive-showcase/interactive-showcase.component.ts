@@ -9,13 +9,13 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ButtonComponent } from 'angular-ui';
-import { DropdownComponent } from 'angular-ui';
-import { TextComponent } from 'angular-ui';
-import { TextareaComponent } from 'angular-ui';
-import { SwitchComponent } from 'angular-ui';
-import { NumberComponent } from 'angular-ui';
-import { IconName, IconComponent } from 'angular-ui';
+import { ButtonComponent } from 'ui';
+import { DropdownComponent } from 'ui';
+import { TextComponent } from 'ui';
+import { TextareaComponent } from 'ui';
+import { SwitchComponent } from 'ui';
+import { NumberComponent } from 'ui';
+import { IconName, IconComponent } from 'ui';
 
 export type ControlType = 'dropdown' | 'text' | 'textarea' | 'number' | 'switch' | 'color';
 export type ViewportSize = 'mobile' | 'tablet' | 'desktop' | 'custom';

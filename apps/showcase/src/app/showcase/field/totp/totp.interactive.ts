@@ -1,10 +1,10 @@
 import { Component, signal, computed, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TotpComponent, Size } from 'angular-ui';
+import { TotpComponent, Size } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { TOTP_SHOWCASE_CONFIG } from './totp.showcase.config';
-import type { InputVariant } from 'angular-ui';
+import type { InputVariant } from 'ui';
 
 @Component({
   selector: 'app-totp-interactive',

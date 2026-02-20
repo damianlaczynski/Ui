@@ -9,7 +9,7 @@ import {
   TreeNode,
   TreeNodeComponent,
   Variant,
-} from 'angular-ui';
+} from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { TREE_NODE_SHOWCASE_CONFIG } from './tree-node.showcase.config';

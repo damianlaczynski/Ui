@@ -1,5 +1,5 @@
 import { Component, signal, computed, viewChild } from '@angular/core';
-import { FileComponent, FileComponentMode, InputVariant, Size } from 'angular-ui';
+import { FileComponent, FileComponentMode, InputVariant, Size } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { FILE_SHOWCASE_CONFIG } from './file.showcase.config';

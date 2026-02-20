@@ -42,7 +42,7 @@ jobs:
         run: npm run build:lib
 
       - name: Test showcase
-        run: npx ng test showcase --no-watch
+        run: npx ng test ui-showcase --watch=false
 
   test-lib:
     runs-on: ubuntu-latest
@@ -62,7 +62,7 @@ jobs:
         run: npm run build:lib
 
       - name: Test library
-        run: npx ng test angular-ui --no-watch
+        run: npx ng test ui --watch=false
 
   build:
     runs-on: ubuntu-latest
@@ -83,4 +83,4 @@ jobs:
         run: npm run build:lib
 
       - name: Build showcase
-        run: npm run build:showcase
+        run: npm run build:ui-showcase

@@ -8,14 +8,14 @@ import {
   Validators,
 } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
-import { TimeSpanComponent, TimeSpanValue } from 'angular-ui';
-import { TableOfContentComponent } from 'angular-ui';
+import { TimeSpanComponent, TimeSpanValue } from 'ui';
+import { TableOfContentComponent } from 'ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { SIZES, INPUT_VARIANTS } from '@shared/utils/showcase/component-options.utils';
 import { TIMESPAN_DRAWER_CONFIGS } from './time-span.showcase.config';
 import { TimeSpanInteractiveComponent } from './time-span.interactive';
-import type { InputVariant, Size } from 'angular-ui';
+import type { InputVariant, Size } from 'ui';
 
 @Component({
   selector: 'app-time-span-showcase',

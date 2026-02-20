@@ -12,7 +12,7 @@ import {
   Size,
   Shape,
   IconName,
-} from 'angular-ui';
+} from 'ui';
 import {
   APPEARANCES,
   SIZES,

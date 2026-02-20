@@ -1,5 +1,5 @@
 import { Component, signal, computed, viewChild } from '@angular/core';
-import { Appearance, IconName, Shape, Size, TagComponent, Variant } from 'angular-ui';
+import { Appearance, IconName, Shape, Size, TagComponent, Variant } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { TAG_SHOWCASE_CONFIG } from './tag.showcase.config';

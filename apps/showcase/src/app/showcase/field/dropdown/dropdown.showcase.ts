@@ -1,9 +1,9 @@
 import { Component, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { DropdownComponent } from 'angular-ui';
-import { InputVariant, Size } from 'angular-ui';
-import { TableOfContentComponent } from 'angular-ui';
+import { DropdownComponent } from 'ui';
+import { InputVariant, Size } from 'ui';
+import { TableOfContentComponent } from 'ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import {
@@ -14,7 +14,7 @@ import {
 } from './dropdown.showcase.config';
 import { SIZES } from '@shared/utils/showcase/component-options.utils';
 import { DropdownInteractiveComponent } from './dropdown.interactive';
-import type { DropdownMode } from 'angular-ui';
+import type { DropdownMode } from 'ui';
 
 @Component({
   selector: 'app-dropdown-showcase',

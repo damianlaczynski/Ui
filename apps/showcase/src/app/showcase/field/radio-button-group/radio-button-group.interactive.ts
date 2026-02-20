@@ -9,7 +9,7 @@ import {
   type Shape,
   type Size,
   type Variant,
-} from 'angular-ui';
+} from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { RADIO_BUTTON_GROUP_SHOWCASE_CONFIG } from './radio-button-group.showcase.config';

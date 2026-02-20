@@ -1,10 +1,10 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { NavigationEnd, Router, UrlSegment } from '@angular/router';
-import { NavComponent, NavNode, RadioButtonGroupComponent } from 'angular-ui';
+import { NavComponent, NavNode, RadioButtonGroupComponent } from 'ui';
 import { filter } from 'rxjs/operators';
-import { SearchComponent } from 'angular-ui';
+import { SearchComponent } from 'ui';
 import { FormsModule } from '@angular/forms';
-import type { RadioButtonItem } from 'angular-ui';
+import type { RadioButtonItem } from 'ui';
 
 type SidebarViewMode = 'functional' | 'visual' | 'alphabetical';
 

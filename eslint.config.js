@@ -13,7 +13,7 @@ module.exports = [
       "**/dist/**",
       "**/.angular/**",
       "**/coverage/**",
-      "packages/angular-ui/src/lib/components/icon/generated/**",
+      "packages/ui/src/lib/components/icon/generated/**",
     ],
   },
   ...tsRecommended.map((c) => ({ ...c, files: ["**/*.ts"] })),
@@ -57,7 +57,7 @@ module.exports = [
     },
   },
   {
-    files: ["packages/angular-ui/**/*.ts"],
+    files: ["packages/ui/**/*.ts"],
     rules: {
       "@angular-eslint/no-output-native": "off",
       "@angular-eslint/directive-selector": [

@@ -1,6 +1,6 @@
 import { TitleCasePipe } from '@angular/common';
 import { Component, computed, signal, WritableSignal } from '@angular/core';
-import { CalendarComponent, CalendarDay, CalendarView, TableOfContentComponent } from 'angular-ui';
+import { CalendarComponent, CalendarDay, CalendarView, TableOfContentComponent } from 'ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { SIZES } from '@shared/utils/showcase/component-options.utils';

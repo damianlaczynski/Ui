@@ -1,8 +1,8 @@
 import { Component, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AvatarComponent, TableOfContentComponent } from 'angular-ui';
-import type { Appearance, IconName, Variant } from 'angular-ui';
+import { AvatarComponent, TableOfContentComponent } from 'ui';
+import type { Appearance, IconName, Variant } from 'ui';
 import {
   APPEARANCES,
   SIZES,

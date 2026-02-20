@@ -34,7 +34,7 @@ import {
   PaginationComponent,
   SkeletonComponent,
   AccordionComponent,
-} from 'angular-ui';
+} from 'ui';
 
 interface ShowcaseComponent {
   id: string;
@@ -158,7 +158,7 @@ export class LandingComponent {
 
   readonly version = '1.0.0';
   readonly currentYear = new Date().getFullYear();
-  readonly githubUrl = 'https://github.com/DamianLaczynski/angular-ui';
+  readonly githubUrl = 'https://github.com/DamianLaczynski/ui';
   readonly npmUrl = 'https://www.npmjs.com/';
   readonly roadmapPreview: RoadmapPreviewItem[] = [
     {

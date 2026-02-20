@@ -1,7 +1,7 @@
 import { Component, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Appearance, ButtonComponent, TableOfContentComponent, Variant } from 'angular-ui';
+import { Appearance, ButtonComponent, TableOfContentComponent, Variant } from 'ui';
 import {
   APPEARANCES,
   SHAPES,
@@ -282,7 +282,7 @@ export class ButtonShowcaseComponent {
     shape: [...SHAPES].reverse()[i % SHAPES.length],
   }));
   iconsDrawerFormConfig = BUTTON_DRAWER_CONFIGS.icons;
-  iconsPerVariant: import('angular-ui').IconName[] = [
+  iconsPerVariant: import('ui').IconName[] = [
     'star',
     'checkmark',
     'delete',
@@ -313,7 +313,7 @@ export class ButtonShowcaseComponent {
   overviewForm = computed(() => {
     const v = this.overviewFormValues();
     return {
-      icon: (v['icon'] as import('angular-ui').IconName) || undefined,
+      icon: (v['icon'] as import('ui').IconName) || undefined,
       disabled: !!v['disabled'],
       loading: !!v['loading'],
       selected: !!v['selected'],
@@ -336,9 +336,9 @@ export class ButtonShowcaseComponent {
   appearanceVariantForm = computed(() => {
     const v = this.appearanceVariantFormValues();
     return {
-      size: v['size'] as import('angular-ui').Size,
-      shape: v['shape'] as import('angular-ui').Shape,
-      icon: (v['icon'] as import('angular-ui').IconName) || undefined,
+      size: v['size'] as import('ui').Size,
+      shape: v['shape'] as import('ui').Shape,
+      icon: (v['icon'] as import('ui').IconName) || undefined,
       disabled: !!v['disabled'],
       loading: !!v['loading'],
       selected: !!v['selected'],
@@ -360,8 +360,8 @@ export class ButtonShowcaseComponent {
   iconForm = computed(() => {
     const v = this.iconFormValues();
     return {
-      size: v['size'] as import('angular-ui').Size,
-      shape: v['shape'] as import('angular-ui').Shape,
+      size: v['size'] as import('ui').Size,
+      shape: v['shape'] as import('ui').Shape,
       disabled: !!v['disabled'],
       loading: !!v['loading'],
       selected: !!v['selected'],
@@ -387,9 +387,9 @@ export class ButtonShowcaseComponent {
     return {
       variant: v['variant'] as Variant,
       appearance: v['appearance'] as Appearance,
-      size: v['size'] as import('angular-ui').Size,
-      shape: v['shape'] as import('angular-ui').Shape,
-      icon: (v['icon'] as import('angular-ui').IconName) || undefined,
+      size: v['size'] as import('ui').Size,
+      shape: v['shape'] as import('ui').Shape,
+      icon: (v['icon'] as import('ui').IconName) || undefined,
       disabled: !!v['disabled'],
       loading: !!v['loading'],
       selected: !!v['selected'],
@@ -415,9 +415,9 @@ export class ButtonShowcaseComponent {
     return {
       variant: v['variant'] as Variant,
       appearance: v['appearance'] as Appearance,
-      size: v['size'] as import('angular-ui').Size,
-      shape: v['shape'] as import('angular-ui').Shape,
-      icon: (v['icon'] as import('angular-ui').IconName) || undefined,
+      size: v['size'] as import('ui').Size,
+      shape: v['shape'] as import('ui').Shape,
+      icon: (v['icon'] as import('ui').IconName) || undefined,
       disabled: !!v['disabled'],
       loading: !!v['loading'],
       selected: !!v['selected'],
@@ -441,9 +441,9 @@ export class ButtonShowcaseComponent {
     return {
       variant: v['variant'] as Variant,
       appearance: v['appearance'] as Appearance,
-      size: v['size'] as import('angular-ui').Size,
-      shape: v['shape'] as import('angular-ui').Shape,
-      icon: (v['icon'] as import('angular-ui').IconName) || undefined,
+      size: v['size'] as import('ui').Size,
+      shape: v['shape'] as import('ui').Shape,
+      icon: (v['icon'] as import('ui').IconName) || undefined,
       selectable: !!v['selectable'],
       fullWidth: !!v['fullWidth'],
     };

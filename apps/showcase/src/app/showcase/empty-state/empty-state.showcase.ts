@@ -1,8 +1,8 @@
 import { Component, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EmptyStateComponent, IconName, QuickAction, Size } from 'angular-ui';
-import { ButtonComponent } from 'angular-ui';
-import { TableOfContentComponent } from 'angular-ui';
+import { EmptyStateComponent, IconName, QuickAction, Size } from 'ui';
+import { ButtonComponent } from 'ui';
+import { TableOfContentComponent } from 'ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { SIZES } from '@shared/utils/showcase/component-options.utils';
@@ -287,8 +287,8 @@ export class EmptyStateShowcaseComponent {
   });
 
   usageExample = `// In your component
-import { EmptyStateComponent } from 'angular-ui';
-import { QuickAction } from 'angular-ui';
+import { EmptyStateComponent } from 'ui';
+import { QuickAction } from 'ui';
 
 @Component({
   template: \`

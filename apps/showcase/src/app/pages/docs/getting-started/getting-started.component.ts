@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TableOfContentComponent } from 'angular-ui';
+import { TableOfContentComponent } from 'ui';
 
 interface QuickStartStep {
   id: string;
@@ -20,8 +20,8 @@ export class GettingStartedComponent {
     {
       id: 'install',
       title: 'Install the package',
-      description: 'Add angular-ui to your workspace with your package manager of choice.',
-      code: 'npm install angular-ui',
+      description: 'Add ui to your workspace with your package manager of choice.',
+      code: 'npm install ui',
     },
     {
       id: 'styles',
@@ -29,7 +29,7 @@ export class GettingStartedComponent {
       description:
         'Include library styles once in angular.json so every component gets consistent tokens.',
       code: `"styles": [
-  "node_modules/angular-ui/styles/main.scss",
+  "node_modules/ui/styles/main.scss",
   "src/styles.scss"
 ]`,
     },
@@ -38,7 +38,7 @@ export class GettingStartedComponent {
       title: 'Import only what you use',
       description:
         'Use standalone imports in your feature component to keep bundles lean and code explicit.',
-      code: `import { ButtonComponent } from 'angular-ui';
+      code: `import { ButtonComponent } from 'ui';
 
 @Component({
   selector: 'app-example',

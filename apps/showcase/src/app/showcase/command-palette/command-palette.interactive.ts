@@ -1,5 +1,5 @@
-﻿import { Component, computed, signal, viewChild } from '@angular/core';
-import { ButtonComponent, CommandPaletteComponent, CommandPaletteItem } from 'angular-ui';
+import { Component, computed, signal, viewChild } from '@angular/core';
+import { ButtonComponent, CommandPaletteComponent, CommandPaletteItem } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import {

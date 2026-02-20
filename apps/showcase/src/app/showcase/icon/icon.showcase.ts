@@ -10,7 +10,7 @@ import {
   TableOfContentComponent,
   ToastContainerComponent,
   ToastService,
-} from 'angular-ui';
+} from 'ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { SIZES } from '@shared/utils/showcase/component-options.utils';

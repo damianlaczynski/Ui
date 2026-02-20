@@ -1,10 +1,10 @@
 import { Component, signal, computed, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { EmailComponent, Size } from 'angular-ui';
+import { EmailComponent, Size } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { EMAIL_SHOWCASE_CONFIG } from './email.showcase.config';
-import type { InputVariant } from 'angular-ui';
+import type { InputVariant } from 'ui';
 
 @Component({
   selector: 'app-email-interactive',

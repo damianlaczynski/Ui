@@ -1,7 +1,7 @@
 import { Component, signal, computed, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NumberComponent } from 'angular-ui';
-import { InputVariant, Size } from 'angular-ui';
+import { NumberComponent } from 'ui';
+import { InputVariant, Size } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { NUMBER_SHOWCASE_CONFIG } from './number.showcase.config';

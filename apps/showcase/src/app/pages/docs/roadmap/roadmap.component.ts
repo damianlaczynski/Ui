@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TableOfContentComponent } from 'angular-ui';
+import { TableOfContentComponent } from 'ui';
 
 type RoadmapStatus = 'shipped' | 'in-progress' | 'planned';
 

@@ -11,7 +11,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { environment } from '../../../../environments/environment';
 import { ApiErrorService } from './api-error.service';
-import { State, loadData } from 'angular-ui';
+import { State, loadData } from 'ui';
 import { QueryParams, QueryResult } from '@shared/api/models/query-params.model';
 
 // ============================================================================

@@ -1,5 +1,5 @@
 import { Component, computed, signal, viewChild } from '@angular/core';
-import { ProgressBarComponent, ProgressBarType, Size, Variant } from 'angular-ui';
+import { ProgressBarComponent, ProgressBarType, Size, Variant } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { PROGRESS_BAR_SHOWCASE_CONFIG } from './progress-bar.showcase.config';

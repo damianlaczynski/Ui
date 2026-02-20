@@ -12,11 +12,9 @@
       "@layout/*": ["./src/app/layout/*"],
       "@styles/*": ["./src/styles/*"],
       "@environments/*": ["./src/environments/*"],
-      "angular-ui": ["../../dist/angular-ui"]
+      "ui": ["../../dist/ui"]
     }
   },
   "files": [],
-  "include": [
-    "src/**/*.d.ts"
-  ]
+  "include": ["src/**/*.d.ts"]
 }

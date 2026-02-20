@@ -1,6 +1,6 @@
 import { Component, signal, computed, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SliderComponent, Size } from 'angular-ui';
+import { SliderComponent, Size } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { SLIDER_SHOWCASE_CONFIG } from './slider.showcase.config';

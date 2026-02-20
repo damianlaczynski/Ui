@@ -1,7 +1,7 @@
 import { Component, computed, signal, viewChild } from '@angular/core';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
-import { ToolbarComponent, type Size, type ToolbarGroup, type ToolbarItem } from 'angular-ui';
+import { ToolbarComponent, type Size, type ToolbarGroup, type ToolbarItem } from 'ui';
 import { TOOLBAR_SHOWCASE_CONFIG } from './toolbar.showcase.config';
 
 type Orientation = 'horizontal' | 'vertical';

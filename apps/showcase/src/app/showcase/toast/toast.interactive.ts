@@ -1,5 +1,5 @@
 import { Component, computed, signal, viewChild } from '@angular/core';
-import { Appearance, Size, ToastComponent, Variant } from 'angular-ui';
+import { Appearance, Size, ToastComponent, Variant } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { TOAST_SHOWCASE_CONFIG } from './toast.showcase.config';

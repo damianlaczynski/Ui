@@ -1,9 +1,9 @@
 import { Component, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TabsComponent, Tab } from 'angular-ui';
-import type { Appearance, Orientation, Shape, Size, Variant } from 'angular-ui';
-import { TableOfContentComponent } from 'angular-ui';
+import { TabsComponent, Tab } from 'ui';
+import type { Appearance, Orientation, Shape, Size, Variant } from 'ui';
+import { TableOfContentComponent } from 'ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import {

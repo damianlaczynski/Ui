@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TableOfContentComponent } from 'angular-ui';
+import { TableOfContentComponent } from 'ui';
 
 interface InstallCommand {
   manager: string;
@@ -21,9 +21,9 @@ export class InstallationComponent {
   ];
 
   readonly installCommands: InstallCommand[] = [
-    { manager: 'npm', command: 'npm install angular-ui' },
-    { manager: 'yarn', command: 'yarn add angular-ui' },
-    { manager: 'pnpm', command: 'pnpm add angular-ui' },
+    { manager: 'npm', command: 'npm install ui' },
+    { manager: 'yarn', command: 'yarn add ui' },
+    { manager: 'pnpm', command: 'pnpm add ui' },
   ];
 
   readonly verificationChecks: string[] = [

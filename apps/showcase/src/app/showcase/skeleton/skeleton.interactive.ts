@@ -1,5 +1,5 @@
 import { Component, computed, signal } from '@angular/core';
-import { Shape, SkeletonComponent } from 'angular-ui';
+import { Shape, SkeletonComponent } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { SKELETON_SHOWCASE_CONFIG } from './skeleton.showcase.config';

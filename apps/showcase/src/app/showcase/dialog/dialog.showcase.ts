@@ -1,8 +1,8 @@
 import { Component, signal, model } from '@angular/core';
-import { DialogComponent } from 'angular-ui';
-import { ButtonComponent } from 'angular-ui';
-import { QuickAction } from 'angular-ui';
-import { TableOfContentComponent } from 'angular-ui';
+import { DialogComponent } from 'ui';
+import { ButtonComponent } from 'ui';
+import { QuickAction } from 'ui';
+import { TableOfContentComponent } from 'ui';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { DialogInteractiveComponent } from './dialog.interactive';
 

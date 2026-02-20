@@ -1,5 +1,5 @@
 import { Component, signal, computed, viewChild } from '@angular/core';
-import { ErrorStateComponent, IconName, QuickAction, Size } from 'angular-ui';
+import { ErrorStateComponent, IconName, QuickAction, Size } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { ERROR_STATE_SHOWCASE_CONFIG } from './error-state.showcase.config';

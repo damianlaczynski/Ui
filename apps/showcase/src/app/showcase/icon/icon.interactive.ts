@@ -1,5 +1,5 @@
 import { Component, computed, signal } from '@angular/core';
-import { IconComponent, IconName, Size } from 'angular-ui';
+import { IconComponent, IconName, Size } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { ICON_SHOWCASE_CONFIG, ICON_VARIANTS } from './icon.showcase.config';

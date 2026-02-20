@@ -3,7 +3,7 @@ import { Variant, Appearance, Size } from '../utils';
 import { ToastPosition } from './models/toast.model';
 import { IconComponent } from '../icon/icon.component';
 import { IconName } from '../icon/generated/icon-name.type';
-import { ButtonComponent } from 'angular-ui';
+import { ButtonComponent } from '../button/button.component';
 
 @Component({
   selector: 'ui-toast',

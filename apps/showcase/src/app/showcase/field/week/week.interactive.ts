@@ -1,6 +1,6 @@
 import { Component, computed, signal, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Size, WeekComponent } from 'angular-ui';
+import { Size, WeekComponent } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { WEEK_SHOWCASE_CONFIG } from './week.showcase.config';

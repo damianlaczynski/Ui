@@ -1,4 +1,4 @@
-import type { DrawerBackdrop, DrawerModalType, DrawerPosition, DrawerType } from 'angular-ui';
+import type { DrawerBackdrop, DrawerModalType, DrawerPosition, DrawerType } from 'ui';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { createDrawerFormConfigs } from '@shared/utils/showcase/drawer-form-config.utils';
 import {

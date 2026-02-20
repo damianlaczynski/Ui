@@ -1,12 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  SplitterComponent,
-  SplitterPanelDirective,
-  SplitterPanel,
-  SplitterResizeEvent,
-} from 'angular-ui';
-import { TableOfContentComponent } from 'angular-ui';
+import { SplitterComponent, SplitterPanelDirective, SplitterPanel, SplitterResizeEvent } from 'ui';
+import { TableOfContentComponent } from 'ui';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { ShowcaseDemoCardComponent } from '@shared/components/showcase-demo-card';
 import { SplitterInteractiveComponent } from './splitter.interactive';

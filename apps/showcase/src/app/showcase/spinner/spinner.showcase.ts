@@ -6,7 +6,7 @@ import {
   SpinnerComponent,
   TableOfContentComponent,
   Variant,
-} from 'angular-ui';
+} from 'ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { CONTENT_POSITIONS, VARIANTS } from '@shared/utils/showcase/component-options.utils';

@@ -1,5 +1,5 @@
 import { Component, signal, computed } from '@angular/core';
-import { KbdComponent, Size } from 'angular-ui';
+import { KbdComponent, Size } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { KBD_SHOWCASE_CONFIG } from './kbd.showcase.config';

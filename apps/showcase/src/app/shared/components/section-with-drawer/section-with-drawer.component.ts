@@ -1,13 +1,8 @@
 import { Component, input, output, model } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {
-  ButtonComponent,
-  DrawerComponent,
-  RadioButtonGroupComponent,
-  SwitchComponent,
-} from 'angular-ui';
-import type { RadioButtonItem } from 'angular-ui';
+import { ButtonComponent, DrawerComponent, RadioButtonGroupComponent, SwitchComponent } from 'ui';
+import type { RadioButtonItem } from 'ui';
 import type { SectionDrawerFormControl } from './section-with-drawer.types';
 
 @Component({

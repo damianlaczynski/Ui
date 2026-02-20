@@ -1,6 +1,6 @@
 import { Component, signal, computed, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CheckboxComponent, Shape, Size } from 'angular-ui';
+import { CheckboxComponent, Shape, Size } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { CHECKBOX_SHOWCASE_CONFIG } from './checkbox.showcase.config';

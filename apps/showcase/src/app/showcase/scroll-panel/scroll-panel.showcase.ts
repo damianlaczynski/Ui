@@ -1,6 +1,6 @@
 import { Component, signal, computed, viewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ScrollPanelComponent, ButtonComponent, TableOfContentComponent } from 'angular-ui';
+import { ScrollPanelComponent, ButtonComponent, TableOfContentComponent } from 'ui';
 import {
   SCROLL_PANEL_ORIENTATIONS,
   SCROLL_PANEL_BEHAVIORS,
@@ -11,7 +11,7 @@ import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { ShowcaseDemoCardComponent } from '@shared/components/showcase-demo-card';
 import { SCROLL_PANEL_DRAWER_CONFIGS } from './scroll-panel.showcase.config';
 import { ScrollPanelInteractiveComponent } from './scroll-panel.interactive';
-import type { ScrollPanelOrientation, ScrollPanelBehavior } from 'angular-ui';
+import type { ScrollPanelOrientation, ScrollPanelBehavior } from 'ui';
 
 @Component({
   selector: 'app-scroll-panel-showcase',

@@ -1,12 +1,12 @@
 import { Component, OnInit, OnDestroy, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProgressBarComponent, ProgressBarType } from 'angular-ui';
-import { TableOfContentComponent } from 'angular-ui';
+import { ProgressBarComponent, ProgressBarType } from 'ui';
+import { TableOfContentComponent } from 'ui';
 import {
   InteractiveShowcaseComponent,
   ShowcaseConfig,
 } from '@shared/components/interactive-showcase';
-import { Variant, Size } from 'angular-ui';
+import { Variant, Size } from 'ui';
 
 @Component({
   selector: 'app-progress-bar-showcase',

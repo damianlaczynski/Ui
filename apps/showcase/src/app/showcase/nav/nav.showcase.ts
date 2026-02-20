@@ -20,7 +20,7 @@ import {
   Size,
   TableOfContentComponent,
   Variant,
-} from 'angular-ui';
+} from 'ui';
 import { NAV_DRAWER_CONFIGS } from './nav.showcase.config';
 import { NavInteractiveComponent } from './nav.interactive';
 

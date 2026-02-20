@@ -8,7 +8,7 @@ import {
   CardOnSelectionChangeEvent,
   Orientation,
   Size,
-} from 'angular-ui';
+} from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { CARD_SHOWCASE_CONFIG } from './card.showcase.config';

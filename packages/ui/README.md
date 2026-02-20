@@ -1,4 +1,4 @@
-# AngularUi
+# ui
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.0.
 
@@ -21,7 +21,7 @@ ng generate --help
 To build the library, run:
 
 ```bash
-ng build angular-ui
+ng build ui
 ```
 
 This command will compile your project, and the build artifacts will be placed in the `dist/` directory.
@@ -48,7 +48,7 @@ npm run build:lib:watch
    npm login
    ```
 
-2. Update the version in `packages/angular-ui/package.json` or use the automated scripts
+2. Update the version in `packages/ui/package.json` or use the automated scripts
 
 **Publishing options:**
 
@@ -71,11 +71,11 @@ npm run publish:lib:major
 ```
 
 **Note:** The automated scripts will:
-1. Update the version in `packages/angular-ui/package.json`
+1. Update the version in `packages/ui/package.json`
 2. Build the library
 3. Publish to npm
 
-**For scoped packages (e.g., `@laczynski/angular-ui`):**
+**For scoped packages (e.g., `ui`):**
 ```bash
 npm publish --access public
 ```

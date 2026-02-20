@@ -3,42 +3,49 @@
   <div class="carousel__content">
     <div class="carousel__track" [style.transform]="'translateX(-' + currentIndex() * 100 + '%)'">
       @for (item of items(); track item.id) {
-      <div
-        class="carousel__slide"
-        [class.carousel__slide--active]="currentIndex() === $index"
-        (click)="onItemClick(item, $index)"
-      >
-        @if (item.image) {
-        <div class="carousel__image-container">
-          <img [src]="item.image" [alt]="item.title || 'Carousel image'" class="carousel__image" />
-          @if (item.title || item.description) {
-          <div class="carousel__overlay">
-            @if (item.title) {
-            <h3 class="carousel__title">{{ item.title }}</h3>
-            } @if (item.description) {
-            <p class="carousel__description">{{ item.description }}</p>
-            }
-          </div>
+        <div
+          class="carousel__slide"
+          [class.carousel__slide--active]="currentIndex() === $index"
+          (click)="onItemClick(item, $index)"
+        >
+          @if (item.image) {
+            <div class="carousel__image-container">
+              <img
+                [src]="item.image"
+                [alt]="item.title || 'Carousel image'"
+                class="carousel__image"
+              />
+              @if (item.title || item.description) {
+                <div class="carousel__overlay">
+                  @if (item.title) {
+                    <h3 class="carousel__title">{{ item.title }}</h3>
+                  }
+                  @if (item.description) {
+                    <p class="carousel__description">{{ item.description }}</p>
+                  }
+                </div>
+              }
+            </div>
+          } @else if (slideTemplate()) {
+            <div class="carousel__custom-content">
+              <ng-container
+                *ngTemplateOutlet="slideTemplate()!; context: { $implicit: item, index: $index }"
+              />
+            </div>
+          } @else {
+            <div class="carousel__custom-content">
+              @if (item.title) {
+                <h3 class="carousel__title">{{ item.title }}</h3>
+              }
+              @if (item.description) {
+                <p class="carousel__description">{{ item.description }}</p>
+              }
+              @if (item.content) {
+                <div [innerHTML]="item.content"></div>
+              }
+            </div>
           }
         </div>
-        } @else if (slideTemplate()) {
-        <div class="carousel__custom-content">
-          <ng-container
-            *ngTemplateOutlet="slideTemplate()!; context: { $implicit: item, index: $index }"
-          />
-        </div>
-        } @else {
-        <div class="carousel__custom-content">
-          @if (item.title) {
-          <h3 class="carousel__title">{{ item.title }}</h3>
-          } @if (item.description) {
-          <p class="carousel__description">{{ item.description }}</p>
-          } @if (item.content) {
-          <div [innerHTML]="item.content"></div>
-          }
-        </div>
-        }
-      </div>
       }
     </div>
   </div>

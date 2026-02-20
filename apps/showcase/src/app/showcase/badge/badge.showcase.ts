@@ -10,7 +10,7 @@ import {
   Size,
   TableOfContentComponent,
   Variant,
-} from 'angular-ui';
+} from 'ui';
 import {
   APPEARANCES,
   SHAPES,

@@ -2,9 +2,9 @@
 // 7-1 Pattern SCSS Architecture with BEM Methodology
 // ==========================================================================
 
-// Import library styles first (from angular-ui package)
-// The includePath in angular.json allows importing from packages/angular-ui/src/lib/scss
-//@use 'angular-ui/main' as *;
+// Import library styles first (from ui package)
+// The includePath in angular.json allows importing from packages/ui/src/lib/scss
+//@use 'ui/main' as *;
 
 // ==========================================================================
 // Showcase Application Styles

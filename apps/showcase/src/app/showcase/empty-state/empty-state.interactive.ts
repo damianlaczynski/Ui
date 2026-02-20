@@ -1,5 +1,5 @@
 import { Component, signal, computed, viewChild } from '@angular/core';
-import { EmptyStateComponent, IconName, QuickAction, Size } from 'angular-ui';
+import { EmptyStateComponent, IconName, QuickAction, Size } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { EMPTY_STATE_SHOWCASE_CONFIG } from './empty-state.showcase.config';

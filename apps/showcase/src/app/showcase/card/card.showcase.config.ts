@@ -1,5 +1,5 @@
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
-import type { CardAppearance, CardFocusMode, Size } from 'angular-ui';
+import type { CardAppearance, CardFocusMode, Size } from 'ui';
 import {
   SIZES,
   ORIENTATIONS,

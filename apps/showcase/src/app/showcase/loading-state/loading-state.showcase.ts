@@ -1,7 +1,7 @@
 import { Component, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoadingStateComponent, CardComponent, ButtonComponent, Size } from 'angular-ui';
-import { TableOfContentComponent } from 'angular-ui';
+import { LoadingStateComponent, CardComponent, ButtonComponent, Size } from 'ui';
+import { TableOfContentComponent } from 'ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { SIZES } from '@shared/utils/showcase/component-options.utils';
@@ -436,7 +436,7 @@ export class LoadingStateShowcaseComponent {
   }
 
   usageExample = `// In your component
-import { LoadingStateComponent } from 'angular-ui';
+import { LoadingStateComponent } from 'ui';
 
 @Component({
   template: \`
