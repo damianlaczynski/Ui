@@ -83,4 +83,4 @@ jobs:
         run: npm run build:lib
 
       - name: Build showcase
-        run: npm run build:showcase
+        run: npm run build:ui-showcase
