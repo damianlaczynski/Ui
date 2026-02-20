@@ -41,9 +41,14 @@
     @if (!disabled() && !readonly()) {
       <div class="field__actions">
         @if (value) {
-          <ui-action-button [icon]="'dismiss'" [size]="size()" (click)="clear()"></ui-action-button>
+          <ui-action-button
+            [icon]="'dismiss'"
+            [size]="size()"
+            [ariaLabel]="'Clear phone number'"
+            (click)="clear()"
+          ></ui-action-button>
         }
-        <ui-action-button [icon]="'call'" [size]="size()"></ui-action-button>
+        <ui-action-button [icon]="'call'" [size]="size()" [ariaLabel]="'Call'"></ui-action-button>
       </div>
     }
   </div>

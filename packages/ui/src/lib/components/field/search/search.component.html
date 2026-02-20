@@ -39,10 +39,19 @@
     @if (!disabled() && !readonly()) {
       <div class="field__actions">
         @if (value) {
-          <ui-action-button [icon]="'dismiss'" [size]="size()" (click)="clear()"></ui-action-button>
+          <ui-action-button
+            [icon]="'dismiss'"
+            [size]="size()"
+            [ariaLabel]="'Clear search'"
+            (click)="clear()"
+          ></ui-action-button>
         }
 
-        <ui-action-button [icon]="'search'" [size]="size()"></ui-action-button>
+        <ui-action-button
+          [icon]="'search'"
+          [size]="size()"
+          [ariaLabel]="'Search'"
+        ></ui-action-button>
       </div>
     }
   </div>
