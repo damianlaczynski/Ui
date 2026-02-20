@@ -76,6 +76,8 @@
   --slider-rail-color: var(--color-neutral-stroke-rest);
   --slider-progress-color: var(--color-brand-primary);
   --slider-thumb-radius: 9px;
+  --slider-direction: 90deg;
+  --slider-thumb-translate-x: -50%;
 
   position: absolute;
   width: 100%;
@@ -264,6 +266,14 @@
   @include transition-transform($duration-fast);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .slider-visual,
+  .slider-thumb,
+  .slider-thumb-wrapper {
+    transition: none !important;
+  }
+}
+
 // ===== VERTICAL ORIENTATION =====
 .slider--vertical {
   .slider-wrapper {
@@ -317,6 +327,7 @@
   }
 
   .slider-visual {
+    --slider-direction: 0deg;
     width: var(--slider-rail-size);
     height: 100%;
     top: 0;
@@ -328,5 +339,14 @@
     top: auto;
     left: 50%;
     right: auto;
+  }
+}
+
+[dir='rtl'] {
+  .slider:not(.slider--vertical) {
+    .slider-visual {
+      --slider-direction: 270deg;
+      --slider-thumb-translate-x: 50%;
+    }
   }
 }

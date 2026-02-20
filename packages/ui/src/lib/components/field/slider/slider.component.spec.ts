@@ -28,12 +28,12 @@ describe('SliderComponent', () => {
 
   it('should write and read value via ControlValueAccessor', () => {
     component.writeValue(50);
-    expect(component.currentValue).toBe(50);
+    expect(component.currentValue()).toBe(50);
   });
 
   it('should use min when writeValue receives null', () => {
     component.writeValue(null);
-    expect(component.currentValue).toBe(0);
+    expect(component.currentValue()).toBe(0);
   });
 
   it('should update value on input event when not readonly', () => {
@@ -41,7 +41,7 @@ describe('SliderComponent', () => {
     input.value = '75';
     input.dispatchEvent(new Event('input'));
     fixture.detectChanges();
-    expect(component.currentValue).toBe(75);
+    expect(component.currentValue()).toBe(75);
   });
 
   it('should not update value on input event when readonly', () => {
@@ -52,7 +52,7 @@ describe('SliderComponent', () => {
     input.value = '80';
     input.dispatchEvent(new Event('input'));
     fixture.detectChanges();
-    expect(component.currentValue).toBe(50);
+    expect(component.currentValue()).toBe(50);
   });
 
   it('should not update value on input event when disabled', () => {
@@ -63,7 +63,7 @@ describe('SliderComponent', () => {
     input.value = '80';
     input.dispatchEvent(new Event('input'));
     fixture.detectChanges();
-    expect(component.currentValue).toBe(50);
+    expect(component.currentValue()).toBe(50);
   });
 
   it('should emit change event on value change when not readonly', () => {
@@ -133,7 +133,7 @@ describe('SliderComponent', () => {
     fixture.componentRef.setInput('max', 100);
     component.writeValue(50);
     fixture.detectChanges();
-    expect(component.getFillPercentage()).toBe(50);
+    expect(component.fillPercentage()).toBe(50);
   });
 
   it('should not set dragging state on mousedown when readonly', () => {
@@ -141,7 +141,9 @@ describe('SliderComponent', () => {
     fixture.detectChanges();
     const wrapper = fixture.nativeElement.querySelector('.slider-input-wrapper');
     wrapper.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
-    expect(component['_isDragging']).toBe(false);
+    fixture.detectChanges();
+    const slider = fixture.nativeElement.querySelector('.slider-wrapper');
+    expect(slider.classList.contains('slider--dragging')).toBe(false);
   });
 
   it('should not set dragging state on mousedown when disabled', () => {
@@ -149,7 +151,9 @@ describe('SliderComponent', () => {
     fixture.detectChanges();
     const wrapper = fixture.nativeElement.querySelector('.slider-input-wrapper');
     wrapper.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
-    expect(component['_isDragging']).toBe(false);
+    fixture.detectChanges();
+    const slider = fixture.nativeElement.querySelector('.slider-wrapper');
+    expect(slider.classList.contains('slider--dragging')).toBe(false);
   });
 
   it('should call onChange when value changes', () => {
@@ -167,5 +171,65 @@ describe('SliderComponent', () => {
     const input = fixture.nativeElement.querySelector('input');
     input.dispatchEvent(new FocusEvent('blur'));
     expect(onTouchedSpy).toHaveBeenCalled();
+  });
+
+  it('should increase value with ArrowRight key', () => {
+    component.writeValue(50);
+    fixture.detectChanges();
+
+    const input = fixture.nativeElement.querySelector('input');
+    const event = new KeyboardEvent('keydown', {
+      key: 'ArrowRight',
+      bubbles: true,
+      cancelable: true,
+    });
+    input.dispatchEvent(event);
+    fixture.detectChanges();
+
+    expect(component.currentValue()).toBe(51);
+  });
+
+  it('should decrease value with ArrowLeft key', () => {
+    component.writeValue(50);
+    fixture.detectChanges();
+
+    const input = fixture.nativeElement.querySelector('input');
+    const event = new KeyboardEvent('keydown', {
+      key: 'ArrowLeft',
+      bubbles: true,
+      cancelable: true,
+    });
+    input.dispatchEvent(event);
+    fixture.detectChanges();
+
+    expect(component.currentValue()).toBe(49);
+  });
+
+  it('should set min value with Home key', () => {
+    fixture.componentRef.setInput('min', 10);
+    fixture.componentRef.setInput('max', 100);
+    component.writeValue(50);
+    fixture.detectChanges();
+
+    const input = fixture.nativeElement.querySelector('input');
+    const event = new KeyboardEvent('keydown', { key: 'Home', bubbles: true, cancelable: true });
+    input.dispatchEvent(event);
+    fixture.detectChanges();
+
+    expect(component.currentValue()).toBe(10);
+  });
+
+  it('should set max value with End key', () => {
+    fixture.componentRef.setInput('min', 10);
+    fixture.componentRef.setInput('max', 100);
+    component.writeValue(50);
+    fixture.detectChanges();
+
+    const input = fixture.nativeElement.querySelector('input');
+    const event = new KeyboardEvent('keydown', { key: 'End', bubbles: true, cancelable: true });
+    input.dispatchEvent(event);
+    fixture.detectChanges();
+
+    expect(component.currentValue()).toBe(100);
   });
 });

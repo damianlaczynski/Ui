@@ -13,7 +13,7 @@
   [size]="size()"
   [inputVariant]="inputVariant()"
 >
-  <div class="slider-wrapper" [ngClass]="sliderClasses">
+  <div class="slider-wrapper" [ngClass]="sliderClasses()">
     <div class="slider-container" [class.slider-container--with-minmax]="showMinMax()">
       @if (showMinMax()) {
         <span class="slider-minmax slider-minmax--min" [attr.aria-hidden]="true">{{
@@ -32,16 +32,16 @@
           [min]="min()"
           [max]="max()"
           [step]="step()"
-          [value]="currentValue"
+          [value]="currentValue()"
           [required]="required()"
           [disabled]="disabled()"
           [attr.aria-readonly]="readonly() ? 'true' : null"
-          [attr.aria-label]="ariaLabel() || label()"
+          [attr.aria-label]="computedAriaLabel()"
           [attr.aria-describedby]="ariaDescribedBy()"
           [attr.aria-valuemin]="min()"
           [attr.aria-valuemax]="max()"
-          [attr.aria-valuenow]="currentValue"
-          [attr.aria-valuetext]="getAriaValueText()"
+          [attr.aria-valuenow]="currentValue()"
+          [attr.aria-valuetext]="computedAriaValueText()"
           (input)="onSliderInput($event)"
           (change)="onSliderChange($event)"
           (keydown)="onSliderKeyDown($event)"
@@ -52,9 +52,9 @@
         <div
           class="slider-visual"
           [class.slider-visual--with-steps]="showStepMarkers()"
-          [ngStyle]="getVisualStyle()"
+          [ngStyle]="visualStyle()"
         >
-          <div class="slider-thumb-wrapper" [ngStyle]="getThumbWrapperStyle()">
+          <div class="slider-thumb-wrapper" [ngStyle]="thumbWrapperStyle()">
             <div class="slider-thumb"></div>
           </div>
         </div>
