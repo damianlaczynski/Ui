@@ -10,7 +10,7 @@ import {
   type DrawerPosition,
   type DrawerType,
   type QuickAction,
-} from 'angular-ui';
+} from 'ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { DRAWER_DRAWER_CONFIGS } from './drawer.showcase.config';

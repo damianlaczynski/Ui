@@ -1,12 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, OnDestroy, OnInit, signal } from '@angular/core';
-import {
-  ProgressBarComponent,
-  ProgressBarType,
-  Size,
-  TableOfContentComponent,
-  Variant,
-} from 'angular-ui';
+import { ProgressBarComponent, ProgressBarType, Size, TableOfContentComponent, Variant } from 'ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { SIZES, VARIANTS } from '@shared/utils/showcase/component-options.utils';

@@ -11,7 +11,7 @@ const OUTPUT_SPRITE_FILE = path.join(ROOT, 'public', 'assets', 'icons', 'sprite.
 const OUTPUT_MANIFEST_TS = path.join(
   ROOT,
   'packages',
-  'angular-ui',
+  'ui',
   'src',
   'lib',
   'components',
@@ -22,7 +22,7 @@ const OUTPUT_MANIFEST_TS = path.join(
 const OUTPUT_ICON_NAMES_TS = path.join(
   ROOT,
   'packages',
-  'angular-ui',
+  'ui',
   'src',
   'lib',
   'components',
@@ -33,7 +33,7 @@ const OUTPUT_ICON_NAMES_TS = path.join(
 const OUTPUT_ICON_NAME_TYPE_TS = path.join(
   ROOT,
   'packages',
-  'angular-ui',
+  'ui',
   'src',
   'lib',
   'components',

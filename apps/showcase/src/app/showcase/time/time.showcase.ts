@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TableOfContentComponent, TimeComponent } from 'angular-ui';
+import { TableOfContentComponent, TimeComponent } from 'ui';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { TimeInteractiveComponent } from './time.interactive';
 

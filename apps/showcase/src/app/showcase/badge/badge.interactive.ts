@@ -1,13 +1,5 @@
 import { Component, computed, signal } from '@angular/core';
-import {
-  Appearance,
-  BadgeComponent,
-  ContentPosition,
-  IconName,
-  Shape,
-  Size,
-  Variant,
-} from 'angular-ui';
+import { Appearance, BadgeComponent, ContentPosition, IconName, Shape, Size, Variant } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { BADGE_SHOWCASE_CONFIG } from './badge.showcase.config';

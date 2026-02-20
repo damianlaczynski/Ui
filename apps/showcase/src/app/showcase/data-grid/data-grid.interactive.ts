@@ -5,7 +5,7 @@ import {
   DataGridColumnFactory,
   DataGridComponent,
   DataGridRow,
-} from 'angular-ui';
+} from 'ui';
 import { Observable, of } from 'rxjs';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';

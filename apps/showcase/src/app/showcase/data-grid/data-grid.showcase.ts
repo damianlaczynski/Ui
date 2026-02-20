@@ -7,7 +7,7 @@ import {
   DataGridComponent,
   DataGridRow,
   TableOfContentComponent,
-} from 'angular-ui';
+} from 'ui';
 import { Observable, of } from 'rxjs';
 import { QueryParams, QueryResult } from '@shared/api/models/query-params.model';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';

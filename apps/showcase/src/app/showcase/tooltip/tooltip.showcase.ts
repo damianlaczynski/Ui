@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, signal } from '@angular/core';
-import { ButtonComponent, TableOfContentComponent, TooltipDirective } from 'angular-ui';
-import type { TooltipPosition, TooltipSize } from 'angular-ui';
+import { ButtonComponent, TableOfContentComponent, TooltipDirective } from 'ui';
+import type { TooltipPosition, TooltipSize } from 'ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import {

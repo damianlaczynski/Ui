@@ -1,7 +1,7 @@
 import { Component, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ErrorStateComponent, IconName, QuickAction, Size } from 'angular-ui';
-import { TableOfContentComponent } from 'angular-ui';
+import { ErrorStateComponent, IconName, QuickAction, Size } from 'ui';
+import { TableOfContentComponent } from 'ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { SIZES } from '@shared/utils/showcase/component-options.utils';
@@ -276,8 +276,8 @@ export class ErrorStateShowcaseComponent {
   });
 
   usageExample = `// In your component
-import { ErrorStateComponent } from 'angular-ui';
-import { QuickAction } from 'angular-ui';
+import { ErrorStateComponent } from 'ui';
+import { QuickAction } from 'ui';
 
 @Component({
   template: \`

@@ -7,7 +7,7 @@ import {
   Orientation,
   Shape,
   Size,
-} from 'angular-ui';
+} from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { ACCORDION_SHOWCASE_CONFIG } from './accordion.showcase.config';

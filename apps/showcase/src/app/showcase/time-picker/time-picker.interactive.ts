@@ -1,5 +1,5 @@
 import { Component, computed, signal, viewChild } from '@angular/core';
-import { Size, TimePickerComponent } from 'angular-ui';
+import { Size, TimePickerComponent } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { TIME_PICKER_SHOWCASE_CONFIG } from './time-picker.showcase.config';

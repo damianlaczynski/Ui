@@ -1,5 +1,5 @@
 import { Component, computed, signal, viewChild } from '@angular/core';
-import { CarouselComponent, CarouselItem } from 'angular-ui';
+import { CarouselComponent, CarouselItem } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { CAROUSEL_SHOWCASE_CONFIG } from './carousel.showcase.config';

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, effect, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { Size, TableOfContentComponent, WeekComponent } from 'angular-ui';
+import { Size, TableOfContentComponent, WeekComponent } from 'ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { WeekInteractiveComponent } from './week.interactive';

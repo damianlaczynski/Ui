@@ -1,6 +1,6 @@
 import { Component, computed, signal } from '@angular/core';
 import { JsonPipe, TitleCasePipe } from '@angular/common';
-import { ButtonComponent, Step, StepperComponent, TableOfContentComponent, Size } from 'angular-ui';
+import { ButtonComponent, Step, StepperComponent, TableOfContentComponent, Size } from 'ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { ORIENTATIONS, SIZES } from '@shared/utils/showcase/component-options.utils';

@@ -62,7 +62,7 @@ jobs:
         run: npm run build:lib
 
       - name: Test library
-        run: npx ng test angular-ui --no-watch
+        run: npx ng test ui --no-watch
 
   build:
     runs-on: ubuntu-latest

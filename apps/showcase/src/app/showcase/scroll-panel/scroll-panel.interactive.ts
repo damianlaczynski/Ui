@@ -1,10 +1,10 @@
 import { Component, signal, computed, viewChild } from '@angular/core';
-import { ScrollPanelComponent } from 'angular-ui';
+import { ScrollPanelComponent } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import { ShowcaseDemoCardComponent } from '@shared/components/showcase-demo-card';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { SCROLL_PANEL_SHOWCASE_CONFIG } from './scroll-panel.showcase.config';
-import type { ScrollPanelOrientation, ScrollPanelBehavior } from 'angular-ui';
+import type { ScrollPanelOrientation, ScrollPanelBehavior } from 'ui';
 import { TitleCasePipe } from '@angular/common';
 
 @Component({

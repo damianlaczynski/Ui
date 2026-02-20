@@ -1,14 +1,5 @@
 import { Component, computed, signal, viewChild } from '@angular/core';
-import {
-  Appearance,
-  IconName,
-  Node,
-  NodeComponent,
-  Orientation,
-  Shape,
-  Size,
-  Variant,
-} from 'angular-ui';
+import { Appearance, IconName, Node, NodeComponent, Orientation, Shape, Size, Variant } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { NODE_SHOWCASE_CONFIG } from './node.showcase.config';

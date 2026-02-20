@@ -12,7 +12,7 @@ import {
   TreeComponent,
   TreeNode,
   Variant,
-} from 'angular-ui';
+} from 'ui';
 import {
   APPEARANCES,
   SHAPES,

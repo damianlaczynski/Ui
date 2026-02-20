@@ -1,5 +1,5 @@
 import { Component, signal, computed } from '@angular/core';
-import { LoadingStateComponent, CardComponent, Size } from 'angular-ui';
+import { LoadingStateComponent, CardComponent, Size } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { LOADING_STATE_SHOWCASE_CONFIG } from './loading-state.showcase.config';

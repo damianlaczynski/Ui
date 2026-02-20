@@ -10,7 +10,7 @@ import {
   loadingState,
   Size,
   TableOfContentComponent,
-} from 'angular-ui';
+} from 'ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { ShowcaseDemoCardComponent } from '@shared/components/showcase-demo-card';

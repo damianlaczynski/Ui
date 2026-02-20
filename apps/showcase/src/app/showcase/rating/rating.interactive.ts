@@ -1,5 +1,5 @@
 import { Component, signal, computed, viewChild } from '@angular/core';
-import { RatingComponent, Size } from 'angular-ui';
+import { RatingComponent, Size } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { RATING_SHOWCASE_CONFIG } from './rating.showcase.config';

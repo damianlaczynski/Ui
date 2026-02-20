@@ -7,7 +7,7 @@ import {
   loadingState,
   QuickAction,
   Size,
-} from 'angular-ui';
+} from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { STATE_CONTAINER_SHOWCASE_CONFIG } from './state-container.showcase.config';

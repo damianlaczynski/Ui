@@ -1,7 +1,7 @@
 import { Component, signal, computed, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DropdownComponent, DropdownItem, DropdownMode } from 'angular-ui';
-import { InputVariant, Size } from 'angular-ui';
+import { DropdownComponent, DropdownItem, DropdownMode } from 'ui';
+import { InputVariant, Size } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { DROPDOWN_SHOWCASE_CONFIG, DROPDOWN_BASIC_ITEMS } from './dropdown.showcase.config';

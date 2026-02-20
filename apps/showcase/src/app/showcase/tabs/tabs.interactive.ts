@@ -1,6 +1,6 @@
 import { Component, signal, computed } from '@angular/core';
-import { TabsComponent, Tab } from 'angular-ui';
-import type { Appearance, Orientation, Shape, Size, Variant } from 'angular-ui';
+import { TabsComponent, Tab } from 'ui';
+import type { Appearance, Orientation, Shape, Size, Variant } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import {

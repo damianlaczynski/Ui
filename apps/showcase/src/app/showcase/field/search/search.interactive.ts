@@ -1,6 +1,6 @@
 import { Component, signal, computed, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SearchComponent, InputVariant, Size } from 'angular-ui';
+import { SearchComponent, InputVariant, Size } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { SEARCH_SHOWCASE_CONFIG } from './search.showcase.config';

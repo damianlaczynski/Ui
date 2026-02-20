@@ -1,5 +1,5 @@
 import { Component, signal, computed, viewChild } from '@angular/core';
-import { MenuComponent, MenuItem, Variant, Appearance, Size, Shape, IconName } from 'angular-ui';
+import { MenuComponent, MenuItem, Variant, Appearance, Size, Shape, IconName } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { MENU_SHOWCASE_CONFIG } from './menu.showcase.config';

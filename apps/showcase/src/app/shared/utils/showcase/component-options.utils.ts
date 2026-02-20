@@ -1,4 +1,4 @@
-import type { Appearance, IconName, Shape, Size, Variant } from 'angular-ui';
+import type { Appearance, IconName, Shape, Size, Variant } from 'ui';
 
 export const VARIANTS: Variant[] = ['primary', 'secondary', 'success', 'warning', 'danger', 'info'];
 

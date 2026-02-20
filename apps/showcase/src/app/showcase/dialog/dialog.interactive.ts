@@ -1,7 +1,7 @@
 import { Component, signal, computed, model } from '@angular/core';
-import { DialogComponent, DialogBackdrop } from 'angular-ui';
-import { ButtonComponent } from 'angular-ui';
-import { QuickAction } from 'angular-ui';
+import { DialogComponent, DialogBackdrop } from 'ui';
+import { ButtonComponent } from 'ui';
+import { QuickAction } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { DIALOG_SHOWCASE_CONFIG } from './dialog.showcase.config';

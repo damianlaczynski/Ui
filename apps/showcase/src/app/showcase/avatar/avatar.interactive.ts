@@ -1,5 +1,5 @@
 import { Component, signal, computed, viewChild } from '@angular/core';
-import { Appearance, AvatarComponent, IconName, Shape, Size, Variant } from 'angular-ui';
+import { Appearance, AvatarComponent, IconName, Shape, Size, Variant } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { AVATAR_SHOWCASE_CONFIG } from './avatar.showcase.config';

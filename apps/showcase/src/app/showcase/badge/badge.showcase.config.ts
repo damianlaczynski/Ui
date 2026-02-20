@@ -1,4 +1,4 @@
-import type { ContentPosition } from 'angular-ui';
+import type { ContentPosition } from 'ui';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { createDrawerFormConfigs } from '@shared/utils/showcase/drawer-form-config.utils';
 import {

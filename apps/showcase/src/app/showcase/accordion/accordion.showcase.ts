@@ -12,7 +12,7 @@ import {
   Orientation,
   Shape,
   Size,
-} from 'angular-ui';
+} from 'ui';
 import { SIZES, SHAPES } from '@shared/utils/showcase/component-options.utils';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';

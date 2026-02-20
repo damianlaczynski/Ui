@@ -1,5 +1,5 @@
 import { Component, computed, signal, viewChild } from '@angular/core';
-import { Size, VideoComponent } from 'angular-ui';
+import { Size, VideoComponent } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { QUALITY_OPTIONS, VIDEO_SHOWCASE_CONFIG, toVideoSize } from './video.showcase.config';

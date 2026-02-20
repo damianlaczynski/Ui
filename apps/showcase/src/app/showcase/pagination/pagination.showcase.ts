@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, WritableSignal, computed, signal } from '@angular/core';
-import { PaginationComponent, PaginationConfig, Size, TableOfContentComponent } from 'angular-ui';
+import { PaginationComponent, PaginationConfig, Size, TableOfContentComponent } from 'ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { PaginationInteractiveComponent } from './pagination.interactive';
@@ -361,7 +361,7 @@ export class PaginationShowcaseComponent {
   largeConfig = computed(() => this.createConfig(this.sizeForm(), this.largePage()));
 
   usageExample = `import { Component, computed, signal } from '@angular/core';
-import { PaginationComponent, type PaginationConfig } from 'angular-ui';
+import { PaginationComponent, type PaginationConfig } from 'ui';
 
 @Component({
   selector: 'app-users-list',

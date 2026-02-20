@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, signal } from '@angular/core';
-import { TableOfContentComponent } from 'angular-ui';
+import { TableOfContentComponent } from 'ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import {
@@ -11,7 +11,7 @@ import {
 } from '@shared/utils/showcase/component-options.utils';
 import { TABLE_OF_CONTENT_DRAWER_CONFIGS } from './table-of-content.showcase.config';
 import { TableOfContentInteractiveComponent } from './table-of-content.interactive';
-import type { Appearance, Orientation, Shape, Size } from 'angular-ui';
+import type { Appearance, Orientation, Shape, Size } from 'ui';
 
 @Component({
   selector: 'app-table-of-content-showcase',

@@ -2,14 +2,14 @@ import { Component, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
-import { SearchComponent } from 'angular-ui';
-import { TableOfContentComponent } from 'angular-ui';
+import { SearchComponent } from 'ui';
+import { TableOfContentComponent } from 'ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { SIZES, INPUT_VARIANTS } from '@shared/utils/showcase/component-options.utils';
 import { SEARCH_DRAWER_CONFIGS } from './search.showcase.config';
 import { SearchInteractiveComponent } from './search.interactive';
-import type { InputVariant, Size } from 'angular-ui';
+import type { InputVariant, Size } from 'ui';
 
 @Component({
   selector: 'app-search-showcase',

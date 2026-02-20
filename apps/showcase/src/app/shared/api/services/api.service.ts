@@ -7,7 +7,7 @@ import { environment } from '../../../../environments/environment';
 import { Result, ResultStatus } from '../models/api-response.model';
 import { ApiErrorService } from './api-error.service';
 import { FormValidationService } from './form-validation.service';
-import { State, loadData, appendData } from 'angular-ui';
+import { State, loadData, appendData } from 'ui';
 import { QueryParams, QueryResult } from '@shared/api/models/query-params.model';
 
 @Injectable({

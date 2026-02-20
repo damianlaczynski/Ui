@@ -1,8 +1,8 @@
 import { Component, input, output, computed, inject } from '@angular/core';
 import { Router } from '@angular/router';
 //TODO: Add menu component back when it is implemented
-//import { MenuComponent } from 'angular-ui';
-import type { MenuItem } from 'angular-ui';
+//import { MenuComponent } from 'ui';
+import type { MenuItem } from 'ui';
 import { environment } from '../../../../environments/environment';
 
 @Component({

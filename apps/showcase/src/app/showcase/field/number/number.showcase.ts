@@ -1,9 +1,9 @@
 import { Component, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { NumberComponent } from 'angular-ui';
-import type { InputVariant, Size } from 'angular-ui';
-import { TableOfContentComponent } from 'angular-ui';
+import { NumberComponent } from 'ui';
+import type { InputVariant, Size } from 'ui';
+import { TableOfContentComponent } from 'ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { JsonPipe } from '@angular/common';

@@ -1,13 +1,5 @@
 import { Component, signal, computed, viewChild } from '@angular/core';
-import {
-  Appearance,
-  BreadcrumbComponent,
-  Breadcrumb,
-  Orientation,
-  Shape,
-  Size,
-  Variant,
-} from 'angular-ui';
+import { Appearance, BreadcrumbComponent, Breadcrumb, Orientation, Shape, Size, Variant } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { BREADCRUMB_SHOWCASE_CONFIG } from './breadcrumb.showcase.config';

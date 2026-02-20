@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, input } from '@angular/core';
-import { CardAppearance, CardComponent } from 'angular-ui';
+import { CardAppearance, CardComponent } from 'ui';
 
 @Component({
   selector: 'app-showcase-demo-card',

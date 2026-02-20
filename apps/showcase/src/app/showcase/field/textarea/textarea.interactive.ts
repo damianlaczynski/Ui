@@ -1,6 +1,6 @@
 import { Component, signal, computed, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TextareaComponent, InputVariant, Size } from 'angular-ui';
+import { TextareaComponent, InputVariant, Size } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { TEXTAREA_SHOWCASE_CONFIG } from './textarea.showcase.config';

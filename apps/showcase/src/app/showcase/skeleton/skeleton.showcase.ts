@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, signal } from '@angular/core';
-import { Shape, SkeletonComponent, TableOfContentComponent } from 'angular-ui';
+import { Shape, SkeletonComponent, TableOfContentComponent } from 'ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { SkeletonInteractiveComponent } from './skeleton.interactive';

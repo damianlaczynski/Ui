@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, effect, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { MonthComponent, Size, TableOfContentComponent } from 'angular-ui';
+import { MonthComponent, Size, TableOfContentComponent } from 'ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { MonthInteractiveComponent } from './month.interactive';

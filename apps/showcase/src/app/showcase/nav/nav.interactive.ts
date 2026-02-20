@@ -8,7 +8,7 @@ import {
   Shape,
   Size,
   Variant,
-} from 'angular-ui';
+} from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { NAV_SHOWCASE_CONFIG } from './nav.showcase.config';

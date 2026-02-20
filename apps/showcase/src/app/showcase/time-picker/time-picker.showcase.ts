@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, signal } from '@angular/core';
-import { Size, TableOfContentComponent, TimePickerComponent } from 'angular-ui';
+import { Size, TableOfContentComponent, TimePickerComponent } from 'ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { SIZES } from '@shared/utils/showcase/component-options.utils';

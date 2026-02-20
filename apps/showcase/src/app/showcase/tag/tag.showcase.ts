@@ -1,8 +1,8 @@
 import { Component, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Appearance, TagComponent, TableOfContentComponent, Variant } from 'angular-ui';
-import type { IconName } from 'angular-ui';
+import { Appearance, TagComponent, TableOfContentComponent, Variant } from 'ui';
+import type { IconName } from 'ui';
 import {
   APPEARANCES,
   SHAPES,
@@ -308,8 +308,8 @@ export class TagShowcaseComponent {
   appearanceVariantForm = computed(() => {
     const v = this.appearanceVariantFormValues();
     return {
-      size: v['size'] as import('angular-ui').Size,
-      shape: v['shape'] as import('angular-ui').Shape,
+      size: v['size'] as import('ui').Size,
+      shape: v['shape'] as import('ui').Shape,
       icon: (v['icon'] as IconName) || undefined,
       dismissible: !!v['dismissible'],
       selected: !!v['selected'],
@@ -330,8 +330,8 @@ export class TagShowcaseComponent {
   iconForm = computed(() => {
     const v = this.iconFormValues();
     return {
-      size: v['size'] as import('angular-ui').Size,
-      shape: v['shape'] as import('angular-ui').Shape,
+      size: v['size'] as import('ui').Size,
+      shape: v['shape'] as import('ui').Shape,
       dismissible: !!v['dismissible'],
       selected: !!v['selected'],
       disabled: !!v['disabled'],
@@ -355,7 +355,7 @@ export class TagShowcaseComponent {
     return {
       variant: v['variant'] as Variant,
       appearance: v['appearance'] as Appearance,
-      shape: v['shape'] as import('angular-ui').Shape,
+      shape: v['shape'] as import('ui').Shape,
       icon: (v['icon'] as IconName) || undefined,
       dismissible: !!v['dismissible'],
       selected: !!v['selected'],
@@ -380,7 +380,7 @@ export class TagShowcaseComponent {
     return {
       variant: v['variant'] as Variant,
       appearance: v['appearance'] as Appearance,
-      size: v['size'] as import('angular-ui').Size,
+      size: v['size'] as import('ui').Size,
       icon: (v['icon'] as IconName) || undefined,
       dismissible: !!v['dismissible'],
       selected: !!v['selected'],
@@ -404,8 +404,8 @@ export class TagShowcaseComponent {
     return {
       variant: v['variant'] as Variant,
       appearance: v['appearance'] as Appearance,
-      size: v['size'] as import('angular-ui').Size,
-      shape: v['shape'] as import('angular-ui').Shape,
+      size: v['size'] as import('ui').Size,
+      shape: v['shape'] as import('ui').Shape,
       icon: (v['icon'] as IconName) || undefined,
       dismissible: !!v['dismissible'],
       selectable: !!v['selectable'],

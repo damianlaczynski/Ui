@@ -1,5 +1,5 @@
 import { Component, computed, signal, viewChild } from '@angular/core';
-import { Step, StepperComponent, Size } from 'angular-ui';
+import { Step, StepperComponent, Size } from 'ui';
 import {
   InteractiveShowcaseComponent,
   type ShowcaseConfig,

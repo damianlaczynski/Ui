@@ -1,5 +1,5 @@
 import { Component, computed, signal, viewChild } from '@angular/core';
-import { Appearance, IconName, MessageBarComponent, QuickAction, Size, Variant } from 'angular-ui';
+import { Appearance, IconName, MessageBarComponent, QuickAction, Size, Variant } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { MESSAGE_BAR_SHOWCASE_CONFIG } from './message-bar.showcase.config';

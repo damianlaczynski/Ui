@@ -14,7 +14,7 @@
       "@layout/*": ["./src/app/layout/*"],
       "@styles/*": ["./src/styles/*"],
       "@environments/*": ["./src/environments/*"],
-      "angular-ui": ["../../packages/angular-ui/src/public-api.ts"]
+      "ui": ["../../packages/ui/src/public-api.ts"]
     }
   },
   "files": ["src/main.ts"],

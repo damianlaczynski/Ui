@@ -1,6 +1,6 @@
 import { Component, computed, signal, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MonthComponent, Size } from 'angular-ui';
+import { MonthComponent, Size } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { MONTH_SHOWCASE_CONFIG } from './month.showcase.config';

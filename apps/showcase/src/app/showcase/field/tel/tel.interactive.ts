@@ -1,7 +1,7 @@
 import { Component, signal, computed, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TelComponent } from 'angular-ui';
-import { InputVariant, Size } from 'angular-ui';
+import { TelComponent } from 'ui';
+import { InputVariant, Size } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { TEL_SHOWCASE_CONFIG } from './tel.showcase.config';

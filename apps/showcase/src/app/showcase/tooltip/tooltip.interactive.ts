@@ -1,5 +1,5 @@
 import { Component, computed, signal } from '@angular/core';
-import { ButtonComponent, TooltipDirective, TooltipPosition, TooltipSize } from 'angular-ui';
+import { ButtonComponent, TooltipDirective, TooltipPosition, TooltipSize } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { TOOLTIP_SHOWCASE_CONFIG } from './tooltip.showcase.config';

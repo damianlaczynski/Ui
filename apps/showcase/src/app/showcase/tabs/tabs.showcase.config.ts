@@ -1,4 +1,4 @@
-import type { Tab } from 'angular-ui';
+import type { Tab } from 'ui';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { createDrawerFormConfigs } from '@shared/utils/showcase/drawer-form-config.utils';
 import {
