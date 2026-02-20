@@ -75,6 +75,67 @@
   width: 100%;
 }
 
+.input-main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &--inline {
+    flex-direction: row;
+    align-items: center;
+    gap: $spacing-2;
+  }
+}
+
+.input-control {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.input-label {
+  &--inline {
+    margin-bottom: 0;
+  }
+
+  &--before,
+  &--after {
+    align-items: center;
+  }
+
+  &--before {
+    margin-right: $spacing-2;
+  }
+
+  &--after {
+    margin-left: $spacing-2;
+  }
+
+  &--below {
+    margin-top: $spacing-1;
+    margin-bottom: 0;
+  }
+}
+
+[dir='rtl'] {
+  .input-main {
+    &--inline {
+      flex-direction: row-reverse;
+    }
+  }
+
+  .input-label {
+    &--before {
+      margin-right: 0;
+      margin-left: $spacing-2;
+    }
+
+    &--after {
+      margin-left: 0;
+      margin-right: $spacing-2;
+    }
+  }
+}
+
 // Input wrapper for different variants
 .input-wrapper {
   display: inline-flex;

@@ -1,8 +1,7 @@
-import { Component, computed, forwardRef, input, OnInit, signal } from '@angular/core';
+import { Component, computed, forwardRef, OnInit, signal } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FieldComponent } from '../field/field.component';
-import { ContentPosition } from '../../utils';
 
 @Component({
   selector: 'ui-switch',
@@ -17,7 +16,6 @@ import { ContentPosition } from '../../utils';
   ],
 })
 export class SwitchComponent extends FieldComponent implements ControlValueAccessor, OnInit {
-  labelPosition = input<ContentPosition>('after');
   private checked = signal(false);
   readonly isChecked = computed(() => this.checked());
 

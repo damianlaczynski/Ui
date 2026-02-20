@@ -35,7 +35,7 @@
         [checked]="isChecked()"
         [disabled]="disabled()"
         [attr.aria-label]="computedAriaLabel()"
-        [attr.aria-describedby]="ariaDescribedBy()"
+        [attr.aria-describedby]="getComputedAriaDescribedBy()"
         [attr.required]="required() ? true : null"
         (change)="onSwitchChange($event)"
         (focus)="onFocus($event)"

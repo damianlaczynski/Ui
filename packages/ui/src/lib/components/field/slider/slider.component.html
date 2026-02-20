@@ -37,7 +37,7 @@
           [disabled]="disabled()"
           [attr.aria-readonly]="readonly() ? 'true' : null"
           [attr.aria-label]="computedAriaLabel()"
-          [attr.aria-describedby]="ariaDescribedBy()"
+          [attr.aria-describedby]="getComputedAriaDescribedBy()"
           [attr.aria-valuemin]="min()"
           [attr.aria-valuemax]="max()"
           [attr.aria-valuenow]="currentValue()"

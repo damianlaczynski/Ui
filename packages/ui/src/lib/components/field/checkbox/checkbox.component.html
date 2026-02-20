@@ -32,7 +32,7 @@
         [indeterminate]="isIndeterminate()"
         [disabled]="disabled()"
         [attr.aria-label]="computedAriaLabel()"
-        [attr.aria-describedby]="ariaDescribedBy()"
+        [attr.aria-describedby]="getComputedAriaDescribedBy()"
         [attr.required]="required() ? true : null"
         class="checkbox-input"
         (change)="onCheckboxChange($event)"

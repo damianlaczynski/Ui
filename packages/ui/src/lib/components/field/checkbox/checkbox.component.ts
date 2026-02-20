@@ -9,7 +9,7 @@ import {
   signal,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ContentPosition, Shape } from '../../utils';
+import { Shape } from '../../utils';
 import { FieldComponent } from '../field/field.component';
 import { IconComponent } from '../../icon';
 import { NgClass } from '@angular/common';
@@ -37,7 +37,6 @@ import { IconName } from '../../icon/generated/icon-name.type';
 export class CheckboxComponent extends FieldComponent implements ControlValueAccessor, OnInit {
   // Unified Design System
   shape = input<Shape>('rounded');
-  labelPosition = input<ContentPosition>('after');
   indeterminate = model<boolean>(false);
   private checked = signal(false);
 
