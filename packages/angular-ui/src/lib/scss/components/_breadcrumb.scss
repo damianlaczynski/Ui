@@ -39,4 +39,8 @@
     flex-shrink: 0;
     margin: 0 $spacing-1;
   }
+
+  &__item--overflow .menu-trigger {
+    @include smooth-hover;
+  }
 }

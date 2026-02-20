@@ -74,8 +74,8 @@
 .date-calendar__weekdays {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: $spacing-05;
-  margin-bottom: $spacing-05;
+  gap: $spacing-0_5;
+  margin-bottom: $spacing-0_5;
 }
 
 .date-calendar__weekday {
@@ -90,7 +90,7 @@
 .date-calendar__grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: $spacing-05;
+  gap: $spacing-0_5;
 }
 
 // Calendar Day

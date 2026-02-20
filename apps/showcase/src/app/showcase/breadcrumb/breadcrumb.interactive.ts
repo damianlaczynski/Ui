@@ -16,7 +16,7 @@ const FULL_PATH: Breadcrumb[] = [
   { id: 'home', label: 'Home', icon: 'home' },
   { id: 'documents', label: 'Documents', icon: 'folder' },
   { id: 'projects', label: 'Projects', icon: 'folder' },
-  { id: 'webapp', label: 'WebApp', icon: 'folder' },
+  { id: 'webapp', label: 'WebApp_with_a_very_long_name', icon: 'folder' },
   { id: 'src', label: 'src', icon: 'folder' },
 ];
 
@@ -31,7 +31,7 @@ const FULL_PATH: Breadcrumb[] = [
       (valuesChange)="onValuesChange($event)"
       (resetRequested)="onReset()"
     >
-      <div preview>
+      <div preview class="breadcrumb-interactive-preview">
         <ui-breadcrumb
           [items]="interactivePath()"
           [variant]="currentVariant()"
@@ -41,6 +41,10 @@ const FULL_PATH: Breadcrumb[] = [
           [showIcons]="currentShowIcons()"
           [showSelectionIndicator]="currentShowIndicator()"
           [indicatorPosition]="currentIndicatorPosition()"
+          [focusMode]="currentFocusMode()"
+          [responsiveOverflow]="currentResponsiveOverflow()"
+          [truncateLength]="currentTruncateLength()"
+          [maxDisplayedItems]="currentMaxDisplayedItems()"
           (itemClick)="onNavigate($event)"
         />
       </div>
@@ -60,6 +64,10 @@ export class BreadcrumbInteractiveComponent {
     showIcons: true,
     showIndicator: false,
     indicatorPosition: 'horizontal',
+    focusMode: 'tab',
+    responsiveOverflow: true,
+    truncateLength: 0,
+    maxDisplayedItems: 0,
   });
 
   interactivePath = signal<Breadcrumb[]>([...FULL_PATH]);
@@ -71,6 +79,16 @@ export class BreadcrumbInteractiveComponent {
   currentShowIcons = computed(() => this.values()['showIcons'] as boolean);
   currentShowIndicator = computed(() => this.values()['showIndicator'] as boolean);
   currentIndicatorPosition = computed(() => this.values()['indicatorPosition'] as Orientation);
+  currentFocusMode = computed(() => this.values()['focusMode'] as 'tab' | 'arrow');
+  currentResponsiveOverflow = computed(() => this.values()['responsiveOverflow'] as boolean);
+  currentTruncateLength = computed(() => {
+    const v = this.values()['truncateLength'] as number;
+    return v && v > 0 ? v : null;
+  });
+  currentMaxDisplayedItems = computed(() => {
+    const v = this.values()['maxDisplayedItems'] as number;
+    return v && v > 0 ? v : null;
+  });
 
   onValuesChange(newValues: Record<string, unknown>): void {
     this.values.set(newValues);

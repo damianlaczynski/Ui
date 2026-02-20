@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, signal } from '@angular/core';
-import { ButtonComponent, TableOfContentComponent, TooltipComponent } from 'angular-ui';
+import { ButtonComponent, TableOfContentComponent, TooltipDirective } from 'angular-ui';
 import type { TooltipPosition, TooltipSize } from 'angular-ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
@@ -15,7 +15,7 @@ import { TooltipInteractiveComponent } from './tooltip.interactive';
   selector: 'app-tooltip-showcase',
   imports: [
     CommonModule,
-    TooltipComponent,
+    TooltipDirective,
     ButtonComponent,
     SectionWithDrawerComponent,
     ShowcaseHeaderComponent,
@@ -61,14 +61,15 @@ import { TooltipInteractiveComponent } from './tooltip.interactive';
                 </div>
                 @for (size of sizes; track size) {
                   <div class="showcase__icons-matrix__cell">
-                    <ui-tooltip
-                      text="Tooltip preview"
-                      [position]="position"
-                      [size]="size"
-                      [disabled]="!!overviewFormValues()['disabled']"
+                    <ui-button
+                      appearance="outline"
+                      uiTooltip="Tooltip preview"
+                      [uiTooltipPosition]="position"
+                      [uiTooltipSize]="size"
+                      [uiTooltipDisabled]="!!overviewFormValues()['uiTooltipDisabled']"
                     >
-                      <ui-button appearance="outline">{{ position | titlecase }}</ui-button>
-                    </ui-tooltip>
+                      {{ position | titlecase }}
+                    </ui-button>
                   </div>
                 }
               </div>
@@ -87,14 +88,15 @@ import { TooltipInteractiveComponent } from './tooltip.interactive';
             @for (position of positions; track position) {
               <div class="showcase__item">
                 <h3 class="showcase__item__title">{{ position | titlecase }}</h3>
-                <ui-tooltip
-                  text="Position example"
-                  [position]="position"
-                  [size]="positionForm().size"
-                  [disabled]="positionForm().disabled"
+                <ui-button
+                  appearance="outline"
+                  uiTooltip="Position example"
+                  [uiTooltipPosition]="position"
+                  [uiTooltipSize]="positionForm().size"
+                  [uiTooltipDisabled]="positionForm().disabled"
                 >
-                  <ui-button appearance="outline">{{ position | titlecase }}</ui-button>
-                </ui-tooltip>
+                  {{ position | titlecase }}
+                </ui-button>
               </div>
             }
           </div>
@@ -111,14 +113,15 @@ import { TooltipInteractiveComponent } from './tooltip.interactive';
             @for (size of sizes; track size) {
               <div class="showcase__item">
                 <h3 class="showcase__item__title">{{ size | titlecase }}</h3>
-                <ui-tooltip
-                  [text]="size === 'large' ? longTooltipText : 'Size example'"
-                  [position]="sizeForm().position"
-                  [size]="size"
-                  [disabled]="sizeForm().disabled"
+                <ui-button
+                  appearance="outline"
+                  [uiTooltip]="size === 'large' ? longTooltipText : 'Size example'"
+                  [uiTooltipPosition]="sizeForm().position"
+                  [uiTooltipSize]="size"
+                  [uiTooltipDisabled]="sizeForm().disabled"
                 >
-                  <ui-button appearance="outline">{{ size | titlecase }}</ui-button>
-                </ui-tooltip>
+                  {{ size | titlecase }}
+                </ui-button>
               </div>
             }
           </div>
@@ -135,14 +138,15 @@ import { TooltipInteractiveComponent } from './tooltip.interactive';
             @for (state of tooltipStates; track state.id) {
               <div class="showcase__item">
                 <h3 class="showcase__item__title">{{ state.label }}</h3>
-                <ui-tooltip
-                  text="State example"
-                  [position]="statesForm().position"
-                  [size]="statesForm().size"
-                  [disabled]="state.disabled"
+                <ui-button
+                  appearance="outline"
+                  uiTooltip="State example"
+                  [uiTooltipPosition]="statesForm().position"
+                  [uiTooltipSize]="statesForm().size"
+                  [uiTooltipDisabled]="state.disabled"
                 >
-                  <ui-button appearance="outline">{{ state.label }}</ui-button>
-                </ui-tooltip>
+                  {{ state.label }}
+                </ui-button>
               </div>
             }
           </div>
@@ -159,15 +163,16 @@ import { TooltipInteractiveComponent } from './tooltip.interactive';
             @for (delay of delayPresets; track delay.value) {
               <div class="showcase__item">
                 <h3 class="showcase__item__title">{{ delay.label }}</h3>
-                <ui-tooltip
-                  [text]="delay.text"
-                  [position]="delayForm().position"
-                  [size]="delayForm().size"
-                  [disabled]="delayForm().disabled"
-                  [delay]="delay.value"
+                <ui-button
+                  appearance="outline"
+                  [uiTooltip]="delay.text"
+                  [uiTooltipPosition]="delayForm().position"
+                  [uiTooltipSize]="delayForm().size"
+                  [uiTooltipDisabled]="delayForm().disabled"
+                  [uiTooltipDelay]="delay.value"
                 >
-                  <ui-button appearance="outline">{{ delay.label }}</ui-button>
-                </ui-tooltip>
+                  {{ delay.label }}
+                </ui-button>
               </div>
             }
           </div>
@@ -195,60 +200,60 @@ export class TooltipShowcaseComponent {
   delayDrawerFormConfig = TOOLTIP_DRAWER_CONFIGS.delay;
 
   overviewFormValues = signal<Record<string, unknown>>({
-    disabled: false,
+    uiTooltipDisabled: false,
   });
 
   positionFormValues = signal<Record<string, unknown>>({
-    size: 'medium',
-    disabled: false,
+    uiTooltipSize: 'medium',
+    uiTooltipDisabled: false,
   });
 
   sizeFormValues = signal<Record<string, unknown>>({
-    position: 'top',
-    disabled: false,
+    uiTooltipPosition: 'top',
+    uiTooltipDisabled: false,
   });
 
   statesFormValues = signal<Record<string, unknown>>({
-    position: 'top',
-    size: 'medium',
+    uiTooltipPosition: 'top',
+    uiTooltipSize: 'medium',
   });
 
   delayFormValues = signal<Record<string, unknown>>({
-    position: 'top',
-    size: 'medium',
-    disabled: false,
+    uiTooltipPosition: 'top',
+    uiTooltipSize: 'medium',
+    uiTooltipDisabled: false,
   });
 
   positionForm = computed(() => {
     const v = this.positionFormValues();
     return {
-      size: (v['size'] as TooltipSize) ?? 'medium',
-      disabled: !!v['disabled'],
+      size: (v['uiTooltipSize'] as TooltipSize) ?? 'medium',
+      disabled: !!v['uiTooltipDisabled'],
     };
   });
 
   sizeForm = computed(() => {
     const v = this.sizeFormValues();
     return {
-      position: (v['position'] as TooltipPosition) ?? 'top',
-      disabled: !!v['disabled'],
+      position: (v['uiTooltipPosition'] as TooltipPosition) ?? 'top',
+      disabled: !!v['uiTooltipDisabled'],
     };
   });
 
   statesForm = computed(() => {
     const v = this.statesFormValues();
     return {
-      position: (v['position'] as TooltipPosition) ?? 'top',
-      size: (v['size'] as TooltipSize) ?? 'medium',
+      position: (v['uiTooltipPosition'] as TooltipPosition) ?? 'top',
+      size: (v['uiTooltipSize'] as TooltipSize) ?? 'medium',
     };
   });
 
   delayForm = computed(() => {
     const v = this.delayFormValues();
     return {
-      position: (v['position'] as TooltipPosition) ?? 'top',
-      size: (v['size'] as TooltipSize) ?? 'medium',
-      disabled: !!v['disabled'],
+      position: (v['uiTooltipPosition'] as TooltipPosition) ?? 'top',
+      size: (v['uiTooltipSize'] as TooltipSize) ?? 'medium',
+      disabled: !!v['uiTooltipDisabled'],
     };
   });
 

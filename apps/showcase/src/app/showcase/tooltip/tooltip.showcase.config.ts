@@ -13,7 +13,7 @@ export const TOOLTIP_SIZES = ['small', 'medium', 'large'] as const;
 
 const TOOLTIP_CONTROL_DEFS: SharedControlDef[] = [
   {
-    key: 'text',
+    key: 'uiTooltip',
     label: 'Text',
     type: 'text',
     description: 'Tooltip text content',
@@ -23,7 +23,7 @@ const TOOLTIP_CONTROL_DEFS: SharedControlDef[] = [
     drawer: false,
   },
   {
-    key: 'position',
+    key: 'uiTooltipPosition',
     label: 'Position',
     type: 'dropdown',
     description: 'Tooltip position relative to trigger',
@@ -32,7 +32,7 @@ const TOOLTIP_CONTROL_DEFS: SharedControlDef[] = [
     group: 'appearance',
   },
   {
-    key: 'size',
+    key: 'uiTooltipSize',
     label: 'Size',
     type: 'dropdown',
     description: 'Tooltip size',
@@ -41,7 +41,7 @@ const TOOLTIP_CONTROL_DEFS: SharedControlDef[] = [
     group: 'appearance',
   },
   {
-    key: 'disabled',
+    key: 'uiTooltipDisabled',
     label: 'Disabled',
     type: 'switch',
     description: 'Disable tooltip',
@@ -49,7 +49,7 @@ const TOOLTIP_CONTROL_DEFS: SharedControlDef[] = [
     group: 'state',
   },
   {
-    key: 'delay',
+    key: 'uiTooltipDelay',
     label: 'Delay (ms)',
     type: 'number',
     description: 'Delay before showing tooltip',
@@ -62,15 +62,15 @@ const TOOLTIP_CONTROL_DEFS: SharedControlDef[] = [
 const ALL_CONTROLS = toDrawerFormControls(TOOLTIP_CONTROL_DEFS);
 
 export const TOOLTIP_DRAWER_CONFIGS = createDrawerFormConfigs(ALL_CONTROLS, {
-  overview: { excludeKeys: ['position', 'size'] },
-  position: { excludeKey: 'position' },
-  size: { excludeKey: 'size' },
-  states: { excludeKey: 'disabled' },
+  overview: { excludeKeys: ['uiTooltipPosition', 'uiTooltipSize'] },
+  position: { excludeKey: 'uiTooltipPosition' },
+  size: { excludeKey: 'uiTooltipSize' },
+  states: { excludeKey: 'uiTooltipDisabled' },
   delay: { excludeKeys: [] },
 });
 
 export const TOOLTIP_SHOWCASE_CONFIG: ShowcaseConfig = {
-  componentSelector: 'ui-tooltip',
+  componentSelector: 'ui-button',
   controlGroups: [
     { id: 'content', label: 'Content', icon: SHOWCASE_GROUP_ICONS['content'], expanded: true },
     { id: 'appearance', label: 'Appearance', icon: SHOWCASE_GROUP_ICONS['appearance'] },

@@ -9,7 +9,7 @@
 .toolbar {
   display: flex;
   align-items: center;
-  gap: $spacing-05;
+  gap: $spacing-0_5;
   padding: $spacing-1;
   background: var(--color-neutral-background-rest);
   border-radius: $border-radius-400;
@@ -29,8 +29,8 @@
   }
 
   &--small {
-    gap: $spacing-05;
-    padding: $spacing-05;
+    gap: $spacing-0_5;
+    padding: $spacing-0_5;
     min-height: 32px;
   }
 

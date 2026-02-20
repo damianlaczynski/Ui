@@ -25,23 +25,23 @@
     }
 
     .date-range-calendar__header {
-      margin-bottom: $spacing-05;
+      margin-bottom: $spacing-0_5;
     }
 
     .date-range-calendar__title {
       font-size: $font-size-200;
-      padding: $spacing-05 $spacing-1;
+      padding: $spacing-0_5 $spacing-1;
     }
 
     .date-range-calendar__nav {
       width: 24px;
       height: 24px;
-      padding: $spacing-05;
+      padding: $spacing-0_5;
     }
 
     .date-range-calendar__weekday {
       font-size: $font-size-100;
-      padding: $spacing-05 0;
+      padding: $spacing-0_5 0;
     }
 
     .date-range-panel__month,
@@ -172,8 +172,8 @@
 .date-range-calendar__weekdays {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: $spacing-05;
-  margin-bottom: $spacing-05;
+  gap: $spacing-0_5;
+  margin-bottom: $spacing-0_5;
 }
 
 .date-range-calendar__weekday {
@@ -188,7 +188,7 @@
 .date-range-calendar__grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: $spacing-05;
+  gap: $spacing-0_5;
 }
 
 // Calendar Day

@@ -18,17 +18,17 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: $spacing-05;
+    gap: $spacing-0_5;
   }
 
   // Children container
   &__children {
     display: flex;
     flex-direction: column;
-    gap: $spacing-05;
+    gap: $spacing-0_5;
     width: 100%;
     padding-left: $spacing-6;
-    padding-top: $spacing-05;
+    padding-top: $spacing-0_5;
   }
 
   // ==========================================================================
