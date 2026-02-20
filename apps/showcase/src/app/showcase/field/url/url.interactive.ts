@@ -1,6 +1,6 @@
 import { Component, signal, computed, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { UrlComponent, InputVariant, Size } from 'ui';
+import { UrlComponent, ContentPosition, InputVariant, Size } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { URL_SHOWCASE_CONFIG } from './url.showcase.config';
@@ -19,6 +19,7 @@ import { URL_SHOWCASE_CONFIG } from './url.showcase.config';
       <div preview>
         <ui-url
           [label]="currentLabel()"
+          [labelPosition]="currentLabelPosition()"
           [placeholder]="currentPlaceholder()"
           [inputVariant]="currentVariant()"
           [size]="currentSize()"
@@ -49,6 +50,7 @@ export class UrlInteractiveComponent {
     helpText: '',
     variant: 'filled',
     size: 'medium',
+    labelPosition: 'above',
     disabled: false,
     readonly: false,
     required: false,
@@ -59,6 +61,7 @@ export class UrlInteractiveComponent {
   currentHelpText = computed(() => this.values()['helpText'] as string);
   currentVariant = computed(() => this.values()['variant'] as InputVariant);
   currentSize = computed(() => this.values()['size'] as Size);
+  currentLabelPosition = computed(() => this.values()['labelPosition'] as ContentPosition);
   currentDisabled = computed(() => this.values()['disabled'] as boolean);
   currentReadonly = computed(() => this.values()['readonly'] as boolean);
   currentRequired = computed(() => this.values()['required'] as boolean);
