@@ -33,14 +33,14 @@ jobs:
         run: npm run build:lib
 
       - name: Build showcase for GitHub Pages
-        run: npx ng build showcase --configuration=production --base-href=/
+        run: npx ng build ui-showcase --configuration=production --base-href=/
 
       - name: Prepare artifact
         run: |
-          if [ -d dist/showcase/browser ]; then
-            cp -r dist/showcase/browser dist/gh-pages
+          if [ -d dist/ui-showcase/browser ]; then
+            cp -r dist/ui-showcase/browser dist/gh-pages
           else
-            cp -r dist/showcase dist/gh-pages
+            cp -r dist/ui-showcase dist/gh-pages
           fi
           cp dist/gh-pages/index.html dist/gh-pages/404.html
 
