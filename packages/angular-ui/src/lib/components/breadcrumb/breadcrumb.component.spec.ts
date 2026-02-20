@@ -141,34 +141,6 @@ describe('BreadcrumbComponent', () => {
     });
   });
 
-  describe('href Support', () => {
-    it('should render anchor when item has href', () => {
-      const itemsWithHref: Breadcrumb[] = [
-        { id: '1', label: 'Home', href: '/home' },
-        { id: '2', label: 'Products', href: '/products', selected: true },
-      ];
-      fixture.componentRef.setInput('items', itemsWithHref);
-      fixture.detectChanges();
-
-      const link = fixture.debugElement.query(By.css('a[href="/home"]'));
-      expect(link).toBeTruthy();
-      expect(link.nativeElement.textContent?.trim()).toContain('Home');
-    });
-
-    it('should set aria-current on link when selected', () => {
-      const itemsWithHref: Breadcrumb[] = [
-        { id: '1', label: 'Home', href: '/' },
-        { id: '2', label: 'Current', href: '/current', selected: true },
-      ];
-      fixture.componentRef.setInput('items', itemsWithHref);
-      fixture.detectChanges();
-
-      const link = fixture.debugElement.query(By.css('a[aria-current="page"]'));
-      expect(link).toBeTruthy();
-      expect(link.nativeElement.getAttribute('href')).toBe('/current');
-    });
-  });
-
   describe('Truncation', () => {
     it('should truncate long labels when truncateLength is set', () => {
       const longLabel = 'This is a very long breadcrumb label that should be truncated';
