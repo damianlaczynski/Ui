@@ -29,7 +29,7 @@ const TEXT_CONTROL_DEFS: SharedControlDef[] = [
     label: 'Placeholder',
     type: 'text',
     description: 'Placeholder text',
-    defaultValue: 'Enter text...',
+    defaultValue: 'Enter text…',
     placeholder: 'Enter placeholder',
     group: 'content',
     drawer: false,

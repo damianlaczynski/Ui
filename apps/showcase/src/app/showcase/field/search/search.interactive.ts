@@ -1,6 +1,6 @@
 import { Component, signal, computed, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SearchComponent, InputVariant, Size } from 'ui';
+import { SearchComponent, ContentPosition, InputVariant, Size } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { SEARCH_SHOWCASE_CONFIG } from './search.showcase.config';
@@ -19,6 +19,7 @@ import { SEARCH_SHOWCASE_CONFIG } from './search.showcase.config';
       <div preview>
         <ui-search
           [label]="currentLabel()"
+          [labelPosition]="currentLabelPosition()"
           [placeholder]="currentPlaceholder()"
           [inputVariant]="currentVariant()"
           [size]="currentSize()"
@@ -45,10 +46,11 @@ export class SearchInteractiveComponent {
 
   private values = signal<Record<string, unknown>>({
     label: 'Search',
-    placeholder: 'Search...',
+    placeholder: 'Search…',
     helpText: '',
     variant: 'filled',
     size: 'medium',
+    labelPosition: 'above',
     disabled: false,
     readonly: false,
     required: false,
@@ -59,6 +61,7 @@ export class SearchInteractiveComponent {
   currentHelpText = computed(() => this.values()['helpText'] as string);
   currentVariant = computed(() => this.values()['variant'] as InputVariant);
   currentSize = computed(() => this.values()['size'] as Size);
+  currentLabelPosition = computed(() => this.values()['labelPosition'] as ContentPosition);
   currentDisabled = computed(() => this.values()['disabled'] as boolean);
   currentReadonly = computed(() => this.values()['readonly'] as boolean);
   currentRequired = computed(() => this.values()['required'] as boolean);

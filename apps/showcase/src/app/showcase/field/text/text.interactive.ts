@@ -46,7 +46,7 @@ export class TextInteractiveComponent {
 
   private values = signal<Record<string, unknown>>({
     label: 'Text Field',
-    placeholder: 'Enter text...',
+    placeholder: 'Enter text…',
     helpText: '',
     variant: 'filled',
     size: 'medium',

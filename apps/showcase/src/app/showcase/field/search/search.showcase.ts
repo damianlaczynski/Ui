@@ -92,7 +92,7 @@ import type { InputVariant, Size } from 'ui';
                 <h3 class="showcase__item__title">{{ size | titlecase }}</h3>
                 <ui-search
                   [label]="size + ' Search'"
-                  [placeholder]="'Search...'"
+                  [placeholder]="'Search…'"
                   [size]="size"
                   [inputVariant]="sizeForm().variant"
                   [disabled]="sizeForm().disabled"
@@ -118,7 +118,7 @@ import type { InputVariant, Size } from 'ui';
                 <h3 class="showcase__item__title">{{ variant | titlecase }}</h3>
                 <ui-search
                   [label]="variant + ' variant'"
-                  [placeholder]="'Search...'"
+                  [placeholder]="'Search…'"
                   [inputVariant]="variant"
                   [size]="variantsForm().size"
                   [disabled]="variantsForm().disabled"
@@ -144,7 +144,7 @@ import type { InputVariant, Size } from 'ui';
                 <h3 class="showcase__item__title">{{ state.label }}</h3>
                 <ui-search
                   [label]="state.label"
-                  [placeholder]="'Search...'"
+                  [placeholder]="'Search…'"
                   [inputVariant]="statesForm().variant"
                   [size]="statesForm().size"
                   [disabled]="state.disabled"
@@ -165,21 +165,21 @@ import type { InputVariant, Size } from 'ui';
           <form class="showcase__form">
             <ui-search
               label="Product Search"
-              placeholder="Search products..."
+              placeholder="Search products…"
               [(ngModel)]="formData.productSearch"
               [ngModelOptions]="{ standalone: true }"
               helpText="Search for products"
             />
             <ui-search
               label="User Search"
-              placeholder="Search users..."
+              placeholder="Search users…"
               [(ngModel)]="formData.userSearch"
               [ngModelOptions]="{ standalone: true }"
               helpText="Search for users"
             />
             <ui-search
               label="Document Search"
-              placeholder="Search documents..."
+              placeholder="Search documents…"
               [(ngModel)]="formData.documentSearch"
               [ngModelOptions]="{ standalone: true }"
               helpText="Search for documents"
@@ -273,7 +273,7 @@ export class SearchShowcaseComponent {
 
   basicFormValues = signal<Record<string, unknown>>({
     label: 'Search',
-    placeholder: 'Search...',
+    placeholder: 'Search…',
     helpText: 'Enter your search query',
     variant: 'filled',
     size: 'medium',
@@ -317,7 +317,7 @@ export class SearchShowcaseComponent {
   } {
     return {
       label: (v['label'] as string) ?? 'Search',
-      placeholder: (v['placeholder'] as string) ?? 'Search...',
+      placeholder: (v['placeholder'] as string) ?? 'Search…',
       helpText: (v['helpText'] as string) ?? '',
       variant: (v['variant'] ?? 'filled') as InputVariant,
       size: (v['size'] ?? 'medium') as Size,
