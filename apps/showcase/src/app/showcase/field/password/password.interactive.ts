@@ -1,6 +1,6 @@
 import { Component, signal, computed, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { PasswordComponent, Size } from 'ui';
+import { ContentPosition, PasswordComponent, Size } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { PASSWORD_SHOWCASE_CONFIG } from './password.showcase.config';
@@ -20,6 +20,7 @@ import type { InputVariant } from 'ui';
       <div preview>
         <ui-password
           [label]="currentLabel()"
+          [labelPosition]="currentLabelPosition()"
           [placeholder]="currentPlaceholder()"
           [inputVariant]="currentVariant()"
           [size]="currentSize()"
@@ -46,10 +47,11 @@ export class PasswordInteractiveComponent {
 
   private values = signal<Record<string, unknown>>({
     label: 'Password',
-    placeholder: 'Enter password...',
+    placeholder: 'Enter password…',
     helpText: '',
     variant: 'filled',
     size: 'medium',
+    labelPosition: 'above',
     disabled: false,
     readonly: false,
     required: false,
@@ -60,6 +62,7 @@ export class PasswordInteractiveComponent {
   currentHelpText = computed(() => this.values()['helpText'] as string);
   currentVariant = computed(() => this.values()['variant'] as InputVariant);
   currentSize = computed(() => this.values()['size'] as Size);
+  currentLabelPosition = computed(() => this.values()['labelPosition'] as ContentPosition);
   currentDisabled = computed(() => this.values()['disabled'] as boolean);
   currentReadonly = computed(() => this.values()['readonly'] as boolean);
   currentRequired = computed(() => this.values()['required'] as boolean);

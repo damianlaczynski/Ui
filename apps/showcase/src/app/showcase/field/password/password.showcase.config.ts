@@ -9,6 +9,7 @@ import {
 import {
   SIZES,
   INPUT_VARIANTS,
+  CONTENT_POSITIONS,
   SHOWCASE_GROUP_ICONS,
 } from '@shared/utils/showcase/component-options.utils';
 
@@ -28,7 +29,7 @@ const PASSWORD_CONTROL_DEFS: SharedControlDef[] = [
     label: 'Placeholder',
     type: 'text',
     description: 'Placeholder text',
-    defaultValue: 'Enter password...',
+    defaultValue: 'Enter password…',
     placeholder: 'Enter placeholder',
     group: 'content',
     drawer: false,
@@ -58,6 +59,14 @@ const PASSWORD_CONTROL_DEFS: SharedControlDef[] = [
     type: 'dropdown',
     options: toOptions(SIZES),
     defaultValue: 'medium',
+    group: 'appearance',
+  },
+  {
+    key: 'labelPosition',
+    label: 'Label Position',
+    type: 'dropdown',
+    options: toOptions([...CONTENT_POSITIONS]),
+    defaultValue: 'above',
     group: 'appearance',
   },
   {
@@ -91,6 +100,7 @@ const PASSWORD_FORM_CONTROLS = toDrawerFormControls(PASSWORD_CONTROL_DEFS);
 export const PASSWORD_DRAWER_CONFIGS = createDrawerFormConfigs(PASSWORD_FORM_CONTROLS, {
   size: { excludeKey: 'size' },
   variants: { excludeKey: 'variant' },
+  labelPosition: { excludeKey: 'labelPosition' },
   states: { excludeKeys: ['disabled', 'readonly', 'required'] },
   combinations: { excludeKeys: ['variant', 'size'] },
 });
