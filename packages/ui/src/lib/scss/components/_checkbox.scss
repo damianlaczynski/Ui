@@ -15,6 +15,14 @@
   display: inline-flex;
   flex-direction: column;
   gap: $spacing-1;
+
+  &.checkbox--label-above {
+    align-items: flex-start;
+  }
+
+  &.checkbox--label-below {
+    align-items: flex-start;
+  }
 }
 
 .checkbox-container {
@@ -64,6 +72,26 @@
     content: ' *';
     color: var(--color-shared-red-foreground);
   }
+}
+
+.checkbox-label-above {
+  padding-right: 8px;
+  padding-bottom: 4px;
+}
+
+.checkbox-label-below {
+  padding-right: 8px;
+  padding-top: 4px;
+}
+
+.checkbox-label-before {
+  padding-right: 4px;
+  order: -1;
+}
+
+.checkbox-label-after {
+  padding-left: 4px;
+  padding-right: 8px;
 }
 
 // ---------------------------------------------------------------------------
@@ -134,5 +162,31 @@
 .checkbox-container:has(.checkbox-input:disabled) {
   .checkbox-visual {
     color: var(--color-neutral-foreground-disabled);
+  }
+}
+
+[dir='rtl'] {
+  .checkbox-label-before {
+    padding-left: 4px;
+    padding-right: 8px;
+    order: 1;
+  }
+
+  .checkbox-label-after {
+    padding-left: 8px;
+    padding-right: 4px;
+    order: -1;
+  }
+
+  .checkbox-label {
+    padding: 6px 0 6px 8px;
+  }
+
+  .checkbox--small .checkbox-label {
+    padding: $spacing-1 0 $spacing-1 $spacing-2;
+  }
+
+  .checkbox--large .checkbox-label {
+    padding: $spacing-2 0 $spacing-2 $spacing-2;
   }
 }

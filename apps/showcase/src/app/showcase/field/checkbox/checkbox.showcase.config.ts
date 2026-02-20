@@ -9,6 +9,7 @@ import {
 import {
   SIZES,
   SHAPES,
+  CONTENT_POSITIONS,
   SHOWCASE_GROUP_ICONS,
 } from '@shared/utils/showcase/component-options.utils';
 
@@ -39,6 +40,14 @@ const CHECKBOX_CONTROL_DEFS: SharedControlDef[] = [
     type: 'dropdown',
     options: toOptions([...SHAPES]),
     defaultValue: 'rounded',
+    group: 'appearance',
+  },
+  {
+    key: 'labelPosition',
+    label: 'Label Position',
+    type: 'dropdown',
+    options: toOptions([...CONTENT_POSITIONS]),
+    defaultValue: 'after',
     group: 'appearance',
   },
   {
@@ -80,8 +89,9 @@ const CHECKBOX_FORM_CONTROLS = toDrawerFormControls(CHECKBOX_CONTROL_DEFS);
 export const CHECKBOX_DRAWER_CONFIGS = createDrawerFormConfigs(CHECKBOX_FORM_CONTROLS, {
   shape: { excludeKey: 'shape' },
   size: { excludeKey: 'size' },
+  labelPosition: { excludeKey: 'labelPosition' },
   states: { excludeKeys: ['disabled', 'readonly', 'required'] },
-  combinations: { excludeKeys: ['shape', 'size'] },
+  combinations: { excludeKeys: ['shape', 'size', 'labelPosition'] },
 });
 
 export const CHECKBOX_SHOWCASE_CONFIG: ShowcaseConfig = {

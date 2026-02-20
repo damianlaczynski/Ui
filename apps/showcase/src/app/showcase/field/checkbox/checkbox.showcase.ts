@@ -2,12 +2,12 @@ import { Component, signal, computed, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-import { CheckboxComponent, Shape, Size } from 'ui';
+import { CheckboxComponent, ContentPosition, Shape, Size } from 'ui';
 import { TableOfContentComponent } from 'ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { JsonPipe } from '@angular/common';
-import { SIZES, SHAPES } from '@shared/utils/showcase/component-options.utils';
+import { CONTENT_POSITIONS, SIZES, SHAPES } from '@shared/utils/showcase/component-options.utils';
 import { CHECKBOX_DRAWER_CONFIGS } from './checkbox.showcase.config';
 import { CheckboxInteractiveComponent } from './checkbox.interactive';
 
@@ -37,9 +37,34 @@ import { CheckboxInteractiveComponent } from './checkbox.interactive';
         <app-showcase-header title="Checkbox" />
         <p class="showcase__description">
           Checkbox component based on Fluent 2 Design System. Unified API: shape + size. Supports
-          states like disabled, readonly, required, and indeterminate. Use for form selections,
-          consent toggles, or any binary choice.
+          label positions (before, after, above, below), states like disabled, readonly, required,
+          and indeterminate. Use for form selections, consent toggles, or any binary choice.
         </p>
+
+        <app-section-with-drawer
+          sectionTitle="Label Positions"
+          sectionDescription="Label can be positioned before, after, above, or below the checkbox. Use the Customize drawer to adjust shape, size, and states across all examples."
+          [formConfig]="labelPositionDrawerFormConfig"
+          [formValues]="labelPositionFormValues()"
+          (formValuesChange)="labelPositionFormValues.set($event)"
+        >
+          <div class="showcase__grid">
+            @for (pos of labelPositions; track pos) {
+              <div class="showcase__item">
+                <h3 class="showcase__item__title">{{ pos | titlecase }}</h3>
+                <ui-checkbox
+                  [label]="pos + ' label'"
+                  [labelPosition]="pos"
+                  [shape]="labelPositionForm().shape"
+                  [size]="labelPositionForm().size"
+                  [readonly]="labelPositionForm().readonly"
+                  [required]="labelPositionForm().required"
+                  [formControl]="getLabelPositionControl(pos)"
+                />
+              </div>
+            }
+          </div>
+        </app-section-with-drawer>
 
         <app-section-with-drawer
           sectionTitle="Shapes"
@@ -54,6 +79,7 @@ import { CheckboxInteractiveComponent } from './checkbox.interactive';
                 <h3 class="showcase__item__title">{{ shape | titlecase }}</h3>
                 <ui-checkbox
                   [label]="shape + ' checkbox'"
+                  [labelPosition]="shapeForm().labelPosition"
                   [shape]="shape"
                   [size]="shapeForm().size"
                   [readonly]="shapeForm().readonly"
@@ -78,6 +104,7 @@ import { CheckboxInteractiveComponent } from './checkbox.interactive';
                 <h3 class="showcase__item__title">{{ size | titlecase }}</h3>
                 <ui-checkbox
                   [label]="size + ' checkbox'"
+                  [labelPosition]="sizeForm().labelPosition"
                   [shape]="sizeForm().shape"
                   [size]="size"
                   [readonly]="sizeForm().readonly"
@@ -103,6 +130,7 @@ import { CheckboxInteractiveComponent } from './checkbox.interactive';
                 @if (state.id === 'indeterminate') {
                   <ui-checkbox
                     [label]="state.label + ' checkbox'"
+                    [labelPosition]="statesForm().labelPosition"
                     [shape]="statesForm().shape"
                     [size]="statesForm().size"
                     [disabled]="state.disabled"
@@ -114,6 +142,7 @@ import { CheckboxInteractiveComponent } from './checkbox.interactive';
                 } @else {
                   <ui-checkbox
                     [label]="state.label + ' checkbox'"
+                    [labelPosition]="statesForm().labelPosition"
                     [shape]="statesForm().shape"
                     [size]="statesForm().size"
                     [readonly]="state.readonly"
@@ -138,6 +167,7 @@ import { CheckboxInteractiveComponent } from './checkbox.interactive';
               <div class="showcase__item">
                 <ui-checkbox
                   [label]="combo.label"
+                  [labelPosition]="combinationsForm().labelPosition"
                   [shape]="combo.shape"
                   [size]="combo.size"
                   [readonly]="combinationsForm().readonly"
@@ -178,9 +208,9 @@ import { CheckboxInteractiveComponent } from './checkbox.interactive';
         <section id="interactive-demo" class="showcase__section">
           <h2 class="showcase__section__title">Interactive Demo</h2>
           <p class="showcase__section__description">
-            Experiment with all checkbox options in real time. Change label, help text, shape, size,
-            and toggle states. The component emits change events—check the event log to see
-            interactions.
+            Experiment with all checkbox options in real time. Change label, help text, label
+            position, shape, size, and toggle states. The component emits change events-check the
+            event log to see interactions.
           </p>
           <app-checkbox-interactive />
         </section>
@@ -189,9 +219,11 @@ import { CheckboxInteractiveComponent } from './checkbox.interactive';
   `,
 })
 export class CheckboxShowcaseComponent {
+  labelPositions: ContentPosition[] = [...CONTENT_POSITIONS.filter(p => p !== 'none')];
   shapes: Shape[] = [...SHAPES];
   sizes: Size[] = [...SIZES];
 
+  labelPositionDrawerFormConfig = CHECKBOX_DRAWER_CONFIGS.labelPosition;
   shapeDrawerFormConfig = CHECKBOX_DRAWER_CONFIGS.shape;
   sizeDrawerFormConfig = CHECKBOX_DRAWER_CONFIGS.size;
   statesDrawerFormConfig = CHECKBOX_DRAWER_CONFIGS.states;
@@ -267,6 +299,11 @@ export class CheckboxShowcaseComponent {
     },
   ];
 
+  beforePositionControl = new FormControl(false);
+  afterPositionControl = new FormControl(true);
+  abovePositionControl = new FormControl(false);
+  belowPositionControl = new FormControl(false);
+
   roundedShapeControl = new FormControl(true);
   circularShapeControl = new FormControl(false);
   squareShapeControl = new FormControl(false);
@@ -294,7 +331,17 @@ export class CheckboxShowcaseComponent {
     shareData: new FormControl(false),
   });
 
+  labelPositionFormValues = signal<Record<string, unknown>>({
+    shape: 'rounded',
+    size: 'medium',
+    disabled: false,
+    readonly: false,
+    required: false,
+  });
+  labelPositionForm = computed(() => this.toCheckboxForm(this.labelPositionFormValues()));
+
   shapeFormValues = signal<Record<string, unknown>>({
+    labelPosition: 'after',
     size: 'medium',
     disabled: false,
     readonly: false,
@@ -303,6 +350,7 @@ export class CheckboxShowcaseComponent {
   shapeForm = computed(() => this.toCheckboxForm(this.shapeFormValues()));
 
   sizeFormValues = signal<Record<string, unknown>>({
+    labelPosition: 'after',
     shape: 'rounded',
     disabled: false,
     readonly: false,
@@ -311,12 +359,14 @@ export class CheckboxShowcaseComponent {
   sizeForm = computed(() => this.toCheckboxForm(this.sizeFormValues()));
 
   statesFormValues = signal<Record<string, unknown>>({
+    labelPosition: 'after',
     shape: 'rounded',
     size: 'medium',
   });
   statesForm = computed(() => this.toCheckboxForm(this.statesFormValues()));
 
   combinationsFormValues = signal<Record<string, unknown>>({
+    labelPosition: 'after',
     disabled: false,
     readonly: false,
     required: false,
@@ -324,6 +374,18 @@ export class CheckboxShowcaseComponent {
   combinationsForm = computed(() => this.toCheckboxForm(this.combinationsFormValues()));
 
   constructor() {
+    effect(() => {
+      this.setControlsDisabled(
+        [
+          this.beforePositionControl,
+          this.afterPositionControl,
+          this.abovePositionControl,
+          this.belowPositionControl,
+        ],
+        this.labelPositionForm().disabled,
+      );
+    });
+
     effect(() => {
       this.setControlsDisabled(
         [this.roundedShapeControl, this.circularShapeControl, this.squareShapeControl],
@@ -353,6 +415,7 @@ export class CheckboxShowcaseComponent {
 
   private toCheckboxForm(v: Record<string, unknown>) {
     return {
+      labelPosition: (v['labelPosition'] as ContentPosition) ?? 'after',
       shape: (v['shape'] as Shape) ?? 'rounded',
       size: (v['size'] as Size) ?? 'medium',
       disabled: !!v['disabled'],
@@ -365,6 +428,13 @@ export class CheckboxShowcaseComponent {
     if (shape === 'rounded') return this.roundedShapeControl;
     if (shape === 'circular') return this.circularShapeControl;
     return this.squareShapeControl;
+  }
+
+  getLabelPositionControl(pos: ContentPosition): FormControl {
+    if (pos === 'before') return this.beforePositionControl;
+    if (pos === 'above') return this.abovePositionControl;
+    if (pos === 'below') return this.belowPositionControl;
+    return this.afterPositionControl;
   }
 
   getSizeControl(size: Size): FormControl {
