@@ -1,6 +1,7 @@
 <ui-field
   [fieldType]="'number'"
   [label]="label()"
+  [labelPosition]="labelPosition()"
   [placeholder]="placeholder()"
   [helpText]="helpText()"
   [(errorText)]="errorText"
@@ -31,8 +32,8 @@
       [attr.max]="max()"
       [attr.step]="step()"
       [attr.tabindex]="getTabIndex()"
-      [attr.aria-label]="ariaLabel() || label()"
-      [attr.aria-describedby]="ariaDescribedBy()"
+      [attr.aria-label]="getComputedAriaLabel()"
+      [attr.aria-describedby]="getComputedAriaDescribedBy()"
       [attr.aria-invalid]="!!errorText()"
       (input)="onInputChange($event)"
       (blur)="onBlur($event)"
@@ -43,10 +44,19 @@
     <!-- Actions: Clear button and stepper -->
     @if (!disabled() && !readonly()) {
       <div class="field__actions">
-        <ui-action-button [icon]="'number_symbol'" [size]="size()"></ui-action-button>
+        <ui-action-button
+          [icon]="'number_symbol'"
+          [size]="size()"
+          [ariaLabel]="'Number input'"
+        ></ui-action-button>
 
         @if (value) {
-          <ui-action-button [icon]="'dismiss'" [size]="size()" (click)="clear()"></ui-action-button>
+          <ui-action-button
+            [icon]="'dismiss'"
+            [size]="size()"
+            [ariaLabel]="'Clear number'"
+            (click)="clear()"
+          ></ui-action-button>
         }
       </div>
     }

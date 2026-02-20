@@ -9,6 +9,7 @@ import {
 import {
   SIZES,
   INPUT_VARIANTS,
+  CONTENT_POSITIONS,
   SHOWCASE_GROUP_ICONS,
 } from '@shared/utils/showcase/component-options.utils';
 
@@ -28,7 +29,7 @@ const NUMBER_CONTROL_DEFS: SharedControlDef[] = [
     label: 'Placeholder',
     type: 'text',
     description: 'Placeholder text',
-    defaultValue: 'Enter number...',
+    defaultValue: 'Enter number…',
     placeholder: 'Enter placeholder',
     group: 'content',
     drawer: false,
@@ -88,6 +89,14 @@ const NUMBER_CONTROL_DEFS: SharedControlDef[] = [
     group: 'appearance',
   },
   {
+    key: 'labelPosition',
+    label: 'Label Position',
+    type: 'dropdown',
+    options: toOptions([...CONTENT_POSITIONS]),
+    defaultValue: 'above',
+    group: 'appearance',
+  },
+  {
     key: 'disabled',
     label: 'Disabled',
     type: 'switch',
@@ -118,6 +127,7 @@ const NUMBER_FORM_CONTROLS = toDrawerFormControls(NUMBER_CONTROL_DEFS);
 export const NUMBER_DRAWER_CONFIGS = createDrawerFormConfigs(NUMBER_FORM_CONTROLS, {
   size: { excludeKey: 'size' },
   variant: { excludeKey: 'variant' },
+  labelPosition: { excludeKey: 'labelPosition' },
   states: { excludeKeys: ['disabled', 'readonly', 'required'] },
   stepper: { excludeKeys: [] },
 });
