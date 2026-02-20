@@ -366,7 +366,7 @@
   display: inline-flex;
   align-items: center;
   gap: $spacing-1;
-  padding-right: $spacing-2;
+  padding-inline-end: $spacing-2;
   @include fade-in($duration-fast, $easing-decelerate-max);
 }
 
@@ -400,22 +400,44 @@
 .input-wrapper {
   &--small {
     .field__actions {
-      padding-right: $spacing-1;
+      padding-inline-end: $spacing-1;
       gap: $spacing-0_5;
     }
   }
 
   &--medium {
     .field__actions {
-      padding-right: $spacing-2;
+      padding-inline-end: $spacing-2;
       gap: $spacing-1;
     }
   }
 
   &--large {
     .field__actions {
-      padding-right: $spacing-3;
+      padding-inline-end: $spacing-3;
       gap: $spacing-1;
+    }
+  }
+}
+
+[dir='rtl'] {
+  .input-wrapper {
+    &--small {
+      .field__actions {
+        padding-inline-end: $spacing-2;
+      }
+    }
+
+    &--medium {
+      .field__actions {
+        padding-inline-end: $spacing-3;
+      }
+    }
+
+    &--large {
+      .field__actions {
+        padding-inline-end: $spacing-4;
+      }
     }
   }
 }
