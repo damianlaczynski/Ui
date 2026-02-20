@@ -27,7 +27,7 @@
     "lint:fix": "ng lint --fix",
     "format": "prettier --write \"apps/showcase/src\" \"packages/ui/src\"",
     "format:check": "prettier --check \"apps/showcase/src\" \"packages/ui/src\"",
-    "test:coverage": "ng test ui --coverage --no-watch",
+    "test:coverage": "ng test ui --coverage --watch=false",
     "prepare": "husky",
     "precommit": "lint-staged",
     "publish:lib": "cd dist/ui && npm publish",
