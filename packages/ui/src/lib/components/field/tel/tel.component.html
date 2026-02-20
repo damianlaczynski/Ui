@@ -1,6 +1,7 @@
 <ui-field
   [fieldType]="'tel'"
   [label]="label()"
+  [labelPosition]="labelPosition()"
   [placeholder]="placeholder()"
   [helpText]="helpText()"
   [(errorText)]="errorText"
@@ -27,8 +28,8 @@
       [autocomplete]="autocomplete() || 'tel'"
       [value]="value"
       [attr.tabindex]="getTabIndex()"
-      [attr.aria-label]="ariaLabel() || label()"
-      [attr.aria-describedby]="ariaDescribedBy()"
+      [attr.aria-label]="getComputedAriaLabel()"
+      [attr.aria-describedby]="getComputedAriaDescribedBy()"
       [attr.aria-invalid]="!!errorText()"
       (input)="onInputChange($event)"
       (blur)="onBlur($event)"
