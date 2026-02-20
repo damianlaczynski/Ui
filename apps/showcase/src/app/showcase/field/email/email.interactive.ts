@@ -1,6 +1,6 @@
 import { Component, signal, computed, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { EmailComponent, Size } from 'ui';
+import { ContentPosition, EmailComponent, Size } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { EMAIL_SHOWCASE_CONFIG } from './email.showcase.config';
@@ -20,6 +20,7 @@ import type { InputVariant } from 'ui';
       <div preview>
         <ui-email
           [label]="currentLabel()"
+          [labelPosition]="currentLabelPosition()"
           [placeholder]="currentPlaceholder()"
           [inputVariant]="currentVariant()"
           [size]="currentSize()"
@@ -50,6 +51,7 @@ export class EmailInteractiveComponent {
     helpText: '',
     variant: 'filled',
     size: 'medium',
+    labelPosition: 'above',
     disabled: false,
     readonly: false,
     required: false,
@@ -60,6 +62,7 @@ export class EmailInteractiveComponent {
   currentHelpText = computed(() => this.values()['helpText'] as string);
   currentVariant = computed(() => this.values()['variant'] as InputVariant);
   currentSize = computed(() => this.values()['size'] as Size);
+  currentLabelPosition = computed(() => this.values()['labelPosition'] as ContentPosition);
   currentDisabled = computed(() => this.values()['disabled'] as boolean);
   currentReadonly = computed(() => this.values()['readonly'] as boolean);
   currentRequired = computed(() => this.values()['required'] as boolean);

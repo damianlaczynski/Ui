@@ -9,6 +9,7 @@ import {
 import {
   SIZES,
   INPUT_VARIANTS,
+  CONTENT_POSITIONS,
   SHOWCASE_GROUP_ICONS,
 } from '@shared/utils/showcase/component-options.utils';
 
@@ -61,6 +62,14 @@ const EMAIL_CONTROL_DEFS: SharedControlDef[] = [
     group: 'appearance',
   },
   {
+    key: 'labelPosition',
+    label: 'Label Position',
+    type: 'dropdown',
+    options: toOptions([...CONTENT_POSITIONS]),
+    defaultValue: 'above',
+    group: 'appearance',
+  },
+  {
     key: 'disabled',
     label: 'Disabled',
     type: 'switch',
@@ -91,6 +100,7 @@ const EMAIL_FORM_CONTROLS = toDrawerFormControls(EMAIL_CONTROL_DEFS);
 export const EMAIL_DRAWER_CONFIGS = createDrawerFormConfigs(EMAIL_FORM_CONTROLS, {
   size: { excludeKey: 'size' },
   variants: { excludeKey: 'variant' },
+  labelPosition: { excludeKey: 'labelPosition' },
   states: { excludeKeys: ['disabled', 'readonly', 'required'] },
   combinations: { excludeKeys: ['variant', 'size'] },
 });
