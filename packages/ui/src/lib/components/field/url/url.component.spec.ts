@@ -53,4 +53,13 @@ describe('UrlComponent', () => {
     const input: HTMLInputElement = fixture.nativeElement.querySelector('input');
     expect(input.getAttribute('aria-label')).toBe('Website');
   });
+
+  it('should render link action button with aria-label', () => {
+    const actionButtons: HTMLButtonElement[] = Array.from(
+      fixture.nativeElement.querySelectorAll('.field__actions .field__action'),
+    );
+    expect(actionButtons.some(btn => btn.getAttribute('aria-label') === 'Open link actions')).toBe(
+      true,
+    );
+  });
 });

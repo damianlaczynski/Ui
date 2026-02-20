@@ -1,6 +1,7 @@
 <ui-field
   [fieldType]="'color'"
   [label]="label()"
+  [labelPosition]="labelPosition()"
   [placeholder]="placeholder()"
   [helpText]="helpText()"
   [(errorText)]="errorText"
@@ -24,8 +25,8 @@
         [readonly]="readonly()"
         [value]="currentColor().hex"
         [attr.tabindex]="getTabIndex()"
-        [attr.aria-label]="ariaLabel() || label()"
-        [attr.aria-describedby]="ariaDescribedBy()"
+        [attr.aria-label]="getComputedAriaLabel()"
+        [attr.aria-describedby]="getComputedAriaDescribedBy()"
         [attr.aria-invalid]="!!errorText()"
         (input)="onNativeColorChange($event)"
         (blur)="onBlur($event)"
@@ -33,7 +34,12 @@
       />
       @if (!disabled() && !readonly() && value) {
         <div class="field__actions">
-          <ui-action-button [icon]="'dismiss'" [size]="size()" (click)="clear()"></ui-action-button>
+          <ui-action-button
+            [icon]="'dismiss'"
+            [size]="size()"
+            [ariaLabel]="clearColorAriaLabel()"
+            (click)="clear()"
+          ></ui-action-button>
         </div>
       }
     } @else {
@@ -59,11 +65,12 @@
         [disabled]="disabled()"
         [readonly]="readonly()"
         [value]="value || ''"
-        [attr.aria-label]="ariaLabel() || label()"
-        [attr.aria-describedby]="ariaDescribedBy()"
+        [attr.aria-label]="getComputedAriaLabel()"
+        [attr.aria-describedby]="getComputedAriaDescribedBy()"
         [attr.aria-invalid]="!!errorText()"
         [attr.aria-expanded]="isExpanded()"
         [attr.aria-haspopup]="'dialog'"
+        [attr.aria-controls]="id() + '-color-panel'"
         (click)="!disabled() && !readonly() ? togglePanel() : null"
         (input)="onColorInputChange($event)"
         (blur)="onBlur($event)"
@@ -77,18 +84,21 @@
             <ui-action-button
               [icon]="'eyedropper'"
               [size]="size()"
+              [ariaLabel]="pickColorFromScreenAriaLabel()"
               (click)="openEyeDropper()"
             ></ui-action-button>
           }
           <ui-action-button
             [icon]="'color'"
             [size]="size()"
+            [ariaLabel]="openColorPickerAriaLabel()"
             (click)="togglePanel()"
           ></ui-action-button>
           @if (value) {
             <ui-action-button
               [icon]="'dismiss'"
               [size]="size()"
+              [ariaLabel]="clearColorAriaLabel()"
               (click)="clear()"
             ></ui-action-button>
           }
@@ -100,7 +110,14 @@
 
 <!-- Color Picker Panel - rendered via CDK Overlay -->
 <ng-template #panelTemplate>
-  <div class="color-panel" [attr.data-size]="size()" cdkTrapFocus>
+  <div
+    class="color-panel"
+    [attr.id]="id() + '-color-panel'"
+    [attr.data-size]="size()"
+    role="dialog"
+    [attr.aria-label]="pickerDialogAriaLabel()"
+    cdkTrapFocus
+  >
     <!-- Saturation & Lightness Picker -->
     <div
       #saturationPicker
@@ -119,7 +136,7 @@
 
     <!-- Hue Slider -->
     <div class="color-slider">
-      <label class="color-slider__label" [attr.for]="id() + '-hue'">Hue</label>
+      <label class="color-slider__label" [attr.for]="id() + '-hue'">{{ hueLabel() }}</label>
       <input
         type="range"
         class="color-slider__input color-slider__input--hue"
@@ -134,7 +151,7 @@
     <!-- Alpha Slider -->
     @if (showAlpha()) {
       <div class="color-slider">
-        <label class="color-slider__label" [attr.for]="id() + '-alpha'">Opacity</label>
+        <label class="color-slider__label" [attr.for]="id() + '-alpha'">{{ opacityLabel() }}</label>
         <div class="color-slider__alpha-wrapper">
           <div class="color-slider__alpha-checkered"></div>
           <input

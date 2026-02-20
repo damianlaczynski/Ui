@@ -75,6 +75,13 @@ export class ColorComponent extends FieldComponent implements OnDestroy {
   showAlpha = input<boolean>(true);
   showEyeDropper = input<boolean>(true);
   useNativeOnMobile = input<boolean>(true);
+  hueLabel = input<string>('Hue');
+  opacityLabel = input<string>('Opacity');
+  pickerDialogAriaLabel = input<string>('Color picker');
+  clearColorAriaLabel = input<string>('Clear color');
+  openColorPickerAriaLabel = input<string>('Open color picker');
+  pickColorFromScreenAriaLabel = input<string>('Pick color from screen');
+  eyeDropperNotSupportedMessage = input<string>('EyeDropper API is not supported in this browser');
 
   panelWidth = input<number>(280);
 
@@ -148,6 +155,7 @@ export class ColorComponent extends FieldComponent implements OnDestroy {
   }
 
   override ngOnDestroy(): void {
+    super.ngOnDestroy();
     this.breakpointSub?.unsubscribe();
     this.overlayHandle?.destroy();
   }
@@ -352,7 +360,7 @@ export class ColorComponent extends FieldComponent implements OnDestroy {
   // Eye dropper support
   async openEyeDropper(): Promise<void> {
     if (!('EyeDropper' in window)) {
-      console.warn('EyeDropper API is not supported in this browser');
+      console.warn(this.eyeDropperNotSupportedMessage());
       return;
     }
 

@@ -53,4 +53,11 @@ describe('NumberComponent', () => {
     component.decrement();
     expect(component.value).toBe('10');
   });
+
+  it('should render number action button with aria-label', () => {
+    const actionButtons: HTMLButtonElement[] = Array.from(
+      fixture.nativeElement.querySelectorAll('.field__actions .field__action'),
+    );
+    expect(actionButtons.some(btn => btn.getAttribute('aria-label') === 'Number input')).toBe(true);
+  });
 });

@@ -52,4 +52,11 @@ describe('EmailComponent', () => {
     const input: HTMLInputElement = fixture.nativeElement.querySelector('input');
     expect(input.getAttribute('aria-label')).toBe('Email');
   });
+
+  it('should render email action button with aria-label', () => {
+    const actionButtons: HTMLButtonElement[] = Array.from(
+      fixture.nativeElement.querySelectorAll('.field__actions .field__action'),
+    );
+    expect(actionButtons.some(btn => btn.getAttribute('aria-label') === 'Email')).toBe(true);
+  });
 });

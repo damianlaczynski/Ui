@@ -53,4 +53,11 @@ describe('TelComponent', () => {
     const input: HTMLInputElement = fixture.nativeElement.querySelector('input');
     expect(input.getAttribute('aria-label')).toBe('Phone');
   });
+
+  it('should render call action button with aria-label', () => {
+    const actionButtons: HTMLButtonElement[] = Array.from(
+      fixture.nativeElement.querySelectorAll('.field__actions .field__action'),
+    );
+    expect(actionButtons.some(btn => btn.getAttribute('aria-label') === 'Call')).toBe(true);
+  });
 });

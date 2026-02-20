@@ -38,4 +38,16 @@ describe('TextComponent', () => {
     const input: HTMLInputElement = fixture.nativeElement.querySelector('input');
     expect(input.getAttribute('aria-describedby')).toBe('text-help-help');
   });
+
+  it('should render clear action button with aria-label when value exists', () => {
+    const localFixture = TestBed.createComponent(TextComponent);
+    const localComponent = localFixture.componentInstance;
+    localComponent.writeValue('abc');
+    localFixture.detectChanges();
+
+    const clearButton: HTMLButtonElement = localFixture.nativeElement.querySelector(
+      '.field__actions .field__action',
+    );
+    expect(clearButton?.getAttribute('aria-label')).toBe('Clear text');
+  });
 });

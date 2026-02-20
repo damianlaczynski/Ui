@@ -1,7 +1,7 @@
 import { Component, signal, computed, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ColorComponent, ColorFormat } from 'ui';
-import { InputVariant, Size } from 'ui';
+import { ContentPosition, InputVariant, Size } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { COLOR_SHOWCASE_CONFIG } from './color.showcase.config';
@@ -20,6 +20,7 @@ import { COLOR_SHOWCASE_CONFIG } from './color.showcase.config';
       <div preview>
         <ui-color
           [label]="currentLabel()"
+          [labelPosition]="currentLabelPosition()"
           [placeholder]="currentPlaceholder()"
           [format]="currentFormat()"
           [inputVariant]="currentVariant()"
@@ -54,6 +55,7 @@ export class ColorInteractiveComponent {
     format: 'hex',
     variant: 'filled',
     size: 'medium',
+    labelPosition: 'above',
     showAlpha: false,
     showEyeDropper: true,
     disabled: false,
@@ -67,6 +69,7 @@ export class ColorInteractiveComponent {
   currentFormat = computed(() => this.values()['format'] as ColorFormat);
   currentVariant = computed(() => this.values()['variant'] as InputVariant);
   currentSize = computed(() => this.values()['size'] as Size);
+  currentLabelPosition = computed(() => this.values()['labelPosition'] as ContentPosition);
   currentShowAlpha = computed(() => this.values()['showAlpha'] as boolean);
   currentShowEyeDropper = computed(() => this.values()['showEyeDropper'] as boolean);
   currentDisabled = computed(() => this.values()['disabled'] as boolean);
