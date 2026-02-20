@@ -1,0 +1,46 @@
+<ui-field
+  [fieldType]="'text'"
+  [label]="label()"
+  [placeholder]="placeholder()"
+  [helpText]="helpText()"
+  [(errorText)]="errorText"
+  [required]="required()"
+  [disabled]="disabled()"
+  [readonly]="readonly()"
+  [autocomplete]="autocomplete()"
+  [id]="id()"
+  [name]="name()"
+  [size]="size()"
+  [inputVariant]="inputVariant()"
+>
+  <div class="input-wrapper" [class]="wrapperClasses">
+    <input
+      #inputElement
+      class="input"
+      type="text"
+      [id]="id()"
+      [name]="name()"
+      [placeholder]="placeholder()"
+      [required]="required()"
+      [disabled]="disabled()"
+      [readonly]="readonly()"
+      [autocomplete]="autocomplete()"
+      [value]="value"
+      [attr.tabindex]="getTabIndex()"
+      [attr.aria-label]="ariaLabel() || label()"
+      [attr.aria-describedby]="ariaDescribedBy()"
+      [attr.aria-invalid]="!!errorText()"
+      (input)="onInputChange($event)"
+      (blur)="onBlur($event)"
+      (focus)="onFocus($event)"
+      (keyup)="onKeyUp($event)"
+      (keydown)="onKeyDown($event)"
+    />
+    <!-- Actions: Clear button -->
+    @if (value && !disabled() && !readonly() && showClearButton()) {
+      <div class="field__actions">
+        <ui-action-button [icon]="'dismiss'" [size]="size()" (click)="clear()"></ui-action-button>
+      </div>
+    }
+  </div>
+</ui-field>

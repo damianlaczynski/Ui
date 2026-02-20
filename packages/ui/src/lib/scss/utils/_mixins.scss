@@ -1,0 +1,21 @@
+// ==========================================================================
+// Mixins - Main Entry Point
+// ==========================================================================
+// This file re-exports all mixins from the modular structure.
+// For new code, prefer importing specific mixin files directly.
+//
+// Structure:
+//   mixins/
+//   ├── _index.scss       - Main index (forwards all)
+//   ├── _animation.scss   - Transitions, keyframes, motion
+//   ├── _focus.scss       - Focus ring, accessibility
+//   ├── _media.scss       - Media queries, responsive
+//
+// Usage:
+//   @use 'utils/mixins' as *;
+//   // or for specific category:
+//   @use 'utils/mixins/variants' as *;
+//
+// ==========================================================================
+
+@forward 'mixins/index';

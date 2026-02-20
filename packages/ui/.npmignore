@@ -1,0 +1,6 @@
+src/
+tsconfig*.json
+.eslintrc.json
+*.spec.ts
+README.md
+ng-package.json

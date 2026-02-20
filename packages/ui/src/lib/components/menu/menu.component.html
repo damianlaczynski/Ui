@@ -1,0 +1,97 @@
+@if (triggerVariant() === 'dropdown') {
+  <button
+    #menuTrigger
+    [type]="buttonType()"
+    [class]="triggerClasses()"
+    [disabled]="disabled()"
+    [attr.aria-label]="ariaLabel()"
+    [attr.aria-haspopup]="'menu'"
+    [attr.aria-expanded]="isMenuOpen()"
+    (click)="onTriggerClick($event)"
+  >
+    @if (icon()) {
+      <ui-icon [icon]="icon()!" [size]="size()" [variant]="selected() ? 'filled' : 'regular'" />
+    }
+    @if (text()) {
+      <span class="button__text">{{ text() }}</span>
+    }
+    <span class="button__content"><ng-content></ng-content></span>
+    @if (shortcut()) {
+      <span class="menu-trigger__shortcut">{{ shortcut() }}</span>
+    }
+    <ui-icon [icon]="triggerIcon()" [size]="size()" variant="regular" />
+  </button>
+} @else if (triggerVariant() === 'split') {
+  <div #menuTrigger [class]="splitContainerClasses()">
+    <button
+      #splitPrimaryPart
+      [type]="buttonType()"
+      [class]="primaryPartClasses()"
+      [disabled]="disabled()"
+      [attr.aria-label]="ariaLabel()"
+      (click)="onPrimaryClick($event)"
+    >
+      @if (icon()) {
+        <ui-icon [icon]="icon()!" [size]="size()" [variant]="selected() ? 'filled' : 'regular'" />
+      }
+      @if (text()) {
+        <span class="button__text">{{ text() }}</span>
+      }
+      <span class="button__content"><ng-content></ng-content></span>
+      @if (shortcut()) {
+        <span class="menu-trigger__shortcut">{{ shortcut() }}</span>
+      }
+    </button>
+    <button
+      #splitDropdownPart
+      type="button"
+      [class]="dropdownPartClasses()"
+      [disabled]="disabled()"
+      [attr.aria-label]="'Open menu'"
+      [attr.aria-haspopup]="'menu'"
+      [attr.aria-expanded]="isMenuOpen()"
+      (click)="onDropdownClick($event)"
+    >
+      <ui-icon
+        [icon]="triggerIcon()"
+        [size]="size()"
+        [variant]="selected() ? 'filled' : 'regular'"
+      />
+    </button>
+  </div>
+} @else {
+  <button
+    #menuTrigger
+    [type]="buttonType()"
+    [class]="buttonClasses()"
+    [disabled]="disabled()"
+    [attr.aria-label]="ariaLabel()"
+    [attr.aria-haspopup]="hasMenuItems() ? 'menu' : null"
+    [attr.aria-expanded]="hasMenuItems() ? isMenuOpen() : null"
+    (click)="onButtonClick($event)"
+  >
+    @if (icon()) {
+      <ui-icon [icon]="icon()!" [size]="size()" [variant]="selected() ? 'filled' : 'regular'" />
+    }
+    @if (text()) {
+      <span class="button__text">{{ text() }}</span>
+    }
+    <span class="button__content"><ng-content></ng-content></span>
+    @if (shortcut()) {
+      <span class="menu-trigger__shortcut">{{ shortcut() }}</span>
+    }
+  </button>
+}
+
+<ng-template #menuTemplate>
+  <ui-menu-list
+    [items]="menuItems()"
+    [visible]="true"
+    [maxHeight]="menuMaxHeight()"
+    [size]="size()"
+    [variant]="'secondary'"
+    [appearance]="'subtle'"
+    (itemClick)="onMenuItemClick($event)"
+    (closed)="closeMenu()"
+  />
+</ng-template>

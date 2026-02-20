@@ -1,0 +1,400 @@
+// ==========================================================================
+// Avatar Component - Fluent 2 Design System
+// ==========================================================================
+// Variants: primary, secondary, success, warning, danger, info
+// Appearances: filled, outline, subtle, transparent, tint
+// Sizes: small, medium, large
+// Shapes: rounded, circular, square
+
+@use 'sass:map';
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+
+// ==========================================================================
+// Mixins
+// ==========================================================================
+
+@mixin avatar-variant-filled($bg-color, $fg-color) {
+  background-color: $bg-color;
+  color: $fg-color;
+  border-color: transparent;
+}
+
+@mixin avatar-variant-outline($bg-color, $fg-color, $border-color) {
+  background-color: $bg-color;
+  color: $fg-color;
+  border-color: $border-color;
+}
+
+@mixin avatar-variant-subtle($bg-color, $fg-color) {
+  background-color: $bg-color;
+  color: $fg-color;
+  border-color: transparent;
+}
+
+@mixin avatar-variant-transparent($fg-color) {
+  background-color: transparent;
+  color: $fg-color;
+  border-color: transparent;
+}
+
+@mixin avatar-variant-tint($bg-color, $fg-color) {
+  background-color: $bg-color;
+  color: $fg-color;
+  border-color: transparent;
+}
+
+// ==========================================================================
+// Base Avatar
+// ==========================================================================
+
+.avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  user-select: none;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  @include transition-colors($duration-faster);
+  @include transition-transform($duration-faster);
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  &__initials {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-family: $font-family-base;
+    font-weight: $font-weight-semibold;
+    text-align: center;
+    line-height: 1;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 1;
+  }
+}
+
+// ==========================================================================
+// Sizes
+// ==========================================================================
+
+$avatar-sizes: (
+  'small': (
+    width: 32px,
+    height: 32px,
+    font-size: $font-size-200,
+    border-radius: $border-radius-400,
+  ),
+  'medium': (
+    width: 40px,
+    height: 40px,
+    font-size: $font-size-300,
+    border-radius: $border-radius-600,
+  ),
+  'large': (
+    width: 56px,
+    height: 56px,
+    font-size: $font-size-400,
+    border-radius: $border-radius-600,
+  ),
+);
+
+@each $size, $props in $avatar-sizes {
+  .avatar--#{$size} {
+    width: map.get($props, width);
+    height: map.get($props, height);
+    border-radius: map.get($props, border-radius);
+
+    .avatar__initials {
+      font-size: map.get($props, font-size);
+    }
+  }
+}
+
+// ==========================================================================
+// Shapes
+// ==========================================================================
+
+.avatar--circular {
+  border-radius: $border-radius-circular;
+}
+
+.avatar--square {
+  border-radius: 0;
+}
+
+// ==========================================================================
+// Variants - PRIMARY
+// ==========================================================================
+
+.avatar--primary {
+  &.avatar--filled {
+    @include avatar-variant-filled(
+      var(--color-brand-primary),
+      var(--color-neutral-foreground-on-brand)
+    );
+  }
+
+  &.avatar--outline {
+    @include avatar-variant-outline(
+      transparent,
+      var(--color-brand-primary),
+      var(--color-brand-stroke-rest)
+    );
+  }
+
+  &.avatar--subtle {
+    @include avatar-variant-subtle(
+      var(--color-neutral-background-brand-selected),
+      var(--color-brand-foreground)
+    );
+  }
+
+  &.avatar--transparent {
+    @include avatar-variant-transparent(var(--color-brand-foreground));
+  }
+
+  &.avatar--tint {
+    @include avatar-variant-tint(
+      var(--color-neutral-background-brand-selected),
+      var(--color-brand-foreground)
+    );
+  }
+}
+
+// ==========================================================================
+// Variants - SECONDARY
+// ==========================================================================
+
+.avatar--secondary {
+  &.avatar--filled {
+    @include avatar-variant-filled(
+      var(--color-neutral-background2-rest),
+      var(--color-neutral-foreground-rest)
+    );
+  }
+
+  &.avatar--outline {
+    @include avatar-variant-outline(
+      transparent,
+      var(--color-neutral-foreground2-rest),
+      var(--color-neutral-stroke-accessible)
+    );
+  }
+
+  &.avatar--subtle {
+    @include avatar-variant-subtle(
+      var(--color-subtle-background-selected),
+      var(--color-neutral-foreground2-rest)
+    );
+  }
+
+  &.avatar--transparent {
+    @include avatar-variant-transparent(var(--color-neutral-foreground2-rest));
+  }
+
+  &.avatar--tint {
+    @include avatar-variant-tint(
+      var(--color-neutral-background2-rest),
+      var(--color-neutral-foreground2-rest)
+    );
+  }
+}
+
+// ==========================================================================
+// Variants - SUCCESS
+// ==========================================================================
+
+.avatar--success {
+  &.avatar--filled {
+    @include avatar-variant-filled(
+      var(--color-shared-green-foreground),
+      var(--color-shared-green-background)
+    );
+  }
+
+  &.avatar--outline {
+    @include avatar-variant-outline(
+      transparent,
+      var(--color-shared-green-foreground),
+      var(--color-shared-green-foreground)
+    );
+  }
+
+  &.avatar--subtle {
+    @include avatar-variant-subtle(
+      var(--color-shared-green-background),
+      var(--color-shared-green-foreground)
+    );
+  }
+
+  &.avatar--transparent {
+    @include avatar-variant-transparent(var(--color-shared-green-foreground));
+  }
+
+  &.avatar--tint {
+    @include avatar-variant-tint(
+      var(--color-shared-green-background),
+      var(--color-shared-green-foreground)
+    );
+  }
+}
+
+// ==========================================================================
+// Variants - WARNING
+// ==========================================================================
+
+.avatar--warning {
+  &.avatar--filled {
+    @include avatar-variant-filled(
+      var(--color-shared-orange-foreground),
+      var(--color-shared-orange-background)
+    );
+  }
+
+  &.avatar--outline {
+    @include avatar-variant-outline(
+      transparent,
+      var(--color-shared-orange-foreground),
+      var(--color-shared-orange-foreground)
+    );
+  }
+
+  &.avatar--subtle {
+    @include avatar-variant-subtle(
+      var(--color-shared-orange-background),
+      var(--color-shared-orange-foreground)
+    );
+  }
+
+  &.avatar--transparent {
+    @include avatar-variant-transparent(var(--color-shared-orange-foreground));
+  }
+
+  &.avatar--tint {
+    @include avatar-variant-tint(
+      var(--color-shared-orange-background),
+      var(--color-shared-orange-foreground)
+    );
+  }
+}
+
+// ==========================================================================
+// Variants - DANGER
+// ==========================================================================
+
+.avatar--danger {
+  &.avatar--filled {
+    @include avatar-variant-filled(
+      var(--color-shared-red-foreground),
+      var(--color-shared-red-background)
+    );
+  }
+
+  &.avatar--outline {
+    @include avatar-variant-outline(
+      transparent,
+      var(--color-shared-red-foreground),
+      var(--color-shared-red-foreground)
+    );
+  }
+
+  &.avatar--subtle {
+    @include avatar-variant-subtle(
+      var(--color-shared-red-background),
+      var(--color-shared-red-foreground)
+    );
+  }
+
+  &.avatar--transparent {
+    @include avatar-variant-transparent(var(--color-shared-red-foreground));
+  }
+
+  &.avatar--tint {
+    @include avatar-variant-tint(
+      var(--color-shared-red-background),
+      var(--color-shared-red-foreground)
+    );
+  }
+}
+
+// ==========================================================================
+// Variants - INFO
+// ==========================================================================
+
+.avatar--info {
+  &.avatar--filled {
+    @include avatar-variant-filled(
+      var(--color-shared-blue-foreground),
+      var(--color-shared-blue-background)
+    );
+  }
+
+  &.avatar--outline {
+    @include avatar-variant-outline(
+      transparent,
+      var(--color-shared-blue-foreground),
+      var(--color-shared-blue-foreground)
+    );
+  }
+
+  &.avatar--subtle {
+    @include avatar-variant-subtle(
+      var(--color-shared-blue-background),
+      var(--color-shared-blue-foreground)
+    );
+  }
+
+  &.avatar--transparent {
+    @include avatar-variant-transparent(var(--color-shared-blue-foreground));
+  }
+
+  &.avatar--tint {
+    @include avatar-variant-tint(
+      var(--color-shared-blue-background),
+      var(--color-shared-blue-foreground)
+    );
+  }
+}
+
+// ==========================================================================
+// States
+// ==========================================================================
+
+.avatar--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.avatar--loading {
+  pointer-events: none;
+}

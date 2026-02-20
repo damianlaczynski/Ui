@@ -1,0 +1,51 @@
+<div [class]="getToolbarClasses()">
+  @for (item of toolbarItems(); track item.id) {
+    @if (isDivider(item)) {
+      <ui-divider
+        [orientation]="orientation() === 'horizontal' ? 'vertical' : 'horizontal'"
+        class="toolbar__divider"
+      />
+    } @else if (isSplitButton(item)) {
+      <div [class]="getItemClasses(item)">
+        <ui-menu
+          triggerVariant="split"
+          [variant]="item.variant ?? 'secondary'"
+          [appearance]="item.appearance ?? 'subtle'"
+          [size]="size()"
+          [icon]="item.icon"
+          [disabled]="item.disabled || false"
+          [ariaLabel]="item.ariaLabel || item.label || item.tooltip || ''"
+          [menuItems]="item.menuItems || []"
+          [attr.title]="item.tooltip || item.label || ''"
+          (primaryClick)="onItemClick(item, $event)"
+          (menuItemClick)="onSplitMenuItemClick($event)"
+          class="toolbar__menu"
+        >
+          @if (item.label) {
+            {{ item.label }}
+          }
+        </ui-menu>
+      </div>
+    } @else {
+      <div [class]="getItemClasses(item)">
+        @if (item.type === 'custom') {
+          <ng-content />
+        } @else {
+          <ui-button
+            [variant]="item.variant ?? 'secondary'"
+            [appearance]="item.appearance ?? 'subtle'"
+            [size]="size()"
+            [text]="item.label ?? undefined"
+            [icon]="item.icon || undefined"
+            [selected]="item.selected || false"
+            [disabled]="item.disabled || false"
+            [ariaLabel]="item.ariaLabel || item.label || item.tooltip || ''"
+            [attr.title]="item.tooltip || item.label || ''"
+            (click)="onItemClick(item, $event)"
+            class="toolbar__button"
+          />
+        }
+      </div>
+    }
+  }
+</div>

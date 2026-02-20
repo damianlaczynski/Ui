@@ -1,0 +1,139 @@
+// ==========================================================================
+// Pagination Component - Fluent 2 Design System (BEM Block)
+// ==========================================================================
+
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+@use '../utils/functions' as *;
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: $spacing-4;
+  flex-wrap: wrap;
+  font-family: $font-family-base;
+  padding: $spacing-4;
+
+  // Size Modifiers
+  &--small {
+    gap: $spacing-2;
+    font-size: $font-size-200;
+    line-height: $line-height-200;
+
+    &__info-text {
+      font-size: $font-size-200;
+      line-height: $line-height-200;
+    }
+  }
+
+  &--medium {
+    gap: $spacing-3;
+    font-size: $font-size-300;
+    line-height: $line-height-300;
+
+    &__info-text {
+      font-size: $font-size-300;
+      line-height: $line-height-300;
+    }
+  }
+
+  &--large {
+    gap: $spacing-4;
+    font-size: $font-size-400;
+    line-height: $line-height-400;
+
+    &__info-text {
+      font-size: $font-size-400;
+      line-height: $line-height-400;
+    }
+  }
+
+  // Elements
+  &__info {
+    display: flex;
+    align-items: center;
+    color: var(--color-neutral-foreground2-rest);
+    flex-shrink: 0;
+  }
+
+  &__info-text {
+    font-weight: $font-weight-regular;
+    color: var(--color-neutral-foreground2-rest);
+  }
+
+  &__controls {
+    display: flex;
+    align-items: center;
+    gap: $spacing-1;
+    flex-wrap: wrap;
+  }
+
+  &__pages {
+    display: flex;
+    align-items: center;
+    gap: $spacing-1;
+    flex-wrap: wrap;
+  }
+
+  &__ellipsis {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    color: var(--color-neutral-foreground2-rest);
+    font-weight: $font-weight-medium;
+    user-select: none;
+    pointer-events: none;
+
+    .pagination--small & {
+      min-width: 24px;
+      height: 24px;
+      font-size: $font-size-200;
+    }
+
+    .pagination--large & {
+      min-width: 40px;
+      height: 40px;
+      font-size: $font-size-400;
+    }
+  }
+
+  &__page-size {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+
+  &__page-size-selector {
+    min-width: 100px;
+  }
+
+  // Responsive adjustments
+  @include respond-to(small) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: $spacing-3;
+
+    &__info {
+      justify-content: center;
+      text-align: center;
+    }
+
+    &__controls {
+      justify-content: center;
+    }
+
+    &__page-size {
+      margin-left: 0;
+      justify-content: center;
+      width: 100%;
+    }
+
+    &__page-size-selector {
+      width: 100%;
+      max-width: 200px;
+    }
+  }
+}

@@ -1,0 +1,79 @@
+// =============================================================================
+// Menu Component Styles (Fluent 2 Design System)
+// =============================================================================
+
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+@use '../utils/functions' as *;
+
+// =============================================================================
+// Menu Container
+// =============================================================================
+
+.menu {
+  width: 100%;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: $spacing-0_5;
+  padding: $spacing-1;
+  background: var(--color-neutral-background-rest);
+  border: 1px solid var(--color-neutral-stroke-rest);
+  box-shadow: $elevation-2;
+  overflow: visible;
+  border-radius: $border-radius-400;
+  min-width: 120px;
+  @include slide-down($duration-normal, $easing-decelerate-min);
+
+  // =============================================================================
+  // Section
+  // =============================================================================
+
+  &__section {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-1;
+
+    &--not-first {
+      margin-top: $spacing-0_5; // 2px
+    }
+  }
+
+  &__section-header {
+    display: flex;
+    align-self: stretch;
+    align-items: center;
+    min-width: 0;
+    padding: $spacing-2 $spacing-4 $spacing-1;
+    margin-bottom: $spacing-0_5;
+    background: transparent;
+
+    &--disabled {
+      .menu__section-header-text {
+        color: var(--color-neutral-foreground-disabled);
+      }
+    }
+
+    &-text {
+      flex: 1 1 0;
+      min-width: 0;
+      color: var(--color-neutral-foreground3-rest);
+      font-size: $font-size-200;
+      font-family: $font-family-base;
+      font-weight: $font-weight-semibold;
+      line-height: $line-height-200;
+      letter-spacing: 0.04em;
+      word-wrap: break-word;
+    }
+  }
+
+  // =============================================================================
+  // Submenu Overlay (CDK Overlay)
+  // =============================================================================
+
+  &__submenu-overlay {
+    @include slide-down($duration-fast, $easing-decelerate-mid);
+  }
+}

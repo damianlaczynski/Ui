@@ -1,0 +1,20 @@
+// ==========================================================================
+// Mixins Index - Unified Design System
+// ==========================================================================
+// Main entry point for all mixins. Import this file to access all mixins.
+//
+// Usage:
+//   @use 'utils/mixins' as *;
+//   or
+//   @use 'utils/mixins' as mixins;
+//
+// ==========================================================================
+
+// Core utilities
+@forward 'media';
+
+// Animation & interaction
+@forward 'animation';
+@forward 'focus';
+
+// Design system variants & states

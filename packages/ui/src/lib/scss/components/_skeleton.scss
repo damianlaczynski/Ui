@@ -1,0 +1,78 @@
+// ==========================================================================
+// Skeleton Component - Fluent 2 Design System (Unified)
+// ==========================================================================
+// Shapes: rounded (default), circular, square
+
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+
+// ---------------------------------------------------------------------------
+// Skeleton Component
+// ---------------------------------------------------------------------------
+
+.skeleton {
+  position: relative;
+  background: var(--color-neutral-background-hover);
+  overflow: hidden;
+  backface-visibility: hidden;
+  user-select: none;
+
+  // Shape modifiers
+  &--rounded {
+    border-radius: $border-radius-400;
+  }
+  &--circular {
+    border-radius: $border-radius-circular;
+  }
+  &--square {
+    border-radius: 0;
+  }
+
+  // Legacy aliases
+  &--rectangle {
+    @extend .skeleton--rounded;
+  }
+  &--circle {
+    @extend .skeleton--circular;
+  }
+}
+
+.skeleton__shimmer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.skeleton__shimmer-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 34%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0.4) 65%,
+    transparent 100%
+  );
+}
+
+.skeleton__shimmer-color {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: color-mix(in srgb, var(--color-neutral-background-hover) 85%, white 15%);
+}
+
+.skeleton--animated {
+  .skeleton__shimmer {
+    @include shimmer-translate(2s);
+  }
+}

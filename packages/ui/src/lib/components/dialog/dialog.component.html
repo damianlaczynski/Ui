@@ -1,0 +1,93 @@
+@if (visible()) {
+  <div
+    [class]="backdropClasses()"
+    (mousedown)="onBackdropClick($event)"
+    role="dialog"
+    [attr.aria-modal]="true"
+    [attr.aria-hidden]="!visible()"
+    [attr.aria-labelledby]="title() ? 'dialog-title' : null"
+  >
+    <div [class]="dialogClasses()" role="document">
+      <div
+        [class]="contentClasses()"
+        [ngStyle]="contentStyles()"
+        cdkTrapFocus
+        cdkTrapFocusAutoCapture
+      >
+        <!-- Header -->
+        <div [class]="headerClasses()">
+          <h2 id="dialog-title" class="dialog__title">{{ title() }}</h2>
+
+          @if (closable()) {
+            <div class="dialog__close-container">
+              <ui-button
+                appearance="subtle"
+                [ariaLabel]="'Close dialog'"
+                (click)="onCloseClick()"
+                class="dialog__close-button"
+              >
+                <ui-icon [icon]="'dismiss'" [size]="'medium'" />
+              </ui-button>
+            </div>
+          }
+        </div>
+
+        <!-- Body -->
+        <div [class]="bodyClasses()">
+          @if (bodyText()) {
+            <p class="dialog__text">{{ bodyText() }}</p>
+          }
+
+          <ng-content></ng-content>
+        </div>
+
+        <!-- Footer -->
+        @if (hasActions()) {
+          <div [class]="footerClasses()">
+            <div class="dialog__footer-left">
+              @for (action of additionalActions(); track action.label) {
+                <ui-button
+                  [variant]="action.variant || 'secondary'"
+                  [appearance]="action.appearance || 'outline'"
+                  [size]="action.size || 'medium'"
+                  [disabled]="action.disabled ?? false"
+                  [icon]="action.icon"
+                  (click)="handleAdditionalAction(action)"
+                >
+                  {{ action.label }}
+                </ui-button>
+              }
+            </div>
+
+            <div class="dialog__footer-right">
+              @if (primaryAction()) {
+                <ui-button
+                  [variant]="primaryAction()!.variant || 'primary'"
+                  [appearance]="primaryAction()!.appearance || 'filled'"
+                  [size]="primaryAction()!.size || 'medium'"
+                  [disabled]="primaryAction()!.disabled ?? false"
+                  [icon]="primaryAction()!.icon"
+                  (click)="handlePrimaryAction()"
+                >
+                  {{ primaryAction()!.label }}
+                </ui-button>
+              }
+              @if (secondaryAction()) {
+                <ui-button
+                  [variant]="secondaryAction()!.variant || 'secondary'"
+                  [appearance]="secondaryAction()!.appearance || 'outline'"
+                  [size]="secondaryAction()!.size || 'medium'"
+                  [disabled]="secondaryAction()!.disabled ?? false"
+                  [icon]="secondaryAction()!.icon"
+                  (click)="handleSecondaryAction()"
+                >
+                  {{ secondaryAction()!.label }}
+                </ui-button>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+}

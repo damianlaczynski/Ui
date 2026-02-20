@@ -1,0 +1,89 @@
+@if (visible()) {
+  <div
+    [class]="drawerClasses()"
+    [attr.role]="isOverlay() ? 'dialog' : 'region'"
+    [attr.aria-modal]="isOverlay() && isModal()"
+    [attr.aria-hidden]="!visible()"
+    [attr.aria-labelledby]="title() ? 'drawer-title' : null"
+  >
+    @if (isOverlay()) {
+      <div [class]="backdropClasses()" (click)="onBackdropClick($event)"></div>
+    }
+    <div [class]="contentClasses()" [attr.role]="isOverlay() ? 'document' : null">
+      <!-- Header -->
+      <div [class]="headerClasses()">
+        @if (title()) {
+          <h2 id="drawer-title" class="drawer__title">{{ title() }}</h2>
+        }
+        @if (closable()) {
+          <div class="drawer__close-container">
+            <ui-button
+              appearance="subtle"
+              [ariaLabel]="'Close drawer'"
+              (click)="onCloseClick()"
+              class="drawer__close-button"
+            >
+              <ui-icon [icon]="'dismiss'" [size]="'medium'" />
+            </ui-button>
+          </div>
+        }
+      </div>
+
+      <!-- Body -->
+      <div [class]="bodyClasses()">
+        @if (bodyText()) {
+          <p class="drawer__text">{{ bodyText() }}</p>
+        }
+
+        <ng-content></ng-content>
+      </div>
+
+      <!-- Footer -->
+      @if (hasActions()) {
+        <div [class]="footerClasses()">
+          <div class="drawer__footer-left">
+            @for (action of additionalActions(); track action.label) {
+              <ui-button
+                [variant]="action.variant ?? 'secondary'"
+                [appearance]="action.appearance ?? 'filled'"
+                [size]="action.size ?? 'medium'"
+                [disabled]="action.disabled ?? false"
+                [icon]="action.icon"
+                (click)="handleAdditionalAction(action)"
+              >
+                {{ action.label }}
+              </ui-button>
+            }
+          </div>
+
+          <div class="drawer__footer-right">
+            @if (primaryAction()) {
+              <ui-button
+                [variant]="primaryAction()!.variant ?? 'secondary'"
+                [appearance]="primaryAction()!.appearance ?? 'filled'"
+                [size]="primaryAction()!.size ?? 'medium'"
+                [disabled]="primaryAction()!.disabled ?? false"
+                [icon]="primaryAction()!.icon"
+                (click)="handlePrimaryAction()"
+              >
+                {{ primaryAction()!.label }}
+              </ui-button>
+            }
+            @if (secondaryAction()) {
+              <ui-button
+                [variant]="secondaryAction()!.variant ?? 'secondary'"
+                [appearance]="secondaryAction()!.appearance ?? 'filled'"
+                [size]="secondaryAction()!.size ?? 'medium'"
+                [disabled]="secondaryAction()!.disabled ?? false"
+                [icon]="secondaryAction()!.icon"
+                (click)="handleSecondaryAction()"
+              >
+                {{ secondaryAction()!.label }}
+              </ui-button>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+}

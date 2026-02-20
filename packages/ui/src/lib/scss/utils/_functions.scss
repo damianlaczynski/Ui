@@ -1,0 +1,42 @@
+@use 'sass:map';
+@use 'variables' as *;
+
+// ==========================================================================
+// Functions
+// ==========================================================================
+
+// Convert px to rem
+@function rem($pixels, $base: 16) {
+  @return ($pixels / $base) * 1rem;
+}
+
+// Convert px to em
+@function em($pixels, $base: 16) {
+  @return ($pixels / $base) * 1em;
+}
+
+// Get color with opacity
+@function rgba-color($color, $opacity: 1) {
+  @return rgba($color, $opacity);
+}
+
+// Calculate line-height based on font-size
+@function line-height($font-size, $line-height-ratio: 1.5) {
+  @return $font-size * $line-height-ratio;
+}
+
+// Get z-index value
+@function z($layer) {
+  @return map.get($z-indexes, $layer);
+}
+
+// Z-index map - Fluent 2 Design System
+$z-indexes: (
+  'dropdown': $z-index-dropdown,
+  'sticky': $z-index-sticky,
+  'fixed': $z-index-fixed,
+  'modal-backdrop': $z-index-modal-backdrop,
+  'modal': $z-index-modal,
+  'popover': $z-index-popover,
+  'tooltip': $z-index-tooltip,
+);

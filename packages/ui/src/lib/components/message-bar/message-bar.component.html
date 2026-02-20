@@ -1,0 +1,51 @@
+<div
+  [class]="messageBarClasses()"
+  [attr.role]="ariaLive() === 'assertive' ? 'alert' : 'status'"
+  [attr.aria-live]="ariaLive()"
+  aria-atomic="true"
+>
+  @if (showIcon()) {
+    <div class="message-bar__icon" aria-hidden="true">
+      <ui-icon [icon]="iconName()" [size]="size()" variant="filled" />
+    </div>
+  }
+
+  <div class="message-bar__content">
+    @if (title()) {
+      <div class="message-bar__title">{{ title() }}</div>
+    }
+    @if (message()) {
+      <div class="message-bar__message">{{ message() }}</div>
+    }
+    <ng-content></ng-content>
+  </div>
+
+  <div class="message-bar__aside">
+    @if (dismissible()) {
+      <button type="button" class="message-bar__dismiss" (click)="onDismiss()" aria-label="Dismiss">
+        <ui-icon icon="dismiss" [size]="size()" variant="regular" />
+      </button>
+    }
+
+    @if (actions().length > 0) {
+      <div class="message-bar__actions">
+        @for (action of actions(); track action.label + '-' + $index) {
+          <ui-button
+            class="message-bar__action"
+            [variant]="actionVariant(action)"
+            [appearance]="actionAppearance(action)"
+            [size]="actionSize(action)"
+            [shape]="actionShape(action)"
+            [icon]="action.icon"
+            [text]="action.label"
+            [disabled]="action.disabled ?? false"
+            [ariaLabel]="action.label"
+            (click)="onActionClick(action)"
+          />
+        }
+      </div>
+    }
+
+    <ng-content select="[slot=actions]"></ng-content>
+  </div>
+</div>

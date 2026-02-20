@@ -1,0 +1,27 @@
+@use '../../scss/utils/variables' as *;
+@use '../../scss/utils/mixins' as *;
+@use '../../scss/utils/functions' as *;
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--color-neutral-background-rest);
+
+  &__tabs {
+    padding: $spacing-1;
+    border-bottom: 1px solid var(--color-neutral-stroke-rest);
+    flex-shrink: 0;
+    overflow-x: auto;
+  }
+
+  &__content {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    @include transition-opacity($duration-normal);
+  }
+}

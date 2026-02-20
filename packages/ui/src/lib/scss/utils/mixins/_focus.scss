@@ -1,0 +1,82 @@
+@use '../../utils/variables' as *;
+
+// ==========================================================================
+// Focus & Accessibility Mixins - Fluent 2 Design System
+// ==========================================================================
+
+/// Standard focus ring (Fluent 2 compliant)
+/// Używa globalnego koloru focus z --color-focus-border
+/// @param {Length} $offset - Outline offset (default: 2px)
+/// @param {Length} $border-radius - Optional border radius
+/// @example
+///   @include focus-ring; // Default focus
+///   @include focus-ring(2px, $border-radius-400); // With border radius
+///   @include focus-ring(-2px); // Negative offset (inside element)
+@mixin focus-ring($offset: 2px, $border-radius: null) {
+  & {
+    outline: none;
+  }
+
+  @if $border-radius {
+    & {
+      border-radius: $border-radius;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-focus-border);
+    outline-offset: $offset;
+
+    @if $border-radius {
+      border-radius: $border-radius;
+    }
+  }
+}
+
+/// Hover and focus combined states
+@mixin hover-focus {
+  &:hover,
+  &:focus {
+    @content;
+  }
+}
+
+/// Interactive states (hover, focus, active)
+@mixin interactive-states {
+  &:hover,
+  &:focus,
+  &:active {
+    @content;
+  }
+}
+
+/// Skip link for keyboard navigation
+@mixin skip-link {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+
+  &:focus {
+    position: fixed;
+    top: $spacing-2;
+    left: $spacing-2;
+    z-index: $z-index-tooltip;
+    width: auto;
+    height: auto;
+    padding: $spacing-2 $spacing-4;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    background: var(--color-neutral-background-rest);
+    border: 2px solid var(--color-brand-primary);
+    border-radius: $border-radius-400;
+    color: var(--color-neutral-foreground-rest);
+  }
+}

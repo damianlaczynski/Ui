@@ -1,0 +1,92 @@
+// ==========================================================================
+// Accordion Component - Fluent 2 Design System (BEM Block)
+// Built on top of Node Component for consistency
+// ==========================================================================
+
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+@use '../utils/functions' as *;
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: $border-radius-400;
+
+  // Expandable panel
+  &__panel {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 $spacing-3 0;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    @include transition(max-height opacity padding, $duration-normal, $easing-decelerate-min);
+  }
+
+  // Panel content wrapper
+  &__panel-content {
+    width: 100%;
+    padding: $spacing-2 0;
+  }
+
+  // ==========================================================================
+  // Size Modifiers - Inherited from Node Component
+  // ==========================================================================
+
+  &--small {
+    .accordion__panel-content {
+      padding: $spacing-1 0;
+    }
+  }
+
+  &--large {
+    .accordion__panel-content {
+      padding: $spacing-3 0;
+    }
+  }
+
+  // ==========================================================================
+  // Expanded State Modifier
+  // ==========================================================================
+
+  &--expanded {
+    .accordion__panel {
+      max-height: 2000px;
+      opacity: 1;
+      padding-bottom: $spacing-3;
+    }
+  }
+
+  // ==========================================================================
+  // Collapsed State (default)
+  // ==========================================================================
+
+  &:not(.accordion--expanded) {
+    .accordion__panel {
+      max-height: 0;
+      opacity: 0;
+      padding: 0;
+      transition-timing-function: $easing-accelerate-min;
+    }
+  }
+
+  // Header hover animation
+  &__header {
+    @include smooth-hover;
+    @include smooth-press;
+  }
+
+  // ==========================================================================
+  // Disabled State Modifier - Handled by Node Component
+  // ==========================================================================
+
+  &--disabled {
+    pointer-events: none;
+
+    .accordion__header {
+      pointer-events: none;
+    }
+  }
+}

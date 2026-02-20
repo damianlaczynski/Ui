@@ -1,0 +1,268 @@
+// ==========================================================================
+// Card Component - Fluent 2 inspired
+// ==========================================================================
+
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+
+.card {
+  --card-padding: #{$spacing-3};
+  --card-radius: #{$border-radius-400};
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--card-gap);
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  border-radius: var(--card-radius);
+  border: 1px solid var(--color-neutral-stroke-rest);
+  background: var(--color-neutral-background-rest);
+  box-shadow: $elevation-2;
+  color: var(--color-neutral-foreground-rest);
+  transition:
+    background-color $duration-faster $easing-decelerate-min,
+    border-color $duration-faster $easing-decelerate-min,
+    box-shadow $duration-faster $easing-decelerate-min;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-focus-border);
+    outline-offset: 2px;
+  }
+
+  &__content {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--card-gap);
+    flex: 1;
+  }
+
+  &__floating-action {
+    position: absolute;
+    top: calc(var(--card-padding) - #{$spacing-1});
+    right: calc(var(--card-padding) - #{$spacing-1});
+    z-index: 2;
+    pointer-events: auto;
+
+    .field,
+    .checkbox-wrapper {
+      margin: 0;
+    }
+
+    .checkbox-container {
+      gap: 0;
+    }
+  }
+
+  > [uiCardPreview] {
+    display: block;
+    min-width: 0;
+    border-radius: calc(var(--card-radius) - 1px);
+    overflow: hidden;
+  }
+
+  > [uiCardPreview] > img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  > [uiCardFloatingAction],
+  > [uiCardCheckbox] {
+    position: absolute;
+    top: calc(var(--card-padding) - #{$spacing-1});
+    right: calc(var(--card-padding) - #{$spacing-1});
+    z-index: 2;
+  }
+
+  &__content > [uiCardHeader],
+  &__content > [uiCardBody],
+  &__content > [uiCardFooter] {
+    min-width: 0;
+  }
+
+  &__content > [uiCardHeader] {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-3;
+  }
+
+  &__content > [uiCardBody] {
+    color: var(--color-neutral-foreground2-rest);
+    font-size: $font-size-300;
+    line-height: $line-height-300;
+  }
+
+  &__content > [uiCardFooter] {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: $spacing-2;
+  }
+
+  &__content > [uiCardFooter]:empty,
+  &__content > [uiCardHeader]:empty,
+  &__content > [uiCardBody]:empty,
+  &__content:empty {
+    display: none;
+  }
+
+  // Sizes
+  &--small {
+    --card-padding: #{$spacing-2};
+    --card-radius: #{$border-radius-200};
+  }
+
+  &--medium {
+    --card-padding: #{$spacing-3};
+    --card-radius: #{$border-radius-400};
+  }
+
+  &--large {
+    --card-padding: #{$spacing-4};
+    --card-radius: #{$border-radius-600};
+  }
+
+  // Appearances
+  &--filled {
+    background: var(--color-neutral-background-rest);
+    border-color: var(--color-neutral-stroke-rest);
+    box-shadow: $elevation-2;
+  }
+
+  &--filled-alternative {
+    background: var(--color-neutral-background2-rest);
+    border-color: var(--color-neutral-stroke-rest);
+    box-shadow: $elevation-2;
+  }
+
+  &--outline {
+    background: transparent;
+    border-color: var(--color-neutral-stroke-rest);
+    box-shadow: none;
+  }
+
+  &--subtle {
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
+  }
+
+  // Orientation
+  &--horizontal {
+    flex-direction: row;
+    align-items: stretch;
+
+    > [uiCardPreview] {
+      width: min(42%, 220px);
+      max-width: 220px;
+      min-width: 96px;
+      align-self: stretch;
+      flex-shrink: 0;
+    }
+
+    > [uiCardPreview] > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card__content {
+      flex: 1;
+    }
+  }
+
+  &--has-floating-action {
+    .card__content {
+      padding-right: $spacing-8;
+    }
+  }
+
+  // Selection
+  &--selected {
+    border-color: var(--color-brand-stroke-rest);
+    box-shadow:
+      0 0 0 1px var(--color-brand-stroke-rest),
+      $elevation-2;
+  }
+
+  &--selected.card--outline {
+    box-shadow: 0 0 0 1px var(--color-brand-stroke-rest);
+  }
+
+  &--selected.card--subtle {
+    background: var(--color-neutral-background-brand-selected);
+    border-color: var(--color-brand-stroke-rest);
+    box-shadow: 0 0 0 1px var(--color-brand-stroke-rest);
+  }
+
+  // Interactive states
+  &--interactive {
+    cursor: pointer;
+  }
+
+  &--interactive:not(.card--disabled):hover {
+    border-color: var(--color-neutral-stroke-hover);
+    box-shadow: $elevation-4;
+  }
+
+  &--interactive:not(.card--disabled):active {
+    border-color: var(--color-neutral-stroke-pressed);
+    box-shadow: $elevation-2;
+  }
+
+  &--interactive.card--outline:not(.card--disabled):hover {
+    background: var(--color-neutral-background-hover);
+    box-shadow: none;
+  }
+
+  &--interactive.card--outline:not(.card--disabled):active {
+    background: var(--color-neutral-background-pressed);
+  }
+
+  &--interactive.card--subtle:not(.card--disabled):hover {
+    background: var(--color-subtle-background-hover);
+    border-color: transparent;
+    box-shadow: none;
+  }
+
+  &--interactive.card--subtle:not(.card--disabled):active {
+    background: var(--color-subtle-background-pressed);
+  }
+
+  &--interactive.card--selected:not(.card--disabled):hover {
+    border-color: var(--color-brand-stroke-rest);
+    box-shadow:
+      0 0 0 1px var(--color-brand-stroke-rest),
+      $elevation-4;
+  }
+
+  // Disabled
+  &--disabled {
+    background: var(--color-neutral-background-disabled);
+    border-color: var(--color-neutral-stroke-disabled);
+    box-shadow: none;
+    color: var(--color-neutral-foreground-disabled);
+    cursor: not-allowed;
+  }
+}
+
+@include respond-to(small) {
+  .card--horizontal {
+    flex-direction: column;
+
+    > [uiCardPreview] {
+      width: 100%;
+      max-width: none;
+      min-width: 0;
+      align-self: auto;
+    }
+
+    > [uiCardPreview] > img {
+      height: auto;
+      object-fit: cover;
+    }
+  }
+}

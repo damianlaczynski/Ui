@@ -1,0 +1,727 @@
+// ==========================================================================
+// Video Component - Fluent 2 Design System
+// ==========================================================================
+
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+@use '../utils/functions' as *;
+
+.video {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-neutral-background-rest);
+  border-radius: $border-radius-800; // 8px
+  overflow: hidden;
+
+  // Size Modifiers
+  &--small {
+    &__container {
+      min-height: 200px;
+    }
+  }
+
+  &--medium {
+    &__container {
+      min-height: 400px;
+    }
+  }
+
+  &--large {
+    &__container {
+      min-height: 600px;
+    }
+  }
+
+  // Playing state - reduce opacity but keep controls visible
+  &--playing {
+    &__controls-overlay {
+      opacity: 0.4;
+      pointer-events: all;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    &__controls-bar {
+      opacity: 0.4;
+      @include transition-opacity($duration-fast);
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    &__center-control {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      display: none !important;
+    }
+  }
+
+  // Hovered state - full visibility
+  &--hovered {
+    &__controls-overlay {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    &__controls-bar {
+      opacity: 1;
+    }
+
+    &__center-control {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  // Show center control on hover when video is not playing
+  &--hovered {
+    &:not(.video--playing) {
+      .video__center-control {
+        opacity: 1;
+        pointer-events: all;
+      }
+    }
+  }
+
+  // Fullscreen modifier
+  &--fullscreen {
+    &__controls-bar {
+      padding: $spacing-6 $spacing-7;
+      gap: $spacing-4;
+    }
+
+    &__progress-bar {
+      height: 10px;
+
+      &:hover {
+        height: 14px;
+      }
+    }
+
+    &__time {
+      font-size: $font-size-500;
+      gap: $spacing-3;
+    }
+
+    &__volume-slider-wrapper {
+      padding: $spacing-4 $spacing-5;
+    }
+
+    &__volume-bar {
+      width: 100px;
+      height: 10px;
+
+      &:hover {
+        height: 14px;
+      }
+    }
+  }
+
+  // Elements
+  &__container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    border-radius: $border-radius-800;
+    overflow: hidden;
+  }
+
+  &__element {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  // Controls Overlay
+  &__controls-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: transparent;
+    @include transition-opacity($duration-fast);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10;
+
+    // Visible state
+    &--visible {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+
+  // Controls hidden state
+  &--controls-hidden {
+    &__controls-overlay {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    &__controls-bar {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    // Still allow interaction when hovered
+    &:hover {
+      &__controls-overlay {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      &__controls-bar {
+        opacity: 1;
+        pointer-events: all;
+      }
+    }
+  }
+
+  // Action Indicators (visual feedback for skip/play/pause)
+  &__action-indicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-2; // 8px
+    padding: $spacing-4 $spacing-6; // 16px vertical, 24px horizontal
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: $border-radius-800; // 8px
+    z-index: 25;
+    pointer-events: none;
+    animation-name: fadeScaleInTranslate, fadeScaleOutTranslate;
+    animation-duration: 0.2s, 0.3s;
+    animation-timing-function: ease-out, ease-in;
+    animation-delay: 0s, 0.7s;
+    animation-fill-mode: both, forwards;
+    @include respect-reduced-motion;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+
+    &-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-brand-primary);
+    }
+
+    &-text {
+      font-size: $font-size-400; // 16px
+      font-weight: $font-weight-semibold;
+      color: rgba(255, 255, 255, 1);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+      white-space: nowrap;
+    }
+  }
+
+  // Center Control (Large Play Button)
+  &__center-control {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+  }
+
+  // Controls Bar (Bottom Bar)
+  &__controls-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-3; // 12px
+    padding: $spacing-5 $spacing-6; // 20px vertical, 24px horizontal
+    z-index: 20;
+  }
+
+  // Progress Row (first row - full width slider)
+  &__progress-row {
+    width: 100%;
+    flex-shrink: 0;
+  }
+
+  // Controls Row (second row - all other controls)
+  &__controls-row {
+    display: flex;
+    align-items: center;
+    gap: $spacing-3; // 12px
+    width: 100%;
+    flex-wrap: nowrap;
+  }
+
+  // Volume Inline (inside progress container)
+  &__volume-inline {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2; // 8px
+    flex-shrink: 0;
+  }
+
+  // Progress Slider (using slider component) - pierwsza linia, pełna szerokość
+  &__progress-slider {
+    width: 100%;
+  }
+
+  &__progress-bar {
+    position: relative;
+    width: 100%;
+    height: 8px;
+    cursor: pointer;
+    border-radius: $border-radius-600; // 6px
+    background: transparent;
+    padding: $spacing-2 0; // Add padding for easier clicking
+    @include focus-ring(var(--color-brand-primary));
+
+    &:focus-visible {
+      outline-offset: 2px;
+    }
+
+    &:hover {
+      height: 12px;
+
+      .video__progress-track {
+        height: 12px;
+      }
+
+      .video__progress-fill {
+        height: 12px;
+      }
+    }
+  }
+
+  &__progress-track {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: $border-radius-600;
+    @include transition-colors($duration-fast);
+    transition-property: height;
+    transition-duration: $duration-fast;
+    transition-timing-function: $easing-decelerate-mid;
+
+    .video__progress-bar:hover & {
+      background: rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  &__progress-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: var(--color-brand-primary);
+    border-radius: $border-radius-400;
+    transition-property: width, height;
+    transition-duration: $duration-fast;
+    transition-timing-function: $easing-decelerate-mid;
+    box-shadow: 0 0 4px rgba(0, 120, 212, 0.5);
+  }
+
+  &__progress-thumb {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 18px;
+    height: 18px;
+    background: var(--color-brand-primary);
+    border-radius: 50%;
+    opacity: 0;
+    @include transition-opacity($duration-fast);
+    @include transition-transform($duration-fast);
+    pointer-events: none;
+    box-shadow:
+      0 2px 8px rgba(0, 120, 212, 0.6),
+      0 0 4px rgba(0, 120, 212, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 1);
+  }
+
+  &__progress-bar {
+    &:hover,
+    &:focus-visible {
+      .video__progress-thumb {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.15);
+      }
+    }
+  }
+
+  &__time {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2; // 8px
+    font-size: $font-size-400; // 16px
+    font-weight: $font-weight-medium;
+    line-height: $line-height-400; // 24px
+    color: rgba(255, 255, 255, 0.9);
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-left: auto; // wyrównanie do prawej w controls-row
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  &__time-current {
+    color: rgba(255, 255, 255, 1);
+    font-weight: $font-weight-semibold;
+  }
+
+  &__time-separator {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  &__time-duration {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  // Volume Container
+  &__volume-container {
+    display: flex;
+    align-items: center;
+    gap: $spacing-3; // 12px
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  &__volume-slider-wrapper {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: $spacing-2;
+    padding: $spacing-4 $spacing-3;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: $border-radius-800;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    z-index: 30;
+  }
+
+  // Volume Slider (using slider component) - horizontal inline
+  &__volume-slider {
+    width: 80px;
+    min-width: 80px;
+  }
+
+  &__volume-bar {
+    width: 8px;
+    height: 120px;
+    position: relative;
+
+    &:hover {
+      width: 12px;
+
+      .video__volume-fill-track {
+        width: 12px;
+      }
+
+      .video__volume-fill {
+        width: 12px;
+      }
+    }
+  }
+
+  &__volume-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border-radius: $border-radius-600;
+    background: transparent;
+    @include focus-ring(var(--color-brand-primary));
+
+    &:focus-visible {
+      outline-offset: 2px;
+    }
+  }
+
+  &__volume-fill-track {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: $border-radius-600;
+    @include transition-colors($duration-fast);
+    transition-property: height, width;
+    transition-duration: $duration-fast;
+    transition-timing-function: $easing-decelerate-mid;
+
+    .video__volume-track:hover & {
+      background: rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  &__volume-fill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--color-brand-primary);
+    border-radius: $border-radius-600;
+    transition-property: height, width;
+    transition-duration: $duration-fast;
+    transition-timing-function: $easing-decelerate-mid;
+    box-shadow: 0 0 4px rgba(0, 120, 212, 0.5);
+  }
+
+  &__volume-thumb {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    width: 18px;
+    height: 18px;
+    background: var(--color-brand-primary);
+    border-radius: 50%;
+    opacity: 1;
+    @include transition-opacity($duration-fast);
+    @include transition-transform($duration-fast);
+    pointer-events: none;
+    box-shadow:
+      0 2px 8px rgba(0, 120, 212, 0.6),
+      0 0 4px rgba(0, 120, 212, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 1);
+  }
+
+  &__volume-track {
+    &:hover,
+    &:focus-visible {
+      .video__volume-thumb {
+        transform: translate(-50%, 50%) scale(1.15);
+      }
+    }
+  }
+
+  // Speed Container
+  &__speed-container {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  &__speed-menu {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    margin-bottom: $spacing-2;
+    min-width: 120px;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: $border-radius-800;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    padding: $spacing-1;
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-1;
+  }
+
+  &__speed-menu-item {
+    padding: $spacing-2 $spacing-3;
+    color: rgba(255, 255, 255, 0.9);
+    background: transparent;
+    border-radius: $border-radius-400;
+    font-size: $font-size-300;
+    font-weight: $font-weight-regular;
+    text-align: left;
+    cursor: pointer;
+    @include smooth-hover;
+    @include focus-ring(var(--color-brand-primary));
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 1);
+    }
+
+    &:focus-visible {
+      outline-offset: 2px;
+    }
+
+    &--active {
+      background: rgba(0, 120, 212, 0.3);
+      color: rgba(255, 255, 255, 1);
+      font-weight: $font-weight-semibold;
+    }
+  }
+
+  // Quality Container
+  &__quality-container {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  &__quality-menu {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    margin-bottom: $spacing-2;
+    min-width: 120px;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: $border-radius-800;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    padding: $spacing-1;
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-1;
+  }
+
+  &__quality-menu-item {
+    padding: $spacing-2 $spacing-3;
+    color: rgba(255, 255, 255, 0.9);
+    background: transparent;
+    border-radius: $border-radius-400;
+    font-size: $font-size-300;
+    font-weight: $font-weight-regular;
+    text-align: left;
+    cursor: pointer;
+    @include smooth-hover;
+    @include focus-ring(var(--color-brand-primary));
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: rgba(255, 255, 255, 1);
+    }
+
+    &:focus-visible {
+      outline-offset: 2px;
+    }
+
+    &--active {
+      background: rgba(0, 120, 212, 0.3);
+      color: rgba(255, 255, 255, 1);
+      font-weight: $font-weight-semibold;
+    }
+  }
+
+  // Fullscreen styles
+  &:fullscreen,
+  &:-webkit-full-screen,
+  &:-moz-full-screen,
+  &:-ms-fullscreen {
+    &__controls-bar {
+      padding: $spacing-6 $spacing-7; // 24px vertical, 28px horizontal
+      gap: $spacing-4; // 16px
+    }
+
+    &__progress-bar {
+      height: 10px;
+
+      &:hover {
+        height: 14px;
+      }
+    }
+
+    &__time {
+      font-size: $font-size-500; // 18px
+      gap: $spacing-3; // 12px
+    }
+
+    &__volume-slider-wrapper {
+      padding: $spacing-5 $spacing-4;
+    }
+
+    &__volume-bar {
+      width: 10px;
+      height: 150px;
+
+      &:hover {
+        width: 14px;
+      }
+    }
+  }
+
+  // Fullscreen API support - when container is in fullscreen
+  &:fullscreen,
+  &:-webkit-full-screen,
+  &:-moz-full-screen,
+  &:-ms-fullscreen {
+    // Ensure video fills the container in fullscreen
+    &__container {
+      width: 100vw;
+      height: 100vh;
+      min-height: 100vh;
+    }
+
+    &__element {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    // Ensure controls are visible and properly styled
+    &__controls-overlay {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+
+  // Responsive adjustments
+  @include respond-to(small) {
+    &--small {
+      &__container {
+        min-height: 150px;
+      }
+    }
+
+    &--medium {
+      &__container {
+        min-height: 300px;
+      }
+    }
+
+    &--large {
+      &__container {
+        min-height: 400px;
+      }
+    }
+
+    &__controls-bar {
+      gap: $spacing-1; // 4px on mobile
+      padding: $spacing-2 $spacing-3; // 8px vertical, 12px horizontal
+    }
+
+    &__volume-container {
+      display: none; // Hide volume slider on mobile
+    }
+
+    &__time {
+      font-size: $font-size-100; // 10px
+    }
+  }
+}

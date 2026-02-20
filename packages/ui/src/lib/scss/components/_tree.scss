@@ -1,0 +1,15 @@
+// ==========================================================================
+// Tree Component - Fluent 2 Design System (BEM Block)
+// ==========================================================================
+
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+@use '../utils/functions' as *;
+
+.tree {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: $font-family-base;
+  padding: $spacing-1;
+}

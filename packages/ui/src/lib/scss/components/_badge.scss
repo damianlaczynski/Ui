@@ -1,0 +1,385 @@
+// ==========================================================================
+// Badge Component - Fluent 2 Design System
+// ==========================================================================
+// Variants: primary, secondary, success, warning, danger, info
+// Appearances: filled, tint, outline, subtle, transparent
+// Sizes: small, medium, large
+// Shapes: rounded, circular, square
+
+@use '../utils/variables' as *;
+
+// ==========================================================================
+// Base Badge
+// ==========================================================================
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: $font-weight-semibold;
+  overflow: hidden;
+  box-sizing: border-box;
+  border-radius: $border-radius-400;
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  &__icon-svg {
+    display: block;
+  }
+
+  &__text-offset {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+
+  &__text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    word-wrap: break-word;
+    color: inherit;
+  }
+
+  .badge__icon {
+    color: inherit;
+  }
+}
+
+// ==========================================================================
+// Sizes
+// ==========================================================================
+
+.badge--small {
+  height: 16px;
+  min-width: 16px;
+  padding: 0 2px;
+  gap: 0;
+
+  .badge__text-offset {
+    height: 14px;
+    padding-bottom: 0.5px;
+  }
+
+  .badge__text {
+    font-size: $font-size-100;
+    line-height: $line-height-100;
+  }
+}
+
+.badge--medium {
+  height: 20px;
+  min-width: 20px;
+  padding: 0 $spacing-1;
+  gap: 0;
+
+  .badge__text-offset {
+    height: 14px;
+    padding-bottom: 0.5px;
+  }
+
+  .badge__text {
+    font-size: $font-size-100;
+    line-height: $line-height-100;
+  }
+}
+
+.badge--large {
+  height: 24px;
+  min-width: 24px;
+  padding: 0 $spacing-1;
+  gap: 2px;
+
+  .badge__text-offset {
+    height: 16px;
+    padding-bottom: 1px;
+  }
+
+  .badge__text {
+    font-size: $font-size-200;
+    line-height: $line-height-200;
+  }
+}
+
+// ==========================================================================
+// Shapes
+// ==========================================================================
+
+.badge--rounded {
+  border-radius: $border-radius-400;
+}
+
+.badge--circular {
+  border-radius: $border-radius-circular;
+}
+
+.badge--square {
+  border-radius: 0;
+}
+
+// ==========================================================================
+// Icon Position
+// ==========================================================================
+
+.badge--icon-before {
+  flex-direction: row;
+}
+
+.badge--icon-after {
+  flex-direction: row-reverse;
+}
+
+// ==========================================================================
+// PRIMARY VARIANT
+// ==========================================================================
+
+// Primary Filled
+.badge--primary.badge--filled {
+  background: var(--color-brand-primary);
+  outline: 1px solid var(--color-brand-primary);
+  outline-offset: -1px;
+  color: var(--color-neutral-foreground-on-brand);
+}
+
+// Primary Tint
+.badge--primary.badge--tint {
+  background: var(--color-neutral-background-brand-selected);
+  outline: 1px solid var(--color-brand-primary);
+  outline-offset: -1px;
+  color: var(--color-brand-primary);
+}
+
+// Primary Outline
+.badge--primary.badge--outline {
+  background: transparent;
+  outline: 1px solid var(--color-brand-primary);
+  outline-offset: -1px;
+  color: var(--color-brand-primary);
+}
+
+// Primary Subtle
+.badge--primary.badge--subtle {
+  background: transparent;
+  color: var(--color-brand-primary);
+}
+
+// Primary Transparent
+.badge--primary.badge--transparent {
+  background: transparent;
+  color: var(--color-brand-primary);
+  outline: none;
+}
+
+// ==========================================================================
+// SECONDARY VARIANT
+// ==========================================================================
+
+// Secondary Filled
+.badge--secondary.badge--filled {
+  background: var(--color-neutral-background2-rest);
+  outline: 1px solid var(--color-neutral-background2-rest);
+  outline-offset: -1px;
+  color: var(--color-neutral-foreground-rest);
+}
+
+// Secondary Tint
+.badge--secondary.badge--tint {
+  background: var(--color-neutral-background2-rest);
+  outline: 1px solid var(--color-neutral-stroke-rest);
+  outline-offset: -1px;
+  color: var(--color-neutral-foreground2-rest);
+}
+
+// Secondary Outline
+.badge--secondary.badge--outline {
+  background: transparent;
+  outline: 1px solid var(--color-neutral-stroke-accessible);
+  outline-offset: -1px;
+  color: var(--color-neutral-foreground2-rest);
+}
+
+// Secondary Subtle
+.badge--secondary.badge--subtle {
+  background: transparent;
+  color: var(--color-neutral-foreground2-rest);
+}
+
+// Secondary Transparent
+.badge--secondary.badge--transparent {
+  background: transparent;
+  color: var(--color-neutral-foreground2-rest);
+  outline: none;
+}
+
+// ==========================================================================
+// SUCCESS VARIANT
+// ==========================================================================
+
+// Success Filled
+.badge--success.badge--filled {
+  background: var(--color-shared-green-foreground);
+  outline: 1px solid var(--color-shared-green-foreground);
+  outline-offset: -1px;
+  color: var(--color-neutral-foreground-on-brand);
+}
+
+// Success Tint
+.badge--success.badge--tint {
+  background: var(--color-shared-green-background);
+  outline: 1px solid var(--color-shared-green-border);
+  outline-offset: -1px;
+  color: var(--color-shared-green-foreground);
+}
+
+// Success Outline
+.badge--success.badge--outline {
+  background: transparent;
+  outline: 1px solid var(--color-shared-green-foreground);
+  outline-offset: -1px;
+  color: var(--color-shared-green-foreground);
+}
+
+// Success Subtle
+.badge--success.badge--subtle {
+  background: transparent;
+  color: var(--color-shared-green-foreground);
+}
+
+// Success Transparent
+.badge--success.badge--transparent {
+  background: transparent;
+  color: var(--color-shared-green-foreground);
+  outline: none;
+}
+
+// ==========================================================================
+// WARNING VARIANT
+// ==========================================================================
+
+// Warning Filled
+.badge--warning.badge--filled {
+  background: var(--color-shared-orange-foreground);
+  outline: 1px solid var(--color-shared-orange-foreground);
+  outline-offset: -1px;
+  color: var(--color-neutral-foreground-on-brand);
+}
+
+// Warning Tint
+.badge--warning.badge--tint {
+  background: var(--color-shared-orange-background);
+  outline: 1px solid var(--color-shared-orange-border);
+  outline-offset: -1px;
+  color: var(--color-shared-orange-foreground);
+}
+
+// Warning Outline
+.badge--warning.badge--outline {
+  background: transparent;
+  outline: 1px solid var(--color-shared-orange-foreground);
+  outline-offset: -1px;
+  color: var(--color-shared-orange-foreground);
+}
+
+// Warning Subtle
+.badge--warning.badge--subtle {
+  background: transparent;
+  color: var(--color-shared-orange-foreground);
+}
+
+// Warning Transparent
+.badge--warning.badge--transparent {
+  background: transparent;
+  color: var(--color-shared-orange-foreground);
+  outline: none;
+}
+
+// ==========================================================================
+// DANGER VARIANT
+// ==========================================================================
+
+// Danger Filled
+.badge--danger.badge--filled {
+  background: var(--color-shared-red-foreground);
+  outline: 1px solid var(--color-shared-red-foreground);
+  outline-offset: -1px;
+  color: var(--color-neutral-foreground-on-brand);
+}
+
+// Danger Tint
+.badge--danger.badge--tint {
+  background: var(--color-shared-red-background);
+  outline: 1px solid var(--color-shared-red-border);
+  outline-offset: -1px;
+  color: var(--color-shared-red-foreground);
+}
+
+// Danger Outline
+.badge--danger.badge--outline {
+  background: transparent;
+  outline: 1px solid var(--color-shared-red-foreground);
+  outline-offset: -1px;
+  color: var(--color-shared-red-foreground);
+}
+
+// Danger Subtle
+.badge--danger.badge--subtle {
+  background: transparent;
+  color: var(--color-shared-red-foreground);
+}
+
+// Danger Transparent
+.badge--danger.badge--transparent {
+  background: transparent;
+  color: var(--color-shared-red-foreground);
+  outline: none;
+}
+
+// ==========================================================================
+// INFO VARIANT
+// ==========================================================================
+
+// Info Filled
+.badge--info.badge--filled {
+  background: var(--color-shared-blue-foreground);
+  outline: 1px solid var(--color-shared-blue-foreground);
+  outline-offset: -1px;
+  color: var(--color-neutral-foreground-on-brand);
+}
+
+// Info Tint
+.badge--info.badge--tint {
+  background: var(--color-shared-blue-background);
+  outline: 1px solid var(--color-shared-blue-border);
+  outline-offset: -1px;
+  color: var(--color-shared-blue-foreground);
+}
+
+// Info Outline
+.badge--info.badge--outline {
+  background: transparent;
+  outline: 1px solid var(--color-shared-blue-foreground);
+  outline-offset: -1px;
+  color: var(--color-shared-blue-foreground);
+}
+
+// Info Subtle
+.badge--info.badge--subtle {
+  background: transparent;
+  color: var(--color-shared-blue-foreground);
+}
+
+// Info Transparent
+.badge--info.badge--transparent {
+  background: transparent;
+  color: var(--color-shared-blue-foreground);
+  outline: none;
+}

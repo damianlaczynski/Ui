@@ -1,0 +1,149 @@
+// ==========================================================================
+// Tabs Component - Fluent 2 Design System (BEM Block)
+// Container component using Node Component for individual tabs
+// Note: Variant/Appearance/Shape styles are handled by NodeComponent
+// ==========================================================================
+
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+
+.tabs {
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0;
+  position: relative;
+
+  // ========================================================================
+  // SHAPE - affects gap between tabs
+  // ========================================================================
+
+  &--circular {
+    gap: $spacing-1;
+  }
+
+  &--rounded {
+    gap: 0;
+  }
+
+  &--square {
+    gap: 0;
+  }
+
+  // ========================================================================
+  // ORIENTATION
+  // ========================================================================
+
+  &--horizontal {
+    flex-direction: row;
+  }
+
+  &--vertical {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .tabs__more-button {
+      margin-left: 0;
+      margin-top: auto;
+    }
+
+    &.tabs--circular {
+      gap: $spacing-2;
+    }
+  }
+
+  // ========================================================================
+  // LAYOUT
+  // ========================================================================
+
+  &--full-width {
+    display: flex;
+    width: 100%;
+
+    ui-node {
+      flex: 1;
+
+      .node__content {
+        justify-content: center;
+      }
+
+      .node__label {
+        flex: none;
+      }
+    }
+  }
+
+  // ========================================================================
+  // ELEMENTS
+  // ========================================================================
+
+  &__more-button {
+    margin-left: auto;
+  }
+
+  // ========================================================================
+  // ANIMATIONS
+  // ========================================================================
+
+  // Tab hover animation (handled by NodeComponent via smooth-hover)
+  // Tab press animation (handled by NodeComponent via smooth-press)
+  // Selection indicator slide animation (handled by NodeComponent)
+
+  // ========================================================================
+  // RESPONSIVE
+  // ========================================================================
+
+  @include respond-to(medium) {
+    overflow-x: auto;
+    overflow-y: hidden;
+    flex-wrap: nowrap;
+
+    ui-node {
+      flex-shrink: 0;
+      flex-grow: 0;
+      flex-basis: auto;
+    }
+
+    &.tabs--full-width {
+      width: 100%;
+
+      ui-node {
+        flex: 0 1 auto;
+        min-width: fit-content;
+        max-width: none;
+      }
+    }
+  }
+
+  @include respond-to(small) {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    flex-wrap: nowrap;
+
+    ui-node {
+      flex-shrink: 0;
+      flex-grow: 0;
+      flex-basis: auto;
+    }
+
+    &.tabs--full-width {
+      ui-node {
+        flex: 0 1 auto;
+        min-width: fit-content;
+        max-width: none;
+      }
+    }
+
+    &.tabs--vertical {
+      overflow-x: hidden;
+      overflow-y: auto;
+      gap: $spacing-1;
+    }
+
+    .tabs__more-button {
+      flex-shrink: 0;
+      margin-left: auto;
+    }
+  }
+}

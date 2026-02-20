@@ -1,0 +1,96 @@
+@if (visible()) {
+  <div
+    [class]="backdropClasses()"
+    (click)="close()"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Command palette"
+  >
+    <div
+      [class]="containerClasses()"
+      cdkTrapFocus
+      cdkTrapFocusAutoCapture
+      (click)="$event.stopPropagation()"
+    >
+      <!-- Search Input -->
+      <div class="command-palette__search">
+        <ui-search
+          [placeholder]="placeholder()"
+          [size]="'large'"
+          [(ngModel)]="_searchQuery"
+          [ngModelOptions]="{ standalone: true }"
+          (ngModelChange)="onSearchChange($event)"
+        ></ui-search>
+      </div>
+
+      <!-- Results -->
+      <div
+        class="command-palette__results"
+        role="listbox"
+        [attr.aria-activedescendant]="selectedItemId()"
+        aria-label="Command results"
+      >
+        @if (filteredItems().length > 0) {
+          @for (group of groupedItems(); track trackByGroupId($index, group)) {
+            @if (group.items.length > 0) {
+              <!-- Group Header -->
+              @if (group.label) {
+                <div class="command-palette__group-header" [id]="groupHeaderId(group)">
+                  {{ group.label }}
+                </div>
+              }
+
+              <!-- Group Items -->
+              <div
+                class="command-palette__group-items"
+                role="group"
+                [attr.aria-labelledby]="group.label ? groupHeaderId(group) : null"
+              >
+                @for (item of group.items; track trackByItemId($index, item)) {
+                  <button
+                    type="button"
+                    role="option"
+                    [id]="itemId(item)"
+                    class="command-palette__item"
+                    [class.command-palette__item--selected]="isItemSelected(item)"
+                    [class.command-palette__item--disabled]="item.disabled"
+                    [disabled]="item.disabled"
+                    [attr.aria-selected]="isItemSelected(item)"
+                    [attr.aria-disabled]="item.disabled || null"
+                    (click)="onItemClick(item)"
+                    [attr.aria-label]="item.description || item.label"
+                  >
+                    @if (item.icon) {
+                      <div class="command-palette__item-icon">
+                        <ui-icon [icon]="item.icon" [size]="'medium'"></ui-icon>
+                      </div>
+                    }
+
+                    <div class="command-palette__item-content">
+                      <div class="command-palette__item-label">{{ item.label }}</div>
+                      @if (item.description) {
+                        <div class="command-palette__item-description">{{ item.description }}</div>
+                      }
+                    </div>
+
+                    @if (item.disabled) {
+                      <div class="command-palette__item-status">
+                        <ui-icon icon="lock_closed" [size]="'small'" aria-hidden="true"></ui-icon>
+                      </div>
+                    }
+                  </button>
+                }
+              </div>
+            }
+          }
+        } @else {
+          <!-- Empty State -->
+          <div class="command-palette__empty">
+            <ui-icon icon="search" [size]="'large'" class="command-palette__empty-icon"></ui-icon>
+            <div class="command-palette__empty-text">{{ emptyText() }}</div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+}

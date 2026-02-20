@@ -1,0 +1,41 @@
+<ui-field
+  [fieldType]="'radio-button-group'"
+  [label]="label()"
+  [helpText]="helpText()"
+  [(errorText)]="errorText"
+  [required]="required()"
+  [disabled]="disabled()"
+  [readonly]="readonly()"
+  [id]="id()"
+  [name]="name() || id().toString()"
+  [size]="size()"
+>
+  <div class="radio-button-group-wrapper">
+    <div
+      role="radiogroup"
+      [attr.aria-label]="ariaLabel() || label()"
+      [attr.aria-describedby]="ariaDescribedBy()"
+      [attr.aria-required]="required() ? true : null"
+      [ngClass]="wrapperClasses"
+      (keydown)="onKeydown($event)"
+    >
+      @for (item of items(); track item.id; let i = $index) {
+        <ui-button
+          [text]="item.label"
+          [icon]="item.icon"
+          [variant]="variant()"
+          [appearance]="appearance()"
+          [size]="size()"
+          [shape]="shape()"
+          [ariaLabel]="item.ariaLabel ?? item.label"
+          [tabIndex]="getButtonTabIndex(i)"
+          [role]="'radio'"
+          [ariaChecked]="isSelected(item.value)"
+          [selected]="isSelected(item.value)"
+          [disabled]="disabled() || item.disabled || false"
+          (click)="onItemSelect(item.value)"
+        />
+      }
+    </div>
+  </div>
+</ui-field>

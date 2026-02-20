@@ -1,0 +1,79 @@
+@use '../utils/variables' as *;
+
+.radio-button-group-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.radio-button-group {
+  display: flex;
+  gap: 8px;
+}
+
+.radio-button-group--horizontal {
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.radio-button-group--vertical {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.radio-button-group--segmented {
+  gap: 0;
+
+  &.radio-button-group--horizontal {
+    flex-wrap: nowrap;
+
+    ui-button:first-of-type .button {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    ui-button:last-of-type .button {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    ui-button:not(:first-of-type):not(:last-of-type) .button {
+      border-radius: 0;
+    }
+  }
+
+  &.radio-button-group--vertical {
+    width: max-content;
+    max-width: 100%;
+    align-items: stretch;
+
+    ui-button {
+      min-width: 0;
+
+      .button {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    ui-button:first-of-type .button {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    ui-button:last-of-type .button {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+
+    ui-button:not(:first-of-type):not(:last-of-type) .button {
+      border-radius: 0;
+    }
+  }
+}
+
+.radio-button-group--disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}

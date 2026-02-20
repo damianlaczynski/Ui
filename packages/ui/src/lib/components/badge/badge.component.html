@@ -1,0 +1,9 @@
+<div [class]="badgeClasses" [attr.aria-label]="ariaLabel() || text()" role="status">
+  @if (icon()) {
+    <ui-icon [icon]="icon()" [size]="size()" variant="regular" class="badge__icon" />
+  }
+
+  <div class="badge__text-offset">
+    <div class="badge__text">{{ text() }}</div>
+  </div>
+</div>

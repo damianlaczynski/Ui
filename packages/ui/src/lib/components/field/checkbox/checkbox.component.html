@@ -1,0 +1,86 @@
+<ui-field
+  [fieldType]="'checkbox'"
+  [helpText]="helpText()"
+  [(errorText)]="errorText"
+  [required]="required()"
+  [disabled]="disabled()"
+  [readonly]="readonly()"
+  [id]="id()"
+  [name]="name()"
+  [size]="size()"
+>
+  <div class="checkbox-wrapper" [ngClass]="checkboxClasses">
+    <label class="checkbox-container">
+      <!-- Hidden native checkbox for accessibility and form integration -->
+      <input
+        type="checkbox"
+        [id]="id()"
+        [name]="name()"
+        [checked]="isChecked"
+        [indeterminate]="isIndeterminate"
+        [disabled]="disabled()"
+        [attr.aria-label]="ariaLabel() || label()"
+        [attr.aria-describedby]="ariaDescribedBy()"
+        [attr.required]="required() ? true : null"
+        class="checkbox-input"
+        (change)="onCheckboxChange($event)"
+        (focus)="onFocus($event)"
+        (blur)="onBlur($event)"
+        (click)="onCheckboxClick($event)"
+      />
+
+      <!-- Visual checkbox element -->
+      <div class="checkbox-visual">
+        <!-- Rounded Shape (default) -->
+        @if (shape() === 'rounded') {
+          @if (isUnchecked) {
+            <ui-icon [icon]="'checkbox_unchecked'" [size]="size()" />
+          }
+          @if (isChecked) {
+            <ui-icon [icon]="'checkbox_checked'" [size]="size()" variant="filled" />
+          }
+          @if (isIndeterminate) {
+            <ui-icon [icon]="'subtract_square'" [size]="size()" />
+          }
+        }
+
+        <!-- Circular Shape -->
+        @if (shape() === 'circular') {
+          @if (isUnchecked) {
+            <ui-icon [icon]="'circle'" [size]="size()" />
+          }
+          @if (isChecked) {
+            <ui-icon [icon]="'checkmark_circle'" [size]="size()" variant="filled" />
+          }
+          @if (isIndeterminate) {
+            <ui-icon [icon]="'subtract_circle'" [size]="size()" />
+          }
+        }
+
+        <!-- Square Shape -->
+        @if (shape() === 'square') {
+          @if (isUnchecked) {
+            <ui-icon [icon]="'square'" [size]="size()" />
+          }
+          @if (isChecked) {
+            <ui-icon [icon]="'checkmark_square'" [size]="size()" variant="filled" />
+          }
+          @if (isIndeterminate) {
+            <ui-icon [icon]="'subtract_square'" [size]="size()" />
+          }
+        }
+      </div>
+
+      <!-- Label text -->
+      @if (label()) {
+        <span
+          class="checkbox-label"
+          [class.checkbox-label--disabled]="disabled()"
+          [class.checkbox-label--required]="required()"
+        >
+          {{ label() }}
+        </span>
+      }
+    </label>
+  </div>
+</ui-field>

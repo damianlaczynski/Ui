@@ -1,0 +1,634 @@
+// ==========================================================================
+// Button Component - Fluent 2 Design System
+// ==========================================================================
+// Variants: primary, secondary, success, warning, danger, info
+// Appearances: filled, outline, subtle, transparent, tint
+// Sizes: small, medium, large
+// Shapes: rounded, circular, square
+
+@use 'sass:map';
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+
+// ==========================================================================
+// Mixins
+// ==========================================================================
+
+@mixin button-variant-filled(
+  $bg-color,
+  $bg-hover,
+  $bg-pressed,
+  $bg-selected,
+  $border-selected: null,
+  $fg-selected: null
+) {
+  color: var(--color-neutral-foreground-on-brand);
+  background-color: $bg-color;
+  border-color: $bg-color;
+
+  &:hover:not(.button--disabled) {
+    background-color: $bg-hover;
+    border-color: $bg-hover;
+  }
+
+  &:active:not(.button--disabled),
+  &.button--pressed:not(.button--disabled) {
+    background-color: $bg-pressed;
+    border-color: $bg-pressed;
+  }
+
+  &.button--selected:not(.button--disabled):not(.button--loading) {
+    @if $fg-selected {
+      color: $fg-selected;
+    }
+    background-color: $bg-selected;
+    @if $border-selected {
+      border-color: $border-selected;
+    } @else {
+      border-color: $bg-selected;
+    }
+
+    &:hover {
+      background-color: $bg-hover;
+      border-color: $bg-hover;
+    }
+
+    &:active {
+      @if $fg-selected {
+        color: $fg-selected;
+      }
+      background-color: $bg-selected;
+      @if $border-selected {
+        border-color: $border-selected;
+      } @else {
+        border-color: $bg-selected;
+      }
+    }
+  }
+}
+
+@mixin button-variant-outline(
+  $fg-color,
+  $border-color,
+  $bg-hover,
+  $fg-hover,
+  $border-hover,
+  $fg-pressed,
+  $bg-pressed,
+  $border-pressed,
+  $fg-selected,
+  $bg-selected,
+  $border-selected
+) {
+  color: $fg-color;
+  background-color: var(--color-neutral-background-rest);
+  border-color: $border-color;
+
+  &:hover:not(.button--disabled) {
+    color: $fg-hover;
+    background-color: $bg-hover;
+    border-color: $border-hover;
+  }
+
+  &:active:not(.button--disabled),
+  &.button--pressed:not(.button--disabled) {
+    color: $fg-pressed;
+    background-color: $bg-pressed;
+    border-color: $border-pressed;
+  }
+
+  &.button--selected:not(.button--disabled):not(.button--loading) {
+    color: $fg-selected;
+    background-color: $bg-selected;
+    border-color: $border-selected;
+
+    &:hover {
+      color: $fg-hover;
+      background-color: $bg-hover;
+      border-color: $border-hover;
+    }
+
+    &:active {
+      color: $fg-selected;
+      background-color: $bg-selected;
+      border-color: $border-selected;
+    }
+  }
+}
+
+@mixin button-variant-subtle(
+  $fg-color,
+  $bg-hover,
+  $fg-hover,
+  $fg-pressed,
+  $bg-pressed,
+  $bg-selected
+) {
+  color: $fg-color;
+  background-color: transparent;
+  border-color: transparent;
+
+  &:hover:not(.button--disabled) {
+    color: $fg-hover;
+    background-color: $bg-hover;
+  }
+
+  &:active:not(.button--disabled),
+  &.button--pressed:not(.button--disabled) {
+    color: $fg-pressed;
+    background-color: $bg-pressed;
+  }
+
+  &.button--selected:not(.button--disabled):not(.button--loading) {
+    background-color: $bg-selected;
+
+    &:hover {
+      color: $fg-hover;
+      background-color: $bg-hover;
+    }
+
+    &:active {
+      background-color: $bg-selected;
+    }
+  }
+}
+
+@mixin button-variant-transparent($fg-color, $fg-hover, $fg-pressed, $bg-selected) {
+  color: $fg-color;
+  background-color: transparent;
+  border-color: transparent;
+
+  &:hover:not(.button--disabled) {
+    color: $fg-hover;
+  }
+
+  &:active:not(.button--disabled),
+  &.button--pressed:not(.button--disabled) {
+    color: $fg-pressed;
+  }
+
+  &.button--selected:not(.button--disabled):not(.button--loading) {
+    background-color: $bg-selected;
+
+    &:hover {
+      background-color: transparent;
+      color: $fg-hover;
+    }
+
+    &:active {
+      background-color: $bg-selected;
+    }
+  }
+}
+
+@mixin button-variant-tint(
+  $fg-color,
+  $bg-color,
+  $bg-hover,
+  $bg-pressed,
+  $bg-selected,
+  $use-filter: false,
+  $border-selected: null
+) {
+  color: $fg-color;
+  background-color: $bg-color;
+  border-color: transparent;
+
+  &:hover:not(.button--disabled) {
+    background-color: $bg-hover;
+    @if $use-filter {
+      color: var(--color-shared-#{$fg-color}-foreground-hover);
+      filter: brightness(0.95);
+    }
+  }
+
+  &:active:not(.button--disabled),
+  &.button--pressed:not(.button--disabled) {
+    background-color: $bg-pressed;
+    @if $use-filter {
+      color: var(--color-shared-#{$fg-color}-foreground-pressed);
+      filter: brightness(0.9);
+    }
+  }
+
+  &.button--selected:not(.button--disabled):not(.button--loading) {
+    background-color: $bg-selected;
+    @if $border-selected {
+      border-color: $border-selected;
+    }
+
+    &:hover {
+      background-color: $bg-hover;
+      @if $border-selected {
+        border-color: $border-selected;
+      }
+      @if $use-filter {
+        color: var(--color-shared-#{$fg-color}-foreground-hover);
+        filter: brightness(0.95);
+      }
+    }
+
+    &:active {
+      background-color: $bg-selected;
+      @if $border-selected {
+        border-color: $border-selected;
+      }
+    }
+  }
+}
+
+// ==========================================================================
+// Base Button
+// ==========================================================================
+
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-1;
+  font-family: $font-family-base;
+  font-weight: $font-weight-medium;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  @include smooth-hover;
+  @include smooth-press;
+
+  @include focus-ring;
+}
+
+@mixin icon-only-selector {
+  &:has(ui-icon):not(:has(.button__text)):has(.button__content:empty),
+  &:has(ui-spinner):not(:has(.button__text)):has(.button__content:empty) {
+    @content;
+  }
+}
+
+// ==========================================================================
+// Sizes
+// ==========================================================================
+
+$button-sizes: (
+  'small': (
+    min-height: 24px,
+    padding: 3px 8px,
+    font-size: $font-size-200,
+    line-height: $line-height-200,
+    border-radius: $border-radius-200,
+    icon-only-padding: 3px,
+    icon-only-size: 24px,
+  ),
+  'medium': (
+    min-height: 32px,
+    padding: 5px 12px,
+    font-size: $font-size-300,
+    line-height: $line-height-300,
+    border-radius: $border-radius-400,
+    icon-only-padding: 5px,
+    icon-only-size: 32px,
+  ),
+  'large': (
+    min-height: 40px,
+    padding: 8px 16px,
+    font-size: $font-size-400,
+    line-height: $line-height-400,
+    border-radius: $border-radius-600,
+    icon-only-padding: 8px,
+    icon-only-size: 40px,
+  ),
+);
+
+@each $size, $props in $button-sizes {
+  .button--#{$size} {
+    min-height: map.get($props, min-height);
+    padding: map.get($props, padding);
+    font-size: map.get($props, font-size);
+    line-height: map.get($props, line-height);
+    border-radius: map.get($props, border-radius);
+
+    @include icon-only-selector {
+      padding: map.get($props, icon-only-padding);
+      width: map.get($props, icon-only-size);
+      height: map.get($props, icon-only-size);
+    }
+  }
+}
+
+// ==========================================================================
+// Shapes
+// ==========================================================================
+
+.button--circular {
+  border-radius: $border-radius-circular;
+}
+
+.button--square {
+  border-radius: 0;
+}
+
+.button {
+  @include icon-only-selector {
+    gap: 0;
+  }
+}
+
+.button--full-width {
+  width: 100%;
+
+  @include icon-only-selector {
+    width: 100%;
+  }
+}
+
+.button__content {
+  display: contents;
+}
+
+// ==========================================================================
+// Variants
+// ==========================================================================
+
+// PRIMARY
+.button--primary {
+  &.button--filled {
+    @include button-variant-filled(
+      var(--color-brand-primary),
+      var(--color-brand-primary-hover),
+      var(--color-brand-primary-pressed),
+      var(--color-brand-primary-selected),
+      var(--color-brand-primary-selected)
+    );
+  }
+
+  &.button--outline {
+    @include button-variant-outline(
+      var(--color-brand-primary),
+      var(--color-brand-stroke-rest),
+      var(--color-subtle-background-hover),
+      var(--color-brand-primary-hover),
+      var(--color-brand-stroke-hover),
+      var(--color-brand-primary-pressed),
+      var(--color-subtle-background-pressed),
+      var(--color-brand-stroke-pressed),
+      var(--color-brand-foreground),
+      var(--color-neutral-background-brand-selected),
+      var(--color-brand-stroke-selected)
+    );
+  }
+
+  &.button--subtle {
+    @include button-variant-subtle(
+      var(--color-brand-foreground),
+      var(--color-neutral-background-brand-hover),
+      var(--color-brand-foreground-hover),
+      var(--color-brand-foreground-pressed),
+      var(--color-neutral-background-brand-pressed),
+      var(--color-subtle-background-selected)
+    );
+  }
+
+  &.button--transparent {
+    @include button-variant-transparent(
+      var(--color-brand-foreground),
+      var(--color-brand-foreground-hover),
+      var(--color-brand-foreground-pressed),
+      var(--color-neutral-background-brand-selected)
+    );
+  }
+
+  &.button--tint {
+    @include button-variant-tint(
+      var(--color-brand-foreground),
+      var(--color-neutral-background-brand-selected),
+      var(--color-neutral-background-brand-hover),
+      var(--color-neutral-background-brand-pressed),
+      var(--color-neutral-background-brand-selected),
+      false,
+      var(--color-brand-stroke-selected)
+    );
+  }
+}
+
+// SECONDARY
+.button--secondary {
+  &.button--filled {
+    color: var(--color-neutral-foreground-rest);
+    background-color: var(--color-neutral-background2-rest);
+    border-color: transparent;
+
+    &:hover:not(.button--disabled) {
+      background-color: var(--color-neutral-background2-hover);
+      border-color: var(--color-neutral-background2-hover);
+    }
+
+    &:active:not(.button--disabled),
+    &.button--pressed:not(.button--disabled) {
+      background-color: var(--color-neutral-background2-pressed);
+      border-color: var(--color-neutral-background2-pressed);
+    }
+
+    &.button--selected:not(.button--disabled):not(.button--loading) {
+      background-color: var(--color-neutral-background2-selected);
+      border-color: var(--color-neutral-background2-selected);
+
+      &:hover {
+        background-color: var(--color-neutral-background2-hover);
+        border-color: var(--color-neutral-background2-hover);
+      }
+
+      &:active {
+        background-color: var(--color-neutral-background2-selected);
+        border-color: var(--color-neutral-background2-selected);
+      }
+    }
+  }
+
+  &.button--outline {
+    @include button-variant-outline(
+      var(--color-neutral-foreground-rest),
+      var(--color-neutral-stroke-rest),
+      var(--color-subtle-background-hover),
+      var(--color-neutral-foreground-hover),
+      var(--color-neutral-stroke-hover),
+      var(--color-neutral-foreground-pressed),
+      var(--color-subtle-background-pressed),
+      var(--color-neutral-stroke-pressed),
+      var(--color-neutral-foreground2-rest),
+      var(--color-subtle-background-selected),
+      var(--color-neutral-stroke-selected)
+    );
+  }
+
+  &.button--subtle {
+    @include button-variant-subtle(
+      var(--color-neutral-foreground-rest),
+      var(--color-subtle-background-hover),
+      var(--color-neutral-foreground-hover),
+      var(--color-neutral-foreground-pressed),
+      var(--color-subtle-background-pressed),
+      var(--color-subtle-background-selected)
+    );
+  }
+
+  &.button--transparent {
+    @include button-variant-transparent(
+      var(--color-neutral-foreground-rest),
+      var(--color-neutral-foreground-rest),
+      var(--color-neutral-foreground3-rest),
+      var(--color-subtle-background-selected)
+    );
+  }
+
+  &.button--tint {
+    @include button-variant-tint(
+      var(--color-neutral-foreground-rest),
+      var(--color-neutral-background2-rest),
+      var(--color-neutral-background2-hover),
+      var(--color-neutral-background2-pressed),
+      var(--color-neutral-background2-rest),
+      false,
+      var(--color-neutral-stroke-selected)
+    );
+  }
+}
+
+// SUCCESS, WARNING, DANGER, INFO - using shared color variants
+$color-variants: (
+  'success': 'green',
+  'warning': 'orange',
+  'danger': 'red',
+  'info': 'blue',
+);
+
+@each $variant, $color in $color-variants {
+  .button--#{$variant} {
+    &.button--filled {
+      @include button-variant-filled(
+        var(--color-shared-#{$color}-foreground),
+        var(--color-shared-#{$color}-foreground-hover),
+        var(--color-shared-#{$color}-foreground-pressed),
+        var(--color-shared-#{$color}-foreground-selected),
+        var(--color-shared-#{$color}-foreground-selected)
+      );
+    }
+
+    &.button--outline {
+      @include button-variant-outline(
+        var(--color-shared-#{$color}-foreground),
+        var(--color-shared-#{$color}-foreground),
+        var(--color-subtle-background-hover),
+        var(--color-shared-#{$color}-foreground-hover),
+        var(--color-shared-#{$color}-foreground-hover),
+        var(--color-shared-#{$color}-foreground-pressed),
+        var(--color-subtle-background-pressed),
+        var(--color-shared-#{$color}-foreground-pressed),
+        var(--color-shared-#{$color}-foreground),
+        var(--color-shared-#{$color}-background),
+        var(--color-shared-#{$color}-foreground-selected)
+      );
+    }
+
+    &.button--subtle {
+      @include button-variant-subtle(
+        var(--color-shared-#{$color}-foreground),
+        var(--color-shared-#{$color}-background),
+        var(--color-shared-#{$color}-foreground-hover),
+        var(--color-shared-#{$color}-foreground-pressed),
+        var(--color-shared-#{$color}-background),
+        var(--color-subtle-background-selected)
+      );
+    }
+
+    &.button--transparent {
+      @include button-variant-transparent(
+        var(--color-shared-#{$color}-foreground),
+        var(--color-shared-#{$color}-foreground-hover),
+        var(--color-shared-#{$color}-foreground-pressed),
+        var(--color-subtle-background-selected)
+      );
+    }
+
+    &.button--tint {
+      color: var(--color-shared-#{$color}-foreground);
+      background-color: var(--color-shared-#{$color}-background);
+      border-color: transparent;
+
+      &:hover:not(.button--disabled) {
+        color: var(--color-shared-#{$color}-foreground-hover);
+        filter: brightness(0.95);
+      }
+
+      &:active:not(.button--disabled),
+      &.button--pressed:not(.button--disabled) {
+        color: var(--color-shared-#{$color}-foreground-pressed);
+        filter: brightness(0.9);
+      }
+
+      &.button--selected:not(.button--disabled):not(.button--loading) {
+        background-color: var(--color-shared-#{$color}-background);
+        border-color: var(--color-shared-#{$color}-foreground-selected);
+
+        &:hover {
+          background-color: var(--color-shared-#{$color}-background);
+          border-color: var(--color-shared-#{$color}-foreground-selected);
+          color: var(--color-shared-#{$color}-foreground-hover);
+          filter: brightness(0.95);
+        }
+
+        &:active {
+          background-color: var(--color-shared-#{$color}-background);
+          border-color: var(--color-shared-#{$color}-foreground-selected);
+        }
+      }
+    }
+  }
+}
+
+// ==========================================================================
+// DISABLED STATE
+// ==========================================================================
+
+.button--disabled {
+  color: var(--color-neutral-foreground-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.4;
+
+  .button__icon {
+    fill: var(--color-neutral-foreground-disabled);
+  }
+
+  // Filled buttons get disabled background
+  &.button--filled {
+    color: var(--color-brand-foreground-disabled);
+    background-color: var(--color-brand-background-disabled);
+    border-color: var(--color-brand-stroke-disabled);
+  }
+
+  // Outline buttons keep border but with disabled color
+  &.button--outline {
+    background-color: transparent;
+    border-color: var(--color-neutral-stroke-disabled);
+  }
+
+  // Subtle and transparent stay transparent
+  &.button--subtle,
+  &.button--transparent {
+    background-color: transparent;
+    border-color: transparent;
+  }
+}
+
+// ==========================================================================
+// LOADING STATE
+// ==========================================================================
+
+.button--loading {
+  cursor: not-allowed;
+  pointer-events: none;
+}

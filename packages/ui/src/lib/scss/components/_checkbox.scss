@@ -1,0 +1,138 @@
+// ==========================================================================
+// Checkbox Component - Fluent 2 Design System (Unified)
+// ==========================================================================
+// Shapes: rounded (default), circular, square
+// Sizes: small, medium, large
+
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+
+// ---------------------------------------------------------------------------
+// Checkbox Wrapper & Container
+// ---------------------------------------------------------------------------
+
+.checkbox-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  gap: $spacing-1;
+}
+
+.checkbox-container {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-1;
+  cursor: pointer;
+  user-select: none;
+
+  &:has(.checkbox-input:disabled) {
+    cursor: default;
+  }
+
+  &:has(.checkbox-input:focus-visible) {
+    outline: 2px solid var(--color-focus-border);
+    outline-offset: 2px;
+    border-radius: $border-radius-400;
+  }
+}
+
+.checkbox-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.checkbox-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.checkbox-label {
+  padding: 6px 8px 6px 0;
+  color: var(--color-neutral-foreground-rest);
+  font-size: $font-size-300;
+  line-height: $line-height-300;
+
+  &--disabled {
+    color: var(--color-neutral-foreground-disabled);
+  }
+  &--required::after {
+    content: ' *';
+    color: var(--color-shared-red-foreground);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Shape Modifiers
+// ---------------------------------------------------------------------------
+
+.checkbox--rounded {
+  .checkbox-visual {
+    border-radius: $border-radius-200;
+  }
+}
+
+.checkbox--circular {
+  .checkbox-visual {
+    border-radius: $border-radius-circular;
+  }
+}
+
+.checkbox--square {
+  .checkbox-visual {
+    border-radius: 0;
+  }
+}
+
+// Legacy alias
+.checkbox--standard {
+  @extend .checkbox--rounded;
+}
+
+// ---------------------------------------------------------------------------
+// Size Modifiers
+// ---------------------------------------------------------------------------
+
+.checkbox--small {
+  .checkbox-label {
+    font-size: $font-size-200;
+    line-height: $line-height-200;
+    padding: $spacing-1 $spacing-2 $spacing-1 0;
+  }
+}
+
+.checkbox--medium {
+  .checkbox-label {
+    font-size: $font-size-300;
+    line-height: $line-height-300;
+  }
+}
+
+.checkbox--large {
+  .checkbox-label {
+    font-size: $font-size-400;
+    line-height: $line-height-400;
+    padding: $spacing-2 $spacing-2 $spacing-2 0;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// State Modifiers
+// ---------------------------------------------------------------------------
+
+.checkbox-container:has(.checkbox-input:checked),
+.checkbox-container:has(.checkbox-input:indeterminate) {
+  .checkbox-visual {
+    color: var(--color-brand-primary);
+  }
+}
+
+.checkbox-container:has(.checkbox-input:disabled) {
+  .checkbox-visual {
+    color: var(--color-neutral-foreground-disabled);
+  }
+}

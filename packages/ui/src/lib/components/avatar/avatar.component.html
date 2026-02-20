@@ -1,0 +1,16 @@
+<div [class]="avatarClasses()">
+  @if (loading()) {
+    <div class="avatar__loading-overlay">
+      <ui-spinner [size]="spinnerSize()" [variant]="variant()" />
+    </div>
+  }
+  @if (hasImage() && !loading()) {
+    <img [src]="image()!" [alt]="ariaLabel() || name() || 'Avatar'" class="avatar__image" />
+  } @else if (hasInitials() && !loading()) {
+    <div class="avatar__initials">{{ displayInitials() }}</div>
+  } @else if (hasIcon() && !loading()) {
+    <ui-icon [icon]="icon()!" [size]="size()" class="avatar__icon" />
+  } @else if (!loading()) {
+    <ui-icon icon="person" [size]="size()" class="avatar__icon" />
+  }
+</div>

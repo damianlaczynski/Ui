@@ -1,0 +1,701 @@
+// ==========================================================================
+// Node Component - Fluent 2 Design System
+// ==========================================================================
+// Variants: primary, secondary, success, warning, danger, info
+// Appearances: subtle (default), tint, outline, filled
+// Sizes: small, medium, large
+// Shapes: rounded, circular, square
+
+@use 'sass:map';
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+
+// ==========================================================================
+// Indicator Slide Animations
+// ==========================================================================
+
+@keyframes indicatorSlideLeft {
+  from {
+    transform: translateX(calc(-50% + 16px));
+    opacity: 0.6;
+  }
+  to {
+    transform: translateX(-50%);
+    opacity: 1;
+  }
+}
+
+@keyframes indicatorSlideRight {
+  from {
+    transform: translateX(calc(-50% - 16px));
+    opacity: 0.6;
+  }
+  to {
+    transform: translateX(-50%);
+    opacity: 1;
+  }
+}
+
+@keyframes indicatorSlideUp {
+  from {
+    transform: translateY(calc(-50% + 8px));
+    opacity: 0.6;
+  }
+  to {
+    transform: translateY(-50%);
+    opacity: 1;
+  }
+}
+
+@keyframes indicatorSlideDown {
+  from {
+    transform: translateY(calc(-50% - 8px));
+    opacity: 0.6;
+  }
+  to {
+    transform: translateY(-50%);
+    opacity: 1;
+  }
+}
+
+// ==========================================================================
+// Mixins
+// ==========================================================================
+
+@mixin node-variant-selected($indicator-color, $icon-color, $label-color) {
+  .node__selection-indicator,
+  .node__selector,
+  .node__indicator {
+    background-color: $indicator-color;
+  }
+
+  &.node--selected {
+    .node__icon {
+      color: $icon-color;
+    }
+
+    .node__label {
+      font-weight: $font-weight-semibold;
+      color: $label-color;
+    }
+  }
+}
+
+@mixin node-variant-tint($bg-color, $fg-color, $use-filter: false) {
+  &.node--tint {
+    .node__content {
+      background-color: $bg-color;
+
+      &:hover:not(:disabled) {
+        @if $use-filter {
+          filter: brightness(0.95);
+        } @else {
+          background-color: var(--color-neutral-background-brand-hover);
+        }
+      }
+
+      &:active:not(:disabled) {
+        @if $use-filter {
+          filter: brightness(0.9);
+        } @else {
+          background-color: var(--color-neutral-background-brand-pressed);
+        }
+      }
+    }
+
+    .node__icon,
+    .node__label {
+      color: $fg-color;
+    }
+  }
+}
+
+@mixin node-variant-outline($border-color, $border-hover, $border-pressed, $bg-hover, $bg-pressed) {
+  &.node--outline {
+    .node__content {
+      background-color: transparent;
+      outline: 1px solid $border-color;
+      outline-offset: -1px;
+
+      &:hover:not(:disabled) {
+        outline-color: $border-hover;
+        background-color: $bg-hover;
+      }
+
+      &:active:not(:disabled) {
+        outline-color: $border-pressed;
+        background-color: $bg-pressed;
+      }
+    }
+  }
+}
+
+@mixin node-variant-filled($bg-color, $bg-hover, $bg-pressed, $fg-color) {
+  &.node--filled.node--selected .node__content {
+    background-color: $bg-color;
+
+    &:hover:not(:disabled) {
+      background-color: $bg-hover;
+    }
+
+    &:active:not(:disabled) {
+      background-color: $bg-pressed;
+    }
+
+    .node__icon,
+    .node__label {
+      color: $fg-color;
+    }
+  }
+}
+
+@mixin node-variant-circular-selected(
+  $bg-color,
+  $outline-color,
+  $outline-hover,
+  $outline-pressed,
+  $use-filter: false
+) {
+  &.node--subtle.node--circular.node--selected .node__content {
+    background-color: $bg-color;
+    outline: 1px solid $outline-color;
+    outline-offset: -1px;
+
+    &:hover:not(:disabled) {
+      outline-color: $outline-hover;
+      @if $use-filter {
+        filter: brightness(0.95);
+      } @else {
+        background-color: var(--color-neutral-background-brand-hover);
+      }
+    }
+
+    &:active:not(:disabled) {
+      outline-color: $outline-pressed;
+      @if $use-filter {
+        filter: brightness(0.9);
+      } @else {
+        background-color: var(--color-neutral-background-brand-pressed);
+      }
+    }
+  }
+}
+
+// ==========================================================================
+// Base Node
+// ==========================================================================
+
+.node {
+  user-select: none;
+
+  &__label {
+    font-family: $font-family-base;
+    font-weight: $font-weight-regular;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: $spacing-0_5;
+    border: 2px solid transparent;
+    @include transition-colors($duration-fast);
+
+    &.node__drop-zone--inside {
+      border-color: var(--color-brand-primary);
+    }
+  }
+
+  &__indicator {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    @include transition-opacity($duration-fast);
+    @include transition-transform($duration-fast);
+    transition-property: opacity, transform, left, top, width, height;
+    transition-duration: $duration-fast;
+    transition-timing-function: $easing-decelerate-min;
+
+    .node--selected & {
+      opacity: 1;
+    }
+  }
+
+  &__selection-indicator {
+    width: 4px;
+    height: 20px;
+    border-radius: $border-radius-200;
+    opacity: 0;
+    transition-property: opacity, transform, left, top;
+    transition-duration: $duration-fast;
+    transition-timing-function: $easing-decelerate-min;
+
+    &--visible {
+      opacity: 1;
+    }
+  }
+
+  &__selector {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 3px;
+    border-radius: $border-radius-circular;
+    opacity: 0;
+    width: 0;
+    transition-property: opacity, transform, left, width;
+    transition-duration: $duration-normal;
+    transition-timing-function: $easing-decelerate-max;
+
+    .node--selected & {
+      opacity: 1;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    gap: $spacing-2;
+    padding: $spacing-2 $spacing-3;
+    min-height: 32px;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    background: transparent;
+    color: var(--color-neutral-foreground2-rest);
+    font-family: $font-family-base;
+    border-radius: $border-radius-400;
+    @include smooth-hover;
+
+    @include focus-ring;
+
+    &:hover:not(:disabled) {
+      background-color: var(--color-subtle-background-hover);
+
+      .node__quick-actions {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    &:active:not(:disabled) {
+      background-color: var(--color-subtle-background-pressed);
+      @include smooth-press;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+
+  &__quick-actions {
+    display: flex;
+    gap: $spacing-0_5;
+    padding: $spacing-1;
+    margin-left: auto;
+    opacity: 0;
+    visibility: hidden;
+    @include transition-opacity($duration-faster);
+  }
+
+  &__icon {
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  &__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    padding: $spacing-1;
+    margin-left: auto;
+    cursor: pointer;
+    border-radius: $border-radius-200;
+
+    @include focus-ring(1px);
+
+    &:hover {
+      background-color: var(--color-subtle-background-hover);
+    }
+  }
+
+  &__drop-indicator {
+    height: 6px;
+    margin: -2px 0;
+    opacity: 0;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 4px;
+      background-color: var(--color-brand-primary);
+      opacity: 0;
+    }
+
+    &--active {
+      opacity: 1;
+
+      &::before {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+// ==========================================================================
+// Sizes
+// ==========================================================================
+
+$node-sizes: (
+  'small': (
+    min-height: 24px,
+    padding: $spacing-1 $spacing-2,
+    font-size: $font-size-200,
+    indicator-height: 16px,
+    selector-height: 2px,
+  ),
+  'medium': (
+    min-height: 32px,
+    padding: $spacing-2 $spacing-3,
+    font-size: $font-size-300,
+    indicator-height: 20px,
+    selector-height: 3px,
+  ),
+  'large': (
+    min-height: 40px,
+    padding: $spacing-2 $spacing-3,
+    font-size: $font-size-400,
+    indicator-height: 24px,
+    selector-height: 4px,
+  ),
+);
+
+@each $size, $props in $node-sizes {
+  .node--#{$size} {
+    .node__content {
+      min-height: map.get($props, min-height);
+      padding: map.get($props, padding);
+    }
+
+    .node__label {
+      font-size: map.get($props, font-size);
+    }
+
+    .node__selection-indicator {
+      height: map.get($props, indicator-height);
+    }
+
+    .node__selector {
+      height: map.get($props, selector-height);
+    }
+  }
+}
+
+// ==========================================================================
+// Shapes
+// ==========================================================================
+
+.node--circular {
+  .node__content {
+    border-radius: $border-radius-circular;
+  }
+
+  .node__indicator {
+    display: none;
+  }
+}
+
+.node--square {
+  .node__content {
+    border-radius: 0;
+  }
+}
+
+// ==========================================================================
+// States
+// ==========================================================================
+
+.node--disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+// ==========================================================================
+// Indicator Positions
+// ==========================================================================
+
+.node--indicator-horizontal {
+  .node__indicator {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    height: 3px;
+    width: 85%;
+    border-radius: $border-radius-200;
+    transition-property: opacity, transform, left, width;
+    transition-duration: $duration-normal;
+    transition-timing-function: $easing-decelerate-max;
+  }
+
+  .node__selector {
+    display: none;
+  }
+
+  // Directional slide animations
+  &.node--slide-left {
+    .node__indicator {
+      animation: indicatorSlideLeft $duration-normal $easing-decelerate-max;
+      @include respect-reduced-motion;
+    }
+  }
+
+  &.node--slide-right {
+    .node__indicator {
+      animation: indicatorSlideRight $duration-normal $easing-decelerate-max;
+      @include respect-reduced-motion;
+    }
+  }
+}
+
+.node--indicator-vertical {
+  .node__indicator {
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 20px;
+    border-radius: $border-radius-200;
+    transition-property: opacity, transform, top, height;
+    transition-duration: $duration-normal;
+    transition-timing-function: $easing-decelerate-max;
+  }
+
+  .node__selector {
+    display: none;
+  }
+
+  // Directional slide animations
+  &.node--slide-left {
+    .node__indicator {
+      animation: indicatorSlideUp $duration-normal $easing-decelerate-max;
+      @include respect-reduced-motion;
+    }
+  }
+
+  &.node--slide-right {
+    .node__indicator {
+      animation: indicatorSlideDown $duration-normal $easing-decelerate-max;
+      @include respect-reduced-motion;
+    }
+  }
+}
+
+// ==========================================================================
+// PRIMARY VARIANT
+// ==========================================================================
+
+.node--primary {
+  @include node-variant-selected(
+    var(--color-brand-primary),
+    var(--color-brand-primary),
+    var(--color-brand-primary)
+  );
+
+  @include node-variant-tint(
+    var(--color-neutral-background-brand-selected),
+    var(--color-brand-foreground)
+  );
+
+  @include node-variant-outline(
+    var(--color-neutral-stroke-rest),
+    var(--color-neutral-stroke-hover),
+    var(--color-neutral-stroke-pressed),
+    var(--color-subtle-background-hover),
+    var(--color-subtle-background-pressed)
+  );
+
+  &.node--outline.node--selected .node__content {
+    outline-color: var(--color-brand-primary);
+
+    &:hover:not(:disabled) {
+      outline-color: var(--color-brand-primary-hover);
+      background-color: var(--color-neutral-background-brand-hover);
+    }
+
+    &:active:not(:disabled) {
+      outline-color: var(--color-brand-primary-pressed);
+      background-color: var(--color-neutral-background-brand-pressed);
+    }
+  }
+
+  @include node-variant-filled(
+    var(--color-brand-primary),
+    var(--color-brand-primary-hover),
+    var(--color-brand-primary-pressed),
+    var(--color-neutral-foreground-on-brand)
+  );
+
+  @include node-variant-circular-selected(
+    var(--color-neutral-background-brand-selected),
+    var(--color-brand-primary),
+    var(--color-brand-primary-hover),
+    var(--color-brand-primary-pressed)
+  );
+}
+
+// ==========================================================================
+// SECONDARY VARIANT
+// ==========================================================================
+
+.node--secondary {
+  @include node-variant-selected(
+    var(--color-neutral-foreground2-rest),
+    var(--color-neutral-foreground2-rest),
+    var(--color-neutral-foreground2-rest)
+  );
+
+  @include node-variant-tint(
+    var(--color-neutral-background2-rest),
+    var(--color-neutral-foreground2-rest)
+  );
+
+  &.node--tint .node__content {
+    &:hover:not(:disabled) {
+      background-color: var(--color-neutral-background2-hover);
+    }
+
+    &:active:not(:disabled) {
+      background-color: var(--color-neutral-background2-pressed);
+    }
+  }
+
+  @include node-variant-outline(
+    var(--color-neutral-stroke-rest),
+    var(--color-neutral-stroke-hover),
+    var(--color-neutral-stroke-pressed),
+    var(--color-subtle-background-hover),
+    var(--color-subtle-background-pressed)
+  );
+
+  &.node--outline.node--selected .node__content {
+    outline-color: var(--color-neutral-stroke-accessible);
+
+    &:hover:not(:disabled) {
+      outline-color: var(--color-neutral-stroke-accessible-hover);
+    }
+
+    &:active:not(:disabled) {
+      outline-color: var(--color-neutral-stroke-accessible-pressed);
+    }
+  }
+
+  @include node-variant-filled(
+    var(--color-neutral-background2-rest),
+    var(--color-neutral-background2-hover),
+    var(--color-neutral-background2-pressed),
+    var(--color-neutral-foreground-rest)
+  );
+
+  @include node-variant-circular-selected(
+    var(--color-subtle-background-selected),
+    var(--color-neutral-foreground2-rest),
+    var(--color-neutral-foreground-hover),
+    var(--color-neutral-foreground-pressed)
+  );
+
+  &.node--subtle.node--circular.node--selected .node__content {
+    &:hover:not(:disabled) {
+      background-color: var(--color-subtle-background-hover);
+    }
+
+    &:active:not(:disabled) {
+      background-color: var(--color-subtle-background-pressed);
+    }
+  }
+}
+
+// ==========================================================================
+// SUCCESS, WARNING, DANGER, INFO - using shared color variants
+// ==========================================================================
+
+$color-variants: (
+  'success': 'green',
+  'warning': 'orange',
+  'danger': 'red',
+  'info': 'blue',
+);
+
+@each $variant, $color in $color-variants {
+  .node--#{$variant} {
+    @include node-variant-selected(
+      var(--color-shared-#{$color}-foreground),
+      var(--color-shared-#{$color}-foreground),
+      var(--color-shared-#{$color}-foreground)
+    );
+
+    @include node-variant-tint(
+      var(--color-shared-#{$color}-background),
+      var(--color-shared-#{$color}-foreground),
+      true
+    );
+
+    &.node--outline {
+      .node__content {
+        background-color: transparent;
+        outline: 1px solid var(--color-shared-#{$color}-border);
+        outline-offset: -1px;
+
+        &:hover:not(:disabled) {
+          outline-color: var(--color-shared-#{$color}-foreground);
+          background-color: var(--color-shared-#{$color}-background);
+        }
+
+        &:active:not(:disabled) {
+          outline-color: var(--color-shared-#{$color}-foreground-pressed);
+          background-color: var(--color-shared-#{$color}-background);
+          filter: brightness(0.95);
+        }
+      }
+
+      &.node--selected .node__content {
+        outline-color: var(--color-shared-#{$color}-foreground);
+        background-color: var(--color-shared-#{$color}-background);
+
+        &:hover:not(:disabled) {
+          outline-color: var(--color-shared-#{$color}-foreground-hover);
+        }
+
+        &:active:not(:disabled) {
+          outline-color: var(--color-shared-#{$color}-foreground-pressed);
+          filter: brightness(0.95);
+        }
+      }
+    }
+
+    @include node-variant-filled(
+      var(--color-shared-#{$color}-foreground),
+      var(--color-shared-#{$color}-foreground-hover),
+      var(--color-shared-#{$color}-foreground-pressed),
+      var(--color-neutral-foreground-on-brand)
+    );
+
+    @include node-variant-circular-selected(
+      var(--color-shared-#{$color}-background),
+      var(--color-shared-#{$color}-foreground),
+      var(--color-shared-#{$color}-foreground-hover),
+      var(--color-shared-#{$color}-foreground-pressed),
+      true
+    );
+  }
+}

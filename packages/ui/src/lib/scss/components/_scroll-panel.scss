@@ -1,0 +1,114 @@
+// ==========================================================================
+// ScrollPanel Component - Fluent 2 Design System (BEM Block)
+// ==========================================================================
+
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+@use '../utils/functions' as *;
+
+.scroll-panel {
+  // Base scroll panel styles
+  position: relative;
+  display: flex;
+  width: 100%;
+  border-radius: $border-radius-400;
+  overflow: hidden;
+  box-sizing: border-box;
+
+  @include focus-ring;
+
+  // ========================================================================
+  // Elements
+  // ========================================================================
+
+  &__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: auto;
+    scrollbar-gutter: auto; // Auto zamiast stable - content nie przeskakuje gdy scrollbar się pojawia/ukrywa
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+  }
+
+  &__inner {
+    width: 100%;
+    min-height: min-content;
+    box-sizing: border-box;
+  }
+
+  // ========================================================================
+  // Orientation Modifiers
+  // ========================================================================
+
+  &--vertical {
+    .scroll-panel__content {
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+  }
+
+  &--horizontal {
+    .scroll-panel__content {
+      overflow-x: auto;
+      overflow-y: hidden;
+      flex-direction: row;
+    }
+
+    .scroll-panel__inner {
+      display: inline-flex;
+      width: auto;
+      // min-width: min-content;
+    }
+  }
+
+  &--both {
+    .scroll-panel__content {
+      overflow: auto;
+    }
+
+    .scroll-panel__inner {
+      // min-width: min-content;
+    }
+  }
+
+  // ========================================================================
+  // Scrollbar Behavior Modifiers
+  // ========================================================================
+
+  &--auto {
+    // Auto-hide scrollbar (shows on hover) - uses global scrollbar styles
+  }
+
+  &--always {
+    // Always visible scrollbar - uses global scrollbar styles
+  }
+
+  &--never {
+    // Hidden scrollbar
+    .scroll-panel__content {
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      // Firefox
+      scrollbar-width: none;
+
+      // IE and Edge
+      -ms-overflow-style: none;
+    }
+  }
+
+  // ========================================================================
+  // State Classes
+  // ========================================================================
+
+  &__content--has-vertical-scroll {
+    // Additional styles when vertical scrolling is active
+  }
+
+  &__content--has-horizontal-scroll {
+    // Additional styles when horizontal scrolling is active
+  }
+}

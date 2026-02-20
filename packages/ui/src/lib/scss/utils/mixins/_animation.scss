@@ -1,0 +1,474 @@
+@use '../../utils/variables' as *;
+
+// ==========================================================================
+// Animation Mixins - Fluent 2 Design System
+// ==========================================================================
+
+// ---------------------------------------------------------------------------
+// Transition Mixins
+// ---------------------------------------------------------------------------
+
+/// Generic transition mixin
+/// @param {List} $properties - Properties to animate (default: all)
+/// @param {Duration} $duration - Animation duration
+/// @param {Function} $easing - Easing function
+@mixin transition($properties: all, $duration: $duration-fast, $easing: $easing-decelerate-min) {
+  & {
+    transition-property: $properties;
+    transition-duration: $duration;
+    transition-timing-function: $easing;
+  }
+}
+
+/// Smooth hover transition (for interactive elements)
+@mixin smooth-hover {
+  @include transition(background-color, $duration-faster, $easing-decelerate-min);
+}
+
+/// Smooth press transition (for buttons and clickable elements)
+@mixin smooth-press {
+  @include transition(
+    transform background-color border-color,
+    $duration-ultra-fast,
+    $easing-accelerate-min
+  );
+}
+
+/// Color transition only
+@mixin transition-colors($duration: $duration-fast) {
+  @include transition(color background-color border-color, $duration);
+}
+
+/// Transform transition only
+@mixin transition-transform($duration: $duration-fast) {
+  @include transition(transform, $duration);
+}
+
+/// Opacity transition only
+@mixin transition-opacity($duration: $duration-fast) {
+  @include transition(opacity, $duration);
+}
+
+// ---------------------------------------------------------------------------
+// Animation Mixins
+// ---------------------------------------------------------------------------
+
+/// Fade in animation
+/// @param {Duration} $duration - Animation duration
+/// @param {Function} $easing - Easing function
+@mixin fade-in($duration: $duration-fast, $easing: $easing-decelerate-min) {
+  animation: fadeIn $duration $easing;
+  @include respect-reduced-motion;
+}
+
+/// Fade out animation
+@mixin fade-out($duration: $duration-fast, $easing: $easing-accelerate-min) {
+  animation: fadeOut $duration $easing;
+  @include respect-reduced-motion;
+}
+
+/// Slide down animation (for expanding panels)
+@mixin slide-down($duration: $duration-normal, $easing: $easing-decelerate-min) {
+  animation: slideDown $duration $easing;
+  @include respect-reduced-motion;
+}
+
+/// Slide up animation (for collapsing panels)
+@mixin slide-up($duration: $duration-normal, $easing: $easing-accelerate-min) {
+  animation: slideUp $duration $easing;
+  @include respect-reduced-motion;
+}
+
+/// Spin animation (for loading indicators)
+@mixin spin($duration: 1s) {
+  animation: spin $duration linear infinite;
+  @include respect-reduced-motion;
+}
+
+/// Scale in animation (for dialogs and modals)
+/// @param {Duration} $duration - Animation duration
+/// @param {Function} $easing - Easing function
+@mixin scale-in($duration: $duration-normal, $easing: $easing-decelerate-min) {
+  animation: scaleIn $duration $easing;
+  @include respect-reduced-motion;
+}
+
+/// Scale out animation (for dialogs and modals)
+/// @param {Duration} $duration - Animation duration
+/// @param {Function} $easing - Easing function
+@mixin scale-out($duration: $duration-fast, $easing: $easing-accelerate-min) {
+  animation: scaleOut $duration $easing;
+  @include respect-reduced-motion;
+}
+
+/// Slide in from left animation
+/// @param {Duration} $duration - Animation duration
+/// @param {Function} $easing - Easing function
+@mixin slide-in-left($duration: $duration-normal, $easing: $easing-decelerate-min) {
+  animation: slideInLeft $duration $easing;
+  @include respect-reduced-motion;
+}
+
+/// Slide in from right animation
+/// @param {Duration} $duration - Animation duration
+/// @param {Function} $easing - Easing function
+@mixin slide-in-right($duration: $duration-normal, $easing: $easing-decelerate-min) {
+  animation: slideInRight $duration $easing;
+  @include respect-reduced-motion;
+}
+
+/// Slide in from top animation
+/// @param {Duration} $duration - Animation duration
+/// @param {Function} $easing - Easing function
+@mixin slide-in-top($duration: $duration-normal, $easing: $easing-decelerate-min) {
+  animation: slideInTop $duration $easing;
+  @include respect-reduced-motion;
+}
+
+/// Slide in from bottom animation
+/// @param {Duration} $duration - Animation duration
+/// @param {Function} $easing - Easing function
+@mixin slide-in-bottom($duration: $duration-normal, $easing: $easing-decelerate-min) {
+  animation: slideInBottom $duration $easing;
+  @include respect-reduced-motion;
+}
+
+/// Slide in down animation with scale (for command palette)
+/// @param {Duration} $duration - Animation duration
+/// @param {Function} $easing - Easing function
+@mixin slide-in-down($duration: $duration-normal, $easing: $easing-decelerate-min) {
+  animation: slideInDown $duration $easing;
+  @include respect-reduced-motion;
+}
+
+/// Fade scale in animation (for date range picker, popovers)
+/// @param {Duration} $duration - Animation duration
+/// @param {Function} $easing - Easing function
+@mixin fade-scale-in($duration: $duration-fast, $easing: $easing-decelerate-mid) {
+  animation: fadeScaleIn $duration $easing;
+  @include respect-reduced-motion;
+}
+
+/// Icon rotation animation (for chevrons, expand/collapse icons)
+/// @param {Duration} $duration - Animation duration
+/// @param {Number} $from - Starting rotation in degrees (default: 0)
+/// @param {Number} $to - Ending rotation in degrees (default: 180)
+@mixin icon-rotate($duration: $duration-normal, $from: 0deg, $to: 180deg) {
+  @include transition-transform($duration);
+  transform: rotate($from);
+
+  &--rotated,
+  .accordion--expanded &,
+  .node--expanded & {
+    transform: rotate($to);
+  }
+}
+
+/// Expand row animation (for data grid) - uses slide-down
+/// @param {Duration} $duration - Animation duration
+/// @param {Function} $easing - Easing function
+@mixin expand-row($duration: $duration-normal, $easing: $easing-ease-in-out) {
+  @include slide-down($duration, $easing);
+}
+
+/// Progress indeterminate animation
+/// @param {Duration} $duration - Animation duration
+@mixin progress-indeterminate($duration: 2s) {
+  animation: progressIndeterminate $duration $easing-linear infinite;
+  @include respect-reduced-motion;
+}
+
+/// Shimmer translate animation (for skeleton)
+/// @param {Duration} $duration - Animation duration
+@mixin shimmer-translate($duration: 2s) {
+  animation: shimmerTranslate $duration ease-in-out infinite;
+  @include respect-reduced-motion;
+}
+
+/// Fade scale in with translate animation (for video indicators, popovers)
+/// @param {Duration} $duration - Animation duration
+/// @param {Function} $easing - Easing function
+/// @param {String} $translate - Translate value (default: translate(-50%, -50%))
+@mixin fade-scale-in-translate(
+  $duration: $duration-fast,
+  $easing: $easing-decelerate-mid,
+  $translate: translate(-50%, -50%)
+) {
+  animation: fadeScaleInTranslate $duration $easing;
+  @include respect-reduced-motion;
+}
+
+/// Fade scale out with translate animation (for video indicators, popovers)
+/// @param {Duration} $duration - Animation duration
+/// @param {Function} $easing - Easing function
+/// @param {String} $translate - Translate value (default: translate(-50%, -50%))
+@mixin fade-scale-out-translate(
+  $duration: $duration-fast,
+  $easing: $easing-decelerate-mid,
+  $translate: translate(-50%, -50%)
+) {
+  animation: fadeScaleOutTranslate $duration $easing;
+  @include respect-reduced-motion;
+}
+
+/// Action indicator fade in animation (for video) - alias
+/// @param {Duration} $duration - Animation duration
+/// @param {Function} $easing - Easing function
+@mixin action-indicator-fade-in($duration: $duration-fast, $easing: $easing-decelerate-mid) {
+  @include fade-scale-in-translate($duration, $easing);
+}
+
+/// Action indicator fade out animation (for video) - alias
+/// @param {Duration} $duration - Animation duration
+/// @param {Function} $easing - Easing function
+@mixin action-indicator-fade-out($duration: $duration-fast, $easing: $easing-decelerate-mid) {
+  @include fade-scale-out-translate($duration, $easing);
+}
+
+/// Scale X out animation (for progress bars, toasts)
+/// @param {Duration} $duration - Animation duration
+@mixin scale-x-out($duration: 5000ms) {
+  animation: scaleXOut linear $duration forwards;
+  @include respect-reduced-motion;
+}
+
+/// Toast progress animation (alias for scale-x-out)
+/// @param {Duration} $duration - Animation duration
+@mixin toast-progress($duration: 5000ms) {
+  @include scale-x-out($duration);
+}
+
+// ---------------------------------------------------------------------------
+// Keyframes
+// ---------------------------------------------------------------------------
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 100vh;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 1;
+    max-height: 100vh;
+  }
+  to {
+    opacity: 0;
+    max-height: 0;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInTop {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInBottom {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fadeScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes progressIndeterminate {
+  0% {
+    left: -33.33%;
+    opacity: 0;
+  }
+  10% {
+    left: -33.33%;
+    opacity: 1;
+  }
+  90% {
+    left: 100%;
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes shimmerTranslate {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(33.333%);
+  }
+}
+
+@keyframes scaleXOut {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes fadeScaleInTranslate {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes fadeScaleOutTranslate {
+  from {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Reduced Motion Support
+// ---------------------------------------------------------------------------
+
+/// Respect user's reduced motion preference
+@mixin respect-reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    animation: none !important;
+    transition: none !important;
+  }
+}

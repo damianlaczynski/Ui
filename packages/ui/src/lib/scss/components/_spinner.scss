@@ -1,0 +1,245 @@
+// ==========================================================================
+// Spinner Component - Fluent 2 Design System
+// ==========================================================================
+// Variants: primary, secondary, success, warning, danger, info, inverted
+// Sizes: extra-small, small, medium, large, extra-large
+// Label positions: after, before, above, below
+
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+
+// ==========================================================================
+// Base Spinner
+// ==========================================================================
+
+.spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  &__svg-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+  }
+
+  &__svg {
+    display: block;
+    @include spin(1.4s);
+  }
+
+  &__circle-bg {
+    fill: var(--color-neutral-background-brand-selected);
+  }
+
+  &__circle-arc {
+    fill: var(--color-brand-primary);
+    transform-origin: center;
+  }
+
+  &__label {
+    font-family: $font-family-base;
+    color: var(--color-neutral-foreground-rest);
+
+    &--small {
+      font-size: $font-size-300;
+    }
+
+    &--medium {
+      font-size: $font-size-400;
+      font-weight: $font-weight-semibold;
+    }
+  }
+}
+
+// ==========================================================================
+// Sizes
+// ==========================================================================
+
+.spinner--extra-small {
+  .spinner__svg-wrapper {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.spinner--small {
+  .spinner__svg-wrapper {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.spinner--medium {
+  .spinner__svg-wrapper {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.spinner--large {
+  .spinner__svg-wrapper {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+.spinner--extra-large {
+  .spinner__svg-wrapper {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+// ==========================================================================
+// Label Positions
+// ==========================================================================
+
+.spinner--label-after {
+  flex-direction: row;
+  gap: $spacing-2;
+}
+
+.spinner--label-before {
+  flex-direction: row-reverse;
+  gap: $spacing-2;
+}
+
+.spinner--label-above {
+  flex-direction: column-reverse;
+  gap: $spacing-2;
+}
+
+.spinner--label-below {
+  flex-direction: column;
+  gap: $spacing-2;
+}
+
+// ==========================================================================
+// PRIMARY VARIANT
+// ==========================================================================
+
+.spinner--primary {
+  .spinner__circle-bg {
+    fill: var(--color-neutral-background-brand-selected);
+  }
+
+  .spinner__circle-arc {
+    fill: var(--color-brand-primary);
+  }
+}
+
+// ==========================================================================
+// SECONDARY VARIANT
+// ==========================================================================
+
+.spinner--secondary {
+  .spinner__circle-bg {
+    fill: var(--color-neutral-background2-rest);
+  }
+
+  .spinner__circle-arc {
+    fill: var(--color-neutral-foreground2-rest);
+  }
+}
+
+// ==========================================================================
+// SUCCESS VARIANT
+// ==========================================================================
+
+.spinner--success {
+  .spinner__circle-bg {
+    fill: var(--color-shared-green-background);
+  }
+
+  .spinner__circle-arc {
+    fill: var(--color-shared-green-foreground);
+  }
+}
+
+// ==========================================================================
+// WARNING VARIANT
+// ==========================================================================
+
+.spinner--warning {
+  .spinner__circle-bg {
+    fill: var(--color-shared-orange-background);
+  }
+
+  .spinner__circle-arc {
+    fill: var(--color-shared-orange-foreground);
+  }
+}
+
+// ==========================================================================
+// DANGER VARIANT
+// ==========================================================================
+
+.spinner--danger {
+  .spinner__circle-bg {
+    fill: var(--color-shared-red-background);
+  }
+
+  .spinner__circle-arc {
+    fill: var(--color-shared-red-foreground);
+  }
+}
+
+// ==========================================================================
+// INFO VARIANT
+// ==========================================================================
+
+.spinner--info {
+  .spinner__circle-bg {
+    fill: var(--color-shared-blue-background);
+  }
+
+  .spinner__circle-arc {
+    fill: var(--color-shared-blue-foreground);
+  }
+}
+
+// ==========================================================================
+// INVERTED VARIANT
+// ==========================================================================
+
+.spinner--inverted {
+  .spinner__circle-bg {
+    fill: rgba(255, 255, 255, 0.2);
+  }
+
+  .spinner__circle-arc {
+    fill: #ffffff;
+  }
+
+  .spinner__label {
+    color: #ffffff;
+  }
+}
+
+// ==========================================================================
+// Legacy Aliases
+// ==========================================================================
+
+.spinner--default {
+  .spinner__circle-bg {
+    fill: var(--color-neutral-background-brand-selected);
+  }
+
+  .spinner__circle-arc {
+    fill: var(--color-brand-primary);
+  }
+}
+
+.spinner--error {
+  .spinner__circle-bg {
+    fill: var(--color-shared-red-background);
+  }
+
+  .spinner__circle-arc {
+    fill: var(--color-shared-red-foreground);
+  }
+}

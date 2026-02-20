@@ -1,0 +1,88 @@
+// ==========================================================================
+// ScrollContainer Component - Fluent 2 Design System (BEM Block)
+// ==========================================================================
+
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+@use '../utils/functions' as *;
+
+.scroll-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+  // ========================================================================
+  // Elements
+  // ========================================================================
+
+  &__content {
+    position: relative;
+    width: 100%;
+    min-height: 100%;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: $spacing-0_5; // 2px
+  }
+
+  &__loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-6; // 48px
+    min-height: 200px;
+  }
+
+  &__loading-more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-4; // 24px
+    width: 100%;
+  }
+
+  &__error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-6; // 48px
+    min-height: 200px;
+    color: var(--color-danger-foreground-rest);
+    text-align: center;
+
+    p {
+      margin: 0;
+      font-size: $font-size-300; // 14px
+      font-family: $font-family-base;
+    }
+  }
+
+  &__empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-6; // 48px
+    min-height: 200px;
+    color: var(--color-neutral-foreground-disabled);
+    text-align: center;
+
+    p {
+      margin: 0;
+      font-size: $font-size-300; // 14px
+      font-family: $font-family-base;
+    }
+  }
+
+  &__item-fallback {
+    padding: $spacing-2 $spacing-3; // 8px 12px
+    color: var(--color-neutral-foreground-rest);
+    font-size: $font-size-300; // 14px
+    font-family: $font-family-base;
+    line-height: $line-height-300; // 20px
+  }
+}

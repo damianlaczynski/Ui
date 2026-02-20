@@ -1,0 +1,114 @@
+// ==========================================================================
+// Toolbar Component - Fluent 2 Design System (BEM Block)
+// ==========================================================================
+
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+@use '../utils/functions' as *;
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: $spacing-0_5;
+  padding: $spacing-1;
+  background: var(--color-neutral-background-rest);
+  border-radius: $border-radius-400;
+  width: fit-content;
+
+  &--horizontal {
+    flex-direction: row;
+    width: fit-content;
+    min-width: fit-content;
+  }
+
+  &--vertical {
+    flex-direction: column;
+    width: fit-content;
+    align-items: stretch;
+    height: fit-content;
+  }
+
+  &--small {
+    gap: $spacing-0_5;
+    padding: $spacing-0_5;
+    min-height: 32px;
+  }
+
+  &--medium {
+    gap: $spacing-1;
+    padding: $spacing-1;
+    min-height: 40px;
+  }
+
+  &--large {
+    gap: $spacing-1;
+    padding: $spacing-2;
+    min-height: 48px;
+  }
+
+  &--overflow {
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    @include respond-to(small) {
+      width: 100%;
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex-shrink: 0;
+
+    &--custom {
+      display: contents;
+    }
+
+    &--disabled {
+      pointer-events: none;
+    }
+  }
+
+  &__divider {
+    flex-shrink: 0;
+    align-self: stretch;
+
+    &.toolbar--horizontal {
+      margin: $spacing-1 0;
+    }
+
+    &.toolbar--vertical {
+      margin: 0 $spacing-1;
+    }
+  }
+
+  &__button {
+    flex-shrink: 0;
+  }
+
+  &.toolbar--vertical {
+    &__item {
+      width: 100%;
+      justify-content: flex-start;
+    }
+
+    &__button {
+      width: 100%;
+    }
+
+    &__divider {
+      height: 1px;
+      width: 100%;
+      margin: $spacing-1 0;
+    }
+  }
+
+  @include respond-to(small) {
+    &.toolbar--horizontal {
+      width: 100%;
+      flex-wrap: wrap;
+    }
+  }
+}

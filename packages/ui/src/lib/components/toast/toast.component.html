@@ -1,0 +1,40 @@
+<div
+  [class]="toastClasses()"
+  role="alert"
+  [attr.aria-live]="variant() === 'danger' ? 'assertive' : 'polite'"
+  [style.--toast-progress-duration]="showProgress() && duration() > 0 ? duration() + 'ms' : 'none'"
+>
+  <!-- Icon -->
+  @if (showIcon()) {
+    <div class="toast__icon" aria-hidden="true">
+      <ui-icon [icon]="getIconName()" [size]="size()" variant="filled" />
+    </div>
+  }
+
+  <!-- Content -->
+  <div class="toast__content">
+    @if (title()) {
+      <div class="toast__title">{{ title() }}</div>
+    }
+    @if (message()) {
+      <div class="toast__message">{{ message() }}</div>
+    }
+    <ng-content></ng-content>
+  </div>
+
+  <!-- Actions -->
+  <div class="toast__actions">
+    <ng-content select="[slot=actions]"></ng-content>
+
+    @if (dismissible()) {
+      <ui-button
+        class="toast__dismiss"
+        appearance="transparent"
+        variant="secondary"
+        icon="dismiss"
+        [size]="size()"
+        (click)="onDismiss()"
+      ></ui-button>
+    }
+  </div>
+</div>

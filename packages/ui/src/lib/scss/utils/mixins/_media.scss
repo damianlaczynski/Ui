@@ -1,0 +1,91 @@
+@use 'sass:map';
+@use '../../utils/variables' as *;
+
+// ==========================================================================
+// Media Query Mixins
+// ==========================================================================
+
+/// Responsive breakpoint mixin
+/// @param {String} $breakpoint - Breakpoint name (xs, small, medium, large, xl, 2xl)
+/// @example
+///   @include respond-to(medium) { ... }
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == xs {
+    @media (max-width: $breakpoint-xs) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == small {
+    @media (max-width: $breakpoint-small) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == medium {
+    @media (max-width: $breakpoint-medium) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == large {
+    @media (max-width: $breakpoint-large) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == xl {
+    @media (max-width: $breakpoint-xl) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == 2xl {
+    @media (max-width: $breakpoint-2xl) {
+      @content;
+    }
+  }
+}
+
+/// Min-width breakpoint (mobile-first approach)
+/// @param {String} $breakpoint - Breakpoint name
+@mixin respond-from($breakpoint) {
+  @if $breakpoint == small {
+    @media (min-width: $breakpoint-small) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == medium {
+    @media (min-width: $breakpoint-medium) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == large {
+    @media (min-width: $breakpoint-large) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == xl {
+    @media (min-width: $breakpoint-xl) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == 2xl {
+    @media (min-width: $breakpoint-2xl) {
+      @content;
+    }
+  }
+}
+
+/// Between breakpoints
+/// @param {String} $min - Min breakpoint
+/// @param {String} $max - Max breakpoint
+@mixin respond-between($min, $max) {
+  @media (min-width: map.get((small: $breakpoint-small, medium: $breakpoint-medium, large: $breakpoint-large, xl: $breakpoint-xl), $min)) and (max-width: map.get((small: $breakpoint-small, medium: $breakpoint-medium, large: $breakpoint-large, xl: $breakpoint-xl, 2xl: $breakpoint-2xl), $max)) {
+    @content;
+  }
+}

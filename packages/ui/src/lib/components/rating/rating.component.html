@@ -1,0 +1,40 @@
+<div [class]="getRatingClasses()" [attr.aria-label]="getAriaLabel()" role="group">
+  <div class="rating__stars">
+    @for (star of stars(); track star) {
+      <div class="rating__star-wrapper">
+        @if (readOnly()) {
+          <!-- Read-only mode: use div instead of button -->
+          <div class="rating__star" [class.rating__star--filled]="isStarFilled(star)">
+            <ui-icon
+              icon="star"
+              [size]="size()"
+              [variant]="isStarFilled(star) ? 'filled' : 'regular'"
+            />
+          </div>
+        } @else {
+          <!-- Interactive mode: use button -->
+          <button
+            type="button"
+            class="rating__star"
+            [class.rating__star--filled]="isStarFilled(star)"
+            [disabled]="disabled()"
+            (click)="onStarClick(star)"
+            (mouseenter)="onStarHover(star)"
+            (mouseleave)="onStarLeave()"
+            [attr.aria-label]="'Rate ' + star + ' stars'"
+            tabindex="0"
+          >
+            <ui-icon
+              icon="star"
+              [size]="size()"
+              [variant]="isStarFilled(star) ? 'filled' : 'regular'"
+            />
+          </button>
+        }
+      </div>
+    }
+  </div>
+  @if (showValue()) {
+    <div class="rating__value">{{ displayValue().toFixed(0) }} / {{ max() }}</div>
+  }
+</div>

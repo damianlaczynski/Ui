@@ -1,0 +1,62 @@
+// ==========================================================================
+// Nav Component - Fluent 2 Design System (BEM Block)
+// ==========================================================================
+
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+@use '../utils/functions' as *;
+
+.nav {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-1;
+  padding: $spacing-1;
+  border-radius: $border-radius-600;
+  box-sizing: border-box;
+  overflow: hidden;
+  @include transition-transform($duration-normal);
+  transition-property: width;
+  transition-duration: $duration-normal;
+  transition-timing-function: $easing-decelerate-mid;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-1;
+    width: 100%;
+  }
+}
+
+.nav-section-header {
+  width: 100%;
+  height: 32px;
+  max-height: 32px;
+  padding-left: 2px;
+  padding-right: 2px;
+  background: transparent;
+  border-radius: $border-radius-400;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+
+  &__left-lockup {
+    padding-bottom: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  &__text {
+    color: var(--color-neutral-foreground2-rest);
+    font-size: $font-size-200;
+    font-family: $font-family-base;
+    font-weight: $font-weight-semibold;
+    line-height: $line-height-200;
+    word-wrap: break-word;
+  }
+}

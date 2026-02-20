@@ -1,0 +1,45 @@
+<div
+  #cardRoot
+  [class]="cardClasses()"
+  data-card-root
+  [attr.role]="role()"
+  [attr.tabindex]="cardTabIndex()"
+  [attr.aria-disabled]="disabled() ? 'true' : null"
+  [attr.aria-selected]="isSelectionEnabled() ? (selected() ? 'true' : 'false') : null"
+  [attr.aria-label]="ariaLabel()"
+  [attr.aria-labelledby]="ariaLabelledBy()"
+  [attr.aria-describedby]="ariaDescribedBy()"
+  (click)="onCardClick($event)"
+  (keydown)="onCardKeyDown($event)"
+  (focusout)="onCardFocusOut($event)"
+>
+  <ng-content select="[uiCardFloatingAction]"></ng-content>
+  <ng-content select="[uiCardCheckbox]"></ng-content>
+
+  @if (checkbox() && !hasCheckboxSlot()) {
+    <div
+      class="card__floating-action card__floating-action--checkbox"
+      data-card-no-toggle
+      (click)="$event.stopPropagation()"
+    >
+      <ui-checkbox
+        [label]="''"
+        [size]="size()"
+        [disabled]="disabled()"
+        [ariaLabel]="internalCheckboxAriaLabel()"
+        [ngModel]="selected()"
+        [ngModelOptions]="{ standalone: true }"
+        (change)="onInternalCheckboxChange($event)"
+      />
+    </div>
+  }
+
+  <ng-content select="[uiCardPreview]"></ng-content>
+
+  <div class="card__content">
+    <ng-content select="[uiCardHeader]"></ng-content>
+    <ng-content select="[uiCardBody]"></ng-content>
+    <ng-content select="[uiCardFooter]"></ng-content>
+    <ng-content></ng-content>
+  </div>
+</div>

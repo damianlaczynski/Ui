@@ -1,0 +1,129 @@
+@if (calendarView() === 'months') {
+  <!-- Month Picker -->
+  <div class="calendar__month-picker">
+    <div class="calendar__header">
+      <ui-button
+        appearance="outline"
+        [size]="size()"
+        icon="chevron_left"
+        (click)="onPreviousYear($event)"
+      />
+      <ui-button
+        appearance="outline"
+        [size]="size()"
+        [fullWidth]="true"
+        (click)="onSwitchToYearsView($event)"
+      >
+        {{ currentMonth().getFullYear() }}
+      </ui-button>
+      <ui-button
+        appearance="outline"
+        [size]="size()"
+        icon="chevron_right"
+        (click)="onNextYear($event)"
+      />
+    </div>
+    <div class="calendar__months">
+      @for (month of calendarMonths(); track month.index) {
+        <ui-button
+          [size]="size()"
+          [variant]="month.isSelected ? 'primary' : 'secondary'"
+          [appearance]="month.isSelected ? 'filled' : 'outline'"
+          [fullWidth]="true"
+          (click)="onMonthClick(month.index, $event)"
+        >
+          {{ month.name }}
+        </ui-button>
+      }
+    </div>
+  </div>
+} @else if (calendarView() === 'years') {
+  <!-- Year Picker -->
+  <div class="calendar__year-picker">
+    <div class="calendar__header">
+      <ui-button
+        appearance="outline"
+        [size]="size()"
+        icon="chevron_left"
+        (click)="onPreviousYearRange($event)"
+      />
+      <span class="calendar__title">{{ getYearRangeText() }}</span>
+      <ui-button
+        appearance="outline"
+        [size]="size()"
+        icon="chevron_right"
+        (click)="onNextYearRange($event)"
+      />
+    </div>
+    <div class="calendar__years">
+      @for (yearItem of calendarYears(); track yearItem.year) {
+        <ui-button
+          [size]="size()"
+          [variant]="yearItem.isSelected ? 'primary' : 'secondary'"
+          [appearance]="yearItem.isSelected ? 'filled' : 'outline'"
+          [fullWidth]="true"
+          (click)="onYearClick(yearItem.year, $event)"
+        >
+          {{ yearItem.year }}
+        </ui-button>
+      }
+    </div>
+  </div>
+} @else {
+  <!-- Date Calendar (Days View) -->
+  <div class="calendar">
+    <!-- Calendar Header -->
+    <div class="calendar__header">
+      <ui-button
+        appearance="outline"
+        [size]="size()"
+        icon="chevron_left"
+        (click)="onPreviousMonth($event)"
+      />
+      @if (showMonthYearPicker()) {
+        <ui-button
+          appearance="outline"
+          [size]="size()"
+          [fullWidth]="true"
+          (click)="onSwitchToMonthsView($event)"
+        >
+          {{ monthYearText() }}
+        </ui-button>
+      } @else {
+        <span class="calendar__title"> {{ monthYearText() }} </span>
+      }
+      <ui-button
+        appearance="outline"
+        [size]="size()"
+        icon="chevron_right"
+        (click)="onNextMonth($event)"
+      />
+    </div>
+
+    <!-- Week Days Header -->
+    <div class="calendar__weekdays">
+      @for (day of weekDays; track day) {
+        <div class="calendar__weekday">{{ day }}</div>
+      }
+    </div>
+
+    <!-- Calendar Days Grid -->
+    <div class="calendar__grid">
+      @for (day of calendarDays(); track trackByDate($index, day)) {
+        <ui-button
+          [size]="size()"
+          [class]="getDayClasses(day)"
+          [variant]="getDayVariant(day)"
+          [appearance]="getDayAppearance(day)"
+          [disabled]="day.isDisabled"
+          [fullWidth]="true"
+          (click)="onDateClick(day, $event)"
+          (mouseenter)="onDateHover(day)"
+          (mouseleave)="onDateLeave()"
+        >
+          {{ day.day }}
+        </ui-button>
+      }
+    </div>
+  </div>
+}

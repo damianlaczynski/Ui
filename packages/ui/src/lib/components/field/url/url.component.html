@@ -1,0 +1,49 @@
+<ui-field
+  [fieldType]="'url'"
+  [label]="label()"
+  [placeholder]="placeholder()"
+  [helpText]="helpText()"
+  [(errorText)]="errorText"
+  [required]="required()"
+  [disabled]="disabled()"
+  [readonly]="readonly()"
+  [autocomplete]="autocomplete()"
+  [id]="id()"
+  [name]="name()"
+  [size]="size()"
+  [inputVariant]="inputVariant()"
+>
+  <div class="input-wrapper" [class]="wrapperClasses">
+    <input
+      #inputElement
+      class="input"
+      type="url"
+      [id]="id()"
+      [name]="name()"
+      [placeholder]="placeholder()"
+      [required]="required()"
+      [disabled]="disabled()"
+      [readonly]="readonly()"
+      [autocomplete]="autocomplete() || 'url'"
+      [value]="value"
+      [attr.tabindex]="getTabIndex()"
+      [attr.aria-label]="ariaLabel() || label()"
+      [attr.aria-describedby]="ariaDescribedBy()"
+      [attr.aria-invalid]="!!errorText()"
+      (input)="onInputChange($event)"
+      (blur)="onBlur($event)"
+      (focus)="onFocus($event)"
+      (keyup)="onKeyUp($event)"
+      (keydown)="onKeyDown($event)"
+    />
+    <!-- Actions: Clear button and link icon -->
+    @if (!disabled() && !readonly()) {
+      <div class="field__actions">
+        @if (value) {
+          <ui-action-button [icon]="'dismiss'" [size]="size()" (click)="clear()"></ui-action-button>
+        }
+        <ui-action-button [icon]="'link'" [size]="size()"></ui-action-button>
+      </div>
+    }
+  </div>
+</ui-field>

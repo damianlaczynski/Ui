@@ -1,0 +1,268 @@
+// ==========================================================================
+// Base styles
+// ==========================================================================
+
+@use '../utils/variables' as *;
+
+// Light theme CSS variables (default)
+:root {
+  // Brand Colors
+  --color-brand-primary: #{$color-brand-primary};
+  --color-brand-primary-hover: #{$color-brand-primary-hover};
+  --color-brand-primary-pressed: #{$color-brand-primary-pressed};
+  --color-brand-primary-selected: #{$color-brand-primary-selected};
+
+  --color-brand-foreground: #{$color-brand-foreground};
+  --color-brand-foreground-hover: #{$color-brand-foreground-hover};
+  --color-brand-foreground-pressed: #{$color-brand-foreground-pressed};
+
+  --color-compound-brand-background: #{$color-compound-brand-background};
+  --color-compound-brand-background-hover: #{$color-compound-brand-background-hover};
+  --color-compound-brand-background-pressed: #{$color-compound-brand-background-pressed};
+  --color-compound-brand-foreground: #{$color-compound-brand-foreground};
+  --color-compound-brand-foreground-hover: #{$color-compound-brand-foreground-hover};
+  --color-compound-brand-foreground-pressed: #{$color-compound-brand-foreground-pressed};
+  --color-compound-brand-stroke: #{$color-compound-brand-stroke};
+  --color-compound-brand-stroke-hover: #{$color-compound-brand-stroke-hover};
+  --color-compound-brand-stroke-pressed: #{$color-compound-brand-stroke-pressed};
+
+  // Accent Colors
+  --color-accent-primary: #{$color-accent-primary};
+  --color-accent-primary-hover: #{$color-accent-primary-hover};
+  --color-accent-primary-pressed: #{$color-accent-primary-pressed};
+  --color-accent-primary-selected: #{$color-accent-primary-selected};
+
+  // Neutral Colors - Foreground
+  --color-neutral-foreground-rest: #{$color-neutral-foreground-rest};
+  --color-neutral-foreground-hover: #{$color-neutral-foreground-hover};
+  --color-neutral-foreground-pressed: #{$color-neutral-foreground-pressed};
+  --color-neutral-foreground-disabled: #{$color-neutral-foreground-disabled};
+  --color-neutral-foreground-on-brand: #{$color-neutral-foreground-on-brand};
+  --color-neutral-foreground-selected: #{$color-neutral-foreground-selected};
+
+  --color-neutral-foreground2-rest: #{$color-neutral-foreground2-rest};
+  --color-neutral-foreground2-hover: #{$color-neutral-foreground2-hover};
+  --color-neutral-foreground2-pressed: #{$color-neutral-foreground2-pressed};
+  --color-neutral-foreground2-selected: #{$color-neutral-foreground2-selected};
+  --color-neutral-foreground2-brand-hover: #{$color-neutral-foreground2-brand-hover};
+  --color-neutral-foreground2-brand-pressed: #{$color-neutral-foreground2-brand-pressed};
+  --color-neutral-foreground2-brand-selected: #{$color-neutral-foreground2-brand-selected};
+
+  --color-neutral-foreground3-rest: #{$color-neutral-foreground3-rest};
+  --color-neutral-foreground3-hover: #{$color-neutral-foreground3-hover};
+  --color-neutral-foreground3-pressed: #{$color-neutral-foreground3-pressed};
+  --color-neutral-foreground3-selected: #{$color-neutral-foreground3-selected};
+  --color-neutral-foreground3-brand-hover: #{$color-neutral-foreground3-brand-hover};
+  --color-neutral-foreground3-brand-pressed: #{$color-neutral-foreground3-brand-pressed};
+  --color-neutral-foreground3-brand-selected: #{$color-neutral-foreground3-brand-selected};
+
+  --color-neutral-foreground4-rest: #{$color-neutral-foreground4-rest};
+
+  // Neutral Colors - Background
+  --color-neutral-background-rest: #{$color-neutral-background-rest};
+  --color-neutral-background-selected: #{$color-neutral-background-selected};
+  --color-neutral-background-hover: #{$color-neutral-background-hover};
+  --color-neutral-background-pressed: #{$color-neutral-background-pressed};
+  --color-neutral-background-disabled: #{$color-neutral-background-disabled};
+  --color-neutral-background-brand-selected: #{$color-neutral-background-brand-selected};
+  --color-neutral-background-brand-hover: #{$color-neutral-background-brand-hover};
+  --color-neutral-background-brand-pressed: #{$color-neutral-background-brand-pressed};
+
+  --color-neutral-background2-rest: #{$color-neutral-background2-rest};
+  --color-neutral-background2-hover: #{$color-neutral-background2-hover};
+  --color-neutral-background2-pressed: #{$color-neutral-background2-pressed};
+  --color-neutral-background2-selected: #{$color-neutral-background2-selected};
+
+  --color-neutral-background3-rest: #{$color-neutral-background3-rest};
+  --color-neutral-background3-hover: #{$color-neutral-background3-hover};
+  --color-neutral-background3-pressed: #{$color-neutral-background3-pressed};
+  --color-neutral-background3-selected: #{$color-neutral-background3-selected};
+
+  --color-subtle-background-hover: #{$color-subtle-background-hover};
+  --color-subtle-background-pressed: #{$color-subtle-background-pressed};
+  --color-subtle-background-selected: #{$color-subtle-background-selected};
+
+  // Stroke Colors
+  --color-neutral-stroke-rest: #{$color-neutral-stroke-rest};
+  --color-neutral-stroke-hover: #{$color-neutral-stroke-hover};
+  --color-neutral-stroke-pressed: #{$color-neutral-stroke-pressed};
+  --color-neutral-stroke-selected: #{$color-neutral-stroke-selected};
+  --color-neutral-stroke-disabled: #{$color-neutral-stroke-disabled};
+  --color-neutral-stroke-accessible: #{$color-neutral-stroke-accessible};
+  --color-neutral-stroke-accessible-hover: #{$color-neutral-stroke-accessible-hover};
+  --color-neutral-stroke-accessible-pressed: #{$color-neutral-stroke-accessible-pressed};
+  --color-neutral-stroke-accessible-selected: #{$color-neutral-stroke-accessible-selected};
+  --color-brand-stroke-rest: #{$color-brand-stroke-rest};
+  --color-brand-stroke-hover: #{$color-brand-stroke-hover};
+  --color-brand-stroke-pressed: #{$color-brand-stroke-pressed};
+  --color-brand-stroke-selected: #{$color-brand-stroke-selected};
+
+  // Border radius
+  --border-radius-400: #{$border-radius-400};
+
+  // Spacing
+  --spacing-horizontal-xxs: #{$spacing-horizontal-xxs};
+  --spacing-horizontal-xs: #{$spacing-horizontal-xs};
+  --spacing-horizontal-s: #{$spacing-horizontal-s};
+  --spacing-horizontal-m: #{$spacing-horizontal-m};
+  --spacing-horizontal-l: #{$spacing-horizontal-l};
+
+  --spacing-vertical-xxs: #{$spacing-vertical-xxs};
+  --spacing-vertical-xs: #{$spacing-vertical-xs};
+  --spacing-vertical-s: #{$spacing-vertical-s};
+  --spacing-vertical-m: #{$spacing-vertical-m};
+  --spacing-vertical-l: #{$spacing-vertical-l};
+
+  // Focus border color (light mode - black)
+  --color-focus-border: #000000;
+
+  // Shared Colors
+  --color-shared-red-foreground: #{$color-shared-red-foreground};
+  --color-shared-red-foreground-hover: #{$color-shared-red-foreground-hover};
+  --color-shared-red-foreground-pressed: #{$color-shared-red-foreground-pressed};
+  --color-shared-red-foreground-selected: #{$color-shared-red-foreground-selected};
+  --color-shared-red-background: #{$color-shared-red-background};
+  --color-shared-red-border: #{$color-shared-red-border};
+  --color-shared-orange-foreground: #{$color-shared-orange-foreground};
+  --color-shared-orange-foreground-hover: #{$color-shared-orange-foreground-hover};
+  --color-shared-orange-foreground-pressed: #{$color-shared-orange-foreground-pressed};
+  --color-shared-orange-foreground-selected: #{$color-shared-orange-foreground-selected};
+  --color-shared-orange-background: #{$color-shared-orange-background};
+  --color-shared-orange-border: #{$color-shared-orange-border};
+  --color-shared-yellow-foreground: #{$color-shared-yellow-foreground};
+  --color-shared-yellow-background: #{$color-shared-yellow-background};
+  --color-shared-yellow-border: #{$color-shared-yellow-border};
+  --color-shared-green-foreground: #{$color-shared-green-foreground};
+  --color-shared-green-foreground-hover: #{$color-shared-green-foreground-hover};
+  --color-shared-green-foreground-pressed: #{$color-shared-green-foreground-pressed};
+  --color-shared-green-foreground-selected: #{$color-shared-green-foreground-selected};
+  --color-shared-green-background: #{$color-shared-green-background};
+  --color-shared-green-border: #{$color-shared-green-border};
+  --color-shared-cyan-foreground: #{$color-shared-cyan-foreground};
+  --color-shared-cyan-background: #{$color-shared-cyan-background};
+  --color-shared-cyan-border: #{$color-shared-cyan-border};
+  --color-shared-blue-foreground: #{$color-shared-blue-foreground};
+  --color-shared-blue-foreground-hover: #{$color-shared-blue-foreground-hover};
+  --color-shared-blue-foreground-pressed: #{$color-shared-blue-foreground-pressed};
+  --color-shared-blue-foreground-selected: #{$color-shared-blue-foreground-selected};
+  --color-shared-blue-background: #{$color-shared-blue-background};
+  --color-shared-blue-border: #{$color-shared-blue-border};
+  --color-shared-purple-foreground: #{$color-shared-purple-foreground};
+  --color-shared-purple-background: #{$color-shared-purple-background};
+  --color-shared-purple-border: #{$color-shared-purple-border};
+  --color-shared-pink-foreground: #{$color-shared-pink-foreground};
+  --color-shared-pink-background: #{$color-shared-pink-background};
+  --color-shared-pink-border: #{$color-shared-pink-border};
+}
+
+// Body
+body {
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  text-rendering: auto;
+  background-color: var(--color-neutral-background-rest);
+  color: var(--color-neutral-foreground-rest);
+}
+
+// Focus styles - Fluent 2 Design System
+// Reset domyślnego outline - komponenty używają mixina focus-ring
+*:focus {
+  outline: none;
+}
+
+// Fallback dla elementów bez dedykowanych stylów focus
+*:focus-visible {
+  outline: 2px solid var(--color-focus-border);
+  outline-offset: 2px;
+}
+
+// Selection
+::selection {
+  background-color: var(--color-brand-primary);
+  color: var(--color-neutral-foreground-on-brand);
+}
+
+::-moz-selection {
+  background-color: var(--color-brand-primary);
+  color: var(--color-neutral-foreground-on-brand);
+}
+
+// Scrollbar styles
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-neutral-background-selected);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-neutral-stroke-rest);
+  border-radius: var(--border-radius-400);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-neutral-stroke-hover);
+}
+
+// Print styles
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]::after {
+    content: ' (' attr(href) ')';
+  }
+
+  abbr[title]::after {
+    content: ' (' attr(title) ')';
+  }
+
+  a[href^='#']::after,
+  a[href^='javascript:']::after {
+    content: '';
+  }
+
+  pre {
+    white-space: pre-wrap !important;
+  }
+
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
