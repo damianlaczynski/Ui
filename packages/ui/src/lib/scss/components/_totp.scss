@@ -4,54 +4,6 @@
 
 @use '../utils/variables' as *;
 
-// TOTP Wrapper - holds label and all digit fields
-.totp-wrapper {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: $spacing-1;
-
-  &__label {
-    display: inline-flex;
-    align-items: flex-end;
-    gap: $spacing-1;
-    font-family: $font-family-base;
-    color: var(--color-neutral-foreground-rest);
-    word-wrap: break-word;
-    margin-bottom: $spacing-1;
-
-    // Size variants
-    &--small {
-      font-size: $font-size-200;
-      line-height: $line-height-200;
-      font-weight: $font-weight-regular;
-    }
-
-    &--medium {
-      font-size: $font-size-300;
-      line-height: $line-height-300;
-      font-weight: $font-weight-regular;
-    }
-
-    &--large {
-      font-size: $font-size-400;
-      line-height: $line-height-400;
-      font-weight: $font-weight-semibold;
-    }
-
-    // Disabled state
-    &--disabled {
-      color: var(--color-neutral-foreground-disabled);
-    }
-
-    // Required indicator
-    &--required::after {
-      content: ' *';
-      color: var(--color-shared-red-foreground);
-    }
-  }
-}
-
 // TOTP Container - holds all digit fields
 .totp-container {
   display: inline-flex;
@@ -72,8 +24,7 @@
     gap: $spacing-3;
   }
 
-  // Make each field equal width
-  ui-field {
+  .totp-input-wrapper {
     flex: 1;
     min-width: 0;
   }
@@ -121,5 +72,11 @@
   // Read only styles
   &:read-only {
     cursor: default;
+  }
+}
+
+[dir='rtl'] {
+  .totp-container {
+    flex-direction: row-reverse;
   }
 }

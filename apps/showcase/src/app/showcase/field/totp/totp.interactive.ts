@@ -1,6 +1,6 @@
 import { Component, signal, computed, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TotpComponent, Size } from 'ui';
+import { TotpComponent, ContentPosition, Size } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { TOTP_SHOWCASE_CONFIG } from './totp.showcase.config';
@@ -20,6 +20,7 @@ import type { InputVariant } from 'ui';
       <div preview>
         <ui-totp
           [label]="currentLabel()"
+          [labelPosition]="currentLabelPosition()"
           [placeholder]="currentPlaceholder()"
           [digitsCount]="currentDigitsCount()"
           [inputVariant]="currentVariant()"
@@ -52,6 +53,7 @@ export class TotpInteractiveComponent {
     digitsCount: '6',
     variant: 'filled',
     size: 'medium',
+    labelPosition: 'above',
     disabled: false,
     readonly: false,
     required: false,
@@ -63,6 +65,7 @@ export class TotpInteractiveComponent {
   currentDigitsCount = computed(() => Number(this.values()['digitsCount']) || 6);
   currentVariant = computed(() => this.values()['variant'] as InputVariant);
   currentSize = computed(() => this.values()['size'] as Size);
+  currentLabelPosition = computed(() => this.values()['labelPosition'] as ContentPosition);
   currentDisabled = computed(() => this.values()['disabled'] as boolean);
   currentReadonly = computed(() => this.values()['readonly'] as boolean);
   currentRequired = computed(() => this.values()['required'] as boolean);
