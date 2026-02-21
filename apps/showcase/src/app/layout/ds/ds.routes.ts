@@ -66,6 +66,7 @@ import { RatingShowcaseComponent } from '@showcase/rating/rating.showcase';
 import { VideoShowcaseComponent } from '@showcase/video/video.showcase';
 import { GettingStartedComponent } from '../../pages/docs/getting-started/getting-started.component';
 import { InstallationComponent } from '../../pages/docs/installation/installation.component';
+import { I18nComponent } from '../../pages/docs/i18n/i18n.component';
 import { RoadmapComponent } from '../../pages/docs/roadmap/roadmap.component';
 
 export const dsRoutes: Routes = [
@@ -81,6 +82,10 @@ export const dsRoutes: Routes = [
   {
     path: 'installation',
     component: InstallationComponent,
+  },
+  {
+    path: 'i18n',
+    component: I18nComponent,
   },
   {
     path: 'roadmap',

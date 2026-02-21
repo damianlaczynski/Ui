@@ -47,6 +47,7 @@ export class DsSidebarComponent {
   private readonly componentsCatalog: NavNode[] = [
     { id: 'getting-started', label: 'Getting Started', icon: 'rocket' },
     { id: 'installation', label: 'Installation', icon: 'arrow_download' },
+    { id: 'i18n', label: 'i18n', icon: 'location' },
     { id: 'roadmap', label: 'Roadmap', icon: 'timeline' },
     { id: 'accordion', label: 'Accordion', icon: 'slide_text' },
     { id: 'avatar', label: 'Avatar', icon: 'person' },
@@ -203,6 +204,7 @@ export class DsSidebarComponent {
       ...this.section('documentation', 'Documentation', [
         'getting-started',
         'installation',
+        'i18n',
         'roadmap',
       ]),
       ...this.section('form-controls', 'Form Controls', [
@@ -341,6 +343,7 @@ export class DsSidebarComponent {
         'command-palette',
         'getting-started',
         'installation',
+        'i18n',
         'roadmap',
       ]),
     ];
