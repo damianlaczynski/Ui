@@ -18,7 +18,8 @@
     "target": "ES2022",
     "module": "ES2022",
     "paths": {
-      "ui": ["./packages/ui/src/public-api.ts"]
+      "ui": ["./packages/ui/src/public-api.ts"],
+      "ui/ngx-translate": ["./packages/ui/ngx-translate/public-api.ts"]
     }
   },
   "angularCompilerOptions": {

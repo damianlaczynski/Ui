@@ -8,6 +8,7 @@ import {
   ElementRef,
   ViewChild,
   HostListener,
+  inject,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
@@ -17,6 +18,7 @@ import { NodeComponent, Node } from '../../node';
 import { ButtonComponent } from '../../button';
 import { ActionButtonComponent } from '../action-button.component';
 import { IconName } from '../../icon';
+import { UiI18nService } from '../../../i18n';
 
 export interface FileInfo {
   file: File;
@@ -54,6 +56,28 @@ export type FileComponentMode = 'inline' | 'area';
   ],
 })
 export class FileComponent extends FieldComponent implements ControlValueAccessor {
+  private readonly i18n = inject(UiI18nService);
+  // Internal state
+  selectedFiles = signal<FileInfo[]>([]);
+  isDragOver = signal<boolean>(false);
+  isUploading = signal<boolean>(false);
+  uploadProgress = signal<number>(0);
+  private fileIdCounter = 0; // Counter for generating unique IDs
+
+  private readonly uploadTextLabel = this.ts('uploadText', 'Click to upload or drag and drop');
+  private readonly filesSelectedLabel = this.ts(
+    'filesSelected',
+    () => `${this.selectedFiles().length} files selected`,
+    () => ({ count: this.selectedFiles().length }),
+  );
+  private readonly singleFileHintLabel = this.ts('singleFileHint', 'Single file only');
+  private readonly multipleFilesHintLabel = this.ts('multipleFilesHint', 'Multiple files allowed');
+  private readonly clearFilesAriaLabel = this.ts('clearFilesAriaLabel', 'Clear files');
+  private readonly bytesLabel = this.ts('sizeUnit.bytes', 'Bytes');
+  private readonly kbLabel = this.ts('sizeUnit.kb', 'KB');
+  private readonly mbLabel = this.ts('sizeUnit.mb', 'MB');
+  private readonly gbLabel = this.ts('sizeUnit.gb', 'GB');
+  private readonly tbLabel = this.ts('sizeUnit.tb', 'TB');
   // Inputs
   mode = input<FileComponentMode>('area'); // 'inline' or 'area'
   accept = input<string>('');
@@ -62,22 +86,10 @@ export class FileComponent extends FieldComponent implements ControlValueAccesso
   maxSize = input<number | null>(null); // in bytes
   uploadText = input<string>('Click to upload or drag and drop');
   uploadHint = input<string>('');
-  singleFileHint = input<string>('Single file only');
-  multipleFilesHint = input<string>('Multiple files allowed');
-  inlineTriggerAriaLabel = input<string>('Browse files');
-  areaTriggerAriaLabel = input<string>('Upload files');
-  clearFilesAriaLabel = input<string>('Clear files');
 
   // Outputs
   fileSelect = output<File[]>();
   fileRemove = output<File>();
-
-  // Internal state
-  selectedFiles = signal<FileInfo[]>([]);
-  isDragOver = signal<boolean>(false);
-  isUploading = signal<boolean>(false);
-  uploadProgress = signal<number>(0);
-  private fileIdCounter = 0; // Counter for generating unique IDs
 
   @ViewChild('fileInput') fileInput?: ElementRef<HTMLInputElement>;
 
@@ -88,20 +100,21 @@ export class FileComponent extends FieldComponent implements ControlValueAccesso
       if (this.mode() === 'inline') {
         return '';
       }
-      return this.uploadText() || 'Click to upload or drag and drop';
+      return this.uploadText().trim() || this.uploadTextLabel();
     }
     if (files.length === 1) {
       return files[0].name;
     }
-    return `${files.length} files selected`;
+    return this.filesSelectedLabel();
   });
 
   displayHint = computed(() => {
     const files = this.selectedFiles();
     if (files.length === 0) {
-      return (
-        this.uploadHint() || (this.multiple() ? this.multipleFilesHint() : this.singleFileHint())
-      );
+      if (this.uploadHint().trim()) {
+        return this.uploadHint().trim();
+      }
+      return this.multiple() ? this.getMultipleFilesHint() : this.getSingleFileHint();
     }
     const totalSize = files.reduce((sum, f) => sum + f.size, 0);
     return this.formatFileSize(totalSize);
@@ -150,12 +163,20 @@ export class FileComponent extends FieldComponent implements ControlValueAccesso
       (fileInfo.type !== 'unknown' ? ' | ' + fileInfo.type : '')
     );
   }
-  getInlineAriaLabel(): string | null {
-    return this.getComputedAriaLabel() || this.inlineTriggerAriaLabel().trim() || null;
+  getSingleFileHint(): string {
+    return this.singleFileHintLabel();
   }
 
-  getAreaAriaLabel(): string | null {
-    return this.getComputedAriaLabel() || this.areaTriggerAriaLabel().trim() || null;
+  getMultipleFilesHint(): string {
+    return this.multipleFilesHintLabel();
+  }
+
+  getClearFilesAriaLabel(): string {
+    return this.clearFilesAriaLabel();
+  }
+
+  getRemoveFileAriaLabel(fileName: string): string {
+    return this.t('removeFileAriaLabel', `Remove ${fileName}`, { name: fileName });
   }
 
   onTriggerKeydown(event: KeyboardEvent): void {
@@ -328,9 +349,15 @@ export class FileComponent extends FieldComponent implements ControlValueAccesso
   }
 
   formatFileSize(bytes: number): string {
-    if (bytes === 0) return '0 Bytes';
+    if (bytes === 0) return `0 ${this.bytesLabel()}`;
     const k = 1024;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+    const sizes = [
+      this.bytesLabel(),
+      this.kbLabel(),
+      this.mbLabel(),
+      this.gbLabel(),
+      this.tbLabel(),
+    ];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i];
   }
@@ -402,5 +429,17 @@ export class FileComponent extends FieldComponent implements ControlValueAccesso
     this._isFocused = false;
     this.onTouched();
     this.blur.emit(event);
+  }
+
+  private t(key: string, fallback: string, params?: Record<string, unknown>): string {
+    return this.i18n.t(`field.file.${key}`, fallback, params);
+  }
+
+  private ts(
+    key: string,
+    fallback: string | (() => string),
+    params?: Record<string, unknown> | (() => Record<string, unknown> | undefined),
+  ) {
+    return this.i18n.tSignal(`field.file.${key}`, fallback, params);
   }
 }

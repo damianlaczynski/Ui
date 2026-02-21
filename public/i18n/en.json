@@ -1,0 +1,34 @@
+{
+  "ui": {
+    "field": {
+      "color": {
+        "inputAriaLabel": "Color value",
+        "hueLabel": "Hue",
+        "opacityLabel": "Opacity",
+        "pickerDialogAriaLabel": "Color picker",
+        "clearColorAriaLabel": "Clear color",
+        "openColorPickerAriaLabel": "Open color picker",
+        "pickColorFromScreenAriaLabel": "Pick color from screen",
+        "eyeDropperNotSupportedMessage": "EyeDropper API is not supported in this browser"
+      },
+      "file": {
+        "uploadText": "Click to upload or drag and drop",
+        "inlinePlaceholder": "Click to select files",
+        "singleFileHint": "Single file only",
+        "multipleFilesHint": "Multiple files allowed",
+        "filesSelected": "{{count}} files selected",
+        "inlineTriggerAriaLabel": "Browse files",
+        "areaTriggerAriaLabel": "Upload files",
+        "clearFilesAriaLabel": "Clear files",
+        "removeFileAriaLabel": "Remove {{name}}",
+        "sizeUnit": {
+          "bytes": "Bytes",
+          "kb": "KB",
+          "mb": "MB",
+          "gb": "GB",
+          "tb": "TB"
+        }
+      }
+    }
+  }
+}

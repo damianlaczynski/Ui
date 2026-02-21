@@ -1,0 +1,10 @@
+{
+  "ngPackage": {
+    "lib": {
+      "entryFile": "public-api.ts"
+    }
+  },
+  "peerDependencies": {
+    "@ngx-translate/core": "^17.0.0"
+  }
+}

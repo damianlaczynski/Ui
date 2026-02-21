@@ -54,14 +54,11 @@ describe('ColorComponent', () => {
     expect(input.getAttribute('aria-controls')).toBe('color-panel-color-panel');
   });
 
-  it('should use configurable warning message when eyedropper is unsupported', async () => {
-    fixture.componentRef.setInput('eyeDropperNotSupportedMessage', 'Eyedropper not available');
-    fixture.detectChanges();
-
+  it('should use i18n fallback warning message when eyedropper is unsupported', async () => {
     const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
     await component.openEyeDropper();
 
-    expect(warnSpy).toHaveBeenCalledWith('Eyedropper not available');
+    expect(warnSpy).toHaveBeenCalledWith('EyeDropper API is not supported in this browser');
     warnSpy.mockRestore();
   });
 });

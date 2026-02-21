@@ -39,15 +39,14 @@ describe('FileComponent', () => {
     expect(trigger.getAttribute('aria-describedby')).toBe('file-help-help');
   });
 
-  it('should use inline fallback aria-label when label is empty', () => {
+  it('should not set inline aria-label when label and ariaLabel are empty', () => {
     fixture.componentRef.setInput('mode', 'inline');
     fixture.componentRef.setInput('label', '');
     fixture.componentRef.setInput('ariaLabel', '');
-    fixture.componentRef.setInput('inlineTriggerAriaLabel', 'Browse files');
     fixture.detectChanges();
 
     const trigger: HTMLInputElement = fixture.nativeElement.querySelector('.file-display');
-    expect(trigger.getAttribute('aria-label')).toBe('Browse files');
+    expect(trigger.getAttribute('aria-label')).toBeNull();
   });
 
   it('should trigger file input on Enter key and prevent default', () => {
