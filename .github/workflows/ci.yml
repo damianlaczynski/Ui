@@ -61,6 +61,9 @@ jobs:
       - name: Build library
         run: npm run build:lib
 
+      - name: Typecheck library tests (including ngx adapter)
+        run: npx tsc -p packages/ui/tsconfig.spec.json --noEmit
+
       - name: Test library
         run: npx ng test ui --watch=false
 
