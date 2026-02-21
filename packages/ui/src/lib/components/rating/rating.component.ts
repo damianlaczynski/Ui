@@ -1,4 +1,4 @@
-import { Component, computed, input, output, signal } from '@angular/core';
+import { Component, computed, ElementRef, inject, input, output, signal } from '@angular/core';
 
 import { IconComponent } from '../icon/icon.component';
 import { Size } from '../utils';
@@ -9,6 +9,8 @@ import { Size } from '../utils';
   imports: [IconComponent],
 })
 export class RatingComponent {
+  private readonly host = inject(ElementRef<HTMLElement>);
+
   // Inputs
   value = input<number>(0);
   max = input<number>(5);
@@ -18,6 +20,13 @@ export class RatingComponent {
   readOnly = input<boolean>(false);
   disabled = input<boolean>(false);
   showValue = input<boolean>(false);
+  ariaLabel = input<string>('');
+  starAriaLabelFormatter = input<(star: number, max: number) => string>(
+    (star, max) => `Rate ${star} out of ${max}`,
+  );
+  currentValueAriaLabelFormatter = input<(value: number, max: number) => string>(
+    (value, max) => `Rating: ${value} out of ${max} stars`,
+  );
 
   // Outputs
   valueChange = output<number>();
@@ -27,16 +36,23 @@ export class RatingComponent {
 
   // Computed properties
   stars = computed(() => {
-    const maxValue = this.max();
+    const maxValue = Math.max(0, this.max());
     return Array.from({ length: maxValue }, (_, i) => i + 1);
   });
 
   displayValue = computed(() => {
+    const normalized = this.normalizeValue(this.value());
+    const hovered = this.hoveredValue();
+
     // In read-only mode, don't show hover effect
     if (this.readOnly()) {
-      return this.value();
+      return normalized;
     }
-    return this.hoveredValue() ?? this.value();
+    if (hovered === null) {
+      return normalized;
+    }
+
+    return this.normalizeValue(hovered);
   });
 
   getRatingClasses(): string {
@@ -63,7 +79,7 @@ export class RatingComponent {
     if (this.readOnly() || this.disabled()) {
       return;
     }
-    this.valueChange.emit(starIndex);
+    this.valueChange.emit(this.normalizeValue(starIndex));
     this.hoveredValue.set(null);
   }
 
@@ -81,9 +97,96 @@ export class RatingComponent {
     this.hoveredValue.set(null);
   }
 
-  getAriaLabel(): string {
-    const value = this.value();
+  onStarKeyDown(event: KeyboardEvent, starIndex: number): void {
+    if (this.readOnly() || this.disabled()) {
+      return;
+    }
+
     const max = this.max();
-    return `Rating: ${value} out of ${max} stars`;
+    let nextValue: number | null = null;
+
+    switch (event.key) {
+      case 'ArrowRight':
+        nextValue = starIndex + 1;
+        break;
+      case 'ArrowLeft':
+        nextValue = starIndex - 1;
+        break;
+      case 'ArrowUp':
+        nextValue = starIndex + 1;
+        break;
+      case 'ArrowDown':
+        nextValue = starIndex - 1;
+        break;
+      case 'Home':
+        nextValue = 1;
+        break;
+      case 'End':
+        nextValue = max;
+        break;
+      case ' ':
+      case 'Enter':
+        nextValue = starIndex;
+        break;
+      default:
+        return;
+    }
+
+    event.preventDefault();
+    const normalized = this.normalizeSelectableValue(nextValue ?? starIndex);
+    this.valueChange.emit(normalized);
+    this.hoveredValue.set(null);
+    this.focusStar(normalized);
+  }
+
+  getGroupAriaLabel(): string {
+    const explicit = this.ariaLabel().trim();
+    if (explicit) {
+      return explicit;
+    }
+
+    const value = this.normalizeValue(this.value());
+    const max = this.max();
+    return this.currentValueAriaLabelFormatter()(value, max);
+  }
+
+  getStarAriaLabel(starIndex: number): string {
+    return this.starAriaLabelFormatter()(starIndex, this.max());
+  }
+
+  getStarTabIndex(starIndex: number): number {
+    if (this.disabled() || this.readOnly()) {
+      return -1;
+    }
+
+    const selected = this.normalizeValue(this.value());
+    const fallback = this.stars().length > 0 ? 1 : -1;
+    const active = selected > 0 ? selected : fallback;
+
+    return starIndex === active ? 0 : -1;
+  }
+
+  private normalizeValue(value: number): number {
+    if (!Number.isFinite(value)) {
+      return 0;
+    }
+
+    return Math.min(this.max(), Math.max(0, value));
+  }
+
+  private normalizeSelectableValue(value: number): number {
+    if (!Number.isFinite(value)) {
+      return 1;
+    }
+
+    return Math.min(this.max(), Math.max(1, value));
+  }
+
+  private focusStar(starIndex: number): void {
+    const hostElement = this.host.nativeElement as HTMLElement;
+    const starButton = hostElement.querySelector(
+      `.rating__star[data-star="${starIndex}"]`,
+    ) as HTMLButtonElement | null;
+    starButton?.focus();
   }
 }
