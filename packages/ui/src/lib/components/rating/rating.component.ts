@@ -2,6 +2,7 @@ import { Component, computed, ElementRef, inject, input, output, signal } from '
 
 import { IconComponent } from '../icon/icon.component';
 import { Size } from '../utils';
+import { UiI18nService } from '../../i18n';
 
 @Component({
   selector: 'ui-rating',
@@ -10,6 +11,11 @@ import { Size } from '../utils';
 })
 export class RatingComponent {
   private readonly host = inject(ElementRef<HTMLElement>);
+  private readonly i18n = inject(UiI18nService);
+  private readonly defaultStarAriaLabelFormatter = (star: number, max: number) =>
+    `Rate ${star} out of ${max}`;
+  private readonly defaultCurrentValueAriaLabelFormatter = (value: number, max: number) =>
+    `Rating: ${value} out of ${max} stars`;
 
   // Inputs
   value = input<number>(0);
@@ -22,10 +28,10 @@ export class RatingComponent {
   showValue = input<boolean>(false);
   ariaLabel = input<string>('');
   starAriaLabelFormatter = input<(star: number, max: number) => string>(
-    (star, max) => `Rate ${star} out of ${max}`,
+    this.defaultStarAriaLabelFormatter,
   );
   currentValueAriaLabelFormatter = input<(value: number, max: number) => string>(
-    (value, max) => `Rating: ${value} out of ${max} stars`,
+    this.defaultCurrentValueAriaLabelFormatter,
   );
 
   // Outputs
@@ -147,11 +153,26 @@ export class RatingComponent {
 
     const value = this.normalizeValue(this.value());
     const max = this.max();
-    return this.currentValueAriaLabelFormatter()(value, max);
+    const formatter = this.currentValueAriaLabelFormatter();
+    if (formatter !== this.defaultCurrentValueAriaLabelFormatter) {
+      return formatter(value, max);
+    }
+    return this.i18n.t('rating.currentValueAriaLabel', `Rating: ${value} out of ${max} stars`, {
+      value,
+      max,
+    });
   }
 
   getStarAriaLabel(starIndex: number): string {
-    return this.starAriaLabelFormatter()(starIndex, this.max());
+    const formatter = this.starAriaLabelFormatter();
+    const max = this.max();
+    if (formatter !== this.defaultStarAriaLabelFormatter) {
+      return formatter(starIndex, max);
+    }
+    return this.i18n.t('rating.starAriaLabel', `Rate ${starIndex} out of ${max}`, {
+      star: starIndex,
+      max,
+    });
   }
 
   getStarTabIndex(starIndex: number): number {

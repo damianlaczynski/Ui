@@ -46,13 +46,13 @@
       [loadingDescription]="loadingDescription()"
       [loadingOverlay]="hasData() && loading()"
       [loadingBlurContent]="true"
-      [errorTitle]="errorTitle() || 'Error loading data'"
-      [errorDescription]="errorDescription() || 'An error occurred while loading the data grid.'"
+      [errorTitle]="getStateContainerErrorTitle()"
+      [errorDescription]="getStateContainerErrorDescription()"
       [errorIcon]="errorIcon()"
       [errorPrimaryAction]="errorPrimaryAction()"
       [errorSecondaryAction]="errorSecondaryAction()"
-      [emptyTitle]="emptyTitle() || 'No data available'"
-      [emptyDescription]="emptyDescription() || 'There is no data to display.'"
+      [emptyTitle]="emptyTitle()"
+      [emptyDescription]="emptyDescription()"
       [emptyIcon]="emptyIcon()"
       [emptyPrimaryAction]="emptyPrimaryAction()"
       [emptySecondaryAction]="emptySecondaryAction()"
@@ -92,7 +92,7 @@
                         [size]="size()"
                         [icon]="isRowExpanded(row) ? 'chevron_down' : 'chevron_right'"
                         [disabled]="row.disabled || false"
-                        [ariaLabel]="isRowExpanded(row) ? 'Collapse row' : 'Expand row'"
+                        [ariaLabel]="getExpandRowAriaLabel(isRowExpanded(row))"
                         (click)="toggleRowExpansion(row, $event)"
                       />
                     }
@@ -159,7 +159,10 @@
 
               <!-- Row Details (Expanded Content) -->
               @if (expandable() && isRowExpanded(row) && rowDetailsTemplate()) {
-                <div class="data-grid__row-details" [attr.aria-label]="'Details for row ' + row.id">
+                <div
+                  class="data-grid__row-details"
+                  [attr.aria-label]="getRowDetailsAriaLabel(row.id)"
+                >
                   <div class="data-grid__row-details-content">
                     <ng-container
                       *ngTemplateOutlet="rowDetailsTemplate()!; context: { $implicit: row }"

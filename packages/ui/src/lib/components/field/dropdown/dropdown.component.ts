@@ -37,6 +37,7 @@ import {
 import { Observable, Subject, debounceTime, distinctUntilChanged, of } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { QueryParams, QueryResult } from '../../../api';
+import { UiI18nService } from '../../../i18n';
 import {
   openConnectedOverlay,
   OverlayHandle,
@@ -95,11 +96,21 @@ export type DropdownMode = 'single' | 'multi';
   ],
 })
 export class DropdownComponent extends FieldComponent implements OnDestroy {
+  //Service
   private overlay = inject(Overlay);
   private viewContainerRef = inject(ViewContainerRef);
   private destroyRef = inject(DestroyRef);
   private scrollDispatcher = inject(ScrollDispatcher);
   private ngZone = inject(NgZone);
+  private readonly i18n = inject(UiI18nService);
+
+  //Translations
+  private readonly compactAriaLabel = this.ts('compactAriaLabel', 'Filter');
+  private readonly searchPlaceholderText = this.ts('searchPlaceholder', 'Search...');
+  private readonly defaultPlaceholderText = this.ts('placeholder', 'Select...');
+  private readonly clearSelectionAriaLabel = this.ts('clearSelectionAriaLabel', 'Clear selection');
+  private readonly toggleMenuAriaLabel = this.ts('toggleMenuAriaLabel', 'Toggle menu');
+
   private overlayHandle: OverlayHandle | null = null;
 
   private typeaheadTimeout?: number;
@@ -107,7 +118,7 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
   private searchSubject = new Subject<string>();
   private isWritingValue = false; // Flag to prevent circular updates
 
-  // === INPUTS ===
+  //Inputs
   items = input<DropdownItem[]>([]);
   dataSource = input<
     ((params: QueryParams<any>) => Observable<QueryResult<DropdownItem>>) | undefined
@@ -126,27 +137,27 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
   maxPanelWidth = input<number>(400);
   panelWidth = input<number | undefined>(undefined);
 
-  // === OUTPUTS ===
+  //Outputs
   selectionChange = output<any>();
   opened = output<void>();
   closed = output<void>();
 
-  // === STATE ===
+  //State
   isOpen = signal<boolean>(false);
   searchQuery = signal<string>('');
   selectedValues = signal<Set<string | number>>(new Set());
   activeDescendant = signal<string | null>(null);
   isNavigating = signal<boolean>(false);
-  loadedItems = signal<DropdownItem[]>([]); // Items loaded from dataSource
+  loadedItems = signal<DropdownItem[]>([]);
 
-  // === TEMPLATES ===
+  //Templates
   itemTemplate = contentChild<TemplateRef<any>>('itemTemplate');
   @ViewChild('scrollItemTemplate') scrollItemTemplate?: TemplateRef<any>;
   @ViewChild('scrollContainer') scrollContainer?: ScrollContainerComponent<DropdownItem>;
   @ViewChild('triggerElement', { read: ElementRef }) triggerElement!: ElementRef;
   @ViewChild('panelTemplate') panelTemplate!: TemplateRef<any>;
 
-  // === COMPUTED - Available items ===
+  //Computed
   availableItems = computed(() => {
     // When using dataSource, use loaded items; otherwise use items input
     const items = this.dataSource() ? this.loadedItems() : this.items();
@@ -176,7 +187,7 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
   displayText = computed(() => {
     const selected = this.selectedItems();
     if (selected.length === 0) {
-      return this.placeholder() || 'Select...';
+      return this.placeholder() || this.defaultPlaceholderText();
     }
     if (this.mode() === 'single') {
       return selected[0]?.label || '';
@@ -818,5 +829,33 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
     this.typeaheadTimeout = window.setTimeout(() => {
       this.typeaheadString = '';
     }, 1000);
+  }
+
+  getCompactTriggerAriaLabel(): string {
+    return this.ariaLabel().trim() || this.label().trim() || this.compactAriaLabel();
+  }
+
+  getSearchPlaceholderText(): string {
+    return this.searchPlaceholderText();
+  }
+
+  getDefaultPlaceholderText(): string {
+    return this.defaultPlaceholderText();
+  }
+
+  getClearSelectionAriaLabel(): string {
+    return this.clearSelectionAriaLabel();
+  }
+
+  getToggleMenuAriaLabel(): string {
+    return this.toggleMenuAriaLabel();
+  }
+
+  private ts(
+    key: string,
+    fallback: string | (() => string),
+    params?: Record<string, unknown> | (() => Record<string, unknown> | undefined),
+  ) {
+    return this.i18n.tSignal(`field.dropdown.${key}`, fallback, params);
   }
 }

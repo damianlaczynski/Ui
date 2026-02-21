@@ -1,5 +1,52 @@
 {
   "ui": {
+    "dialog": {
+      "closeAriaLabel": "Close dialog"
+    },
+    "drawer": {
+      "closeAriaLabel": "Close drawer"
+    },
+    "menu": {
+      "openMenuAriaLabel": "Open menu"
+    },
+    "spinner": {
+      "loadingAriaLabel": "Loading"
+    },
+    "skeleton": {
+      "loadingAriaLabel": "Loading content"
+    },
+    "node": {
+      "closeAriaLabelPrefix": "Close {{label}}"
+    },
+    "scrollContainer": {
+      "ariaLabel": "Scrollable container with items",
+      "emptyText": "No items to display",
+      "loadDataError": "Failed to load data",
+      "loadMoreError": "Failed to load more data"
+    },
+    "draggablePanel": {
+      "title": "Panel",
+      "expandTitle": "Expand",
+      "collapseTitle": "Collapse",
+      "closeTitle": "Close"
+    },
+    "dataGrid": {
+      "loadingTitle": "Loading...",
+      "emptyTitle": "No data available",
+      "emptyDescription": "There is no data to display.",
+      "errorTitle": "Error",
+      "errorDescription": "An error occurred",
+      "loadDataError": "Failed to load data",
+      "stateErrorTitle": "Error loading data",
+      "stateErrorDescription": "An error occurred while loading the data grid.",
+      "collapseRowAriaLabel": "Collapse row",
+      "expandRowAriaLabel": "Expand row",
+      "rowDetailsAriaLabel": "Details for row {{rowId}}"
+    },
+    "rating": {
+      "starAriaLabel": "Rate {{star}} out of {{max}}",
+      "currentValueAriaLabel": "Rating: {{value}} out of {{max}} stars"
+    },
     "field": {
       "color": {
         "inputAriaLabel": "Color value",
@@ -28,6 +75,17 @@
           "gb": "GB",
           "tb": "TB"
         }
+      },
+      "dropdown": {
+        "compactAriaLabel": "Filter",
+        "placeholder": "Select...",
+        "searchPlaceholder": "Search...",
+        "clearSelectionAriaLabel": "Clear selection",
+        "toggleMenuAriaLabel": "Toggle menu"
+      },
+      "totp": {
+        "groupAriaLabel": "Verification code",
+        "digitAriaLabel": "Digit {{index}} of {{count}}"
       }
     }
   }

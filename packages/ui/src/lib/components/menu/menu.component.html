@@ -47,7 +47,7 @@
       type="button"
       [class]="dropdownPartClasses()"
       [disabled]="disabled()"
-      [attr.aria-label]="'Open menu'"
+      [attr.aria-label]="getOpenMenuAriaLabel()"
       [attr.aria-haspopup]="'menu'"
       [attr.aria-expanded]="isMenuOpen()"
       (click)="onDropdownClick($event)"

@@ -1,0 +1,92 @@
+{
+  "ui": {
+    "dialog": {
+      "closeAriaLabel": "Zamknij okno dialogowe"
+    },
+    "drawer": {
+      "closeAriaLabel": "Zamknij panel"
+    },
+    "menu": {
+      "openMenuAriaLabel": "Otworz menu"
+    },
+    "spinner": {
+      "loadingAriaLabel": "Ladowanie"
+    },
+    "skeleton": {
+      "loadingAriaLabel": "Ladowanie zawartosci"
+    },
+    "node": {
+      "closeAriaLabelPrefix": "Zamknij {{label}}"
+    },
+    "scrollContainer": {
+      "ariaLabel": "Przewijany kontener z elementami",
+      "emptyText": "Brak elementow do wyswietlenia",
+      "loadDataError": "Nie udalo sie zaladowac danych",
+      "loadMoreError": "Nie udalo sie zaladowac kolejnych danych"
+    },
+    "draggablePanel": {
+      "title": "Panel",
+      "expandTitle": "Rozwin",
+      "collapseTitle": "Zwin",
+      "closeTitle": "Zamknij"
+    },
+    "dataGrid": {
+      "loadingTitle": "Ladowanie...",
+      "emptyTitle": "Brak danych",
+      "emptyDescription": "Brak danych do wyswietlenia.",
+      "errorTitle": "Blad",
+      "errorDescription": "Wystapil blad",
+      "loadDataError": "Nie udalo sie zaladowac danych",
+      "stateErrorTitle": "Blad ladowania danych",
+      "stateErrorDescription": "Wystapil blad podczas ladowania tabeli danych.",
+      "collapseRowAriaLabel": "Zwin wiersz",
+      "expandRowAriaLabel": "Rozwin wiersz",
+      "rowDetailsAriaLabel": "Szczegoly wiersza {{rowId}}"
+    },
+    "rating": {
+      "starAriaLabel": "Ocen {{star}} z {{max}}",
+      "currentValueAriaLabel": "Ocena: {{value}} z {{max}} gwiazdek"
+    },
+    "field": {
+      "color": {
+        "inputAriaLabel": "Wartosc koloru",
+        "hueLabel": "Odcien",
+        "opacityLabel": "Przezroczystosc",
+        "pickerDialogAriaLabel": "Selektor koloru",
+        "clearColorAriaLabel": "Wyczysc kolor",
+        "openColorPickerAriaLabel": "Otworz selektor koloru",
+        "pickColorFromScreenAriaLabel": "Pobierz kolor z ekranu",
+        "eyeDropperNotSupportedMessage": "API EyeDropper nie jest obslugiwane w tej przegladarce"
+      },
+      "file": {
+        "uploadText": "Kliknij, aby przeslac lub przeciagnij i upusc",
+        "inlinePlaceholder": "Kliknij, aby wybrac pliki",
+        "singleFileHint": "Tylko jeden plik",
+        "multipleFilesHint": "Dozwolone wiele plikow",
+        "filesSelected": "Wybrano plikow: {{count}}",
+        "inlineTriggerAriaLabel": "Przegladaj pliki",
+        "areaTriggerAriaLabel": "Przeslij pliki",
+        "clearFilesAriaLabel": "Wyczysc pliki",
+        "removeFileAriaLabel": "Usun {{name}}",
+        "sizeUnit": {
+          "bytes": "B",
+          "kb": "KB",
+          "mb": "MB",
+          "gb": "GB",
+          "tb": "TB"
+        }
+      },
+      "dropdown": {
+        "compactAriaLabel": "Filtruj",
+        "placeholder": "Wybierz...",
+        "searchPlaceholder": "Szukaj...",
+        "clearSelectionAriaLabel": "Wyczysc wybor",
+        "toggleMenuAriaLabel": "Przelacz menu"
+      },
+      "totp": {
+        "groupAriaLabel": "Kod weryfikacyjny",
+        "digitAriaLabel": "Cyfra {{index}} z {{count}}"
+      }
+    }
+  }
+}

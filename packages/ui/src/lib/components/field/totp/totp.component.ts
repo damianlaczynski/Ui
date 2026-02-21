@@ -16,6 +16,7 @@ import { DOCUMENT } from '@angular/common';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { FieldComponent } from '../field/field.component';
 import { CommonModule } from '@angular/common';
+import { UiI18nService } from '../../../i18n';
 
 @Component({
   selector: 'ui-totp',
@@ -43,12 +44,14 @@ export class TotpComponent
 {
   private readonly host = inject(ElementRef<HTMLElement>);
   private readonly document = inject(DOCUMENT);
+  private readonly i18n = inject(UiI18nService);
+  private readonly groupAriaLabelI18n = this.i18n.tSignal(
+    'field.totp.groupAriaLabel',
+    'Verification code',
+  );
 
   digitsCount = input<number>(6);
-  digitAriaLabelFormatter = input<(index: number, count: number) => string>(
-    (index, count) => `Digit ${index + 1} of ${count}`,
-  );
-  groupAriaLabel = input<string>('Verification code');
+  groupAriaLabel = input<string>('');
 
   @ViewChildren('digitInput') digitInputs!: QueryList<ElementRef<HTMLInputElement>>;
 
@@ -213,11 +216,19 @@ export class TotpComponent
       return explicitAriaLabel;
     }
 
-    return this.groupAriaLabel();
+    const explicitGroupAriaLabel = this.groupAriaLabel().trim();
+    if (explicitGroupAriaLabel) {
+      return explicitGroupAriaLabel;
+    }
+
+    return this.groupAriaLabelI18n();
   }
 
   getDigitAriaLabel(index: number): string {
-    return this.digitAriaLabelFormatter()(index, this.digitsCount());
+    return this.i18n.t('field.totp.digitAriaLabel', `Digit ${index + 1} of ${this.digitsCount()}`, {
+      index: index + 1,
+      count: this.digitsCount(),
+    });
   }
 
   getDigitPlaceholder(index: number): string | null {

@@ -1,6 +1,7 @@
-import { Component, input, computed, ChangeDetectionStrategy } from '@angular/core';
+import { Component, input, computed, ChangeDetectionStrategy, inject } from '@angular/core';
 
 import { Variant, ExtendedSize, ContentPosition } from '../utils';
+import { UiI18nService } from '../../i18n';
 
 @Component({
   selector: 'ui-spinner',
@@ -16,14 +17,20 @@ import { Variant, ExtendedSize, ContentPosition } from '../utils';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpinnerComponent {
-  // Unified Design System
+  //Service
+  private readonly i18n = inject(UiI18nService);
+
+  //Translations
+  private readonly loadingAriaLabel = this.i18n.tSignal('spinner.loadingAriaLabel', 'Loading');
+
+  //Inputs
   variant = input<Variant>('primary');
   size = input<ExtendedSize>('medium');
   labelPosition = input<ContentPosition>('none');
-
   label = input<string>('');
-  ariaLabel = input<string>('Loading');
+  ariaLabel = input<string>('');
 
+  //Computed
   spinnerClasses = computed(() => {
     const classes = [];
 
@@ -37,10 +44,18 @@ export class SpinnerComponent {
     return classes.join(' ');
   });
 
-  get labelClasses(): string {
+  labelClasses = computed(() => {
     const sizeClass = ['extra-small', 'small'].includes(this.size()) ? 'small' : 'medium';
     return `spinner__label spinner__label--${sizeClass}`;
-  }
+  });
 
   hasLabel = computed(() => this.labelPosition() !== 'none' && this.label().length > 0);
+
+  effectiveAriaLabel = computed(() => {
+    const explicitLabel = this.ariaLabel().trim();
+    if (explicitLabel) {
+      return explicitLabel;
+    }
+    return this.loadingAriaLabel();
+  });
 }

@@ -5,24 +5,18 @@ import {
   signal,
   ChangeDetectionStrategy,
   HostListener,
-  ElementRef,
   inject,
   OnInit,
 } from '@angular/core';
 
 import { IconComponent } from '../icon/icon.component';
+import { UiI18nService } from '../../i18n';
 
 export interface PanelPosition {
   x: number;
   y: number;
 }
 
-/**
- * Draggable Panel Component - Fluent 2 Design System
- *
- * Reużywalny komponent panelu, który można przeciągać.
- * Używany dla minimap, properties panel, search panel itp.
- */
 @Component({
   selector: 'ui-draggable-panel',
 
@@ -36,16 +30,15 @@ export interface PanelPosition {
       [style.top.px]="position().y"
       [style.width.px]="collapsed() ? null : width()"
     >
-      <!-- Header (drag handle) -->
       <div class="draggable-panel__header" (mousedown)="onHeaderMouseDown($event)">
-        <span class="draggable-panel__title">{{ title() }}</span>
+        <span class="draggable-panel__title">{{ getTitle() }}</span>
         <div class="draggable-panel__actions">
           @if (collapsible()) {
             <button
               type="button"
               class="draggable-panel__action"
               (click)="toggleCollapse()"
-              [title]="collapsed() ? 'Rozwiń' : 'Zwiń'"
+              [title]="collapsed() ? getExpandTitle() : getCollapseTitle()"
             >
               <ui-icon [icon]="collapsed() ? 'chevron_up' : 'chevron_down'" size="small" />
             </button>
@@ -55,7 +48,7 @@ export interface PanelPosition {
               type="button"
               class="draggable-panel__action"
               (click)="close.emit()"
-              title="Zamknij"
+              [title]="getCloseTitle()"
             >
               <ui-icon icon="dismiss" size="small" />
             </button>
@@ -63,7 +56,6 @@ export interface PanelPosition {
         </div>
       </div>
 
-      <!-- Content -->
       @if (!collapsed()) {
         <div class="draggable-panel__content">
           <ng-content />
@@ -154,9 +146,16 @@ export interface PanelPosition {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DraggablePanelComponent implements OnInit {
-  private readonly elementRef = inject(ElementRef);
+  private readonly i18n = inject(UiI18nService);
+  private readonly titleI18n = this.i18n.tSignal('draggablePanel.title', 'Panel');
+  private readonly expandTitleI18n = this.i18n.tSignal('draggablePanel.expandTitle', 'Expand');
+  private readonly collapseTitleI18n = this.i18n.tSignal(
+    'draggablePanel.collapseTitle',
+    'Collapse',
+  );
+  private readonly closeTitleI18n = this.i18n.tSignal('draggablePanel.closeTitle', 'Close');
 
-  title = input<string>('Panel');
+  title = input<string>('');
   initialPosition = input<PanelPosition>({ x: 12, y: 12 });
   width = input<number>(200);
   collapsible = input<boolean>(true);
@@ -214,5 +213,21 @@ export class DraggablePanelComponent implements OnInit {
       this.isDragging.set(false);
       this.positionChange.emit(this.position());
     }
+  }
+
+  getTitle(): string {
+    return this.title().trim() || this.titleI18n();
+  }
+
+  getExpandTitle(): string {
+    return this.expandTitleI18n();
+  }
+
+  getCollapseTitle(): string {
+    return this.collapseTitleI18n();
+  }
+
+  getCloseTitle(): string {
+    return this.closeTitleI18n();
   }
 }

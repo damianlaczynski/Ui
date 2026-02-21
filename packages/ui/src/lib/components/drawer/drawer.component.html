@@ -19,7 +19,7 @@
           <div class="drawer__close-container">
             <ui-button
               appearance="subtle"
-              [ariaLabel]="'Close drawer'"
+              [ariaLabel]="ariaLabelComputed()"
               (click)="onCloseClick()"
               class="drawer__close-button"
             >

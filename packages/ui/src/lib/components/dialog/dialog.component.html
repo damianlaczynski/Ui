@@ -22,7 +22,7 @@
             <div class="dialog__close-container">
               <ui-button
                 appearance="subtle"
-                [ariaLabel]="'Close dialog'"
+                [ariaLabel]="closeAriaLabelComputed()"
                 (click)="onCloseClick()"
                 class="dialog__close-button"
               >

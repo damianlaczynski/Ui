@@ -1,9 +1,10 @@
-import { Component, input, output, model, HostListener } from '@angular/core';
+import { Component, input, output, model, HostListener, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { A11yModule } from '@angular/cdk/a11y';
 import { QuickAction } from '../utils';
 import { ButtonComponent } from '../button/button.component';
 import { IconComponent } from '../icon/icon.component';
+import { UiI18nService } from '../../i18n';
 
 export type DialogBackdrop = 'static' | 'dynamic';
 
@@ -14,6 +15,13 @@ export type DialogBackdrop = 'static' | 'dynamic';
   imports: [CommonModule, A11yModule, ButtonComponent, IconComponent],
 })
 export class DialogComponent {
+  //Service
+  private readonly i18n = inject(UiI18nService);
+
+  //Translations
+  private readonly closeAriaLabel = this.i18n.tSignal('dialog.closeAriaLabel', 'Close dialog');
+
+  //Inputs
   title = input<string>('');
   bodyText = input<string>('');
   backdrop = input<DialogBackdrop>('dynamic');
@@ -27,44 +35,38 @@ export class DialogComponent {
   secondaryAction = input<QuickAction | null>(null);
   additionalActions = input<QuickAction[]>([]);
 
+  //Outputs
   close = output<void>();
   backdropClick = output<void>();
 
-  dialogClasses(): string {
-    const classes = ['dialog'];
+  //Computed
+  closeAriaLabelComputed = computed(() => this.closeAriaLabel());
 
-    if (!this.visible()) {
-      classes.push('dialog--hidden');
-    }
+  hasActions = computed(() => {
+    return !!(
+      this.primaryAction() ||
+      this.secondaryAction() ||
+      this.additionalActions().length > 0
+    );
+  });
 
-    return classes.join(' ');
-  }
+  dialogClasses = computed(() => {
+    return ['dialog', !this.visible() ? 'dialog--hidden' : ''].join(' ');
+  });
 
-  backdropClasses(): string {
-    const classes = ['dialog__backdrop'];
+  backdropClasses = computed(() => {
+    return [
+      'dialog__backdrop',
+      !this.visible() ? 'dialog__backdrop--hidden' : '',
+      this.fullscreen() ? 'dialog__backdrop--fullscreen' : '',
+    ].join(' ');
+  });
 
-    if (!this.visible()) {
-      classes.push('dialog__backdrop--hidden');
-    }
+  contentClasses = computed(() => {
+    return ['dialog__content', this.fullscreen() ? 'dialog__content--fullscreen' : ''].join(' ');
+  });
 
-    if (this.fullscreen()) {
-      classes.push('dialog__backdrop--fullscreen');
-    }
-
-    return classes.join(' ');
-  }
-
-  contentClasses(): string {
-    const classes = ['dialog__content'];
-
-    if (this.fullscreen()) {
-      classes.push('dialog__content--fullscreen');
-    }
-
-    return classes.join(' ');
-  }
-
-  contentStyles(): { [key: string]: string } {
+  contentStyles = computed(() => {
     const styles: { [key: string]: string } = {};
 
     if (this.width() && !this.fullscreen()) {
@@ -78,19 +80,19 @@ export class DialogComponent {
     }
 
     return styles;
-  }
+  });
 
-  headerClasses(): string {
+  headerClasses = computed(() => {
     return 'dialog__header';
-  }
+  });
 
-  bodyClasses(): string {
+  bodyClasses = computed(() => {
     return 'dialog__body';
-  }
+  });
 
-  footerClasses(): string {
+  footerClasses = computed(() => {
     return 'dialog__footer';
-  }
+  });
 
   onBackdropClick(event: MouseEvent): void {
     if (this.backdrop() === 'dynamic' && event.target === event.currentTarget) {
@@ -136,13 +138,5 @@ export class DialogComponent {
     if (!action.disabled) {
       action.action();
     }
-  }
-
-  hasActions(): boolean {
-    return !!(
-      this.primaryAction() ||
-      this.secondaryAction() ||
-      this.additionalActions().length > 0
-    );
   }
 }

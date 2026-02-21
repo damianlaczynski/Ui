@@ -1,8 +1,9 @@
-import { Component, input, output, model, HostListener, computed } from '@angular/core';
+import { Component, input, output, model, HostListener, computed, inject } from '@angular/core';
 
 import { QuickAction } from '../utils';
 import { ButtonComponent } from '../button/button.component';
 import { IconComponent } from '../icon/icon.component';
+import { UiI18nService } from '../../i18n';
 
 export type DrawerBackdrop = 'static' | 'dynamic';
 export type DrawerPosition = 'left' | 'right' | 'top' | 'bottom';
@@ -15,6 +16,13 @@ export type DrawerModalType = 'modal' | 'non-modal' | 'alert';
   imports: [ButtonComponent, IconComponent],
 })
 export class DrawerComponent {
+  //Service
+  private readonly i18n = inject(UiI18nService);
+
+  //Translations
+  private readonly closeAriaLabel = this.i18n.tSignal('drawer.closeAriaLabel', 'Close drawer');
+
+  //Inputs
   title = input<string>('');
   bodyText = input<string>('');
   position = input<DrawerPosition>('right');
@@ -30,51 +38,53 @@ export class DrawerComponent {
   secondaryAction = input<QuickAction | null>(null);
   additionalActions = input<QuickAction[]>([]);
 
+  //Outputs
   close = output<void>();
   backdropClick = output<void>();
   openChange = output<{ open: boolean }>();
 
+  //Computed
+  ariaLabelComputed = computed(() => this.closeAriaLabel());
+
   isOverlay = computed(() => this.type() === 'overlay');
+
   isInline = computed(() => this.type() === 'inline');
+
+  hasActions = computed(
+    () => !!(this.primaryAction() || this.secondaryAction() || this.additionalActions().length > 0),
+  );
+
   canCloseByBackdrop = computed(() => {
     if (this.modalType() === 'alert') return false;
     return this.backdrop() === 'dynamic' && this.closable();
   });
+
   canCloseByEscape = computed(() => {
     if (this.modalType() === 'alert') return false;
     return this.closable();
   });
+
   isModal = computed(() => this.modalType() === 'modal');
+
   drawerClasses = computed(() => {
-    const classes = ['drawer'];
-
-    if (!this.visible()) {
-      classes.push('drawer--hidden');
-    }
-
-    classes.push(`drawer--${this.position()}`);
-    classes.push(`drawer--${this.type()}`);
-
-    return classes.join(' ');
+    return [
+      'drawer',
+      `drawer--${this.position()}`,
+      `drawer--${this.type()}`,
+      !this.visible() ? 'drawer--hidden' : '',
+    ].join(' ');
   });
 
   backdropClasses = computed(() => {
-    const classes = ['drawer__backdrop'];
-
-    if (!this.visible()) {
-      classes.push('drawer__backdrop--hidden');
-    }
-
-    return classes.join(' ');
+    return ['drawer__backdrop', !this.visible() ? 'drawer__backdrop--hidden' : ''].join(' ');
   });
 
   contentClasses = computed(() => {
-    const classes = ['drawer__content'];
-
-    classes.push(`drawer__content--${this.position()}`);
-    classes.push(`drawer__content--${this.size()}`);
-
-    return classes.join(' ');
+    return [
+      'drawer__content',
+      `drawer__content--${this.position()}`,
+      `drawer__content--${this.size()}`,
+    ].join(' ');
   });
 
   headerClasses = computed(() => {
@@ -82,17 +92,14 @@ export class DrawerComponent {
   });
 
   bodyClasses = computed(() => {
-    const classes = ['drawer__body'];
-    if (!this.bodyScrollable()) {
-      classes.push('drawer__body--no-scroll');
-    }
-    return classes.join(' ');
+    return ['drawer__body', !this.bodyScrollable() ? 'drawer__body--no-scroll' : ''].join(' ');
   });
 
   footerClasses = computed(() => {
     return 'drawer__footer';
   });
 
+  //Event handlers
   onBackdropClick(event: MouseEvent): void {
     if (this.canCloseByBackdrop() && event.target === event.currentTarget) {
       this.backdropClick.emit();
@@ -138,13 +145,5 @@ export class DrawerComponent {
     if (!action.disabled) {
       action.action();
     }
-  }
-
-  hasActions(): boolean {
-    return !!(
-      this.primaryAction() ||
-      this.secondaryAction() ||
-      this.additionalActions().length > 0
-    );
   }
 }
