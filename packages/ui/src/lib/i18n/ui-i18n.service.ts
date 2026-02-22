@@ -38,4 +38,8 @@ export class UiI18nService {
   notifyLanguageChanged(): void {
     this.translationVersion.update(value => value + 1);
   }
+
+  languageVersion(): Signal<number> {
+    return this.translationVersion;
+  }
 }

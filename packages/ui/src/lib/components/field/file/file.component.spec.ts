@@ -39,14 +39,23 @@ describe('FileComponent', () => {
     expect(trigger.getAttribute('aria-describedby')).toBe('file-help-help');
   });
 
-  it('should not set inline aria-label when label and ariaLabel are empty', () => {
+  it('should use i18n inline trigger aria-label when label and ariaLabel are empty', () => {
     fixture.componentRef.setInput('mode', 'inline');
     fixture.componentRef.setInput('label', '');
     fixture.componentRef.setInput('ariaLabel', '');
     fixture.detectChanges();
 
     const trigger: HTMLInputElement = fixture.nativeElement.querySelector('.file-display');
-    expect(trigger.getAttribute('aria-label')).toBeNull();
+    expect(trigger.getAttribute('aria-label')).toBe('Browse files');
+  });
+
+  it('should use i18n inline placeholder when placeholder is empty', () => {
+    fixture.componentRef.setInput('mode', 'inline');
+    fixture.componentRef.setInput('placeholder', '');
+    fixture.detectChanges();
+
+    const trigger: HTMLInputElement = fixture.nativeElement.querySelector('.file-display');
+    expect(trigger.getAttribute('placeholder')).toBe('Click to select files');
   });
 
   it('should trigger file input on Enter key and prevent default', () => {

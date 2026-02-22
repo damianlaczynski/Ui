@@ -13,6 +13,7 @@ import {
 
 import { TreeNodeComponent, TreeNode } from '../tree-node/tree-node.component';
 import { Size, Shape, Appearance, Orientation } from '../utils';
+import { UiI18nService } from '../../i18n';
 
 export interface TocItem {
   id: string;
@@ -28,10 +29,12 @@ export interface TocItem {
   templateUrl: './table-of-content.component.html',
 })
 export class TableOfContentComponent implements OnDestroy {
+  //Services
   private readonly document = inject(DOCUMENT);
   private readonly elementRef = inject(ElementRef);
+  private readonly i18n = inject(UiI18nService);
 
-  // Configuration inputs
+  //Inputs
   containerSelector = input<string>('.showcase');
   headingSelector = input<string>('h2, h3, h4, h5, h6');
   minLevel = input<number>(1);
@@ -397,7 +400,9 @@ export class TableOfContentComponent implements OnDestroy {
     };
   }
 
-  treeNodes = computed<TreeNode[]>(() => {
-    return this.items().map(item => this.convertToTreeNode(item));
-  });
+  treeNodes = computed<TreeNode[]>(() => this.items().map(item => this.convertToTreeNode(item)));
+
+  navigationAriaLabel = computed(() =>
+    this.i18n.t('tableOfContent.navAriaLabel', 'Table of contents'),
+  );
 }

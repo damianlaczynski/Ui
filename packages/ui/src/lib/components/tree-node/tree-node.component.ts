@@ -6,6 +6,7 @@ import {
   effect,
   TemplateRef,
   ChangeDetectionStrategy,
+  inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NodeComponent } from '../node/node.component';
@@ -13,6 +14,7 @@ import { IconComponent } from '../icon/icon.component';
 import { Size, Shape, ChevronPosition, Appearance, Orientation, Variant } from '../utils';
 import { Node } from '../node/node.component';
 import { IconName } from '../icon';
+import { UiI18nService } from '../../i18n';
 
 export interface TreeNode<T extends TreeNode<T> = TreeNode<any>> extends Node<T['data']> {
   hasChildren?: boolean;
@@ -29,6 +31,8 @@ export interface TreeNode<T extends TreeNode<T> = TreeNode<any>> extends Node<T[
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TreeNodeComponent<T extends TreeNode<T>> {
+  private readonly i18n = inject(UiI18nService);
+
   // Inputs - Node Data
   node = input.required<T>();
   size = input<Size>('medium');
@@ -131,6 +135,24 @@ export class TreeNodeComponent<T extends TreeNode<T>> {
     }
 
     this.toggleNode();
+  }
+
+  onChevronKeyDown(event: KeyboardEvent): void {
+    if (event.key !== 'Enter' && event.key !== ' ') {
+      return;
+    }
+
+    event.preventDefault();
+    event.stopPropagation();
+    this.onChevronClick(event);
+  }
+
+  getChevronAriaLabel(): string {
+    const label = this.node().label?.trim();
+    if (this.expanded()) {
+      return this.i18n.t('treeNode.collapseAriaLabel', `Collapse ${label || 'node'}`, { label });
+    }
+    return this.i18n.t('treeNode.expandAriaLabel', `Expand ${label || 'node'}`, { label });
   }
 
   onNodeSelect(node: T): void {

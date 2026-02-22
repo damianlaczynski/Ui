@@ -1,7 +1,7 @@
 @if (state().isLoading && loadingOverlay()) {
   <!-- Loading overlay mode: show content with overlay on top -->
   <ui-loading-state
-    [title]="loadingTitle()"
+    [title]="resolvedLoadingTitle()"
     [description]="loadingDescription()"
     [size]="size()"
     [overlay]="true"
@@ -24,7 +24,7 @@
 } @else if (state().isLoading) {
   <!-- Loading non-overlay mode: show only loading state -->
   <ui-loading-state
-    [title]="loadingTitle()"
+    [title]="resolvedLoadingTitle()"
     [description]="loadingDescription()"
     [size]="size()"
     [overlay]="false"
@@ -40,7 +40,7 @@
   </ui-loading-state>
 } @else if (state().isError) {
   <ui-error-state
-    [title]="errorTitle()"
+    [title]="resolvedErrorTitle()"
     [description]="errorDescription() || state().error || ''"
     [icon]="errorIcon() || 'error_circle'"
     [size]="size()"
@@ -59,7 +59,7 @@
   }
 } @else if (shouldShowEmpty()) {
   <ui-empty-state
-    [title]="emptyTitle()"
+    [title]="resolvedEmptyTitle()"
     [description]="emptyDescription()"
     [icon]="emptyIcon()"
     [size]="size()"

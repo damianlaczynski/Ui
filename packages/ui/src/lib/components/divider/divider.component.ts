@@ -1,5 +1,6 @@
-import { Component, input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, input, ChangeDetectionStrategy, inject, computed } from '@angular/core';
 import { Alignment, Orientation } from '../utils';
+import { UiI18nService } from '../../i18n';
 
 @Component({
   selector: 'ui-divider',
@@ -7,30 +8,28 @@ import { Alignment, Orientation } from '../utils';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DividerComponent {
-  // Unified Design System
+  //Services
+  private readonly i18n = inject(UiI18nService);
+
+  //Inputs
   orientation = input<Orientation>('horizontal');
   alignment = input<Alignment>('center');
   text = input<string>('');
   ariaLabel = input<string>('');
 
-  get dividerClasses(): string {
-    const classes = ['divider'];
-
-    classes.push(`divider--${this.orientation()}`);
-    classes.push(`divider--${this.alignment()}`);
-
-    if (this.hasText()) {
-      classes.push('divider--with-text');
-    }
-
-    return classes.join(' ');
-  }
-
-  hasText(): boolean {
-    return this.text() !== '';
-  }
-
-  get ariaLabelText(): string {
-    return this.ariaLabel() || (this.hasText() ? this.text() : 'divider');
-  }
+  //Computed
+  dividerClasses = computed(() =>
+    [
+      'divider',
+      `divider--${this.orientation()}`,
+      `divider--${this.alignment()}`,
+      this.hasText() ? 'divider--with-text' : '',
+    ].join(' '),
+  );
+  hasText = computed(() => this.text() !== '');
+  ariaLabelComputed = computed(
+    () =>
+      this.ariaLabel() ||
+      (this.hasText() ? this.text() : this.i18n.t('divider.ariaLabel', 'Divider')),
+  );
 }

@@ -1,4 +1,5 @@
-import { Component, input, output, computed } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, DestroyRef, computed, inject, input, output, signal } from '@angular/core';
 
 import { ButtonComponent } from '../button/button.component';
 
@@ -41,6 +42,10 @@ export interface CalendarYear {
   ],
 })
 export class CalendarComponent {
+  private readonly document = inject(DOCUMENT);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly documentLang = signal('en-US');
+
   // Inputs
   currentMonth = input.required<Date>();
   selectedDate = input<Date | null>(null);
@@ -71,25 +76,12 @@ export class CalendarComponent {
   dateLeave = output<void>();
   isDayInHoverRange = output<(day: CalendarDay) => boolean>();
 
-  weekDays = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
-  months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
+  weekDays = computed(() => this.getLocalizedWeekDays());
+  monthNames = computed(() => this.getLocalizedMonthNames());
 
   monthYearText = computed(() => {
     const month = this.currentMonth();
-    return month.toLocaleDateString('en-US', {
+    return month.toLocaleDateString(this.documentLang(), {
       year: 'numeric',
       month: 'long',
     });
@@ -106,6 +98,11 @@ export class CalendarComponent {
   calendarYears = computed(() => {
     return this.generateCalendarYears();
   });
+
+  constructor() {
+    this.syncDocumentLanguage();
+    this.observeDocumentLanguage();
+  }
 
   getYearRangeText(): string {
     const years = this.calendarYears();
@@ -254,8 +251,9 @@ export class CalendarComponent {
     const selected = this.selectedDate();
     const start = this.startDate();
     const end = this.endDate();
+    const localizedMonths = this.monthNames();
 
-    return this.months.map((month, index) => {
+    return localizedMonths.map((month, index) => {
       let isSelected = false;
 
       if (selected && selected.getFullYear() === currentYear && selected.getMonth() === index) {
@@ -271,7 +269,7 @@ export class CalendarComponent {
       }
 
       return {
-        name: month.substring(0, 3),
+        name: month,
         index,
         isSelected,
       };
@@ -504,5 +502,45 @@ export class CalendarComponent {
 
   trackByDate(index: number, day: CalendarDay): number {
     return day.date.getTime();
+  }
+
+  private getLocalizedWeekDays(): string[] {
+    const formatter = new Intl.DateTimeFormat(this.documentLang(), { weekday: 'short' });
+    const monday = new Date(Date.UTC(2024, 0, 1)); // Monday
+
+    return Array.from({ length: 7 }, (_, index) => {
+      const date = new Date(monday);
+      date.setUTCDate(monday.getUTCDate() + index);
+      return formatter.format(date);
+    });
+  }
+
+  private getLocalizedMonthNames(): string[] {
+    const formatter = new Intl.DateTimeFormat(this.documentLang(), { month: 'short' });
+
+    return Array.from({ length: 12 }, (_, index) => {
+      const date = new Date(Date.UTC(2024, index, 1));
+      return formatter.format(date);
+    });
+  }
+
+  private syncDocumentLanguage(): void {
+    const htmlLang = this.document?.documentElement?.lang?.trim();
+    this.documentLang.set(htmlLang || 'en-US');
+  }
+
+  private observeDocumentLanguage(): void {
+    const htmlElement = this.document?.documentElement;
+    if (!htmlElement || typeof MutationObserver === 'undefined') {
+      return;
+    }
+
+    const observer = new MutationObserver(() => this.syncDocumentLanguage());
+    observer.observe(htmlElement, {
+      attributes: true,
+      attributeFilter: ['lang'],
+    });
+
+    this.destroyRef.onDestroy(() => observer.disconnect());
   }
 }

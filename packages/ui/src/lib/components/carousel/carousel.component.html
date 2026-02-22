@@ -10,11 +10,7 @@
         >
           @if (item.image) {
             <div class="carousel__image-container">
-              <img
-                [src]="item.image"
-                [alt]="item.title || 'Carousel image'"
-                class="carousel__image"
-              />
+              <img [src]="item.image" [alt]="getImageAlt(item)" class="carousel__image" />
               @if (item.title || item.description) {
                 <div class="carousel__overlay">
                   @if (item.title) {
@@ -62,7 +58,7 @@
             appearance="subtle"
             size="small"
             icon="chevron_left"
-            ariaLabel="Previous slide"
+            [ariaLabel]="getPreviousSlideAriaLabel()"
             (click)="onControlClick($event, 'previous')"
           />
         </div>
@@ -76,7 +72,7 @@
               class="carousel__indicator"
               [class.carousel__indicator--active]="currentIndex() === $index"
               (click)="goToIndex($index)"
-              [attr.aria-label]="'Go to slide ' + ($index + 1)"
+              [attr.aria-label]="getGoToSlideAriaLabel($index)"
               type="button"
             >
               <span class="carousel__indicator-bar"></span>
@@ -92,7 +88,7 @@
             appearance="subtle"
             size="small"
             icon="chevron_right"
-            ariaLabel="Next slide"
+            [ariaLabel]="getNextSlideAriaLabel()"
             (click)="onControlClick($event, 'next')"
           />
         </div>

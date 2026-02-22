@@ -21,6 +21,7 @@ import { ButtonComponent } from '../../button/button.component';
 import { DropdownComponent, DropdownItem } from '../../field/dropdown/dropdown.component';
 import { DataGridFilterService } from '../services/data-grid-filter.service';
 import { FilterFactory } from '../filters/filter-factory';
+import { UiI18nService } from '../../../i18n';
 
 /**
  * Component for rendering data grid header row with column labels and sorting
@@ -96,10 +97,7 @@ import { FilterFactory } from '../filters/filter-factory';
                     [size]="size()"
                     [icon]="getSortIconForColumn(column)"
                     [selected]="isColumnSorted(column)"
-                    [ariaLabel]="
-                      column.header +
-                      (isColumnSorted(column) ? ' sorted ' + sortDirection() : ' sortable')
-                    "
+                    [ariaLabel]="getSortButtonAriaLabel(column)"
                     [attr.aria-sort]="
                       isColumnSorted(column)
                         ? sortDirection() === 'asc'
@@ -120,7 +118,7 @@ import { FilterFactory } from '../filters/filter-factory';
               <div
                 class="data-grid__header-resize-handle"
                 (mousedown)="onResizeStart($event, column)"
-                [attr.aria-label]="'Resize column ' + column.header"
+                [attr.aria-label]="getResizeColumnAriaLabel(column)"
                 role="separator"
                 [attr.aria-orientation]="'vertical'"
               ></div>
@@ -135,6 +133,7 @@ import { FilterFactory } from '../filters/filter-factory';
 export class DataGridHeaderComponent<T = any> {
   private filterService = inject(DataGridFilterService<T>);
   private destroyRef = inject(DestroyRef);
+  private readonly i18n = inject(UiI18nService);
 
   // Resize state
   private resizingColumnId = signal<string | null>(null);
@@ -154,7 +153,7 @@ export class DataGridHeaderComponent<T = any> {
         if (definition) {
           const operators = definition.getOperators().map(op => ({
             value: op.value,
-            label: op.label,
+            label: this.translateOperatorLabel(op.value, op.label),
             icon: op.icon as IconName,
           }));
           map.set(column.id, operators);
@@ -185,7 +184,7 @@ export class DataGridHeaderComponent<T = any> {
           const result = operator
             ? {
                 value: operator.value,
-                label: operator.label,
+                label: this.translateOperatorLabel(operator.value, operator.label),
                 icon: operator.icon as IconName,
               }
             : null;
@@ -272,6 +271,30 @@ export class DataGridHeaderComponent<T = any> {
     return icon || undefined;
   }
 
+  getSortButtonAriaLabel(column: DataGridColumn<T>): string {
+    if (this.isColumnSorted(column)) {
+      const direction = this.getSortDirectionLabel();
+      return this.i18n.t(
+        'dataGrid.sortButtonAriaLabelSorted',
+        `${column.header} sorted ${direction}`,
+        {
+          column: column.header,
+          direction,
+        },
+      );
+    }
+
+    return this.i18n.t('dataGrid.sortButtonAriaLabelSortable', `${column.header} sortable`, {
+      column: column.header,
+    });
+  }
+
+  getResizeColumnAriaLabel(column: DataGridColumn<T>): string {
+    return this.i18n.t('dataGrid.resizeColumnAriaLabel', `Resize column ${column.header}`, {
+      column: column.header,
+    });
+  }
+
   // Filter methods
   isColumnFilterable(column: DataGridColumn<T>): boolean {
     return this.filterService.isColumnFilterable(column);
@@ -289,6 +312,18 @@ export class DataGridHeaderComponent<T = any> {
 
   onFilterOperatorChange(column: DataGridColumn<T>, operator: string): void {
     this.filterOperatorChange.emit({ column, operator });
+  }
+
+  private getSortDirectionLabel(): string {
+    if (this.sortDirection() === 'asc') {
+      return this.i18n.t('dataGrid.sortDirection.asc', 'ascending');
+    }
+
+    return this.i18n.t('dataGrid.sortDirection.desc', 'descending');
+  }
+
+  private translateOperatorLabel(operator: string, fallback: string): string {
+    return this.i18n.t(`dataGrid.filter.operators.${operator}`, fallback);
   }
 
   onResizeStart(event: MouseEvent, column: DataGridColumn<T>): void {

@@ -9,6 +9,9 @@
     "menu": {
       "openMenuAriaLabel": "Open menu"
     },
+    "messageBar": {
+      "dismissAriaLabel": "Dismiss"
+    },
     "spinner": {
       "loadingAriaLabel": "Loading"
     },
@@ -23,6 +26,11 @@
       "emptyText": "No items to display",
       "loadDataError": "Failed to load data",
       "loadMoreError": "Failed to load more data"
+    },
+    "stateContainer": {
+      "loadingTitle": "Loading",
+      "errorTitle": "Error",
+      "emptyTitle": "No data"
     },
     "draggablePanel": {
       "title": "Panel",
@@ -41,11 +49,101 @@
       "stateErrorDescription": "An error occurred while loading the data grid.",
       "collapseRowAriaLabel": "Collapse row",
       "expandRowAriaLabel": "Expand row",
-      "rowDetailsAriaLabel": "Details for row {{rowId}}"
+      "rowDetailsAriaLabel": "Details for row {{rowId}}",
+      "sortButtonAriaLabelSorted": "{{column}} sorted {{direction}}",
+      "sortButtonAriaLabelSortable": "{{column}} sortable",
+      "resizeColumnAriaLabel": "Resize column {{column}}",
+      "sortDirection": {
+        "asc": "ascending",
+        "desc": "descending"
+      },
+      "filter": {
+        "placeholder": "Filter {{column}}...",
+        "betweenAnd": "and",
+        "rangeEndPlaceholder": "To",
+        "operators": {
+          "contains": "Contains",
+          "doesNotContain": "Does not contain",
+          "startsWith": "Starts with",
+          "endsWith": "Ends with",
+          "equals": "Equals",
+          "doesNotEqual": "Does not equal",
+          "notEquals": "Does not equal",
+          "lessThan": "Less than",
+          "greaterThan": "Greater than",
+          "lessOrEqual": "Less than or equal to",
+          "greaterOrEqual": "Greater than or equal to",
+          "between": "Between",
+          "isNull": "Is null",
+          "isNotNull": "Is not null"
+        }
+      }
+    },
+    "avatar": {
+      "defaultAriaLabel": "Avatar"
+    },
+    "breadcrumb": {
+      "navAriaLabel": "Breadcrumb",
+      "overflowAriaLabel": "{{count}} more items"
+    },
+    "divider": {
+      "ariaLabel": "Divider"
+    },
+    "card": {
+      "selectAriaLabel": "Select card"
+    },
+    "carousel": {
+      "imageAlt": "Carousel image",
+      "previousSlideAriaLabel": "Previous slide",
+      "nextSlideAriaLabel": "Next slide",
+      "goToSlideAriaLabel": "Go to slide {{slide}}"
+    },
+    "commandPalette": {
+      "dialogAriaLabel": "Command palette",
+      "resultsAriaLabel": "Command results",
+      "placeholder": "Type a command or search...",
+      "emptyText": "No commands found"
+    },
+    "pagination": {
+      "aria": {
+        "firstPage": "First page",
+        "previousPage": "Previous page",
+        "nextPage": "Next page",
+        "lastPage": "Last page",
+        "page": "Page {{page}}"
+      },
+      "label": {
+        "first": "First",
+        "last": "Last"
+      },
+      "perPagePlaceholder": "Per page",
+      "info": {
+        "noItems": "No items",
+        "range": "Showing {{start}}-{{end}} of {{total}}"
+      }
     },
     "rating": {
       "starAriaLabel": "Rate {{star}} out of {{max}}",
       "currentValueAriaLabel": "Rating: {{value}} out of {{max}} stars"
+    },
+    "progressBar": {
+      "ariaLabel": "Progress"
+    },
+    "icon": {
+      "missingSpriteError": "[ui-icon] Missing symbol in sprite for icon \"{{icon}}\" (size=\"{{size}}\", sizePx=\"{{sizePx}}\", variant=\"{{variant}}\", direction=\"{{direction}}\", locale=\"{{locale}}\")."
+    },
+    "kbd": {
+      "ariaLabel": "Keyboard key: {{text}}"
+    },
+    "tag": {
+      "dismissAriaLabel": "Remove {{text}}"
+    },
+    "tableOfContent": {
+      "navAriaLabel": "Table of contents"
+    },
+    "treeNode": {
+      "expandAriaLabel": "Expand {{label}}",
+      "collapseAriaLabel": "Collapse {{label}}"
     },
     "field": {
       "color": {

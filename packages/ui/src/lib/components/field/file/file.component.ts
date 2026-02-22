@@ -65,11 +65,14 @@ export class FileComponent extends FieldComponent implements ControlValueAccesso
   private fileIdCounter = 0; // Counter for generating unique IDs
 
   private readonly uploadTextLabel = this.ts('uploadText', 'Click to upload or drag and drop');
+  private readonly inlinePlaceholderLabel = this.ts('inlinePlaceholder', 'Click to select files');
   private readonly filesSelectedLabel = this.ts(
     'filesSelected',
     () => `${this.selectedFiles().length} files selected`,
     () => ({ count: this.selectedFiles().length }),
   );
+  private readonly inlineTriggerAriaLabel = this.ts('inlineTriggerAriaLabel', 'Browse files');
+  private readonly areaTriggerAriaLabel = this.ts('areaTriggerAriaLabel', 'Upload files');
   private readonly singleFileHintLabel = this.ts('singleFileHint', 'Single file only');
   private readonly multipleFilesHintLabel = this.ts('multipleFilesHint', 'Multiple files allowed');
   private readonly clearFilesAriaLabel = this.ts('clearFilesAriaLabel', 'Clear files');
@@ -169,6 +172,18 @@ export class FileComponent extends FieldComponent implements ControlValueAccesso
 
   getMultipleFilesHint(): string {
     return this.multipleFilesHintLabel();
+  }
+
+  getInlinePlaceholder(): string {
+    return this.placeholder().trim() || this.inlinePlaceholderLabel();
+  }
+
+  getInlineTriggerAriaLabel(): string {
+    return this.getComputedAriaLabel() || this.inlineTriggerAriaLabel();
+  }
+
+  getAreaTriggerAriaLabel(): string {
+    return this.getComputedAriaLabel() || this.areaTriggerAriaLabel();
   }
 
   getClearFilesAriaLabel(): string {

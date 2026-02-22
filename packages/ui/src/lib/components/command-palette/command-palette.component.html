@@ -4,7 +4,7 @@
     (click)="close()"
     role="dialog"
     aria-modal="true"
-    aria-label="Command palette"
+    [attr.aria-label]="getDialogAriaLabel()"
   >
     <div
       [class]="containerClasses()"
@@ -15,7 +15,7 @@
       <!-- Search Input -->
       <div class="command-palette__search">
         <ui-search
-          [placeholder]="placeholder()"
+          [placeholder]="getPlaceholderText()"
           [size]="'large'"
           [(ngModel)]="_searchQuery"
           [ngModelOptions]="{ standalone: true }"
@@ -28,7 +28,7 @@
         class="command-palette__results"
         role="listbox"
         [attr.aria-activedescendant]="selectedItemId()"
-        aria-label="Command results"
+        [attr.aria-label]="getResultsAriaLabel()"
       >
         @if (filteredItems().length > 0) {
           @for (group of groupedItems(); track trackByGroupId($index, group)) {
@@ -87,7 +87,7 @@
           <!-- Empty State -->
           <div class="command-palette__empty">
             <ui-icon icon="search" [size]="'large'" class="command-palette__empty-icon"></ui-icon>
-            <div class="command-palette__empty-text">{{ emptyText() }}</div>
+            <div class="command-palette__empty-text">{{ getEmptyText() }}</div>
           </div>
         }
       </div>

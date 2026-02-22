@@ -1,8 +1,17 @@
-import { Component, input, output, computed, ChangeDetectionStrategy, model } from '@angular/core';
+import {
+  Component,
+  input,
+  output,
+  computed,
+  ChangeDetectionStrategy,
+  model,
+  inject,
+} from '@angular/core';
 
 import { Variant, Appearance, Shape, Size } from '../utils';
 import { IconComponent } from '../icon/icon.component';
 import { IconName } from '../icon';
+import { UiI18nService } from '../../i18n';
 
 @Component({
   selector: 'ui-tag',
@@ -11,6 +20,8 @@ import { IconName } from '../icon';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TagComponent {
+  private readonly i18n = inject(UiI18nService);
+
   variant = input<Variant>('secondary');
   appearance = input<Appearance>('filled');
   size = input<Size>('medium');
@@ -71,6 +82,9 @@ export class TagComponent {
   });
 
   effectiveTabIndex = computed(() => this.tabIndex() ?? this.defaultTabIndex());
+  dismissAriaLabel = computed(() =>
+    this.i18n.t('tag.dismissAriaLabel', `Remove ${this.text()}`, { text: this.text() }),
+  );
 
   onTagClick(event: MouseEvent): void {
     if (!this.isClickable()) {

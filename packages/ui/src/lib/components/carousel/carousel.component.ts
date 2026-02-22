@@ -1,8 +1,18 @@
-import { Component, input, output, signal, computed, effect, TemplateRef } from '@angular/core';
+import {
+  Component,
+  input,
+  output,
+  signal,
+  computed,
+  effect,
+  TemplateRef,
+  inject,
+} from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 
 import { CarouselItem } from './models/carousel-item.model';
 import { ButtonComponent } from '../button';
+import { UiI18nService } from '../../i18n';
 
 @Component({
   selector: 'ui-carousel',
@@ -10,6 +20,8 @@ import { ButtonComponent } from '../button';
   imports: [ButtonComponent, NgTemplateOutlet],
 })
 export class CarouselComponent {
+  private readonly i18n = inject(UiI18nService);
+
   items = input<CarouselItem[]>([]);
   slideTemplate = input<TemplateRef<{ $implicit: CarouselItem; index: number }> | null>(null);
   activeIndex = input<number>(0);
@@ -174,5 +186,22 @@ export class CarouselComponent {
     if (this.autoPlay()) {
       this.startAutoPlay();
     }
+  }
+
+  getImageAlt(item: CarouselItem): string {
+    return item.title || this.i18n.t('carousel.imageAlt', 'Carousel image');
+  }
+
+  getPreviousSlideAriaLabel(): string {
+    return this.i18n.t('carousel.previousSlideAriaLabel', 'Previous slide');
+  }
+
+  getNextSlideAriaLabel(): string {
+    return this.i18n.t('carousel.nextSlideAriaLabel', 'Next slide');
+  }
+
+  getGoToSlideAriaLabel(index: number): string {
+    const slide = index + 1;
+    return this.i18n.t('carousel.goToSlideAriaLabel', `Go to slide ${slide}`, { slide });
   }
 }

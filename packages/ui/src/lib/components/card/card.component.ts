@@ -18,6 +18,7 @@ import {
 import { FormsModule } from '@angular/forms';
 import { CheckboxComponent } from '../field/checkbox';
 import { Orientation, Size } from '../utils';
+import { UiI18nService } from '../../i18n';
 
 export type CardAppearance = 'filled' | 'filled-alternative' | 'outline' | 'subtle';
 
@@ -52,6 +53,7 @@ const EMPTY_PROJECTED_SLOTS: CardProjectedSlots = {
 })
 export class CardComponent {
   private readonly destroyRef = inject(DestroyRef);
+  private readonly i18n = inject(UiI18nService);
 
   private readonly interactiveTargetSelector =
     'a[href],button,input,select,textarea,ui-button,ui-menu,ui-checkbox,[role="button"],[role="link"],[role="menuitem"],[contenteditable="true"],[contenteditable=""],[uiCardFloatingAction],[uiCardCheckbox]';
@@ -106,15 +108,17 @@ export class CardComponent {
   hasFloatingAction = computed(() => this.hasFloatingActionSlot());
 
   internalCheckboxAriaLabel = computed(() => {
+    const fallback = this.i18n.t('card.selectAriaLabel', 'Select card');
+
     if (this.checkboxAriaLabel()) {
-      return this.checkboxAriaLabel() ?? 'Select card';
+      return this.checkboxAriaLabel() ?? fallback;
     }
 
     if (this.ariaLabel()) {
-      return this.ariaLabel() ?? 'Select card';
+      return this.ariaLabel() ?? fallback;
     }
 
-    return 'Select card';
+    return fallback;
   });
 
   cardTabIndex = computed<number | null>(() => {

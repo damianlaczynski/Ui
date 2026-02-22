@@ -7,12 +7,14 @@ import {
   computed,
   signal,
   effect,
+  inject,
 } from '@angular/core';
 
 import { A11yModule } from '@angular/cdk/a11y';
 import { FormsModule } from '@angular/forms';
 import { SearchComponent } from '../field/search';
 import { IconComponent, IconName } from '../icon';
+import { UiI18nService } from '../../i18n';
 
 export interface CommandPaletteItem {
   id: string;
@@ -37,10 +39,12 @@ export interface CommandPaletteGroup {
   imports: [A11yModule, FormsModule, SearchComponent, IconComponent],
 })
 export class CommandPaletteComponent {
+  private readonly i18n = inject(UiI18nService);
+
   visible = model<boolean>(false);
   items = input<CommandPaletteItem[]>([]);
-  placeholder = input<string>('Type a command or search...');
-  emptyText = input<string>('No commands found');
+  placeholder = input<string>('');
+  emptyText = input<string>('');
   maxResults = input<number>(10);
 
   // Outputs
@@ -262,5 +266,24 @@ export class CommandPaletteComponent {
 
   private toDomToken(value: string): string {
     return value.replace(/[^a-zA-Z0-9-_]/g, '-');
+  }
+
+  getPlaceholderText(): string {
+    return (
+      this.placeholder().trim() ||
+      this.i18n.t('commandPalette.placeholder', 'Type a command or search...')
+    );
+  }
+
+  getEmptyText(): string {
+    return this.emptyText().trim() || this.i18n.t('commandPalette.emptyText', 'No commands found');
+  }
+
+  getDialogAriaLabel(): string {
+    return this.i18n.t('commandPalette.dialogAriaLabel', 'Command palette');
+  }
+
+  getResultsAriaLabel(): string {
+    return this.i18n.t('commandPalette.resultsAriaLabel', 'Command results');
   }
 }

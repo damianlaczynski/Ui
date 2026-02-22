@@ -22,7 +22,12 @@
 
   <div class="message-bar__aside">
     @if (dismissible()) {
-      <button type="button" class="message-bar__dismiss" (click)="onDismiss()" aria-label="Dismiss">
+      <button
+        type="button"
+        class="message-bar__dismiss"
+        (click)="onDismiss()"
+        [attr.aria-label]="dismissAriaLabel()"
+      >
         <ui-icon icon="dismiss" [size]="size()" variant="regular" />
       </button>
     }
