@@ -76,6 +76,7 @@
     .drawer--overlay & {
       box-shadow: $elevation-16;
       @include transition-transform($duration-normal);
+      will-change: transform;
     }
 
     .drawer--inline & {
@@ -288,23 +289,48 @@
     @include fade-in($duration-normal, $easing-ease-in-out);
   }
 
-  .drawer__content {
-    animation-fill-mode: both;
+  &:not(.drawer--closing) {
+    .drawer__content {
+      animation-fill-mode: both;
 
-    &.drawer__content--left {
-      @include slide-in-left($duration-normal, $easing-ease-in-out);
+      &.drawer__content--left {
+        @include slide-in-left($duration-slow, $easing-ease-in-out);
+      }
+
+      &.drawer__content--right {
+        @include slide-in-right($duration-slow, $easing-ease-in-out);
+      }
+
+      &.drawer__content--top {
+        @include slide-in-top($duration-slow, $easing-ease-in-out);
+      }
+
+      &.drawer__content--bottom {
+        @include slide-in-bottom($duration-slow, $easing-ease-in-out);
+      }
     }
+  }
 
-    &.drawer__content--right {
-      @include slide-in-right($duration-normal, $easing-ease-in-out);
-    }
+  &.drawer--closing {
+    .drawer__content {
+      animation-fill-mode: both;
+      pointer-events: none;
 
-    &.drawer__content--top {
-      @include slide-in-top($duration-normal, $easing-ease-in-out);
-    }
+      &.drawer__content--left {
+        @include slide-out-left($duration-slow, $easing-ease-in-out);
+      }
 
-    &.drawer__content--bottom {
-      @include slide-in-bottom($duration-normal, $easing-ease-in-out);
+      &.drawer__content--right {
+        @include slide-out-right($duration-slow, $easing-ease-in-out);
+      }
+
+      &.drawer__content--top {
+        @include slide-out-top($duration-slow, $easing-ease-in-out);
+      }
+
+      &.drawer__content--bottom {
+        @include slide-out-bottom($duration-slow, $easing-ease-in-out);
+      }
     }
   }
 }
@@ -312,4 +338,16 @@
 // Body scroll lock when drawer is open
 body:has(.drawer__backdrop:not(.drawer__backdrop--hidden)) {
   overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer__backdrop {
+    transition: none;
+    animation: none;
+  }
+
+  .drawer__content {
+    transition: none;
+    animation: none;
+  }
 }

@@ -1,4 +1,4 @@
-@if (visible()) {
+@if (shouldRender()) {
   <div
     [class]="drawerClasses()"
     [attr.role]="isOverlay() ? 'dialog' : 'region'"
@@ -9,7 +9,15 @@
     @if (isOverlay()) {
       <div [class]="backdropClasses()" (click)="onBackdropClick($event)"></div>
     }
-    <div [class]="contentClasses()" [attr.role]="isOverlay() ? 'document' : null">
+    <div
+      #drawerContent
+      [class]="contentClasses()"
+      [attr.role]="isOverlay() ? 'document' : null"
+      tabindex="-1"
+      [cdkTrapFocus]="shouldTrapFocus()"
+      [cdkTrapFocusAutoCapture]="shouldTrapFocus()"
+      (animationend)="onContentAnimationEnd($event)"
+    >
       <!-- Header -->
       <div [class]="headerClasses()">
         @if (title()) {

@@ -1,4 +1,18 @@
-import { Component, input, output, model, HostListener, computed, inject } from '@angular/core';
+import {
+  Component,
+  input,
+  output,
+  model,
+  HostListener,
+  computed,
+  effect,
+  inject,
+  signal,
+} from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { CdkTrapFocus } from '@angular/cdk/a11y';
+import { Directionality, Direction } from '@angular/cdk/bidi';
+import { startWith } from 'rxjs/operators';
 
 import { QuickAction } from '../utils';
 import { ButtonComponent } from '../button/button.component';
@@ -13,11 +27,29 @@ export type DrawerModalType = 'modal' | 'non-modal' | 'alert';
 @Component({
   selector: 'ui-drawer',
   templateUrl: './drawer.component.html',
-  imports: [ButtonComponent, IconComponent],
+  imports: [ButtonComponent, IconComponent, CdkTrapFocus],
 })
 export class DrawerComponent {
+  private static readonly CLOSE_ANIMATION_FALLBACK_MS = 340;
+  private static readonly CLOSE_ANIMATION_NAMES = new Set([
+    'slideOutLeft',
+    'slideOutRight',
+    'slideOutTop',
+    'slideOutBottom',
+  ]);
+
   //Service
   private readonly i18n = inject(UiI18nService);
+  private readonly directionality = inject(Directionality);
+  private readonly direction = toSignal(
+    this.directionality.change.pipe(startWith(this.directionality.value)),
+    { initialValue: this.directionality.value },
+  );
+  private readonly rendered = signal(false);
+  readonly isClosing = signal(false);
+  private wasTrapFocusActive = false;
+  private lastFocusedElement: HTMLElement | null = null;
+  private closeAnimationTimer: ReturnType<typeof setTimeout> | null = null;
 
   //Translations
   private readonly closeAriaLabel = this.i18n.tSignal('drawer.closeAriaLabel', 'Close drawer');
@@ -65,24 +97,29 @@ export class DrawerComponent {
   });
 
   isModal = computed(() => this.modalType() === 'modal');
+  shouldTrapFocus = computed(() => this.visible() && this.isOverlay() && this.isModal());
+  shouldRender = computed(() => this.rendered());
+  effectivePosition = computed<DrawerPosition>(() =>
+    this.resolvePositionForDirection(this.position(), this.direction()),
+  );
 
   drawerClasses = computed(() => {
     return [
       'drawer',
-      `drawer--${this.position()}`,
+      `drawer--${this.effectivePosition()}`,
       `drawer--${this.type()}`,
-      !this.visible() ? 'drawer--hidden' : '',
+      this.isClosing() ? 'drawer--closing' : '',
     ].join(' ');
   });
 
   backdropClasses = computed(() => {
-    return ['drawer__backdrop', !this.visible() ? 'drawer__backdrop--hidden' : ''].join(' ');
+    return ['drawer__backdrop', this.isClosing() ? 'drawer__backdrop--hidden' : ''].join(' ');
   });
 
   contentClasses = computed(() => {
     return [
       'drawer__content',
-      `drawer__content--${this.position()}`,
+      `drawer__content--${this.effectivePosition()}`,
       `drawer__content--${this.size()}`,
     ].join(' ');
   });
@@ -99,6 +136,45 @@ export class DrawerComponent {
     return 'drawer__footer';
   });
 
+  constructor() {
+    effect(() => {
+      const visible = this.visible();
+      if (visible) {
+        this.clearCloseAnimationTimer();
+        this.isClosing.set(false);
+        this.rendered.set(true);
+        return;
+      }
+
+      if (!this.rendered() || this.isClosing()) {
+        return;
+      }
+
+      this.isClosing.set(true);
+      if (this.shouldSkipCloseAnimation()) {
+        this.finalizeCloseAnimation();
+        return;
+      }
+
+      this.closeAnimationTimer = setTimeout(() => {
+        this.finalizeCloseAnimation();
+      }, DrawerComponent.CLOSE_ANIMATION_FALLBACK_MS);
+    });
+
+    effect(() => {
+      const shouldTrap = this.shouldTrapFocus();
+      if (shouldTrap && !this.wasTrapFocusActive) {
+        this.lastFocusedElement = document.activeElement as HTMLElement | null;
+      }
+
+      if (!shouldTrap && this.wasTrapFocusActive) {
+        this.restoreFocus();
+      }
+
+      this.wasTrapFocusActive = shouldTrap;
+    });
+  }
+
   //Event handlers
   onBackdropClick(event: MouseEvent): void {
     if (this.canCloseByBackdrop() && event.target === event.currentTarget) {
@@ -111,6 +187,18 @@ export class DrawerComponent {
     if (this.closable()) {
       this.closeDrawer();
     }
+  }
+
+  onContentAnimationEnd(event: AnimationEvent): void {
+    if (event.target !== event.currentTarget || !this.isClosing()) {
+      return;
+    }
+
+    if (!DrawerComponent.CLOSE_ANIMATION_NAMES.has(event.animationName)) {
+      return;
+    }
+
+    this.finalizeCloseAnimation();
   }
 
   @HostListener('document:keydown.escape', ['$event'])
@@ -145,5 +233,52 @@ export class DrawerComponent {
     if (!action.disabled) {
       action.action();
     }
+  }
+
+  private restoreFocus(): void {
+    if (this.lastFocusedElement && document.contains(this.lastFocusedElement)) {
+      this.lastFocusedElement.focus();
+    }
+    this.lastFocusedElement = null;
+  }
+
+  private resolvePositionForDirection(
+    position: DrawerPosition,
+    direction: Direction | null | undefined,
+  ): DrawerPosition {
+    if (direction !== 'rtl') {
+      return position;
+    }
+
+    if (position === 'left') {
+      return 'right';
+    }
+
+    if (position === 'right') {
+      return 'left';
+    }
+
+    return position;
+  }
+
+  private shouldSkipCloseAnimation(): boolean {
+    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+      return false;
+    }
+
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  private clearCloseAnimationTimer(): void {
+    if (this.closeAnimationTimer) {
+      clearTimeout(this.closeAnimationTimer);
+      this.closeAnimationTimer = null;
+    }
+  }
+
+  private finalizeCloseAnimation(): void {
+    this.clearCloseAnimationTimer();
+    this.isClosing.set(false);
+    this.rendered.set(false);
   }
 }

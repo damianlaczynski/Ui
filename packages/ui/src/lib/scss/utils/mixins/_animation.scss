@@ -133,6 +133,38 @@
   @include respect-reduced-motion;
 }
 
+/// Slide out to left animation
+/// @param {Duration} $duration - Animation duration
+/// @param {Function} $easing - Easing function
+@mixin slide-out-left($duration: $duration-normal, $easing: $easing-accelerate-min) {
+  animation: slideOutLeft $duration $easing;
+  @include respect-reduced-motion;
+}
+
+/// Slide out to right animation
+/// @param {Duration} $duration - Animation duration
+/// @param {Function} $easing - Easing function
+@mixin slide-out-right($duration: $duration-normal, $easing: $easing-accelerate-min) {
+  animation: slideOutRight $duration $easing;
+  @include respect-reduced-motion;
+}
+
+/// Slide out to top animation
+/// @param {Duration} $duration - Animation duration
+/// @param {Function} $easing - Easing function
+@mixin slide-out-top($duration: $duration-normal, $easing: $easing-accelerate-min) {
+  animation: slideOutTop $duration $easing;
+  @include respect-reduced-motion;
+}
+
+/// Slide out to bottom animation
+/// @param {Duration} $duration - Animation duration
+/// @param {Function} $easing - Easing function
+@mixin slide-out-bottom($duration: $duration-normal, $easing: $easing-accelerate-min) {
+  animation: slideOutBottom $duration $easing;
+  @include respect-reduced-motion;
+}
+
 /// Slide in down animation with scale (for command palette)
 /// @param {Duration} $duration - Animation duration
 /// @param {Function} $easing - Easing function
@@ -377,6 +409,50 @@
   to {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+
+@keyframes slideOutLeft {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideOutTop {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideOutBottom {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%);
+    opacity: 0;
   }
 }
 
