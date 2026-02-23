@@ -393,7 +393,7 @@ export class CalendarComponent {
     return 'secondary';
   }
 
-  getDayAppearance(day: CalendarDay): 'filled' | 'outline' | 'tint' {
+  getDayAppearance(day: CalendarDay): 'filled' | 'subtle' | 'tint' {
     if (day.isSelected || day.isRangeStart || day.isRangeEnd) {
       return 'filled';
     }
@@ -402,7 +402,7 @@ export class CalendarComponent {
       return 'tint';
     }
 
-    return 'outline';
+    return 'subtle';
   }
 
   private isInHoverRange(day: CalendarDay): boolean {
