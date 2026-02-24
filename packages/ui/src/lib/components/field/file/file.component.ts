@@ -62,6 +62,11 @@ export class FileComponent extends FieldComponent implements ControlValueAccesso
   maxSize = input<number | null>(null); // in bytes
   uploadText = input<string>('Click to upload or drag and drop');
   uploadHint = input<string>('');
+  singleFileHint = input<string>('Single file only');
+  multipleFilesHint = input<string>('Multiple files allowed');
+  inlineTriggerAriaLabel = input<string>('Browse files');
+  areaTriggerAriaLabel = input<string>('Upload files');
+  clearFilesAriaLabel = input<string>('Clear files');
 
   // Outputs
   fileSelect = output<File[]>();
@@ -94,7 +99,9 @@ export class FileComponent extends FieldComponent implements ControlValueAccesso
   displayHint = computed(() => {
     const files = this.selectedFiles();
     if (files.length === 0) {
-      return this.uploadHint() || (this.multiple() ? 'Multiple files allowed' : 'Single file only');
+      return (
+        this.uploadHint() || (this.multiple() ? this.multipleFilesHint() : this.singleFileHint())
+      );
     }
     const totalSize = files.reduce((sum, f) => sum + f.size, 0);
     return this.formatFileSize(totalSize);
@@ -127,7 +134,6 @@ export class FileComponent extends FieldComponent implements ControlValueAccesso
 
   // Convert FileInfo to Node for display
   fileInfoToNode(fileInfo: FileInfo): Node {
-    const meta = `${this.formatFileSize(fileInfo.size)}${fileInfo.type !== 'unknown' ? ` • ${fileInfo.type}` : ''}`;
     return {
       id: fileInfo.id,
       label: fileInfo.name,
@@ -139,7 +145,24 @@ export class FileComponent extends FieldComponent implements ControlValueAccesso
 
   // Get file metadata for display
   getFileMeta(fileInfo: FileInfo): string {
-    return `${this.formatFileSize(fileInfo.size)}${fileInfo.type !== 'unknown' ? ` • ${fileInfo.type}` : ''}`;
+    return (
+      this.formatFileSize(fileInfo.size) +
+      (fileInfo.type !== 'unknown' ? ' | ' + fileInfo.type : '')
+    );
+  }
+  getInlineAriaLabel(): string | null {
+    return this.getComputedAriaLabel() || this.inlineTriggerAriaLabel().trim() || null;
+  }
+
+  getAreaAriaLabel(): string | null {
+    return this.getComputedAriaLabel() || this.areaTriggerAriaLabel().trim() || null;
+  }
+
+  onTriggerKeydown(event: KeyboardEvent): void {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.triggerFileInput();
+    }
   }
 
   // Methods

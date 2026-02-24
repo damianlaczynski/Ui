@@ -9,6 +9,7 @@ import {
 import {
   SIZES,
   INPUT_VARIANTS,
+  CONTENT_POSITIONS,
   SHOWCASE_GROUP_ICONS,
 } from '@shared/utils/showcase/component-options.utils';
 
@@ -60,6 +61,14 @@ const FILE_CONTROL_DEFS: SharedControlDef[] = [
     group: 'appearance',
   },
   {
+    key: 'labelPosition',
+    label: 'Label Position',
+    type: 'dropdown',
+    options: toOptions([...CONTENT_POSITIONS]),
+    defaultValue: 'above',
+    group: 'appearance',
+  },
+  {
     key: 'multiple',
     label: 'Multiple',
     type: 'switch',
@@ -99,6 +108,7 @@ export const FILE_DRAWER_CONFIGS = createDrawerFormConfigs(FILE_FORM_CONTROLS, {
   mode: { excludeKey: 'mode' },
   size: { excludeKey: 'size' },
   variant: { excludeKey: 'variant' },
+  labelPosition: { excludeKey: 'labelPosition' },
   states: { excludeKeys: ['disabled', 'readonly', 'required'] },
 });
 

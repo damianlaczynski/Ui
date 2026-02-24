@@ -9,6 +9,7 @@ import {
 import {
   SIZES,
   INPUT_VARIANTS,
+  CONTENT_POSITIONS,
   SHOWCASE_GROUP_ICONS,
 } from '@shared/utils/showcase/component-options.utils';
 
@@ -28,7 +29,7 @@ const SEARCH_CONTROL_DEFS: SharedControlDef[] = [
     label: 'Placeholder',
     type: 'text',
     description: 'Placeholder text',
-    defaultValue: 'Search...',
+    defaultValue: 'Search…',
     placeholder: 'Enter placeholder',
     group: 'content',
     drawer: false,
@@ -58,6 +59,14 @@ const SEARCH_CONTROL_DEFS: SharedControlDef[] = [
     type: 'dropdown',
     options: toOptions(SIZES),
     defaultValue: 'medium',
+    group: 'appearance',
+  },
+  {
+    key: 'labelPosition',
+    label: 'Label Position',
+    type: 'dropdown',
+    options: toOptions([...CONTENT_POSITIONS]),
+    defaultValue: 'above',
     group: 'appearance',
   },
   {
@@ -92,6 +101,7 @@ export const SEARCH_DRAWER_CONFIGS = createDrawerFormConfigs(SEARCH_FORM_CONTROL
   basic: { excludeKeys: [] },
   size: { excludeKey: 'size' },
   variants: { excludeKey: 'variant' },
+  labelPosition: { excludeKey: 'labelPosition' },
   states: { excludeKeys: ['disabled', 'readonly', 'required'] },
 });
 

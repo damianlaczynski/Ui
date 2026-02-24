@@ -1,6 +1,6 @@
 import { Component, signal, computed, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { CheckboxComponent, Shape, Size } from 'ui';
+import { CheckboxComponent, ContentPosition, Shape, Size } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { CHECKBOX_SHOWCASE_CONFIG } from './checkbox.showcase.config';
@@ -19,6 +19,7 @@ import { CHECKBOX_SHOWCASE_CONFIG } from './checkbox.showcase.config';
       <div preview>
         <ui-checkbox
           [label]="currentLabel()"
+          [labelPosition]="currentLabelPosition()"
           [shape]="currentShape()"
           [size]="currentSize()"
           [disabled]="currentDisabled()"
@@ -47,6 +48,7 @@ export class CheckboxInteractiveComponent {
   private values = signal<Record<string, unknown>>({
     label: 'Accept terms',
     helpText: '',
+    labelPosition: 'after',
     shape: 'rounded',
     size: 'medium',
     disabled: false,
@@ -56,6 +58,7 @@ export class CheckboxInteractiveComponent {
 
   currentLabel = computed(() => this.values()['label'] as string);
   currentHelpText = computed(() => this.values()['helpText'] as string);
+  currentLabelPosition = computed(() => this.values()['labelPosition'] as ContentPosition);
   currentShape = computed(() => this.values()['shape'] as Shape);
   currentSize = computed(() => this.values()['size'] as Size);
   currentDisabled = computed(() => this.values()['disabled'] as boolean);

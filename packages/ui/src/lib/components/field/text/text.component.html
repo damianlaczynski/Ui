@@ -1,6 +1,7 @@
 <ui-field
   [fieldType]="'text'"
   [label]="label()"
+  [labelPosition]="labelPosition()"
   [placeholder]="placeholder()"
   [helpText]="helpText()"
   [(errorText)]="errorText"
@@ -27,8 +28,8 @@
       [autocomplete]="autocomplete()"
       [value]="value"
       [attr.tabindex]="getTabIndex()"
-      [attr.aria-label]="ariaLabel() || label()"
-      [attr.aria-describedby]="ariaDescribedBy()"
+      [attr.aria-label]="getComputedAriaLabel()"
+      [attr.aria-describedby]="getComputedAriaDescribedBy()"
       [attr.aria-invalid]="!!errorText()"
       (input)="onInputChange($event)"
       (blur)="onBlur($event)"
@@ -39,7 +40,12 @@
     <!-- Actions: Clear button -->
     @if (value && !disabled() && !readonly() && showClearButton()) {
       <div class="field__actions">
-        <ui-action-button [icon]="'dismiss'" [size]="size()" (click)="clear()"></ui-action-button>
+        <ui-action-button
+          [icon]="'dismiss'"
+          [size]="size()"
+          [ariaLabel]="'Clear text'"
+          (click)="clear()"
+        ></ui-action-button>
       </div>
     }
   </div>

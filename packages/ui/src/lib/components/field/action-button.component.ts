@@ -10,6 +10,8 @@ import { IconName } from '../icon';
     <button
       type="button"
       class="field__action"
+      [disabled]="disabled()"
+      [attr.aria-label]="ariaLabel() || null"
       (click)="onClick($event)"
       (mousedown)="onMouseDown($event)"
       tabindex="-1"
@@ -33,16 +35,26 @@ export class ActionButtonComponent {
   size = input<Size>('medium');
   icon = input<IconName>('dismiss');
   variant = input<'regular' | 'filled'>('regular');
-  click = output<void>();
+  ariaLabel = input<string>('');
+  disabled = input<boolean>(false);
+  click = output<MouseEvent>();
   mousedown = output<MouseEvent>();
 
-  onClick(event: any): void {
+  onClick(event: MouseEvent): void {
+    if (this.disabled()) {
+      return;
+    }
+
     event.preventDefault();
     event.stopPropagation();
     this.click.emit(event);
   }
 
   onMouseDown(event: MouseEvent): void {
+    if (this.disabled()) {
+      return;
+    }
+
     event.preventDefault();
     event.stopPropagation();
     this.mousedown.emit(event);

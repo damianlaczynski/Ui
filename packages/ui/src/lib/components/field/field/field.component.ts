@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, input, output, model, inject } from '@ang
 import { ControlValueAccessor, NgControl, AbstractControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
-import { InputVariant, Size } from '../../utils';
+import { ContentPosition, InputVariant, Size } from '../../utils';
 import { getValidationErrorMessage, shouldShowValidationError } from './validation-helper';
 
 export type FieldType =
@@ -51,6 +51,7 @@ export class FieldComponent implements ControlValueAccessor, OnInit, OnDestroy {
   fieldType = input<FieldType>('text');
   inputVariant = input<InputVariant>('filled');
   label = input<string>('');
+  labelPosition = input<ContentPosition>('above');
   placeholder = input<string>('');
   helpText = input<string>('');
   errorText = model<string>('');
@@ -219,6 +220,57 @@ export class FieldComponent implements ControlValueAccessor, OnInit, OnDestroy {
     this.value = '';
     this.onChange(this.value);
     this.change.emit(this.value);
+  }
+
+  getLabelElementId(): string | null {
+    const id = this.id();
+    if (!id || !this.label()) {
+      return null;
+    }
+
+    return `${id}-label`;
+  }
+
+  getHelpTextElementId(): string | null {
+    const id = this.id();
+    if (!id || !this.helpText() || !!this.errorText()) {
+      return null;
+    }
+
+    return `${id}-help`;
+  }
+
+  getErrorTextElementId(): string | null {
+    const id = this.id();
+    if (!id || !this.errorText()) {
+      return null;
+    }
+
+    return `${id}-error`;
+  }
+
+  getComputedAriaDescribedBy(): string | null {
+    const ids = [
+      this.ariaDescribedBy()?.trim() || null,
+      this.getHelpTextElementId(),
+      this.getErrorTextElementId(),
+    ].filter((v): v is string => !!v);
+
+    if (!ids.length) {
+      return null;
+    }
+
+    return Array.from(new Set(ids)).join(' ');
+  }
+
+  getComputedAriaLabel(): string | null {
+    const explicit = this.ariaLabel()?.trim();
+    if (explicit) {
+      return explicit;
+    }
+
+    const fallback = this.label()?.trim();
+    return fallback || null;
   }
 
   private setupAutoValidation(): void {

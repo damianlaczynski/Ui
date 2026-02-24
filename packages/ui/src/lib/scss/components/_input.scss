@@ -75,9 +75,70 @@
   width: 100%;
 }
 
+.input-main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &--inline {
+    flex-direction: row;
+    align-items: center;
+    gap: $spacing-2;
+  }
+}
+
+.input-control {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.input-label {
+  &--inline {
+    margin-bottom: 0;
+  }
+
+  &--before,
+  &--after {
+    align-items: center;
+  }
+
+  &--before {
+    margin-right: $spacing-2;
+  }
+
+  &--after {
+    margin-left: $spacing-2;
+  }
+
+  &--below {
+    margin-top: $spacing-1;
+    margin-bottom: 0;
+  }
+}
+
+[dir='rtl'] {
+  .input-main {
+    &--inline {
+      flex-direction: row-reverse;
+    }
+  }
+
+  .input-label {
+    &--before {
+      margin-right: 0;
+      margin-left: $spacing-2;
+    }
+
+    &--after {
+      margin-left: 0;
+      margin-right: $spacing-2;
+    }
+  }
+}
+
 // Input wrapper for different variants
 .input-wrapper {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   flex-wrap: nowrap;
   position: relative;
@@ -305,7 +366,7 @@
   display: inline-flex;
   align-items: center;
   gap: $spacing-1;
-  padding-right: $spacing-2;
+  padding-inline-end: $spacing-2;
   @include fade-in($duration-fast, $easing-decelerate-max);
 }
 
@@ -339,22 +400,44 @@
 .input-wrapper {
   &--small {
     .field__actions {
-      padding-right: $spacing-1;
+      padding-inline-end: $spacing-1;
       gap: $spacing-0_5;
     }
   }
 
   &--medium {
     .field__actions {
-      padding-right: $spacing-2;
+      padding-inline-end: $spacing-2;
       gap: $spacing-1;
     }
   }
 
   &--large {
     .field__actions {
-      padding-right: $spacing-3;
+      padding-inline-end: $spacing-3;
       gap: $spacing-1;
+    }
+  }
+}
+
+[dir='rtl'] {
+  .input-wrapper {
+    &--small {
+      .field__actions {
+        padding-inline-end: $spacing-2;
+      }
+    }
+
+    &--medium {
+      .field__actions {
+        padding-inline-end: $spacing-3;
+      }
+    }
+
+    &--large {
+      .field__actions {
+        padding-inline-end: $spacing-4;
+      }
     }
   }
 }

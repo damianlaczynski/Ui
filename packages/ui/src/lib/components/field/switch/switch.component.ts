@@ -1,8 +1,7 @@
-import { Component, forwardRef, input, OnInit } from '@angular/core';
+import { Component, computed, forwardRef, OnInit, signal } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FieldComponent } from '../field/field.component';
-import { ContentPosition } from '../../utils';
 
 @Component({
   selector: 'ui-switch',
@@ -17,20 +16,13 @@ import { ContentPosition } from '../../utils';
   ],
 })
 export class SwitchComponent extends FieldComponent implements ControlValueAccessor, OnInit {
-  labelPosition = input<ContentPosition>('after');
+  private checked = signal(false);
+  readonly isChecked = computed(() => this.checked());
 
-  get isChecked(): boolean {
-    return this.value === true;
-  }
-
-  get isUnchecked(): boolean {
-    return this.value == false;
-  }
-
-  get switchClasses(): string {
+  readonly switchClasses = computed(() => {
     const classes = ['switch'];
 
-    if (this.isChecked) {
+    if (this.checked()) {
       classes.push('switch--checked');
     } else {
       classes.push('switch--unchecked');
@@ -44,9 +36,27 @@ export class SwitchComponent extends FieldComponent implements ControlValueAcces
     classes.push(`switch--label-${this.labelPosition()}`);
 
     return classes.join(' ');
-  }
+  });
 
-  override get labelClasses(): string {
+  readonly trackClasses = computed(() =>
+    this.checked() ? 'switch-track switch-track--checked' : 'switch-track switch-track--unchecked',
+  );
+
+  readonly thumbClasses = computed(() =>
+    this.checked() ? 'switch-thumb switch-thumb--checked' : 'switch-thumb switch-thumb--unchecked',
+  );
+
+  readonly computedAriaLabel = computed(() => {
+    const explicit = this.ariaLabel()?.trim();
+    if (explicit) {
+      return explicit;
+    }
+
+    const fallback = this.label()?.trim();
+    return fallback || null;
+  });
+
+  readonly switchLabelClasses = computed(() => {
     const classes = ['switch-label'];
 
     if (this.disabled()) {
@@ -60,11 +70,12 @@ export class SwitchComponent extends FieldComponent implements ControlValueAcces
     classes.push(`switch-label--${this.size()}`);
 
     return classes.join(' ');
-  }
+  });
 
   onSwitchChange(event: Event): void {
     const target = event.target as HTMLInputElement;
     this.value = target.checked;
+    this.checked.set(target.checked);
     this.onChange(this.value);
     this.change.emit(this.value);
   }
@@ -75,7 +86,10 @@ export class SwitchComponent extends FieldComponent implements ControlValueAcces
       return;
     }
   }
+
   override writeValue(value: any): void {
-    this.value = value || false;
+    const checked = value === true;
+    this.value = checked;
+    this.checked.set(checked);
   }
 }

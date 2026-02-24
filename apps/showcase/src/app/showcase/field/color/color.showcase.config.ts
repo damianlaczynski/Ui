@@ -9,6 +9,7 @@ import {
 import {
   SIZES,
   INPUT_VARIANTS,
+  CONTENT_POSITIONS,
   SHOWCASE_GROUP_ICONS,
 } from '@shared/utils/showcase/component-options.utils';
 
@@ -70,6 +71,14 @@ const COLOR_CONTROL_DEFS: SharedControlDef[] = [
     group: 'appearance',
   },
   {
+    key: 'labelPosition',
+    label: 'Label Position',
+    type: 'dropdown',
+    options: toOptions([...CONTENT_POSITIONS]),
+    defaultValue: 'above',
+    group: 'appearance',
+  },
+  {
     key: 'showAlpha',
     label: 'Show Alpha',
     type: 'switch',
@@ -117,6 +126,7 @@ export const COLOR_DRAWER_CONFIGS = createDrawerFormConfigs(COLOR_FORM_CONTROLS,
   format: { excludeKey: 'format' },
   variant: { excludeKey: 'variant' },
   size: { excludeKey: 'size' },
+  labelPosition: { excludeKey: 'labelPosition' },
   features: { excludeKeys: ['showAlpha', 'showEyeDropper'] },
   states: { excludeKeys: ['disabled', 'readonly', 'required'] },
 });

@@ -9,18 +9,30 @@
   [name]="name()"
   [size]="size()"
 >
-  <div class="checkbox-wrapper" [ngClass]="checkboxClasses">
+  <div class="checkbox-wrapper" [ngClass]="checkboxClasses()">
+    @if (label() && labelPosition() === 'above') {
+      <div class="checkbox-label-above">
+        <span [ngClass]="checkboxLabelClasses()"> {{ label() }} </span>
+      </div>
+    }
+
     <label class="checkbox-container">
+      @if (label() && labelPosition() === 'before') {
+        <span [ngClass]="checkboxLabelClasses()" class="checkbox-label-before">
+          {{ label() }}
+        </span>
+      }
+
       <!-- Hidden native checkbox for accessibility and form integration -->
       <input
         type="checkbox"
         [id]="id()"
         [name]="name()"
-        [checked]="isChecked"
-        [indeterminate]="isIndeterminate"
+        [checked]="isChecked()"
+        [indeterminate]="isIndeterminate()"
         [disabled]="disabled()"
-        [attr.aria-label]="ariaLabel() || label()"
-        [attr.aria-describedby]="ariaDescribedBy()"
+        [attr.aria-label]="computedAriaLabel()"
+        [attr.aria-describedby]="getComputedAriaDescribedBy()"
         [attr.required]="required() ? true : null"
         class="checkbox-input"
         (change)="onCheckboxChange($event)"
@@ -31,56 +43,18 @@
 
       <!-- Visual checkbox element -->
       <div class="checkbox-visual">
-        <!-- Rounded Shape (default) -->
-        @if (shape() === 'rounded') {
-          @if (isUnchecked) {
-            <ui-icon [icon]="'checkbox_unchecked'" [size]="size()" />
-          }
-          @if (isChecked) {
-            <ui-icon [icon]="'checkbox_checked'" [size]="size()" variant="filled" />
-          }
-          @if (isIndeterminate) {
-            <ui-icon [icon]="'subtract_square'" [size]="size()" />
-          }
-        }
-
-        <!-- Circular Shape -->
-        @if (shape() === 'circular') {
-          @if (isUnchecked) {
-            <ui-icon [icon]="'circle'" [size]="size()" />
-          }
-          @if (isChecked) {
-            <ui-icon [icon]="'checkmark_circle'" [size]="size()" variant="filled" />
-          }
-          @if (isIndeterminate) {
-            <ui-icon [icon]="'subtract_circle'" [size]="size()" />
-          }
-        }
-
-        <!-- Square Shape -->
-        @if (shape() === 'square') {
-          @if (isUnchecked) {
-            <ui-icon [icon]="'square'" [size]="size()" />
-          }
-          @if (isChecked) {
-            <ui-icon [icon]="'checkmark_square'" [size]="size()" variant="filled" />
-          }
-          @if (isIndeterminate) {
-            <ui-icon [icon]="'subtract_square'" [size]="size()" />
-          }
-        }
+        <ui-icon [icon]="iconName()" [size]="size()" [variant]="iconVariant()" />
       </div>
 
-      <!-- Label text -->
-      @if (label()) {
-        <span
-          class="checkbox-label"
-          [class.checkbox-label--disabled]="disabled()"
-          [class.checkbox-label--required]="required()"
-        >
-          {{ label() }}
-        </span>
+      @if (label() && labelPosition() === 'after') {
+        <span [ngClass]="checkboxLabelClasses()" class="checkbox-label-after"> {{ label() }} </span>
       }
     </label>
+
+    @if (label() && labelPosition() === 'below') {
+      <div class="checkbox-label-below">
+        <span [ngClass]="checkboxLabelClasses()"> {{ label() }} </span>
+      </div>
+    }
   </div>
 </ui-field>

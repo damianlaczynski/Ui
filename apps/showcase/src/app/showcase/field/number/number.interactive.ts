@@ -1,7 +1,7 @@
 import { Component, signal, computed, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NumberComponent } from 'ui';
-import { InputVariant, Size } from 'ui';
+import { ContentPosition, InputVariant, Size } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { NUMBER_SHOWCASE_CONFIG } from './number.showcase.config';
@@ -20,6 +20,7 @@ import { NUMBER_SHOWCASE_CONFIG } from './number.showcase.config';
       <div preview>
         <ui-number
           [label]="currentLabel()"
+          [labelPosition]="currentLabelPosition()"
           [placeholder]="currentPlaceholder()"
           [inputVariant]="currentVariant()"
           [size]="currentSize()"
@@ -49,13 +50,14 @@ export class NumberInteractiveComponent {
 
   private values = signal<Record<string, unknown>>({
     label: 'Quantity',
-    placeholder: 'Enter number...',
+    placeholder: 'Enter number…',
     helpText: '',
     min: 0,
     max: 100,
     step: 1,
     variant: 'filled',
     size: 'medium',
+    labelPosition: 'above',
     disabled: false,
     readonly: false,
     required: false,
@@ -69,6 +71,7 @@ export class NumberInteractiveComponent {
   currentStep = computed(() => this.values()['step'] as number);
   currentVariant = computed(() => this.values()['variant'] as InputVariant);
   currentSize = computed(() => this.values()['size'] as Size);
+  currentLabelPosition = computed(() => this.values()['labelPosition'] as ContentPosition);
   currentDisabled = computed(() => this.values()['disabled'] as boolean);
   currentReadonly = computed(() => this.values()['readonly'] as boolean);
   currentRequired = computed(() => this.values()['required'] as boolean);

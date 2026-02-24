@@ -1,4 +1,10 @@
-<div [class]="getRatingClasses()" [attr.aria-label]="getAriaLabel()" role="group">
+<div
+  [class]="getRatingClasses()"
+  [attr.role]="readOnly() ? 'img' : 'radiogroup'"
+  [attr.aria-label]="getGroupAriaLabel()"
+  [attr.aria-disabled]="disabled() ? 'true' : null"
+  [attr.aria-readonly]="readOnly() ? 'true' : null"
+>
   <div class="rating__stars">
     @for (star of stars(); track star) {
       <div class="rating__star-wrapper">
@@ -16,13 +22,17 @@
           <button
             type="button"
             class="rating__star"
+            role="radio"
+            [attr.data-star]="star"
+            [attr.aria-checked]="isStarFilled(star)"
             [class.rating__star--filled]="isStarFilled(star)"
             [disabled]="disabled()"
             (click)="onStarClick(star)"
             (mouseenter)="onStarHover(star)"
             (mouseleave)="onStarLeave()"
-            [attr.aria-label]="'Rate ' + star + ' stars'"
-            tabindex="0"
+            (keydown)="onStarKeyDown($event, star)"
+            [attr.aria-label]="getStarAriaLabel(star)"
+            [attr.tabindex]="getStarTabIndex(star)"
           >
             <ui-icon
               icon="star"

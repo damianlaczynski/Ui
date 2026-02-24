@@ -1,5 +1,5 @@
 import { Component, signal, computed, viewChild } from '@angular/core';
-import { FileComponent, FileComponentMode, InputVariant, Size } from 'ui';
+import { ContentPosition, FileComponent, FileComponentMode, InputVariant, Size } from 'ui';
 import { InteractiveShowcaseComponent } from '@shared/components/interactive-showcase';
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
 import { FILE_SHOWCASE_CONFIG } from './file.showcase.config';
@@ -18,6 +18,7 @@ import { FILE_SHOWCASE_CONFIG } from './file.showcase.config';
       <div preview>
         <ui-file
           [label]="currentLabel()"
+          [labelPosition]="currentLabelPosition()"
           [mode]="currentMode()"
           [inputVariant]="currentVariant()"
           [size]="currentSize()"
@@ -47,6 +48,7 @@ export class FileInteractiveComponent {
     mode: 'area',
     variant: 'filled',
     size: 'medium',
+    labelPosition: 'above',
     multiple: false,
     disabled: false,
     readonly: false,
@@ -58,6 +60,7 @@ export class FileInteractiveComponent {
   currentMode = computed(() => this.values()['mode'] as FileComponentMode);
   currentVariant = computed(() => this.values()['variant'] as InputVariant);
   currentSize = computed(() => this.values()['size'] as Size);
+  currentLabelPosition = computed(() => this.values()['labelPosition'] as ContentPosition);
   currentMultiple = computed(() => this.values()['multiple'] as boolean);
   currentDisabled = computed(() => this.values()['disabled'] as boolean);
   currentReadonly = computed(() => this.values()['readonly'] as boolean);

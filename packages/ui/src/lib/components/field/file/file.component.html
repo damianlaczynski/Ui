@@ -1,9 +1,10 @@
 <ui-field
   [fieldType]="'file'"
   [label]="label()"
+  [labelPosition]="labelPosition()"
   [placeholder]="placeholder()"
   [helpText]="helpText()"
-  [errorText]="errorText()"
+  [(errorText)]="errorText"
   [required]="required()"
   [disabled]="disabled()"
   [readonly]="readonly()"
@@ -24,6 +25,8 @@
         [multiple]="multiple()"
         [disabled]="disabled()"
         [required]="required()"
+        [tabindex]="-1"
+        [attr.aria-hidden]="true"
         (change)="onFileInputChange($event)"
       />
       <input
@@ -34,15 +37,14 @@
         [placeholder]="placeholder()"
         [readonly]="true"
         [disabled]="disabled()"
-        [attr.aria-label]="ariaLabel() || label() || 'File input'"
-        [attr.aria-describedby]="ariaDescribedBy()"
+        [attr.aria-label]="getInlineAriaLabel()"
+        [attr.aria-describedby]="getComputedAriaDescribedBy()"
         [attr.aria-invalid]="!!errorText()"
         (click)="triggerFileInput()"
         (focus)="onFocus($event)"
         (blur)="onBlur($event)"
-        (keydown.enter)="triggerFileInput()"
-        (keydown.space)="triggerFileInput()"
-        tabindex="0"
+        (keydown)="onTriggerKeydown($event)"
+        [tabindex]="getTabIndex()"
         role="button"
       />
       @if (!disabled() && !readonly()) {
@@ -51,6 +53,7 @@
           <ui-action-button
             [icon]="'document'"
             [size]="size()"
+            [ariaLabel]="inlineTriggerAriaLabel()"
             (click)="triggerFileInput()"
           ></ui-action-button>
 
@@ -59,6 +62,7 @@
             <ui-action-button
               [icon]="'dismiss'"
               [size]="size()"
+              [ariaLabel]="clearFilesAriaLabel()"
               (click)="clear()"
             ></ui-action-button>
           }
@@ -75,11 +79,10 @@
         class="file"
         [class]="fileWrapperClasses()"
         (click)="triggerFileInput()"
-        (keydown.enter)="triggerFileInput()"
-        (keydown.space)="triggerFileInput()"
-        tabindex="0"
-        [attr.aria-label]="ariaLabel() || label() || 'File upload'"
-        [attr.aria-describedby]="ariaDescribedBy()"
+        (keydown)="onTriggerKeydown($event)"
+        [tabindex]="getTabIndex()"
+        [attr.aria-label]="getAreaAriaLabel()"
+        [attr.aria-describedby]="getComputedAriaDescribedBy()"
         [attr.aria-invalid]="!!errorText()"
         role="button"
       >
@@ -93,6 +96,8 @@
           [multiple]="multiple()"
           [disabled]="disabled()"
           [required]="required()"
+          [tabindex]="-1"
+          [attr.aria-hidden]="true"
           (change)="onFileInputChange($event)"
         />
 
@@ -119,8 +124,6 @@
             <ng-template #before> </ng-template>
 
             <ng-template #after>
-              <div class="file-item__meta">{{ getFileMeta(fileInfo) }}</div>
-
               <ui-button
                 [icon]="'dismiss'"
                 [size]="size()"

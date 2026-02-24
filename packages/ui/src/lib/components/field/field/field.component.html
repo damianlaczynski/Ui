@@ -1,17 +1,74 @@
 <div class="input-container">
-  @if (label()) {
-    <label [for]="id()" class="input-label" [ngClass]="labelClasses"> {{ label() }} </label>
+  @if (label() && labelPosition() === 'above') {
+    <label [for]="id()" [id]="getLabelElementId()" class="input-label" [ngClass]="labelClasses">
+      {{ label() }}
+    </label>
   }
 
-  <ng-content></ng-content>
+  <div
+    class="input-main"
+    [class.input-main--inline]="labelPosition() === 'before' || labelPosition() === 'after'"
+  >
+    @if (label() && labelPosition() === 'before') {
+      <label
+        [for]="id()"
+        [id]="getLabelElementId()"
+        class="input-label input-label--inline input-label--before"
+        [ngClass]="labelClasses"
+      >
+        {{ label() }}
+      </label>
+    }
+
+    <div class="input-control">
+      <ng-content></ng-content>
+    </div>
+
+    @if (label() && labelPosition() === 'after') {
+      <label
+        [for]="id()"
+        [id]="getLabelElementId()"
+        class="input-label input-label--inline input-label--after"
+        [ngClass]="labelClasses"
+      >
+        {{ label() }}
+      </label>
+    }
+  </div>
+
+  @if (label() && labelPosition() === 'below') {
+    <label
+      [for]="id()"
+      [id]="getLabelElementId()"
+      class="input-label input-label--below"
+      [ngClass]="labelClasses"
+    >
+      {{ label() }}
+    </label>
+  }
 
   <!-- Help Text -->
   @if (helpText() && !errorText()) {
-    <span class="input-label input-label--help" [ngClass]="labelClasses"> {{ helpText() }} </span>
+    <span
+      [id]="getHelpTextElementId()"
+      class="input-label input-label--help"
+      [ngClass]="labelClasses"
+      aria-live="polite"
+    >
+      {{ helpText() }}
+    </span>
   }
 
   <!-- Error Text -->
   @if (errorText()) {
-    <span class="input-label input-label--error" [ngClass]="labelClasses"> {{ errorText() }} </span>
+    <span
+      [id]="getErrorTextElementId()"
+      class="input-label input-label--error"
+      [ngClass]="labelClasses"
+      aria-live="polite"
+      role="status"
+    >
+      {{ errorText() }}
+    </span>
   }
 </div>

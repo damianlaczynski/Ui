@@ -1,4 +1,14 @@
-import { Component, forwardRef, input, model, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  computed,
+  forwardRef,
+  input,
+  model,
+  OnInit,
+  signal,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FieldComponent } from '../field/field.component';
@@ -32,9 +42,10 @@ export class SliderComponent extends FieldComponent implements ControlValueAcces
   showStepMarkers = input<boolean>(false);
   showMinMax = input<boolean>(false);
 
-  protected _isDragging = false;
+  private dragging = signal(false);
+  readonly isDragging = computed(() => this.dragging());
 
-  get sliderClasses(): string {
+  readonly sliderClasses = computed(() => {
     const classes = ['slider'];
 
     classes.push(`slider--${this.size()}`);
@@ -47,7 +58,7 @@ export class SliderComponent extends FieldComponent implements ControlValueAcces
       classes.push('slider--readonly');
     }
 
-    if (this._isDragging) {
+    if (this.dragging()) {
       classes.push('slider--dragging');
     }
 
@@ -56,26 +67,46 @@ export class SliderComponent extends FieldComponent implements ControlValueAcces
     }
 
     return classes.join(' ');
-  }
+  });
 
-  getFillPercentage(): number {
+  readonly currentValue = computed(() => {
+    const modelValue = this.valueModel();
+    if (typeof modelValue === 'number' && Number.isFinite(modelValue)) {
+      return modelValue;
+    }
+
+    return this.min();
+  });
+
+  readonly fillPercentage = computed(() => {
     const range = this.max() - this.min();
-    const valueOffset = this.currentValue - this.min();
-    return (valueOffset / range) * 100;
-  }
+    if (range <= 0) {
+      return 0;
+    }
 
-  getThumbPosition(): number {
-    return this.getFillPercentage();
-  }
+    const valueOffset = this.currentValue() - this.min();
+    const percentage = (valueOffset / range) * 100;
+    return Math.min(100, Math.max(0, percentage));
+  });
 
-  getAriaValueText(): string | null {
+  readonly computedAriaLabel = computed(() => {
+    const explicit = this.ariaLabel()?.trim();
+    if (explicit) {
+      return explicit;
+    }
+
+    const fallback = this.label()?.trim();
+    return fallback || null;
+  });
+
+  readonly computedAriaValueText = computed(() => {
     const aria = this.ariaValueText();
     if (!aria) return null;
-    if (typeof aria === 'function') return aria(this.currentValue);
+    if (typeof aria === 'function') return aria(this.currentValue());
     return aria;
-  }
+  });
 
-  getStepsPercent(): string | null {
+  readonly stepsPercent = computed(() => {
     if (!this.showStepMarkers()) return null;
     const s = this.step();
     const minVal = this.min();
@@ -85,47 +116,45 @@ export class SliderComponent extends FieldComponent implements ControlValueAcces
     const numSteps = Math.round(range / s);
     if (numSteps < 2) return null;
     return `${100 / numSteps}%`;
-  }
+  });
 
-  getSliderDirection(): string {
-    return this.vertical() ? '0deg' : '90deg';
-  }
-
-  getVisualStyle(): Record<string, string> {
-    const progress = `${this.getFillPercentage()}%`;
-    const direction = this.getSliderDirection();
-    const stepsPercent = this.getStepsPercent();
+  readonly visualStyle = computed<Record<string, string>>(() => {
+    const progress = `${this.fillPercentage()}%`;
+    const stepsPercent = this.stepsPercent();
     const style: Record<string, string> = {
       '--slider-progress': progress,
-      '--slider-direction': direction,
     };
     if (stepsPercent) {
       style['--slider-steps-percent'] = stepsPercent;
     }
     return style;
-  }
+  });
 
-  getThumbWrapperStyle(): Record<string, string> {
-    const progress = `${this.getFillPercentage()}%`;
+  readonly thumbWrapperStyle = computed<Record<string, string>>(() => {
+    const progress = `${this.fillPercentage()}%`;
     const position = `clamp(var(--slider-thumb-radius), ${progress}, calc(100% - var(--slider-thumb-radius)))`;
-    return this.vertical()
-      ? { bottom: position, transform: 'translate(-50%, 50%)' }
-      : { left: position, transform: 'translate(-50%, -50%)' };
-  }
+    const style: Record<string, string> = {
+      transform: this.vertical() ? 'translate(-50%, 50%)' : 'translate(-50%, -50%)',
+    };
 
-  get currentValue(): number {
-    return this.valueModel() !== undefined && this.valueModel() !== null
-      ? this.valueModel()!
-      : this.value;
-  }
+    if (this.vertical()) {
+      style['bottom'] = position;
+    } else {
+      style['inset-inline-start'] = position;
+      style['transform'] = 'translate(var(--slider-thumb-translate-x), -50%)';
+    }
+
+    return style;
+  });
 
   private setCurrentValue(value: number): void {
-    if (this.valueModel() !== undefined && this.valueModel() !== null) {
-      this.valueModel.set(value);
-    } else {
-      this.value = value;
-    }
-    this.onChange(value);
+    const min = this.min();
+    const max = this.max();
+    const normalized = Math.min(max, Math.max(min, value));
+
+    this.value = normalized;
+    this.valueModel.set(normalized);
+    this.onChange(normalized);
   }
 
   onSliderInput(event: Event): void {
@@ -150,47 +179,76 @@ export class SliderComponent extends FieldComponent implements ControlValueAcces
   onSliderKeyDown(event: KeyboardEvent): void {
     if (this.disabled() || this.readonly()) {
       event.preventDefault();
+      return;
+    }
+
+    const step = this.step() > 0 ? this.step() : 1;
+    let nextValue: number | null = null;
+
+    switch (event.key) {
+      case 'ArrowRight':
+      case 'ArrowUp':
+        nextValue = this.currentValue() + step;
+        break;
+      case 'ArrowLeft':
+      case 'ArrowDown':
+        nextValue = this.currentValue() - step;
+        break;
+      case 'PageUp':
+        nextValue = this.currentValue() + step * 10;
+        break;
+      case 'PageDown':
+        nextValue = this.currentValue() - step * 10;
+        break;
+      case 'Home':
+        nextValue = this.min();
+        break;
+      case 'End':
+        nextValue = this.max();
+        break;
+    }
+
+    if (nextValue !== null) {
+      event.preventDefault();
+      this.setCurrentValue(nextValue);
+      this.change.emit(this.currentValue());
     }
   }
 
   override onBlur(event: FocusEvent): void {
     this._isFocused = false;
-    this._isDragging = false;
+    this.dragging.set(false);
     this.onTouched();
     this.blur.emit(event);
   }
 
   onMouseDown(): void {
     if (!this.disabled() && !this.readonly()) {
-      this._isDragging = true;
+      this.dragging.set(true);
     }
   }
 
   onMouseUp(): void {
-    this._isDragging = false;
+    this.dragging.set(false);
   }
 
   // ControlValueAccessor methods
   override writeValue(value: unknown): void {
+    const minValue = this.min();
+
     if (value !== null && value !== undefined) {
       const numValue = typeof value === 'number' ? value : parseFloat(String(value));
-      if (this.valueModel() !== undefined && this.valueModel() !== null) {
-        this.valueModel.set(numValue);
-      } else {
-        this.value = numValue;
-      }
+      const normalized = Number.isFinite(numValue) ? numValue : minValue;
+      this.value = normalized;
+      this.valueModel.set(normalized);
     } else {
-      const minValue = this.min();
-      if (this.valueModel() !== undefined && this.valueModel() !== null) {
-        this.valueModel.set(minValue);
-      } else {
-        this.value = minValue;
-      }
+      this.value = minValue;
+      this.valueModel.set(minValue);
     }
   }
 
   setValue(value: number): void {
     this.setCurrentValue(value);
-    this.change.emit(value);
+    this.change.emit(this.currentValue());
   }
 }

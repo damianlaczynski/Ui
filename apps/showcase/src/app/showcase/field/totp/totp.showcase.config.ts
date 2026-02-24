@@ -9,6 +9,7 @@ import {
 import {
   SIZES,
   INPUT_VARIANTS,
+  CONTENT_POSITIONS,
   SHOWCASE_GROUP_ICONS,
 } from '@shared/utils/showcase/component-options.utils';
 
@@ -72,6 +73,14 @@ const TOTP_CONTROL_DEFS: SharedControlDef[] = [
     group: 'appearance',
   },
   {
+    key: 'labelPosition',
+    label: 'Label Position',
+    type: 'dropdown',
+    options: toOptions([...CONTENT_POSITIONS]),
+    defaultValue: 'above',
+    group: 'appearance',
+  },
+  {
     key: 'disabled',
     label: 'Disabled',
     type: 'switch',
@@ -103,6 +112,7 @@ export const TOTP_DRAWER_CONFIGS = createDrawerFormConfigs(TOTP_FORM_CONTROLS, {
   digitsCount: { excludeKey: 'digitsCount' },
   size: { excludeKey: 'size' },
   variants: { excludeKey: 'variant' },
+  labelPosition: { excludeKey: 'labelPosition' },
   states: { excludeKeys: ['disabled', 'readonly', 'required'] },
   combinations: { excludeKeys: ['variant', 'size'] },
 });

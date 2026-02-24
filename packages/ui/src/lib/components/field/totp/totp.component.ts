@@ -1,22 +1,26 @@
 import {
   Component,
+  ElementRef,
   forwardRef,
   ViewChildren,
   QueryList,
-  ElementRef,
+  inject,
   signal,
   computed,
   input,
   OnInit,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { FieldComponent } from '../field/field.component';
-import { CommonModule, NgClass } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'ui-totp',
 
-  imports: [FieldComponent, CommonModule, NgClass],
+  imports: [FieldComponent, CommonModule],
   templateUrl: './totp.component.html',
   providers: [
     {
@@ -33,8 +37,18 @@ import { CommonModule, NgClass } from '@angular/common';
     `,
   ],
 })
-export class TotpComponent extends FieldComponent implements OnInit, ControlValueAccessor {
+export class TotpComponent
+  extends FieldComponent
+  implements OnInit, OnChanges, ControlValueAccessor
+{
+  private readonly host = inject(ElementRef<HTMLElement>);
+  private readonly document = inject(DOCUMENT);
+
   digitsCount = input<number>(6);
+  digitAriaLabelFormatter = input<(index: number, count: number) => string>(
+    (index, count) => `Digit ${index + 1} of ${count}`,
+  );
+  groupAriaLabel = input<string>('Verification code');
 
   @ViewChildren('digitInput') digitInputs!: QueryList<ElementRef<HTMLInputElement>>;
 
@@ -46,11 +60,43 @@ export class TotpComponent extends FieldComponent implements OnInit, ControlValu
     return this.digits().join('');
   });
 
+  readonly totpContainerClasses = computed(() => {
+    return `totp-container totp-container--${this.size()}`;
+  });
+
+  readonly totpInputWrapperClasses = computed(() => {
+    const classes = [
+      'input-wrapper',
+      'totp-input-wrapper',
+      `input-wrapper--${this.size()}`,
+      `input-wrapper--${this.inputVariant()}`,
+    ];
+
+    if (this.disabled()) {
+      classes.push('input-wrapper--disabled');
+    }
+
+    if (this.readonly()) {
+      classes.push('input-wrapper--read-only');
+    }
+
+    if (this.errorText()) {
+      classes.push('input-wrapper--error');
+    }
+
+    return classes.join(' ');
+  });
+
   override ngOnInit(): void {
     super.ngOnInit();
-    // Initialize digits array based on digitsCount
-    const count = this.digitsCount();
-    this.digits.set(new Array(count).fill(''));
+    this.syncDigitsLength();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['digitsCount'] && !changes['digitsCount'].firstChange) {
+      this.syncDigitsLength();
+      this.updateValue();
+    }
   }
 
   onDigitInput(event: Event, index: number): void {
@@ -78,7 +124,7 @@ export class TotpComponent extends FieldComponent implements OnInit, ControlValu
 
     // Move to next field if digit entered
     if (value && index < this.digitsCount() - 1) {
-      this.focusNext(index);
+      this.focusCodeNext(index);
     }
 
     // Update value and emit
@@ -112,7 +158,7 @@ export class TotpComponent extends FieldComponent implements OnInit, ControlValu
           prevInput.nativeElement.value = '';
         }
 
-        this.focusPrevious(index);
+        this.focusCodePrevious(index);
       }
     }
     // Handle delete - clear current and stay
@@ -123,10 +169,10 @@ export class TotpComponent extends FieldComponent implements OnInit, ControlValu
       this.updateValue();
     }
     // Handle arrow keys
-    else if (event.key === 'ArrowLeft' && index > 0) {
+    else if (event.key === 'ArrowLeft' && this.canMovePrevious(index)) {
       event.preventDefault();
       this.focusPrevious(index);
-    } else if (event.key === 'ArrowRight' && index < this.digitsCount() - 1) {
+    } else if (event.key === 'ArrowRight' && this.canMoveNext(index)) {
       event.preventDefault();
       this.focusNext(index);
     }
@@ -153,6 +199,44 @@ export class TotpComponent extends FieldComponent implements OnInit, ControlValu
     target.select();
   }
 
+  getContainerAriaLabelledBy(): string | null {
+    return this.getLabelElementId();
+  }
+
+  getContainerAriaLabel(): string | null {
+    if (this.label()) {
+      return null;
+    }
+
+    const explicitAriaLabel = this.ariaLabel().trim();
+    if (explicitAriaLabel) {
+      return explicitAriaLabel;
+    }
+
+    return this.groupAriaLabel();
+  }
+
+  getDigitAriaLabel(index: number): string {
+    return this.digitAriaLabelFormatter()(index, this.digitsCount());
+  }
+
+  getDigitPlaceholder(index: number): string | null {
+    const placeholder = this.placeholder();
+    if (!placeholder) {
+      return null;
+    }
+
+    if (placeholder.length === this.digitsCount()) {
+      return placeholder[index] || null;
+    }
+
+    if (placeholder.length === 1) {
+      return placeholder;
+    }
+
+    return null;
+  }
+
   private fillDigits(digits: string, startIndex: number = 0): void {
     const currentDigits = [...this.digits()];
     const count = this.digitsCount();
@@ -172,14 +256,30 @@ export class TotpComponent extends FieldComponent implements OnInit, ControlValu
   }
 
   private focusNext(currentIndex: number): void {
-    if (currentIndex < this.digitsCount() - 1) {
-      this.focusInput(currentIndex + 1);
+    const targetIndex = this.isRtl() ? currentIndex - 1 : currentIndex + 1;
+    if (targetIndex >= 0 && targetIndex < this.digitsCount()) {
+      this.focusInput(targetIndex);
     }
   }
 
   private focusPrevious(currentIndex: number): void {
-    if (currentIndex > 0) {
-      this.focusInput(currentIndex - 1);
+    const targetIndex = this.isRtl() ? currentIndex + 1 : currentIndex - 1;
+    if (targetIndex >= 0 && targetIndex < this.digitsCount()) {
+      this.focusInput(targetIndex);
+    }
+  }
+
+  private focusCodeNext(currentIndex: number): void {
+    const targetIndex = currentIndex + 1;
+    if (targetIndex >= 0 && targetIndex < this.digitsCount()) {
+      this.focusInput(targetIndex);
+    }
+  }
+
+  private focusCodePrevious(currentIndex: number): void {
+    const targetIndex = currentIndex - 1;
+    if (targetIndex >= 0 && targetIndex < this.digitsCount()) {
+      this.focusInput(targetIndex);
     }
   }
 
@@ -197,10 +297,21 @@ export class TotpComponent extends FieldComponent implements OnInit, ControlValu
     this.change.emit(code);
   }
 
+  private syncDigitsLength(): void {
+    const count = Math.max(1, this.digitsCount());
+    const current = this.digits();
+    const next = new Array(count).fill('');
+
+    for (let i = 0; i < count && i < current.length; i++) {
+      next[i] = current[i];
+    }
+
+    this.digits.set(next);
+  }
+
   override writeValue(value: any): void {
     if (!value) {
-      const count = this.digitsCount();
-      this.digits.set(new Array(count).fill(''));
+      this.syncDigitsLength();
       this.value = '';
       return;
     }
@@ -218,26 +329,33 @@ export class TotpComponent extends FieldComponent implements OnInit, ControlValu
     this.value = this.fullCode();
   }
 
-  getDigitValue(index: number): string {
-    return this.digits()[index] || '';
-  }
-
-  getTotpContainerClasses(): string {
-    return `totp-container totp-container--${this.size()}`;
-  }
-
-  // Override wrapperClasses to get it from FieldComponent
-  override get wrapperClasses(): string {
-    const classes = [`input-wrapper--${this.size()}`, `input-wrapper--${this.inputVariant()}`];
-
-    if (this.disabled()) {
-      classes.push('input-wrapper--disabled');
+  private canMovePrevious(index: number): boolean {
+    if (this.isRtl()) {
+      return index < this.digitsCount() - 1;
     }
 
-    if (this.readonly()) {
-      classes.push('input-wrapper--read-only');
+    return index > 0;
+  }
+
+  private canMoveNext(index: number): boolean {
+    if (this.isRtl()) {
+      return index > 0;
     }
 
-    return classes.join(' ');
+    return index < this.digitsCount() - 1;
+  }
+
+  private isRtl(): boolean {
+    const hostElement = this.host.nativeElement;
+    const computedDirection = getComputedStyle(hostElement).direction;
+    if (computedDirection === 'rtl') {
+      return true;
+    }
+
+    if (hostElement.closest('[dir="rtl"]')) {
+      return true;
+    }
+
+    return this.document?.documentElement?.dir === 'rtl';
   }
 }

@@ -1,7 +1,7 @@
-// Switch Component Styles based on Fluent 2 Design System
-// Implements toggle switch with unchecked and checked states
 @use '../utils/variables' as *;
 @use '../utils/mixins' as *;
+
+$switch-thumb-offset: 20px;
 
 .switch-wrapper {
   display: inline-flex;
@@ -44,15 +44,70 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  @include transition-transform($duration-ultra-slow);
 }
 
 .switch-svg {
   display: block;
   width: 56px;
   height: 36px;
-  @include transition-colors($duration-ultra-slow);
-  @include transition-transform($duration-ultra-slow);
+}
+
+.switch-track,
+.switch-thumb {
+  @include transition(fill transform, $duration-fast, $easing-ease-in-out);
+}
+
+.switch-thumb {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.switch-track--unchecked {
+  fill: transparent;
+  stroke: var(--color-neutral-stroke-accessible);
+  stroke-width: 1;
+}
+
+.switch-track--checked {
+  fill: var(--color-brand-primary);
+  stroke: var(--color-brand-primary);
+  stroke-width: 1;
+}
+
+.switch-thumb--unchecked {
+  fill: var(--color-neutral-stroke-accessible);
+  transform: translateX(0);
+}
+
+.switch-thumb--checked {
+  fill: var(--color-neutral-foreground-on-brand);
+  transform: translateX($switch-thumb-offset);
+}
+
+.switch-container:hover:not(:has(.switch-input:disabled)) .switch-track--unchecked {
+  stroke: var(--color-neutral-stroke-accessible-hover);
+}
+
+.switch-container:hover:not(:has(.switch-input:disabled)) .switch-thumb--unchecked {
+  fill: var(--color-neutral-stroke-accessible-hover);
+}
+
+.switch-container:hover:not(:has(.switch-input:disabled)) .switch-track--checked {
+  fill: var(--color-brand-primary-hover);
+  stroke: var(--color-brand-primary-hover);
+}
+
+.switch-container:active:not(:has(.switch-input:disabled)) .switch-track--unchecked {
+  stroke: var(--color-neutral-stroke-accessible-pressed);
+}
+
+.switch-container:active:not(:has(.switch-input:disabled)) .switch-thumb--unchecked {
+  fill: var(--color-neutral-stroke-accessible-pressed);
+}
+
+.switch-container:active:not(:has(.switch-input:disabled)) .switch-track--checked {
+  fill: var(--color-brand-primary-pressed);
+  stroke: var(--color-brand-primary-pressed);
 }
 
 .switch-label-above {
@@ -92,85 +147,26 @@
   }
 }
 
-.switch--unchecked {
-  .switch-stroke {
-    fill: var(--color-neutral-stroke-rest);
-    @include transition-colors($duration-ultra-slow);
-  }
-
-  .switch-thumb {
-    fill: var(--color-neutral-stroke-rest);
-    @include transition-colors($duration-ultra-slow);
-    @include transition-transform($duration-ultra-slow);
-  }
-
-  .switch-container:hover:not(:has(.switch-input:disabled)) & {
-    .switch-stroke {
-      fill: var(--color-neutral-stroke-hover);
-    }
-    .switch-thumb {
-      fill: var(--color-neutral-stroke-hover);
-    }
-  }
-
-  .switch-container:active:not(:has(.switch-input:disabled)) & {
-    .switch-stroke {
-      fill: var(--color-neutral-stroke-pressed);
-    }
-    .switch-thumb {
-      fill: var(--color-neutral-stroke-pressed);
-    }
-  }
-}
-
-.switch--checked {
-  .switch-background {
-    fill: var(--color-brand-primary);
-    @include transition-colors($duration-ultra-slow);
-  }
-
-  .switch-thumb-checked {
-    fill: var(--color-neutral-foreground-on-brand);
-    @include transition-colors($duration-ultra-slow);
-    @include transition-transform($duration-ultra-slow);
-  }
-
-  .switch-container:hover:not(:has(.switch-input:disabled)) & {
-    .switch-background {
-      fill: var(--color-brand-primary-hover);
-    }
-  }
-
-  .switch-container:active:not(:has(.switch-input:disabled)) & {
-    .switch-background {
-      fill: var(--color-brand-primary-pressed);
-    }
-  }
-}
-
 .switch--disabled {
-  opacity: 1;
-
   .switch-label {
     color: var(--color-neutral-foreground-disabled);
   }
 
-  &.switch--unchecked {
-    .switch-stroke {
-      fill: var(--color-neutral-stroke-disabled);
-    }
-    .switch-thumb {
-      fill: var(--color-neutral-foreground-disabled);
-    }
+  .switch-track--unchecked {
+    stroke: var(--color-neutral-stroke-accessible-disabled);
   }
 
-  &.switch--checked {
-    .switch-background {
-      fill: var(--color-neutral-background-disabled);
-    }
-    .switch-thumb-checked {
-      fill: var(--color-neutral-foreground-disabled);
-    }
+  .switch-thumb--unchecked {
+    fill: var(--color-neutral-foreground-disabled);
+  }
+
+  .switch-track--checked {
+    fill: var(--color-neutral-background-disabled);
+    stroke: var(--color-neutral-background-disabled);
+  }
+
+  .switch-thumb--checked {
+    fill: var(--color-neutral-foreground-disabled);
   }
 }
 
@@ -218,29 +214,25 @@
   }
 }
 
-// ===== ANIMATION =====
-.switch-visual {
+// ===== REDUCED MOTION =====
+@media (prefers-reduced-motion: reduce) {
+  .switch-track,
+  .switch-thumb,
   .switch-svg {
-    @include transition-transform($duration-fast);
+    transition: none !important;
   }
-}
-
-// Smooth transition between states
-.switch--unchecked .switch-thumb,
-.switch--checked .switch-thumb-checked {
-  @include transition-colors($duration-fast);
-  transition-property: cx;
-  transition-duration: $duration-fast;
-  transition-timing-function: $easing-ease-in-out;
-}
-
-.switch--unchecked .switch-stroke,
-.switch--checked .switch-background {
-  @include transition-colors($duration-ultra-slow);
 }
 
 // ===== RTL SUPPORT =====
 [dir='rtl'] {
+  .switch-thumb--unchecked {
+    transform: translateX($switch-thumb-offset);
+  }
+
+  .switch-thumb--checked {
+    transform: translateX(0);
+  }
+
   .switch-label-before {
     padding-left: 4px;
     padding-right: 8px;
