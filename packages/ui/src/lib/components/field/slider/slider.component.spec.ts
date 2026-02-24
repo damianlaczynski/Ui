@@ -112,6 +112,13 @@ describe('SliderComponent', () => {
     expect(input.classList.contains('slider-input--readonly')).toBe(true);
   });
 
+  it('should remove slider input from tab order when readonly', () => {
+    fixture.componentRef.setInput('readonly', true);
+    fixture.detectChanges();
+    const input: HTMLInputElement = fixture.nativeElement.querySelector('input');
+    expect(input.tabIndex).toBe(-1);
+  });
+
   it('should respect custom min and max', () => {
     fixture.componentRef.setInput('min', 10);
     fixture.componentRef.setInput('max', 50);

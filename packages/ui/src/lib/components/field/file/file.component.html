@@ -25,6 +25,8 @@
         [multiple]="multiple()"
         [disabled]="disabled()"
         [required]="required()"
+        [tabindex]="-1"
+        [attr.aria-hidden]="true"
         (change)="onFileInputChange($event)"
       />
       <input
@@ -94,6 +96,8 @@
           [multiple]="multiple()"
           [disabled]="disabled()"
           [required]="required()"
+          [tabindex]="-1"
+          [attr.aria-hidden]="true"
           (change)="onFileInputChange($event)"
         />
 
@@ -120,8 +124,6 @@
             <ng-template #before> </ng-template>
 
             <ng-template #after>
-              <div class="file-item__meta">{{ getFileMeta(fileInfo) }}</div>
-
               <ui-button
                 [icon]="'dismiss'"
                 [size]="size()"
