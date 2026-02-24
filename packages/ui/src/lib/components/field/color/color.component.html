@@ -65,6 +65,7 @@
         [disabled]="disabled()"
         [readonly]="readonly()"
         [value]="value || ''"
+        [attr.tabindex]="getTabIndex()"
         [attr.aria-label]="getColorInputAriaLabel()"
         [attr.aria-describedby]="getComputedAriaDescribedBy()"
         [attr.aria-invalid]="!!errorText()"

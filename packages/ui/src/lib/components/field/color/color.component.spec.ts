@@ -54,7 +54,18 @@ describe('ColorComponent', () => {
     expect(input.getAttribute('aria-controls')).toBe('color-panel-color-panel');
   });
 
-  it('should use i18n fallback warning message when eyedropper is unsupported', async () => {
+  it('should remove custom trigger input from tab order when readonly', () => {
+    fixture.componentRef.setInput('readonly', true);
+    fixture.detectChanges();
+
+    const input: HTMLInputElement = fixture.nativeElement.querySelector('input.input');
+    expect(input.tabIndex).toBe(-1);
+  });
+
+  it('should use configurable warning message when eyedropper is unsupported', async () => {
+    fixture.componentRef.setInput('eyeDropperNotSupportedMessage', 'Eyedropper not available');
+    fixture.detectChanges();
+
     const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
     await component.openEyeDropper();
 

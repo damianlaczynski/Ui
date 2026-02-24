@@ -35,6 +35,7 @@
           [value]="currentValue()"
           [required]="required()"
           [disabled]="disabled()"
+          [attr.tabindex]="getTabIndex()"
           [attr.aria-readonly]="readonly() ? 'true' : null"
           [attr.aria-label]="computedAriaLabel()"
           [attr.aria-describedby]="getComputedAriaDescribedBy()"

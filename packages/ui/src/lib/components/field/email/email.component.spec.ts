@@ -59,4 +59,13 @@ describe('EmailComponent', () => {
     );
     expect(actionButtons.some(btn => btn.getAttribute('aria-label') === 'Email')).toBe(true);
   });
+
+  it('should select full value on focus', () => {
+    const input: HTMLInputElement = fixture.nativeElement.querySelector('input');
+    input.value = 'john@example.com';
+    const selectSpy = vi.spyOn(input, 'select');
+    input.dispatchEvent(new FocusEvent('focus'));
+
+    expect(selectSpy).toHaveBeenCalled();
+  });
 });

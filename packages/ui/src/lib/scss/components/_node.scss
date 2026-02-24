@@ -303,6 +303,12 @@
     @include transition-opacity($duration-faster);
   }
 
+  &__after {
+    display: inline-flex;
+    align-items: center;
+    margin-left: auto;
+  }
+
   &__icon {
     display: flex;
     flex-shrink: 0;

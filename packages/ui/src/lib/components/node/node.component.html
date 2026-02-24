@@ -38,6 +38,12 @@
             *ngTemplateOutlet="contentTemplate()!; context: { $implicit: node() }"
           ></ng-container>
         } @else {
+          @if (beforeTemplate()) {
+            <ng-container
+              *ngTemplateOutlet="beforeTemplate()!; context: { $implicit: node() }"
+            ></ng-container>
+          }
+
           <!-- Default content -->
           @if (shouldShowIcon()) {
             <span class="node__icon">
@@ -71,6 +77,14 @@
               ></ng-container>
             </div>
           }
+
+          @if (afterTemplate()) {
+            <div class="node__after">
+              <ng-container
+                *ngTemplateOutlet="afterTemplate()!; context: { $implicit: node() }"
+              ></ng-container>
+            </div>
+          }
         }
       </button>
     } @else {
@@ -93,6 +107,12 @@
             *ngTemplateOutlet="contentTemplate()!; context: { $implicit: node() }"
           ></ng-container>
         } @else {
+          @if (beforeTemplate()) {
+            <ng-container
+              *ngTemplateOutlet="beforeTemplate()!; context: { $implicit: node() }"
+            ></ng-container>
+          }
+
           <!-- Default content -->
           @if (shouldShowIcon()) {
             <span class="node__icon">
@@ -123,6 +143,14 @@
             <div class="node__quick-actions">
               <ng-container
                 *ngTemplateOutlet="quickActionsTemplate()!; context: { $implicit: node() }"
+              ></ng-container>
+            </div>
+          }
+
+          @if (afterTemplate()) {
+            <div class="node__after">
+              <ng-container
+                *ngTemplateOutlet="afterTemplate()!; context: { $implicit: node() }"
               ></ng-container>
             </div>
           }

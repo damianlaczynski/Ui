@@ -22,4 +22,13 @@ import { ActionButtonComponent } from '../action-button.component';
     `,
   ],
 })
-export class EmailComponent extends FieldComponent {}
+export class EmailComponent extends FieldComponent {
+  override onFocus(event: FocusEvent): void {
+    super.onFocus(event);
+
+    const target = event.target;
+    if (target instanceof HTMLInputElement && target.type === 'email' && target.value.length > 0) {
+      target.select();
+    }
+  }
+}

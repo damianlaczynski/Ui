@@ -68,4 +68,31 @@ describe('FileComponent', () => {
     expect(preventSpy).toHaveBeenCalled();
     expect(triggerSpy).toHaveBeenCalled();
   });
+
+  it('should keep native inline file input out of tab order', () => {
+    fixture.componentRef.setInput('mode', 'inline');
+    fixture.detectChanges();
+
+    const hiddenInput: HTMLInputElement = fixture.nativeElement.querySelector('.file-input');
+    expect(hiddenInput.tabIndex).toBe(-1);
+  });
+
+  it('should keep native area file input out of tab order', () => {
+    fixture.componentRef.setInput('mode', 'area');
+    fixture.detectChanges();
+
+    const hiddenInput: HTMLInputElement = fixture.nativeElement.querySelector('.file-input');
+    expect(hiddenInput.tabIndex).toBe(-1);
+  });
+
+  it('should render remove button for selected files in area mode', () => {
+    fixture.componentRef.setInput('mode', 'area');
+    component.writeValue(new File(['hello'], 'hello.txt', { type: 'text/plain' }));
+    fixture.detectChanges();
+
+    const removeButtons: HTMLButtonElement[] = Array.from(
+      fixture.nativeElement.querySelectorAll('.file-list .button[aria-label^="Remove "]'),
+    );
+    expect(removeButtons.length).toBe(1);
+  });
 });

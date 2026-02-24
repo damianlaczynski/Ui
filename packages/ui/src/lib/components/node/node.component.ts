@@ -80,6 +80,8 @@ export class NodeComponent<T extends Node> {
   dragLeave = output<{ node: T; event: DragEvent }>();
 
   contentTemplate = contentChild<TemplateRef<any>>('content');
+  beforeTemplate = contentChild<TemplateRef<any>>('before');
+  afterTemplate = contentChild<TemplateRef<any>>('after');
 
   private nodeElement = viewChild<ElementRef>('nodeElement');
 
