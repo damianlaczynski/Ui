@@ -26,6 +26,7 @@ import {
 import { NodeComponent, Node } from '../node/node.component';
 import { LoadingStateComponent } from '../loading-state/loading-state.component';
 import { Size, Shape, Appearance } from '../utils';
+import { UiI18nService } from '../../i18n';
 
 export type ScrollContainerDataSource<T = any> = (
   page: number,
@@ -39,7 +40,30 @@ export type ScrollContainerDataSource<T = any> = (
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ScrollContainerComponent<T = any> {
-  // Data source
+  //Service
+  private readonly i18n = inject(UiI18nService);
+  private readonly destroyRef = inject(DestroyRef);
+
+  //Translations
+  private readonly scrollAriaLabel = this.i18n.tSignal(
+    'scrollContainer.ariaLabel',
+    'Scrollable container with items',
+  );
+  private readonly emptyText = this.i18n.tSignal(
+    'scrollContainer.emptyText',
+    'No items to display',
+  );
+  private readonly loadDataErrorText = this.i18n.tSignal(
+    'scrollContainer.loadDataError',
+    'Failed to load data',
+  );
+  private readonly loadMoreErrorText = this.i18n.tSignal(
+    'scrollContainer.loadMoreError',
+    'Failed to load more data',
+  );
+
+  //Inputs
+  // Data source configuration
   dataSource = input.required<ScrollContainerDataSource<T>>();
   pageSize = input<number>(20);
   initialPage = input<number>(1);
@@ -92,7 +116,8 @@ export class ScrollContainerComponent<T = any> {
   effectiveItemTemplate = computed(() => this.itemTemplate() || this.itemTemplateRef() || null);
   shouldUseNodeComponent = computed(() => this.useNodeComponent() && !this.effectiveItemTemplate());
 
-  private destroyRef = inject(DestroyRef);
+  emptyTextComputed = computed(() => this.emptyText());
+  effectiveAriaLabel = computed(() => this.ariaLabel().trim() || this.scrollAriaLabel());
 
   constructor() {
     effect(() => {
@@ -122,7 +147,7 @@ export class ScrollContainerComponent<T = any> {
           this.loadMore.emit({ page: this.initialPage(), items: result.items });
         },
         error: err => {
-          this.error.set(err instanceof Error ? err.message : 'Failed to load data');
+          this.error.set(err instanceof Error ? err.message : this.loadDataErrorText());
           this.items.set([]);
           this.isLoading.set(false);
         },
@@ -156,7 +181,7 @@ export class ScrollContainerComponent<T = any> {
           }
         },
         error: err => {
-          this.error.set(err instanceof Error ? err.message : 'Failed to load more data');
+          this.error.set(err instanceof Error ? err.message : this.loadMoreErrorText());
           this.isLoading.set(false);
         },
       });
@@ -262,9 +287,5 @@ export class ScrollContainerComponent<T = any> {
     this.hasPreviousPage.set(false);
     this.selectedItemId.set(null);
     this.loadInitialData();
-  }
-
-  getItems(): T[] {
-    return this.items();
   }
 }

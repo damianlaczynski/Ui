@@ -1,10 +1,11 @@
-import { Component, computed, input, output, ChangeDetectionStrategy } from '@angular/core';
+import { Component, computed, input, output, ChangeDetectionStrategy, inject } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from '../button/button.component';
 import { IconComponent } from '../icon/icon.component';
 import { DropdownComponent, DropdownItem } from '../field/dropdown/dropdown.component';
 import { Size, Variant } from '../utils';
+import { UiI18nService } from '../../i18n';
 
 export interface PaginationConfig {
   currentPage: number;
@@ -26,6 +27,8 @@ export interface PaginationConfig {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaginationComponent {
+  private readonly i18n = inject(UiI18nService);
+
   // Inputs
   config = input.required<PaginationConfig>();
   size = input<Size>('medium');
@@ -102,15 +105,29 @@ export class PaginationComponent {
     return this.config().currentPage < this.config().totalPages;
   });
 
+  firstPageAriaLabel = this.i18n.tSignal('pagination.aria.firstPage', 'First page');
+  previousPageAriaLabel = this.i18n.tSignal('pagination.aria.previousPage', 'Previous page');
+  nextPageAriaLabel = this.i18n.tSignal('pagination.aria.nextPage', 'Next page');
+  lastPageAriaLabel = this.i18n.tSignal('pagination.aria.lastPage', 'Last page');
+  firstPageLabel = this.i18n.tSignal('pagination.label.first', 'First');
+  lastPageLabel = this.i18n.tSignal('pagination.label.last', 'Last');
+  perPagePlaceholder = this.i18n.tSignal('pagination.perPagePlaceholder', 'Per page');
+  noItemsText = this.i18n.tSignal('pagination.info.noItems', 'No items');
+
   infoText = computed(() => {
+    this.i18n.languageVersion();
     const cfg = this.config();
     if (cfg.totalItems === 0) {
-      return 'No items';
+      return this.noItemsText();
     }
 
     const start = (cfg.currentPage - 1) * cfg.pageSize + 1;
     const end = Math.min(cfg.currentPage * cfg.pageSize, cfg.totalItems);
-    return `Showing ${start}-${end} of ${cfg.totalItems}`;
+    return this.i18n.t('pagination.info.range', `Showing ${start}-${end} of ${cfg.totalItems}`, {
+      start,
+      end,
+      total: cfg.totalItems,
+    });
   });
 
   getButtonAppearance(page: number): 'filled' | 'outline' | 'subtle' | 'transparent' {
@@ -182,4 +199,9 @@ export class PaginationComponent {
     classes.push(`pagination--${this.size()}`);
     return classes.join(' ');
   });
+
+  getPageAriaLabel(page: number): string {
+    this.i18n.languageVersion();
+    return this.i18n.t('pagination.aria.page', `Page ${page}`, { page });
+  }
 }

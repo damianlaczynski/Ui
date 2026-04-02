@@ -1,4 +1,4 @@
-<div [class]="spinnerClasses()" [attr.role]="'status'" [attr.aria-label]="ariaLabel()">
+<div [class]="spinnerClasses()" [attr.role]="'status'" [attr.aria-label]="effectiveAriaLabel()">
   <!-- Spinner SVG -->
   <div class="spinner__svg-wrapper">
     <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="spinner__svg">
@@ -24,6 +24,6 @@
 
   <!-- Label -->
   @if (hasLabel()) {
-    <div [class]="labelClasses">{{ label() }}</div>
+    <div [class]="labelClasses()">{{ label() }}</div>
   }
 </div>

@@ -22,6 +22,7 @@ import {
 } from './breadcrumb.utils';
 import { MenuComponent } from '../menu/menu.component';
 import { MenuItem } from '../menu/models/menu-item.model';
+import { UiI18nService } from '../../i18n';
 
 export interface Breadcrumb<T = any> {
   id: string | number;
@@ -52,6 +53,8 @@ const OVERFLOW_BUTTON_WIDTH = 48;
   },
 })
 export class BreadcrumbComponent<T extends Breadcrumb> {
+  private readonly i18n = inject(UiI18nService);
+
   items = input.required<T[]>();
 
   showIcons = input<boolean>(true);
@@ -219,5 +222,19 @@ export class BreadcrumbComponent<T extends Breadcrumb> {
   onOverflowItemClick(menuItem: MenuItem): void {
     const item = this.items().find(i => String(i.id) === menuItem.id);
     if (item) this.itemClick.emit(item);
+  }
+
+  computedAriaLabel(): string {
+    const explicit = this.ariaLabel().trim();
+    if (explicit && explicit !== 'Breadcrumb') {
+      return explicit;
+    }
+    return this.i18n.t('breadcrumb.navAriaLabel', 'Breadcrumb');
+  }
+
+  getOverflowAriaLabel(overflowCount: number): string {
+    return this.i18n.t('breadcrumb.overflowAriaLabel', `${overflowCount} more items`, {
+      count: overflowCount,
+    });
   }
 }

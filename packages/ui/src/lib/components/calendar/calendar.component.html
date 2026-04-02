@@ -102,7 +102,7 @@
 
     <!-- Week Days Header -->
     <div class="calendar__weekdays">
-      @for (day of weekDays; track day) {
+      @for (day of weekDays(); track day) {
         <div class="calendar__weekday">{{ day }}</div>
       }
     </div>

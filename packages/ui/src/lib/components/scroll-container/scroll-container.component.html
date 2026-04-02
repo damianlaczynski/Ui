@@ -4,7 +4,7 @@
   [scrollbarBehavior]="scrollbarBehavior()"
   [maxHeight]="maxHeight()"
   [maxWidth]="maxWidth()"
-  [ariaLabel]="ariaLabel() || 'Scrollable container with items'"
+  [ariaLabel]="effectiveAriaLabel()"
   (scroll)="onScroll($event)"
 >
   <div #scrollContainer class="scroll-container__content">
@@ -18,7 +18,7 @@
       </div>
     } @else if (items().length === 0) {
       <div class="scroll-container__empty">
-        <p>No items to display</p>
+        <p>{{ emptyTextComputed() }}</p>
       </div>
     } @else {
       <div class="scroll-container__items">

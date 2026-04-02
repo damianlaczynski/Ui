@@ -31,6 +31,7 @@ import {
   MENU_SUBMENU_VIEWPORT_MARGIN,
 } from './menu-overlay.config';
 import { openConnectedOverlay, OverlayHandle } from '../overlay/open-connected-overlay';
+import { UiI18nService } from '../../i18n';
 
 export type MenuTriggerVariant = 'dropdown' | 'split' | 'button';
 
@@ -48,6 +49,8 @@ export type MenuTriggerVariant = 'dropdown' | 'split' | 'button';
   },
 })
 export class MenuComponent implements OnDestroy {
+  private i18n = inject(UiI18nService);
+  private readonly openMenuAriaLabel = this.i18n.tSignal('menu.openMenuAriaLabel', 'Open menu');
   private overlay = inject(Overlay);
   private viewContainerRef = inject(ViewContainerRef);
   private platformId = inject(PLATFORM_ID);
@@ -253,5 +256,9 @@ export class MenuComponent implements OnDestroy {
       return this.splitPrimaryPart;
     }
     return this.menuTrigger ?? null;
+  }
+
+  getOpenMenuAriaLabel(): string {
+    return this.openMenuAriaLabel();
   }
 }

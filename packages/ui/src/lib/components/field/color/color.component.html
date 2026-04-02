@@ -25,7 +25,7 @@
         [readonly]="readonly()"
         [value]="currentColor().hex"
         [attr.tabindex]="getTabIndex()"
-        [attr.aria-label]="getComputedAriaLabel()"
+        [attr.aria-label]="getColorInputAriaLabel()"
         [attr.aria-describedby]="getComputedAriaDescribedBy()"
         [attr.aria-invalid]="!!errorText()"
         (input)="onNativeColorChange($event)"
@@ -37,7 +37,7 @@
           <ui-action-button
             [icon]="'dismiss'"
             [size]="size()"
-            [ariaLabel]="clearColorAriaLabel()"
+            [ariaLabel]="getClearColorAriaLabel()"
             (click)="clear()"
           ></ui-action-button>
         </div>
@@ -66,7 +66,7 @@
         [readonly]="readonly()"
         [value]="value || ''"
         [attr.tabindex]="getTabIndex()"
-        [attr.aria-label]="getComputedAriaLabel()"
+        [attr.aria-label]="getColorInputAriaLabel()"
         [attr.aria-describedby]="getComputedAriaDescribedBy()"
         [attr.aria-invalid]="!!errorText()"
         [attr.aria-expanded]="isExpanded()"
@@ -85,21 +85,21 @@
             <ui-action-button
               [icon]="'eyedropper'"
               [size]="size()"
-              [ariaLabel]="pickColorFromScreenAriaLabel()"
+              [ariaLabel]="getPickColorFromScreenAriaLabel()"
               (click)="openEyeDropper()"
             ></ui-action-button>
           }
           <ui-action-button
             [icon]="'color'"
             [size]="size()"
-            [ariaLabel]="openColorPickerAriaLabel()"
+            [ariaLabel]="getOpenColorPickerAriaLabel()"
             (click)="togglePanel()"
           ></ui-action-button>
           @if (value) {
             <ui-action-button
               [icon]="'dismiss'"
               [size]="size()"
-              [ariaLabel]="clearColorAriaLabel()"
+              [ariaLabel]="getClearColorAriaLabel()"
               (click)="clear()"
             ></ui-action-button>
           }
@@ -116,7 +116,7 @@
     [attr.id]="id() + '-color-panel'"
     [attr.data-size]="size()"
     role="dialog"
-    [attr.aria-label]="pickerDialogAriaLabel()"
+    [attr.aria-label]="getPickerDialogAriaLabel()"
     cdkTrapFocus
   >
     <!-- Saturation & Lightness Picker -->
@@ -137,7 +137,7 @@
 
     <!-- Hue Slider -->
     <div class="color-slider">
-      <label class="color-slider__label" [attr.for]="id() + '-hue'">{{ hueLabel() }}</label>
+      <label class="color-slider__label" [attr.for]="id() + '-hue'">{{ getHueLabel() }}</label>
       <input
         type="range"
         class="color-slider__input color-slider__input--hue"
@@ -152,7 +152,9 @@
     <!-- Alpha Slider -->
     @if (showAlpha()) {
       <div class="color-slider">
-        <label class="color-slider__label" [attr.for]="id() + '-alpha'">{{ opacityLabel() }}</label>
+        <label class="color-slider__label" [attr.for]="id() + '-alpha'">{{
+          getOpacityLabel()
+        }}</label>
         <div class="color-slider__alpha-wrapper">
           <div class="color-slider__alpha-checkered"></div>
           <input

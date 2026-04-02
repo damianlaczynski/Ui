@@ -35,7 +35,15 @@
       <ng-template #content let-node>
         <div class="tree-node__content-wrapper">
           @if (shouldShowChevron() && chevronPosition() === 'before') {
-            <span class="tree-node__chevron" (click)="onChevronClick($event)">
+            <span
+              class="tree-node__chevron"
+              role="button"
+              tabindex="0"
+              [attr.aria-label]="getChevronAriaLabel()"
+              [attr.aria-expanded]="expanded() ? 'true' : 'false'"
+              (click)="onChevronClick($event)"
+              (keydown)="onChevronKeyDown($event)"
+            >
               @if (expanded()) {
                 <ui-icon [icon]="chevronIconExpanded()" [size]="size()" />
               } @else {
@@ -76,7 +84,15 @@
               </div>
             }
             @if (shouldShowChevron() && chevronPosition() === 'after') {
-              <span class="tree-node__chevron" (click)="onChevronClick($event)">
+              <span
+                class="tree-node__chevron"
+                role="button"
+                tabindex="0"
+                [attr.aria-label]="getChevronAriaLabel()"
+                [attr.aria-expanded]="expanded() ? 'true' : 'false'"
+                (click)="onChevronClick($event)"
+                (keydown)="onChevronKeyDown($event)"
+              >
                 @if (expanded()) {
                   <ui-icon [icon]="chevronIconExpanded()" [size]="size()" />
                 } @else {

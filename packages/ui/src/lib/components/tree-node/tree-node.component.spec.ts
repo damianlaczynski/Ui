@@ -441,6 +441,42 @@ describe('TreeNodeComponent', () => {
 
       expect(component.expanded()).toBe(false);
     });
+
+    it('should set chevron aria-label using expand text when collapsed', () => {
+      const mockNode = createMockNode({ hasChildren: true, label: 'Node A', expanded: false });
+      fixture.componentRef.setInput('node', mockNode);
+      fixture.detectChanges();
+
+      const chevron = fixture.debugElement.query(By.css('.tree-node__chevron'));
+      expect(chevron.nativeElement.getAttribute('aria-label')).toBe('Expand Node A');
+      expect(chevron.nativeElement.getAttribute('aria-expanded')).toBe('false');
+    });
+
+    it('should set chevron aria-label using collapse text when expanded', () => {
+      const mockNode = createMockNode({ hasChildren: true, label: 'Node A', expanded: true });
+      fixture.componentRef.setInput('node', mockNode);
+      fixture.detectChanges();
+
+      const chevron = fixture.debugElement.query(By.css('.tree-node__chevron'));
+      expect(chevron.nativeElement.getAttribute('aria-label')).toBe('Collapse Node A');
+      expect(chevron.nativeElement.getAttribute('aria-expanded')).toBe('true');
+    });
+
+    it('should toggle node on chevron Enter keydown', () => {
+      const mockNode = createMockNode({ hasChildren: true, expanded: false });
+      fixture.componentRef.setInput('node', mockNode);
+      fixture.detectChanges();
+
+      const event = new KeyboardEvent('keydown', { key: 'Enter', cancelable: true });
+      const preventSpy = vi.spyOn(event, 'preventDefault');
+      const stopSpy = vi.spyOn(event, 'stopPropagation');
+
+      component.onChevronKeyDown(event);
+
+      expect(preventSpy).toHaveBeenCalled();
+      expect(stopSpy).toHaveBeenCalled();
+      expect(component.expanded()).toBe(true);
+    });
   });
 
   describe('Node Click', () => {

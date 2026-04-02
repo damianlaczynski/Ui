@@ -2,7 +2,7 @@
   [ngClass]="skeletonClasses()"
   [ngStyle]="skeletonStyles()"
   [attr.aria-busy]="true"
-  [attr.aria-label]="'Loading content'"
+  [attr.aria-label]="effectiveAriaLabel()"
   role="status"
 >
   @if (animated()) {

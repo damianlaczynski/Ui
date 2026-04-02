@@ -56,6 +56,9 @@ describe('StateContainerComponent', () => {
       expect(component.loadingOverlay()).toBe(false);
       expect(component.loadingBlurContent()).toBe(true);
       expect(component.loadingFullScreen()).toBe(false);
+      expect(component.resolvedLoadingTitle()).toBe('Loading');
+      expect(component.resolvedErrorTitle()).toBe('Error');
+      expect(component.resolvedEmptyTitle()).toBe('No data');
     });
   });
 

@@ -6,7 +6,7 @@
       [size]="size()"
       [icon]="computedCompactIcon()"
       [disabled]="disabled()"
-      [ariaLabel]="ariaLabel() || label() || 'Filter'"
+      [ariaLabel]="getCompactTriggerAriaLabel()"
       [attr.aria-expanded]="isOpen()"
       [attr.aria-haspopup]="'listbox'"
       [attr.aria-controls]="getListboxId()"
@@ -82,11 +82,21 @@
         @if (!disabled() && !readonly()) {
           <!-- Clear button (inside input) -->
           @if (clearable() && selectedValues().size > 0 && !disabled()) {
-            <ui-action-button [icon]="'dismiss'" [size]="size()" (click)="clearSelection()" />
+            <ui-action-button
+              [icon]="'dismiss'"
+              [size]="size()"
+              [ariaLabel]="getClearSelectionAriaLabel()"
+              (click)="clearSelection()"
+            />
           }
 
           <!-- Actions: Chevron button -->
-          <ui-action-button [icon]="'chevron_down'" [size]="size()" (click)="toggleDropdown()" />
+          <ui-action-button
+            [icon]="'chevron_down'"
+            [size]="size()"
+            [ariaLabel]="getToggleMenuAriaLabel()"
+            (click)="toggleDropdown()"
+          />
         }
       </div>
     </div>
@@ -115,7 +125,7 @@
         <ui-search
           [size]="size()"
           variant="filled-gray"
-          placeholder="Search..."
+          [placeholder]="getSearchPlaceholderText()"
           (input)="onSearchInput($event)"
           (click)="$event.stopPropagation()"
         />

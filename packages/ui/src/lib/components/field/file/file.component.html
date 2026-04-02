@@ -34,10 +34,10 @@
         type="text"
         [id]="id()"
         [value]="displayText()"
-        [placeholder]="placeholder()"
+        [placeholder]="getInlinePlaceholder()"
         [readonly]="true"
         [disabled]="disabled()"
-        [attr.aria-label]="getInlineAriaLabel()"
+        [attr.aria-label]="getInlineTriggerAriaLabel()"
         [attr.aria-describedby]="getComputedAriaDescribedBy()"
         [attr.aria-invalid]="!!errorText()"
         (click)="triggerFileInput()"
@@ -53,7 +53,7 @@
           <ui-action-button
             [icon]="'document'"
             [size]="size()"
-            [ariaLabel]="inlineTriggerAriaLabel()"
+            [ariaLabel]="getInlineTriggerAriaLabel()"
             (click)="triggerFileInput()"
           ></ui-action-button>
 
@@ -62,7 +62,7 @@
             <ui-action-button
               [icon]="'dismiss'"
               [size]="size()"
-              [ariaLabel]="clearFilesAriaLabel()"
+              [ariaLabel]="getClearFilesAriaLabel()"
               (click)="clear()"
             ></ui-action-button>
           }
@@ -81,7 +81,7 @@
         (click)="triggerFileInput()"
         (keydown)="onTriggerKeydown($event)"
         [tabindex]="getTabIndex()"
-        [attr.aria-label]="getAreaAriaLabel()"
+        [attr.aria-label]="getAreaTriggerAriaLabel()"
         [attr.aria-describedby]="getComputedAriaDescribedBy()"
         [attr.aria-invalid]="!!errorText()"
         role="button"
@@ -129,7 +129,7 @@
                 [size]="size()"
                 appearance="subtle"
                 (click)="removeFile($index)"
-                [ariaLabel]="'Remove ' + fileInfo.name"
+                [ariaLabel]="getRemoveFileAriaLabel(fileInfo.name)"
               ></ui-button>
             </ng-template>
           </ui-node>

@@ -222,15 +222,6 @@ export class DataGridFilterService<T = any> {
     this.activeFilters.set(filters);
   }
 
-  /**
-   * Private helper methods
-   */
-  private getFilterConfigForColumn(columnId: string): DataGridFilterConfig | null {
-    // This is a helper - in real usage, we need columns array
-    // For now, return null - this should be called with column object
-    return null;
-  }
-
   private debounceFilterChange(columnId: string, debounceMs: number, callback: () => void): void {
     // Clear existing timer
     const existingTimer = this.filterDebounceTimers.get(columnId);

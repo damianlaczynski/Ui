@@ -6,6 +6,7 @@ import {
   input,
   output,
   ChangeDetectionStrategy,
+  inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoadingStateComponent } from '../loading-state/loading-state.component';
@@ -14,6 +15,7 @@ import { EmptyStateComponent } from '../empty-state/empty-state.component';
 import { QuickAction, Size } from '../utils';
 import { State } from '../../state/models/state.model';
 import { IconName } from '../icon';
+import { UiI18nService } from '../../i18n';
 
 @Component({
   selector: 'ui-state-container',
@@ -34,6 +36,10 @@ import { IconName } from '../icon';
   ],
 })
 export class StateContainerComponent<T> {
+  //Services
+  private readonly i18n = inject(UiI18nService);
+
+  //Inputs
   state = input.required<State<T>>();
   size = input<Size, Size | undefined>('medium', {
     transform: (value: Size | undefined) => value ?? 'medium',
@@ -65,11 +71,8 @@ export class StateContainerComponent<T> {
 
   // Custom templates
   loadingContentTemplate = contentChild<TemplateRef<unknown>>('loadingContent');
-
   errorContentTemplate = contentChild<TemplateRef<unknown>>('errorContent');
-
   emptyContentTemplate = contentChild<TemplateRef<unknown>>('emptyContent');
-
   initialTemplate = contentChild<TemplateRef<unknown>>('initialState');
   dataTemplate = contentChild<TemplateRef<unknown>>('dataState');
 
@@ -85,10 +88,18 @@ export class StateContainerComponent<T> {
     };
   });
 
-  shouldShowInitial = computed(() => {
-    const currentState = this.state();
-    return currentState.isInitial && !currentState.isLoading && !currentState.isError;
-  });
+  resolvedLoadingTitle = computed(
+    () => this.loadingTitle().trim() || this.i18n.t('stateContainer.loadingTitle', 'Loading'),
+  );
+  resolvedErrorTitle = computed(
+    () => this.errorTitle().trim() || this.i18n.t('stateContainer.errorTitle', 'Error'),
+  );
+  resolvedEmptyTitle = computed(
+    () => this.emptyTitle().trim() || this.i18n.t('stateContainer.emptyTitle', 'No data'),
+  );
+  shouldShowInitial = computed(
+    () => this.state().isInitial && !this.state().isLoading && !this.state().isError,
+  );
 
   shouldShowEmpty = computed(() => {
     const override = this.emptyOverride();

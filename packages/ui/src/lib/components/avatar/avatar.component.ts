@@ -1,7 +1,8 @@
-import { Component, input, computed, ChangeDetectionStrategy } from '@angular/core';
+import { Component, input, computed, ChangeDetectionStrategy, inject } from '@angular/core';
 import { Variant, Appearance, Size, Shape, ExtendedSize } from '../utils';
 import { IconComponent, IconName } from '../icon';
 import { SpinnerComponent } from '../spinner';
+import { UiI18nService } from '../../i18n';
 
 @Component({
   selector: 'ui-avatar',
@@ -9,10 +10,15 @@ import { SpinnerComponent } from '../spinner';
   imports: [IconComponent, SpinnerComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[attr.aria-label]': 'ariaLabel() || (name() ? name() : "Avatar")',
+    role: 'img',
+    '[attr.aria-label]': 'computedAriaLabel()',
+    '[attr.aria-busy]': 'loading() ? "true" : null',
+    '[attr.aria-disabled]': 'disabled() ? "true" : null',
   },
 })
 export class AvatarComponent {
+  private readonly i18n = inject(UiI18nService);
+
   variant = input<Variant>('secondary');
   appearance = input<Appearance>('filled');
   size = input<Size>('medium');
@@ -53,6 +59,19 @@ export class AvatarComponent {
   hasImage = computed<boolean>(() => !!this.image());
   hasInitials = computed<boolean>(() => !!this.displayInitials());
   hasIcon = computed<boolean>(() => !!this.icon());
+  computedAriaLabel = computed(() => {
+    const explicit = this.ariaLabel()?.trim();
+    if (explicit) {
+      return explicit;
+    }
+
+    const name = this.name()?.trim();
+    if (name) {
+      return name;
+    }
+
+    return this.i18n.t('avatar.defaultAriaLabel', 'Avatar');
+  });
 
   avatarClasses = computed<string>(() => {
     const classes = ['avatar'];

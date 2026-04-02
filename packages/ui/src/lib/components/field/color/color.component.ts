@@ -28,6 +28,7 @@ import {
   DEFAULT_CONNECTED_POSITIONS,
   DEFAULT_VIEWPORT_MARGIN,
 } from '../../overlay/open-connected-overlay';
+import { UiI18nService } from '../../../i18n';
 
 export type ColorFormat = 'hex' | 'rgb' | 'hsl';
 
@@ -64,6 +65,7 @@ interface ColorValue {
   ],
 })
 export class ColorComponent extends FieldComponent implements OnDestroy {
+  private readonly i18n = inject(UiI18nService);
   private overlay = inject(Overlay);
   private viewContainerRef = inject(ViewContainerRef);
   private scrollDispatcher = inject(ScrollDispatcher);
@@ -75,15 +77,9 @@ export class ColorComponent extends FieldComponent implements OnDestroy {
   showAlpha = input<boolean>(true);
   showEyeDropper = input<boolean>(true);
   useNativeOnMobile = input<boolean>(true);
-  hueLabel = input<string>('Hue');
-  opacityLabel = input<string>('Opacity');
-  pickerDialogAriaLabel = input<string>('Color picker');
-  clearColorAriaLabel = input<string>('Clear color');
-  openColorPickerAriaLabel = input<string>('Open color picker');
-  pickColorFromScreenAriaLabel = input<string>('Pick color from screen');
-  eyeDropperNotSupportedMessage = input<string>('EyeDropper API is not supported in this browser');
 
   panelWidth = input<number>(280);
+  eyeDropperNotSupportedMessage = input<string | undefined>(undefined);
 
   isExpanded = signal<boolean>(false);
   isMobile = signal(false);
@@ -360,7 +356,7 @@ export class ColorComponent extends FieldComponent implements OnDestroy {
   // Eye dropper support
   async openEyeDropper(): Promise<void> {
     if (!('EyeDropper' in window)) {
-      console.warn(this.eyeDropperNotSupportedMessage());
+      console.warn(this.getEyeDropperNotSupportedMessage());
       return;
     }
 
@@ -475,6 +471,49 @@ export class ColorComponent extends FieldComponent implements OnDestroy {
     }
     const target = event.target as HTMLInputElement;
     this.parseAndSetColor(target.value);
+  }
+
+  getColorInputAriaLabel(): string | null {
+    return this.getComputedAriaLabel() || this.t('inputAriaLabel', 'Color value');
+  }
+
+  getHueLabel(): string {
+    return this.t('hueLabel', 'Hue');
+  }
+
+  getOpacityLabel(): string {
+    return this.t('opacityLabel', 'Opacity');
+  }
+
+  getPickerDialogAriaLabel(): string {
+    return this.t('pickerDialogAriaLabel', 'Color picker');
+  }
+
+  getClearColorAriaLabel(): string {
+    return this.t('clearColorAriaLabel', 'Clear color');
+  }
+
+  getOpenColorPickerAriaLabel(): string {
+    return this.t('openColorPickerAriaLabel', 'Open color picker');
+  }
+
+  getPickColorFromScreenAriaLabel(): string {
+    return this.t('pickColorFromScreenAriaLabel', 'Pick color from screen');
+  }
+
+  getEyeDropperNotSupportedMessage(): string {
+    const override = this.eyeDropperNotSupportedMessage();
+    if (override !== undefined) {
+      return override;
+    }
+    return this.t(
+      'eyeDropperNotSupportedMessage',
+      'EyeDropper API is not supported in this browser',
+    );
+  }
+
+  private t(key: string, fallback: string, params?: Record<string, unknown>): string {
+    return this.i18n.t(`field.color.${key}`, fallback, params);
   }
 
   // Override ControlValueAccessor methods

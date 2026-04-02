@@ -27,7 +27,7 @@
       <button
         type="button"
         class="tag__dismiss"
-        [attr.aria-label]="'Remove ' + text()"
+        [attr.aria-label]="dismissAriaLabel()"
         (click)="onDismissClick($event)"
         (keydown)="onDismissKeyDown($event)"
         [attr.tabindex]="effectiveTabIndex()"

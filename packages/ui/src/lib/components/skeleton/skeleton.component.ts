@@ -1,6 +1,7 @@
-import { Component, input, computed, ChangeDetectionStrategy } from '@angular/core';
+import { Component, input, computed, ChangeDetectionStrategy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Shape } from '../utils';
+import { UiI18nService } from '../../i18n';
 
 @Component({
   selector: 'ui-skeleton',
@@ -9,13 +10,24 @@ import { Shape } from '../utils';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SkeletonComponent {
-  // Unified Design System
+  //Service
+  private readonly i18n = inject(UiI18nService);
+
+  //Translations
+  private readonly loadingAriaLabel = this.i18n.tSignal(
+    'skeleton.loadingAriaLabel',
+    'Loading content',
+  );
+
+  //Inputs
   shape = input<Shape>('rounded');
   animated = input<boolean>(true);
   width = input<string>('100%');
   height = input<string>('20px');
   borderRadius = input<string>('');
+  ariaLabel = input<string>('');
 
+  //Computed
   skeletonClasses = computed(() => {
     const classes = ['skeleton', `skeleton--${this.shape()}`];
     if (this.animated()) classes.push('skeleton--animated');
@@ -37,5 +49,13 @@ export class SkeletonComponent {
     }
 
     return styles;
+  });
+
+  effectiveAriaLabel = computed(() => {
+    const explicitLabel = this.ariaLabel().trim();
+    if (explicitLabel) {
+      return explicitLabel;
+    }
+    return this.loadingAriaLabel();
   });
 }

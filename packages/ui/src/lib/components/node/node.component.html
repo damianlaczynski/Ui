@@ -63,7 +63,7 @@
             <button
               class="node__close"
               (click)="onCloseClick($event)"
-              [attr.aria-label]="'Zamknij ' + node().label"
+              [attr.aria-label]="getCloseAriaLabel()"
             >
               <ui-icon icon="dismiss" size="small" />
             </button>
@@ -132,7 +132,7 @@
             <button
               class="node__close"
               (click)="onCloseClick($event)"
-              [attr.aria-label]="'Zamknij ' + node().label"
+              [attr.aria-label]="getCloseAriaLabel()"
             >
               <ui-icon icon="dismiss" size="small" />
             </button>

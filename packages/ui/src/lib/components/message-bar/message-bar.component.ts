@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
 
 import { ButtonComponent } from '../button';
 import { IconComponent, IconName } from '../icon';
+import { UiI18nService } from '../../i18n';
 import { Appearance, Shape, QuickAction, Size, Variant } from '../utils';
 
 @Component({
@@ -11,6 +12,9 @@ import { Appearance, Shape, QuickAction, Size, Variant } from '../utils';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MessageBarComponent {
+  private readonly i18n = inject(UiI18nService);
+  readonly dismissAriaLabel = this.i18n.tSignal('messageBar.dismissAriaLabel', 'Dismiss');
+
   title = input<string>('');
   message = input<string>('');
   actions = input<QuickAction[]>([]);

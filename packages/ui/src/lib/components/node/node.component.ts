@@ -8,11 +8,13 @@ import {
   viewChild,
   contentChild,
   ChangeDetectionStrategy,
+  inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IconComponent } from '../icon/icon.component';
 import { Size, Appearance, Shape, Orientation, Variant } from '../utils';
 import { IconName } from '../icon';
+import { UiI18nService } from '../../i18n';
 
 export interface Node<T = any> {
   id: string | number;
@@ -39,6 +41,7 @@ export interface Node<T = any> {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NodeComponent<T extends Node> {
+  private readonly i18n = inject(UiI18nService);
   node = input.required<T>();
 
   size = input<Size>('medium');
@@ -368,5 +371,11 @@ export class NodeComponent<T extends Node> {
     }
 
     return classes.join(' ');
+  }
+
+  getCloseAriaLabel(): string {
+    return this.i18n.t('node.closeAriaLabelPrefix', `Close ${this.node().label}`, {
+      label: this.node().label,
+    });
   }
 }

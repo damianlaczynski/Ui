@@ -10,6 +10,7 @@ import {
 import { DOCUMENT, getLocaleDirection } from '@angular/common';
 import { Size } from '../utils';
 import { IconName } from './generated/icon-name.type';
+import { UiI18nService } from '../../i18n';
 import {
   ICON_SPRITE_AVAILABLE_SIZES,
   ICON_SPRITE_DIRECTIONAL_ICON_NAMES,
@@ -87,6 +88,7 @@ export class IconComponent {
   locale = input<string | undefined>(undefined);
 
   private readonly document = inject(DOCUMENT);
+  private readonly i18n = inject(UiI18nService);
   private readonly localeId = inject(LOCALE_ID, { optional: true }) ?? 'en-US';
   private readonly resolvedSpriteUrl = new URL(ICON_SPRITE_URL, this.document.baseURI).toString();
   private lastMissingIconLogKey = '';
@@ -234,7 +236,18 @@ export class IconComponent {
 
       this.lastMissingIconLogKey = missingKey;
       console.error(
-        `[ui-icon] Missing symbol in sprite for icon "${icon}" (size="${this.size()}", sizePx="${this.sizePx() ?? ''}", variant="${this.variant()}", direction="${this.direction() ?? 'auto'}", locale="${this.locale() ?? 'auto'}").`,
+        this.i18n.t(
+          'icon.missingSpriteError',
+          `[ui-icon] Missing symbol in sprite for icon "${icon}" (size="${this.size()}", sizePx="${this.sizePx() ?? ''}", variant="${this.variant()}", direction="${this.direction() ?? 'auto'}", locale="${this.locale() ?? 'auto'}").`,
+          {
+            icon,
+            size: this.size(),
+            sizePx: this.sizePx() ?? '',
+            variant: this.variant(),
+            direction: this.direction() ?? 'auto',
+            locale: this.locale() ?? 'auto',
+          },
+        ),
       );
     });
   }

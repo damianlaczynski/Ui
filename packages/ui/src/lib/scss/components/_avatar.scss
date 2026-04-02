@@ -398,3 +398,9 @@ $avatar-sizes: (
 .avatar--loading {
   pointer-events: none;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .avatar {
+    transition: none;
+  }
+}

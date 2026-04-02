@@ -12,7 +12,8 @@
       "@layout/*": ["./src/app/layout/*"],
       "@styles/*": ["./src/styles/*"],
       "@environments/*": ["./src/environments/*"],
-      "ui": ["../../dist/ui"]
+      "ui": ["../../dist/ui"],
+      "ui/ngx-translate": ["../../dist/ui/ngx-translate"]
     }
   },
   "files": [],

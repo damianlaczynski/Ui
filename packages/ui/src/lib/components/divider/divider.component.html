@@ -1,7 +1,7 @@
 <div
-  [class]="dividerClasses"
+  [class]="dividerClasses()"
   role="separator"
-  [attr.aria-label]="ariaLabelText"
+  [attr.aria-label]="ariaLabelComputed()"
   [attr.aria-orientation]="orientation()"
 >
   @if (hasText()) {
