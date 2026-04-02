@@ -2,6 +2,7 @@
   "name": "laczynski-ui-monorepo",
   "version": "1.0.0",
   "description": "ui component library monorepo with demo application",
+  "license": "MIT",
   "scripts": {
     "ng": "ng",
     "icons:build": "node scripts/generate-icon-sprite.mjs",
@@ -30,7 +31,7 @@
     "test:coverage": "ng test ui --coverage --watch=false",
     "prepare": "husky",
     "precommit": "lint-staged",
-    "publish:lib": "cd dist/ui && npm publish",
+    "publish:lib": "cd dist/ui && npm publish --access public",
     "publish:lib:patch": "cd packages/ui && npm version patch && cd ../.. && npm run build:lib && npm run publish:lib",
     "publish:lib:minor": "cd packages/ui && npm version minor && cd ../.. && npm run build:lib && npm run publish:lib",
     "publish:lib:major": "cd packages/ui && npm version major && cd ../.. && npm run build:lib && npm run publish:lib"

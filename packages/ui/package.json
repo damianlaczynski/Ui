@@ -1,7 +1,7 @@
 {
-  "name": "ui",
+  "name": "@laczynski/ui",
   "version": "1.0.0",
-  "description": "ui component library",
+  "description": "Enterprise-grade components built with Fluent 2 Design System for modern Angular applications",
   "main": "./fesm2022/ui.mjs",
   "types": "./index.d.ts",
   "module": "./fesm2022/ui.mjs",
@@ -14,11 +14,15 @@
     "components",
     "library"
   ],
-  "author": "",
+  "author": "Damian Łączyński",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/DamianLaczynski/ui"
+  },
+  "homepage": "https://ui.laczynski.dev/",
+  "publishConfig": {
+    "access": "public"
   },
   "peerDependencies": {
     "@angular/cdk": "^21.1.0",
