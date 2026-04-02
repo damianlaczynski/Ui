@@ -10,7 +10,6 @@ import { DataGridFilterConfig } from '../models/data-grid-filter.model';
 import { DataGridFilterTemplateContext } from '../models/data-grid-config.model';
 import { FilterFactory } from '../filters/filter-factory';
 import { DataGridFilterService } from '../services/data-grid-filter.service';
-import { UiI18nService } from '../../../i18n';
 
 /**
  * Component for rendering data grid filter row
@@ -68,7 +67,6 @@ import { UiI18nService } from '../../../i18n';
 })
 export class DataGridFilterRowComponent<T = any> {
   private filterService = inject(DataGridFilterService);
-  private readonly i18n = inject(UiI18nService);
 
   // Inputs
   columns = input<DataGridColumn<T>[]>([]);
@@ -199,7 +197,7 @@ export class DataGridFilterRowComponent<T = any> {
     const operators = definition
       ? definition.getOperators().map(op => ({
           value: op.value,
-          label: this.translateOperatorLabel(op.value, op.label),
+          label: op.label,
           icon: op.icon,
         }))
       : [];
@@ -207,12 +205,7 @@ export class DataGridFilterRowComponent<T = any> {
     return {
       column,
       filterValue: value,
-      filterOperator: operator
-        ? {
-            ...operator,
-            label: this.translateOperatorLabel(operator.value, operator.label),
-          }
-        : operator,
+      filterOperator: operator,
       filterConfig: config,
       placeholder: config.placeholder ?? filter?.defaultPlaceholder ?? '',
       operators: operators,
@@ -228,9 +221,5 @@ export class DataGridFilterRowComponent<T = any> {
         this.filterValueChange.emit({ column, value: null });
       },
     };
-  }
-
-  private translateOperatorLabel(operator: string, fallback: string): string {
-    return this.i18n.t(`dataGrid.filter.operators.${operator}`, fallback);
   }
 }

@@ -4,12 +4,11 @@
  * Component for rendering number filter input
  */
 
-import { Component, input, computed, inject } from '@angular/core';
+import { Component, input, computed } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { NumberComponent } from '../../../field/number/number.component';
 import { DataGridFilterTemplateContext } from '../../models/data-grid-config.model';
-import { UiI18nService } from '../../../../i18n';
 
 @Component({
   selector: 'ui-number-filter',
@@ -24,9 +23,9 @@ import { UiI18nService } from '../../../../i18n';
         [ngModel]="rangeValue().start"
         (ngModelChange)="onRangeStartChange($event)"
       />
-      <span class="data-grid__filter-separator">{{ getBetweenSeparatorText() }}</span>
+      <span class="data-grid__filter-separator">and</span>
       <ui-number
-        [placeholder]="getRangeEndPlaceholder()"
+        [placeholder]="'To'"
         [size]="size()"
         [inputVariant]="'filled-gray'"
         [ngModel]="rangeValue().end"
@@ -44,8 +43,6 @@ import { UiI18nService } from '../../../../i18n';
   `,
 })
 export class NumberFilterComponent {
-  private readonly i18n = inject(UiI18nService);
-
   context = input.required<DataGridFilterTemplateContext>();
   size = input<'small' | 'medium' | 'large'>('medium');
 
@@ -82,13 +79,5 @@ export class NumberFilterComponent {
         : { start: null, end: null };
     range.end = newValue;
     this.context().onValueChange(range);
-  }
-
-  getBetweenSeparatorText(): string {
-    return this.i18n.t('dataGrid.filter.betweenAnd', 'and');
-  }
-
-  getRangeEndPlaceholder(): string {
-    return this.i18n.t('dataGrid.filter.rangeEndPlaceholder', 'To');
   }
 }

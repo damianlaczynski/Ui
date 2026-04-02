@@ -10,7 +10,6 @@ import {
 } from '../models/data-grid-filter.model';
 import { DataGridColumn } from '../models/data-grid-column.model';
 import { FilterFactory } from '../filters/filter-factory';
-import { UiI18nService } from '../../../i18n';
 
 /**
  * Service for managing data grid filter logic
@@ -19,7 +18,6 @@ import { UiI18nService } from '../../../i18n';
 @Injectable()
 export class DataGridFilterService<T = any> {
   private destroyRef = inject(DestroyRef);
-  private readonly i18n = inject(UiI18nService);
 
   // Filter state
   activeFilters = signal<Map<string, DataGridFilterValue>>(new Map());
@@ -75,12 +73,7 @@ export class DataGridFilterService<T = any> {
    */
   getFilterPlaceholder(column: DataGridColumn<T>): string {
     const config = this.getFilterConfig(column);
-    return (
-      config?.placeholder ??
-      this.i18n.t('dataGrid.filter.placeholder', `Filter ${column.header}...`, {
-        column: column.header,
-      })
-    );
+    return config?.placeholder ?? `Filter ${column.header}...`;
   }
 
   /**
@@ -149,23 +142,10 @@ export class DataGridFilterService<T = any> {
     const config = this.getFilterConfig(column);
     if (!config) return '';
 
-    const operator = filter.operator || config.defaultOperator || 'contains';
-    const operatorLabel = this.getOperatorLabel(config.type, operator);
-    const value = filter.value;
+    const definition = FilterFactory.getDefinition(config.type);
+    if (!definition) return '';
 
-    if (operator === 'isNull' || operator === 'isNotNull') {
-      return `${column.header} ${operatorLabel}`;
-    }
-
-    if (operator === 'between') {
-      const [start, end] = this.getRangeValues(value);
-      const andText = this.i18n.t('dataGrid.filter.betweenAnd', 'and');
-      return `${column.header} ${operatorLabel} ${start} ${andText} ${end}`.trim();
-    }
-
-    const renderedValue =
-      typeof value === 'string' ? `"${value}"` : value != null ? String(value) : '';
-    return `${column.header} ${operatorLabel} ${renderedValue}`.trim();
+    return definition.getDisplayText(column, filter, config);
   }
 
   /**
@@ -242,15 +222,6 @@ export class DataGridFilterService<T = any> {
     this.activeFilters.set(filters);
   }
 
-  /**
-   * Private helper methods
-   */
-  private getFilterConfigForColumn(columnId: string): DataGridFilterConfig | null {
-    // This is a helper - in real usage, we need columns array
-    // For now, return null - this should be called with column object
-    return null;
-  }
-
   private debounceFilterChange(columnId: string, debounceMs: number, callback: () => void): void {
     // Clear existing timer
     const existingTimer = this.filterDebounceTimers.get(columnId);
@@ -265,26 +236,5 @@ export class DataGridFilterService<T = any> {
     }, debounceMs);
 
     this.filterDebounceTimers.set(columnId, timer);
-  }
-
-  private getOperatorLabel(type: string, operator: string): string {
-    const fallback = FilterFactory.getOperatorText(type, operator);
-    return this.i18n.t(`dataGrid.filter.operators.${operator}`, fallback);
-  }
-
-  private getRangeValues(value: unknown): [string, string] {
-    if (value && typeof value === 'object' && !Array.isArray(value)) {
-      const range = value as {
-        start?: unknown;
-        end?: unknown;
-        startDate?: unknown;
-        endDate?: unknown;
-      };
-      const start = range.start ?? range.startDate ?? '';
-      const end = range.end ?? range.endDate ?? '';
-      return [String(start), String(end)];
-    }
-
-    return ['', ''];
   }
 }

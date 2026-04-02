@@ -42,7 +42,6 @@ import {
 import { mapToDataGridRows } from './helpers/data-grid-mapping-helpers';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { Subject, of } from 'rxjs';
-import { UiI18nService } from '../../i18n';
 
 @Component({
   selector: 'ui-data-grid',
@@ -95,38 +94,6 @@ export class DataGridComponent<T = any> {
 
   // Internal state
   private destroyRef = inject(DestroyRef);
-  private readonly i18n = inject(UiI18nService);
-  private readonly loadingTitleI18n = this.i18n.tSignal('dataGrid.loadingTitle', 'Loading...');
-  private readonly emptyTitleI18n = this.i18n.tSignal('dataGrid.emptyTitle', 'No data available');
-  private readonly emptyDescriptionI18n = this.i18n.tSignal(
-    'dataGrid.emptyDescription',
-    'There is no data to display.',
-  );
-  private readonly errorTitleI18n = this.i18n.tSignal('dataGrid.errorTitle', 'Error');
-  private readonly errorDescriptionI18n = this.i18n.tSignal(
-    'dataGrid.errorDescription',
-    'An error occurred',
-  );
-  private readonly loadDataErrorI18n = this.i18n.tSignal(
-    'dataGrid.loadDataError',
-    'Failed to load data',
-  );
-  private readonly stateErrorTitleI18n = this.i18n.tSignal(
-    'dataGrid.stateErrorTitle',
-    'Error loading data',
-  );
-  private readonly stateErrorDescriptionI18n = this.i18n.tSignal(
-    'dataGrid.stateErrorDescription',
-    'An error occurred while loading the data grid.',
-  );
-  private readonly collapseRowAriaLabelI18n = this.i18n.tSignal(
-    'dataGrid.collapseRowAriaLabel',
-    'Collapse row',
-  );
-  private readonly expandRowAriaLabelI18n = this.i18n.tSignal(
-    'dataGrid.expandRowAriaLabel',
-    'Expand row',
-  );
 
   hoveredRowId = signal<string | null>(null);
   expandedRows = signal<Set<string>>(new Set());
@@ -252,12 +219,14 @@ export class DataGridComponent<T = any> {
   });
 
   // Loading/Empty/Error state computed
-  loadingTitle = computed(() => this.loadingConfig()?.title || this.loadingTitleI18n());
+  loadingTitle = computed(() => this.loadingConfig()?.title || 'Loading...');
   loadingDescription = computed(() => this.loadingConfig()?.description || '');
   loadingSpinnerSize = computed(() => this.loadingConfig()?.spinnerSize || 'medium');
 
-  emptyTitle = computed(() => this.emptyConfig()?.title || this.emptyTitleI18n());
-  emptyDescription = computed(() => this.emptyConfig()?.description || this.emptyDescriptionI18n());
+  emptyTitle = computed(() => this.emptyConfig()?.title || 'No data available');
+  emptyDescription = computed(
+    () => this.emptyConfig()?.description || 'There is no data to display.',
+  );
   emptyIcon = computed(() => {
     const icon = this.emptyConfig()?.icon;
     return icon ? (icon as IconName) : undefined;
@@ -283,8 +252,8 @@ export class DataGridComponent<T = any> {
       : null;
   });
 
-  errorTitle = computed(() => this.errorConfig()?.title || this.errorTitleI18n());
-  errorDescription = computed(() => this.errorConfig()?.description || this.errorDescriptionI18n());
+  errorTitle = computed(() => this.errorConfig()?.title || 'Error');
+  errorDescription = computed(() => this.errorConfig()?.description || 'An error occurred');
   errorIcon = computed(() => {
     const icon = this.errorConfig()?.icon || 'error_circle';
     return icon as IconName;
@@ -380,7 +349,7 @@ export class DataGridComponent<T = any> {
         },
         error: error => {
           console.error('DataGrid data source error:', error);
-          this.error.set(error?.message || this.loadDataErrorI18n());
+          this.error.set(error?.message || 'Failed to load data');
           this.loading.set(false);
         },
       });
@@ -800,26 +769,5 @@ export class DataGridComponent<T = any> {
         this.initializedWidths.set(true);
       }
     }, 0);
-  }
-
-  getExpandRowAriaLabel(isExpanded: boolean): string {
-    if (isExpanded) {
-      return this.collapseRowAriaLabelI18n();
-    }
-    return this.expandRowAriaLabelI18n();
-  }
-
-  getRowDetailsAriaLabel(rowId: string | number): string {
-    return this.i18n.t('dataGrid.rowDetailsAriaLabel', `Details for row ${rowId}`, {
-      rowId,
-    });
-  }
-
-  getStateContainerErrorTitle(): string {
-    return this.errorTitle() || this.stateErrorTitleI18n();
-  }
-
-  getStateContainerErrorDescription(): string {
-    return this.errorDescription() || this.stateErrorDescriptionI18n();
   }
 }
