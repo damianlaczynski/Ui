@@ -69,7 +69,7 @@ describe('ColorComponent', () => {
     const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
     await component.openEyeDropper();
 
-    expect(warnSpy).toHaveBeenCalledWith('EyeDropper API is not supported in this browser');
+    expect(warnSpy).toHaveBeenCalledWith('Eyedropper not available');
     warnSpy.mockRestore();
   });
 });

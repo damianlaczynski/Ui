@@ -875,7 +875,7 @@ describe('NodeComponent', () => {
       fixture.detectChanges();
 
       const closeBtn = fixture.debugElement.query(By.css('.node__close'));
-      expect(closeBtn.nativeElement.getAttribute('aria-label')).toBe('Zamknij Test Node');
+      expect(closeBtn.nativeElement.getAttribute('aria-label')).toBe('Close Test Node');
     });
   });
 

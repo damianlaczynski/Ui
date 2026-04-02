@@ -79,6 +79,7 @@ export class ColorComponent extends FieldComponent implements OnDestroy {
   useNativeOnMobile = input<boolean>(true);
 
   panelWidth = input<number>(280);
+  eyeDropperNotSupportedMessage = input<string | undefined>(undefined);
 
   isExpanded = signal<boolean>(false);
   isMobile = signal(false);
@@ -501,6 +502,10 @@ export class ColorComponent extends FieldComponent implements OnDestroy {
   }
 
   getEyeDropperNotSupportedMessage(): string {
+    const override = this.eyeDropperNotSupportedMessage();
+    if (override !== undefined) {
+      return override;
+    }
     return this.t(
       'eyeDropperNotSupportedMessage',
       'EyeDropper API is not supported in this browser',
