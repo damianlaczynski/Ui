@@ -263,6 +263,7 @@ export class DsSidebarComponent {
         'tooltip',
         'tree',
         'tree-node',
+        'avatar',
       ]),
       ...this.section('actions-media', 'Actions & Media', [
         'button',

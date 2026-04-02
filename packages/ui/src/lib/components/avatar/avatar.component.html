@@ -5,7 +5,7 @@
     </div>
   }
   @if (hasImage() && !loading()) {
-    <img [src]="image()!" [alt]="computedAriaLabel()" class="avatar__image" />
+    <img [src]="image()!" alt="" class="avatar__image" />
   } @else if (hasInitials() && !loading()) {
     <div class="avatar__initials">{{ displayInitials() }}</div>
   } @else if (hasIcon() && !loading()) {

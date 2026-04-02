@@ -10,7 +10,10 @@ import { UiI18nService } from '../../i18n';
   imports: [IconComponent, SpinnerComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
+    role: 'img',
     '[attr.aria-label]': 'computedAriaLabel()',
+    '[attr.aria-busy]': 'loading() ? "true" : null',
+    '[attr.aria-disabled]': 'disabled() ? "true" : null',
   },
 })
 export class AvatarComponent {
