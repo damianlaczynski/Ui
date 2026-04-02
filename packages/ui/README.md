@@ -1,4 +1,4 @@
-# ui
+# @laczynski/ui
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.0.
 
@@ -97,6 +97,10 @@ ng e2e
 ```
 
 Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+
+## License
+
+Published npm package **@laczynski/ui** is released under the [MIT License](https://opensource.org/licenses/MIT). Full text: [`LICENSE`](https://github.com/DamianLaczynski/ui/blob/main/LICENSE) in the repository root.
 
 ## Additional Resources
 
