@@ -1,0 +1,263 @@
+@use '../utils/variables' as *;
+@use '../utils/mixins' as *;
+
+.range-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+
+  &--with-minmax {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+
+    .range-input-wrapper {
+      flex: 1;
+    }
+  }
+}
+
+.range-minmax {
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--color-neutral-foreground-rest);
+  flex-shrink: 0;
+
+  .range--disabled & {
+    color: var(--color-neutral-foreground-disabled);
+  }
+}
+
+.range-input-wrapper {
+  position: relative;
+  width: 100%;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  .range--disabled & {
+    cursor: not-allowed;
+  }
+
+  .range--readonly & {
+    cursor: default;
+  }
+}
+
+.range-input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+  z-index: 10;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &--readonly {
+    pointer-events: none;
+    cursor: default;
+  }
+}
+
+.range-visual {
+  --slider-rail-size: 4px;
+  --slider-rail-color: var(--color-neutral-stroke-rest);
+  --slider-progress-color: var(--color-brand-primary);
+  --slider-thumb-radius: 9px;
+  --slider-direction: 90deg;
+  --slider-thumb-translate-x: -50%;
+
+  position: absolute;
+  width: 100%;
+  height: var(--slider-rail-size);
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  border-radius: 999px;
+  forced-color-adjust: none;
+
+  background-image: linear-gradient(
+    var(--slider-direction),
+    var(--slider-rail-color) 0%,
+    var(--slider-rail-color) var(--range-low),
+    var(--slider-progress-color) var(--range-low),
+    var(--slider-progress-color) var(--range-high),
+    var(--slider-rail-color) var(--range-high),
+    var(--slider-rail-color) 100%
+  );
+
+  &--with-steps {
+    --slider-step-notch-size: 2px;
+
+    background-image:
+      repeating-linear-gradient(
+        var(--slider-direction),
+        transparent 0,
+        transparent calc(var(--slider-steps-percent) - var(--slider-step-notch-size)),
+        var(--color-neutral-background-rest)
+          calc(var(--slider-steps-percent) - var(--slider-step-notch-size)),
+        var(--color-neutral-background-rest) var(--slider-steps-percent)
+      ),
+      linear-gradient(
+        var(--slider-direction),
+        var(--slider-rail-color) 0%,
+        var(--slider-rail-color) var(--range-low),
+        var(--slider-progress-color) var(--range-low),
+        var(--slider-progress-color) var(--range-high),
+        var(--slider-rail-color) var(--range-high),
+        var(--slider-rail-color) 100%
+      );
+  }
+}
+
+.range-thumb-wrapper {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.range-thumb {
+  position: relative;
+  width: calc(var(--slider-thumb-radius) * 2);
+  height: calc(var(--slider-thumb-radius) * 2);
+  box-sizing: border-box;
+  background-color: var(--color-brand-primary);
+  border-radius: 50%;
+  box-shadow: 0 0 0 calc(var(--slider-thumb-radius) * 0.2) var(--color-neutral-background-rest)
+    inset;
+  outline: none;
+  @include transition-colors($duration-fast);
+  @include transition-transform($duration-fast);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: calc(var(--slider-thumb-radius) * 0.05) solid var(--color-neutral-stroke-rest);
+    box-sizing: border-box;
+  }
+}
+
+.range:not(.range--disabled):not(.range--readonly) {
+  .range-input--lower:hover ~ .range-visual,
+  .range-input--upper:hover ~ .range-visual {
+    --slider-progress-color: var(--color-brand-primary-hover);
+
+    .range-thumb {
+      background-color: var(--color-brand-primary-hover);
+    }
+  }
+}
+
+.range--dragging:not(.range--disabled):not(.range--readonly),
+.range:not(.range--disabled):not(.range--readonly) .range-input--lower:active ~ .range-visual,
+.range:not(.range--disabled):not(.range--readonly) .range-input--upper:active ~ .range-visual {
+  --slider-progress-color: var(--color-brand-primary-pressed);
+
+  .range-thumb {
+    background-color: var(--color-brand-primary-pressed);
+  }
+}
+
+.range--disabled {
+  opacity: 1;
+
+  .range-input ~ .range-visual {
+    --slider-rail-color: transparent;
+    --slider-progress-color: var(--color-neutral-foreground-disabled);
+  }
+
+  .range-visual--with-steps {
+    background-image:
+      repeating-linear-gradient(
+        var(--slider-direction),
+        transparent 0,
+        transparent calc(var(--slider-steps-percent) - var(--slider-step-notch-size)),
+        var(--color-neutral-stroke-disabled)
+          calc(var(--slider-steps-percent) - var(--slider-step-notch-size)),
+        var(--color-neutral-stroke-disabled) var(--slider-steps-percent)
+      ),
+      linear-gradient(
+        var(--slider-direction),
+        var(--slider-rail-color) 0%,
+        var(--slider-rail-color) var(--range-low),
+        var(--slider-progress-color) var(--range-low),
+        var(--slider-progress-color) var(--range-high),
+        var(--slider-rail-color) var(--range-high),
+        var(--slider-rail-color) 100%
+      );
+  }
+
+  .range-thumb {
+    background-color: var(--color-neutral-foreground-disabled);
+
+    &::before {
+      border-color: var(--color-neutral-stroke-disabled);
+    }
+  }
+}
+
+.range--small {
+  .range-visual {
+    --slider-rail-size: 2px;
+    --slider-thumb-radius: 7px;
+  }
+
+  .range-input-wrapper {
+    height: 24px;
+  }
+}
+
+.range--large {
+  .range-visual {
+    --slider-rail-size: 6px;
+    --slider-thumb-radius: 11px;
+  }
+
+  .range-input-wrapper {
+    height: 28px;
+  }
+}
+
+.range-input {
+  &:focus {
+    outline: none;
+  }
+
+  &--lower:focus-visible ~ .range-visual .range-thumb--lower,
+  &--upper:focus-visible ~ .range-visual .range-thumb--upper {
+    outline: 2px solid var(--color-focus-border);
+    outline-offset: 2px;
+  }
+}
+
+.range-visual,
+.range-thumb {
+  @include transition-colors($duration-fast);
+  @include transition-transform($duration-fast);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .range-visual,
+  .range-thumb,
+  .range-thumb-wrapper {
+    transition: none !important;
+  }
+}
+
+[dir='rtl'] {
+  .range {
+    .range-visual {
+      --slider-direction: 270deg;
+      --slider-thumb-translate-x: 50%;
+    }
+  }
+}

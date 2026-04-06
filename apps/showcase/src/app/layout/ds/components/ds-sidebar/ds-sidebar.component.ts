@@ -100,6 +100,7 @@ export class DsSidebarComponent {
     { id: 'search', label: 'Search', icon: 'search' },
     { id: 'skeleton', label: 'Skeleton', icon: 'checkbox_indeterminate' },
     { id: 'slider', label: 'Slider', icon: 'arrow_maximize' },
+    { id: 'range', label: 'Range', icon: 'arrow_bidirectional_left_right' },
     { id: 'spinner', label: 'Spinner', icon: 'replay' },
     { id: 'splitter', label: 'Splitter', icon: 'split_vertical' },
     {
@@ -220,6 +221,7 @@ export class DsSidebarComponent {
         'rating',
         'search',
         'slider',
+        'range',
         'switch',
         'tel',
         'text',
@@ -293,6 +295,7 @@ export class DsSidebarComponent {
         'radio-button-group',
         'switch',
         'slider',
+        'range',
         'rating',
         'dropdown',
         'date-and-time',

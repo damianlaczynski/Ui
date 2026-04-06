@@ -28,6 +28,7 @@ export * from './lib/components/field/radio';
 export * from './lib/components/field/radio-button-group';
 export * from './lib/components/field/search';
 export * from './lib/components/field/slider';
+export * from './lib/components/field/range';
 export * from './lib/components/field/stepper';
 export * from './lib/components/field/switch';
 export * from './lib/components/field/tel';

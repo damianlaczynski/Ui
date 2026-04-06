@@ -1,0 +1,118 @@
+<ui-field
+  [fieldType]="'range'"
+  [label]="label()"
+  [placeholder]="placeholder()"
+  [helpText]="helpText()"
+  [errorText]="errorText()"
+  [required]="required()"
+  [disabled]="disabled()"
+  [readonly]="readonly()"
+  [autocomplete]="autocomplete()"
+  [id]="id()"
+  [name]="name()"
+  [size]="size()"
+  [inputVariant]="inputVariant()"
+>
+  <div
+    class="range-wrapper"
+    [ngClass]="rangeClasses()"
+    role="group"
+    [attr.aria-label]="rangeGroupAriaLabel()"
+  >
+    <div class="range-container" [class.range-container--with-minmax]="showMinMax()">
+      @if (showMinMax()) {
+        <span class="range-minmax range-minmax--min" [attr.aria-hidden]="true">{{
+          formatValue()(min())
+        }}</span>
+      }
+      <div
+        #trackWrapper
+        class="range-input-wrapper"
+        (mousedown)="onMouseDown()"
+        (mouseup)="onMouseUp()"
+        (pointermove)="onTrackPointerMove($event)"
+        (pointerenter)="onTrackPointerMove($event)"
+        (pointerleave)="onTrackPointerLeave()"
+        (pointerdown.capture)="onTrackPointerDownCapture($event)"
+      >
+        <input
+          #lowerInput
+          type="range"
+          class="range-input range-input--lower"
+          [class.range-input--readonly]="readonly()"
+          [id]="id()"
+          [attr.orient]="'horizontal'"
+          [min]="min()"
+          [max]="max()"
+          [step]="step()"
+          [value]="leftEndpoint()"
+          [required]="required()"
+          [disabled]="disabled()"
+          [attr.tabindex]="getTabIndex()"
+          [attr.aria-readonly]="readonly() ? 'true' : null"
+          [attr.aria-label]="lowerAriaLabel()"
+          [attr.aria-describedby]="getComputedAriaDescribedBy()"
+          [attr.aria-valuemin]="min()"
+          [attr.aria-valuemax]="max()"
+          [attr.aria-valuenow]="leftEndpoint()"
+          [attr.aria-valuetext]="formatValue()(leftEndpoint())"
+          [style.z-index]="lowerInputZIndex()"
+          (input)="onLowerInput()"
+          (change)="onLowerChange()"
+          (keydown)="onLowerKeyDown($event)"
+          (pointerdown)="onPointerDown('lower')"
+          (focus)="onRangeInputFocus('lower', $event)"
+          (blur)="onBlur($event)"
+        />
+
+        <input
+          #upperInput
+          type="range"
+          class="range-input range-input--upper"
+          [class.range-input--readonly]="readonly()"
+          [id]="id() + '-upper'"
+          [attr.orient]="'horizontal'"
+          [min]="min()"
+          [max]="max()"
+          [step]="step()"
+          [value]="rightEndpoint()"
+          [required]="required()"
+          [disabled]="disabled()"
+          [attr.tabindex]="getTabIndex()"
+          [attr.aria-readonly]="readonly() ? 'true' : null"
+          [attr.aria-label]="upperAriaLabel()"
+          [attr.aria-describedby]="getComputedAriaDescribedBy()"
+          [attr.aria-valuemin]="min()"
+          [attr.aria-valuemax]="max()"
+          [attr.aria-valuenow]="rightEndpoint()"
+          [attr.aria-valuetext]="formatValue()(rightEndpoint())"
+          [style.z-index]="upperInputZIndex()"
+          (input)="onUpperInput()"
+          (change)="onUpperChange()"
+          (keydown)="onUpperKeyDown($event)"
+          (pointerdown)="onPointerDown('upper')"
+          (focus)="onRangeInputFocus('upper', $event)"
+          (blur)="onBlur($event)"
+        />
+
+        <div
+          class="range-visual"
+          [class.range-visual--with-steps]="showStepMarkers()"
+          [ngStyle]="visualStyle()"
+        >
+          <div class="range-thumb-wrapper range-thumb-wrapper--lower" [ngStyle]="lowerThumbStyle()">
+            <div class="range-thumb range-thumb--lower"></div>
+          </div>
+          <div class="range-thumb-wrapper range-thumb-wrapper--upper" [ngStyle]="upperThumbStyle()">
+            <div class="range-thumb range-thumb--upper"></div>
+          </div>
+        </div>
+      </div>
+      @if (showMinMax()) {
+        <span class="range-minmax range-minmax--max" [attr.aria-hidden]="true">{{
+          formatValue()(max())
+        }}</span>
+      }
+    </div>
+  </div>
+</ui-field>
