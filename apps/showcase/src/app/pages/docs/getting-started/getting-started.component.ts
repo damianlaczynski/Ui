@@ -29,7 +29,7 @@ export class GettingStartedComponent {
       description:
         'Include library styles once in angular.json so every component gets consistent tokens.',
       code: `"styles": [
-  "node_modules/ui/styles/main.scss",
+  "node_modules/@laczynski/ui/src/lib/scss/main.scss",
   "src/styles.scss"
 ]`,
     },
