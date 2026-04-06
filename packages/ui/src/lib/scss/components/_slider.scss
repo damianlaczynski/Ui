@@ -97,12 +97,15 @@
   );
 
   &--with-steps {
+    --slider-step-notch-size: 2px;
+
     background-image:
       repeating-linear-gradient(
         var(--slider-direction),
         transparent 0,
-        transparent calc(var(--slider-steps-percent) - 1px),
-        var(--color-neutral-background-rest) calc(var(--slider-steps-percent) - 1px),
+        transparent calc(var(--slider-steps-percent) - var(--slider-step-notch-size)),
+        var(--color-neutral-background-rest)
+          calc(var(--slider-steps-percent) - var(--slider-step-notch-size)),
         var(--color-neutral-background-rest) var(--slider-steps-percent)
       ),
       linear-gradient(
@@ -189,8 +192,9 @@
       repeating-linear-gradient(
         var(--slider-direction),
         transparent 0,
-        transparent calc(var(--slider-steps-percent) - 1px),
-        var(--color-neutral-stroke-disabled) calc(var(--slider-steps-percent) - 1px),
+        transparent calc(var(--slider-steps-percent) - var(--slider-step-notch-size)),
+        var(--color-neutral-stroke-disabled)
+          calc(var(--slider-steps-percent) - var(--slider-step-notch-size)),
         var(--color-neutral-stroke-disabled) var(--slider-steps-percent)
       ),
       linear-gradient(
