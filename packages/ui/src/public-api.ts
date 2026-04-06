@@ -69,3 +69,5 @@ export * from './lib/i18n';
 
 export * from './lib/api';
 export * from './lib/state';
+
+export * from './lib/components/field/field/validation-helper';
