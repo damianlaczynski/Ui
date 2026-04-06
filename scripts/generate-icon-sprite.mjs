@@ -8,6 +8,7 @@ const SOURCE_ROOTS = [
   path.join(ROOT, 'packages'),
 ];
 const OUTPUT_SPRITE_FILE = path.join(ROOT, 'public', 'assets', 'icons', 'sprite.svg');
+const OUTPUT_SPRITE_FILE_LIB = path.join(ROOT, 'packages', 'ui', 'assets', 'icons', 'sprite.svg');
 const OUTPUT_MANIFEST_TS = path.join(
   ROOT,
   'packages',
@@ -355,10 +356,12 @@ export const ICON_SPRITE_URL = '/assets/icons/sprite.svg';
       ].join('\n');
 
   await ensureParentDir(OUTPUT_SPRITE_FILE);
+  await ensureParentDir(OUTPUT_SPRITE_FILE_LIB);
   await ensureParentDir(OUTPUT_MANIFEST_TS);
   await ensureParentDir(OUTPUT_ICON_NAMES_TS);
   await ensureParentDir(OUTPUT_ICON_NAME_TYPE_TS);
   await fs.writeFile(OUTPUT_SPRITE_FILE, spriteSvg, 'utf8');
+  await fs.writeFile(OUTPUT_SPRITE_FILE_LIB, spriteSvg, 'utf8');
   await fs.writeFile(OUTPUT_MANIFEST_TS, manifestTs, 'utf8');
   await fs.writeFile(OUTPUT_ICON_NAMES_TS, iconNamesTs, 'utf8');
   await fs.writeFile(OUTPUT_ICON_NAME_TYPE_TS, iconNameTypeTs, 'utf8');

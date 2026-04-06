@@ -42,6 +42,26 @@
     </section>
 
     <section class="showcase__section">
+      <h2 class="showcase__section__title">Icon sprite (npm consumers)</h2>
+      <p class="showcase__section__description">
+        <code>ui-icon</code> resolves the SVG sprite at <code>/assets/icons/sprite.svg</code>. The
+        library ships that file under <code>node_modules/@laczynski/ui/assets/icons/</code>; copy it
+        into your app bundle so the URL matches at runtime.
+      </p>
+      <p class="showcase__section__description">
+        In <code>angular.json</code>, under
+        <code>projects.&lt;your-app&gt;.architect.build.options</code>, merge this entry into the
+        existing <code>assets</code> array (do not replace your other asset rules):
+      </p>
+      <pre class="showcase__code"><code>{{ iconSpriteAssetJson }}</code></pre>
+      <p class="showcase__note">
+        After a production build, you should see <code>sprite.svg</code> under your output folder at
+        <code>assets/icons/sprite.svg</code>. Without this step, icons render empty because the
+        sprite file is not on the server.
+      </p>
+    </section>
+
+    <section class="showcase__section">
       <h2 class="showcase__section__title">Verify setup</h2>
       <ul class="showcase__list">
         @for (check of verificationChecks; track check) {
