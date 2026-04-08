@@ -100,6 +100,8 @@ export class DsSidebarComponent {
     { id: 'search', label: 'Search', icon: 'search' },
     { id: 'skeleton', label: 'Skeleton', icon: 'checkbox_indeterminate' },
     { id: 'slider', label: 'Slider', icon: 'arrow_maximize' },
+    { id: 'speed-dial', label: 'Speed dial', icon: 'add_circle' },
+    { id: 'range', label: 'Range', icon: 'arrow_bidirectional_left_right' },
     { id: 'spinner', label: 'Spinner', icon: 'replay' },
     { id: 'splitter', label: 'Splitter', icon: 'split_vertical' },
     {
@@ -229,6 +231,7 @@ export class DsSidebarComponent {
       ]),
       ...this.section('navigation', 'Navigation', [
         'menu',
+        'speed-dial',
         'nav',
         'tabs',
         'toolbar',
@@ -309,6 +312,7 @@ export class DsSidebarComponent {
       ]),
       ...this.section('navigation-structures', 'Navigation Structures', [
         'menu',
+        'speed-dial',
         'nav',
         'tabs',
         'toolbar',

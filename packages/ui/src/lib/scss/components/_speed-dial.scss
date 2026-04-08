@@ -1,0 +1,91 @@
+ui-speed-dial {
+  display: inline-block;
+  overflow: visible;
+  vertical-align: middle;
+}
+
+.speed-dial__inner {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+  --speeddial-gap: 8px;
+  --speeddial-transition-duration: 0.22s;
+}
+
+.speed-dial__mask {
+  position: fixed;
+  inset: 0;
+  z-index: 1040;
+  background: rgb(0 0 0 / 35%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--speeddial-transition-duration, 0.22s) ease-out;
+}
+
+.speed-dial__mask--open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.speed-dial__list {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.speed-dial__inner.speed-dial--open .speed-dial__list {
+  z-index: 1050;
+}
+
+.speed-dial__item {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.speed-dial__item-offset {
+  position: absolute;
+  left: 0;
+  top: 0;
+  will-change: transform;
+}
+
+.speed-dial__item-surface {
+  opacity: 0;
+  transform: scale(0.88);
+  pointer-events: none;
+  transition:
+    opacity var(--speeddial-transition-duration, 0.22s) ease-out,
+    transform var(--speeddial-transition-duration, 0.22s) ease-out;
+  will-change: opacity, transform;
+}
+
+.speed-dial--open .speed-dial__item-surface {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.speed-dial__trigger {
+  position: relative;
+  z-index: 1;
+}
+
+.speed-dial__inner.speed-dial--open .speed-dial__trigger {
+  z-index: 1060;
+}
+
+.speed-dial__trigger .button {
+  transition: transform var(--speeddial-transition-duration, 0.22s) ease-out;
+}
+
+.speed-dial__trigger--rotate .button {
+  transform: rotate(45deg);
+}
