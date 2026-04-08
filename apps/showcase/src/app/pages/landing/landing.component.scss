@@ -334,7 +334,6 @@
     display: flex;
     flex-direction: column;
     gap: $spacing-3;
-    padding: $spacing-3;
   }
 
   &__user {
@@ -369,7 +368,6 @@
     display: flex;
     flex-direction: column;
     gap: 2px;
-    padding: $spacing-3;
 
     strong {
       font-size: $font-size-300;
@@ -385,7 +383,9 @@
   }
 
   &__product-media {
-    padding: 0;
+    margin-inline: calc(-1 * var(--card-padding));
+    width: calc(100% + 2 * var(--card-padding));
+    max-width: none;
 
     img {
       display: block;
@@ -396,7 +396,6 @@
   }
 
   &__product-footer {
-    padding: $spacing-3;
     display: flex;
     justify-content: flex-start;
   }
