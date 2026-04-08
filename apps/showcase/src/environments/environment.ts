@@ -1,9 +1,11 @@
-import packageJson from '../../../../package.json';
+import monorepoPackage from '../../../../package.json';
+import uiPackage from '../../../../packages/ui/package.json';
 
 export const environment = {
   production: false,
   mockUser: true,
-  appVersion: packageJson.version,
+  appVersion: monorepoPackage.version,
+  libraryVersion: uiPackage.version,
   apiUrl: 'http://localhost:5000',
   githubRepoUrl: 'https://github.com/DamianLaczynski/ui/',
 };
