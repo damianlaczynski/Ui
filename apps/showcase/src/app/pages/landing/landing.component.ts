@@ -111,6 +111,8 @@ const ALL_SHOWCASE_COMPONENTS: ShowcaseComponent[] = [
   { id: 'toast', name: 'Toast', icon: 'alert' },
   { id: 'toolbar', name: 'Toolbar', icon: 'navigation' },
   { id: 'tooltip', name: 'Tooltip', icon: 'info' },
+  { id: 'ui-button', name: 'UI Button', icon: 'button' },
+  { id: 'ui-input', name: 'UI Input', icon: 'text_field' },
   { id: 'totp', name: 'TOTP', icon: 'lock_closed' },
   { id: 'tree', name: 'Tree', icon: 'text_bullet_list_tree' },
   { id: 'tree-node', name: 'Tree Node', icon: 'rectangle_landscape' },
