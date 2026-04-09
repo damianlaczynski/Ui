@@ -185,6 +185,22 @@
     }
   }
 
+  &--filled-lighter {
+    background-color: var(--color-neutral-background2-rest);
+    border: 1px solid var(--color-neutral-stroke-rest);
+    border-bottom-color: var(--color-neutral-foreground-rest);
+    @include transition-colors($duration-fast);
+
+    &:hover {
+      border-color: var(--color-neutral-stroke-hover);
+      border-bottom-color: var(--color-neutral-foreground-rest);
+    }
+
+    &:focus-within {
+      border-color: var(--color-neutral-stroke-pressed);
+    }
+  }
+
   // Underlined variant
   &--underlined {
     background-color: transparent;

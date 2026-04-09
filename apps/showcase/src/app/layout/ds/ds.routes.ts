@@ -62,6 +62,7 @@ import { CarouselShowcaseComponent } from '@showcase/carousel/carousel.showcase'
 import { DrawerShowcaseComponent } from '@showcase/drawer/drawer.showcase';
 import { KbdShowcaseComponent } from '@showcase/kbd/kbd.showcase';
 import { TooltipShowcaseComponent } from '@showcase/tooltip/tooltip.showcase';
+import { UiInputShowcaseComponent } from '@showcase/ui-input/ui-input.showcase';
 import { RatingShowcaseComponent } from '@showcase/rating/rating.showcase';
 import { VideoShowcaseComponent } from '@showcase/video/video.showcase';
 import { GettingStartedComponent } from '../../pages/docs/getting-started/getting-started.component';
@@ -342,6 +343,10 @@ export const dsRoutes: Routes = [
   {
     path: 'tooltip',
     component: TooltipShowcaseComponent,
+  },
+  {
+    path: 'ui-input',
+    component: UiInputShowcaseComponent,
   },
   {
     path: 'rating',

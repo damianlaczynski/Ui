@@ -128,6 +128,7 @@ export class DsSidebarComponent {
     { id: 'tree', label: 'Tree', icon: 'text_bullet_list_tree' },
     { id: 'tree-node', label: 'Tree Node', icon: 'rectangle_landscape' },
     { id: 'tooltip', label: 'Tooltip', icon: 'info' },
+    { id: 'ui-input', label: 'UI Input', icon: 'text_field' },
     { id: 'url', label: 'URL', icon: 'link' },
     { id: 'video', label: 'Video', icon: 'video' },
   ];
@@ -225,6 +226,7 @@ export class DsSidebarComponent {
         'text',
         'textarea',
         'totp',
+        'ui-input',
         'url',
       ]),
       ...this.section('navigation', 'Navigation', [
@@ -286,6 +288,7 @@ export class DsSidebarComponent {
         'url',
         'tel',
         'totp',
+        'ui-input',
         'number',
       ]),
       ...this.section('choice-selection', 'Choice & Selection', [

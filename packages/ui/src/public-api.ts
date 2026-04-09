@@ -39,6 +39,7 @@ export * from './lib/components/field/totp';
 export * from './lib/components/field/url';
 export * from './lib/components/field/week';
 export * from './lib/components/icon';
+export * from './lib/components/input';
 export * from './lib/components/kbd';
 export * from './lib/components/loading-state';
 export * from './lib/components/message-bar';
