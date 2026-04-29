@@ -20,7 +20,7 @@
     opacity: 1;
     padding: $spacing-6;
     overflow-y: auto;
-    z-index: 1000;
+    z-index: 1100;
     @include transition-opacity($duration-normal);
 
     &--hidden {

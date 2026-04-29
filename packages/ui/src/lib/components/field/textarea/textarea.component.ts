@@ -13,10 +13,18 @@ import { FieldComponent } from '../field/field.component';
       multi: true,
     },
   ],
+  host: {
+    class: 'ui-textarea',
+  },
   styles: [
     `
       :host {
         width: 100%;
+      }
+
+      :host .input-wrapper {
+        min-height: unset;
+        align-items: stretch;
       }
     `,
   ],
