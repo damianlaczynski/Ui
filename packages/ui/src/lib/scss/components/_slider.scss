@@ -98,14 +98,16 @@
 
   &--with-steps {
     --slider-step-notch-size: 2px;
+    --slider-step-notch-edge: calc(
+      var(--slider-steps-percent) - min(var(--slider-step-notch-size), var(--slider-steps-percent))
+    );
 
     background-image:
       repeating-linear-gradient(
         var(--slider-direction),
         transparent 0,
-        transparent calc(var(--slider-steps-percent) - var(--slider-step-notch-size)),
-        var(--color-neutral-background-rest)
-          calc(var(--slider-steps-percent) - var(--slider-step-notch-size)),
+        transparent var(--slider-step-notch-edge),
+        var(--color-neutral-background-rest) var(--slider-step-notch-edge),
         var(--color-neutral-background-rest) var(--slider-steps-percent)
       ),
       linear-gradient(
@@ -192,9 +194,8 @@
       repeating-linear-gradient(
         var(--slider-direction),
         transparent 0,
-        transparent calc(var(--slider-steps-percent) - var(--slider-step-notch-size)),
-        var(--color-neutral-stroke-disabled)
-          calc(var(--slider-steps-percent) - var(--slider-step-notch-size)),
+        transparent var(--slider-step-notch-edge),
+        var(--color-neutral-stroke-disabled) var(--slider-step-notch-edge),
         var(--color-neutral-stroke-disabled) var(--slider-steps-percent)
       ),
       linear-gradient(
