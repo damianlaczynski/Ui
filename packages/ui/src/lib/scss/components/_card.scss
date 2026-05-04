@@ -6,16 +6,20 @@
 @use '../utils/mixins' as *;
 
 .card {
+  --card-gap: #{$spacing-2};
   --card-padding: #{$spacing-3};
+  --card-margin-block: 0;
   --card-radius: #{$border-radius-400};
 
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--card-gap);
+  gap: 0;
   width: 100%;
   min-width: 0;
   box-sizing: border-box;
+  margin-block: var(--card-margin-block);
+  margin-inline: 0;
   border-radius: var(--card-radius);
   border: 1px solid var(--color-neutral-stroke-rest);
   background: var(--color-neutral-background-rest);
@@ -37,6 +41,7 @@
     flex-direction: column;
     gap: var(--card-gap);
     flex: 1;
+    padding: var(--card-padding);
   }
 
   &__floating-action {
@@ -176,7 +181,7 @@
 
   &--has-floating-action {
     .card__content {
-      padding-right: $spacing-8;
+      padding-right: max(#{$spacing-8}, var(--card-padding));
     }
   }
 

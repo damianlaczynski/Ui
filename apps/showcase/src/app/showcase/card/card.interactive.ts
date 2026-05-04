@@ -66,7 +66,6 @@ import { CARD_SHOWCASE_CONFIG } from './card.showcase.config';
         display: flex;
         align-items: center;
         gap: 12px;
-        padding: var(--card-padding);
       }
 
       .card-interactive__header-text {
@@ -89,11 +88,9 @@ import { CARD_SHOWCASE_CONFIG } from './card.showcase.config';
 
       .card-interactive__body {
         margin: 0;
-        padding: 0 var(--card-padding);
       }
 
       .card-interactive__footer {
-        padding: var(--card-padding);
         display: flex;
         gap: 8px;
       }

@@ -35,7 +35,6 @@ import { CardAppearance, CardComponent } from 'ui';
       }
 
       .showcase-demo-card__header {
-        padding: 12px 14px;
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
@@ -71,7 +70,6 @@ import { CardAppearance, CardComponent } from 'ui';
       }
 
       .showcase-demo-card__body {
-        padding: 8px 16px;
         display: flex;
         flex-direction: column;
         gap: 10px;
