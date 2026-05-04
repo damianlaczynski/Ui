@@ -1,7 +1,7 @@
 import { Component, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RangeComponent, SliderRangeValue, TableOfContentComponent } from 'ui';
+import { NumericRange, RangeComponent, TableOfContentComponent } from 'ui';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { SIZES } from '@shared/utils/showcase/component-options.utils';
@@ -151,11 +151,11 @@ export class RangeShowcaseComponent {
   basicDrawerFormConfig = SLIDER_DRAWER_CONFIGS.basic;
   sizeDrawerFormConfig = SLIDER_DRAWER_CONFIGS.size;
 
-  basicRange: SliderRangeValue = { min: 200, max: 800 };
-  stepRange: SliderRangeValue = { min: 4, max: 16 };
-  minmaxRange: SliderRangeValue = { min: 0, max: 28 };
+  basicRange: NumericRange = { min: 200, max: 800 };
+  stepRange: NumericRange = { min: 4, max: 16 };
+  minmaxRange: NumericRange = { min: 0, max: 28 };
 
-  sizeRanges: Record<Size, SliderRangeValue> = {
+  sizeRanges: Record<Size, NumericRange> = {
     small: { min: 10, max: 40 },
     medium: { min: 20, max: 80 },
     large: { min: 30, max: 70 },

@@ -17,6 +17,20 @@ describe('RangeComponent', () => {
     fixture.detectChanges();
   });
 
+  function mockTrackRect(wrapper: HTMLElement, width = 100): void {
+    vi.spyOn(wrapper, 'getBoundingClientRect').mockReturnValue({
+      left: 0,
+      right: width,
+      width,
+      top: 0,
+      bottom: 24,
+      height: 24,
+      x: 0,
+      y: 0,
+      toJSON: () => ({}),
+    } as DOMRect);
+  }
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
@@ -93,5 +107,147 @@ describe('RangeComponent', () => {
     expect(upper.value).toBe('10');
     expect(component.lowValue()).toBe(10);
     expect(component.highValue()).toBe(20);
+  });
+
+  it('should set lower thumb to min with Home', () => {
+    fixture.componentRef.setInput('min', 10);
+    fixture.componentRef.setInput('max', 100);
+    component.writeValue({ min: 40, max: 80 });
+    fixture.detectChanges();
+    const lower = fixture.nativeElement.querySelectorAll('input')[0];
+    lower.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'Home', bubbles: true, cancelable: true }),
+    );
+    fixture.detectChanges();
+    expect(component.lowValue()).toBe(10);
+    expect(component.highValue()).toBe(80);
+  });
+
+  it('should set upper thumb to track min with Home (not lower endpoint)', () => {
+    fixture.componentRef.setInput('min', 10);
+    fixture.componentRef.setInput('max', 100);
+    component.writeValue({ min: 40, max: 80 });
+    fixture.detectChanges();
+    const upper = fixture.nativeElement.querySelectorAll('input')[1];
+    upper.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'Home', bubbles: true, cancelable: true }),
+    );
+    fixture.detectChanges();
+    expect(component.lowValue()).toBe(10);
+    expect(component.highValue()).toBe(40);
+    const inputsAfter = fixture.nativeElement.querySelectorAll('input');
+    expect((inputsAfter[0] as HTMLInputElement).value).toBe('40');
+    expect((inputsAfter[1] as HTMLInputElement).value).toBe('10');
+  });
+
+  it('should clear dragging on pointerup after pointerdown on track', () => {
+    component.writeValue({ min: 20, max: 80 });
+    fixture.detectChanges();
+    const wrapper = fixture.nativeElement.querySelector('.range-input-wrapper') as HTMLElement;
+    mockTrackRect(wrapper);
+    const down = new PointerEvent('pointerdown', {
+      bubbles: true,
+      cancelable: true,
+      clientX: 50,
+      pointerId: 1,
+      pointerType: 'mouse',
+      button: 0,
+      isPrimary: true,
+    });
+    component.onTrackPointerDownCapture(down);
+    fixture.detectChanges();
+    expect(component.isDragging()).toBe(true);
+    const up = new PointerEvent('pointerup', {
+      bubbles: true,
+      cancelable: true,
+      pointerId: 1,
+      pointerType: 'mouse',
+      button: 0,
+    });
+    component.onTrackPointerUp(up);
+    fixture.detectChanges();
+    expect(component.isDragging()).toBe(false);
+  });
+
+  it('should clear dragging on pointercancel like pointerup', () => {
+    component.writeValue({ min: 0, max: 100 });
+    fixture.detectChanges();
+    const wrapper = fixture.nativeElement.querySelector('.range-input-wrapper') as HTMLElement;
+    mockTrackRect(wrapper);
+    const down = new PointerEvent('pointerdown', {
+      bubbles: true,
+      cancelable: true,
+      clientX: 30,
+      pointerId: 2,
+      pointerType: 'touch',
+      button: 0,
+      isPrimary: true,
+    });
+    component.onTrackPointerDownCapture(down);
+    fixture.detectChanges();
+    expect(component.isDragging()).toBe(true);
+    const cancel = new PointerEvent('pointercancel', {
+      bubbles: true,
+      cancelable: true,
+      pointerId: 2,
+      pointerType: 'touch',
+      button: 0,
+    });
+    component.onTrackPointerCancel(cancel);
+    fixture.detectChanges();
+    expect(component.isDragging()).toBe(false);
+  });
+
+  it('should move nearest thumb on track pointerdown when thumbs overlap', () => {
+    fixture.componentRef.setInput('min', 0);
+    fixture.componentRef.setInput('max', 100);
+    component.writeValue({ min: 50, max: 50 });
+    fixture.detectChanges();
+    const wrapper = fixture.nativeElement.querySelector('.range-input-wrapper') as HTMLElement;
+    mockTrackRect(wrapper);
+    const down = new PointerEvent('pointerdown', {
+      bubbles: true,
+      cancelable: true,
+      clientX: 20,
+      pointerId: 3,
+      pointerType: 'mouse',
+      button: 0,
+      isPrimary: true,
+    });
+    component.onTrackPointerDownCapture(down);
+    fixture.detectChanges();
+    expect(component.lowValue()).toBe(20);
+    expect(component.highValue()).toBe(50);
+  });
+
+  it('should pick upper thumb when pointer is nearer the right on overlap', () => {
+    fixture.componentRef.setInput('min', 0);
+    fixture.componentRef.setInput('max', 100);
+    component.writeValue({ min: 50, max: 50 });
+    fixture.detectChanges();
+    const wrapper = fixture.nativeElement.querySelector('.range-input-wrapper') as HTMLElement;
+    mockTrackRect(wrapper);
+    const down = new PointerEvent('pointerdown', {
+      bubbles: true,
+      cancelable: true,
+      clientX: 85,
+      pointerId: 4,
+      pointerType: 'mouse',
+      button: 0,
+      isPrimary: true,
+    });
+    component.onTrackPointerDownCapture(down);
+    fixture.detectChanges();
+    expect(component.lowValue()).toBe(50);
+    expect(component.highValue()).toBe(85);
+  });
+
+  it('should expose custom aria-valuetext on thumbs when ariaValueText is set', () => {
+    fixture.componentRef.setInput('ariaValueText', 'Custom range');
+    component.writeValue({ min: 10, max: 90 });
+    fixture.detectChanges();
+    const inputs = fixture.nativeElement.querySelectorAll('input');
+    expect(inputs[0].getAttribute('aria-valuetext')).toBe('Custom range');
+    expect(inputs[1].getAttribute('aria-valuetext')).toBe('Custom range');
   });
 });

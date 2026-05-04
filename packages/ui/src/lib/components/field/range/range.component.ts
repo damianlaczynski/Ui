@@ -12,10 +12,13 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FieldComponent } from '../field/field.component';
 
-export interface SliderRangeValue {
+export interface NumericRange {
   min: number;
   max: number;
 }
+
+/** @deprecated Use {@link NumericRange} */
+export type SliderRangeValue = NumericRange;
 
 @Component({
   selector: 'ui-range',
@@ -34,13 +37,13 @@ export class RangeComponent extends FieldComponent implements ControlValueAccess
   @ViewChild('lowerInput') lowerInputEl!: ElementRef<HTMLInputElement>;
   @ViewChild('upperInput') upperInputEl!: ElementRef<HTMLInputElement>;
 
-  valueModel = model<SliderRangeValue>({ min: 0, max: 100 });
+  valueModel = model<NumericRange>({ min: 0, max: 100 });
 
   min = input<number>(0);
   max = input<number>(100);
   step = input<number>(1);
   formatValue = input<(value: number) => string>(value => value.toString());
-  ariaValueText = input<string | ((value: SliderRangeValue) => string) | null>(null);
+  ariaValueText = input<string | ((value: NumericRange) => string) | null>(null);
   showStepMarkers = input<boolean>(false);
   showMinMax = input<boolean>(false);
 
@@ -106,6 +109,16 @@ export class RangeComponent extends FieldComponent implements ControlValueAccess
     if (!aria) return null;
     if (typeof aria === 'function') return aria({ min: this.lowValue(), max: this.highValue() });
     return aria;
+  });
+
+  readonly lowerAriaValueTextAttr = computed(() => {
+    const custom = this.computedAriaValueText();
+    return custom != null && custom !== '' ? custom : this.formatValue()(this.leftEndpoint());
+  });
+
+  readonly upperAriaValueTextAttr = computed(() => {
+    const custom = this.computedAriaValueText();
+    return custom != null && custom !== '' ? custom : this.formatValue()(this.rightEndpoint());
   });
 
   readonly stepsPercent = computed(() => {
@@ -214,15 +227,74 @@ export class RangeComponent extends FieldComponent implements ControlValueAccess
     this.pointerHitThumb.set(distLow <= distHigh ? 'lower' : 'upper');
   }
 
-  onTrackPointerMove(event: PointerEvent | MouseEvent): void {
+  onTrackPointerMove(event: Event): void {
+    const pointerEvent = event as PointerEvent;
     if (this.disabled() || this.readonly()) return;
-    this.updateHitThumbFromClientX(event.clientX);
+    if (this.dragging()) {
+      const thumb = this.draggingThumb();
+      if (thumb) {
+        this.applyClientXToThumb(pointerEvent.clientX, thumb);
+      }
+      return;
+    }
+    this.updateHitThumbFromClientX(pointerEvent.clientX);
   }
 
   onTrackPointerDownCapture(event: Event): void {
+    const pointerEvent = event as PointerEvent;
     if (this.disabled() || this.readonly()) return;
-    const e = event as PointerEvent | MouseEvent;
-    this.updateHitThumbFromClientX(e.clientX);
+    if (pointerEvent.pointerType === 'mouse' && pointerEvent.button !== 0) return;
+    this.updateHitThumbFromClientX(pointerEvent.clientX);
+    const thumb = this.pointerHitThumb() ?? 'lower';
+    pointerEvent.preventDefault();
+    pointerEvent.stopPropagation();
+    const host = this.trackWrapper?.nativeElement;
+    if (host?.setPointerCapture) {
+      host.setPointerCapture(pointerEvent.pointerId);
+    }
+    this.dragging.set(true);
+    this.draggingThumb.set(thumb);
+    const activeEl =
+      thumb === 'lower' ? this.lowerInputEl?.nativeElement : this.upperInputEl?.nativeElement;
+    activeEl?.focus({ preventScroll: true });
+    this.applyClientXToThumb(pointerEvent.clientX, thumb);
+  }
+
+  onTrackPointerUp(event: Event): void {
+    if (!this.dragging()) return;
+    const pointerEvent = event as PointerEvent;
+    const host = this.trackWrapper?.nativeElement;
+    if (host?.hasPointerCapture?.(pointerEvent.pointerId)) {
+      host.releasePointerCapture(pointerEvent.pointerId);
+    }
+    this.change.emit(this.valueModel());
+    this.dragging.set(false);
+    this.draggingThumb.set(null);
+  }
+
+  onTrackPointerCancel(event: Event): void {
+    this.onTrackPointerUp(event);
+  }
+
+  private valueFromClientX(clientX: number): number {
+    const el = this.trackWrapper?.nativeElement;
+    if (!el) return this.min();
+    const rect = el.getBoundingClientRect();
+    const pct = this.pointerToPercent(clientX, rect);
+    const tMin = this.min();
+    const tMax = this.max();
+    const raw = tMin + (pct / 100) * (tMax - tMin);
+    return this.snapEndpoint(raw);
+  }
+
+  private applyClientXToThumb(clientX: number, thumb: 'lower' | 'upper'): void {
+    const v = this.valueFromClientX(clientX);
+    if (thumb === 'lower') {
+      this.leftEndpoint.set(v);
+    } else {
+      this.rightEndpoint.set(v);
+    }
+    this.syncCvaModelFromEndpoints();
   }
 
   onTrackPointerLeave(): void {
@@ -247,7 +319,7 @@ export class RangeComponent extends FieldComponent implements ControlValueAccess
     return v;
   }
 
-  private clampRange(v: SliderRangeValue): SliderRangeValue {
+  private clampRange(v: NumericRange): NumericRange {
     const tMin = this.min();
     const tMax = this.max();
     const s = this.step();
@@ -379,7 +451,7 @@ export class RangeComponent extends FieldComponent implements ControlValueAccess
         if (thumb === 'lower') {
           this.leftEndpoint.set(this.snapEndpoint(tMin));
         } else {
-          this.rightEndpoint.set(this.snapEndpoint(lo));
+          this.rightEndpoint.set(this.snapEndpoint(tMin));
         }
         break;
       case 'End':
@@ -403,24 +475,6 @@ export class RangeComponent extends FieldComponent implements ControlValueAccess
     this.draggingThumb.set(null);
     this.pointerHitThumb.set(null);
     super.onBlur(event);
-  }
-
-  onMouseDown(): void {
-    if (!this.disabled() && !this.readonly()) {
-      this.dragging.set(true);
-    }
-  }
-
-  onPointerDown(thumb: 'lower' | 'upper'): void {
-    if (!this.disabled() && !this.readonly()) {
-      this.dragging.set(true);
-      this.draggingThumb.set(thumb);
-    }
-  }
-
-  onMouseUp(): void {
-    this.dragging.set(false);
-    this.draggingThumb.set(null);
   }
 
   override writeValue(value: unknown): void {

@@ -28,12 +28,12 @@
       <div
         #trackWrapper
         class="range-input-wrapper"
-        (mousedown)="onMouseDown()"
-        (mouseup)="onMouseUp()"
         (pointermove)="onTrackPointerMove($event)"
         (pointerenter)="onTrackPointerMove($event)"
         (pointerleave)="onTrackPointerLeave()"
         (pointerdown.capture)="onTrackPointerDownCapture($event)"
+        (pointerup)="onTrackPointerUp($event)"
+        (pointercancel)="onTrackPointerCancel($event)"
       >
         <input
           #lowerInput
@@ -55,12 +55,11 @@
           [attr.aria-valuemin]="min()"
           [attr.aria-valuemax]="max()"
           [attr.aria-valuenow]="leftEndpoint()"
-          [attr.aria-valuetext]="computedAriaValueText()?.(leftEndpoint()) ?? formatValue()(leftEndpoint())"
+          [attr.aria-valuetext]="lowerAriaValueTextAttr()"
           [style.z-index]="lowerInputZIndex()"
           (input)="onLowerInput()"
           (change)="onLowerChange()"
           (keydown)="onLowerKeyDown($event)"
-          (pointerdown)="onPointerDown('lower')"
           (focus)="onRangeInputFocus('lower', $event)"
           (blur)="onBlur($event)"
         />
@@ -85,12 +84,11 @@
           [attr.aria-valuemin]="min()"
           [attr.aria-valuemax]="max()"
           [attr.aria-valuenow]="rightEndpoint()"
-          [attr.aria-valuetext]="formatValue()(rightEndpoint())"
+          [attr.aria-valuetext]="upperAriaValueTextAttr()"
           [style.z-index]="upperInputZIndex()"
           (input)="onUpperInput()"
           (change)="onUpperChange()"
           (keydown)="onUpperKeyDown($event)"
-          (pointerdown)="onPointerDown('upper')"
           (focus)="onRangeInputFocus('upper', $event)"
           (blur)="onBlur($event)"
         />
