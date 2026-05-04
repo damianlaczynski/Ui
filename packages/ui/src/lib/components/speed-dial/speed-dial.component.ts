@@ -33,6 +33,24 @@ function arcAngles(n: number, start: number, end: number): number[] {
   return Array.from({ length: n }, (_, i) => start + (i / (n - 1)) * (end - start));
 }
 
+const speedDialCoordinationClosers = new Map<string, () => void>();
+
+function registerSpeedDialCoordination(id: string, close: () => void): void {
+  speedDialCoordinationClosers.set(id, close);
+}
+
+function unregisterSpeedDialCoordination(id: string): void {
+  speedDialCoordinationClosers.delete(id);
+}
+
+function closeOtherSpeedDials(exceptId: string): void {
+  for (const [id, close] of speedDialCoordinationClosers) {
+    if (id !== exceptId) {
+      close();
+    }
+  }
+}
+
 @Component({
   selector: 'ui-speed-dial',
   standalone: true,
@@ -95,7 +113,11 @@ export class SpeedDialComponent {
   hide = output<Event>();
 
   constructor() {
-    this.destroyRef.onDestroy(() => this.clearIdleCloseTimer());
+    registerSpeedDialCoordination(this.instanceId, () => this.closeFromCoordination());
+    this.destroyRef.onDestroy(() => {
+      unregisterSpeedDialCoordination(this.instanceId);
+      this.clearIdleCloseTimer();
+    });
 
     effect(() => {
       const open = this.visible();
@@ -228,6 +250,8 @@ export class SpeedDialComponent {
     return this.rotateAnimation() && !this.hideIcon() && this.visible();
   });
 
+  actionMenuTabIndex = computed((): number | undefined => (this.visible() ? undefined : -1));
+
   private normalizeLinearDirection(dir: SpeedDialDirection): SpeedDialLinearDirection {
     const map: Record<string, SpeedDialLinearDirection> = {
       up: 'up',
@@ -276,10 +300,14 @@ export class SpeedDialComponent {
   toggle(event?: Event): void {
     if (this.disabled()) return;
     const next = !this.visible();
-    this.visible.set(next);
     if (next) {
+      if (this.coordinateWithOthers()) {
+        closeOtherSpeedDials(this.instanceId);
+      }
+      this.visible.set(true);
       this.show.emit(event ?? new Event('show'));
     } else {
+      this.visible.set(false);
       this.hide.emit(event ?? new Event('hide'));
     }
   }
@@ -355,5 +383,11 @@ export class SpeedDialComponent {
       clearTimeout(this.idleCloseTimer);
       this.idleCloseTimer = null;
     }
+  }
+
+  private closeFromCoordination(): void {
+    if (!this.visible()) return;
+    this.visible.set(false);
+    this.hide.emit(new Event('hide'));
   }
 }

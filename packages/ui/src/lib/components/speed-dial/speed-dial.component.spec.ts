@@ -104,6 +104,26 @@ describe('SpeedDialComponent', () => {
     expect(firstBtn.nativeElement.getAttribute('role')).toBe('menuitem');
   });
 
+  it('should set menu item buttons tabindex -1 when dial is closed', () => {
+    const buttons = fixture.nativeElement.querySelectorAll('.speed-dial__list button');
+    expect(buttons.length).toBe(sampleItems.length);
+    for (const btn of buttons) {
+      expect((btn as HTMLButtonElement).tabIndex).toBe(-1);
+    }
+  });
+
+  it('should clear tabindex on menu item buttons when dial opens so they are tabbable', () => {
+    getTriggerNativeButton(fixture).click();
+    fixture.detectChanges();
+    const buttons = fixture.nativeElement.querySelectorAll('.speed-dial__list button');
+    expect(buttons.length).toBe(sampleItems.length);
+    for (const btn of buttons) {
+      const el = btn as HTMLButtonElement;
+      expect(el.hasAttribute('tabindex')).toBe(false);
+      expect(el.tabIndex).toBe(0);
+    }
+  });
+
   it('should apply transform styles for linear layout', () => {
     getTriggerNativeButton(fixture).click();
     fixture.detectChanges();
@@ -251,6 +271,30 @@ describe('SpeedDialComponent', () => {
 
     expect(other.visible()).toBe(true);
     expect(component.visible()).toBe(false);
+
+    otherFixture.destroy();
+  });
+
+  it('should not close other dial when coordinateWithOthers is false', () => {
+    fixture.componentRef.setInput('coordinateWithOthers', false);
+    fixture.componentRef.setInput('hideOnClickOutside', false);
+    fixture.detectChanges();
+
+    const otherFixture = TestBed.createComponent(SpeedDialComponent);
+    otherFixture.componentRef.setInput('items', [{ id: 'o', label: 'Other' }]);
+    otherFixture.componentRef.setInput('coordinateWithOthers', false);
+    otherFixture.componentRef.setInput('hideOnClickOutside', false);
+    otherFixture.detectChanges();
+
+    getTriggerNativeButton(fixture).click();
+    fixture.detectChanges();
+    getTriggerNativeButton(otherFixture).click();
+    otherFixture.detectChanges();
+    fixture.detectChanges();
+    otherFixture.detectChanges();
+
+    expect(component.visible()).toBe(true);
+    expect(otherFixture.componentInstance.visible()).toBe(true);
 
     otherFixture.destroy();
   });

@@ -578,19 +578,19 @@ export class SpeedDialShowcaseComponent {
   private buildLabeledItems(): MenuItem[] {
     return [
       {
-        id: 'add',
+        id: 'Add',
         label: '',
         icon: 'add',
         action: () => this.log('action: add'),
       },
       {
-        id: 'update',
+        id: 'Update',
         label: '',
         icon: 'arrow_sync',
         action: () => this.log('action: update'),
       },
       {
-        id: 'remove',
+        id: 'Remove',
         label: '',
         icon: 'delete',
         action: () => this.log('action: remove'),
