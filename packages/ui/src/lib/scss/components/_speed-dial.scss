@@ -1,3 +1,5 @@
+@use '../utils/variables' as *;
+
 ui-speed-dial {
   display: inline-block;
   overflow: visible;
@@ -15,7 +17,7 @@ ui-speed-dial {
 .speed-dial__mask {
   position: fixed;
   inset: 0;
-  z-index: 1040;
+  z-index: $z-index-modal-backdrop;
   background: rgb(0 0 0 / 35%);
   opacity: 0;
   pointer-events: none;
@@ -41,7 +43,7 @@ ui-speed-dial {
 }
 
 .speed-dial__inner.speed-dial--open .speed-dial__list {
-  z-index: 1050;
+  z-index: $z-index-modal;
 }
 
 .speed-dial__item {
@@ -79,7 +81,7 @@ ui-speed-dial {
 }
 
 .speed-dial__inner.speed-dial--open .speed-dial__trigger {
-  z-index: 1060;
+  z-index: $z-index-popover;
 }
 
 .speed-dial__trigger .button {
