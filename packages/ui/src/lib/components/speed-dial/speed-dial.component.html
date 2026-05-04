@@ -1,0 +1,58 @@
+<div class="speed-dial__inner" [class.speed-dial--open]="visible()">
+  @if (mask()) {
+    <div
+      class="speed-dial__mask"
+      [class.speed-dial__mask--open]="visible()"
+      (click)="onMaskClick($event)"
+      aria-hidden="true"
+    ></div>
+  }
+
+  <ul role="menu" class="speed-dial__list" [id]="menuId" [attr.aria-hidden]="!visible()">
+    @for (item of items(); track trackById($index, item); let i = $index) {
+      <li role="none" class="speed-dial__item">
+        <div class="speed-dial__item-offset" [style.transform]="itemTransforms()[i]">
+          <div
+            class="speed-dial__item-surface"
+            [style.transition-delay.ms]="itemTransitionDelayMs(i)"
+          >
+            <ui-button
+              type="button"
+              role="menuitem"
+              [tabIndex]="actionMenuTabIndex()"
+              [variant]="actionVariant()"
+              [appearance]="actionAppearance()"
+              [size]="actionSize()"
+              [shape]="actionShape()"
+              [icon]="item.icon"
+              [text]="item.label.trim() ? item.label : undefined"
+              [ariaLabel]="itemAriaLabel(item)"
+              [disabled]="!!item.disabled"
+              [uiTooltip]="showTooltips() ? itemAriaLabel(item) : ''"
+              [uiTooltipPosition]="tooltipPosition()"
+              [uiTooltipDisabled]="!showTooltips()"
+              (click)="onItemAction(item, $event)"
+            />
+          </div>
+        </div>
+      </li>
+    }
+  </ul>
+
+  <div class="speed-dial__trigger" [class.speed-dial__trigger--rotate]="triggerRotate()">
+    <ui-button
+      type="button"
+      [variant]="triggerVariant()"
+      [appearance]="triggerAppearance()"
+      [size]="triggerSize()"
+      [shape]="triggerShape()"
+      [icon]="triggerIcon()"
+      [ariaLabel]="ariaLabel() || 'Speed dial'"
+      [disabled]="disabled()"
+      [attr.aria-haspopup]="'menu'"
+      [attr.aria-expanded]="visible()"
+      [attr.aria-controls]="menuId"
+      (click)="onTriggerClick($event)"
+    />
+  </div>
+</div>

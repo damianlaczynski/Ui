@@ -94,6 +94,7 @@ const ALL_SHOWCASE_COMPONENTS: ShowcaseComponent[] = [
   { id: 'search', name: 'Search', icon: 'search' },
   { id: 'skeleton', name: 'Skeleton', icon: 'checkbox_indeterminate' },
   { id: 'slider', name: 'Slider', icon: 'arrow_maximize' },
+  { id: 'speed-dial', name: 'Speed dial', icon: 'add_circle' },
   { id: 'range', name: 'Range', icon: 'arrow_bidirectional_left_right' },
   { id: 'spinner', name: 'Spinner', icon: 'replay' },
   { id: 'splitter', name: 'Splitter', icon: 'split_vertical' },

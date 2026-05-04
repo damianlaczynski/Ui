@@ -23,6 +23,7 @@ import { TextareaShowcaseComponent } from '@showcase/field/textarea/textarea.sho
 import { UrlShowcaseComponent } from '@showcase/field/url/url.showcase';
 import { TabsShowcaseComponent } from '@showcase/tabs/tabs.showcase';
 import { SkeletonShowcaseComponent } from '@showcase/skeleton/skeleton.showcase';
+import { SpeedDialShowcaseComponent } from '@showcase/speed-dial/speed-dial.showcase';
 import { DialogShowcaseComponent } from '@showcase/dialog/dialog.showcase';
 import { EmptyStateShowcaseComponent } from '@showcase/empty-state/empty-state.showcase';
 import { ErrorStateShowcaseComponent } from '@showcase/error-state/error-state.showcase';
@@ -291,6 +292,10 @@ export const dsRoutes: Routes = [
   {
     path: 'skeleton',
     component: SkeletonShowcaseComponent,
+  },
+  {
+    path: 'speed-dial',
+    component: SpeedDialShowcaseComponent,
   },
   {
     path: 'tag',

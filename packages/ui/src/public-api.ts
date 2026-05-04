@@ -52,6 +52,7 @@ export * from './lib/components/rating';
 export * from './lib/components/scroll-container';
 export * from './lib/components/scroll-panel';
 export * from './lib/components/skeleton';
+export * from './lib/components/speed-dial';
 export * from './lib/components/spinner';
 export * from './lib/components/splitter';
 export * from './lib/components/state-container';
