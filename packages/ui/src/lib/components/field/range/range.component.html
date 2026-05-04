@@ -55,7 +55,7 @@
           [attr.aria-valuemin]="min()"
           [attr.aria-valuemax]="max()"
           [attr.aria-valuenow]="leftEndpoint()"
-          [attr.aria-valuetext]="formatValue()(leftEndpoint())"
+          [attr.aria-valuetext]="computedAriaValueText()?.(leftEndpoint()) ?? formatValue()(leftEndpoint())"
           [style.z-index]="lowerInputZIndex()"
           (input)="onLowerInput()"
           (change)="onLowerChange()"
