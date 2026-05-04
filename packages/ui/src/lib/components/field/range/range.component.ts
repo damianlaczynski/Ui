@@ -402,8 +402,7 @@ export class RangeComponent extends FieldComponent implements ControlValueAccess
     this.dragging.set(false);
     this.draggingThumb.set(null);
     this.pointerHitThumb.set(null);
-    this.onTouched();
-    this.blur.emit(event);
+    super.onBlur(event);
   }
 
   onMouseDown(): void {
