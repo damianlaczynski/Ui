@@ -34,6 +34,7 @@ import { TagShowcaseComponent } from '@showcase/tag/tag.showcase';
 import { ProgressBarShowcaseComponent } from '@showcase/progress-bar/progress-bar.showcase';
 import { StateContainerShowcaseComponent } from '@showcase/state-container/state-container.showcase';
 import { SliderShowcaseComponent } from '@showcase/field/slider/slider.showcase';
+import { RangeShowcaseComponent } from '@showcase/field/range/range.showcase';
 import { DividerShowcaseComponent } from '@showcase/divider/divider.showcase';
 import { BadgeShowcaseComponent } from '@showcase/badge/badge.showcase';
 import { CardShowcaseComponent } from '@showcase/card/card.showcase';
@@ -203,6 +204,10 @@ export const dsRoutes: Routes = [
   {
     path: 'slider',
     component: SliderShowcaseComponent,
+  },
+  {
+    path: 'range',
+    component: RangeShowcaseComponent,
   },
   {
     path: 'switch',
