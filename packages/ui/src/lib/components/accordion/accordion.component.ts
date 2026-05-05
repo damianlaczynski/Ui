@@ -16,6 +16,11 @@ import { IconName } from '../icon';
   templateUrl: './accordion.component.html',
   imports: [TreeNodeComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[style.display]': '"block"',
+    '[style.width]': '"100%"',
+    '[style.minWidth]': '"0"',
+  },
 })
 export class AccordionComponent {
   label = input.required<string>();

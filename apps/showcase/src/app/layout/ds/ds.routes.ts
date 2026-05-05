@@ -1,5 +1,8 @@
 import { Routes } from '@angular/router';
-import { AccordionShowcaseComponent } from '@showcase/accordion/accordion.showcase';
+import {
+  ACCORDION_DOC_ASSET_PATHS,
+  ACCORDION_DOC_PAGE_CONFIG,
+} from '@showcase/accordion/accordion.showcase.doc';
 import {
   AVATAR_DOC_ASSET_PATHS,
   AVATAR_DOC_PAGE_CONFIG,
@@ -151,7 +154,11 @@ export const dsRoutes: Routes = [
   },
   {
     path: 'accordion',
-    component: AccordionShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: ACCORDION_DOC_PAGE_CONFIG,
+      assetPaths: ACCORDION_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'avatar',

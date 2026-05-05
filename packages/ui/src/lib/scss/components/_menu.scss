@@ -6,6 +6,28 @@
 @use '../utils/mixins' as *;
 @use '../utils/functions' as *;
 
+@keyframes menuSurfaceEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes menuSubmenuEnter {
+  from {
+    opacity: 0;
+    transform: translateX(-6px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
 // =============================================================================
 // Menu Container
 // =============================================================================
@@ -24,7 +46,8 @@
   overflow: visible;
   border-radius: $border-radius-400;
   min-width: 120px;
-  @include slide-down($duration-normal, $easing-decelerate-min);
+  animation: menuSurfaceEnter $duration-fast $easing-decelerate-mid both;
+  transform-origin: top center;
 
   // =============================================================================
   // Section
@@ -74,6 +97,15 @@
   // =============================================================================
 
   &__submenu-overlay {
-    @include slide-down($duration-fast, $easing-decelerate-mid);
+    animation: menuSubmenuEnter $duration-fast $easing-decelerate-mid both;
+    transform-origin: top left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu,
+  .menu__submenu-overlay {
+    animation: none;
+    transform: none;
   }
 }

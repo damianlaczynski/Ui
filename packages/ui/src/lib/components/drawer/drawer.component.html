@@ -5,6 +5,7 @@
     [attr.aria-modal]="isOverlay() && isModal()"
     [attr.aria-hidden]="!visible()"
     [attr.aria-labelledby]="title() ? 'drawer-title' : null"
+    (animationend)="onContainerAnimationEnd($event)"
   >
     @if (isOverlay()) {
       <div [class]="backdropClasses()" (click)="onBackdropClick($event)"></div>

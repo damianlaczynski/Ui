@@ -17,7 +17,9 @@ import { PaginationComponent, PaginationConfig } from 'ui';
   standalone: true,
   imports: [PaginationComponent],
   template: `
-    <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:44rem">
+    <div
+      style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:44rem"
+    >
       <div style="flex:1 1 22rem;min-width:18rem">
         <ui-pagination [config]="paginationConfig()" (pageChange)="currentPage.set($event)" />
       </div>
@@ -30,7 +32,9 @@ import { PaginationComponent, PaginationConfig } from 'ui';
         >
           State
         </p>
-        <div style="display:flex;flex-direction:column;gap:0.375rem;font-size:0.875rem;line-height:1.4">
+        <div
+          style="display:flex;flex-direction:column;gap:0.375rem;font-size:0.875rem;line-height:1.4"
+        >
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Current page</span>
             <strong>{{ currentPage() }}</strong>
@@ -85,7 +89,8 @@ import { PaginationComponent, PaginationConfig } from 'ui';
         style="display:flex;flex-direction:column;gap:0.75rem;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >
         <div style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest)">
-          Use a shorter visible window and ellipsis compression when the dataset is large enough that showing every page button would become noise.
+          Use a shorter visible window and ellipsis compression when the dataset is large enough
+          that showing every page button would become noise.
         </div>
         <ui-pagination [config]="compactWindowConfig()" (pageChange)="currentPage.set($event)" />
       </div>
@@ -94,7 +99,8 @@ import { PaginationComponent, PaginationConfig } from 'ui';
         style="display:flex;flex-direction:column;gap:0.75rem;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >
         <div style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest)">
-          A wider window is useful when pagination is one of the primary exploration controls in a data-heavy screen.
+          A wider window is useful when pagination is one of the primary exploration controls in a
+          data-heavy screen.
         </div>
         <ui-pagination [config]="wideWindowConfig()" (pageChange)="currentPage.set($event)" />
       </div>
@@ -125,7 +131,7 @@ export class PaginationWindowingExampleComponent {
   protected readonly wideWindowConfig = computed<PaginationConfig>(() => ({
     ...this.baseConfig,
     currentPage: this.currentPage(),
-    maxVisiblePages: 9,
+    maxVisiblePages: 6,
   }));
 }
 ```
@@ -141,7 +147,11 @@ import { PaginationComponent, PaginationConfig } from 'ui';
   imports: [PaginationComponent],
   template: `
     <div style="display:flex;flex-direction:column;gap:1rem;width:100%;max-width:42rem">
-      <ui-pagination [config]="withJumpConfig()" size="medium" (pageChange)="currentPage.set($event)" />
+      <ui-pagination
+        [config]="withJumpConfig()"
+        size="medium"
+        (pageChange)="currentPage.set($event)"
+      />
 
       <div
         style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;padding:0.875rem 1rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background2-rest)"
@@ -153,7 +163,8 @@ import { PaginationComponent, PaginationConfig } from 'ui';
             Why use this
           </span>
           <span style="font-size:0.875rem;color:var(--color-neutral-foreground-rest)">
-            Faster jumps make sense when users routinely move across distant pages, such as audit logs or archived records.
+            Faster jumps make sense when users routinely move across distant pages, such as audit
+            logs or archived records.
           </span>
         </div>
         <div style="display:flex;flex-direction:column;gap:0.25rem;min-width:8rem">
@@ -224,11 +235,15 @@ import { PaginationComponent, PaginationConfig } from 'ui';
           <strong>{{ currentPage() }}</strong>
         </div>
         <div style="display:flex;flex-direction:column;gap:0.125rem;min-width:8rem">
-          <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">Per page</span>
+          <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)"
+            >Per page</span
+          >
           <strong>{{ pageSize() }}</strong>
         </div>
         <div style="display:flex;flex-direction:column;gap:0.125rem;min-width:8rem">
-          <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">Total pages</span>
+          <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)"
+            >Total pages</span
+          >
           <strong>{{ totalPages() }}</strong>
         </div>
       </div>
@@ -275,7 +290,8 @@ import { PaginationComponent, PaginationConfig } from 'ui';
     <div style="display:flex;flex-direction:column;gap:1rem;width:100%;max-width:42rem">
       <div style="display:flex;flex-direction:column;gap:0.5rem">
         <div style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest)">
-          Small works in dense tables, medium is the default for most views, and large is better when pagination needs more touch room.
+          Small works in dense tables, medium is the default for most views, and large is better
+          when pagination needs more touch room.
         </div>
       </div>
 
@@ -329,11 +345,14 @@ const allRows: ResultRow[] = Array.from({ length: 57 }, (_, index) => ({
     <div
       style="display:flex;flex-direction:column;gap:1rem;width:100%;max-width:46rem;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
     >
-      <div style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:flex-end;justify-content:space-between">
+      <div
+        style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:flex-end;justify-content:space-between"
+      >
         <div style="display:flex;flex-direction:column;gap:0.25rem">
           <div style="font-size:0.9375rem;font-weight:600">Reports</div>
           <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-            Pair pagination with a real list so users can see scan rhythm, item count, and page changes in context.
+            Pair pagination with a real list so users can see scan rhythm, item count, and page
+            changes in context.
           </div>
         </div>
         <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
@@ -341,7 +360,9 @@ const allRows: ResultRow[] = Array.from({ length: 57 }, (_, index) => ({
         </div>
       </div>
 
-      <div style="display:flex;flex-direction:column;border:1px solid var(--color-neutral-stroke-rest);border-radius:0.875rem;overflow:hidden">
+      <div
+        style="display:flex;flex-direction:column;border:1px solid var(--color-neutral-stroke-rest);border-radius:0.875rem;overflow:hidden"
+      >
         @for (row of visibleRows(); track row.title) {
           <div
             style="display:flex;flex-wrap:wrap;gap:0.5rem 1rem;align-items:center;justify-content:space-between;padding:0.875rem 1rem;background:var(--color-neutral-background1-rest);border-bottom:1px solid color-mix(in srgb,var(--color-neutral-stroke-rest) 65%,transparent)"

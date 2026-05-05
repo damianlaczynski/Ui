@@ -167,7 +167,7 @@ describe('DrawerComponent', () => {
 
     const animationEndEvent = new Event('animationend', { bubbles: true }) as AnimationEvent;
     Object.defineProperty(animationEndEvent, 'animationName', {
-      value: 'slideOutRight',
+      value: 'drawerOverlayExitRight',
       configurable: true,
     });
     contentWhileClosing?.dispatchEvent(animationEndEvent);

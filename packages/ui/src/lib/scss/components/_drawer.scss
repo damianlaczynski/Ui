@@ -6,6 +6,192 @@
 @use '../utils/mixins' as *;
 @use '../utils/functions' as *;
 
+@keyframes drawerOverlayEnterLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes drawerOverlayEnterRight {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes drawerOverlayEnterTop {
+  from {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes drawerOverlayEnterBottom {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes drawerOverlayExitLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+}
+
+@keyframes drawerOverlayExitRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+}
+
+@keyframes drawerOverlayExitTop {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+}
+
+@keyframes drawerOverlayExitBottom {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+@keyframes drawerOverlayBackdropFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes drawerOverlayBackdropFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes drawerInlineContainerEnterLeft {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--drawer-panel-inline-size);
+  }
+}
+
+@keyframes drawerInlineContainerEnterRight {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--drawer-panel-inline-size);
+  }
+}
+
+@keyframes drawerInlineContainerExitLeft {
+  from {
+    width: var(--drawer-panel-inline-size);
+  }
+  to {
+    width: 0;
+  }
+}
+
+@keyframes drawerInlineContainerExitRight {
+  from {
+    width: var(--drawer-panel-inline-size);
+  }
+  to {
+    width: 0;
+  }
+}
+
+@keyframes drawerInlineContentEnterLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes drawerInlineContentEnterRight {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes drawerInlineContentExitLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+}
+
+@keyframes drawerInlineContentExitRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+}
+
 .drawer {
   display: flex;
   pointer-events: none;
@@ -24,6 +210,22 @@
     flex-shrink: 0;
     pointer-events: auto;
     height: 100%;
+    overflow: hidden;
+    width: var(--drawer-panel-inline-size);
+    max-width: min(var(--drawer-panel-inline-size), 90vw);
+    will-change: width;
+  }
+
+  &.drawer--size-small {
+    --drawer-panel-inline-size: 240px;
+  }
+
+  &.drawer--size-medium {
+    --drawer-panel-inline-size: 320px;
+  }
+
+  &.drawer--size-large {
+    --drawer-panel-inline-size: 480px;
   }
 
   // Position modifiers for drawer container
@@ -55,11 +257,13 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.4);
     opacity: 1;
-    @include transition-opacity($duration-normal);
     pointer-events: auto;
 
+    .drawer--overlay & {
+      transition: none;
+    }
+
     &--hidden {
-      opacity: 0;
       pointer-events: none;
     }
   }
@@ -84,6 +288,8 @@
     .drawer--inline & {
       box-shadow: none;
       height: 100%;
+      width: 100%;
+      will-change: transform, opacity;
     }
 
     // Position modifiers
@@ -157,6 +363,10 @@
     }
 
     @include respond-to(small) {
+      .drawer--inline {
+        --drawer-panel-inline-size: 100vw;
+      }
+
       &.drawer__content--left,
       &.drawer__content--right {
         width: 100vw;
@@ -299,52 +509,113 @@
     }
   }
 
-  // Animations
-  .drawer__backdrop:not(.drawer__backdrop--hidden) {
-    @include fade-in($duration-normal, $easing-ease-in-out);
+  &.drawer--overlay:not(.drawer--closing) .drawer__backdrop:not(.drawer__backdrop--hidden) {
+    animation: drawerOverlayBackdropFadeIn $duration-gentle $easing-ease-in-out both;
+  }
+
+  &.drawer--overlay.drawer--closing .drawer__backdrop {
+    animation: drawerOverlayBackdropFadeOut $duration-gentle $easing-ease-in-out forwards;
+    pointer-events: none;
   }
 
   &:not(.drawer--closing) {
-    .drawer__content {
+    &.drawer--inline.drawer--left {
+      animation: drawerInlineContainerEnterLeft $duration-slow $easing-ease-in-out both;
+    }
+
+    &.drawer--inline.drawer--right {
+      animation: drawerInlineContainerEnterRight $duration-slow $easing-ease-in-out both;
+    }
+
+    &.drawer--overlay .drawer__content {
       animation-fill-mode: both;
 
       &.drawer__content--left {
-        @include slide-in-left($duration-slow, $easing-ease-in-out);
+        animation: drawerOverlayEnterLeft $duration-gentle $easing-ease-in-out both;
       }
 
       &.drawer__content--right {
-        @include slide-in-right($duration-slow, $easing-ease-in-out);
+        animation: drawerOverlayEnterRight $duration-gentle $easing-ease-in-out both;
       }
 
       &.drawer__content--top {
-        @include slide-in-top($duration-slow, $easing-ease-in-out);
+        animation: drawerOverlayEnterTop $duration-gentle $easing-ease-in-out both;
       }
 
       &.drawer__content--bottom {
-        @include slide-in-bottom($duration-slow, $easing-ease-in-out);
+        animation: drawerOverlayEnterBottom $duration-gentle $easing-ease-in-out both;
+      }
+    }
+
+    &.drawer--inline .drawer__content {
+      animation-fill-mode: both;
+
+      &.drawer__content--left {
+        animation: drawerInlineContentEnterLeft $duration-gentle $easing-ease-in-out both;
+      }
+
+      &.drawer__content--right {
+        animation: drawerInlineContentEnterRight $duration-gentle $easing-ease-in-out both;
+      }
+
+      &.drawer__content--top {
+        animation: drawerOverlayEnterTop $duration-gentle $easing-ease-in-out both;
+      }
+
+      &.drawer__content--bottom {
+        animation: drawerOverlayEnterBottom $duration-gentle $easing-ease-in-out both;
       }
     }
   }
 
   &.drawer--closing {
-    .drawer__content {
+    &.drawer--inline.drawer--left {
+      animation: drawerInlineContainerExitLeft $duration-slow $easing-ease-in-out both;
+    }
+
+    &.drawer--inline.drawer--right {
+      animation: drawerInlineContainerExitRight $duration-slow $easing-ease-in-out both;
+    }
+
+    &.drawer--overlay .drawer__content {
       animation-fill-mode: both;
       pointer-events: none;
 
       &.drawer__content--left {
-        @include slide-out-left($duration-slow, $easing-ease-in-out);
+        animation: drawerOverlayExitLeft $duration-gentle $easing-ease-in-out both;
       }
 
       &.drawer__content--right {
-        @include slide-out-right($duration-slow, $easing-ease-in-out);
+        animation: drawerOverlayExitRight $duration-gentle $easing-ease-in-out both;
       }
 
       &.drawer__content--top {
-        @include slide-out-top($duration-slow, $easing-ease-in-out);
+        animation: drawerOverlayExitTop $duration-gentle $easing-ease-in-out both;
       }
 
       &.drawer__content--bottom {
-        @include slide-out-bottom($duration-slow, $easing-ease-in-out);
+        animation: drawerOverlayExitBottom $duration-gentle $easing-ease-in-out both;
+      }
+    }
+
+    &.drawer--inline .drawer__content {
+      animation-fill-mode: both;
+      pointer-events: none;
+
+      &.drawer__content--left {
+        animation: drawerInlineContentExitLeft $duration-gentle $easing-ease-in-out both;
+      }
+
+      &.drawer__content--right {
+        animation: drawerInlineContentExitRight $duration-gentle $easing-ease-in-out both;
+      }
+
+      &.drawer__content--top {
+        animation: drawerOverlayExitTop $duration-gentle $easing-ease-in-out both;
+      }
+
+      &.drawer__content--bottom {
+        animation: drawerOverlayExitBottom $duration-gentle $easing-ease-in-out both;
       }
     }
   }
@@ -386,11 +657,15 @@
 }
 
 // Body scroll lock when drawer is open
-body:has(.drawer__backdrop:not(.drawer__backdrop--hidden)) {
+body:has(.drawer.drawer--overlay) {
   overflow: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .drawer {
+    animation: none;
+  }
+
   .drawer__backdrop {
     transition: none;
     animation: none;

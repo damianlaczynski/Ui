@@ -8,6 +8,7 @@ const outputDir = join(rootDir, 'public', 'llms');
 const snippetsOutputDir = join(outputDir, 'snippets');
 
 const showcases = [
+  loadShowcaseMeta({ slug: 'accordion' }),
   loadShowcaseMeta({ slug: 'avatar' }),
   loadShowcaseMeta({ slug: 'breadcrumb' }),
   loadShowcaseMeta({ slug: 'button' }),

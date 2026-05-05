@@ -53,6 +53,6 @@ export class PaginationWindowingExampleComponent {
   protected readonly wideWindowConfig = computed<PaginationConfig>(() => ({
     ...this.baseConfig,
     currentPage: this.currentPage(),
-    maxVisiblePages: 9,
+    maxVisiblePages: 6,
   }));
 }
