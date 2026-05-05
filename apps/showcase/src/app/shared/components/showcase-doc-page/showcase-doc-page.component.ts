@@ -46,6 +46,7 @@ import {
             [title]="config().title"
             [description]="config().description"
             [markdown]="pageMarkdown()"
+            [markdownAssetPath]="assetPaths().markdown"
           />
 
           <div class="showcase-doc__page-tabs showcase-doc__page-tabs--full">
