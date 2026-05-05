@@ -18,12 +18,7 @@ import { RatingComponent } from 'ui';
   imports: [RatingComponent],
   template: `
     <div style="display:flex;flex-direction:column;gap:0.75rem;align-items:flex-start">
-      <ui-rating
-        [value]="value()"
-        [max]="5"
-        [showValue]="true"
-        (valueChange)="value.set($event)"
-      />
+      <ui-rating [value]="value()" [max]="5" [showValue]="true" (valueChange)="value.set($event)" />
       <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
         Current value {{ value() }} of 5
       </span>
@@ -49,13 +44,10 @@ import { RatingComponent, Size } from 'ui';
       <div style="display:flex;flex-wrap:wrap;gap:1.25rem;align-items:flex-end">
         @for (size of sizes; track size) {
           <div style="display:flex;flex-direction:column;gap:0.35rem;min-width:7rem">
-            <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">{{ size }}</span>
-            <ui-rating
-              [value]="3"
-              [size]="size"
-              [readOnly]="true"
-              [showValue]="false"
-            />
+            <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">{{
+              size
+            }}</span>
+            <ui-rating [value]="3" [size]="size" [readOnly]="true" [showValue]="false" />
           </div>
         }
       </div>
@@ -64,19 +56,21 @@ import { RatingComponent, Size } from 'ui';
         style="display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:1rem;padding-top:0.75rem;border-top:1px solid var(--color-neutral-stroke-rest)"
       >
         <div style="display:flex;flex-direction:column;gap:0.5rem">
-          <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">Editable</span>
-          <ui-rating
-            [value]="editable()"
-            [showValue]="true"
-            (valueChange)="editable.set($event)"
-          />
+          <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)"
+            >Editable</span
+          >
+          <ui-rating [value]="editable()" [showValue]="true" (valueChange)="editable.set($event)" />
         </div>
         <div style="display:flex;flex-direction:column;gap:0.5rem">
-          <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">Read-only</span>
+          <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)"
+            >Read-only</span
+          >
           <ui-rating [value]="4" [readOnly]="true" [showValue]="true" />
         </div>
         <div style="display:flex;flex-direction:column;gap:0.5rem">
-          <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">Disabled</span>
+          <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)"
+            >Disabled</span
+          >
           <ui-rating [value]="3" [disabled]="true" [showValue]="true" />
         </div>
       </div>
@@ -103,7 +97,9 @@ import { RatingComponent } from 'ui';
     <div style="display:flex;flex-direction:column;gap:1.25rem">
       <div style="display:flex;flex-wrap:wrap;gap:1.25rem">
         <div style="display:flex;flex-direction:column;gap:0.5rem;min-width:10rem">
-          <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">Five stars</span>
+          <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)"
+            >Five stars</span
+          >
           <ui-rating
             [value]="shortScale()"
             [max]="5"
@@ -112,7 +108,9 @@ import { RatingComponent } from 'ui';
           />
         </div>
         <div style="display:flex;flex-direction:column;gap:0.5rem;min-width:10rem">
-          <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">Ten stars</span>
+          <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)"
+            >Ten stars</span
+          >
           <ui-rating
             [value]="longScale()"
             [max]="10"
@@ -122,7 +120,9 @@ import { RatingComponent } from 'ui';
         </div>
       </div>
       <div style="padding-top:0.75rem;border-top:1px solid var(--color-neutral-stroke-rest)">
-        <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">Published aggregate</span>
+        <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)"
+          >Published aggregate</span
+        >
         <div style="margin-top:0.35rem">
           <ui-rating [value]="8" [max]="10" [readOnly]="true" [showValue]="true" />
         </div>
@@ -242,7 +242,9 @@ import { ButtonComponent, RatingComponent, TextareaComponent } from 'ui';
       />
 
       <div style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center">
-        <ui-button type="submit" variant="primary" [disabled]="stars() === 0">Send feedback</ui-button>
+        <ui-button type="submit" variant="primary" [disabled]="stars() === 0"
+          >Send feedback</ui-button
+        >
         <ui-button type="button" variant="secondary" appearance="outline" (click)="clear()">
           Clear
         </ui-button>

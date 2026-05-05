@@ -254,7 +254,9 @@ import { ButtonComponent, MessageBarComponent } from 'ui';
 
         <div slot="actions" style="display:flex;flex-wrap:wrap;gap:0.5rem">
           <ui-button type="button" variant="primary" appearance="outline">Open policy</ui-button>
-          <ui-button type="button" variant="secondary" appearance="outline">Export report</ui-button>
+          <ui-button type="button" variant="secondary" appearance="outline"
+            >Export report</ui-button
+          >
         </div>
       </ui-message-bar>
     </div>

@@ -1,0 +1,185 @@
+{
+  "slug": "pagination",
+  "title": "Pagination",
+  "description": "Pagination navigates paged datasets with previous and next controls, optional page-number windows, first and last jumps, range info, and page size selection. Use it when the UI intentionally slices a larger result set into stable pages.",
+  "intro": "Pagination is best when users move through a known page model such as admin tables, search results, logs, and archives. This component supports compact prev and next navigation, numbered page windows with ellipsis compression, optional first and last jumps, and a page size selector powered by the shared dropdown.",
+  "importCode": "import { PaginationComponent, type PaginationConfig } from 'ui';",
+  "containerClass": "pagination-doc",
+  "snippets": {
+    "basicCode": "pagination-basic-demo.ts",
+    "windowingCode": "pagination-windowing-demo.ts",
+    "firstLastCode": "pagination-first-last-demo.ts",
+    "pageSizeCode": "pagination-page-size-demo.ts",
+    "densityCode": "pagination-density-demo.ts",
+    "resultsLayoutCode": "pagination-results-layout-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic page navigation",
+      "description": "Start with previous and next controls plus range information so users always know where they are in the dataset before adding more advanced pagination chrome.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "windowing",
+      "title": "Page number window and ellipsis",
+      "description": "When there are many pages, show only a focused window around the current page and compress the rest. This keeps direct jumps available without flooding the UI with dozens of buttons.",
+      "codeKey": "windowingCode",
+      "componentKey": "windowing"
+    },
+    {
+      "id": "first-last",
+      "title": "First and last jumps",
+      "description": "Add first and last controls when users routinely move across distant parts of a dataset, such as logs, archival lists, or long review queues.",
+      "codeKey": "firstLastCode",
+      "componentKey": "firstLast"
+    },
+    {
+      "id": "page-size",
+      "title": "Page size selector",
+      "description": "Page size is useful when users need to trade scan speed against row density. Reset to the first page after a page size change so the new slice stays predictable.",
+      "codeKey": "pageSizeCode",
+      "componentKey": "pageSize"
+    },
+    {
+      "id": "density",
+      "title": "Sizes and density",
+      "description": "Small works in dense tables and inspector panes, medium is the default for most result views, and large is better when touch comfort or stronger emphasis matters.",
+      "codeKey": "densityCode",
+      "componentKey": "density"
+    },
+    {
+      "id": "results-layout",
+      "title": "Results layout pattern",
+      "description": "Pagination is more useful when shown with a real list or table shell. Pair it with row count, current slice, and page size to create a ready-to-adapt results surface.",
+      "codeKey": "resultsLayoutCode",
+      "componentKey": "resultsLayout"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Navigation and current page",
+      "body": "Pagination is a navigation pattern made of regular interactive controls rather than a single composite widget. The current numbered page button exposes `aria-current=\"page\"` so assistive technology can identify the active slice.\n\n| Element / state | Accessibility behavior |\n| --- | --- |\n| current page button | `aria-current=\"page\"` |\n| first / previous / next / last | explicit i18n-backed `aria-label` values |\n| disabled jump buttons | native button disabled state |"
+    },
+    {
+      "title": "Keyboard",
+      "body": "Pagination follows standard button and dropdown keyboard behavior. No extra roving or custom key model is added on top.\n\n| Element | Keyboard behavior |\n| --- | --- |\n| numbered buttons | standard button keyboard support |\n| previous / next / first / last | standard button keyboard support |\n| page size selector | follows `DropdownComponent` keyboard behavior |"
+    },
+    {
+      "title": "Range info and page size selector",
+      "body": "The optional range text gives screen-reader and sighted users the same dataset context, for example `Showing 41-50 of 200`. When the page size selector is enabled, its accessible behavior comes from the shared dropdown, so it should still be treated as a real field rather than decorative chrome."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "PaginationComponent - <code>ui-pagination</code>",
+      "lead": "Standalone pagination surface driven by a single config object. It renders navigation buttons, an optional page-number window, optional range info, and an optional page size selector.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "config",
+              "InputSignal<PaginationConfig>",
+              "required",
+              "Pagination state and behavior model containing current page, totals, and visibility flags."
+            ],
+            [
+              "size",
+              "InputSignal<Size>",
+              "'medium'",
+              "Controls the density of buttons, icons, and the optional page size selector."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "pageChange",
+              "OutputRef<number>",
+              "Emitted when the user requests a different page through numbered or directional controls."
+            ],
+            [
+              "pageSizeChange",
+              "OutputRef<number>",
+              "Emitted when the optional page size selector changes."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "The component is intentionally controlled. Parent code owns the dataset query state and should update `config.currentPage`, `config.pageSize`, and derived totals after each output event.",
+            "Ellipsis entries in the page list are visual markers only and never emit navigation."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "PaginationConfig",
+      "lead": "Configuration object passed into <code class=\"showcase-doc__api-code\">ui-pagination</code>.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Fields",
+          "columns": ["Field", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["currentPage", "number", "required", "Active 1-based page index."],
+            ["totalPages", "number", "required", "Total number of available pages."],
+            ["totalItems", "number", "required", "Total number of records across the dataset."],
+            ["pageSize", "number", "required", "Number of records shown on one page."],
+            [
+              "showPageSizeSelector",
+              "boolean | undefined",
+              "false",
+              "Shows the page size selector when true and when `pageSizeOptions` are available."
+            ],
+            [
+              "pageSizeOptions",
+              "number[] | undefined",
+              "undefined",
+              "Selectable page size values mapped into the shared dropdown."
+            ],
+            [
+              "showPageNumbers",
+              "boolean | undefined",
+              "false",
+              "Shows numbered page buttons and ellipsis compression when true."
+            ],
+            [
+              "maxVisiblePages",
+              "number | undefined",
+              "3",
+              "Maximum count of visible numbered pages in the active window before compression."
+            ],
+            ["showFirstLast", "boolean | undefined", "false", "Adds first and last jump buttons."],
+            [
+              "showInfo",
+              "boolean | undefined",
+              "false",
+              "Shows the range summary, for example `Showing 21-40 of 234`."
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Related mechanisms",
+          "items": [
+            "<code>ButtonComponent</code> - renders numbered and directional controls.",
+            "<code>DropdownComponent</code> - powers the optional page size selector.",
+            "Shared i18n service - provides labels such as `First page`, `Previous page`, and range text."
+          ]
+        }
+      ]
+    }
+  ]
+}

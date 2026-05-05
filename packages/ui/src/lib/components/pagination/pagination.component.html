@@ -37,7 +37,7 @@
     <!-- Page Numbers -->
     @if (config().showPageNumbers) {
       <div class="pagination__pages">
-        @for (page of visiblePages(); track page) {
+        @for (page of visiblePages(); track getPageTrackKey($index, page)) {
           @if (isEllipsis(page)) {
             <span class="pagination__ellipsis">...</span>
           } @else {
@@ -96,7 +96,7 @@
         [items]="pageSizeItems()"
         [size]="size()"
         [ngModel]="config().pageSize"
-        (selectionChange)="onPageSizeSelected($event[0])"
+        (selectionChange)="onPageSizeSelected($event)"
         [placeholder]="perPagePlaceholder()"
         class="pagination__page-size-selector"
       />

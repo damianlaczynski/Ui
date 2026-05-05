@@ -142,7 +142,9 @@ import { ColorComponent } from 'ui';
   standalone: true,
   imports: [FormsModule, ColorComponent],
   template: `
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem;width:100%;max-width:44rem">
+    <div
+      style="display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem;width:100%;max-width:44rem"
+    >
       <ui-color
         label="With alpha"
         helpText="Useful for overlays and subtle surfaces."
@@ -225,18 +227,26 @@ import { ColorComponent } from 'ui';
         >
           Values
         </p>
-        <div style="display:flex;flex-direction:column;gap:0.45rem;font-size:0.875rem;line-height:1.4">
+        <div
+          style="display:flex;flex-direction:column;gap:0.45rem;font-size:0.875rem;line-height:1.4"
+        >
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Primary</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{ form.controls.primary.getRawValue() }}</strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
+              form.controls.primary.getRawValue()
+            }}</strong>
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Secondary</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{ form.controls.secondary.getRawValue() }}</strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
+              form.controls.secondary.getRawValue()
+            }}</strong>
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Accent</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{ form.controls.accent.getRawValue() }}</strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
+              form.controls.accent.getRawValue()
+            }}</strong>
           </div>
         </div>
       </div>
@@ -303,7 +313,9 @@ import { ButtonComponent, ColorComponent } from 'ui';
             style="width:0.875rem;height:0.875rem;border-radius:999px"
             [style.background]="headerAccent"
           ></span>
-          <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">Header</span>
+          <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
+            >Header</span
+          >
         </div>
         <div style="display:flex;gap:0.5rem;align-items:center">
           <span
@@ -317,7 +329,9 @@ import { ButtonComponent, ColorComponent } from 'ui';
             style="width:0.875rem;height:0.875rem;border-radius:999px"
             [style.background]="overlayTint"
           ></span>
-          <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">Overlay</span>
+          <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
+            >Overlay</span
+          >
         </div>
       </div>
 
@@ -325,7 +339,9 @@ import { ButtonComponent, ColorComponent } from 'ui';
         style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background1-rest)"
       >
         <ui-button type="button" variant="primary">Save theme</ui-button>
-        <ui-button type="button" variant="secondary" appearance="outline">Reset to defaults</ui-button>
+        <ui-button type="button" variant="secondary" appearance="outline"
+          >Reset to defaults</ui-button
+        >
       </div>
     </div>
   `,

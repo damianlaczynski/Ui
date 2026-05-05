@@ -95,7 +95,10 @@ import { NodeShowcaseComponent } from '@showcase/node/node.showcase';
 import { TreeShowcaseComponent } from '@showcase/tree/tree.showcase';
 import { TreeNodeShowcaseComponent } from '@showcase/tree-node/tree-node.showcase';
 import { DataGridShowcaseComponent } from '@showcase/data-grid/data-grid.showcase';
-import { PaginationShowcaseComponent } from '@showcase/pagination/pagination.showcase';
+import {
+  PAGINATION_DOC_ASSET_PATHS,
+  PAGINATION_DOC_PAGE_CONFIG,
+} from '@showcase/pagination/pagination.showcase.doc';
 import { ToolbarShowcaseComponent } from '@showcase/toolbar/toolbar.showcase';
 import { IconShowcaseComponent } from '@showcase/icon/icon.showcase';
 import { TableOfContentShowcaseComponent } from '@showcase/table-of-content/table-of-content.showcase';
@@ -204,7 +207,11 @@ export const dsRoutes: Routes = [
   },
   {
     path: 'pagination',
-    component: PaginationShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: PAGINATION_DOC_PAGE_CONFIG,
+      assetPaths: PAGINATION_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'divider',

@@ -115,9 +115,7 @@ export class StepperLinearProgressExampleComponent {
   protected completeAndNext(): void {
     const i = this.active();
     const list = this.steps();
-    this.steps.update(prev =>
-      prev.map((s, idx) => (idx === i ? { ...s, completed: true } : s)),
-    );
+    this.steps.update(prev => prev.map((s, idx) => (idx === i ? { ...s, completed: true } : s)));
     if (i < list.length - 1) {
       this.active.set(i + 1);
     }
@@ -160,7 +158,9 @@ import { BadgeComponent, Step, StepperComponent } from 'ui';
         style="flex:1;min-width:14rem;display:flex;flex-direction:column;gap:0.5rem;padding:0.75rem 0"
       >
         <ui-badge appearance="tint" variant="secondary" text="Draft policy" />
-        <p style="margin:0;font-size:0.875rem;color:var(--color-neutral-foreground2-rest);line-height:1.45">
+        <p
+          style="margin:0;font-size:0.875rem;color:var(--color-neutral-foreground2-rest);line-height:1.45"
+        >
           Vertical steppers suit narrow rails next to a detail pane. Labels and descriptions stay
           aligned while the main surface swaps content.
         </p>

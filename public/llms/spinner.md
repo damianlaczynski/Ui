@@ -25,11 +25,7 @@ import { SpinnerComponent } from 'ui';
         </span>
       </div>
       <div style="display:flex;flex-direction:column;gap:0.35rem;align-items:flex-start">
-        <ui-spinner
-          labelPosition="below"
-          label="Loading workspace"
-          ariaLabel="Loading workspace"
-        />
+        <ui-spinner labelPosition="below" label="Loading workspace" ariaLabel="Loading workspace" />
         <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">
           visible label + matching aria
         </span>
@@ -62,7 +58,9 @@ import { ExtendedSize, SpinnerComponent, Variant } from 'ui';
         @for (size of sizes; track size) {
           <div style="display:flex;flex-direction:column;gap:0.35rem;align-items:center">
             <ui-spinner variant="primary" [size]="size" ariaLabel="Loading" />
-            <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">{{ size }}</span>
+            <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">{{
+              size
+            }}</span>
           </div>
         }
       </div>
@@ -70,7 +68,14 @@ import { ExtendedSize, SpinnerComponent, Variant } from 'ui';
   `,
 })
 export class SpinnerSemanticsExampleComponent {
-  protected readonly variants: Variant[] = ['primary', 'secondary', 'success', 'warning', 'danger', 'info'];
+  protected readonly variants: Variant[] = [
+    'primary',
+    'secondary',
+    'success',
+    'warning',
+    'danger',
+    'info',
+  ];
 
   protected readonly sizes: ExtendedSize[] = ['extra-small', 'medium', 'extra-large'];
 }
@@ -91,7 +96,9 @@ import { ContentPosition, SpinnerComponent } from 'ui';
     >
       @for (position of positions; track position) {
         <div style="display:flex;flex-direction:column;gap:0.35rem;align-items:flex-start">
-          <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">{{ position }}</span>
+          <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">{{
+            position
+          }}</span>
           <ui-spinner
             size="small"
             variant="secondary"

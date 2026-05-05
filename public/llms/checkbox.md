@@ -179,7 +179,12 @@ import { CheckboxComponent } from 'ui';
         <ui-checkbox label="Disabled unchecked" [disabled]="true" [ngModel]="false" />
         <ui-checkbox label="Disabled checked" [disabled]="true" [ngModel]="true" />
         <ui-checkbox label="Readonly checked" [readonly]="true" [ngModel]="true" />
-        <ui-checkbox label="Required confirmation" [required]="true" [(ngModel)]="requiredValue" [ngModelOptions]="{ standalone: true }" />
+        <ui-checkbox
+          label="Required confirmation"
+          [required]="true"
+          [(ngModel)]="requiredValue"
+          [ngModelOptions]="{ standalone: true }"
+        />
       </div>
 
       <div
@@ -259,10 +264,26 @@ import { CheckboxComponent } from 'ui';
         </div>
       </div>
 
-      <ui-checkbox label="Assigned to me" [(ngModel)]="assignedToMe" [ngModelOptions]="{ standalone: true }" />
-      <ui-checkbox label="Created this week" [(ngModel)]="createdThisWeek" [ngModelOptions]="{ standalone: true }" />
-      <ui-checkbox label="Includes blocked tasks" [(ngModel)]="includesBlocked" [ngModelOptions]="{ standalone: true }" />
-      <ui-checkbox label="Has customer impact" [(ngModel)]="customerImpact" [ngModelOptions]="{ standalone: true }" />
+      <ui-checkbox
+        label="Assigned to me"
+        [(ngModel)]="assignedToMe"
+        [ngModelOptions]="{ standalone: true }"
+      />
+      <ui-checkbox
+        label="Created this week"
+        [(ngModel)]="createdThisWeek"
+        [ngModelOptions]="{ standalone: true }"
+      />
+      <ui-checkbox
+        label="Includes blocked tasks"
+        [(ngModel)]="includesBlocked"
+        [ngModelOptions]="{ standalone: true }"
+      />
+      <ui-checkbox
+        label="Has customer impact"
+        [(ngModel)]="customerImpact"
+        [ngModelOptions]="{ standalone: true }"
+      />
     </div>
   `,
 })

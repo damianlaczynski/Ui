@@ -27,10 +27,14 @@ import { ButtonComponent, DrawerComponent, QuickAction } from 'ui';
         [secondaryAction]="secondaryAction()"
       >
         <div style="display:flex;flex-direction:column;gap:0.75rem">
-          <div style="padding:0.875rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:0.75rem">
+          <div
+            style="padding:0.875rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:0.75rem"
+          >
             Renewal risk increased after delayed procurement review.
           </div>
-          <div style="padding:0.875rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:0.75rem">
+          <div
+            style="padding:0.875rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:0.75rem"
+          >
             Next suggested action: schedule finance follow-up before Friday.
           </div>
         </div>
@@ -67,7 +71,9 @@ import { ButtonComponent, DrawerComponent, QuickAction } from 'ui';
   template: `
     <div style="display:flex;flex-direction:column;gap:1rem;width:100%;max-width:44rem">
       <div style="display:flex;flex-wrap:wrap;gap:0.75rem">
-        <ui-button appearance="outline" (click)="overlayVisible.set(true)">Overlay drawer</ui-button>
+        <ui-button appearance="outline" (click)="overlayVisible.set(true)"
+          >Overlay drawer</ui-button
+        >
         <ui-button appearance="outline" (click)="inlineVisible.set(true)">Inline drawer</ui-button>
       </div>
 
@@ -79,8 +85,8 @@ import { ButtonComponent, DrawerComponent, QuickAction } from 'ui';
         >
           <p style="margin:0">
             This bordered region represents part of a page. Inline mode keeps the panel inside the
-            host layout — it needs enough height and a horizontal row so the panel can sit beside the
-            narrative copy.
+            host layout — it needs enough height and a horizontal row so the panel can sit beside
+            the narrative copy.
           </p>
           <p style="margin:0">
             The overlay variant is rendered below, outside this card, spanning the full viewport.
@@ -156,7 +162,9 @@ const bodyStackStyle =
   template: `
     <div style="display:flex;flex-wrap:wrap;gap:0.75rem">
       <ui-button appearance="outline" (click)="leftVisible.set(true)">Left small</ui-button>
-      <ui-button appearance="outline" (click)="rightVisible.set(true)">Right large · scroll</ui-button>
+      <ui-button appearance="outline" (click)="rightVisible.set(true)"
+        >Right large · scroll</ui-button
+      >
       <ui-button appearance="outline" (click)="bottomVisible.set(true)">Bottom medium</ui-button>
 
       <ui-drawer
@@ -268,7 +276,9 @@ import { ButtonComponent, DrawerComponent, QuickAction } from 'ui';
   imports: [ButtonComponent, DrawerComponent],
   template: `
     <div style="display:flex;flex-wrap:wrap;gap:0.75rem">
-      <ui-button appearance="outline" (click)="dynamicVisible.set(true)">Dynamic backdrop</ui-button>
+      <ui-button appearance="outline" (click)="dynamicVisible.set(true)"
+        >Dynamic backdrop</ui-button
+      >
       <ui-button appearance="outline" (click)="staticVisible.set(true)">Static backdrop</ui-button>
       <ui-button variant="danger" appearance="outline" (click)="alertVisible.set(true)">
         Alert drawer

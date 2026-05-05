@@ -19,10 +19,7 @@ import { AvatarComponent } from 'ui';
   template: `
     <div style="display:flex;flex-wrap:wrap;gap:1.25rem;align-items:flex-end">
       <div style="display:flex;flex-direction:column;gap:0.35rem;align-items:center">
-        <ui-avatar
-          image="https://i.pravatar.cc/150?img=12"
-          name="River Chen"
-        />
+        <ui-avatar image="https://i.pravatar.cc/150?img=12" name="River Chen" />
         <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">image</span>
       </div>
       <div style="display:flex;flex-direction:column;gap:0.35rem;align-items:center">
@@ -79,7 +76,9 @@ import { AvatarComponent, Shape, Size } from 'ui';
         @for (size of sizes; track size) {
           <div style="display:flex;flex-direction:column;gap:0.35rem;align-items:center">
             <ui-avatar [size]="size" name="Sam Rowe" />
-            <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">{{ size }}</span>
+            <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">{{
+              size
+            }}</span>
           </div>
         }
       </div>
@@ -89,7 +88,9 @@ import { AvatarComponent, Shape, Size } from 'ui';
         @for (shape of shapes; track shape) {
           <div style="display:flex;flex-direction:column;gap:0.35rem;align-items:center">
             <ui-avatar [shape]="shape" name="Jamie P." />
-            <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">{{ shape }}</span>
+            <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">{{
+              shape
+            }}</span>
           </div>
         }
       </div>
@@ -123,7 +124,11 @@ import { AvatarComponent } from 'ui';
         <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">disabled</span>
       </div>
       <div style="display:flex;flex-direction:column;gap:0.35rem;align-items:center">
-        <ui-avatar name="Syncing portrait" image="https://i.pravatar.cc/150?img=8" [loading]="true" />
+        <ui-avatar
+          name="Syncing portrait"
+          image="https://i.pravatar.cc/150?img=8"
+          [loading]="true"
+        />
         <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">loading</span>
       </div>
     </div>
@@ -153,7 +158,12 @@ import { AvatarComponent, ButtonComponent } from 'ui';
           ·
         </span>
         <div style="display:flex;align-items:center">
-          <ui-avatar size="small" shape="circular" image="https://i.pravatar.cc/150?img=3" name="Ana Costa" />
+          <ui-avatar
+            size="small"
+            shape="circular"
+            image="https://i.pravatar.cc/150?img=3"
+            name="Ana Costa"
+          />
           <ui-avatar
             style="margin-left:-0.35rem"
             size="small"

@@ -47,7 +47,9 @@ const statusItems: DropdownItem[] = [
         >
           Value
         </p>
-        <strong style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)">
+        <strong
+          style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)"
+        >
           {{ selectedStatusLabel }}
         </strong>
       </div>
@@ -194,12 +196,19 @@ const channelItems: DropdownItem[] = [
           >
             Selected
           </span>
-          <strong style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)">
+          <strong
+            style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)"
+          >
             {{ selectedChannelLabels }}
           </strong>
         </div>
 
-        <ui-button type="button" variant="secondary" appearance="outline" (click)="resetSelection()">
+        <ui-button
+          type="button"
+          variant="secondary"
+          appearance="outline"
+          (click)="resetSelection()"
+        >
           Reset
         </ui-button>
       </div>
@@ -283,18 +292,26 @@ const reviewerItems: DropdownItem[] = [
         style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;padding:0.875rem 1rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background2-rest)"
       >
         <div style="display:flex;flex-direction:column;gap:0.25rem;min-width:10rem">
-          <span style="font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--color-neutral-foreground2-rest)">
+          <span
+            style="font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--color-neutral-foreground2-rest)"
+          >
             Country
           </span>
-          <strong style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)">
+          <strong
+            style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)"
+          >
             {{ selectedCountryLabel }}
           </strong>
         </div>
         <div style="display:flex;flex-direction:column;gap:0.25rem;min-width:12rem">
-          <span style="font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--color-neutral-foreground2-rest)">
+          <span
+            style="font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--color-neutral-foreground2-rest)"
+          >
             Reviewers
           </span>
-          <strong style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)">
+          <strong
+            style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)"
+          >
             {{ selectedReviewerLabels }}
           </strong>
         </div>
@@ -352,7 +369,8 @@ const labelItems: DropdownItem[] = [
       <div style="display:flex;flex-direction:column;gap:0.25rem">
         <div style="font-size:0.9375rem;font-weight:600">Inline filter toolbar</div>
         <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          Compact mode works well in tables, toolbars, and dense filter rows where a full field shell would add too much weight.
+          Compact mode works well in tables, toolbars, and dense filter rows where a full field
+          shell would add too much weight.
         </div>
       </div>
 
@@ -392,18 +410,26 @@ const labelItems: DropdownItem[] = [
         style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;padding:0.875rem 1rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background1-rest)"
       >
         <div style="display:flex;flex-direction:column;gap:0.25rem;min-width:10rem">
-          <span style="font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--color-neutral-foreground2-rest)">
+          <span
+            style="font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--color-neutral-foreground2-rest)"
+          >
             Assignee
           </span>
-          <strong style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)">
+          <strong
+            style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)"
+          >
             {{ selectedAssigneeLabel }}
           </strong>
         </div>
         <div style="display:flex;flex-direction:column;gap:0.25rem;min-width:12rem">
-          <span style="font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--color-neutral-foreground2-rest)">
+          <span
+            style="font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--color-neutral-foreground2-rest)"
+          >
             Labels
           </span>
-          <strong style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)">
+          <strong
+            style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)"
+          >
             {{ selectedLabelText }}
           </strong>
         </div>
@@ -470,7 +496,9 @@ const directoryItems: DropdownItem[] = [
   selector: 'app-dropdown-async-data-example',
   imports: [FormsModule, DropdownComponent],
   template: `
-    <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:42rem">
+    <div
+      style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:42rem"
+    >
       <div style="flex:1 1 18rem;min-width:16rem;max-width:24rem">
         <ui-dropdown
           label="Assignee"
@@ -495,10 +523,14 @@ const directoryItems: DropdownItem[] = [
         >
           Current value
         </p>
-        <strong style="display:block;font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)">
+        <strong
+          style="display:block;font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)"
+        >
           {{ selectedAssigneeLabel }}
         </strong>
-        <p style="margin:0.5rem 0 0;font-size:0.75rem;line-height:1.4;color:var(--color-neutral-foreground2-rest)">
+        <p
+          style="margin:0.5rem 0 0;font-size:0.75rem;line-height:1.4;color:var(--color-neutral-foreground2-rest)"
+        >
           Search runs against the data source instead of filtering the local array in memory.
         </p>
       </div>
@@ -697,7 +729,8 @@ const releaseItems: DropdownItem[] = [
       <div style="display:flex;flex-direction:column;gap:0.25rem">
         <div style="font-size:0.9375rem;font-weight:600">Release handoff</div>
         <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          A realistic form usually mixes single and multi-select fields with actions and a compact summary of the current choice set.
+          A realistic form usually mixes single and multi-select fields with actions and a compact
+          summary of the current choice set.
         </div>
       </div>
 
@@ -735,26 +768,38 @@ const releaseItems: DropdownItem[] = [
         style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;padding:0.875rem 1rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background1-rest)"
       >
         <div style="display:flex;flex-direction:column;gap:0.25rem;min-width:10rem">
-          <span style="font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--color-neutral-foreground2-rest)">
+          <span
+            style="font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--color-neutral-foreground2-rest)"
+          >
             Owner
           </span>
-          <strong style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)">
+          <strong
+            style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)"
+          >
             {{ ownerLabel }}
           </strong>
         </div>
         <div style="display:flex;flex-direction:column;gap:0.25rem;min-width:11rem">
-          <span style="font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--color-neutral-foreground2-rest)">
+          <span
+            style="font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--color-neutral-foreground2-rest)"
+          >
             Reviewers
           </span>
-          <strong style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)">
+          <strong
+            style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)"
+          >
             {{ reviewerLabels }}
           </strong>
         </div>
         <div style="display:flex;flex-direction:column;gap:0.25rem;min-width:10rem">
-          <span style="font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--color-neutral-foreground2-rest)">
+          <span
+            style="font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--color-neutral-foreground2-rest)"
+          >
             Last submit
           </span>
-          <strong style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)">
+          <strong
+            style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)"
+          >
             {{ submitState }}
           </strong>
         </div>
@@ -778,7 +823,10 @@ export class DropdownFormPatternExampleComponent {
   protected submitState = 'Not submitted';
 
   protected readonly form = new FormGroup({
-    owner: new FormControl<string | number>('', { nonNullable: true, validators: [Validators.required] }),
+    owner: new FormControl<string | number>('', {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
     releaseType: new FormControl<string | number>('minor', { nonNullable: true }),
     reviewers: new FormControl<Array<string | number>>(['ops'], { nonNullable: true }),
   });

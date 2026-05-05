@@ -150,6 +150,10 @@ export class PaginationComponent {
     return page === -1;
   }
 
+  getPageTrackKey(index: number, page: number): string | number {
+    return this.isEllipsis(page) ? `ellipsis-${index}` : page;
+  }
+
   onPageClick(page: number): void {
     if (page === -1 || page === this.config().currentPage) {
       return;

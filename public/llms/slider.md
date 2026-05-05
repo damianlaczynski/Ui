@@ -37,7 +37,9 @@ const dashedCardStyle =
         <p style="margin:0 0 0.35rem;font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">
           Value
         </p>
-        <p style="margin:0;font-size:1rem;font-weight:600;color:var(--color-neutral-foreground-rest)">
+        <p
+          style="margin:0;font-size:1rem;font-weight:600;color:var(--color-neutral-foreground-rest)"
+        >
           {{ volume }}%
         </p>
         <p style="margin:0.35rem 0 0;font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">
@@ -72,7 +74,9 @@ const dashedCardStyle =
     <div
       style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:42rem;"
     >
-      <div style="flex:1 1 18rem;display:flex;min-width:16rem;max-width:30rem;flex-direction:column;gap:1rem">
+      <div
+        style="flex:1 1 18rem;display:flex;min-width:16rem;max-width:30rem;flex-direction:column;gap:1rem"
+      >
         <ui-slider
           label="Small"
           size="small"
@@ -99,15 +103,21 @@ const dashedCardStyle =
           Values
         </p>
         <div style="display:grid;gap:0.4rem;font-size:0.875rem;line-height:1.35">
-          <span style="display:flex;justify-content:space-between;gap:1rem;color:var(--color-neutral-foreground-rest)">
+          <span
+            style="display:flex;justify-content:space-between;gap:1rem;color:var(--color-neutral-foreground-rest)"
+          >
             <span style="color:var(--color-neutral-foreground2-rest)">Small</span>
             <strong style="font-weight:600">{{ smallValue }}</strong>
           </span>
-          <span style="display:flex;justify-content:space-between;gap:1rem;color:var(--color-neutral-foreground-rest)">
+          <span
+            style="display:flex;justify-content:space-between;gap:1rem;color:var(--color-neutral-foreground-rest)"
+          >
             <span style="color:var(--color-neutral-foreground2-rest)">Medium</span>
             <strong style="font-weight:600">{{ mediumValue }}</strong>
           </span>
-          <span style="display:flex;justify-content:space-between;gap:1rem;color:var(--color-neutral-foreground-rest)">
+          <span
+            style="display:flex;justify-content:space-between;gap:1rem;color:var(--color-neutral-foreground-rest)"
+          >
             <span style="color:var(--color-neutral-foreground2-rest)">Large</span>
             <strong style="font-weight:600">{{ largeValue }}</strong>
           </span>
@@ -142,7 +152,9 @@ const dashedCardStyle =
     <div
       style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:48rem;"
     >
-      <div style="flex:1 1 18rem;display:flex;min-width:16rem;max-width:30rem;flex-direction:column;gap:1rem">
+      <div
+        style="flex:1 1 18rem;display:flex;min-width:16rem;max-width:30rem;flex-direction:column;gap:1rem"
+      >
         <ui-slider
           label="Rating"
           [min]="0"
@@ -178,10 +190,13 @@ const dashedCardStyle =
         >
           Values
         </p>
-        <div style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.875rem;line-height:1.4">
+        <div
+          style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.875rem;line-height:1.4"
+        >
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Rating</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest);font-variant-numeric:tabular-nums"
+            <strong
+              style="font-weight:600;color:var(--color-neutral-foreground-rest);font-variant-numeric:tabular-nums"
               >{{ rating }}/10</strong
             >
           </div>
@@ -193,9 +208,14 @@ const dashedCardStyle =
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Budget</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest);font-variant-numeric:tabular-nums">{{ formatCurrency(budget) }}</strong>
+            <strong
+              style="font-weight:600;color:var(--color-neutral-foreground-rest);font-variant-numeric:tabular-nums"
+              >{{ formatCurrency(budget) }}</strong
+            >
           </div>
-          <div style="margin-top:0.25rem;padding-top:0.5rem;font-size:0.75rem;color:var(--color-neutral-foreground2-rest);border-top:1px solid color-mix(in srgb,var(--color-neutral-stroke-rest) 65%,transparent)">
+          <div
+            style="margin-top:0.25rem;padding-top:0.5rem;font-size:0.75rem;color:var(--color-neutral-foreground2-rest);border-top:1px solid color-mix(in srgb,var(--color-neutral-stroke-rest) 65%,transparent)"
+          >
             {{ getRatingText(rating) }}. {{ getDiscountText(discount) }}.
           </div>
         </div>
@@ -250,7 +270,9 @@ const dashedCardStyle =
         <p style="margin:0 0 0.35rem;font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">
           Selected score
         </p>
-        <p style="margin:0;font-size:1rem;font-weight:600;color:var(--color-neutral-foreground-rest)">
+        <p
+          style="margin:0;font-size:1rem;font-weight:600;color:var(--color-neutral-foreground-rest)"
+        >
           {{ score }}
         </p>
       </div>
@@ -293,7 +315,9 @@ const dashedCardStyle =
           />
         </div>
 
-        <div style="display:flex;flex-direction:column;gap:1rem;flex:1 1 14rem;min-width:14rem;max-width:18rem">
+        <div
+          style="display:flex;flex-direction:column;gap:1rem;flex:1 1 14rem;min-width:14rem;max-width:18rem"
+        >
           <ui-slider
             label="Readonly threshold"
             [min]="0"
@@ -319,18 +343,26 @@ const dashedCardStyle =
         >
           Values
         </p>
-        <div style="display:flex;flex-direction:column;gap:0.45rem;font-size:0.875rem;line-height:1.4">
+        <div
+          style="display:flex;flex-direction:column;gap:0.45rem;font-size:0.875rem;line-height:1.4"
+        >
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Mic gain</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{ gain }}</strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
+              gain
+            }}</strong>
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Readonly</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{ readonlyValue }}</strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
+              readonlyValue
+            }}</strong>
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Disabled</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground2-rest)">{{ disabledValue }}</strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground2-rest)">{{
+              disabledValue
+            }}</strong>
           </div>
         </div>
       </div>
@@ -410,14 +442,20 @@ const dashedCardStyle =
         >
           Values
         </p>
-        <div style="display:flex;flex-direction:column;gap:0.45rem;font-size:0.875rem;line-height:1.4">
+        <div
+          style="display:flex;flex-direction:column;gap:0.45rem;font-size:0.875rem;line-height:1.4"
+        >
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Threshold</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{ threshold }}%</strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)"
+              >{{ threshold }}%</strong
+            >
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Reminder</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{ formatDays(reminderDays) }}</strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
+              formatDays(reminderDays)
+            }}</strong>
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Sponsors</span>
@@ -425,7 +463,9 @@ const dashedCardStyle =
               notifySponsors ? 'On' : 'Off'
             }}</strong>
           </div>
-          <div style="margin-top:0.25rem;padding-top:0.5rem;font-size:0.75rem;color:var(--color-neutral-foreground2-rest);border-top:1px solid color-mix(in srgb,var(--color-neutral-stroke-rest) 65%,transparent)">
+          <div
+            style="margin-top:0.25rem;padding-top:0.5rem;font-size:0.75rem;color:var(--color-neutral-foreground2-rest);border-top:1px solid color-mix(in srgb,var(--color-neutral-stroke-rest) 65%,transparent)"
+          >
             {{ getThresholdText(threshold) }} · {{ getReminderText(reminderDays) }}
           </div>
         </div>

@@ -162,11 +162,15 @@ import { ButtonComponent, TextComponent } from 'ui';
       >
         <div style="display:flex;flex-direction:column;gap:0.25rem;padding-bottom:0.25rem">
           <span style="font-size:0.9375rem;font-weight:600">Workspace onboarding draft</span>
-          <p style="margin:0;font-size:0.8125rem;line-height:1.5;color:var(--color-neutral-foreground2-rest)">
+          <p
+            style="margin:0;font-size:0.8125rem;line-height:1.5;color:var(--color-neutral-foreground2-rest)"
+          >
             Blurring a field surfaces its error when it stays invalid.
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)"> Save draft </strong>
-            marks every control touched so min length, pattern and required appear together (like production
-            forms).
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">
+              Save draft
+            </strong>
+            marks every control touched so min length, pattern and required appear together (like
+            production forms).
           </p>
         </div>
 
@@ -400,7 +404,9 @@ import { ButtonComponent, TextComponent } from 'ui';
       <div
         style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
       >
-        <ui-button type="button" variant="primary" [disabled]="form.invalid">Save profile</ui-button>
+        <ui-button type="button" variant="primary" [disabled]="form.invalid"
+          >Save profile</ui-button
+        >
         <ui-button
           type="button"
           variant="secondary"

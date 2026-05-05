@@ -17,7 +17,9 @@ import { ButtonComponent, TooltipDirective } from 'ui';
   standalone: true,
   imports: [ButtonComponent, TooltipDirective],
   template: `
-    <div style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;width:100%;max-width:32rem">
+    <div
+      style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;width:100%;max-width:32rem"
+    >
       <ui-button
         type="button"
         variant="primary"
@@ -53,19 +55,39 @@ import { ButtonComponent, TooltipDirective } from 'ui';
     <div
       style="display:grid;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));gap:1rem;width:100%;max-width:36rem"
     >
-      <ui-button type="button" appearance="outline" uiTooltip="Appears above the trigger." uiTooltipPosition="top">
+      <ui-button
+        type="button"
+        appearance="outline"
+        uiTooltip="Appears above the trigger."
+        uiTooltipPosition="top"
+      >
         Top
       </ui-button>
 
-      <ui-button type="button" appearance="outline" uiTooltip="Appears below the trigger." uiTooltipPosition="bottom">
+      <ui-button
+        type="button"
+        appearance="outline"
+        uiTooltip="Appears below the trigger."
+        uiTooltipPosition="bottom"
+      >
         Bottom
       </ui-button>
 
-      <ui-button type="button" appearance="outline" uiTooltip="Appears to the left when space allows." uiTooltipPosition="left">
+      <ui-button
+        type="button"
+        appearance="outline"
+        uiTooltip="Appears to the left when space allows."
+        uiTooltipPosition="left"
+      >
         Left
       </ui-button>
 
-      <ui-button type="button" appearance="outline" uiTooltip="Appears to the right when space allows." uiTooltipPosition="right">
+      <ui-button
+        type="button"
+        appearance="outline"
+        uiTooltip="Appears to the right when space allows."
+        uiTooltipPosition="right"
+      >
         Right
       </ui-button>
     </div>
@@ -84,13 +106,10 @@ import { ButtonComponent, TooltipDirective } from 'ui';
   standalone: true,
   imports: [ButtonComponent, TooltipDirective],
   template: `
-    <div style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;width:100%;max-width:40rem">
-      <ui-button
-        type="button"
-        appearance="outline"
-        uiTooltip="Compact hint"
-        uiTooltipSize="small"
-      >
+    <div
+      style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;width:100%;max-width:40rem"
+    >
+      <ui-button type="button" appearance="outline" uiTooltip="Compact hint" uiTooltipSize="small">
         Small
       </ui-button>
 
@@ -184,11 +203,46 @@ import { ButtonComponent, TooltipDirective } from 'ui';
     >
       <div style="font-size:0.875rem;font-weight:600">Compact editor toolbar</div>
       <div style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center">
-        <ui-button type="button" icon="text_bold" shape="square" appearance="subtle" uiTooltip="Bold" uiTooltipRelationship="label"></ui-button>
-        <ui-button type="button" icon="text_italic" shape="square" appearance="subtle" uiTooltip="Italic" uiTooltipRelationship="label"></ui-button>
-        <ui-button type="button" icon="link" shape="square" appearance="subtle" uiTooltip="Insert link" uiTooltipRelationship="label"></ui-button>
-        <ui-button type="button" icon="image" shape="square" appearance="subtle" uiTooltip="Insert image" uiTooltipRelationship="label"></ui-button>
-        <ui-button type="button" icon="code" shape="square" appearance="subtle" uiTooltip="Code block" uiTooltipRelationship="label"></ui-button>
+        <ui-button
+          type="button"
+          icon="text_bold"
+          shape="square"
+          appearance="subtle"
+          uiTooltip="Bold"
+          uiTooltipRelationship="label"
+        ></ui-button>
+        <ui-button
+          type="button"
+          icon="text_italic"
+          shape="square"
+          appearance="subtle"
+          uiTooltip="Italic"
+          uiTooltipRelationship="label"
+        ></ui-button>
+        <ui-button
+          type="button"
+          icon="link"
+          shape="square"
+          appearance="subtle"
+          uiTooltip="Insert link"
+          uiTooltipRelationship="label"
+        ></ui-button>
+        <ui-button
+          type="button"
+          icon="image"
+          shape="square"
+          appearance="subtle"
+          uiTooltip="Insert image"
+          uiTooltipRelationship="label"
+        ></ui-button>
+        <ui-button
+          type="button"
+          icon="code"
+          shape="square"
+          appearance="subtle"
+          uiTooltip="Code block"
+          uiTooltipRelationship="label"
+        ></ui-button>
       </div>
     </div>
   `,

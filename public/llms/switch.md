@@ -179,7 +179,10 @@ import { ButtonComponent, SwitchComponent } from 'ui';
   standalone: true,
   imports: [FormsModule, ButtonComponent, SwitchComponent],
   template: `
-    <form style="display:flex;flex-direction:column;gap:1rem;width:100%;max-width:32rem" (ngSubmit)="submit()">
+    <form
+      style="display:flex;flex-direction:column;gap:1rem;width:100%;max-width:32rem"
+      (ngSubmit)="submit()"
+    >
       <ui-switch
         label="Allow production deploy"
         helpText="This enables direct deployment from the release checklist."
@@ -253,14 +256,8 @@ import { SwitchComponent } from 'ui';
           helpText="Send an alert when someone mentions you directly."
           formControlName="mentions"
         />
-        <ui-switch
-          label="Calendar reminders"
-          formControlName="calendarReminders"
-        />
-        <ui-switch
-          label="Marketing updates"
-          formControlName="marketing"
-        />
+        <ui-switch label="Calendar reminders" formControlName="calendarReminders" />
+        <ui-switch label="Marketing updates" formControlName="marketing" />
       </form>
 
       <div
@@ -271,7 +268,9 @@ import { SwitchComponent } from 'ui';
         >
           Values
         </p>
-        <div style="display:flex;flex-direction:column;gap:0.45rem;font-size:0.875rem;line-height:1.4">
+        <div
+          style="display:flex;flex-direction:column;gap:0.45rem;font-size:0.875rem;line-height:1.4"
+        >
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Summary email</span>
             <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{

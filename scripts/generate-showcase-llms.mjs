@@ -18,6 +18,7 @@ const showcases = [
   loadShowcaseMeta({ slug: 'drawer' }),
   loadShowcaseMeta({ slug: 'dialog' }),
   loadShowcaseMeta({ slug: 'message-bar' }),
+  loadShowcaseMeta({ slug: 'pagination' }),
   loadShowcaseMeta({ slug: 'progress-bar' }),
   loadShowcaseMeta({ slug: 'rating' }),
   loadShowcaseMeta({ slug: 'skeleton' }),
