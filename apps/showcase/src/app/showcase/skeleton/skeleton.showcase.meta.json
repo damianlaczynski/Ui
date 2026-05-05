@@ -1,0 +1,141 @@
+{
+  "slug": "skeleton",
+  "title": "Skeleton",
+  "description": "Skeleton provides lightweight loading placeholders for text, media, cards, and structured layouts. Use it to preserve layout and signal progress before real content arrives.",
+  "intro": "Skeleton renders simple loading placeholders with shape, animation, dimensions, and optional custom radius. Build shells that match the final layout closely so loading feels stable rather than jumpy.",
+  "importCode": "import { SkeletonComponent } from 'ui';",
+  "containerClass": "skeleton-doc",
+  "snippets": {
+    "basicCode": "skeleton-basic-demo.ts",
+    "shapesCode": "skeleton-shapes-demo.ts",
+    "animationCode": "skeleton-animation-demo.ts",
+    "cardShellCode": "skeleton-card-shell-demo.ts",
+    "listShellCode": "skeleton-list-shell-demo.ts",
+    "detailPanelCode": "skeleton-detail-panel-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic text lines",
+      "description": "Use a few lines with varied widths to stand in for headings and paragraphs. Keep the structure close to final copy so the page does not reflow hard when content arrives.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "shapes",
+      "title": "Shapes and dimensions",
+      "description": "Rounded blocks fit text and media, circular placeholders fit avatars, and square blocks suit strict geometry. Width, height, and border radius let you match the real surface instead of showing generic bars.",
+      "codeKey": "shapesCode",
+      "componentKey": "shapes"
+    },
+    {
+      "id": "animation",
+      "title": "Animated and static",
+      "description": "Animated shimmer works well for obvious loading states, while static placeholders are calmer inside dense panels or when many placeholders appear together.",
+      "codeKey": "animationCode",
+      "componentKey": "animation"
+    },
+    {
+      "id": "card-shell",
+      "title": "Card shell",
+      "description": "A complete card shell is more useful than isolated bars because it shows a ready-to-copy loading pattern for media, title, summary, and actions.",
+      "codeKey": "cardShellCode",
+      "componentKey": "cardShell"
+    },
+    {
+      "id": "list-shell",
+      "title": "List rows and navigation shells",
+      "description": "For inboxes, result lists, and side navigation, mirror row rhythm with avatar, title, metadata, and trailing affordances so the loaded state lands in the same footprint.",
+      "codeKey": "listShellCode",
+      "componentKey": "listShell"
+    },
+    {
+      "id": "detail-panel",
+      "title": "Loading swap pattern",
+      "description": "Show the shell in the exact container where content will appear, then swap to the real view when data resolves. This pattern is closer to production than a gallery of standalone placeholders.",
+      "codeKey": "detailPanelCode",
+      "componentKey": "detailPanel"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Role and status",
+      "body": "`SkeletonComponent` renders with `role=\"status\"` and `aria-busy=\"true\"` so assistive technologies can treat the placeholder as loading feedback."
+    },
+    {
+      "title": "Accessible name and busy regions",
+      "body": "Use `ariaLabel` when the default loading label is too generic for the surrounding context. For example, a profile shell can announce `Loading customer profile` instead of a generic loading message.\n\n| Pattern | Guidance |\n| --- | --- |\n| loading section | keep the containing region marked busy |\n| longer wait | pair the shell with nearby loading text |\n| decorative placeholder only | do not treat the skeleton as final content |"
+    },
+    {
+      "title": "Applicability",
+      "body": "Skeleton is not interactive, so there is no keyboard section. Do not add extra ARIA roles that imply a control; keep it as loading status only."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "SkeletonComponent - <code>ui-skeleton</code>",
+      "lead": "Standalone loading placeholder for text, avatar, media, and container shells. Render several instances together to model the final layout instead of showing a single generic bar.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "shape",
+              "InputSignal<Shape>",
+              "'rounded'",
+              "Controls the base silhouette. Use rounded for text or media blocks, circular for avatars, and square for strict geometry."
+            ],
+            [
+              "animated",
+              "InputSignal<boolean>",
+              "true",
+              "Enables the shimmer effect. Disable it for calmer dense layouts or when many placeholders render at once."
+            ],
+            [
+              "width",
+              "InputSignal<string>",
+              "'100%'",
+              "Applies inline width so the placeholder can match the target layout, including percentages and fixed lengths."
+            ],
+            [
+              "height",
+              "InputSignal<string>",
+              "'20px'",
+              "Applies inline height for text rows, avatars, media areas, or custom shells."
+            ],
+            [
+              "borderRadius",
+              "InputSignal<string>",
+              "''",
+              "Overrides the default radius logic when a surface needs an exact custom corner value."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "''",
+              "Custom accessible label for the loading region. When omitted, the component falls back to the shared i18n loading label."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "The component always renders <code class=\"showcase-doc__api-code\">role=\"status\"</code> and <code class=\"showcase-doc__api-code\">aria-busy=\"true\"</code>.",
+            "If <code class=\"showcase-doc__api-code\">borderRadius</code> is empty, radius falls back to the selected shape: circular becomes <code class=\"showcase-doc__api-code\">9999px</code>, square becomes <code class=\"showcase-doc__api-code\">0</code>, and rounded uses the component stylesheet token."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Related mechanisms",
+          "items": [
+            "<code>Shape</code> - shared shape union reused across components.",
+            "Shared neutral background tokens - provide the base placeholder surface and shimmer contrast."
+          ]
+        }
+      ]
+    }
+  ]
+}

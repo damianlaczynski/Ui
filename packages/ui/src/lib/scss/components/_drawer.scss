@@ -72,6 +72,8 @@
     overflow: hidden;
     pointer-events: auto;
     z-index: 1;
+    container-type: inline-size;
+    container-name: drawer-panel;
 
     .drawer--overlay & {
       box-shadow: $elevation-16;
@@ -245,36 +247,49 @@
 
   &__footer {
     align-self: stretch;
-    display: inline-flex;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
+    row-gap: $spacing-3;
+    column-gap: $spacing-2;
     padding: $spacing-5;
     padding-top: $spacing-4;
-    gap: $spacing-2;
     border-top: 1px solid var(--color-neutral-stroke-rest);
     flex-shrink: 0;
+    min-width: 0;
   }
 
   &__footer-left {
     display: flex;
+    flex-wrap: wrap;
     justify-content: flex-start;
     align-items: flex-start;
     gap: $spacing-2;
+    min-width: 0;
+    max-width: 100%;
   }
 
   &__footer-right {
     display: flex;
-    justify-content: flex-start;
+    flex-wrap: wrap;
+    justify-content: flex-end;
     align-items: flex-start;
     gap: $spacing-2;
+    min-width: 0;
+    flex: 1 1 auto;
+    margin-left: auto;
   }
 
-  // Make buttons full width on small screens
   @media (max-width: 479px) {
     .drawer__footer-left,
     .drawer__footer-right {
+      flex: 1 1 100%;
+      margin-left: 0;
+
       ui-button {
-        width: 100%;
+        flex: 1 1 auto;
+        min-width: 0;
 
         button {
           width: 100%;
@@ -332,6 +347,41 @@
         @include slide-out-bottom($duration-slow, $easing-ease-in-out);
       }
     }
+  }
+}
+
+@container drawer-panel (max-width: 560px) {
+  .drawer__footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .drawer__footer-left,
+  .drawer__footer-right {
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+  }
+
+  .drawer__footer-left {
+    justify-content: flex-start;
+  }
+
+  .drawer__footer-right {
+    justify-content: flex-end;
+  }
+
+  .drawer__footer-left ui-button,
+  .drawer__footer-right ui-button {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .drawer__footer-left ui-button button,
+  .drawer__footer-right ui-button button {
+    width: 100%;
+    justify-content: center;
   }
 }
 

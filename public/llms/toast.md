@@ -18,16 +18,18 @@ import { ButtonComponent, ToastContainerComponent, ToastService } from 'ui';
   imports: [ButtonComponent, ToastContainerComponent],
   template: `
     <div style="display:flex;flex-direction:column;gap:1rem;width:100%">
-      <div style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center">
+      <div
+        style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
+      >
         <ui-button type="button" variant="primary" (click)="pushPrimary()">Primary</ui-button>
         <ui-button type="button" variant="secondary" (click)="pushSecondary()">Secondary</ui-button>
         <ui-button type="button" variant="info" (click)="pushInfo()">Info</ui-button>
         <ui-button type="button" variant="success" (click)="pushSuccess()">Success</ui-button>
         <ui-button type="button" variant="warning" (click)="pushWarn()">Warning</ui-button>
         <ui-button type="button" variant="danger" (click)="pushError()">Error</ui-button>
-      </div>
-      <div style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center">
-        <ui-button type="button" variant="secondary" appearance="outline" (click)="clearAll()">Reset</ui-button>
+        <ui-button type="button" variant="secondary" appearance="outline" (click)="clearAll()"
+          >Reset</ui-button
+        >
       </div>
     </div>
     <ui-toast-container position="top-right" />
@@ -89,7 +91,9 @@ import { ButtonComponent, ToastComponent } from 'ui';
   imports: [ButtonComponent, ToastComponent],
   template: `
     <div style="display:flex;flex-direction:column;gap:0.75rem;width:100%;max-width:28rem">
-      <div style="display:flex;flex-wrap:wrap;gap:0.5rem">
+      <div
+        style="display:flex;flex-wrap:wrap;align-items:center;gap:0.5rem;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
+      >
         <ui-button type="button" variant="secondary" appearance="outline" (click)="reset()"
           >Reset</ui-button
         >
@@ -124,7 +128,9 @@ import { ButtonComponent, ToastComponent } from 'ui';
   imports: [ButtonComponent, ToastComponent],
   template: `
     <div style="display:flex;flex-direction:column;gap:0.75rem;width:100%;max-width:28rem">
-      <div style="display:flex;flex-wrap:wrap;gap:0.5rem">
+      <div
+        style="display:flex;flex-wrap:wrap;align-items:center;gap:0.5rem;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
+      >
         <ui-button type="button" variant="secondary" appearance="outline" (click)="reset()"
           >Reset</ui-button
         >
@@ -194,7 +200,9 @@ import { ButtonComponent, ToastComponent } from 'ui';
   imports: [ButtonComponent, ToastComponent],
   template: `
     <div style="display:flex;flex-direction:column;gap:0.75rem;width:100%;max-width:28rem">
-      <div style="display:flex;flex-wrap:wrap;gap:0.5rem">
+      <div
+        style="display:flex;flex-wrap:wrap;align-items:center;gap:0.5rem;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
+      >
         <ui-button type="button" variant="secondary" appearance="outline" (click)="reset()"
           >Reset</ui-button
         >
@@ -261,7 +269,9 @@ import { ButtonComponent, ToastComponent } from 'ui';
   imports: [ButtonComponent, ToastComponent],
   template: `
     <div style="display:flex;flex-direction:column;gap:0.75rem;width:100%;max-width:28rem">
-      <div style="display:flex;flex-wrap:wrap;gap:0.5rem">
+      <div
+        style="display:flex;flex-wrap:wrap;align-items:center;gap:0.5rem;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
+      >
         <ui-button type="button" variant="secondary" appearance="outline" (click)="reset()"
           >Reset</ui-button
         >
@@ -312,7 +322,9 @@ import { ButtonComponent, ToastComponent } from 'ui';
   imports: [ButtonComponent, ToastComponent],
   template: `
     <div style="display:flex;flex-direction:column;gap:0.75rem;width:100%;max-width:28rem">
-      <div style="display:flex;flex-wrap:wrap;gap:0.5rem">
+      <div
+        style="display:flex;flex-wrap:wrap;align-items:center;gap:0.5rem;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
+      >
         <ui-button type="button" variant="secondary" appearance="outline" (click)="reset()"
           >Reset</ui-button
         >
@@ -364,11 +376,15 @@ import { ButtonComponent, ToastService } from 'ui';
   standalone: true,
   imports: [ButtonComponent],
   template: `
-    <div style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center">
+    <div
+      style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
+    >
       <ui-button type="button" variant="warning" appearance="subtle" (click)="pushSticky()">
         Sticky toast
       </ui-button>
-      <ui-button type="button" variant="secondary" appearance="outline" (click)="clearAll()">Reset</ui-button>
+      <ui-button type="button" variant="secondary" appearance="outline" (click)="clearAll()"
+        >Reset</ui-button
+      >
     </div>
   `,
 })
@@ -473,10 +489,12 @@ import { ButtonComponent, ToastService } from 'ui';
           <span style="opacity:0.8;font-size:0.75rem">Full report in Activity → Backup.</span>
         </div>
       </ng-template>
-      <ui-button type="button" variant="secondary" appearance="outline" (click)="reset()"
-        >Reset</ui-button
+      <div
+        style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
       >
-      <div style="display:flex;;gap:0.5rem;align-items:center">
+        <ui-button type="button" variant="secondary" appearance="outline" (click)="reset()"
+          >Reset</ui-button
+        >
         <ui-button type="button" variant="info" (click)="pushInvite()">Meeting invite</ui-button>
         <ui-button type="button" variant="warning" (click)="pushQuota()">Storage warning</ui-button>
         <ui-button type="button" variant="danger" (click)="pushPayment()">Payment failed</ui-button>
@@ -548,8 +566,21 @@ export class ToastActionsExampleComponent {
 ### Role and live region
 The root uses `role="alert"`. `aria-live` is `assertive` for the danger variant and `polite` for others so assistive technologies prioritize errors without shouting over every hint.
 
-### Dismiss control
+| Variant | Live region |
+| --- | --- |
+| `danger` | `assertive` |
+| all other variants | `polite` |
+
+### Keyboard and actions
+Toast itself is not a focus trap. Keyboard interaction depends on whether dismiss and action buttons are rendered.
+
+| Element | Keyboard behavior |
+| --- | --- |
+| dismiss button | standard button keyboard support |
+| projected actions | standard keyboard support from the projected control |
+| non-interactive toast body | announced through the live region rather than focused |
+
+### Dismiss and progress
 When `dismissible` is true, the dismiss control is a `ButtonComponent`; keep toast copy concise so the name and message remain the primary announcement.
 
-### Progress
-The progress strip is decorative timing feedback; critical status should still appear in `title` and `message`.
+The progress strip is decorative timing feedback. Critical status should still appear in `title` and `message` instead of relying on the countdown bar.

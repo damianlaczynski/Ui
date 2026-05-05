@@ -8,8 +8,26 @@ const outputDir = join(rootDir, 'public', 'llms');
 const snippetsOutputDir = join(outputDir, 'snippets');
 
 const showcases = [
-  loadShowcaseMeta('button'),
-  loadShowcaseMeta('toast'),
+  loadShowcaseMeta({ slug: 'avatar' }),
+  loadShowcaseMeta({ slug: 'breadcrumb' }),
+  loadShowcaseMeta({ slug: 'button' }),
+  loadShowcaseMeta({ slug: 'checkbox', showcaseDir: 'field/checkbox' }),
+  loadShowcaseMeta({ slug: 'color', showcaseDir: 'field/color' }),
+  loadShowcaseMeta({ slug: 'divider' }),
+  loadShowcaseMeta({ slug: 'dropdown', showcaseDir: 'field/dropdown' }),
+  loadShowcaseMeta({ slug: 'drawer' }),
+  loadShowcaseMeta({ slug: 'dialog' }),
+  loadShowcaseMeta({ slug: 'message-bar' }),
+  loadShowcaseMeta({ slug: 'progress-bar' }),
+  loadShowcaseMeta({ slug: 'rating' }),
+  loadShowcaseMeta({ slug: 'skeleton' }),
+  loadShowcaseMeta({ slug: 'slider', showcaseDir: 'field/slider' }),
+  loadShowcaseMeta({ slug: 'stepper', showcaseDir: 'field/stepper' }),
+  loadShowcaseMeta({ slug: 'spinner' }),
+  loadShowcaseMeta({ slug: 'switch', showcaseDir: 'field/switch' }),
+  loadShowcaseMeta({ slug: 'text', showcaseDir: 'field/text' }),
+  loadShowcaseMeta({ slug: 'toast' }),
+  loadShowcaseMeta({ slug: 'tooltip' }),
 ];
 
 mkdirSync(outputDir, { recursive: true });
@@ -61,12 +79,12 @@ function renderMarkdown(showcase, docs) {
   return parts.join('\n');
 }
 
-function loadShowcaseMeta(slug) {
-  const showcaseDir = join(rootDir, 'apps/showcase/src/app/showcase', slug);
-  const metaPath = join(showcaseDir, `${slug}.showcase.meta.json`);
+function loadShowcaseMeta({ slug, showcaseDir = slug }) {
+  const showcaseRootDir = join(rootDir, 'apps/showcase/src/app/showcase', showcaseDir);
+  const metaPath = join(showcaseRootDir, `${slug}.showcase.meta.json`);
   const meta = JSON.parse(readFileSync(metaPath, 'utf8'));
   return {
     ...meta,
-    sourceDir: join(showcaseDir, 'examples'),
+    sourceDir: join(showcaseRootDir, 'examples'),
   };
 }

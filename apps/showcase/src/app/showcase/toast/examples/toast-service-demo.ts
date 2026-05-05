@@ -7,15 +7,15 @@ import { ButtonComponent, ToastContainerComponent, ToastService } from 'ui';
   imports: [ButtonComponent, ToastContainerComponent],
   template: `
     <div style="display:flex;flex-direction:column;gap:1rem;width:100%">
-      <div style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center">
+      <div
+        style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
+      >
         <ui-button type="button" variant="primary" (click)="pushPrimary()">Primary</ui-button>
         <ui-button type="button" variant="secondary" (click)="pushSecondary()">Secondary</ui-button>
         <ui-button type="button" variant="info" (click)="pushInfo()">Info</ui-button>
         <ui-button type="button" variant="success" (click)="pushSuccess()">Success</ui-button>
         <ui-button type="button" variant="warning" (click)="pushWarn()">Warning</ui-button>
         <ui-button type="button" variant="danger" (click)="pushError()">Error</ui-button>
-      </div>
-      <div style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center">
         <ui-button type="button" variant="secondary" appearance="outline" (click)="clearAll()"
           >Reset</ui-button
         >

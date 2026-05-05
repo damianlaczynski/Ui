@@ -76,15 +76,15 @@
   "accessibility": [
     {
       "title": "Role and live region",
-      "body": "The root uses `role=\"alert\"`. `aria-live` is `assertive` for the danger variant and `polite` for others so assistive technologies prioritize errors without shouting over every hint."
+      "body": "The root uses `role=\"alert\"`. `aria-live` is `assertive` for the danger variant and `polite` for others so assistive technologies prioritize errors without shouting over every hint.\n\n| Variant | Live region |\n| --- | --- |\n| `danger` | `assertive` |\n| all other variants | `polite` |"
     },
     {
-      "title": "Dismiss control",
-      "body": "When `dismissible` is true, the dismiss control is a `ButtonComponent`; keep toast copy concise so the name and message remain the primary announcement."
+      "title": "Keyboard and actions",
+      "body": "Toast itself is not a focus trap. Keyboard interaction depends on whether dismiss and action buttons are rendered.\n\n| Element | Keyboard behavior |\n| --- | --- |\n| dismiss button | standard button keyboard support |\n| projected actions | standard keyboard support from the projected control |\n| non-interactive toast body | announced through the live region rather than focused |"
     },
     {
-      "title": "Progress",
-      "body": "The progress strip is decorative timing feedback; critical status should still appear in `title` and `message`."
+      "title": "Dismiss and progress",
+      "body": "When `dismissible` is true, the dismiss control is a `ButtonComponent`; keep toast copy concise so the name and message remain the primary announcement.\n\nThe progress strip is decorative timing feedback. Critical status should still appear in `title` and `message` instead of relying on the countdown bar."
     }
   ],
   "apiSections": [

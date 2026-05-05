@@ -6,7 +6,9 @@ import { ButtonComponent, ToastService } from 'ui';
   standalone: true,
   imports: [ButtonComponent],
   template: `
-    <div style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center">
+    <div
+      style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
+    >
       <ui-button type="button" variant="warning" appearance="subtle" (click)="pushSticky()">
         Sticky toast
       </ui-button>

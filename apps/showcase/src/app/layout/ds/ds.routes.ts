@@ -1,6 +1,9 @@
 import { Routes } from '@angular/router';
 import { AccordionShowcaseComponent } from '@showcase/accordion/accordion.showcase';
-import { AvatarShowcaseComponent } from '@showcase/avatar/avatar.showcase';
+import {
+  AVATAR_DOC_ASSET_PATHS,
+  AVATAR_DOC_PAGE_CONFIG,
+} from '@showcase/avatar/avatar.showcase.doc';
 import {
   BUTTON_DOC_ASSET_PATHS,
   BUTTON_DOC_PAGE_CONFIG,
@@ -15,40 +18,76 @@ import { MonthShowcaseComponent } from '@showcase/field/month/month.showcase';
 import { TimeSpanShowcaseComponent } from '@showcase/field/time-span/time-span.showcase';
 import { WeekShowcaseComponent } from '@showcase/field/week/week.showcase';
 import { DateRangeShowcaseComponent } from '@showcase/field/date-range/date-range.showcase';
-import { DropdownShowcaseComponent } from '@showcase/field/dropdown/dropdown.showcase';
+import {
+  DROPDOWN_DOC_ASSET_PATHS,
+  DROPDOWN_DOC_PAGE_CONFIG,
+} from '@showcase/field/dropdown/dropdown.showcase.doc';
 import { NumberShowcaseComponent } from '@showcase/field/number/number.showcase';
 import { PasswordShowcaseComponent } from '@showcase/field/password/password.showcase';
-import { TextShowcaseComponent } from '@showcase/field/text/text.showcase';
+import { TEXT_DOC_ASSET_PATHS, TEXT_DOC_PAGE_CONFIG } from '@showcase/field/text/text.showcase.doc';
 import { EmailShowcaseComponent } from '@showcase/field/email/email.showcase';
 import { SearchShowcaseComponent } from '@showcase/field/search/search.showcase';
 import { TelShowcaseComponent } from '@showcase/field/tel/tel.showcase';
 import { TextareaShowcaseComponent } from '@showcase/field/textarea/textarea.showcase';
 import { UrlShowcaseComponent } from '@showcase/field/url/url.showcase';
+import {
+  SWITCH_DOC_ASSET_PATHS,
+  SWITCH_DOC_PAGE_CONFIG,
+} from '@showcase/field/switch/switch.showcase.doc';
 import { TabsShowcaseComponent } from '@showcase/tabs/tabs.showcase';
-import { SkeletonShowcaseComponent } from '@showcase/skeleton/skeleton.showcase';
-import { DialogShowcaseComponent } from '@showcase/dialog/dialog.showcase';
+import {
+  SKELETON_DOC_ASSET_PATHS,
+  SKELETON_DOC_PAGE_CONFIG,
+} from '@showcase/skeleton/skeleton.showcase.doc';
+import {
+  DIALOG_DOC_ASSET_PATHS,
+  DIALOG_DOC_PAGE_CONFIG,
+} from '@showcase/dialog/dialog.showcase.doc';
 import { EmptyStateShowcaseComponent } from '@showcase/empty-state/empty-state.showcase';
 import { ErrorStateShowcaseComponent } from '@showcase/error-state/error-state.showcase';
 import { LoadingStateShowcaseComponent } from '@showcase/loading-state/loading-state.showcase';
-import { MessageBarShowcaseComponent } from '@showcase/message-bar/message-bar.showcase';
+import {
+  MESSAGE_BAR_DOC_ASSET_PATHS,
+  MESSAGE_BAR_DOC_PAGE_CONFIG,
+} from '@showcase/message-bar/message-bar.showcase.doc';
 import { MenuShowcaseComponent } from '@showcase/menu/menu.showcase';
 import { TagShowcaseComponent } from '@showcase/tag/tag.showcase';
-import { ProgressBarShowcaseComponent } from '@showcase/progress-bar/progress-bar.showcase';
+import {
+  PROGRESS_BAR_DOC_ASSET_PATHS,
+  PROGRESS_BAR_DOC_PAGE_CONFIG,
+} from '@showcase/progress-bar/progress-bar.showcase.doc';
 import { StateContainerShowcaseComponent } from '@showcase/state-container/state-container.showcase';
-import { SliderShowcaseComponent } from '@showcase/field/slider/slider.showcase';
-import { DividerShowcaseComponent } from '@showcase/divider/divider.showcase';
+import {
+  SLIDER_DOC_ASSET_PATHS,
+  SLIDER_DOC_PAGE_CONFIG,
+} from '@showcase/field/slider/slider.showcase.doc';
+import {
+  DIVIDER_DOC_ASSET_PATHS,
+  DIVIDER_DOC_PAGE_CONFIG,
+} from '@showcase/divider/divider.showcase.doc';
 import { BadgeShowcaseComponent } from '@showcase/badge/badge.showcase';
 import { CardShowcaseComponent } from '@showcase/card/card.showcase';
-import { CheckboxShowcaseComponent } from '@showcase/field/checkbox/checkbox.showcase';
-import { ColorShowcaseComponent } from '@showcase/field/color/color.showcase';
-import { SwitchShowcaseComponent } from '@showcase/field/switch/switch.showcase';
+import {
+  CHECKBOX_DOC_ASSET_PATHS,
+  CHECKBOX_DOC_PAGE_CONFIG,
+} from '@showcase/field/checkbox/checkbox.showcase.doc';
+import {
+  COLOR_DOC_ASSET_PATHS,
+  COLOR_DOC_PAGE_CONFIG,
+} from '@showcase/field/color/color.showcase.doc';
 import { RadioButtonGroupShowcaseComponent } from '@showcase/field/radio-button-group/radio-button-group.showcase';
 import { SplitterShowcaseComponent } from '@showcase/splitter/splitter.showcase';
 import { ScrollPanelShowcaseComponent } from '@showcase/scroll-panel/scroll-panel.showcase';
 import { ScrollContainerShowcaseComponent } from '@showcase/scroll-container/scroll-container.showcase';
-import { SpinnerShowcaseComponent } from '@showcase/spinner/spinner.showcase';
+import {
+  SPINNER_DOC_ASSET_PATHS,
+  SPINNER_DOC_PAGE_CONFIG,
+} from '@showcase/spinner/spinner.showcase.doc';
 import { FileShowcaseComponent } from '@showcase/field/file/file.showcase';
-import { StepperShowcaseComponent } from '@showcase/field/stepper/stepper.showcase';
+import {
+  STEPPER_DOC_ASSET_PATHS,
+  STEPPER_DOC_PAGE_CONFIG,
+} from '@showcase/field/stepper/stepper.showcase.doc';
 import { TOAST_DOC_ASSET_PATHS, TOAST_DOC_PAGE_CONFIG } from '@showcase/toast/toast.showcase.doc';
 import { TotpShowcaseComponent } from '@showcase/field/totp/totp.showcase';
 import { NavShowcaseComponent } from '@showcase/nav/nav.showcase';
@@ -60,12 +99,24 @@ import { PaginationShowcaseComponent } from '@showcase/pagination/pagination.sho
 import { ToolbarShowcaseComponent } from '@showcase/toolbar/toolbar.showcase';
 import { IconShowcaseComponent } from '@showcase/icon/icon.showcase';
 import { TableOfContentShowcaseComponent } from '@showcase/table-of-content/table-of-content.showcase';
-import { BreadcrumbShowcaseComponent } from '@showcase/breadcrumb/breadcrumb.showcase';
+import {
+  BREADCRUMB_DOC_ASSET_PATHS,
+  BREADCRUMB_DOC_PAGE_CONFIG,
+} from '@showcase/breadcrumb/breadcrumb.showcase.doc';
 import { CarouselShowcaseComponent } from '@showcase/carousel/carousel.showcase';
-import { DrawerShowcaseComponent } from '@showcase/drawer/drawer.showcase';
+import {
+  DRAWER_DOC_ASSET_PATHS,
+  DRAWER_DOC_PAGE_CONFIG,
+} from '@showcase/drawer/drawer.showcase.doc';
 import { KbdShowcaseComponent } from '@showcase/kbd/kbd.showcase';
-import { TooltipShowcaseComponent } from '@showcase/tooltip/tooltip.showcase';
-import { RatingShowcaseComponent } from '@showcase/rating/rating.showcase';
+import {
+  TOOLTIP_DOC_ASSET_PATHS,
+  TOOLTIP_DOC_PAGE_CONFIG,
+} from '@showcase/tooltip/tooltip.showcase.doc';
+import {
+  RATING_DOC_ASSET_PATHS,
+  RATING_DOC_PAGE_CONFIG,
+} from '@showcase/rating/rating.showcase.doc';
 import { VideoShowcaseComponent } from '@showcase/video/video.showcase';
 import { ShowcaseDocPageComponent } from '@shared/components/showcase-doc-page/showcase-doc-page.component';
 import { GettingStartedComponent } from '../../pages/docs/getting-started/getting-started.component';
@@ -101,7 +152,11 @@ export const dsRoutes: Routes = [
   },
   {
     path: 'avatar',
-    component: AvatarShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: AVATAR_DOC_PAGE_CONFIG,
+      assetPaths: AVATAR_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'badge',
@@ -109,7 +164,11 @@ export const dsRoutes: Routes = [
   },
   {
     path: 'breadcrumb',
-    component: BreadcrumbShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: BREADCRUMB_DOC_PAGE_CONFIG,
+      assetPaths: BREADCRUMB_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'button',
@@ -137,7 +196,11 @@ export const dsRoutes: Routes = [
   },
   {
     path: 'dialog',
-    component: DialogShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: DIALOG_DOC_PAGE_CONFIG,
+      assetPaths: DIALOG_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'pagination',
@@ -145,7 +208,11 @@ export const dsRoutes: Routes = [
   },
   {
     path: 'divider',
-    component: DividerShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: DIVIDER_DOC_PAGE_CONFIG,
+      assetPaths: DIVIDER_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'empty-state',
@@ -161,7 +228,11 @@ export const dsRoutes: Routes = [
   },
   {
     path: 'message-bar',
-    component: MessageBarShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: MESSAGE_BAR_DOC_PAGE_CONFIG,
+      assetPaths: MESSAGE_BAR_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'state-container',
@@ -169,11 +240,19 @@ export const dsRoutes: Routes = [
   },
   {
     path: 'checkbox',
-    component: CheckboxShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: CHECKBOX_DOC_PAGE_CONFIG,
+      assetPaths: CHECKBOX_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'color',
-    component: ColorShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: COLOR_DOC_PAGE_CONFIG,
+      assetPaths: COLOR_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'date',
@@ -193,7 +272,11 @@ export const dsRoutes: Routes = [
   },
   {
     path: 'dropdown',
-    component: DropdownShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: DROPDOWN_DOC_PAGE_CONFIG,
+      assetPaths: DROPDOWN_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'number',
@@ -209,15 +292,27 @@ export const dsRoutes: Routes = [
   },
   {
     path: 'slider',
-    component: SliderShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: SLIDER_DOC_PAGE_CONFIG,
+      assetPaths: SLIDER_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'switch',
-    component: SwitchShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: SWITCH_DOC_PAGE_CONFIG,
+      assetPaths: SWITCH_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'text',
-    component: TextShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: TEXT_DOC_PAGE_CONFIG,
+      assetPaths: TEXT_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'email',
@@ -269,7 +364,11 @@ export const dsRoutes: Routes = [
   },
   {
     path: 'progress-bar',
-    component: ProgressBarShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: PROGRESS_BAR_DOC_PAGE_CONFIG,
+      assetPaths: PROGRESS_BAR_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'scroll-panel',
@@ -285,15 +384,27 @@ export const dsRoutes: Routes = [
   },
   {
     path: 'spinner',
-    component: SpinnerShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: SPINNER_DOC_PAGE_CONFIG,
+      assetPaths: SPINNER_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'stepper',
-    component: StepperShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: STEPPER_DOC_PAGE_CONFIG,
+      assetPaths: STEPPER_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'skeleton',
-    component: SkeletonShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: SKELETON_DOC_PAGE_CONFIG,
+      assetPaths: SKELETON_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'tag',
@@ -345,7 +456,11 @@ export const dsRoutes: Routes = [
   },
   {
     path: 'drawer',
-    component: DrawerShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: DRAWER_DOC_PAGE_CONFIG,
+      assetPaths: DRAWER_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'kbd',
@@ -353,11 +468,19 @@ export const dsRoutes: Routes = [
   },
   {
     path: 'tooltip',
-    component: TooltipShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: TOOLTIP_DOC_PAGE_CONFIG,
+      assetPaths: TOOLTIP_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'rating',
-    component: RatingShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: RATING_DOC_PAGE_CONFIG,
+      assetPaths: RATING_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'video',

@@ -331,9 +331,9 @@
   &__sidebar-drawer {
     border-right: 1px solid
       color-mix(in srgb, var(--color-neutral-stroke-rest) 85%, var(--color-brand-primary) 15%);
-  }
 
-  .drawer--left .drawer__body {
-    padding: 0;
+    .drawer__body {
+      padding: 0;
+    }
   }
 }

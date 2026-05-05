@@ -1,0 +1,207 @@
+{
+  "slug": "drawer",
+  "title": "Drawer",
+  "description": "Drawer reveals contextual panels from a screen edge without forcing full page navigation. Use it for side tasks, inspection, editing, and workflows that should stay connected to the current page.",
+  "intro": "Drawer supports overlay and inline presentation, edge positioning, structured footer actions, modal versus non-modal behavior, and focus management. It is a better fit than a dialog when users need more room or should keep page context visible beside the panel.",
+  "importCode": "import { DrawerComponent } from 'ui';",
+  "containerClass": "drawer-doc",
+  "snippets": {
+    "basicCode": "drawer-basic-demo.ts",
+    "typesCode": "drawer-types-demo.ts",
+    "positionsCode": "drawer-positions-demo.ts",
+    "behaviorCode": "drawer-behavior-demo.ts",
+    "actionsCode": "drawer-actions-demo.ts",
+    "settingsPanelCode": "drawer-settings-panel-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic overlay drawer",
+      "description": "Use an overlay drawer when the panel should sit above the page while keeping the underlying context recognizable in the background.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "types",
+      "title": "Overlay and inline types",
+      "description": "Overlay works for temporary task panels across the whole viewport. Inline is better when the drawer belongs to a bounded region such as a details pane or embedded workspace.",
+      "codeKey": "typesCode",
+      "componentKey": "types"
+    },
+    {
+      "id": "positions",
+      "title": "Positions and sizes",
+      "description": "Choose the edge and panel size based on content shape. Side drawers suit forms and navigation, while top or bottom drawers fit summaries, pickers, or step confirmations.",
+      "codeKey": "positionsCode",
+      "componentKey": "positions"
+    },
+    {
+      "id": "behavior",
+      "title": "Closable, static, and alert behavior",
+      "description": "Most drawers should dismiss naturally, but interruptive flows may need static backdrop or alert-style behavior. Reserve those stricter modes for cases where casual dismissal would be risky.",
+      "codeKey": "behaviorCode",
+      "componentKey": "behavior"
+    },
+    {
+      "id": "actions",
+      "title": "Footer actions",
+      "description": "Primary, secondary, and additional actions let the drawer act like a compact task surface. Keep the footer focused so users understand the main next step.",
+      "codeKey": "actionsCode",
+      "componentKey": "actions"
+    },
+    {
+      "id": "settings-panel",
+      "title": "Task panel pattern",
+      "description": "A realistic drawer often contains form controls, grouped settings, and commit actions. This pattern is more useful than a bare shell because it mirrors a real product surface.",
+      "codeKey": "settingsPanelCode",
+      "componentKey": "settingsPanel"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Role and modality",
+      "body": "Overlay drawers render with `role=\"dialog\"`; inline drawers render as `role=\"region\"`. Modal overlays also expose `aria-modal` so assistive technologies understand that focus is constrained.\n\n| Mode | Accessibility behavior |\n| --- | --- |\n| overlay modal | `role=\"dialog\"` with constrained focus |\n| overlay non-modal | dialog semantics without full interruption |\n| inline | `role=\"region\"` inside page flow |\n| alert | strongest interruption; avoid for routine tasks |"
+    },
+    {
+      "title": "Accessible title",
+      "body": "When `title` is present, the drawer is linked through `aria-labelledby` to the visible heading. Give the title enough context that users immediately understand the panel purpose."
+    },
+    {
+      "title": "Focus and dismissal",
+      "body": "Modal overlay drawers trap focus while open. `Escape` and backdrop dismissal depend on `closable`, `backdrop`, and `modalType`; `alert` mode disables backdrop and Escape dismissal.\n\n| Key | Action |\n| --- | --- |\n| `Tab` / `Shift+Tab` | moves through interactive drawer content |\n| `Escape` | closes dismissible overlay drawers |\n| `Enter` / `Space` | activates focused controls inside the drawer |"
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "DrawerComponent - <code>ui-drawer</code>",
+      "lead": "Standalone sliding panel for contextual tasks, inspection, and editing flows. It supports overlay or inline layout, directional placement, focus handling, and a structured footer action area.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "title",
+              "InputSignal<string>",
+              "''",
+              "Visible heading used as the drawer title and `aria-labelledby` target when present."
+            ],
+            [
+              "bodyText",
+              "InputSignal<string>",
+              "''",
+              "Optional plain body copy shown before projected content."
+            ],
+            [
+              "position",
+              "InputSignal<'left' | 'right' | 'top' | 'bottom'>",
+              "'right'",
+              "Anchor edge for the drawer. Left and right are automatically mirrored in RTL layouts."
+            ],
+            [
+              "backdrop",
+              "InputSignal<'static' | 'dynamic'>",
+              "'dynamic'",
+              "Controls whether clicking the overlay backdrop can dismiss the drawer when dismissal is allowed."
+            ],
+            [
+              "closable",
+              "InputSignal<boolean>",
+              "true",
+              "Controls whether the close button renders and whether Escape-based close is allowed."
+            ],
+            [
+              "size",
+              "InputSignal<'small' | 'medium' | 'large'>",
+              "'medium'",
+              "Controls panel width or height depending on the active position."
+            ],
+            [
+              "type",
+              "InputSignal<'overlay' | 'inline'>",
+              "'overlay'",
+              "Overlay renders above the viewport; inline stays within the page layout."
+            ],
+            [
+              "bodyScrollable",
+              "InputSignal<boolean>",
+              "true",
+              "Controls whether the body region scrolls when content exceeds the available space."
+            ],
+            [
+              "modalType",
+              "InputSignal<'modal' | 'non-modal' | 'alert'>",
+              "'modal'",
+              "Modal traps focus and blocks interaction, non-modal allows background interaction, alert disables backdrop and Escape dismissal."
+            ],
+            [
+              "visible",
+              "ModelSignal<boolean>",
+              "false",
+              "Two-way visibility state for opening and closing the drawer."
+            ],
+            [
+              "primaryAction",
+              "InputSignal<QuickAction | null>",
+              "null",
+              "Primary footer action, typically the main save or continue command."
+            ],
+            [
+              "secondaryAction",
+              "InputSignal<QuickAction | null>",
+              "null",
+              "Secondary footer action, usually cancel or back."
+            ],
+            [
+              "additionalActions",
+              "InputSignal<QuickAction[]>",
+              "[]",
+              "Extra footer actions rendered on the left side of the footer."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "close",
+              "OutputRef<void>",
+              "Emitted after the drawer is closed by built-in close handling."
+            ],
+            [
+              "backdropClick",
+              "OutputRef<void>",
+              "Emitted when a dynamic overlay backdrop click dismisses the drawer."
+            ],
+            [
+              "openChange",
+              "OutputRef<{ open: boolean }>",
+              "Emitted when built-in close handling updates the open state."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "Projected content renders in the body after <code class=\"showcase-doc__api-code\">bodyText</code>, so drawers can host forms, summaries, lists, or other structured layouts.",
+            "Overlay modal drawers trap focus with Angular CDK while visible. Inline drawers do not behave as full modal dialogs."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Related mechanisms",
+          "items": [
+            "<code>QuickAction</code> - action model used for footer buttons.",
+            "<code>ButtonComponent</code> - renders close and footer actions.",
+            "Angular CDK A11y and bidi directionality - power focus trapping and RTL-aware positioning."
+          ]
+        }
+      ]
+    }
+  ]
+}

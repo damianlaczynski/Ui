@@ -1,0 +1,205 @@
+{
+  "slug": "checkbox",
+  "title": "Checkbox",
+  "description": "Checkbox is a multi-select binary control for consent, filters, permissions, and grouped option lists. Use it when users can select zero, one, or many independent items rather than making a mutually exclusive choice.",
+  "intro": "Checkbox builds on the shared field foundation, so it supports labels, helper and error text, validation hooks, disabled and readonly states, and Angular forms integration. It also adds checkbox-specific shape options and an indeterminate state for partially selected groups.",
+  "importCode": "import { CheckboxComponent } from 'ui';",
+  "containerClass": "checkbox-doc",
+  "snippets": {
+    "basicCode": "checkbox-basic-demo.ts",
+    "positionsCode": "checkbox-label-positions-demo.ts",
+    "shapesCode": "checkbox-shapes-demo.ts",
+    "statesCode": "checkbox-states-demo.ts",
+    "filtersCode": "checkbox-filter-group-demo.ts",
+    "permissionsCode": "checkbox-permissions-panel-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic selection",
+      "description": "Use checkboxes when options are independent and users may select several of them at once. Each label should describe the chosen state clearly without needing extra interpretation.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "label-positions",
+      "title": "Label positions",
+      "description": "The shared field wrapper supports labels around the control or no visible label at all. When the visible label is hidden, provide `ariaLabel` so the checkbox still has an accessible name.",
+      "codeKey": "positionsCode",
+      "componentKey": "positions"
+    },
+    {
+      "id": "shapes",
+      "title": "Shapes and density",
+      "description": "Shape and size let the checkbox align with different surfaces, but the component should still feel quiet and utilitarian. Most product UIs should stay close to the default rounded appearance.",
+      "codeKey": "shapesCode",
+      "componentKey": "shapes"
+    },
+    {
+      "id": "states",
+      "title": "States and indeterminate",
+      "description": "Disabled and readonly communicate different product states, while indeterminate is useful for grouped selection where some but not all children are active.",
+      "codeKey": "statesCode",
+      "componentKey": "states"
+    },
+    {
+      "id": "filters",
+      "title": "Filter group pattern",
+      "description": "Checkboxes are often used in stacked filter panels or sidebars. Showing them as a grouped surface is more useful than isolated single controls.",
+      "codeKey": "filtersCode",
+      "componentKey": "filters"
+    },
+    {
+      "id": "permissions",
+      "title": "Permissions panel",
+      "description": "More advanced examples should combine related controls and realistic structure. This pattern uses parent and child checkboxes to model a partially selected permissions surface users can adapt directly.",
+      "codeKey": "permissionsCode",
+      "componentKey": "permissions"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Accessible name",
+      "body": "The inner checkbox uses `ariaLabel` when provided and otherwise falls back to the visible `label`. If the visible label is hidden or omitted, provide an explicit accessible name.\n\n| Source | Accessible name |\n| --- | --- |\n| `ariaLabel` | explicit accessible name |\n| visible `label` | default fallback |\n| no label + no `ariaLabel` | avoid this state |"
+    },
+    {
+      "title": "Keyboard and state",
+      "body": "The control is backed by a native checkbox input, so it keeps the expected browser interaction model.\n\n| Key | Action |\n| --- | --- |\n| `Tab` | moves focus to or from the checkbox |\n| `Space` | toggles checked state when interactive |\n\n| State | Attribute |\n| --- | --- |\n| checked | native `checked` |\n| indeterminate | native mixed checkbox state |\n| disabled | native `disabled` |\n| required | native `required` |"
+    },
+    {
+      "title": "Descriptions, errors, and indeterminate",
+      "body": "Helper text and error text are wired into `aria-describedby` through the shared field wrapper. When an error is present, it becomes the active description and helper text is suppressed.\n\nUse `indeterminate` only for partially selected parent groups. It should communicate mixed child state, not act as a third standalone choice."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "CheckboxComponent - <code>ui-checkbox</code>",
+      "lead": "Standalone checkbox control built on the shared <code class=\"showcase-doc__api-code\">FieldComponent</code>. It integrates with Angular forms through <code class=\"showcase-doc__api-code\">ControlValueAccessor</code> and renders a native checkbox input behind the visual treatment.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "label",
+              "InputSignal<string>",
+              "''",
+              "Visible checkbox label and fallback accessible name when `ariaLabel` is not provided."
+            ],
+            [
+              "labelPosition",
+              "InputSignal<'before' | 'after' | 'above' | 'below' | 'none'>",
+              "'above'",
+              "Controls where the visible label appears relative to the checkbox."
+            ],
+            [
+              "helpText",
+              "InputSignal<string>",
+              "''",
+              "Supporting text shown below the checkbox when there is no active error."
+            ],
+            [
+              "errorText",
+              "ModelSignal<string>",
+              "''",
+              "Validation or manual error message shown below the checkbox."
+            ],
+            [
+              "required",
+              "InputSignal<boolean>",
+              "false",
+              "Marks the control as required and forwards the native `required` attribute."
+            ],
+            [
+              "disabled",
+              "ModelSignal<boolean>",
+              "false",
+              "Disables interaction and the native checkbox input."
+            ],
+            [
+              "readonly",
+              "ModelSignal<boolean>",
+              "false",
+              "Prevents interaction while keeping the checkbox visible in place."
+            ],
+            [
+              "size",
+              "InputSignal<Size>",
+              "'medium'",
+              "Controls the visual density of the checkbox and label."
+            ],
+            [
+              "shape",
+              "InputSignal<Shape>",
+              "'rounded'",
+              "Visual checkbox shape: rounded, circular, or square."
+            ],
+            [
+              "indeterminate",
+              "ModelSignal<boolean>",
+              "false",
+              "Puts the checkbox into a partially selected visual state until the next user change resolves it."
+            ],
+            [
+              "name",
+              "InputSignal<string>",
+              "''",
+              "Native checkbox name. Also used to seed the generated id when explicit `id` is not supplied."
+            ],
+            [
+              "id",
+              "ModelSignal<string | number>",
+              "generated",
+              "Native checkbox id used for shared field wiring."
+            ],
+            ["ariaLabel", "InputSignal<string>", "''", "Explicit accessible name override."],
+            [
+              "ariaDescribedBy",
+              "InputSignal<string>",
+              "''",
+              "Additional ids appended to the computed description chain."
+            ],
+            [
+              "autoValidation",
+              "InputSignal<boolean>",
+              "true",
+              "Keeps `errorText` synchronized with Angular form validation when a control is bound."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "change",
+              "OutputRef<boolean>",
+              "Emitted when the checked value changes from user interaction."
+            ],
+            ["focus", "OutputRef<FocusEvent>", "Emitted when the inner checkbox receives focus."],
+            ["blur", "OutputRef<FocusEvent>", "Emitted when the inner checkbox loses focus."]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "The component implements <code class=\"showcase-doc__api-code\">ControlValueAccessor</code>, so it works with <code class=\"showcase-doc__api-code\">ngModel</code>, reactive forms, and Angular validators.",
+            "When `indeterminate` is true, the next user change resolves the control to the checked state and clears the indeterminate flag."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Related mechanisms",
+          "items": [
+            "<code>FieldComponent</code> - shared base handling labels, helper and error text, aria wiring, and validation synchronization.",
+            "Native checkbox input - provides the underlying focus, form, and keyboard semantics."
+          ]
+        }
+      ]
+    }
+  ]
+}

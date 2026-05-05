@@ -14,36 +14,47 @@
   color: var(--color-neutral-foreground-rest);
   word-wrap: break-word;
   margin-bottom: $spacing-1;
+  box-sizing: border-box;
 
-  // Size variants
+  // Size variants (padding scales with typography / field size)
   &--small {
     font-size: $font-size-200;
     line-height: $line-height-200;
     font-weight: $font-weight-regular;
+    padding-block: $spacing-0_5;
+    padding-inline: $spacing-1;
   }
 
   &--small-bold {
     font-size: $font-size-200;
     line-height: $line-height-200;
     font-weight: $font-weight-semibold;
+    padding-block: $spacing-0_5;
+    padding-inline: $spacing-1;
   }
 
   &--medium {
     font-size: $font-size-300;
     line-height: $line-height-300;
     font-weight: $font-weight-regular;
+    padding-block: $spacing-1;
+    padding-inline: $spacing-1_5;
   }
 
   &--medium-bold {
     font-size: $font-size-300;
     line-height: $line-height-300;
     font-weight: $font-weight-semibold;
+    padding-block: $spacing-1;
+    padding-inline: $spacing-1_5;
   }
 
   &--large {
     font-size: $font-size-400;
     line-height: $line-height-400;
     font-weight: $font-weight-semibold;
+    padding-block: $spacing-1_5;
+    padding-inline: $spacing-2;
   }
 
   // Disabled state

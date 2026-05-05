@@ -87,7 +87,7 @@ import {
                   <div class="showcase-doc__section-description">
                     @for (part of accessibilityParts(block); track $index) {
                       @if (part.type === 'html') {
-                        <p [innerHTML]="part.content"></p>
+                        <p [innerHTML]="formatAccessibilityHtml(part.content)"></p>
                       } @else {
                         <div class="showcase-doc__api-table-wrap">
                           <table class="showcase-doc__api-table">
@@ -279,5 +279,16 @@ export class ShowcaseDocPageComponent {
 
       return { type: 'html' as const, content: segment };
     });
+  }
+
+  formatAccessibilityHtml(content: string): string {
+    const escaped = content
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;');
+
+    return escaped
+      .replace(/`([^`]+)`/g, '<code class="showcase-doc__api-code">$1</code>')
+      .replaceAll('\n', '<br />');
   }
 }

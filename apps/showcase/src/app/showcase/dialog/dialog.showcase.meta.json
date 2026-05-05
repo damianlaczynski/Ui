@@ -1,0 +1,190 @@
+{
+  "slug": "dialog",
+  "title": "Dialog",
+  "description": "Dialog presents blocking decisions, focused forms, and high-attention flows above the page. Use it when the user must respond before returning to the underlying context.",
+  "intro": "Dialog renders a modal surface with focus trapping, closable or static backdrop behavior, configurable sizing, fullscreen mode, and structured actions. It works best for decisions, confirmations, and short task flows that should temporarily interrupt the page.",
+  "importCode": "import { DialogComponent } from 'ui';",
+  "containerClass": "dialog-doc",
+  "snippets": {
+    "basicCode": "dialog-basic-demo.ts",
+    "customContentCode": "dialog-custom-content-demo.ts",
+    "sizesCode": "dialog-sizes-demo.ts",
+    "staticCode": "dialog-static-demo.ts",
+    "actionsCode": "dialog-actions-demo.ts",
+    "renameFlowCode": "dialog-rename-flow-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic confirmation dialog",
+      "description": "Use a short title, a brief consequence statement, and clear primary versus secondary actions when the user is making a simple blocking decision.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "custom-content",
+      "title": "Projected custom content",
+      "description": "Use projected content when plain body text is not enough, for example summaries, previews, or small supporting layouts inside the dialog body.",
+      "codeKey": "customContentCode",
+      "componentKey": "customContent"
+    },
+    {
+      "id": "sizes",
+      "title": "Widths and fullscreen",
+      "description": "Constrain width for concise dialogs and switch to fullscreen only when the flow genuinely needs more room, especially on dense review or editing surfaces.",
+      "codeKey": "sizesCode",
+      "componentKey": "sizes"
+    },
+    {
+      "id": "static",
+      "title": "Static backdrop and non-closable flows",
+      "description": "When the user must explicitly decide, use `backdrop=\"static\"` and disable casual dismissal. This should be reserved for high-confidence interruptive flows.",
+      "codeKey": "staticCode",
+      "componentKey": "static"
+    },
+    {
+      "id": "actions",
+      "title": "Primary, secondary, and additional actions",
+      "description": "Dialogs can support more than one recovery or navigation path, but too many options dilute the decision. Keep the action set focused and ordered by importance.",
+      "codeKey": "actionsCode",
+      "componentKey": "actions"
+    },
+    {
+      "id": "rename-flow",
+      "title": "Task flow with form content",
+      "description": "A realistic dialog often combines form fields, inline guidance, and action buttons. This pattern is more useful than showing a bare shell without task context.",
+      "codeKey": "renameFlowCode",
+      "componentKey": "renameFlow"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Role and modal behavior",
+      "body": "`DialogComponent` renders with `role=\"dialog\"` and `aria-modal=\"true\"`, so assistive technologies treat it as a blocking modal surface.\n\n| Element / state | Accessibility behavior |\n| --- | --- |\n| dialog root | `role=\"dialog\"` |\n| modal presentation | `aria-modal=\"true\"` |\n| visible title | linked through `aria-labelledby` |"
+    },
+    {
+      "title": "Accessible title and description",
+      "body": "When `title` is provided, the dialog content is linked through `aria-labelledby` to the visible heading. Give the title enough meaning that users can quickly understand the task.\n\nBody text and projected content should explain the consequence or task context without forcing users to infer the purpose from buttons alone."
+    },
+    {
+      "title": "Focus and dismissal",
+      "body": "Focus is trapped inside the dialog while it is open. If `closable` is true, users can dismiss with the close button or `Escape`; backdrop dismissal depends on `backdrop` and only happens in `dynamic` mode.\n\n| Key | Action |\n| --- | --- |\n| `Tab` / `Shift+Tab` | keeps focus within the dialog |\n| `Escape` | closes dismissible dialogs |\n| `Enter` / `Space` | activates focused dialog actions |"
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "DialogComponent - <code>ui-dialog</code>",
+      "lead": "Standalone modal surface for confirmations, forms, and blocking task flows. It manages visibility, backdrop interaction, focus trapping, and a structured footer action area.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "title",
+              "InputSignal<string>",
+              "''",
+              "Visible heading used for the dialog title and for `aria-labelledby` when present."
+            ],
+            [
+              "bodyText",
+              "InputSignal<string>",
+              "''",
+              "Plain body copy shown above projected content when you only need a simple explanatory paragraph."
+            ],
+            [
+              "backdrop",
+              "InputSignal<'static' | 'dynamic'>",
+              "'dynamic'",
+              "Controls whether clicking the backdrop can dismiss the dialog."
+            ],
+            [
+              "closable",
+              "InputSignal<boolean>",
+              "true",
+              "Controls whether the close button renders and whether Escape can dismiss the dialog."
+            ],
+            [
+              "fullscreen",
+              "InputSignal<boolean>",
+              "false",
+              "Expands the dialog to the fullscreen treatment instead of a constrained modal width."
+            ],
+            [
+              "width",
+              "InputSignal<string>",
+              "''",
+              "Optional custom width for non-fullscreen dialogs."
+            ],
+            [
+              "height",
+              "InputSignal<string>",
+              "''",
+              "Optional custom height for non-fullscreen dialogs."
+            ],
+            [
+              "visible",
+              "ModelSignal<boolean>",
+              "false",
+              "Two-way visibility state that controls whether the dialog is rendered."
+            ],
+            [
+              "primaryAction",
+              "InputSignal<QuickAction | null>",
+              "null",
+              "Primary footer action, typically the main confirm or continue path."
+            ],
+            [
+              "secondaryAction",
+              "InputSignal<QuickAction | null>",
+              "null",
+              "Secondary footer action, usually cancel, back, or alternate navigation."
+            ],
+            [
+              "additionalActions",
+              "InputSignal<QuickAction[]>",
+              "[]",
+              "Extra footer actions rendered on the left side of the footer."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "close",
+              "OutputRef<void>",
+              "Emitted after the dialog closes through built-in close handling."
+            ],
+            [
+              "backdropClick",
+              "OutputRef<void>",
+              "Emitted when a dynamic backdrop click dismisses the dialog."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "Projected content renders inside the dialog body below <code class=\"showcase-doc__api-code\">bodyText</code>, so you can add forms, summaries, or small custom layouts.",
+            "The component traps focus with Angular CDK while visible, and listens for Escape on the document when <code class=\"showcase-doc__api-code\">closable</code> is true."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Related mechanisms",
+          "items": [
+            "<code>QuickAction</code> - action model used for footer buttons.",
+            "<code>ButtonComponent</code> - renders all footer and close controls.",
+            "Angular CDK A11y - powers the focus trap inside the visible dialog."
+          ]
+        }
+      ]
+    }
+  ]
+}

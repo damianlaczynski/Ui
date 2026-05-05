@@ -471,6 +471,11 @@ export class SplitterComponent {
     return `Resize ${leftPanel.id} and ${rightPanel.id} panels`;
   }
 
+  /** Layout `horizontal` = panels in a row → visual separator is vertical. */
+  separatorAriaOrientation(): 'horizontal' | 'vertical' {
+    return this.orientation() === 'horizontal' ? 'vertical' : 'horizontal';
+  }
+
   getGutterTabIndex(gutterIndex: number): number {
     return this.canResize(gutterIndex) ? 0 : -1;
   }

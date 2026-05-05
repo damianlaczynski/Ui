@@ -77,10 +77,12 @@ import { ButtonComponent, ToastService } from 'ui';
           <span style="opacity:0.8;font-size:0.75rem">Full report in Activity → Backup.</span>
         </div>
       </ng-template>
-      <ui-button type="button" variant="secondary" appearance="outline" (click)="reset()"
-        >Reset</ui-button
+      <div
+        style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
       >
-      <div style="display:flex;;gap:0.5rem;align-items:center">
+        <ui-button type="button" variant="secondary" appearance="outline" (click)="reset()"
+          >Reset</ui-button
+        >
         <ui-button type="button" variant="info" (click)="pushInvite()">Meeting invite</ui-button>
         <ui-button type="button" variant="warning" (click)="pushQuota()">Storage warning</ui-button>
         <ui-button type="button" variant="danger" (click)="pushPayment()">Payment failed</ui-button>
