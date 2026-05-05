@@ -6,17 +6,6 @@
 @use '../utils/mixins' as *;
 @use '../utils/functions' as *;
 
-@keyframes menuSurfaceEnter {
-  from {
-    opacity: 0;
-    transform: translateY(-6px) scale(0.985);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
 @keyframes menuSubmenuEnter {
   from {
     opacity: 0;
@@ -46,8 +35,7 @@
   overflow: visible;
   border-radius: $border-radius-400;
   min-width: 120px;
-  animation: menuSurfaceEnter $duration-fast $easing-decelerate-mid both;
-  transform-origin: top center;
+  @include overlay-surface-enter($duration-fast, $easing-decelerate-mid, top center);
 
   // =============================================================================
   // Section

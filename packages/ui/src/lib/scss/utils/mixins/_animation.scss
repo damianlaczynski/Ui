@@ -181,6 +181,17 @@
   @include respect-reduced-motion;
 }
 
+/// Anchored overlay surfaces (menus, dropdowns, picker panels).
+@mixin overlay-surface-enter(
+  $duration: $duration-fast,
+  $easing: $easing-decelerate-mid,
+  $origin: top center
+) {
+  animation: overlaySurfaceEnter $duration $easing both;
+  transform-origin: $origin;
+  @include respect-reduced-motion;
+}
+
 /// Icon rotation animation (for chevrons, expand/collapse icons)
 /// @param {Duration} $duration - Animation duration
 /// @param {Number} $from - Starting rotation in degrees (default: 0)
@@ -460,6 +471,17 @@
   from {
     opacity: 0;
     transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes overlaySurfaceEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.985);
   }
   to {
     opacity: 1;

@@ -18,7 +18,7 @@
   box-shadow:
     0px 0px 2px rgba(0, 0, 0, 0.12),
     0px 8px 16px rgba(0, 0, 0, 0.14);
-  @include slide-down($duration-normal, $easing-decelerate-min);
+  @include overlay-surface-enter($duration-fast, $easing-decelerate-mid, top center);
 
   &--small {
     min-width: 300px;
@@ -189,4 +189,11 @@
   background: color-mix(in srgb, var(--color-neutral-background1-rest) 72%, transparent);
   pointer-events: none;
   z-index: 3;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timespan-panel {
+    animation: none !important;
+    transform: none;
+  }
 }

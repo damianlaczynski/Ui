@@ -13,7 +13,7 @@
   box-shadow: $elevation-16;
   padding: $spacing-3;
   width: 100%;
-  @include slide-down($duration-normal, $easing-decelerate-min);
+  @include overlay-surface-enter($duration-fast, $easing-decelerate-mid, top center);
 
   &[data-size='small'] {
     padding: $spacing-2;
@@ -478,7 +478,9 @@
   .field__action--calendar,
   .date-calendar__day,
   .date-panel__month,
-  .date-panel__time-input {
+  .date-panel__time-input,
+  .date-panel {
+    animation: none;
     transition: none;
   }
 }

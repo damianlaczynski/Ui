@@ -67,7 +67,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  @include slide-down($duration-normal, $easing-decelerate-min);
+  @include overlay-surface-enter($duration-fast, $easing-decelerate-mid, top center);
 
   // Compact mode nie potrzebuje min-width tutaj
   // Bo overlay-pane dostaje odpowiednią szerokość z config
@@ -165,5 +165,12 @@
       outline: none !important;
       outline-offset: 0 !important;
     }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dropdown-panel {
+    animation: none !important;
+    transform: none;
   }
 }

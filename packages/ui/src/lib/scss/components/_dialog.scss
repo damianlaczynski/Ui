@@ -6,6 +6,68 @@
 @use '../utils/mixins' as *;
 @use '../utils/functions' as *;
 
+@keyframes dialogBackdropFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dialogBackdropFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes dialogModalEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes dialogModalExit {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.94) translateY(16px);
+  }
+}
+
+@keyframes dialogFullscreenEnter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dialogFullscreenExit {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
 .dialog {
   &__backdrop {
     position: fixed;
@@ -21,12 +83,6 @@
     padding: $spacing-6;
     overflow-y: auto;
     z-index: 1100;
-    @include transition-opacity($duration-normal);
-
-    &--hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
 
     @include respond-to(small) {
       padding: $spacing-4;
@@ -34,6 +90,10 @@
 
     &--fullscreen {
       padding: 0;
+    }
+
+    &--closing {
+      pointer-events: none;
     }
   }
 
@@ -46,7 +106,6 @@
     border-radius: $border-radius-800;
     transform: scale(1);
     z-index: 1001;
-    @include transition-transform($duration-normal);
 
     &--fullscreen {
       width: 100vw;
@@ -186,22 +245,42 @@
       }
     }
   }
-
-  // Animations - only for opening (element is removed from DOM on close)
-  .dialog__backdrop:not(.dialog__backdrop--hidden) {
-    @include fade-in($duration-normal, $easing-decelerate-min);
-  }
-
-  .dialog__content:not(.dialog__content--fullscreen) {
-    @include scale-in($duration-normal, $easing-decelerate-min);
-  }
-
-  .dialog__content--fullscreen {
-    @include fade-in($duration-fast, $easing-decelerate-min);
-  }
 }
 
-// Body scroll lock when dialog is open
-body:has(.dialog__backdrop:not(.dialog__backdrop--hidden)) {
+.dialog__backdrop:not(.dialog__backdrop--closing) {
+  animation: dialogBackdropFadeIn $duration-normal $easing-decelerate-min both;
+}
+
+.dialog__backdrop--closing {
+  animation: dialogBackdropFadeOut $duration-normal $easing-accelerate-min forwards;
+}
+
+.dialog:not(.dialog--closing) .dialog__content:not(.dialog__content--fullscreen) {
+  animation: dialogModalEnter $duration-normal $easing-decelerate-min both;
+  transform-origin: center center;
+}
+
+.dialog.dialog--closing .dialog__content:not(.dialog__content--fullscreen) {
+  animation: dialogModalExit $duration-normal $easing-accelerate-min forwards;
+  transform-origin: center center;
+}
+
+.dialog:not(.dialog--closing) .dialog__content--fullscreen {
+  animation: dialogFullscreenEnter $duration-normal $easing-decelerate-min both;
+}
+
+.dialog.dialog--closing .dialog__content--fullscreen {
+  animation: dialogFullscreenExit $duration-normal $easing-accelerate-min forwards;
+}
+
+body:has(.dialog__backdrop) {
   overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dialog__backdrop,
+  .dialog__content {
+    animation: none !important;
+    transform: none;
+  }
 }

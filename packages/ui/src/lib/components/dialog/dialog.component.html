@@ -1,11 +1,12 @@
-@if (visible()) {
+@if (shouldRender()) {
   <div
     [class]="backdropClasses()"
     (mousedown)="onBackdropClick($event)"
     role="dialog"
     [attr.aria-modal]="true"
-    [attr.aria-hidden]="!visible()"
+    [attr.aria-hidden]="!(visible() || isClosing())"
     [attr.aria-labelledby]="title() ? 'dialog-title' : null"
+    (animationend)="onBackdropAnimationEnd($event)"
   >
     <div [class]="dialogClasses()" role="document">
       <div
@@ -13,6 +14,7 @@
         [ngStyle]="contentStyles()"
         cdkTrapFocus
         cdkTrapFocusAutoCapture
+        (animationend)="onContentAnimationEnd($event)"
       >
         <!-- Header -->
         <div [class]="headerClasses()">
