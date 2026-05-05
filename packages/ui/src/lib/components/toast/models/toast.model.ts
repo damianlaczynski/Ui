@@ -1,3 +1,5 @@
+import { TemplateRef } from '@angular/core';
+
 import { Size, Variant, Appearance } from '../../utils';
 
 export type ToastPosition =
@@ -20,4 +22,5 @@ export interface ToastMessage {
   showIcon?: boolean;
   dismissible?: boolean;
   showProgress?: boolean;
+  contentTemplate?: TemplateRef<unknown>;
 }

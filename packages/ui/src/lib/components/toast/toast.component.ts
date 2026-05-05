@@ -44,6 +44,10 @@ export class ToastComponent {
       classes.push('toast--no-dismiss');
     }
 
+    if (!this.showProgress()) {
+      classes.push('toast--no-progress');
+    }
+
     return classes.join(' ');
   }
 
