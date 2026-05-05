@@ -1,0 +1,15 @@
+import { Component } from '@angular/core';
+import { ButtonComponent } from 'ui';
+
+@Component({
+  selector: 'app-button-basic-example',
+  standalone: true,
+  imports: [ButtonComponent],
+  template: `
+    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.75rem">
+      <ui-button variant="primary">Submit</ui-button>
+      <ui-button variant="secondary" appearance="outline">Cancel</ui-button>
+    </div>
+  `,
+})
+export class ButtonBasicExampleComponent {}

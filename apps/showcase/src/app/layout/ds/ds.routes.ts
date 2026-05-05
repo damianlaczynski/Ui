@@ -1,7 +1,10 @@
 import { Routes } from '@angular/router';
 import { AccordionShowcaseComponent } from '@showcase/accordion/accordion.showcase';
 import { AvatarShowcaseComponent } from '@showcase/avatar/avatar.showcase';
-import { ButtonShowcaseComponent } from '@showcase/button/button.showcase';
+import {
+  BUTTON_DOC_ASSET_PATHS,
+  BUTTON_DOC_PAGE_CONFIG,
+} from '@showcase/button/button.showcase.doc';
 import { CalendarShowcaseComponent } from '@showcase/calendar/calendar.showcase';
 import { CommandPaletteShowcaseComponent } from '@showcase/command-palette/command-palette.showcase';
 import { TimeShowcaseComponent } from '@showcase/time/time.showcase';
@@ -46,7 +49,7 @@ import { ScrollContainerShowcaseComponent } from '@showcase/scroll-container/scr
 import { SpinnerShowcaseComponent } from '@showcase/spinner/spinner.showcase';
 import { FileShowcaseComponent } from '@showcase/field/file/file.showcase';
 import { StepperShowcaseComponent } from '@showcase/field/stepper/stepper.showcase';
-import { ToastShowcaseComponent } from '@showcase/toast/toast.showcase';
+import { TOAST_DOC_ASSET_PATHS, TOAST_DOC_PAGE_CONFIG } from '@showcase/toast/toast.showcase.doc';
 import { TotpShowcaseComponent } from '@showcase/field/totp/totp.showcase';
 import { NavShowcaseComponent } from '@showcase/nav/nav.showcase';
 import { NodeShowcaseComponent } from '@showcase/node/node.showcase';
@@ -64,6 +67,7 @@ import { KbdShowcaseComponent } from '@showcase/kbd/kbd.showcase';
 import { TooltipShowcaseComponent } from '@showcase/tooltip/tooltip.showcase';
 import { RatingShowcaseComponent } from '@showcase/rating/rating.showcase';
 import { VideoShowcaseComponent } from '@showcase/video/video.showcase';
+import { ShowcaseDocPageComponent } from '@shared/components/showcase-doc-page/showcase-doc-page.component';
 import { GettingStartedComponent } from '../../pages/docs/getting-started/getting-started.component';
 import { InstallationComponent } from '../../pages/docs/installation/installation.component';
 import { I18nComponent } from '../../pages/docs/i18n/i18n.component';
@@ -109,7 +113,11 @@ export const dsRoutes: Routes = [
   },
   {
     path: 'button',
-    component: ButtonShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: BUTTON_DOC_PAGE_CONFIG,
+      assetPaths: BUTTON_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'calendar',
@@ -309,7 +317,11 @@ export const dsRoutes: Routes = [
   },
   {
     path: 'toast',
-    component: ToastShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: TOAST_DOC_PAGE_CONFIG,
+      assetPaths: TOAST_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'file',

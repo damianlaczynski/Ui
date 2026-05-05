@@ -1,0 +1,63 @@
+import { Component } from '@angular/core';
+import { ButtonComponent, ToastComponent } from 'ui';
+
+@Component({
+  selector: 'app-toast-appearance-example',
+  standalone: true,
+  imports: [ButtonComponent, ToastComponent],
+  template: `
+    <div style="display:flex;flex-direction:column;gap:0.75rem;width:100%;max-width:28rem">
+      <div style="display:flex;flex-wrap:wrap;gap:0.5rem">
+        <ui-button type="button" variant="secondary" appearance="outline" (click)="reset()"
+          >Reset</ui-button
+        >
+      </div>
+      <ui-toast
+        variant="info"
+        appearance="filled"
+        title="Filled"
+        message="Strongest surface emphasis."
+        [(visible)]="vFilled"
+      />
+      <ui-toast
+        variant="info"
+        appearance="outline"
+        title="Outline"
+        message="Lighter chrome with a border."
+        [(visible)]="vOutline"
+      />
+      <ui-toast
+        variant="info"
+        appearance="subtle"
+        title="Subtle"
+        message="Low contrast alongside dense UI."
+        [(visible)]="vSubtle"
+      />
+      <ui-toast
+        variant="info"
+        appearance="tint"
+        title="Tint"
+        message="Tinted surface between filled and outline."
+        [(visible)]="vTint"
+      />
+      <ui-toast
+        variant="info"
+        appearance="transparent"
+        title="Transparent"
+        message="Minimal chrome; relies on variant color tokens."
+        [(visible)]="vTransparent"
+      />
+    </div>
+  `,
+})
+export class ToastAppearanceExampleComponent {
+  vFilled = true;
+  vOutline = true;
+  vSubtle = true;
+  vTint = true;
+  vTransparent = true;
+
+  reset(): void {
+    this.vFilled = this.vOutline = this.vSubtle = this.vTint = this.vTransparent = true;
+  }
+}
