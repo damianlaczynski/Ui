@@ -64,7 +64,8 @@
   --toast-dismiss-gap: #{$spacing-2};
 
   position: relative;
-  display: block;
+  display: flex;
+  flex-direction: column;
   padding: $spacing-4;
   padding-inline-end: calc(#{$spacing-4} + var(--toast-dismiss-size) + var(--toast-dismiss-gap));
   margin-bottom: $spacing-2;
@@ -123,11 +124,12 @@
     height: 20px;
     grid-column: 1;
     grid-row: 1;
-    align-self: center;
+    align-self: flex-start;
+    margin-top: 0.125rem;
   }
 
   &__copy--has-icon:not(.toast__copy--has-title) &__icon {
-    align-self: flex-start;
+    margin-top: 0;
   }
 
   &__title {
@@ -170,15 +172,31 @@
     grid-column: 2 / -1;
   }
 
-  &__actions {
+  &__main {
+    min-width: 0;
+  }
+
+  &__dismiss {
     position: absolute;
     top: $spacing-1_5;
     inset-inline-end: $spacing-1_5;
-    display: flex;
-    align-items: flex-start;
-    gap: $spacing-1;
-    flex-shrink: 0;
+    z-index: 1;
     pointer-events: auto;
+  }
+
+  &__footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: $spacing-2;
+    margin-top: $spacing-3;
+    min-width: 0;
+
+    &:empty {
+      display: none;
+      margin: 0;
+    }
   }
 
   &--filled .toast__dismiss .button.button--transparent {
@@ -200,9 +218,14 @@
   padding: $spacing-3 $spacing-4;
   padding-inline-end: calc(#{$spacing-4} + var(--toast-dismiss-size) + var(--toast-dismiss-gap));
 
-  .toast__actions {
+  .toast__dismiss {
     top: $spacing-0_5;
     inset-inline-end: $spacing-0_5;
+  }
+
+  .toast__footer {
+    margin-top: $spacing-2;
+    gap: $spacing-1;
   }
 
   &.toast--no-dismiss {
@@ -243,9 +266,13 @@
   padding: $spacing-5;
   padding-inline-end: calc(#{$spacing-5} + var(--toast-dismiss-size) + var(--toast-dismiss-gap));
 
-  .toast__actions {
+  .toast__dismiss {
     top: $spacing-2;
     inset-inline-end: $spacing-2;
+  }
+
+  .toast__footer {
+    margin-top: $spacing-4;
   }
 
   &.toast--no-dismiss {
