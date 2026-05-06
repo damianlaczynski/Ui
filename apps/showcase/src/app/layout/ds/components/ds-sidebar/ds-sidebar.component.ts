@@ -1,26 +1,29 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { NavigationEnd, Router, UrlSegment } from '@angular/router';
-import { NavComponent, NavNode, RadioButtonGroupComponent } from 'ui';
+import { NavComponent, NavNode } from 'ui';
 import { filter } from 'rxjs/operators';
 import { SearchComponent } from 'ui';
 import { FormsModule } from '@angular/forms';
-import type { RadioButtonItem } from 'ui';
-
-type SidebarViewMode = 'functional' | 'visual' | 'alphabetical';
 
 @Component({
   selector: 'app-ds-sidebar',
-  imports: [NavComponent, SearchComponent, RadioButtonGroupComponent, FormsModule],
+  imports: [NavComponent, SearchComponent, FormsModule],
   templateUrl: './ds-sidebar.component.html',
   host: {
     class: 'ds-sidebar-host',
   },
 })
 export class DsSidebarComponent {
+  private static readonly GETTING_STARTED_IDS = [
+    'getting-started',
+    'installation',
+    'i18n',
+    'roadmap',
+  ] as const;
+
   private readonly router = inject(Router);
   selectedItemId = signal<string | null>(null);
   private _searchQuery = signal<string>('');
-  private _viewMode = signal<SidebarViewMode>('functional');
 
   get searchQuery(): string {
     return this._searchQuery();
@@ -29,20 +32,6 @@ export class DsSidebarComponent {
   set searchQuery(value: string) {
     this._searchQuery.set(value);
   }
-
-  get viewMode(): SidebarViewMode {
-    return this._viewMode();
-  }
-
-  set viewMode(value: SidebarViewMode) {
-    this._viewMode.set(value);
-  }
-
-  readonly viewModeOptions: RadioButtonItem[] = [
-    { id: 'functional', label: 'Functional', value: 'functional' },
-    { id: 'visual', label: 'Visual', value: 'visual' },
-    { id: 'alphabetical', label: 'A-Z', value: 'alphabetical' },
-  ];
 
   private readonly componentsCatalog: NavNode[] = [
     { id: 'getting-started', label: 'Getting Started', icon: 'rocket' },
@@ -132,23 +121,11 @@ export class DsSidebarComponent {
     { id: 'video', label: 'Video', icon: 'video' },
   ];
 
-  private readonly itemById = new Map(this.componentsCatalog.map(item => [String(item.id), item]));
-
-  private readonly baseNavItems = computed<NavNode[]>(() => {
-    switch (this._viewMode()) {
-      case 'visual':
-        return this.buildVisualGroups();
-      case 'alphabetical':
-        return this.buildAlphabeticalList();
-      case 'functional':
-      default:
-        return this.buildFunctionalGroups();
-    }
-  });
+  private readonly groupedNavSource = this.buildGroupedNav();
 
   filteredNavItems = computed<NavNode[]>(() => {
     const query = this._searchQuery().toLowerCase().trim();
-    const source = this.baseNavItems();
+    const source = this.groupedNavSource;
 
     if (!query) {
       return source;
@@ -199,180 +176,25 @@ export class DsSidebarComponent {
     });
   }
 
-  private buildFunctionalGroups(): NavNode[] {
-    return [
-      ...this.section('documentation', 'Documentation', [
-        'getting-started',
-        'installation',
-        'i18n',
-        'roadmap',
-      ]),
-      ...this.section('form-controls', 'Form Controls', [
-        'checkbox',
-        'color',
-        'date-and-time',
-        'dropdown',
-        'email',
-        'file',
-        'number',
-        'password',
-        'radio-button-group',
-        'rating',
-        'search',
-        'slider',
-        'switch',
-        'tel',
-        'text',
-        'textarea',
-        'totp',
-        'url',
-      ]),
-      ...this.section('navigation', 'Navigation', [
-        'menu',
-        'nav',
-        'tabs',
-        'toolbar',
-        'breadcrumb',
-        'stepper',
-      ]),
-      ...this.section('layout', 'Layout', [
-        'accordion',
-        'card',
-        'dialog',
-        'divider',
-        'drawer',
-        'scroll-container',
-        'scroll-panel',
-        'splitter',
-      ]),
-      ...this.section('feedback', 'Feedback', [
-        'message-bar',
-        'progress-bar',
-        'skeleton',
-        'spinner',
-        'toast',
-      ]),
-      ...this.section('data-display', 'Data Display', [
-        'data-grid',
-        'icon',
-        'kbd',
-        'node',
-        'pagination',
-        'state',
-        'table-of-content',
-        'tooltip',
-        'tree',
-        'tree-node',
-        'avatar',
-      ]),
-      ...this.section('actions-media', 'Actions & Media', [
-        'button',
-        'tag',
-        'carousel',
-        'command-palette',
-        'video',
-      ]),
-    ];
-  }
+  private buildGroupedNav(): NavNode[] {
+    const byId = new Map(this.componentsCatalog.map(entry => [String(entry.id), entry]));
 
-  private buildVisualGroups(): NavNode[] {
-    return [
-      ...this.section('text-inputs', 'Text Inputs', [
-        'text',
-        'textarea',
-        'email',
-        'password',
-        'search',
-        'url',
-        'tel',
-        'totp',
-        'number',
-      ]),
-      ...this.section('choice-selection', 'Choice & Selection', [
-        'checkbox',
-        'radio-button-group',
-        'switch',
-        'slider',
-        'rating',
-        'dropdown',
-        'date-and-time',
-      ]),
-      ...this.section('surface-layout', 'Surfaces & Layout', [
-        'accordion',
-        'card',
-        'dialog',
-        'drawer',
-        'divider',
-        'splitter',
-        'scroll-container',
-        'scroll-panel',
-      ]),
-      ...this.section('navigation-structures', 'Navigation Structures', [
-        'menu',
-        'nav',
-        'tabs',
-        'toolbar',
-        'breadcrumb',
-        'stepper',
-        'table-of-content',
-        'pagination',
-      ]),
-      ...this.section('status-feedback', 'Status & Feedback', [
-        'state',
-        'progress-bar',
-        'spinner',
-        'skeleton',
-        'toast',
-        'message-bar',
-      ]),
-      ...this.section('data-specialized', 'Data & Specialized', [
-        'data-grid',
-        'tree',
-        'tree-node',
-        'node',
-        'icon',
-        'kbd',
-        'tooltip',
-        'badge',
-        'tag',
-        'avatar',
-        'button',
-        'color',
-        'carousel',
-        'video',
-        'file',
-        'command-palette',
-        'getting-started',
-        'installation',
-        'i18n',
-        'roadmap',
-      ]),
-    ];
-  }
+    const gettingStartedItems = DsSidebarComponent.GETTING_STARTED_IDS.map(id => byId.get(id))
+      .filter((entry): entry is NavNode => !!entry)
+      .map(entry => this.cloneNode(entry));
 
-  private buildAlphabeticalList(): NavNode[] {
-    const items = this.componentsCatalog
-      .map(item => this.cloneNode(item))
+    const docIds = new Set<string>(DsSidebarComponent.GETTING_STARTED_IDS.map(id => String(id)));
+    const componentItems = this.componentsCatalog
+      .filter(entry => !docIds.has(String(entry.id)))
+      .map(entry => this.cloneNode(entry))
       .sort((a, b) => a.label.localeCompare(b.label));
 
-    return [{ id: 'alphabetical-header', isSectionHeader: true, label: 'A-Z' }, ...items];
-  }
-
-  private section(sectionId: string, label: string, ids: string[]): NavNode[] {
-    const items = ids
-      .map(id => this.getCatalogItem(id))
-      .filter((item): item is NavNode => !!item)
-      .map(item => this.cloneNode(item));
-
-    if (items.length === 0) {
-      return [];
-    }
-
-    return [{ id: `${sectionId}-header`, isSectionHeader: true, label }, ...items];
-  }
-
-  private getCatalogItem(id: string): NavNode | null {
-    return this.itemById.get(id) ?? null;
+    return [
+      { id: 'section-getting-started', isSectionHeader: true, label: 'Getting Started' },
+      ...gettingStartedItems,
+      { id: 'section-components', isSectionHeader: true, label: 'Components' },
+      ...componentItems,
+    ];
   }
 
   private cloneNode(node: NavNode): NavNode {
