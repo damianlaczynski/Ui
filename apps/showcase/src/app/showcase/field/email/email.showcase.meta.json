@@ -78,45 +78,125 @@
       "blocks": [
         {
           "type": "table",
-          "title": "Key inputs",
+          "title": "Inherited field inputs",
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
-            ["label", "InputSignal<string>", "''", "Visible field label."],
             [
-              "labelPosition",
-              "InputSignal<'before' | 'after'>",
-              "'before'",
-              "Label placement relative to the input."
-            ],
-            ["placeholder", "InputSignal<string>", "''", "Hint shown when no value is present."],
-            ["helpText", "InputSignal<string>", "''", "Supporting guidance below the field."],
-            ["errorText", "ModelSignal<string>", "''", "Validation or submission error message."],
-            [
-              "required",
-              "InputSignal<boolean>",
-              "false",
-              "Marks the native input as required and updates field semantics."
-            ],
-            ["disabled", "InputSignal<boolean>", "false", "Prevents editing and hides actions."],
-            [
-              "readonly",
-              "InputSignal<boolean>",
-              "false",
-              "Keeps the value visible but not editable."
+              "inputVariant",
+              "InputSignal<InputVariant>",
+              "'filled'",
+              "Shared field surface token inherited from `FieldComponent`."
             ],
             [
-              "autocomplete",
+              "label",
               "InputSignal<string>",
               "''",
-              "Autocomplete hint. Falls back to `email` when omitted."
+              "Visible field label inherited from `FieldComponent`."
+            ],
+            [
+              "labelPosition",
+              "InputSignal<ContentPosition>",
+              "'above'",
+              "Controls where the field label is placed relative to the control."
+            ],
+            [
+              "placeholder",
+              "InputSignal<string>",
+              "''",
+              "Inherited shared-field placeholder input."
+            ],
+            [
+              "helpText",
+              "InputSignal<string>",
+              "''",
+              "Supporting helper text rendered below the field when there is no active error."
+            ],
+            [
+              "errorText",
+              "ModelSignal<string>",
+              "''",
+              "Validation or manual error message managed by the shared field base."
+            ],
+            ["required", "InputSignal<boolean>", "false", "Marks the field as required."],
+            [
+              "disabled",
+              "ModelSignal<boolean>",
+              "false",
+              "Disables the field and its interactive affordances."
+            ],
+            [
+              "readonly",
+              "ModelSignal<boolean>",
+              "false",
+              "Keeps the value visible while preventing user changes."
             ],
             ["size", "InputSignal<Size>", "'medium'", "Shared field density token."],
             [
-              "inputVariant",
-              "InputSignal<Variant>",
-              "'outline'",
-              "Visual treatment of the underlying input surface."
+              "name",
+              "InputSignal<string>",
+              "''",
+              "HTML form name used by the field wrapper and native control wiring."
+            ],
+            [
+              "id",
+              "ModelSignal<string | number>",
+              "auto-generated",
+              "Control id used to connect label, help text, and error messaging."
+            ],
+            [
+              "autocomplete",
+              "InputSignal<string | null>",
+              "null",
+              "Inherited autocomplete hint for native form compatibility."
+            ],
+            [
+              "showClearButton",
+              "InputSignal<boolean>",
+              "true",
+              "Inherited shared-field clear-button flag when supported by the concrete control."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "''",
+              "Overrides the accessible name when no visible label is appropriate."
+            ],
+            [
+              "ariaDescribedBy",
+              "InputSignal<string>",
+              "''",
+              "Appends extra descriptive ids to the computed `aria-describedby` value."
+            ],
+            [
+              "autoValidation",
+              "InputSignal<boolean>",
+              "true",
+              "Enables inherited automatic validation error handling from `FieldComponent`."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "focus",
+              "OutputEmitterRef<FocusEvent>",
+              "Inherited focus event from `FieldComponent`."
+            ],
+            ["blur", "OutputEmitterRef<FocusEvent>", "Inherited blur event from `FieldComponent`."],
+            [
+              "keyup",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-up event from `FieldComponent`."
+            ],
+            [
+              "keydown",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-down event from `FieldComponent`."
             ]
           ]
         },
@@ -125,7 +205,8 @@
           "paragraphs": [
             "The component extends the shared `FieldComponent`, so value access, validation hooks, keyboard handling, and focus state follow the same base behavior as the rest of the field family.",
             "On focus, a populated editable email input selects its full value to make replacement faster in address-editing flows."
-          ]
+          ],
+          "title": "Notes"
         }
       ]
     }

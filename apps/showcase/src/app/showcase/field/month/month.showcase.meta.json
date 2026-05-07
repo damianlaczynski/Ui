@@ -1,0 +1,259 @@
+{
+  "slug": "month",
+  "title": "Month",
+  "description": "Month is a form field for month and year selection. It stores an ISO month value while presenting a desktop month picker or native mobile month input.",
+  "intro": "Use `ui-month` when users need to work with monthly periods rather than exact dates. It fits billing cycles, reporting, budget planning, and recurring schedules where the month matters but the day does not.",
+  "importCode": "import { MonthComponent } from 'ui';",
+  "containerClass": "month-doc",
+  "snippets": {
+    "basicCode": "month-basic-demo.ts",
+    "sizeVariantCode": "month-size-variant-demo.ts",
+    "constraintsCode": "month-constraints-demo.ts",
+    "statesCode": "month-states-demo.ts",
+    "reactiveFormCode": "month-reactive-form-demo.ts",
+    "reportingPanelCode": "month-reporting-panel-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic month selection",
+      "description": "The default pattern is a single field that stores an ISO month and presents it as a more readable month and year label.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "size-variant",
+      "title": "Size and input variant",
+      "description": "Month follows the shared field system, so density and shell styling should match the rest of the form surface instead of feeling like a special-case picker.",
+      "codeKey": "sizeVariantCode",
+      "componentKey": "sizeVariant"
+    },
+    {
+      "id": "constraints",
+      "title": "Min and max constraints",
+      "description": "Constrain the valid month window when users can report or plan only inside a known period.",
+      "codeKey": "constraintsCode",
+      "componentKey": "constraints"
+    },
+    {
+      "id": "states",
+      "title": "Readonly, disabled, and required states",
+      "description": "State handling matters more than the picker itself in most product forms, so the showcase should demonstrate the same realistic states as the other fields.",
+      "codeKey": "statesCode",
+      "componentKey": "states"
+    },
+    {
+      "id": "reactive-form",
+      "title": "Reactive form integration",
+      "description": "A proper example should show validation and save behavior, not only isolated picker chrome.",
+      "codeKey": "reactiveFormCode",
+      "componentKey": "reactiveForm"
+    },
+    {
+      "id": "reporting-panel",
+      "title": "Reporting panel composition",
+      "description": "A practical month field usually sits inside a finance, budget, or reporting panel with context tags and follow-up actions around it.",
+      "codeKey": "reportingPanelCode",
+      "componentKey": "reportingPanel"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Input and popup behavior",
+      "body": "`ui-month` behaves like a text field on desktop and can fall back to a native `type=\"month\"` input on mobile when `useNativeOnMobile` is enabled.\n\n| Mode | Behavior |\n| --- | --- |\n| desktop text input | exposes `aria-haspopup=\"dialog\"` and `aria-expanded` |\n| mobile native month input | relies on native platform month input semantics |\n| disabled or readonly | prevents opening or changing the value |"
+    },
+    {
+      "title": "Keyboard",
+      "body": "Keyboard handling follows the shared field and popup model.\n\n| Key | Action |\n| --- | --- |\n| `Tab` / `Shift+Tab` | moves through the field and overlay controls |\n| `Enter` / click on trigger actions | opens the month picker panel on desktop |\n| button activation | selects a month or runs footer actions like clear or this month |"
+    },
+    {
+      "title": "Labels and guidance",
+      "body": "Use a precise label such as report month, billing month, or closing month so users understand the period context. If the valid range is narrow, add helper text or status text that explains the allowed months."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "MonthComponent - <code>ui-month</code>",
+      "lead": "Standalone month field built on the shared field system and the calendar overlay. It stores an ISO month string while rendering a desktop month picker or native mobile month input.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["min", "InputSignal<string>", "''", "Minimum allowed ISO month value."],
+            ["max", "InputSignal<string>", "''", "Maximum allowed ISO month value."],
+            ["panelWidth", "InputSignal<number>", "300", "Desktop overlay width in pixels."],
+            [
+              "useNativeOnMobile",
+              "InputSignal<boolean>",
+              "true",
+              "Switches to a native mobile month input on small screens."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "inputVariant",
+              "InputSignal<InputVariant>",
+              "'filled'",
+              "Shared field surface token inherited from `FieldComponent`."
+            ],
+            [
+              "label",
+              "InputSignal<string>",
+              "''",
+              "Visible field label inherited from `FieldComponent`."
+            ],
+            [
+              "labelPosition",
+              "InputSignal<ContentPosition>",
+              "'above'",
+              "Controls where the field label is placed relative to the control."
+            ],
+            [
+              "placeholder",
+              "InputSignal<string>",
+              "''",
+              "Inherited shared-field placeholder input."
+            ],
+            [
+              "helpText",
+              "InputSignal<string>",
+              "''",
+              "Supporting helper text rendered below the field when there is no active error."
+            ],
+            [
+              "errorText",
+              "ModelSignal<string>",
+              "''",
+              "Validation or manual error message managed by the shared field base."
+            ],
+            ["required", "InputSignal<boolean>", "false", "Marks the field as required."],
+            [
+              "disabled",
+              "ModelSignal<boolean>",
+              "false",
+              "Disables the field and its interactive affordances."
+            ],
+            [
+              "readonly",
+              "ModelSignal<boolean>",
+              "false",
+              "Keeps the value visible while preventing user changes."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Shared field density token."],
+            [
+              "name",
+              "InputSignal<string>",
+              "''",
+              "HTML form name used by the field wrapper and native control wiring."
+            ],
+            [
+              "id",
+              "ModelSignal<string | number>",
+              "auto-generated",
+              "Control id used to connect label, help text, and error messaging."
+            ],
+            [
+              "autocomplete",
+              "InputSignal<string | null>",
+              "null",
+              "Inherited autocomplete hint for native form compatibility."
+            ],
+            [
+              "showClearButton",
+              "InputSignal<boolean>",
+              "true",
+              "Inherited shared-field clear-button flag when supported by the concrete control."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "''",
+              "Overrides the accessible name when no visible label is appropriate."
+            ],
+            [
+              "ariaDescribedBy",
+              "InputSignal<string>",
+              "''",
+              "Appends extra descriptive ids to the computed `aria-describedby` value."
+            ],
+            [
+              "autoValidation",
+              "InputSignal<boolean>",
+              "true",
+              "Enables inherited automatic validation error handling from `FieldComponent`."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Methods",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            ["clear()", "method", "Resets the selected month and underlying value."],
+            [
+              "openPanel() / closePanel()",
+              "method",
+              "Programmatically controls the desktop picker overlay."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Models",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "ControlValueAccessor",
+              "form integration",
+              "Works with `ngModel`, `formControl`, and `formControlName` like the other field components."
+            ],
+            ["value", "string", "Stored ISO month string such as `2026-05`."]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "focus",
+              "OutputEmitterRef<FocusEvent>",
+              "Inherited focus event from `FieldComponent`."
+            ],
+            ["blur", "OutputEmitterRef<FocusEvent>", "Inherited blur event from `FieldComponent`."],
+            [
+              "keyup",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-up event from `FieldComponent`."
+            ],
+            [
+              "keydown",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-down event from `FieldComponent`."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "This field is best when the data model is month-based. If users need an exact day, use a date field instead.",
+            "The visible label is localized month text, but the stored value remains an ISO month string."
+          ],
+          "title": "Notes"
+        }
+      ]
+    }
+  ]
+}

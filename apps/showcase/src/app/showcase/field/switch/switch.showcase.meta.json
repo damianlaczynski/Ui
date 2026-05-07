@@ -78,82 +78,101 @@
       "blocks": [
         {
           "type": "table",
-          "title": "Inputs",
+          "title": "Inherited field inputs",
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
             [
+              "inputVariant",
+              "InputSignal<InputVariant>",
+              "'filled'",
+              "Shared field surface token inherited from `FieldComponent`."
+            ],
+            [
               "label",
               "InputSignal<string>",
               "''",
-              "Visible switch label and fallback accessible name when `ariaLabel` is not provided."
+              "Visible field label inherited from `FieldComponent`."
             ],
             [
               "labelPosition",
-              "InputSignal<'before' | 'after' | 'above' | 'below' | 'none'>",
+              "InputSignal<ContentPosition>",
               "'above'",
-              "Controls where the visible label appears relative to the switch."
+              "Controls where the field label is placed relative to the control."
+            ],
+            [
+              "placeholder",
+              "InputSignal<string>",
+              "''",
+              "Inherited shared-field placeholder input."
             ],
             [
               "helpText",
               "InputSignal<string>",
               "''",
-              "Supporting text shown below the switch when there is no active error."
+              "Supporting helper text rendered below the field when there is no active error."
             ],
             [
               "errorText",
               "ModelSignal<string>",
               "''",
-              "Validation or manual error message shown below the switch."
+              "Validation or manual error message managed by the shared field base."
             ],
-            [
-              "required",
-              "InputSignal<boolean>",
-              "false",
-              "Marks the control as required and forwards the native `required` attribute."
-            ],
+            ["required", "InputSignal<boolean>", "false", "Marks the field as required."],
             [
               "disabled",
               "ModelSignal<boolean>",
               "false",
-              "Disables interaction and native checkbox input."
+              "Disables the field and its interactive affordances."
             ],
             [
               "readonly",
               "ModelSignal<boolean>",
               "false",
-              "Prevents mouse interaction while keeping the switch visible in place."
+              "Keeps the value visible while preventing user changes."
             ],
-            [
-              "size",
-              "InputSignal<Size>",
-              "'medium'",
-              "Controls the visual density of the switch and label."
-            ],
+            ["size", "InputSignal<Size>", "'medium'", "Shared field density token."],
             [
               "name",
               "InputSignal<string>",
               "''",
-              "Native checkbox name. Also used to seed the generated id when explicit `id` is not supplied."
+              "HTML form name used by the field wrapper and native control wiring."
             ],
             [
               "id",
               "ModelSignal<string | number>",
-              "generated",
-              "Native checkbox id used for shared field wiring."
+              "auto-generated",
+              "Control id used to connect label, help text, and error messaging."
             ],
-            ["ariaLabel", "InputSignal<string>", "''", "Explicit accessible name override."],
+            [
+              "autocomplete",
+              "InputSignal<string | null>",
+              "null",
+              "Inherited autocomplete hint for native form compatibility."
+            ],
+            [
+              "showClearButton",
+              "InputSignal<boolean>",
+              "true",
+              "Inherited shared-field clear-button flag when supported by the concrete control."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "''",
+              "Overrides the accessible name when no visible label is appropriate."
+            ],
             [
               "ariaDescribedBy",
               "InputSignal<string>",
               "''",
-              "Additional ids appended to the computed description chain."
+              "Appends extra descriptive ids to the computed `aria-describedby` value."
             ],
             [
               "autoValidation",
               "InputSignal<boolean>",
               "true",
-              "Keeps `errorText` synchronized with Angular form validation when a control is bound."
+              "Enables inherited automatic validation error handling from `FieldComponent`."
             ]
           ]
         },
@@ -167,9 +186,31 @@
               "change",
               "OutputRef<boolean>",
               "Emitted when the checked value changes from user interaction."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "focus",
+              "OutputEmitterRef<FocusEvent>",
+              "Inherited focus event from `FieldComponent`."
             ],
-            ["focus", "OutputRef<FocusEvent>", "Emitted when the inner checkbox receives focus."],
-            ["blur", "OutputRef<FocusEvent>", "Emitted when the inner checkbox loses focus."]
+            ["blur", "OutputEmitterRef<FocusEvent>", "Inherited blur event from `FieldComponent`."],
+            [
+              "keyup",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-up event from `FieldComponent`."
+            ],
+            [
+              "keydown",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-down event from `FieldComponent`."
+            ]
           ]
         },
         {
@@ -177,7 +218,8 @@
           "paragraphs": [
             "The component implements <code class=\"showcase-doc__api-code\">ControlValueAccessor</code>, so it works with <code class=\"showcase-doc__api-code\">ngModel</code>, reactive forms, and Angular validators.",
             "The checked state is stored as a boolean. Non-true values written through the form API resolve to the unchecked state."
-          ]
+          ],
+          "title": "Notes"
         },
         {
           "type": "list",

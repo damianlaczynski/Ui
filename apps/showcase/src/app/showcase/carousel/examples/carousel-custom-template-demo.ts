@@ -9,7 +9,6 @@ import { BadgeComponent, ButtonComponent, CarouselComponent, CarouselItem } from
     <ui-carousel
       [items]="workspaceSlides"
       [slideTemplate]="workspaceTemplate"
-      size="medium"
       [showIndicators]="true"
     />
 

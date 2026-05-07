@@ -94,7 +94,7 @@
       "blocks": [
         {
           "type": "table",
-          "title": "Core inputs",
+          "title": "Inputs",
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
@@ -180,100 +180,101 @@
         },
         {
           "type": "table",
-          "title": "Shared field inputs",
+          "title": "Inherited field inputs",
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
             [
+              "inputVariant",
+              "InputSignal<InputVariant>",
+              "'filled'",
+              "Shared field surface token inherited from `FieldComponent`."
+            ],
+            [
               "label",
               "InputSignal<string>",
               "''",
-              "Visible field label and default accessible name fallback."
+              "Visible field label inherited from `FieldComponent`."
             ],
             [
               "labelPosition",
-              "InputSignal<'above' | 'before' | 'after' | 'below'>",
+              "InputSignal<ContentPosition>",
               "'above'",
-              "Controls where the field label appears relative to the trigger."
+              "Controls where the field label is placed relative to the control."
             ],
             [
               "placeholder",
               "InputSignal<string>",
               "''",
-              "Placeholder shown when no value is selected."
+              "Inherited shared-field placeholder input."
             ],
             [
               "helpText",
               "InputSignal<string>",
               "''",
-              "Supporting text below the field when there is no active error."
+              "Supporting helper text rendered below the field when there is no active error."
             ],
             [
               "errorText",
               "ModelSignal<string>",
               "''",
-              "Validation or manual error text shown below the field."
+              "Validation or manual error message managed by the shared field base."
             ],
-            [
-              "required",
-              "InputSignal<boolean>",
-              "false",
-              "Marks the field as required and affects visible state and validation wiring."
-            ],
+            ["required", "InputSignal<boolean>", "false", "Marks the field as required."],
             [
               "disabled",
               "ModelSignal<boolean>",
               "false",
-              "Disables interaction and selection changes."
+              "Disables the field and its interactive affordances."
             ],
             [
               "readonly",
               "ModelSignal<boolean>",
               "false",
-              "Keeps the value visible but prevents user changes through the trigger UI."
+              "Keeps the value visible while preventing user changes."
             ],
-            [
-              "size",
-              "InputSignal<Size>",
-              "'medium'",
-              "Shared density token for trigger height and inner affordances."
-            ],
-            [
-              "inputVariant",
-              "InputSignal<InputVariant>",
-              "'filled'",
-              "Field surface styling: filled, filled-gray, filled-lighter, or underlined."
-            ],
-            [
-              "id",
-              "ModelSignal<string | number>",
-              "generated",
-              "Native id used to connect label and descriptive content."
-            ],
+            ["size", "InputSignal<Size>", "'medium'", "Shared field density token."],
             [
               "name",
               "InputSignal<string>",
               "''",
-              "Form field name and part of the generated id fallback."
+              "HTML form name used by the field wrapper and native control wiring."
+            ],
+            [
+              "id",
+              "ModelSignal<string | number>",
+              "auto-generated",
+              "Control id used to connect label, help text, and error messaging."
             ],
             [
               "autocomplete",
               "InputSignal<string | null>",
               "null",
-              "Passed to the shared field shell for native form compatibility."
+              "Inherited autocomplete hint for native form compatibility."
             ],
-            ["ariaLabel", "InputSignal<string>", "''", "Explicit accessible name override."],
+            [
+              "showClearButton",
+              "InputSignal<boolean>",
+              "true",
+              "Inherited shared-field clear-button flag when supported by the concrete control."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "''",
+              "Overrides the accessible name when no visible label is appropriate."
+            ],
             [
               "ariaDescribedBy",
               "InputSignal<string>",
               "''",
-              "Additional ids appended to the description chain."
+              "Appends extra descriptive ids to the computed `aria-describedby` value."
             ],
             [
               "autoValidation",
               "InputSignal<boolean>",
               "true",
-              "Keeps `errorText` synchronized with Angular validation when used with forms."
+              "Enables inherited automatic validation error handling from `FieldComponent`."
             ]
           ]
         },
@@ -293,12 +294,37 @@
           ]
         },
         {
+          "type": "table",
+          "title": "Inherited field outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "focus",
+              "OutputEmitterRef<FocusEvent>",
+              "Inherited focus event from `FieldComponent`."
+            ],
+            ["blur", "OutputEmitterRef<FocusEvent>", "Inherited blur event from `FieldComponent`."],
+            [
+              "keyup",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-up event from `FieldComponent`."
+            ],
+            [
+              "keydown",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-down event from `FieldComponent`."
+            ]
+          ]
+        },
+        {
           "type": "notes",
           "paragraphs": [
             "Projected item content is supported through an <code class=\"showcase-doc__api-code\">ng-template</code> named <code class=\"showcase-doc__api-code\">itemTemplate</code>.",
             "Multi-select uses tags in the trigger and checkboxes in the panel; single-select uses a checkmark in the panel and plain text in the trigger.",
             "The component implements <code class=\"showcase-doc__api-code\">ControlValueAccessor</code>, so it works with <code class=\"showcase-doc__api-code\">ngModel</code> and reactive forms."
-          ]
+          ],
+          "title": "Notes"
         },
         {
           "type": "list",

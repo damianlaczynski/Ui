@@ -146,7 +146,8 @@
           "paragraphs": [
             "Hover previews the prospective value in interactive mode; leaving the control restores the bound <code class=\"showcase-doc__api-code\">value</code>.",
             "Values outside <code class=\"showcase-doc__api-code\">[0, max]</code> are normalized; non-finite numbers fall back to safe defaults."
-          ]
+          ],
+          "title": "Notes"
         }
       ]
     }

@@ -10,7 +10,7 @@ import { CarouselComponent, CarouselItem } from 'ui';
       <div
         style="padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >
-        <ui-carousel [items]="slides" size="medium" [autoPlay]="true" [autoPlayInterval]="3500" />
+        <ui-carousel [items]="slides" [autoPlay]="true" [autoPlayInterval]="3500" />
       </div>
 
       <div

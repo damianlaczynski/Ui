@@ -131,7 +131,8 @@
           "paragraphs": [
             "The directive listens to `mouseenter`, `mouseleave`, `focus`, and `blur` on the host element. The host should therefore remain interactive or focusable when keyboard access matters.",
             "The overlay uses the CDK scroll close strategy, so open tooltips close automatically when their scroll context changes."
-          ]
+          ],
+          "title": "Notes"
         },
         {
           "type": "list",

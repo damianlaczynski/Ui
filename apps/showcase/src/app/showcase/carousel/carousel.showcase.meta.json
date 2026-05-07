@@ -9,7 +9,6 @@
     "basicCode": "carousel-basic-demo.ts",
     "navigationCode": "carousel-navigation-demo.ts",
     "autoplayCode": "carousel-autoplay-demo.ts",
-    "sizesCode": "carousel-sizes-demo.ts",
     "customTemplateCode": "carousel-custom-template-demo.ts",
     "workspaceHighlightsCode": "carousel-workspace-highlights-demo.ts"
   },
@@ -34,13 +33,6 @@
       "description": "Auto-play is useful for passive highlights, but keep intervals generous and preserve manual navigation. Hover pauses rotation so users can finish reading.",
       "codeKey": "autoplayCode",
       "componentKey": "autoplay"
-    },
-    {
-      "id": "sizes",
-      "title": "Sizes",
-      "description": "Small works in denser dashboard surfaces, medium is the default balanced option, and large is best when carousel itself is the visual focal point.",
-      "codeKey": "sizesCode",
-      "componentKey": "sizes"
     },
     {
       "id": "custom-template",
@@ -119,12 +111,6 @@
               "InputSignal<boolean>",
               "true",
               "When true, navigation wraps from last to first and first to last."
-            ],
-            [
-              "size",
-              "InputSignal<'small' | 'medium' | 'large'>",
-              "'medium'",
-              "Controls the minimum slide height and overall visual scale."
             ]
           ]
         },
@@ -151,7 +137,8 @@
           "paragraphs": [
             "Hover pauses auto-play and leaving resumes it when `autoPlay` is enabled.",
             "The component exposes imperative navigation internally through previous, next, and indicator buttons, so most integrations only need `items` plus optional output listeners."
-          ]
+          ],
+          "title": "Notes"
         }
       ]
     }

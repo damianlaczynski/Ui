@@ -135,7 +135,8 @@
           "paragraphs": [
             "When `name` produces initials from multiple words, first and last word initials combine; a single token yields one letter.",
             "Spinner size scales with avatar `size` through an internal map."
-          ]
+          ],
+          "title": "Notes"
         }
       ]
     }

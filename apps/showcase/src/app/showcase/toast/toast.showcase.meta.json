@@ -177,7 +177,8 @@
           "type": "notes",
           "paragraphs": [
             "Default projection fills <code class=\"showcase-doc__api-code\">toast__slot</code>. Elements with <code class=\"showcase-doc__api-code\">slot=\"actions\"</code> render in <code class=\"showcase-doc__api-code\">toast__footer</code> below the body so they stay clear of the dismiss control and the optional progress strip at the bottom edge."
-          ]
+          ],
+          "title": "Notes"
         }
       ]
     },
@@ -203,7 +204,8 @@
           "type": "notes",
           "paragraphs": [
             "Use separate containers if you intentionally split toast stacks (for example one host per drawer); each instance reads the same service signal."
-          ]
+          ],
+          "title": "Notes"
         }
       ]
     },
@@ -245,11 +247,12 @@
           "paragraphs": [
             "Convenience methods delegate to <code class=\"showcase-doc__api-code\">add</code> with a preset <code class=\"showcase-doc__api-code\">variant</code>. The optional <code class=\"showcase-doc__api-code\">options</code> argument accepts <code class=\"showcase-doc__api-code\">Partial&lt;ToastMessage&gt;</code> to override duration, appearance, sticky, and other fields.",
             "<code class=\"showcase-doc__api-code\">clear</code> empties the entire queue - useful after users manually dismiss several toasts and you want a predictable reset state in demos or tests."
-          ]
+          ],
+          "title": "Notes"
         },
         {
           "type": "table",
-          "title": "State",
+          "title": "Models",
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
@@ -264,7 +267,8 @@
           "type": "notes",
           "paragraphs": [
             "UI code should treat <code class=\"showcase-doc__api-code\">toasts</code> as the source of truth for rendered stacks; <code class=\"showcase-doc__api-code\">getToasts()</code> is a snapshot helper for diagnostics or unit tests."
-          ]
+          ],
+          "title": "Notes"
         }
       ]
     },
@@ -274,7 +278,7 @@
       "blocks": [
         {
           "type": "table",
-          "title": "Fields",
+          "title": "Models",
           "columns": ["Field", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
@@ -320,7 +324,8 @@
           "type": "notes",
           "paragraphs": [
             "Fields omitted when calling helpers pick up defaults inside <code class=\"showcase-doc__api-code\">ToastContainerComponent</code> (for example icon visibility and dismiss behavior)."
-          ]
+          ],
+          "title": "Notes"
         }
       ]
     },
@@ -330,7 +335,7 @@
       "blocks": [
         {
           "type": "list",
-          "title": "Values",
+          "title": "Models",
           "items": [
             "<code class=\"showcase-doc__api-code\">top-left</code>",
             "<code class=\"showcase-doc__api-code\">top-center</code>",

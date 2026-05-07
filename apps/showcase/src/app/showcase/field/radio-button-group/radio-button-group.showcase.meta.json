@@ -1,14 +1,19 @@
 {
   "slug": "radio-button-group",
   "title": "Radio Button Group",
-  "description": "Radio Button Group renders a small single-choice set as button-like options with support for segmented or separate layout, orientation, icons, and per-option disabled state.",
-  "intro": "Use `ui-radio-button-group` when users need to choose exactly one option from a small set and a button-like presentation fits better than classic radios. It works well for view switches, density controls, mode selectors, and compact settings choices.",
+  "description": "Radio Button Group renders a small single-choice set as button-like options on a unified segmented surface with support for orientation, icons, semantic variants, and per-option disabled state.",
+  "intro": "Use `ui-radio-button-group` when users need to choose exactly one option from a small set and a button-like segmented presentation fits better than classic radios. It works well for view switches, density controls, mode selectors, and compact settings choices.",
   "importCode": "import { RadioButtonGroupComponent, type RadioButtonItem } from 'ui';",
   "containerClass": "radio-button-group-doc",
   "snippets": {
     "basicCode": "radio-button-group-basic-demo.ts",
-    "layoutCode": "radio-button-group-layout-demo.ts",
+    "filledCode": "radio-button-group-filled-demo.ts",
+    "tintCode": "radio-button-group-tint-demo.ts",
+    "outlineCode": "radio-button-group-outline-demo.ts",
+    "subtleCode": "radio-button-group-subtle-demo.ts",
+    "transparentCode": "radio-button-group-transparent-demo.ts",
     "iconsCode": "radio-button-group-icons-demo.ts",
+    "shapesCode": "radio-button-group-shapes-demo.ts",
     "statesCode": "radio-button-group-states-demo.ts",
     "settingsPanelCode": "radio-button-group-settings-panel-demo.ts"
   },
@@ -21,11 +26,39 @@
       "componentKey": "basic"
     },
     {
-      "id": "layout",
-      "title": "Layout and orientation",
-      "description": "Segmented horizontal groups feel like compact mode switches, while separate vertical groups work better when labels are longer or more descriptive.",
-      "codeKey": "layoutCode",
-      "componentKey": "layout"
+      "id": "filled",
+      "title": "Filled appearance",
+      "description": "Filled gives the selected option the strongest weight, while the row lets you compare all semantic variants side by side.",
+      "codeKey": "filledCode",
+      "componentKey": "filled"
+    },
+    {
+      "id": "tint",
+      "title": "Tint appearance",
+      "description": "Tint keeps a softer filled feel and is useful when the control should read as active without becoming a dominant CTA.",
+      "codeKey": "tintCode",
+      "componentKey": "tint"
+    },
+    {
+      "id": "outline",
+      "title": "Outline appearance",
+      "description": "Outline gives the selected option a clearer edge and is often the safest choice for balanced UI density.",
+      "codeKey": "outlineCode",
+      "componentKey": "outline"
+    },
+    {
+      "id": "subtle",
+      "title": "Subtle appearance",
+      "description": "Subtle produces the quietest selected treatment and works well when the surrounding layout already has strong emphasis.",
+      "codeKey": "subtleCode",
+      "componentKey": "subtle"
+    },
+    {
+      "id": "transparent",
+      "title": "Transparent appearance",
+      "description": "Transparent is the lightest option and shows how the variants behave when almost all emphasis is reserved for the active state.",
+      "codeKey": "transparentCode",
+      "componentKey": "transparent"
     },
     {
       "id": "icons",
@@ -33,6 +66,13 @@
       "description": "Icons and stronger visual emphasis are useful when the choices are few, recognizable, and need to stand out as a quick control strip.",
       "codeKey": "iconsCode",
       "componentKey": "icons"
+    },
+    {
+      "id": "shapes",
+      "title": "Shapes",
+      "description": "Rounded is the default fit, square can match sharper layouts, and circular only makes sense for very short or icon-led choices.",
+      "codeKey": "shapesCode",
+      "componentKey": "shapes"
     },
     {
       "id": "states",
@@ -70,34 +110,16 @@
       "blocks": [
         {
           "type": "table",
-          "title": "Key inputs",
+          "title": "Inputs",
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
-            ["label", "InputSignal<string>", "''", "Visible label for the whole group."],
-            ["helpText", "InputSignal<string>", "''", "Supporting text below the group."],
-            ["errorText", "ModelSignal<string>", "''", "Error message for validation state."],
-            ["required", "InputSignal<boolean>", "false", "Marks the group as required."],
-            ["disabled", "InputSignal<boolean>", "false", "Disables the whole group."],
-            [
-              "readonly",
-              "InputSignal<boolean>",
-              "false",
-              "Keeps the current value visible but prevents changes."
-            ],
-            ["size", "InputSignal<Size>", "'medium'", "Button density token."],
             ["items", "InputSignal<RadioButtonItem[]>", "[]", "Choice set rendered by the group."],
             [
               "orientation",
               "InputSignal<'horizontal' | 'vertical'>",
               "'horizontal'",
               "Direction of the rendered option list."
-            ],
-            [
-              "layout",
-              "InputSignal<'segmented' | 'separate'>",
-              "'separate'",
-              "Whether buttons are visually connected or separated."
             ],
             ["variant", "InputSignal<Variant>", "'secondary'", "Semantic styling variant."],
             ["appearance", "InputSignal<Appearance>", "'outline'", "Button appearance token."],
@@ -111,7 +133,107 @@
         },
         {
           "type": "table",
-          "title": "Outputs and item model",
+          "title": "Inherited field inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "inputVariant",
+              "InputSignal<InputVariant>",
+              "'filled'",
+              "Shared field surface token inherited from `FieldComponent`."
+            ],
+            [
+              "label",
+              "InputSignal<string>",
+              "''",
+              "Visible field label inherited from `FieldComponent`."
+            ],
+            [
+              "labelPosition",
+              "InputSignal<ContentPosition>",
+              "'above'",
+              "Controls where the field label is placed relative to the control."
+            ],
+            [
+              "placeholder",
+              "InputSignal<string>",
+              "''",
+              "Inherited shared-field placeholder input."
+            ],
+            [
+              "helpText",
+              "InputSignal<string>",
+              "''",
+              "Supporting helper text rendered below the field when there is no active error."
+            ],
+            [
+              "errorText",
+              "ModelSignal<string>",
+              "''",
+              "Validation or manual error message managed by the shared field base."
+            ],
+            ["required", "InputSignal<boolean>", "false", "Marks the field as required."],
+            [
+              "disabled",
+              "ModelSignal<boolean>",
+              "false",
+              "Disables the field and its interactive affordances."
+            ],
+            [
+              "readonly",
+              "ModelSignal<boolean>",
+              "false",
+              "Keeps the value visible while preventing user changes."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Shared field density token."],
+            [
+              "name",
+              "InputSignal<string>",
+              "''",
+              "HTML form name used by the field wrapper and native control wiring."
+            ],
+            [
+              "id",
+              "ModelSignal<string | number>",
+              "auto-generated",
+              "Control id used to connect label, help text, and error messaging."
+            ],
+            [
+              "autocomplete",
+              "InputSignal<string | null>",
+              "null",
+              "Inherited autocomplete hint for native form compatibility."
+            ],
+            [
+              "showClearButton",
+              "InputSignal<boolean>",
+              "true",
+              "Inherited shared-field clear-button flag when supported by the concrete control."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "''",
+              "Overrides the accessible name when no visible label is appropriate."
+            ],
+            [
+              "ariaDescribedBy",
+              "InputSignal<string>",
+              "''",
+              "Appends extra descriptive ids to the computed `aria-describedby` value."
+            ],
+            [
+              "autoValidation",
+              "InputSignal<boolean>",
+              "true",
+              "Enables inherited automatic validation error handling from `FieldComponent`."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs and models",
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
@@ -121,11 +243,6 @@
               "Emits the selected value when the choice changes."
             ],
             [
-              "focus / blur / keyup / keydown",
-              "OutputEmitterRef<DOM event>",
-              "Inherited shared-field interaction outputs."
-            ],
-            [
               "RadioButtonItem",
               "{ id, label, value, icon?, ariaLabel?, disabled? }",
               "Option contract for the group."
@@ -133,11 +250,36 @@
           ]
         },
         {
+          "type": "table",
+          "title": "Inherited field outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "focus",
+              "OutputEmitterRef<FocusEvent>",
+              "Inherited focus event from `FieldComponent`."
+            ],
+            ["blur", "OutputEmitterRef<FocusEvent>", "Inherited blur event from `FieldComponent`."],
+            [
+              "keyup",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-up event from `FieldComponent`."
+            ],
+            [
+              "keydown",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-down event from `FieldComponent`."
+            ]
+          ]
+        },
+        {
           "type": "notes",
           "paragraphs": [
             "Use this component only for small single-choice sets. If the number of options grows or labels become long, a classic radio group, dropdown, or list pattern is usually clearer.",
-            "Segmented layout is strongest for quick mode switches. Separate layout is safer for more descriptive or vertically stacked choices."
-          ]
+            "The component now uses one unified segmented container style. `variant` and `appearance` primarily shape the selected option, while the remaining options stay visually subtle for better scanability."
+          ],
+          "title": "Notes"
         }
       ]
     }

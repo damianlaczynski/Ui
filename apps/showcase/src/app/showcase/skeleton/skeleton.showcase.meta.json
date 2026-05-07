@@ -125,7 +125,8 @@
           "paragraphs": [
             "The component always renders <code class=\"showcase-doc__api-code\">role=\"status\"</code> and <code class=\"showcase-doc__api-code\">aria-busy=\"true\"</code>.",
             "If <code class=\"showcase-doc__api-code\">borderRadius</code> is empty, radius falls back to the selected shape: circular becomes <code class=\"showcase-doc__api-code\">9999px</code>, square becomes <code class=\"showcase-doc__api-code\">0</code>, and rounded uses the component stylesheet token."
-          ]
+          ],
+          "title": "Notes"
         },
         {
           "type": "list",

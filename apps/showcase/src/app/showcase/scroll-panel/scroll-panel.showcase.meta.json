@@ -78,7 +78,7 @@
       "blocks": [
         {
           "type": "table",
-          "title": "Key inputs",
+          "title": "Inputs",
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
@@ -101,7 +101,7 @@
         },
         {
           "type": "table",
-          "title": "Outputs and methods",
+          "title": "Outputs",
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
@@ -110,7 +110,15 @@
               "scrollEnd",
               "OutputEmitterRef<void>",
               "Emits after scrolling settles, using a small debounce."
-            ],
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Methods",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
             ["scrollTo(options)", "method", "Imperatively scrolls to a given position."],
             ["scrollToTop()", "method", "Scrolls to the top of the panel."],
             ["scrollToBottom()", "method", "Scrolls to the bottom of the panel."],
@@ -123,7 +131,8 @@
           "paragraphs": [
             "Use `ui-scroll-panel` when you already control the content and only need the scroll shell. If you also need paged loading and row rendering, `ui-scroll-container` is the better fit.",
             "Bidirectional scrolling should stay a deliberate choice. If users only need one axis, keep the other locked to reduce visual noise and interaction ambiguity."
-          ]
+          ],
+          "title": "Notes"
         }
       ]
     }

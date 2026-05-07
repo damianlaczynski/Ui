@@ -162,7 +162,8 @@
           "paragraphs": [
             "Default projection renders inside the main content area below the built-in title and message fields.",
             "Projected elements marked with <code class=\"showcase-doc__api-code\">slot=\"actions\"</code> render in the aside area after quick actions, which is useful for custom layouts beyond the <code class=\"showcase-doc__api-code\">QuickAction[]</code> shortcut."
-          ]
+          ],
+          "title": "Notes"
         },
         {
           "type": "list",

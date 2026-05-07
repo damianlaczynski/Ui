@@ -78,7 +78,7 @@
       "blocks": [
         {
           "type": "table",
-          "title": "Key inputs",
+          "title": "Inputs",
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
@@ -131,7 +131,7 @@
         },
         {
           "type": "table",
-          "title": "Tab interface and outputs",
+          "title": "Outputs and models",
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
@@ -162,7 +162,8 @@
           "paragraphs": [
             "The component manages only the tablist state and keyboard behavior. It does not render tab panels, so the parent view should swap the associated content when `selectedTabId` changes.",
             "For overflow scenarios, project custom content marked with `[moreButton]` and enable `showMoreButton` so the main tab row can stay focused on the primary destinations."
-          ]
+          ],
+          "title": "Notes"
         }
       ]
     }

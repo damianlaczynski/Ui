@@ -131,7 +131,7 @@
         },
         {
           "type": "table",
-          "title": "Step",
+          "title": "Models",
           "columns": ["Field", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [

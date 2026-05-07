@@ -78,7 +78,7 @@
       "blocks": [
         {
           "type": "table",
-          "title": "Key inputs",
+          "title": "Inputs",
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
@@ -105,7 +105,7 @@
         },
         {
           "type": "table",
-          "title": "Outputs and panel model",
+          "title": "Outputs and models",
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
@@ -136,7 +136,8 @@
           "paragraphs": [
             "Panel `size` values are treated as proportional layout percentages, while `minSize` and `maxSize` are pixel constraints converted against the current container size.",
             "Use nested splitters sparingly. They are powerful for real workspace shells, but too many resize axes can make a layout noisy and hard to stabilize."
-          ]
+          ],
+          "title": "Notes"
         }
       ]
     }

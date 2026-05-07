@@ -86,7 +86,7 @@
       "blocks": [
         {
           "type": "table",
-          "title": "Key inputs",
+          "title": "Inputs",
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
@@ -119,7 +119,7 @@
         },
         {
           "type": "table",
-          "title": "Outputs and item contracts",
+          "title": "Outputs and models",
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
@@ -145,7 +145,8 @@
           "paragraphs": [
             "Use `groups` when the action set has natural clusters such as clipboard, formatting, or review actions.",
             "For split items, keep the primary action obvious and limit the menu to closely related alternatives. Custom projected content should stay visually and semantically secondary to the main action row."
-          ]
+          ],
+          "title": "Notes"
         }
       ]
     }

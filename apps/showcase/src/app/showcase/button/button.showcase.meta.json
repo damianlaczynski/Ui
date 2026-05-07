@@ -213,7 +213,8 @@
           "type": "notes",
           "paragraphs": [
             "The inner native element receives focus and activation keys; the <code class=\"showcase-doc__api-code\">ui-button</code> host is not an extra tab stop. Use <code class=\"showcase-doc__api-code\">ButtonComponent.focus()</code> to move focus from application code."
-          ]
+          ],
+          "title": "Notes"
         },
         {
           "type": "list",

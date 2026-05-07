@@ -9,8 +9,33 @@ import {
   output,
   signal,
 } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import type { RadioButtonItem } from '../field/radio-button-group/radio-button-group.component';
+import { RadioButtonGroupComponent } from '../field/radio-button-group/radio-button-group.component';
 
 type WheelType = 'hour' | 'minute';
+
+type Meridiem = 'am' | 'pm';
+
+function hour24From12(h12: number, meridiem: Meridiem): number {
+  if (meridiem === 'am') {
+    return h12 === 12 ? 0 : h12;
+  }
+  return h12 === 12 ? 12 : h12 + 12;
+}
+
+function hour12PartsFrom24(h24: number): { h12: number; meridiem: Meridiem } {
+  if (h24 === 0) {
+    return { h12: 12, meridiem: 'am' };
+  }
+  if (h24 < 12) {
+    return { h12: h24, meridiem: 'am' };
+  }
+  if (h24 === 12) {
+    return { h12: 12, meridiem: 'pm' };
+  }
+  return { h12: h24 - 12, meridiem: 'pm' };
+}
 
 interface DragState {
   pointerId: number;
@@ -22,7 +47,9 @@ interface DragState {
 
 @Component({
   selector: 'ui-time-picker',
+  standalone: true,
   templateUrl: './time-picker.component.html',
+  imports: [FormsModule, RadioButtonGroupComponent],
   styles: [
     `
       :host {
@@ -44,8 +71,19 @@ export class TimePickerComponent implements AfterViewInit, OnDestroy {
 
   timeChange = output<string>();
 
+  readonly meridiemItems: RadioButtonItem[] = [
+    { id: 'am', label: 'AM', value: 'am' as Meridiem },
+    { id: 'pm', label: 'PM', value: 'pm' as Meridiem },
+  ];
+
+  private static nextMeridiemId = 0;
+
+  readonly meridiemGroupName = `ui-time-picker-mer-${TimePickerComponent.nextMeridiemId++}`;
+
   selectedHour = signal<number>(12);
   selectedMinute = signal<number>(0);
+  selectedMeridiem = signal<Meridiem>('am');
+  private lastHour24 = signal<number>(12);
   isHourDragging = signal<boolean>(false);
   isMinuteDragging = signal<boolean>(false);
 
@@ -79,25 +117,34 @@ export class TimePickerComponent implements AfterViewInit, OnDestroy {
     const initialValue = this.value();
     if (initialValue) {
       const parsed = this.parseTimeString(initialValue);
-      this.selectedHour.set(parsed.hour);
+      this.lastHour24.set(parsed.hour);
       this.selectedMinute.set(parsed.minute);
     } else {
       const now = new Date();
-      this.selectedHour.set(now.getHours());
+      this.lastHour24.set(now.getHours());
       this.selectedMinute.set(now.getMinutes());
     }
 
     effect(() => {
       const format24h = this.use24HourFormat();
       const minuteStep = this.getMinuteStep();
+      const h24 = this.lastHour24();
+      const currentMinute = this.selectedMinute();
 
       this.hourOptions = this.buildHourOptions(format24h);
       this.minuteOptions = this.buildMinuteOptions(minuteStep);
       this.hourWheelOptions = this.repeatOptions(this.hourOptions);
       this.minuteWheelOptions = this.repeatOptions(this.minuteOptions);
 
-      this.selectedHour.set(this.normalizeToOptions(this.selectedHour(), this.hourOptions));
-      this.selectedMinute.set(this.normalizeToOptions(this.selectedMinute(), this.minuteOptions));
+      if (format24h) {
+        this.selectedHour.set(this.normalizeToOptions(h24, this.hourOptions));
+      } else {
+        const { h12, meridiem } = hour12PartsFrom24(h24);
+        this.selectedMeridiem.set(meridiem);
+        this.selectedHour.set(this.normalizeToOptions(h12, this.hourOptions));
+      }
+
+      this.selectedMinute.set(this.normalizeToOptions(currentMinute, this.minuteOptions));
 
       if (this.isViewReady) {
         this.syncHourScrollToSelected(false);
@@ -107,17 +154,20 @@ export class TimePickerComponent implements AfterViewInit, OnDestroy {
 
     effect(() => {
       const timeValue = this.value();
+      this.use24HourFormat();
+      this.step();
+
       if (!timeValue) {
         return;
       }
 
       const parsed = this.parseTimeString(timeValue);
-      const normalizedHour = this.normalizeToOptions(parsed.hour, this.hourOptions);
-      const normalizedMinute = this.normalizeToOptions(parsed.minute, this.minuteOptions);
+      const normalizedMinute = this.normalizeToOptions(
+        parsed.minute,
+        this.buildMinuteOptions(this.getMinuteStep()),
+      );
 
-      if (this.selectedHour() !== normalizedHour) {
-        this.selectedHour.set(normalizedHour);
-      }
+      this.lastHour24.set(parsed.hour);
 
       if (this.selectedMinute() !== normalizedMinute) {
         this.selectedMinute.set(normalizedMinute);
@@ -163,6 +213,23 @@ export class TimePickerComponent implements AfterViewInit, OnDestroy {
 
   formatMinuteLabel(minute: number): string {
     return String(minute).padStart(2, '0');
+  }
+
+  onMeridiemSelect(next: unknown): void {
+    if (this.use24HourFormat() || this.disabled()) {
+      return;
+    }
+
+    if (typeof next !== 'string' || (next !== 'am' && next !== 'pm')) {
+      return;
+    }
+
+    if (this.selectedMeridiem() === next) {
+      return;
+    }
+
+    this.selectedMeridiem.set(next as Meridiem);
+    this.emitCurrentTime();
   }
 
   onOptionClick(type: WheelType, event: MouseEvent): void {
@@ -651,7 +718,13 @@ export class TimePickerComponent implements AfterViewInit, OnDestroy {
   }
 
   private emitCurrentTime(): void {
-    this.timeChange.emit(this.formatTime(this.selectedHour(), this.selectedMinute()));
+    const minute = this.selectedMinute();
+    const h24 = this.use24HourFormat()
+      ? this.selectedHour()
+      : hour24From12(this.selectedHour(), this.selectedMeridiem());
+
+    this.lastHour24.set(h24);
+    this.timeChange.emit(this.formatTime(h24, minute));
   }
 
   private getMinuteStep(): number {

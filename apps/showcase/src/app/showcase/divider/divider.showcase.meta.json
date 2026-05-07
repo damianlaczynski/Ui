@@ -113,7 +113,8 @@
           "paragraphs": [
             "When <code class=\"showcase-doc__api-code\">text</code> is empty, the divider renders as a full uninterrupted line.",
             "When <code class=\"showcase-doc__api-code\">ariaLabel</code> is empty, the component falls back to visible text or a localized generic divider label."
-          ]
+          ],
+          "title": "Notes"
         },
         {
           "type": "list",

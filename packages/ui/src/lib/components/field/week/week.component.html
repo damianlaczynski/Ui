@@ -110,6 +110,7 @@
             [variant]="week.isSelected ? 'primary' : 'secondary'"
             [appearance]="week.isSelected ? 'filled' : 'outline'"
             [fullWidth]="true"
+            [attr.data-ui-week-picker-selected]="week.isSelected ? '' : null"
             (click)="selectWeek(week)"
           >
             <div class="date-calendar__week">

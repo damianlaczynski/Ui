@@ -5,7 +5,7 @@ import { CarouselComponent, CarouselItem } from 'ui';
   selector: 'app-carousel-basic-demo',
   standalone: true,
   imports: [CarouselComponent],
-  template: ` <ui-carousel [items]="heroSlides" size="medium" (itemClick)="(0)" /> `,
+  template: ` <ui-carousel [items]="heroSlides" (itemClick)="(0)" /> `,
 })
 export class CarouselBasicDemoComponent {
   protected readonly heroSlides: CarouselItem[] = [

@@ -3,6 +3,25 @@
     <label [attr.for]="'time-picker-hour-wheel'" class="time-picker__label">{{ label() }}</label>
   }
 
+  @if (!use24HourFormat()) {
+    <div class="time-picker__meridiem">
+      <ui-radio-button-group
+        [items]="meridiemItems"
+        [label]="''"
+        [name]="meridiemGroupName"
+        [orientation]="'horizontal'"
+        [size]="size()"
+        [variant]="'primary'"
+        [appearance]="'filled'"
+        [shape]="'rounded'"
+        [disabled]="disabled()"
+        [ngModel]="selectedMeridiem()"
+        (ngModelChange)="onMeridiemSelect($event)"
+        [ariaLabel]="'Morning or afternoon'"
+      />
+    </div>
+  }
+
   <div class="time-picker__wheels" [class]="'time-picker__wheels time-picker__wheels--' + size()">
     <div class="time-picker__wheel-shell" [class.time-picker__wheel-shell--disabled]="disabled()">
       <div

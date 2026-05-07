@@ -78,7 +78,7 @@
       "blocks": [
         {
           "type": "table",
-          "title": "Key inputs",
+          "title": "Inputs",
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
@@ -102,7 +102,7 @@
         },
         {
           "type": "table",
-          "title": "Projected content and action model",
+          "title": "Projected content",
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
@@ -123,7 +123,8 @@
           "paragraphs": [
             "Keep empty-state copy specific to the cause of the absence. 'No results', 'Nothing created yet', and 'No permission' are different situations and should not reuse the same wording.",
             "Use projected custom content sparingly. If the state becomes too dense, it usually means the surrounding flow should be redesigned rather than making the empty state more complicated."
-          ]
+          ],
+          "title": "Notes"
         }
       ]
     }

@@ -78,7 +78,7 @@
       "blocks": [
         {
           "type": "table",
-          "title": "Key inputs",
+          "title": "Inputs",
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
@@ -143,7 +143,7 @@
         },
         {
           "type": "table",
-          "title": "Nav node shape and outputs",
+          "title": "Outputs and models",
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
@@ -165,7 +165,8 @@
           "paragraphs": [
             "The component does not perform routing by itself. Use `nodeClick`, selected node state, or node callbacks to integrate the rail with your router or view state.",
             "For large navigation trees, favor clear sectioning and keep the selected path obvious. Deep hierarchies are most useful when the app genuinely has nested areas, not as a substitute for better information architecture."
-          ]
+          ],
+          "title": "Notes"
         }
       ]
     }

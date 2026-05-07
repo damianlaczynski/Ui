@@ -78,7 +78,7 @@
       "blocks": [
         {
           "type": "table",
-          "title": "Key inputs",
+          "title": "Inputs",
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
@@ -107,7 +107,7 @@
         },
         {
           "type": "table",
-          "title": "Projected content and action model",
+          "title": "Projected content",
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
@@ -128,7 +128,8 @@
           "paragraphs": [
             "Tailor the wording to the kind of failure. Retryable system errors, missing permissions, and missing resources should not sound the same.",
             "Use projected custom content sparingly. If the state turns into a dense troubleshooting screen, the surrounding flow likely needs a different design."
-          ]
+          ],
+          "title": "Notes"
         }
       ]
     }

@@ -119,7 +119,8 @@
           "paragraphs": [
             "The component is intentionally controlled. Parent code owns the dataset query state and should update `config.currentPage`, `config.pageSize`, and derived totals after each output event.",
             "Ellipsis entries in the page list are visual markers only and never emit navigation."
-          ]
+          ],
+          "title": "Notes"
         }
       ]
     },
@@ -129,7 +130,7 @@
       "blocks": [
         {
           "type": "table",
-          "title": "Fields",
+          "title": "Models",
           "columns": ["Field", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [

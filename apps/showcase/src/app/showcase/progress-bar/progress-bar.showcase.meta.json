@@ -125,7 +125,8 @@
           "paragraphs": [
             "In indeterminate mode the component omits <code class=\"showcase-doc__api-code\">aria-valuenow</code>, <code class=\"showcase-doc__api-code\">aria-valuemin</code>, and <code class=\"showcase-doc__api-code\">aria-valuemax</code> because exact completion is unknown.",
             "The visual track width is driven only by <code class=\"showcase-doc__api-code\">value</code> in determinate mode. Indeterminate mode ignores width input and uses the built-in animated segment."
-          ]
+          ],
+          "title": "Notes"
         },
         {
           "type": "list",

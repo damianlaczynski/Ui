@@ -86,7 +86,7 @@
       "blocks": [
         {
           "type": "table",
-          "title": "Key inputs",
+          "title": "Inputs",
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
@@ -155,7 +155,7 @@
         },
         {
           "type": "table",
-          "title": "Outputs and node shape",
+          "title": "Outputs and models",
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
@@ -184,7 +184,8 @@
           "paragraphs": [
             "Use `ui-node` when you need one row primitive. If you need recursive nesting or full tree keyboard behavior, `ui-tree-node` or `ui-tree` is usually a better fit.",
             "Custom content should stay compact. If the row turns into a mini card, it usually means the layout needs a different component."
-          ]
+          ],
+          "title": "Notes"
         }
       ]
     }

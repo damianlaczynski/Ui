@@ -78,7 +78,7 @@
       "blocks": [
         {
           "type": "table",
-          "title": "Key inputs",
+          "title": "Inputs",
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
@@ -179,7 +179,7 @@
         },
         {
           "type": "table",
-          "title": "Outputs and methods",
+          "title": "Outputs",
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
@@ -202,10 +202,26 @@
               "loadComplete",
               "OutputEmitterRef<void>",
               "Emits when the container reaches the last page."
-            ],
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Methods",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
             ["scrollToTop()", "method", "Scrolls the inner panel to the top."],
             ["scrollToBottom()", "method", "Scrolls the inner panel to the bottom."],
-            ["refresh()", "method", "Clears current items and reloads from the initial page."],
+            ["refresh()", "method", "Clears current items and reloads from the initial page."]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Models",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
             [
               "ScrollContainerDataSource<T>",
               "(page, pageSize) => Observable<QueryResult<T>>",
@@ -218,7 +234,8 @@
           "paragraphs": [
             "Keep custom row templates dense and scannable. If a row turns into a complex card, users lose the benefit of smooth progressive scrolling.",
             "Use imperative methods sparingly. Most list refreshes should still come from data changes or surrounding shell actions, not from arbitrary manual resets."
-          ]
+          ],
+          "title": "Notes"
         }
       ]
     }

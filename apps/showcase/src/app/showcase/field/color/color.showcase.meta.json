@@ -83,66 +83,6 @@
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
             [
-              "label",
-              "InputSignal<string>",
-              "''",
-              "Visible field label and default accessible name fallback when `ariaLabel` is not provided."
-            ],
-            [
-              "labelPosition",
-              "InputSignal<'above' | 'before' | 'after' | 'below'>",
-              "'above'",
-              "Controls where the visible label appears around the field."
-            ],
-            [
-              "placeholder",
-              "InputSignal<string>",
-              "''",
-              "Placeholder shown in the text trigger input."
-            ],
-            [
-              "helpText",
-              "InputSignal<string>",
-              "''",
-              "Supporting text shown below the field when there is no active error."
-            ],
-            [
-              "errorText",
-              "ModelSignal<string>",
-              "''",
-              "Validation or manual error message shown below the field."
-            ],
-            [
-              "required",
-              "InputSignal<boolean>",
-              "false",
-              "Marks the field as required and forwards the native attribute."
-            ],
-            [
-              "disabled",
-              "ModelSignal<boolean>",
-              "false",
-              "Disables interaction and prevents opening the picker."
-            ],
-            [
-              "readonly",
-              "ModelSignal<boolean>",
-              "false",
-              "Keeps the value visible while preventing edits."
-            ],
-            [
-              "size",
-              "InputSignal<Size>",
-              "'medium'",
-              "Shared density token for the trigger and actions."
-            ],
-            [
-              "inputVariant",
-              "InputSignal<InputVariant>",
-              "'filled'",
-              "Visual style of the field surface."
-            ],
-            [
               "format",
               "InputSignal<'hex' | 'rgb' | 'hsl'>",
               "'hex'",
@@ -177,36 +117,106 @@
               "InputSignal<string | undefined>",
               "undefined",
               "Optional override for the unsupported eye dropper warning message."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "inputVariant",
+              "InputSignal<InputVariant>",
+              "'filled'",
+              "Shared field surface token inherited from `FieldComponent`."
             ],
+            [
+              "label",
+              "InputSignal<string>",
+              "''",
+              "Visible field label inherited from `FieldComponent`."
+            ],
+            [
+              "labelPosition",
+              "InputSignal<ContentPosition>",
+              "'above'",
+              "Controls where the field label is placed relative to the control."
+            ],
+            [
+              "placeholder",
+              "InputSignal<string>",
+              "''",
+              "Inherited shared-field placeholder input."
+            ],
+            [
+              "helpText",
+              "InputSignal<string>",
+              "''",
+              "Supporting helper text rendered below the field when there is no active error."
+            ],
+            [
+              "errorText",
+              "ModelSignal<string>",
+              "''",
+              "Validation or manual error message managed by the shared field base."
+            ],
+            ["required", "InputSignal<boolean>", "false", "Marks the field as required."],
+            [
+              "disabled",
+              "ModelSignal<boolean>",
+              "false",
+              "Disables the field and its interactive affordances."
+            ],
+            [
+              "readonly",
+              "ModelSignal<boolean>",
+              "false",
+              "Keeps the value visible while preventing user changes."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Shared field density token."],
             [
               "name",
               "InputSignal<string>",
               "''",
-              "Native input name. Also used to seed the generated id when explicit `id` is not supplied."
+              "HTML form name used by the field wrapper and native control wiring."
             ],
             [
               "id",
               "ModelSignal<string | number>",
-              "generated",
-              "Native input id used for shared field wiring and picker panel ids."
+              "auto-generated",
+              "Control id used to connect label, help text, and error messaging."
+            ],
+            [
+              "autocomplete",
+              "InputSignal<string | null>",
+              "null",
+              "Inherited autocomplete hint for native form compatibility."
+            ],
+            [
+              "showClearButton",
+              "InputSignal<boolean>",
+              "true",
+              "Inherited shared-field clear-button flag when supported by the concrete control."
             ],
             [
               "ariaLabel",
               "InputSignal<string>",
               "''",
-              "Explicit accessible name override for the trigger input."
+              "Overrides the accessible name when no visible label is appropriate."
             ],
             [
               "ariaDescribedBy",
               "InputSignal<string>",
               "''",
-              "Additional ids appended to the computed description chain."
+              "Appends extra descriptive ids to the computed `aria-describedby` value."
             ],
             [
               "autoValidation",
               "InputSignal<boolean>",
               "true",
-              "Keeps `errorText` synchronized with Angular form validation when a control is bound."
+              "Enables inherited automatic validation error handling from `FieldComponent`."
             ]
           ]
         },
@@ -216,13 +226,30 @@
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
-            ["change", "OutputRef<string>", "Emitted when the serialized color value changes."],
-            ["focus", "OutputRef<FocusEvent>", "Emitted when the trigger input receives focus."],
-            ["blur", "OutputRef<FocusEvent>", "Emitted when the trigger input loses focus."],
+            ["change", "OutputRef<string>", "Emitted when the serialized color value changes."]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "focus",
+              "OutputEmitterRef<FocusEvent>",
+              "Inherited focus event from `FieldComponent`."
+            ],
+            ["blur", "OutputEmitterRef<FocusEvent>", "Inherited blur event from `FieldComponent`."],
+            [
+              "keyup",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-up event from `FieldComponent`."
+            ],
             [
               "keydown",
-              "OutputRef<KeyboardEvent>",
-              "Keyboard event passthrough from the trigger input."
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-down event from `FieldComponent`."
             ]
           ]
         },
@@ -231,7 +258,8 @@
           "paragraphs": [
             "The component implements <code class=\"showcase-doc__api-code\">ControlValueAccessor</code>, so it works with <code class=\"showcase-doc__api-code\">ngModel</code>, reactive forms, and Angular validators.",
             "Calling <code class=\"showcase-doc__api-code\">clear()</code> resets the serialized value to an empty string and restores the internal picker state to black with full opacity."
-          ]
+          ],
+          "title": "Notes"
         },
         {
           "type": "list",

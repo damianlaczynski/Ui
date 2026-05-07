@@ -78,40 +78,125 @@
       "blocks": [
         {
           "type": "table",
-          "title": "Key inputs",
+          "title": "Inherited field inputs",
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
-            ["label", "InputSignal<string>", "''", "Visible field label."],
+            [
+              "inputVariant",
+              "InputSignal<InputVariant>",
+              "'filled'",
+              "Shared field surface token inherited from `FieldComponent`."
+            ],
+            [
+              "label",
+              "InputSignal<string>",
+              "''",
+              "Visible field label inherited from `FieldComponent`."
+            ],
             [
               "labelPosition",
               "InputSignal<ContentPosition>",
               "'above'",
-              "Shared field label placement token."
+              "Controls where the field label is placed relative to the control."
             ],
-            ["placeholder", "InputSignal<string>", "''", "Hint shown when the query is empty."],
-            ["helpText", "InputSignal<string>", "''", "Supporting guidance below the field."],
-            ["errorText", "ModelSignal<string>", "''", "Validation or submission error message."],
-            ["required", "InputSignal<boolean>", "false", "Marks the native input as required."],
-            ["disabled", "ModelSignal<boolean>", "false", "Prevents editing and hides actions."],
+            [
+              "placeholder",
+              "InputSignal<string>",
+              "''",
+              "Inherited shared-field placeholder input."
+            ],
+            [
+              "helpText",
+              "InputSignal<string>",
+              "''",
+              "Supporting helper text rendered below the field when there is no active error."
+            ],
+            [
+              "errorText",
+              "ModelSignal<string>",
+              "''",
+              "Validation or manual error message managed by the shared field base."
+            ],
+            ["required", "InputSignal<boolean>", "false", "Marks the field as required."],
+            [
+              "disabled",
+              "ModelSignal<boolean>",
+              "false",
+              "Disables the field and its interactive affordances."
+            ],
             [
               "readonly",
               "ModelSignal<boolean>",
               "false",
-              "Keeps the query visible but not editable."
+              "Keeps the value visible while preventing user changes."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Shared field density token."],
+            [
+              "name",
+              "InputSignal<string>",
+              "''",
+              "HTML form name used by the field wrapper and native control wiring."
+            ],
+            [
+              "id",
+              "ModelSignal<string | number>",
+              "auto-generated",
+              "Control id used to connect label, help text, and error messaging."
             ],
             [
               "autocomplete",
               "InputSignal<string | null>",
               "null",
-              "Optional autocomplete hint. The inner input falls back to `off` when omitted."
+              "Inherited autocomplete hint for native form compatibility."
             ],
-            ["size", "InputSignal<Size>", "'medium'", "Shared field density token."],
             [
-              "inputVariant",
-              "InputSignal<Variant>",
-              "'filled'",
-              "Visual treatment of the input surface."
+              "showClearButton",
+              "InputSignal<boolean>",
+              "true",
+              "Inherited shared-field clear-button flag when supported by the concrete control."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "''",
+              "Overrides the accessible name when no visible label is appropriate."
+            ],
+            [
+              "ariaDescribedBy",
+              "InputSignal<string>",
+              "''",
+              "Appends extra descriptive ids to the computed `aria-describedby` value."
+            ],
+            [
+              "autoValidation",
+              "InputSignal<boolean>",
+              "true",
+              "Enables inherited automatic validation error handling from `FieldComponent`."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "focus",
+              "OutputEmitterRef<FocusEvent>",
+              "Inherited focus event from `FieldComponent`."
+            ],
+            ["blur", "OutputEmitterRef<FocusEvent>", "Inherited blur event from `FieldComponent`."],
+            [
+              "keyup",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-up event from `FieldComponent`."
+            ],
+            [
+              "keydown",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-down event from `FieldComponent`."
             ]
           ]
         },
@@ -120,7 +205,8 @@
           "paragraphs": [
             "The component extends the shared `FieldComponent`, so CVA integration, focus handling, described-by wiring, and validation behavior match the rest of the field family.",
             "Search and clear actions are built into the field chrome. Clear appears only when a value is present, while search remains visible for editable fields to reinforce the control’s intent."
-          ]
+          ],
+          "title": "Notes"
         }
       ]
     }

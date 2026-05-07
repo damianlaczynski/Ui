@@ -7,7 +7,6 @@ import { CarouselAutoplayDemoComponent } from './examples/carousel-autoplay-demo
 import { CarouselBasicDemoComponent } from './examples/carousel-basic-demo';
 import { CarouselCustomTemplateDemoComponent } from './examples/carousel-custom-template-demo';
 import { CarouselNavigationDemoComponent } from './examples/carousel-navigation-demo';
-import { CarouselSizesDemoComponent } from './examples/carousel-sizes-demo';
 import { CarouselWorkspaceHighlightsDemoComponent } from './examples/carousel-workspace-highlights-demo';
 import meta from './carousel.showcase.meta.json';
 
@@ -17,7 +16,6 @@ const componentMap = {
   basic: CarouselBasicDemoComponent,
   navigation: CarouselNavigationDemoComponent,
   autoplay: CarouselAutoplayDemoComponent,
-  sizes: CarouselSizesDemoComponent,
   customTemplate: CarouselCustomTemplateDemoComponent,
   workspaceHighlights: CarouselWorkspaceHighlightsDemoComponent,
 } as const;

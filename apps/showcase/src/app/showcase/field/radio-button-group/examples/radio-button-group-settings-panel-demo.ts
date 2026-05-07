@@ -19,8 +19,6 @@ import { RadioButtonGroupComponent } from 'ui';
           label="Audience"
           [formControl]="settingsForm.controls.audience"
           [items]="audienceItems"
-          layout="segmented"
-          appearance="tint"
         />
 
         <ui-radio-button-group

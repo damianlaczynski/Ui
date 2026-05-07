@@ -78,7 +78,7 @@
       "blocks": [
         {
           "type": "table",
-          "title": "Key inputs",
+          "title": "Inputs",
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
@@ -152,7 +152,7 @@
         },
         {
           "type": "table",
-          "title": "Outputs and node shape",
+          "title": "Outputs and models",
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
@@ -180,7 +180,8 @@
           "paragraphs": [
             "Use `ui-tree` when the relationship between items is hierarchical. For flat navigation rails, simpler menu or nav patterns are often easier to scan.",
             "If you enable drag and drop, pair it with clear status feedback and a safe way to reset or undo changes in the surrounding experience."
-          ]
+          ],
+          "title": "Notes"
         }
       ]
     }

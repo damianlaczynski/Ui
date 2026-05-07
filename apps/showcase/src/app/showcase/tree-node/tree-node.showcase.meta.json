@@ -86,7 +86,7 @@
       "blocks": [
         {
           "type": "table",
-          "title": "Key inputs",
+          "title": "Inputs",
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
@@ -172,7 +172,7 @@
         },
         {
           "type": "table",
-          "title": "Outputs and node shape",
+          "title": "Outputs and models",
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
@@ -205,7 +205,8 @@
           "paragraphs": [
             "Use `ui-tree-node` directly for one recursive branch or embedded subtree patterns. For a full tree root collection, `ui-tree` usually gives a clearer API.",
             "When you provide custom templates, keep the row compact and avoid burying the primary label under too much secondary metadata."
-          ]
+          ],
+          "title": "Notes"
         }
       ]
     }

@@ -86,7 +86,7 @@
       "blocks": [
         {
           "type": "table",
-          "title": "Key inputs",
+          "title": "Inputs",
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
@@ -133,7 +133,8 @@
           "paragraphs": [
             "Choose the lightest possible loading pattern. Inline and container overlays are usually preferable to fullscreen loading.",
             "If the wait is frequent or long, refine the loading copy and surrounding experience rather than relying on a generic spinner alone."
-          ]
+          ],
+          "title": "Notes"
         }
       ]
     }

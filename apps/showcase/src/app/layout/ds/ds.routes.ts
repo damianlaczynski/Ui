@@ -20,14 +20,30 @@ import {
   COMMAND_PALETTE_DOC_ASSET_PATHS,
   COMMAND_PALETTE_DOC_PAGE_CONFIG,
 } from '@showcase/command-palette/command-palette.showcase.doc';
-import { TimeShowcaseComponent } from '@showcase/time/time.showcase';
+import {
+  DATA_GRID_DOC_ASSET_PATHS,
+  DATA_GRID_DOC_PAGE_CONFIG,
+} from '@showcase/data-grid/data-grid.showcase.doc';
+import { TIME_DOC_ASSET_PATHS, TIME_DOC_PAGE_CONFIG } from '@showcase/time/time.showcase.doc';
 import { TimePickerShowcaseComponent } from '@showcase/time-picker/time-picker.showcase';
-import { DateShowcaseComponent } from '@showcase/field/date/date.showcase';
-import { DatetimeShowcaseComponent } from '@showcase/field/datetime/datetime.showcase';
-import { MonthShowcaseComponent } from '@showcase/field/month/month.showcase';
-import { TimeSpanShowcaseComponent } from '@showcase/field/time-span/time-span.showcase';
+import { DATE_DOC_ASSET_PATHS, DATE_DOC_PAGE_CONFIG } from '@showcase/field/date/date.showcase.doc';
+import {
+  DATETIME_DOC_ASSET_PATHS,
+  DATETIME_DOC_PAGE_CONFIG,
+} from '@showcase/field/datetime/datetime.showcase.doc';
+import {
+  MONTH_DOC_ASSET_PATHS,
+  MONTH_DOC_PAGE_CONFIG,
+} from '@showcase/field/month/month.showcase.doc';
+import {
+  TIME_SPAN_DOC_ASSET_PATHS,
+  TIME_SPAN_DOC_PAGE_CONFIG,
+} from '@showcase/field/time-span/time-span.showcase.doc';
 import { WEEK_DOC_ASSET_PATHS, WEEK_DOC_PAGE_CONFIG } from '@showcase/field/week/week.showcase.doc';
-import { DateRangeShowcaseComponent } from '@showcase/field/date-range/date-range.showcase';
+import {
+  DATE_RANGE_DOC_ASSET_PATHS,
+  DATE_RANGE_DOC_PAGE_CONFIG,
+} from '@showcase/field/date-range/date-range.showcase.doc';
 import {
   DROPDOWN_DOC_ASSET_PATHS,
   DROPDOWN_DOC_PAGE_CONFIG,
@@ -145,7 +161,6 @@ import {
   TREE_NODE_DOC_ASSET_PATHS,
   TREE_NODE_DOC_PAGE_CONFIG,
 } from '@showcase/tree-node/tree-node.showcase.doc';
-import { DataGridShowcaseComponent } from '@showcase/data-grid/data-grid.showcase';
 import {
   PAGINATION_DOC_ASSET_PATHS,
   PAGINATION_DOC_PAGE_CONFIG,
@@ -171,7 +186,7 @@ import {
   DRAWER_DOC_ASSET_PATHS,
   DRAWER_DOC_PAGE_CONFIG,
 } from '@showcase/drawer/drawer.showcase.doc';
-import { KbdShowcaseComponent } from '@showcase/kbd/kbd.showcase';
+import { KBD_DOC_ASSET_PATHS, KBD_DOC_PAGE_CONFIG } from '@showcase/kbd/kbd.showcase.doc';
 import {
   TOOLTIP_DOC_ASSET_PATHS,
   TOOLTIP_DOC_PAGE_CONFIG,
@@ -180,12 +195,13 @@ import {
   RATING_DOC_ASSET_PATHS,
   RATING_DOC_PAGE_CONFIG,
 } from '@showcase/rating/rating.showcase.doc';
-import { VideoShowcaseComponent } from '@showcase/video/video.showcase';
+import { VIDEO_DOC_ASSET_PATHS, VIDEO_DOC_PAGE_CONFIG } from '@showcase/video/video.showcase.doc';
+import { GuideDocPageComponent } from '@shared/components/guide-doc-page/guide-doc-page.component';
 import { ShowcaseDocPageComponent } from '@shared/components/showcase-doc-page/showcase-doc-page.component';
-import { GettingStartedComponent } from '../../pages/docs/getting-started/getting-started.component';
-import { InstallationComponent } from '../../pages/docs/installation/installation.component';
-import { I18nComponent } from '../../pages/docs/i18n/i18n.component';
-import { RoadmapComponent } from '../../pages/docs/roadmap/roadmap.component';
+import { GETTING_STARTED_PAGE_CONFIG } from '../../pages/docs/getting-started/getting-started.page';
+import { INSTALLATION_PAGE_CONFIG } from '../../pages/docs/installation/installation.page';
+import { I18N_PAGE_CONFIG } from '../../pages/docs/i18n/i18n.page';
+import { ROADMAP_PAGE_CONFIG } from '../../pages/docs/roadmap/roadmap.page';
 
 export const dsRoutes: Routes = [
   {
@@ -195,19 +211,31 @@ export const dsRoutes: Routes = [
   },
   {
     path: 'getting-started',
-    component: GettingStartedComponent,
+    component: GuideDocPageComponent,
+    data: {
+      config: GETTING_STARTED_PAGE_CONFIG,
+    },
   },
   {
     path: 'installation',
-    component: InstallationComponent,
+    component: GuideDocPageComponent,
+    data: {
+      config: INSTALLATION_PAGE_CONFIG,
+    },
   },
   {
     path: 'i18n',
-    component: I18nComponent,
+    component: GuideDocPageComponent,
+    data: {
+      config: I18N_PAGE_CONFIG,
+    },
   },
   {
     path: 'roadmap',
-    component: RoadmapComponent,
+    component: GuideDocPageComponent,
+    data: {
+      config: ROADMAP_PAGE_CONFIG,
+    },
   },
   {
     path: 'accordion',
@@ -271,7 +299,11 @@ export const dsRoutes: Routes = [
   },
   {
     path: 'data-grid',
-    component: DataGridShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: DATA_GRID_DOC_PAGE_CONFIG,
+      assetPaths: DATA_GRID_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'dialog',
@@ -355,19 +387,35 @@ export const dsRoutes: Routes = [
   },
   {
     path: 'date',
-    component: DateShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: DATE_DOC_PAGE_CONFIG,
+      assetPaths: DATE_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'datetime',
-    component: DatetimeShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: DATETIME_DOC_PAGE_CONFIG,
+      assetPaths: DATETIME_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'month',
-    component: MonthShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: MONTH_DOC_PAGE_CONFIG,
+      assetPaths: MONTH_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'date-range',
-    component: DateRangeShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: DATE_RANGE_DOC_PAGE_CONFIG,
+      assetPaths: DATE_RANGE_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'dropdown',
@@ -587,7 +635,11 @@ export const dsRoutes: Routes = [
   },
   {
     path: 'time',
-    component: TimeShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: TIME_DOC_PAGE_CONFIG,
+      assetPaths: TIME_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'time-picker',
@@ -595,7 +647,11 @@ export const dsRoutes: Routes = [
   },
   {
     path: 'time-span',
-    component: TimeSpanShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: TIME_SPAN_DOC_PAGE_CONFIG,
+      assetPaths: TIME_SPAN_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'week',
@@ -659,7 +715,11 @@ export const dsRoutes: Routes = [
   },
   {
     path: 'kbd',
-    component: KbdShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: KBD_DOC_PAGE_CONFIG,
+      assetPaths: KBD_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'tooltip',
@@ -679,7 +739,11 @@ export const dsRoutes: Routes = [
   },
   {
     path: 'video',
-    component: VideoShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: VIDEO_DOC_PAGE_CONFIG,
+      assetPaths: VIDEO_DOC_ASSET_PATHS,
+    },
   },
   {
     path: '**',

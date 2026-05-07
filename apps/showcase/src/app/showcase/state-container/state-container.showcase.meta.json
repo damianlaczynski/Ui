@@ -78,7 +78,7 @@
       "blocks": [
         {
           "type": "table",
-          "title": "Core inputs",
+          "title": "Inputs",
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
@@ -111,7 +111,7 @@
         },
         {
           "type": "table",
-          "title": "Branch-specific inputs",
+          "title": "Inputs",
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
@@ -149,7 +149,7 @@
         },
         {
           "type": "table",
-          "title": "Projected templates",
+          "title": "Projected content",
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
@@ -165,7 +165,8 @@
           "paragraphs": [
             "The component is most useful when your view already models async data as a shared `State<T>` object.",
             "Use custom templates only when the built-in empty, loading, or error states are not expressive enough. Otherwise keep the state machine simple and consistent."
-          ]
+          ],
+          "title": "Notes"
         }
       ]
     }

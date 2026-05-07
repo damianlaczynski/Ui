@@ -1,0 +1,160 @@
+{
+  "slug": "video",
+  "title": "Video",
+  "description": "Video provides embedded playback with optional browser controls or a custom control layer that can expose play, progress, volume, fullscreen, speed, quality, skip, and picture-in-picture actions.",
+  "intro": "Use `ui-video` when the product needs embedded media playback inside dashboards, learning surfaces, previews, or documentation. Start with browser controls for generic playback. Switch to custom controls only when the surrounding experience needs a more tailored control set.",
+  "importCode": "import { VideoComponent } from 'ui';",
+  "containerClass": "video-doc",
+  "snippets": {
+    "basicCode": "video-basic-demo.ts",
+    "controlsCode": "video-controls-demo.ts",
+    "playbackCode": "video-playback-demo.ts",
+    "sizeCode": "video-size-demo.ts",
+    "advancedActionsCode": "video-advanced-actions-demo.ts",
+    "mediaPanelCode": "video-media-panel-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic playback",
+      "description": "The simplest and safest pattern is a normal embedded video with browser controls and a poster image.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "controls",
+      "title": "Browser versus custom controls",
+      "description": "Use browser controls for generic media playback. Use custom controls only when the product needs a more tailored playback surface.",
+      "codeKey": "controlsCode",
+      "componentKey": "controls"
+    },
+    {
+      "id": "playback",
+      "title": "Playback behavior",
+      "description": "Autoplay, loop, and muted behavior can change the role of the component from passive preview to more ambient media playback.",
+      "codeKey": "playbackCode",
+      "componentKey": "playback"
+    },
+    {
+      "id": "size",
+      "title": "Size variants",
+      "description": "Size affects how prominent the player feels in cards, side panels, and full content areas.",
+      "codeKey": "sizeCode",
+      "componentKey": "size"
+    },
+    {
+      "id": "advanced-actions",
+      "title": "Advanced actions",
+      "description": "Speed, quality, skip, fullscreen, and picture-in-picture controls make sense when the content is actively watched rather than just previewed.",
+      "codeKey": "advancedActionsCode",
+      "componentKey": "advancedActions"
+    },
+    {
+      "id": "media-panel",
+      "title": "Media panel composition",
+      "description": "A practical video example should show the player inside a real content or learning panel rather than as a naked configuration sample.",
+      "codeKey": "mediaPanelCode",
+      "componentKey": "mediaPanel"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Playback surface",
+      "body": "`ui-video` wraps a native HTML `video` element and layers optional custom playback controls around it.\n\n| Element | Behavior |\n| --- | --- |\n| video element | native video semantics |\n| browser controls mode | relies on native browser media controls |\n| custom controls mode | exposes explicit buttons and sliders for playback actions |"
+    },
+    {
+      "title": "Keyboard and control discoverability",
+      "body": "Keyboard behavior depends on the enabled controls and the browser's media support.\n\n| Mode | Interaction model |\n| --- | --- |\n| native controls | browser-defined keyboard and screen-reader behavior |\n| custom buttons and sliders | standard button and slider keyboard behavior |\n| hidden or optional actions | should be enabled only when users genuinely need them |"
+    },
+    {
+      "title": "Usage guidance",
+      "body": "Prefer native browser controls when accessibility and familiarity matter more than custom chrome. If you enable custom actions like quality or playback speed, make sure the surrounding product truly supports and explains them."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "VideoComponent - <code>ui-video</code>",
+      "lead": "Standalone embedded video player with optional custom control overlay. It can expose browser controls or a richer custom playback surface depending on the product need.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["src", "InputSignal<string>", "''", "Video source URL."],
+            ["poster", "InputSignal<string>", "''", "Poster image shown before playback."],
+            [
+              "autoplay",
+              "InputSignal<boolean>",
+              "false",
+              "Starts playback automatically when possible."
+            ],
+            ["loop", "InputSignal<boolean>", "false", "Repeats playback after the video ends."],
+            ["muted", "InputSignal<boolean>", "false", "Starts playback muted."],
+            [
+              "controls",
+              "InputSignal<boolean>",
+              "true",
+              "Uses the browser's native video controls."
+            ],
+            [
+              "showPlayButton / showFullscreenButton / showVolumeButton / showProgressBar",
+              "InputSignal<boolean>",
+              "mostly true",
+              "Toggles core custom controls when native controls are disabled."
+            ],
+            [
+              "showQualityButton / showSpeedButton / showSkipButtons / showPictureInPictureButton",
+              "InputSignal<boolean>",
+              "mixed defaults",
+              "Enables more advanced custom playback actions."
+            ],
+            [
+              "skipSeconds",
+              "InputSignal<number>",
+              "10",
+              "Skip distance for forward and backward controls."
+            ],
+            [
+              "qualityOptions",
+              "InputSignal<Array<{ value: string; label: string }>>",
+              "[]",
+              "Displayed quality menu options when the quality action is enabled."
+            ],
+            [
+              "size",
+              "InputSignal<'small' | 'medium' | 'large'>",
+              "'medium'",
+              "Player size variant."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            ["play / pause / ended", "OutputEmitterRef<void>", "Playback lifecycle events."],
+            ["timeUpdate", "OutputEmitterRef<number>", "Emits the current playback position."],
+            ["volumeChange", "OutputEmitterRef<number>", "Emits the current volume value."],
+            [
+              "loadedMetadata",
+              "OutputEmitterRef<void>",
+              "Emits when metadata such as duration becomes available."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "Custom controls are strongest in product-specific media surfaces. For generic content playback, native browser controls usually remain the simpler choice.",
+            "Quality switching UI is presentational unless the surrounding application also swaps the actual media source or integrates adaptive streaming logic."
+          ],
+          "title": "Notes"
+        }
+      ]
+    }
+  ]
+}

@@ -70,7 +70,7 @@
       "blocks": [
         {
           "type": "table",
-          "title": "Key inputs",
+          "title": "Inputs",
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
@@ -94,7 +94,7 @@
         },
         {
           "type": "table",
-          "title": "Outputs and item model",
+          "title": "Outputs and models",
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
@@ -121,7 +121,8 @@
           "paragraphs": [
             "Keep command labels short and scannable. Descriptions and keywords should help with discovery, not compensate for unclear labels.",
             "Grouping is useful when the palette mixes navigation and actions. If the list is already short and uniform, a flat result set is often easier to scan."
-          ]
+          ],
+          "title": "Notes"
         }
       ]
     }

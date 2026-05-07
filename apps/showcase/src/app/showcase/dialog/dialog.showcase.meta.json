@@ -173,7 +173,8 @@
           "paragraphs": [
             "Projected content renders inside the dialog body below <code class=\"showcase-doc__api-code\">bodyText</code>, so you can add forms, summaries, or small custom layouts.",
             "The component traps focus with Angular CDK while visible, and listens for Escape on the document when <code class=\"showcase-doc__api-code\">closable</code> is true."
-          ]
+          ],
+          "title": "Notes"
         },
         {
           "type": "list",

@@ -22,12 +22,7 @@ import { BadgeComponent, CarouselComponent, CarouselItem } from 'ui';
         />
       </div>
 
-      <ui-carousel
-        [items]="workspaceSlides"
-        size="medium"
-        [autoPlay]="true"
-        [autoPlayInterval]="4500"
-      />
+      <ui-carousel [items]="workspaceSlides" [autoPlay]="true" [autoPlayInterval]="4500" />
     </div>
   `,
 })

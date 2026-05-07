@@ -128,7 +128,8 @@
           "paragraphs": [
             "Badge has no outputs and no built-in interaction states. Treat it as static metadata rather than a chip, filter, or button.",
             "Circular shape is best when the content is very short, especially counts such as `3` or `99+`."
-          ]
+          ],
+          "title": "Notes"
         }
       ]
     }

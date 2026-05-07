@@ -86,7 +86,7 @@
       "blocks": [
         {
           "type": "table",
-          "title": "Key inputs",
+          "title": "Inputs",
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
@@ -189,7 +189,7 @@
       "blocks": [
         {
           "type": "table",
-          "title": "Key inputs and models",
+          "title": "Inputs and models",
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
@@ -261,7 +261,8 @@
           "paragraphs": [
             "Use `ui-menu` when you want a ready-made trigger plus overlay. Use `ui-menu-list` directly only when you genuinely need to control the shell around the menu surface.",
             "Keep production menus short. If one menu becomes a navigation system or a settings panel, it usually needs a different component."
-          ]
+          ],
+          "title": "Notes"
         }
       ]
     }

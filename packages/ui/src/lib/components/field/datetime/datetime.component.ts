@@ -22,7 +22,12 @@ import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import { FieldComponent } from '../field/field.component';
 import { ActionButtonComponent } from '../action-button.component';
 import { CalendarComponent, CalendarDay, CalendarView } from '../../calendar';
-import { TimePickerComponent } from '../../time-picker';
+import {
+  extractDateAndFlexibleTimeSegments,
+  formatHhmmForDisplay,
+  parseFlexibleTimeToHhmm,
+  TimePickerComponent,
+} from '../../time-picker';
 import {
   DEFAULT_CONNECTED_POSITIONS,
   DEFAULT_VIEWPORT_MARGIN,
@@ -99,10 +104,11 @@ export class DatetimeComponent extends FieldComponent implements OnDestroy {
     if (!date && !time) {
       return '';
     }
+    const timeShown = formatHhmmForDisplay(time, this.use24HourFormat());
     if (date && time) {
-      return `${this.formatDate(date)} ${time}`;
+      return `${this.formatDate(date)} ${timeShown}`;
     }
-    return date ? this.formatDate(date) : time;
+    return date ? this.formatDate(date) : timeShown;
   });
 
   constructor() {
@@ -186,18 +192,23 @@ export class DatetimeComponent extends FieldComponent implements OnDestroy {
       return;
     }
 
-    const parts = inputValue.includes('T') ? inputValue.split('T') : inputValue.split(' ');
-    if (parts.length < 2) {
+    const segments = extractDateAndFlexibleTimeSegments(inputValue);
+    if (!segments) {
       return;
     }
 
-    const parsedDate = this.parseDateFromInput(parts[0]);
+    const parsedDate = this.parseDateFromInput(segments.datePart);
     if (!parsedDate) {
       return;
     }
 
+    const hhmm = parseFlexibleTimeToHhmm(segments.timePart);
+    if (!hhmm) {
+      return;
+    }
+
     this.selectedDate.set(parsedDate);
-    this.selectedTime.set(parts[1]);
+    this.selectedTime.set(hhmm);
   }
 
   onCalendarDateSelect(day: CalendarDay): void {

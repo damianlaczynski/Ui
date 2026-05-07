@@ -3,7 +3,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { ButtonComponent } from '../../button';
 import { FieldComponent } from '../field/field.component';
-import { Orientation, SegmentLayout, Variant, Appearance, Shape } from '../../utils';
+import { Orientation, Variant, Appearance, Shape } from '../../utils';
 import { IconName } from '../../icon';
 
 export interface RadioButtonItem {
@@ -34,7 +34,6 @@ export class RadioButtonGroupComponent extends FieldComponent implements Control
 
   items = input<RadioButtonItem[]>([]);
   orientation = input<Orientation>('horizontal');
-  layout = input<SegmentLayout>('separate');
   variant = input<Variant>('secondary');
   appearance = input<Appearance>('outline');
   shape = input<Shape>('rounded');
@@ -42,16 +41,35 @@ export class RadioButtonGroupComponent extends FieldComponent implements Control
   override get wrapperClasses(): string {
     const classes = ['radio-button-group'];
     classes.push(`radio-button-group--${this.orientation()}`);
-    classes.push(`radio-button-group--${this.layout()}`);
     classes.push(`radio-button-group--${this.size()}`);
+    classes.push(`radio-button-group--${this.shape()}`);
     if (this.disabled()) {
       classes.push('radio-button-group--disabled');
+    }
+    if (this.readonly()) {
+      classes.push('radio-button-group--readonly');
     }
     return classes.join(' ');
   }
 
   isSelected(itemValue: unknown): boolean {
     return this.value === itemValue;
+  }
+
+  getItemVariant(itemValue: unknown): Variant {
+    return this.isSelected(itemValue) ? this.variant() : 'secondary';
+  }
+
+  getItemAppearance(itemValue: unknown): Appearance {
+    if (!this.isSelected(itemValue)) {
+      return 'subtle';
+    }
+
+    if (this.variant() === 'secondary' && this.appearance() === 'subtle') {
+      return 'outline';
+    }
+
+    return this.appearance();
   }
 
   onItemSelect(selectedValue: unknown): void {
@@ -65,7 +83,7 @@ export class RadioButtonGroupComponent extends FieldComponent implements Control
   }
 
   getButtonTabIndex(index: number): number {
-    if (this.disabled()) {
+    if (this.disabled() || this.readonly()) {
       return -1;
     }
 

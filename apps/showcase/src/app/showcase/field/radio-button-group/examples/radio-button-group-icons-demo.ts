@@ -16,7 +16,6 @@ import { RadioButtonGroupComponent, type RadioButtonItem } from 'ui';
         [items]="channelItems"
         variant="primary"
         appearance="tint"
-        layout="segmented"
         [(ngModel)]="channel"
         [ngModelOptions]="{ standalone: true }"
       />

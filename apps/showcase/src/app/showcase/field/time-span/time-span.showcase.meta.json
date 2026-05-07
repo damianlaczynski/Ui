@@ -1,0 +1,259 @@
+{
+  "slug": "time-span",
+  "title": "Time Span",
+  "description": "Time Span is a field for editable durations. It lets users compose an ISO 8601 duration string through enabled time units like days, hours, minutes, or months.",
+  "intro": "Use `ui-time-span` when users need a reusable duration rather than a calendar date or a single time of day. It fits retention policies, token expiration, SLA settings, reminder delays, and any workflow where the stored value is a duration such as `PT1H30M`.",
+  "importCode": "import { TimeSpanComponent, type TimeSpanValue } from 'ui';",
+  "containerClass": "time-span-doc",
+  "snippets": {
+    "basicCode": "time-span-basic-demo.ts",
+    "unitPresetsCode": "time-span-unit-presets-demo.ts",
+    "sizeVariantCode": "time-span-size-variant-demo.ts",
+    "statesCode": "time-span-states-demo.ts",
+    "reactiveFormCode": "time-span-reactive-form-demo.ts",
+    "policyPanelCode": "time-span-policy-panel-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic duration selection",
+      "description": "The default pattern is a single field that stores one ISO 8601 duration string while presenting a human-friendly abbreviated display.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "unit-presets",
+      "title": "Unit configurations",
+      "description": "The main value of the component is that you can expose only the units that match the domain model instead of forcing users through irrelevant controls.",
+      "codeKey": "unitPresetsCode",
+      "componentKey": "unitPresets"
+    },
+    {
+      "id": "size-variant",
+      "title": "Size and input variant",
+      "description": "Time span still belongs to the shared field system, so density and shell styling should stay coherent with the rest of the form.",
+      "codeKey": "sizeVariantCode",
+      "componentKey": "sizeVariant"
+    },
+    {
+      "id": "states",
+      "title": "Readonly, disabled, required, and clearable states",
+      "description": "State handling matters in policy and settings surfaces, especially when existing durations should remain visible or be reset explicitly.",
+      "codeKey": "statesCode",
+      "componentKey": "states"
+    },
+    {
+      "id": "reactive-form",
+      "title": "Reactive form integration",
+      "description": "A good showcase should show the ISO 8601 output inside a real form flow instead of only exposing the wheel UI.",
+      "codeKey": "reactiveFormCode",
+      "componentKey": "reactiveForm"
+    },
+    {
+      "id": "policy-panel",
+      "title": "Policy panel composition",
+      "description": "A practical duration picker usually sits inside a policy, timeout, or retention panel with context around the stored value.",
+      "codeKey": "policyPanelCode",
+      "componentKey": "policyPanel"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Input and popup behavior",
+      "body": "`ui-time-span` behaves like a text field and opens a dialog-style panel with wheel-like unit selectors for the enabled duration units.\n\n| Element | Behavior |\n| --- | --- |\n| trigger input | exposes `aria-haspopup=\"dialog\"` and `aria-expanded` |\n| disabled or readonly | prevents opening or changing the duration |\n| clear action | removes the current duration when `clearable` is enabled |"
+    },
+    {
+      "title": "Keyboard",
+      "body": "Keyboard behavior follows the field and wheel-selector model.\n\n| Key | Action |\n| --- | --- |\n| `Tab` / `Shift+Tab` | moves through the field and unit wheels |\n| `Enter` / click on trigger actions | opens the duration picker panel |\n| `ArrowUp` / `ArrowDown` on a wheel | decreases or increases the current unit |\n| `PageUp` / `PageDown` on a wheel | changes the current unit in larger steps |"
+    },
+    {
+      "title": "Labels and guidance",
+      "body": "Use a precise label such as session timeout, reminder delay, or retention duration so users understand what the duration affects. Helper text should mention the output format or the business meaning when the stored ISO 8601 string matters."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "TimeSpanComponent - <code>ui-time-span</code>",
+      "lead": "Standalone duration field built on the shared field system with a connected wheel-style overlay. It stores an ISO 8601 duration string while exposing only the units that the surrounding workflow needs.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "showYears / showMonths / showDays / showHours / showMinutes / showSeconds",
+              "InputSignal<boolean>",
+              "mixed defaults",
+              "Controls which duration units are exposed in the picker."
+            ],
+            [
+              "clearable",
+              "InputSignal<boolean>",
+              "false",
+              "Shows an explicit clear action when a value exists."
+            ],
+            ["maxHeight", "InputSignal<string>", "'400px'", "Maximum panel height."]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "inputVariant",
+              "InputSignal<InputVariant>",
+              "'filled'",
+              "Shared field surface token inherited from `FieldComponent`."
+            ],
+            [
+              "label",
+              "InputSignal<string>",
+              "''",
+              "Visible field label inherited from `FieldComponent`."
+            ],
+            [
+              "labelPosition",
+              "InputSignal<ContentPosition>",
+              "'above'",
+              "Controls where the field label is placed relative to the control."
+            ],
+            [
+              "placeholder",
+              "InputSignal<string>",
+              "''",
+              "Inherited shared-field placeholder input."
+            ],
+            [
+              "helpText",
+              "InputSignal<string>",
+              "''",
+              "Supporting helper text rendered below the field when there is no active error."
+            ],
+            [
+              "errorText",
+              "ModelSignal<string>",
+              "''",
+              "Validation or manual error message managed by the shared field base."
+            ],
+            ["required", "InputSignal<boolean>", "false", "Marks the field as required."],
+            [
+              "disabled",
+              "ModelSignal<boolean>",
+              "false",
+              "Disables the field and its interactive affordances."
+            ],
+            [
+              "readonly",
+              "ModelSignal<boolean>",
+              "false",
+              "Keeps the value visible while preventing user changes."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Shared field density token."],
+            [
+              "name",
+              "InputSignal<string>",
+              "''",
+              "HTML form name used by the field wrapper and native control wiring."
+            ],
+            [
+              "id",
+              "ModelSignal<string | number>",
+              "auto-generated",
+              "Control id used to connect label, help text, and error messaging."
+            ],
+            [
+              "autocomplete",
+              "InputSignal<string | null>",
+              "null",
+              "Inherited autocomplete hint for native form compatibility."
+            ],
+            [
+              "showClearButton",
+              "InputSignal<boolean>",
+              "true",
+              "Inherited shared-field clear-button flag when supported by the concrete control."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "''",
+              "Overrides the accessible name when no visible label is appropriate."
+            ],
+            [
+              "ariaDescribedBy",
+              "InputSignal<string>",
+              "''",
+              "Appends extra descriptive ids to the computed `aria-describedby` value."
+            ],
+            [
+              "autoValidation",
+              "InputSignal<boolean>",
+              "true",
+              "Enables inherited automatic validation error handling from `FieldComponent`."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs and models",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "valueChange",
+              "OutputEmitterRef<string>",
+              "Emits the current ISO 8601 duration string."
+            ],
+            [
+              "opened / closed",
+              "OutputEmitterRef<void>",
+              "Lifecycle events for the overlay panel."
+            ],
+            ["clearSelection()", "method", "Resets the current duration."],
+            [
+              "TimeSpanValue",
+              "{ years?, months?, days?, hours?, minutes?, seconds? }",
+              "Internal structured value before serialization to ISO 8601."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "focus",
+              "OutputEmitterRef<FocusEvent>",
+              "Inherited focus event from `FieldComponent`."
+            ],
+            ["blur", "OutputEmitterRef<FocusEvent>", "Inherited blur event from `FieldComponent`."],
+            [
+              "keyup",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-up event from `FieldComponent`."
+            ],
+            [
+              "keydown",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-down event from `FieldComponent`."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "This component is strongest when the stored value is a duration rather than a wall-clock time or calendar date.",
+            "The output is normalized to an ISO 8601 duration string like `PT1H30M`, while the visible input shows a shorter human-readable representation."
+          ],
+          "title": "Notes"
+        }
+      ]
+    }
+  ]
+}

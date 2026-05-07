@@ -190,7 +190,8 @@
           "paragraphs": [
             "Projected content renders in the body after <code class=\"showcase-doc__api-code\">bodyText</code>, so drawers can host forms, summaries, lists, or other structured layouts.",
             "Overlay modal drawers trap focus with Angular CDK while visible. Inline drawers do not behave as full modal dialogs."
-          ]
+          ],
+          "title": "Notes"
         },
         {
           "type": "list",

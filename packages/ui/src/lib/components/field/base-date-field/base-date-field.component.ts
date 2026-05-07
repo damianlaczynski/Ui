@@ -8,7 +8,7 @@ import {
   NgZone,
   Injectable,
 } from '@angular/core';
-import { Overlay } from '@angular/cdk/overlay';
+import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import {
   DEFAULT_CONNECTED_POSITIONS,
@@ -40,11 +40,12 @@ export class DateFieldOverlayService implements OnDestroy {
     panelTemplate: TemplateRef<unknown>,
     panelWidth: number,
     onOpen?: () => void,
+    afterOpen?: (overlayRef: OverlayRef) => void,
   ): void {
     if (this.isOpen()) {
       this.close(false);
     } else {
-      this.open(triggerElement, panelTemplate, panelWidth, onOpen);
+      this.open(triggerElement, panelTemplate, panelWidth, onOpen, afterOpen);
     }
   }
 
@@ -53,6 +54,7 @@ export class DateFieldOverlayService implements OnDestroy {
     panelTemplate: TemplateRef<unknown>,
     panelWidth: number,
     beforeOpen?: () => void,
+    afterOpen?: (overlayRef: OverlayRef) => void,
   ): void {
     if (this.isOpen()) {
       return;
@@ -83,6 +85,11 @@ export class DateFieldOverlayService implements OnDestroy {
     });
 
     this.isOpen.set(true);
+
+    if (afterOpen && this.overlayHandle) {
+      const overlayRef = this.overlayHandle.overlayRef;
+      setTimeout(() => afterOpen(overlayRef), 0);
+    }
   }
 
   close(shouldFocusTrigger: boolean = false, triggerElement?: ElementRef): void {

@@ -4,18 +4,28 @@ import {
   ShowcaseDocPageConfig,
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { RadioButtonGroupBasicDemoComponent } from './examples/radio-button-group-basic-demo';
+import { RadioButtonGroupFilledDemoComponent } from './examples/radio-button-group-filled-demo';
 import { RadioButtonGroupIconsDemoComponent } from './examples/radio-button-group-icons-demo';
-import { RadioButtonGroupLayoutDemoComponent } from './examples/radio-button-group-layout-demo';
+import { RadioButtonGroupOutlineDemoComponent } from './examples/radio-button-group-outline-demo';
 import { RadioButtonGroupSettingsPanelDemoComponent } from './examples/radio-button-group-settings-panel-demo';
+import { RadioButtonGroupShapesDemoComponent } from './examples/radio-button-group-shapes-demo';
 import { RadioButtonGroupStatesDemoComponent } from './examples/radio-button-group-states-demo';
+import { RadioButtonGroupSubtleDemoComponent } from './examples/radio-button-group-subtle-demo';
+import { RadioButtonGroupTintDemoComponent } from './examples/radio-button-group-tint-demo';
+import { RadioButtonGroupTransparentDemoComponent } from './examples/radio-button-group-transparent-demo';
 import meta from './radio-button-group.showcase.meta.json';
 
 const radioButtonGroupMeta = meta as ShowcaseDocMeta;
 
 const componentMap = {
   basic: RadioButtonGroupBasicDemoComponent,
-  layout: RadioButtonGroupLayoutDemoComponent,
+  filled: RadioButtonGroupFilledDemoComponent,
+  tint: RadioButtonGroupTintDemoComponent,
+  outline: RadioButtonGroupOutlineDemoComponent,
+  subtle: RadioButtonGroupSubtleDemoComponent,
+  transparent: RadioButtonGroupTransparentDemoComponent,
   icons: RadioButtonGroupIconsDemoComponent,
+  shapes: RadioButtonGroupShapesDemoComponent,
   states: RadioButtonGroupStatesDemoComponent,
   settingsPanel: RadioButtonGroupSettingsPanelDemoComponent,
 } as const;

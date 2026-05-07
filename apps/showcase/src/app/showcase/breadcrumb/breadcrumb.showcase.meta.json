@@ -193,7 +193,8 @@
           "paragraphs": [
             "When overflow is active, middle items move into an inline menu while the start and end of the path remain visible.",
             "Selected and disabled items are rendered as non-button text nodes, while regular ancestors are rendered as buttons."
-          ]
+          ],
+          "title": "Notes"
         },
         {
           "type": "list",

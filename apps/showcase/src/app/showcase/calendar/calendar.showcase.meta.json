@@ -78,7 +78,7 @@
       "blocks": [
         {
           "type": "table",
-          "title": "Key inputs",
+          "title": "Inputs",
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
@@ -180,7 +180,8 @@
           "paragraphs": [
             "The component is intentionally state-light. Parent components own the current month, selected dates, range logic, and responses to navigation events.",
             "For compact form entry, use a field-level date component instead. This calendar is stronger when the visible month context matters."
-          ]
+          ],
+          "title": "Notes"
         }
       ]
     }

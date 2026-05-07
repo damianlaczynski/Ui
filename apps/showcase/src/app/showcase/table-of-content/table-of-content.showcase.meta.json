@@ -78,7 +78,7 @@
       "blocks": [
         {
           "type": "table",
-          "title": "Key inputs",
+          "title": "Inputs",
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
@@ -127,7 +127,7 @@
         },
         {
           "type": "table",
-          "title": "Internal data shape",
+          "title": "Models",
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
@@ -148,7 +148,8 @@
           "paragraphs": [
             "Prefer semantic headings as the source of truth. Custom selectors are useful, but they should be the exception rather than the default pattern.",
             "If the page has many deeply nested headings, do not expose all of them automatically. Constrain the visible levels so the navigation stays readable."
-          ]
+          ],
+          "title": "Notes"
         }
       ]
     }

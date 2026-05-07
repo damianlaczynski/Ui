@@ -78,7 +78,7 @@
       "blocks": [
         {
           "type": "table",
-          "title": "Key inputs",
+          "title": "Inputs",
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
@@ -88,56 +88,128 @@
               "InputSignal<string>",
               "''",
               "Optional accessible group label when no visible label is present."
-            ],
-            ["label", "InputSignal<string>", "''", "Visible field label."],
-            [
-              "labelPosition",
-              "InputSignal<ContentPosition>",
-              "'above'",
-              "Shared field label placement token."
-            ],
-            ["helpText", "InputSignal<string>", "''", "Supporting guidance below the field."],
-            ["errorText", "ModelSignal<string>", "''", "Validation or verification error message."],
-            [
-              "required",
-              "InputSignal<boolean>",
-              "false",
-              "Marks the field as required in surrounding forms."
-            ],
-            ["disabled", "ModelSignal<boolean>", "false", "Disables all digit inputs."],
-            [
-              "readonly",
-              "ModelSignal<boolean>",
-              "false",
-              "Keeps the code visible but blocks editing."
-            ],
-            ["size", "InputSignal<Size>", "'medium'", "Shared field density token."],
-            [
-              "inputVariant",
-              "InputSignal<Variant>",
-              "'filled'",
-              "Visual treatment applied to each digit wrapper."
-            ],
-            [
-              "placeholder",
-              "InputSignal<string>",
-              "''",
-              "Optional digit placeholder source; single-char placeholders repeat, matching-length strings distribute per digit."
             ]
           ]
         },
         {
           "type": "table",
-          "title": "Value shape and behavior",
+          "title": "Inherited field inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "inputVariant",
+              "InputSignal<InputVariant>",
+              "'filled'",
+              "Shared field surface token inherited from `FieldComponent`."
+            ],
+            [
+              "label",
+              "InputSignal<string>",
+              "''",
+              "Visible field label inherited from `FieldComponent`."
+            ],
+            [
+              "labelPosition",
+              "InputSignal<ContentPosition>",
+              "'above'",
+              "Controls where the field label is placed relative to the control."
+            ],
+            [
+              "placeholder",
+              "InputSignal<string>",
+              "''",
+              "Inherited shared-field placeholder input."
+            ],
+            [
+              "helpText",
+              "InputSignal<string>",
+              "''",
+              "Supporting helper text rendered below the field when there is no active error."
+            ],
+            [
+              "errorText",
+              "ModelSignal<string>",
+              "''",
+              "Validation or manual error message managed by the shared field base."
+            ],
+            ["required", "InputSignal<boolean>", "false", "Marks the field as required."],
+            [
+              "disabled",
+              "ModelSignal<boolean>",
+              "false",
+              "Disables the field and its interactive affordances."
+            ],
+            [
+              "readonly",
+              "ModelSignal<boolean>",
+              "false",
+              "Keeps the value visible while preventing user changes."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Shared field density token."],
+            [
+              "name",
+              "InputSignal<string>",
+              "''",
+              "HTML form name used by the field wrapper and native control wiring."
+            ],
+            [
+              "id",
+              "ModelSignal<string | number>",
+              "auto-generated",
+              "Control id used to connect label, help text, and error messaging."
+            ],
+            [
+              "autocomplete",
+              "InputSignal<string | null>",
+              "null",
+              "Inherited autocomplete hint for native form compatibility."
+            ],
+            [
+              "showClearButton",
+              "InputSignal<boolean>",
+              "true",
+              "Inherited shared-field clear-button flag when supported by the concrete control."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "''",
+              "Overrides the accessible name when no visible label is appropriate."
+            ],
+            [
+              "ariaDescribedBy",
+              "InputSignal<string>",
+              "''",
+              "Appends extra descriptive ids to the computed `aria-describedby` value."
+            ],
+            [
+              "autoValidation",
+              "InputSignal<boolean>",
+              "true",
+              "Enables inherited automatic validation error handling from `FieldComponent`."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs",
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
-            ["value", "string", "Combined code value exposed through CVA and change output."],
             [
               "change",
               "OutputEmitterRef<string>",
               "Emits the current combined code whenever a digit changes."
-            ],
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Methods",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
             [
               "writeValue()",
               "method",
@@ -146,11 +218,45 @@
           ]
         },
         {
+          "type": "table",
+          "title": "Models",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            ["value", "string", "Combined code value exposed through CVA and change output."]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "focus",
+              "OutputEmitterRef<FocusEvent>",
+              "Inherited focus event from `FieldComponent`."
+            ],
+            ["blur", "OutputEmitterRef<FocusEvent>", "Inherited blur event from `FieldComponent`."],
+            [
+              "keyup",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-up event from `FieldComponent`."
+            ],
+            [
+              "keydown",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-down event from `FieldComponent`."
+            ]
+          ]
+        },
+        {
           "type": "notes",
           "paragraphs": [
             "The component extends the shared `FieldComponent`, so focus and validation messaging integrate with the rest of the field family even though the rendered UI is a group of inputs.",
             "Use `digitsCount` to match the backend verification contract. The component does not validate whether the entered code is correct; it only handles grouped input behavior and exposes the combined string."
-          ]
+          ],
+          "title": "Notes"
         }
       ]
     }

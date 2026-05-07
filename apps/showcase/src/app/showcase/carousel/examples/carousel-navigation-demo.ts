@@ -13,7 +13,7 @@ import { CarouselComponent, CarouselItem } from 'ui';
         <strong style="font-size:0.875rem;color:var(--color-neutral-foreground-rest)"
           >Full navigation</strong
         >
-        <ui-carousel [items]="slides" size="small" />
+        <ui-carousel [items]="slides" />
       </div>
 
       <div
@@ -22,7 +22,7 @@ import { CarouselComponent, CarouselItem } from 'ui';
         <strong style="font-size:0.875rem;color:var(--color-neutral-foreground-rest)"
           >Indicators only, no loop</strong
         >
-        <ui-carousel [items]="slides" size="small" [showControls]="false" [loop]="false" />
+        <ui-carousel [items]="slides" [showControls]="false" [loop]="false" />
       </div>
     </div>
   `,

@@ -78,7 +78,7 @@
       "blocks": [
         {
           "type": "table",
-          "title": "Key inputs",
+          "title": "Inputs",
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
@@ -140,7 +140,8 @@
           "paragraphs": [
             "Secondary text is intentionally limited to medium size so the component stays compact in denser layouts.",
             "Informational tags are not focusable by default. If users need to interact with a tag, prefer `selectable`, `dismissible`, or both so the semantics stay explicit."
-          ]
+          ],
+          "title": "Notes"
         }
       ]
     }

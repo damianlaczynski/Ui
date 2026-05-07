@@ -180,7 +180,8 @@
           "paragraphs": [
             "The expanded state is stored internally as a signal rather than accepted as a public input, so the component behaves as a self-managed disclosure control.",
             "Panel content is projected with standard Angular content projection and is rendered only while the accordion is expanded."
-          ]
+          ],
+          "title": "Notes"
         },
         {
           "type": "list",
