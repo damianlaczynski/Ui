@@ -33,7 +33,6 @@ export class CarouselComponent {
   showIndicators = input<boolean>(true);
   showControls = input<boolean>(true);
   loop = input<boolean>(true);
-  size = input<'small' | 'medium' | 'large'>('medium');
 
   itemChange = output<{ item: CarouselItem; index: number }>();
   itemClick = output<{ item: CarouselItem; index: number }>();
@@ -64,12 +63,6 @@ export class CarouselComponent {
       return items.length > 1;
     }
     return index > 0;
-  });
-
-  carouselClasses = computed(() => {
-    const classes = ['carousel'];
-    classes.push(`carousel--${this.size()}`);
-    return classes.join(' ');
   });
 
   constructor() {

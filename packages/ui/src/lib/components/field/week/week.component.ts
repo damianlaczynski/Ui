@@ -15,7 +15,7 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { A11yModule } from '@angular/cdk/a11y';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { OverlayModule } from '@angular/cdk/overlay';
+import { OverlayModule, OverlayRef } from '@angular/cdk/overlay';
 import { DateFieldOverlayService } from '../base-date-field/base-date-field.component';
 import { FieldComponent } from '../field/field.component';
 import { ActionButtonComponent } from '../action-button.component';
@@ -125,11 +125,17 @@ export class WeekComponent extends FieldComponent implements OnDestroy {
       return;
     }
 
-    this.overlayService.toggle(this.triggerElement, this.panelTemplate, this.panelWidth(), () => {
-      if (this.selectedDate()) {
-        this.currentMonth.set(new Date(this.selectedDate()!));
-      }
-    });
+    this.overlayService.toggle(
+      this.triggerElement,
+      this.panelTemplate,
+      this.panelWidth(),
+      () => {
+        if (this.selectedDate()) {
+          this.currentMonth.set(new Date(this.selectedDate()!));
+        }
+      },
+      ref => this.scrollSelectedWeekIntoView(ref),
+    );
   }
 
   closePanel(shouldFocusTrigger: boolean = false): void {
@@ -198,11 +204,26 @@ export class WeekComponent extends FieldComponent implements OnDestroy {
   }
 
   openPanel(): void {
-    this.overlayService.open(this.triggerElement, this.panelTemplate, this.panelWidth(), () => {
-      if (this.selectedDate()) {
-        this.currentMonth.set(new Date(this.selectedDate()!));
-      }
-    });
+    this.overlayService.open(
+      this.triggerElement,
+      this.panelTemplate,
+      this.panelWidth(),
+      () => {
+        if (this.selectedDate()) {
+          this.currentMonth.set(new Date(this.selectedDate()!));
+        }
+      },
+      ref => this.scrollSelectedWeekIntoView(ref),
+    );
+  }
+
+  private scrollSelectedWeekIntoView(overlayRef: OverlayRef): void {
+    const selected = overlayRef.overlayElement.querySelector<HTMLElement>(
+      '[data-ui-week-picker-selected]',
+    );
+    if (selected && typeof selected.scrollIntoView === 'function') {
+      selected.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    }
   }
 
   getIcon(): IconName {
