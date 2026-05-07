@@ -67,7 +67,6 @@ const ALL_CONTROLS = toDrawerFormControls(CAROUSEL_CONTROL_DEFS);
 
 export const CAROUSEL_DRAWER_CONFIGS = createDrawerFormConfigs(ALL_CONTROLS, {
   overview: { excludeKeys: [] },
-  size: { excludeKey: 'size' },
   controls: { excludeKey: 'showControls' },
   indicators: { excludeKey: 'showIndicators' },
   autoPlay: { excludeKey: 'autoPlay' },
