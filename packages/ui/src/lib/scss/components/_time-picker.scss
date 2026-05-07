@@ -23,6 +23,12 @@
   color: var(--color-neutral-foreground-rest);
 }
 
+.time-picker__meridiem {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 .time-picker__wheels {
   --wheel-item-height: 40px;
   --wheel-visible-items: 5;
