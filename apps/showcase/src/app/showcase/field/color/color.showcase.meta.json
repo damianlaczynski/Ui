@@ -1,0 +1,248 @@
+{
+  "slug": "color",
+  "title": "Color Picker",
+  "description": "Color Picker lets users enter or pick a color value for themes, brand tokens, charts, and visual customization settings. Use it when a plain text field is too error-prone and users benefit from a visual picker plus format-aware output.",
+  "intro": "Color Picker builds on the shared field system, so it supports labels, helper and error text, validation hooks, disabled and readonly states, and Angular forms integration. It adds color-specific features such as HEX, RGB, and HSL output, alpha control, an optional eye dropper, a connected picker panel, and native color input fallback on mobile.",
+  "importCode": "import { ColorComponent } from 'ui';",
+  "containerClass": "color-doc",
+  "snippets": {
+    "basicCode": "color-basic-demo.ts",
+    "formatsCode": "color-formats-demo.ts",
+    "surfaceCode": "color-surface-options-demo.ts",
+    "toolsCode": "color-tools-demo.ts",
+    "brandFormCode": "color-brand-form-demo.ts",
+    "themePanelCode": "color-theme-panel-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic color input",
+      "description": "Use the field when users need a concrete token or accent color, not an arbitrary paint app. A clear label and a sensible default usually matter more than exposing every picker option immediately.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "formats",
+      "title": "Output formats",
+      "description": "Choose the format that best matches the consuming system. HEX is common for design tokens, while RGB and HSL are often easier to manipulate in code or theme tooling.",
+      "codeKey": "formatsCode",
+      "componentKey": "formats"
+    },
+    {
+      "id": "surface-options",
+      "title": "Variants and density",
+      "description": "The color field follows the shared input variants and sizes, so it can sit naturally inside forms, compact toolbars, or denser settings panels without inventing a separate visual language.",
+      "codeKey": "surfaceCode",
+      "componentKey": "surface"
+    },
+    {
+      "id": "tools",
+      "title": "Alpha and picker tools",
+      "description": "Turn on alpha when transparency is part of the product model, and hide features like the eye dropper when they would add noise or unsupported expectations in a given workflow.",
+      "codeKey": "toolsCode",
+      "componentKey": "tools"
+    },
+    {
+      "id": "brand-form",
+      "title": "Brand token form",
+      "description": "A practical color picker usually lives in a form with several related tokens and a compact readout of the current values. This is more useful than showing isolated pickers alone.",
+      "codeKey": "brandFormCode",
+      "componentKey": "brandForm"
+    },
+    {
+      "id": "theme-panel",
+      "title": "Theme settings panel",
+      "description": "More advanced examples should combine multiple controls into a ready-to-adapt configuration surface. This pattern mixes color fields, transparency, and actions in a compact theme panel.",
+      "codeKey": "themePanelCode",
+      "componentKey": "themePanel"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Accessible name",
+      "body": "The text trigger input uses the shared field accessible name chain, so `ariaLabel` overrides the visible label and the label remains the default naming source. When there is no visible label, provide an explicit accessible name.\n\n| Source | Accessible name |\n| --- | --- |\n| `ariaLabel` | explicit accessible name |\n| visible `label` | default fallback |\n| format preview | supplemental only, not the name |"
+    },
+    {
+      "title": "Descriptions and errors",
+      "body": "Helper text and error text are wired into `aria-describedby` through the shared field wrapper. The trigger also exposes `aria-expanded`, `aria-haspopup=\"dialog\"`, and `aria-controls` when the custom picker panel is used.\n\n| Trigger state | Attribute |\n| --- | --- |\n| helper or error text | `aria-describedby` |\n| open picker | `aria-expanded=\"true\"` |\n| connected panel | `aria-controls` |\n| picker relationship | `aria-haspopup=\"dialog\"` |"
+    },
+    {
+      "title": "Picker panel",
+      "body": "The overlay picker renders as a dialog and traps focus while open. Keep it as a lightweight editing surface for the current field value rather than a complex multi-step workflow."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "ColorComponent - <code>ui-color</code>",
+      "lead": "Standalone color input built on the shared <code class=\"showcase-doc__api-code\">FieldComponent</code>. It integrates with Angular forms through <code class=\"showcase-doc__api-code\">ControlValueAccessor</code> and adds a connected picker panel, format-aware value serialization, alpha control, and optional eye dropper support.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "label",
+              "InputSignal<string>",
+              "''",
+              "Visible field label and default accessible name fallback when `ariaLabel` is not provided."
+            ],
+            [
+              "labelPosition",
+              "InputSignal<'above' | 'before' | 'after' | 'below'>",
+              "'above'",
+              "Controls where the visible label appears around the field."
+            ],
+            [
+              "placeholder",
+              "InputSignal<string>",
+              "''",
+              "Placeholder shown in the text trigger input."
+            ],
+            [
+              "helpText",
+              "InputSignal<string>",
+              "''",
+              "Supporting text shown below the field when there is no active error."
+            ],
+            [
+              "errorText",
+              "ModelSignal<string>",
+              "''",
+              "Validation or manual error message shown below the field."
+            ],
+            [
+              "required",
+              "InputSignal<boolean>",
+              "false",
+              "Marks the field as required and forwards the native attribute."
+            ],
+            [
+              "disabled",
+              "ModelSignal<boolean>",
+              "false",
+              "Disables interaction and prevents opening the picker."
+            ],
+            [
+              "readonly",
+              "ModelSignal<boolean>",
+              "false",
+              "Keeps the value visible while preventing edits."
+            ],
+            [
+              "size",
+              "InputSignal<Size>",
+              "'medium'",
+              "Shared density token for the trigger and actions."
+            ],
+            [
+              "inputVariant",
+              "InputSignal<InputVariant>",
+              "'filled'",
+              "Visual style of the field surface."
+            ],
+            [
+              "format",
+              "InputSignal<'hex' | 'rgb' | 'hsl'>",
+              "'hex'",
+              "Controls how the current color is serialized into the field value."
+            ],
+            [
+              "showAlpha",
+              "InputSignal<boolean>",
+              "true",
+              "Shows opacity controls and includes alpha in serialized output when below 1."
+            ],
+            [
+              "showEyeDropper",
+              "InputSignal<boolean>",
+              "true",
+              "Shows the eye dropper action when supported by the browser."
+            ],
+            [
+              "useNativeOnMobile",
+              "InputSignal<boolean>",
+              "true",
+              "Uses the native color input on smaller screens instead of the custom panel."
+            ],
+            [
+              "panelWidth",
+              "InputSignal<number>",
+              "280",
+              "Width of the connected picker panel in pixels."
+            ],
+            [
+              "eyeDropperNotSupportedMessage",
+              "InputSignal<string | undefined>",
+              "undefined",
+              "Optional override for the unsupported eye dropper warning message."
+            ],
+            [
+              "name",
+              "InputSignal<string>",
+              "''",
+              "Native input name. Also used to seed the generated id when explicit `id` is not supplied."
+            ],
+            [
+              "id",
+              "ModelSignal<string | number>",
+              "generated",
+              "Native input id used for shared field wiring and picker panel ids."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "''",
+              "Explicit accessible name override for the trigger input."
+            ],
+            [
+              "ariaDescribedBy",
+              "InputSignal<string>",
+              "''",
+              "Additional ids appended to the computed description chain."
+            ],
+            [
+              "autoValidation",
+              "InputSignal<boolean>",
+              "true",
+              "Keeps `errorText` synchronized with Angular form validation when a control is bound."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            ["change", "OutputRef<string>", "Emitted when the serialized color value changes."],
+            ["focus", "OutputRef<FocusEvent>", "Emitted when the trigger input receives focus."],
+            ["blur", "OutputRef<FocusEvent>", "Emitted when the trigger input loses focus."],
+            [
+              "keydown",
+              "OutputRef<KeyboardEvent>",
+              "Keyboard event passthrough from the trigger input."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "The component implements <code class=\"showcase-doc__api-code\">ControlValueAccessor</code>, so it works with <code class=\"showcase-doc__api-code\">ngModel</code>, reactive forms, and Angular validators.",
+            "Calling <code class=\"showcase-doc__api-code\">clear()</code> resets the serialized value to an empty string and restores the internal picker state to black with full opacity."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Related mechanisms",
+          "items": [
+            "<code>FieldComponent</code> - shared base handling labels, helper and error text, aria wiring, and validation synchronization.",
+            "Angular CDK Overlay - powers the connected color picker panel.",
+            "<code>ActionButtonComponent</code> - renders the picker, eye dropper, and clear affordances."
+          ]
+        }
+      ]
+    }
+  ]
+}

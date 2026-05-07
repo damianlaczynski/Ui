@@ -1,0 +1,136 @@
+{
+  "slug": "error-state",
+  "title": "Error State",
+  "description": "Error State communicates that a task or view failed and helps the user recover through clear explanation, optional iconography, actions, and custom follow-up content.",
+  "intro": "Use `ui-error-state` for failed loads, missing resources, permission blocks, and similar broken flows where the user needs both context and a next step. The copy should explain the problem in human terms, not just restate a technical failure.",
+  "importCode": "import { ErrorStateComponent, type QuickAction } from 'ui';",
+  "containerClass": "error-state-doc",
+  "snippets": {
+    "basicCode": "error-state-basic-demo.ts",
+    "iconsSizesCode": "error-state-icons-sizes-demo.ts",
+    "actionsCode": "error-state-actions-demo.ts",
+    "customContentCode": "error-state-custom-content-demo.ts",
+    "scenariosCode": "error-state-scenarios-demo.ts",
+    "panelLayoutCode": "error-state-panel-layout-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic error messaging",
+      "description": "The simplest pattern is a short title and one sentence explaining what failed. This covers many general-purpose error states.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "icons-sizes",
+      "title": "Icons and sizes",
+      "description": "Different error contexts may need a more specific icon or a different visual scale depending on whether the state appears in a compact panel or a larger surface.",
+      "codeKey": "iconsSizesCode",
+      "componentKey": "iconsSizes"
+    },
+    {
+      "id": "actions",
+      "title": "Recovery actions",
+      "description": "Actions are useful when the user can retry, request help, or follow a concrete recovery path instead of being left at a dead end.",
+      "codeKey": "actionsCode",
+      "componentKey": "actions"
+    },
+    {
+      "id": "custom-content",
+      "title": "Custom projected guidance",
+      "description": "Projected content helps when the user needs more than one sentence, such as validation guidance or a short list of issues to resolve.",
+      "codeKey": "customContentCode",
+      "componentKey": "customContent"
+    },
+    {
+      "id": "scenarios",
+      "title": "Common error scenarios",
+      "description": "Network issues, permission failures, and missing resources are not the same problem and should not share the same copy or recovery expectations.",
+      "codeKey": "scenariosCode",
+      "componentKey": "scenarios"
+    },
+    {
+      "id": "panel-layout",
+      "title": "Embedded panel or view layout",
+      "description": "Error states usually appear inside larger shells such as results panels, dashboards, or activity views, not as isolated blank canvases.",
+      "codeKey": "panelLayoutCode",
+      "componentKey": "panelLayout"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Clear problem statement",
+      "body": "An error state should clearly describe what failed and, when possible, what the user can do next. Avoid vague titles that communicate only that 'something happened.'"
+    },
+    {
+      "title": "Recovery actions",
+      "body": "If actions are present, they should offer meaningful recovery rather than decorative options.\n\n| Element | Guidance |\n| --- | --- |\n| Primary action | Use for the most direct recovery path, such as retrying. |\n| Secondary action | Use for alternate paths such as contacting support or going elsewhere. |\n| Custom projected controls | Keep them simple and semantically clear. |"
+    },
+    {
+      "title": "Icons and supporting content",
+      "body": "Icons and custom projected details should reinforce the error message, not replace it. The main title and description must still communicate the state clearly on their own."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "ErrorStateComponent - <code>ui-error-state</code>",
+      "lead": "Standalone component for presenting failed states with concise messaging, optional iconography, optional recovery actions, and projected custom content.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Key inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["title", "InputSignal<string>", "''", "Primary error heading."],
+            ["description", "InputSignal<string>", "''", "Supporting explanation text."],
+            [
+              "icon",
+              "InputSignal<IconName>",
+              "'error_circle'",
+              "Contextual icon used for the error state."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Overall scale of the error state."],
+            [
+              "primaryAction",
+              "InputSignal<QuickAction | null>",
+              "null",
+              "Primary recovery action."
+            ],
+            [
+              "secondaryAction",
+              "InputSignal<QuickAction | null>",
+              "null",
+              "Secondary recovery action."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Projected content and action model",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "content",
+              "content child `TemplateRef<any>`",
+              "Optional projected custom content rendered under the main message."
+            ],
+            [
+              "QuickAction",
+              "{ label, variant?, appearance?, icon?, size?, disabled?, action? }",
+              "Action contract used by primary and secondary buttons."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "Tailor the wording to the kind of failure. Retryable system errors, missing permissions, and missing resources should not sound the same.",
+            "Use projected custom content sparingly. If the state turns into a dense troubleshooting screen, the surrounding flow likely needs a different design."
+          ]
+        }
+      ]
+    }
+  ]
+}

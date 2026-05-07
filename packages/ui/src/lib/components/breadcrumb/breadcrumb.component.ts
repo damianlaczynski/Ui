@@ -105,8 +105,6 @@ export class BreadcrumbComponent<T extends Breadcrumb> {
     effect(onCleanup => {
       if (!this.responsiveOverflow()) return;
       const el = this.elementRef.nativeElement as HTMLElement;
-      const parent = el.offsetParent ?? el.parentElement;
-      const target = parent ?? el;
       if (typeof ResizeObserver === 'undefined') return;
       const ro = new ResizeObserver(entries => {
         const entry = entries[0];
@@ -114,8 +112,8 @@ export class BreadcrumbComponent<T extends Breadcrumb> {
           this.containerWidth.set(entry.contentRect.width);
         }
       });
-      ro.observe(target);
-      this.containerWidth.set(target instanceof Element ? (target as HTMLElement).clientWidth : 0);
+      ro.observe(el);
+      this.containerWidth.set(el.clientWidth);
       onCleanup(() => ro.disconnect());
     });
   }

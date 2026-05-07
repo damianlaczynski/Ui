@@ -29,6 +29,11 @@ export interface TreeNode<T extends TreeNode<T> = TreeNode<any>> extends Node<T[
   templateUrl: './tree-node.component.html',
   imports: [CommonModule, NodeComponent, IconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[style.display]': '"block"',
+    '[style.width]': '"100%"',
+    '[style.minWidth]': '"0"',
+  },
 })
 export class TreeNodeComponent<T extends TreeNode<T>> {
   private readonly i18n = inject(UiI18nService);

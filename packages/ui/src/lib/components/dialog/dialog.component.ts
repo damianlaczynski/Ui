@@ -1,4 +1,14 @@
-import { Component, input, output, model, HostListener, inject, computed } from '@angular/core';
+import {
+  Component,
+  input,
+  output,
+  model,
+  HostListener,
+  inject,
+  computed,
+  effect,
+  signal,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { A11yModule } from '@angular/cdk/a11y';
 import { QuickAction } from '../utils';
@@ -15,8 +25,15 @@ export type DialogBackdrop = 'static' | 'dynamic';
   imports: [CommonModule, A11yModule, ButtonComponent, IconComponent],
 })
 export class DialogComponent {
+  private static readonly CLOSE_FALLBACK_MS = 320;
+  private static readonly BACKDROP_EXIT = 'fadeOut';
+  private static readonly CONTENT_EXIT = new Set(['scaleOut', 'fadeOut']);
+
   //Service
   private readonly i18n = inject(UiI18nService);
+  private readonly rendered = signal(false);
+  readonly isClosing = signal(false);
+  private closeFallbackTimer: ReturnType<typeof setTimeout> | null = null;
 
   //Translations
   private readonly closeAriaLabel = this.i18n.tSignal('dialog.closeAriaLabel', 'Close dialog');
@@ -50,16 +67,20 @@ export class DialogComponent {
     );
   });
 
+  shouldRender = computed(() => this.rendered());
+
   dialogClasses = computed(() => {
-    return ['dialog', !this.visible() ? 'dialog--hidden' : ''].join(' ');
+    return ['dialog', this.isClosing() ? 'dialog--closing' : ''].filter(Boolean).join(' ');
   });
 
   backdropClasses = computed(() => {
     return [
       'dialog__backdrop',
-      !this.visible() ? 'dialog__backdrop--hidden' : '',
+      this.isClosing() ? 'dialog__backdrop--closing' : '',
       this.fullscreen() ? 'dialog__backdrop--fullscreen' : '',
-    ].join(' ');
+    ]
+      .filter(Boolean)
+      .join(' ');
   });
 
   contentClasses = computed(() => {
@@ -94,6 +115,32 @@ export class DialogComponent {
     return 'dialog__footer';
   });
 
+  constructor() {
+    effect(() => {
+      const visible = this.visible();
+      if (visible) {
+        this.clearCloseFallback();
+        this.isClosing.set(false);
+        this.rendered.set(true);
+        return;
+      }
+
+      if (!this.rendered() || this.isClosing()) {
+        return;
+      }
+
+      this.isClosing.set(true);
+      if (this.prefersReducedMotion()) {
+        this.finalizeClose();
+        return;
+      }
+
+      this.closeFallbackTimer = setTimeout(() => {
+        this.finalizeClose();
+      }, DialogComponent.CLOSE_FALLBACK_MS);
+    });
+  }
+
   onBackdropClick(event: MouseEvent): void {
     if (this.backdrop() === 'dynamic' && event.target === event.currentTarget) {
       this.closeDialog();
@@ -116,8 +163,35 @@ export class DialogComponent {
   }
 
   private closeDialog(): void {
+    if (!this.visible()) {
+      return;
+    }
     this.visible.set(false);
     this.close.emit();
+  }
+
+  onBackdropAnimationEnd(event: AnimationEvent): void {
+    if (event.target !== event.currentTarget || !this.isClosing()) {
+      return;
+    }
+
+    if (event.animationName !== DialogComponent.BACKDROP_EXIT) {
+      return;
+    }
+
+    this.finalizeClose();
+  }
+
+  onContentAnimationEnd(event: AnimationEvent): void {
+    if (event.target !== event.currentTarget || !this.isClosing()) {
+      return;
+    }
+
+    if (!DialogComponent.CONTENT_EXIT.has(event.animationName)) {
+      return;
+    }
+
+    this.finalizeClose();
   }
 
   handlePrimaryAction(): void {
@@ -138,5 +212,28 @@ export class DialogComponent {
     if (!action.disabled) {
       action.action();
     }
+  }
+
+  private prefersReducedMotion(): boolean {
+    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+      return false;
+    }
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  private clearCloseFallback(): void {
+    if (this.closeFallbackTimer) {
+      clearTimeout(this.closeFallbackTimer);
+      this.closeFallbackTimer = null;
+    }
+  }
+
+  private finalizeClose(): void {
+    this.clearCloseFallback();
+    if (!this.rendered()) {
+      return;
+    }
+    this.isClosing.set(false);
+    this.rendered.set(false);
   }
 }

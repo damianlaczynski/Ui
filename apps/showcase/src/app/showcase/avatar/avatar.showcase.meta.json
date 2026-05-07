@@ -1,0 +1,143 @@
+{
+  "slug": "avatar",
+  "title": "Avatar",
+  "description": "Compact identity surface: photo, initials, generated initials from a full name, or a named icon. Variant and appearance align with Fluent tokens; size and shape tune density for lists versus profile headers.",
+  "intro": "Supply `image` when you have a URL, `initials` for explicit letters, or `name` to derive up to two characters. Without those, set `icon` or accept the default person glyph. `loading` swaps content for a spinner while `ariaLabel` or `name` feeds the required accessible name on the `img` role host.",
+  "importCode": "import { AvatarComponent } from 'ui';",
+  "containerClass": "avatar-doc",
+  "snippets": {
+    "basicCode": "avatar-basic-demo.ts",
+    "appearanceCode": "avatar-appearance-demo.ts",
+    "layoutCode": "avatar-layout-demo.ts",
+    "statesCode": "avatar-states-demo.ts",
+    "stripCode": "avatar-workspace-strip-demo.ts",
+    "profileCode": "avatar-profile-header-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "content",
+      "title": "Image, initials, name, or icon",
+      "description": "Content resolves in order: image when `image` is set and not loading, otherwise initials from `initials` or parsed `name`, otherwise `icon`, otherwise the stock person icon. Pair missing visible text with `ariaLabel`.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "appearance",
+      "title": "Variant and appearance",
+      "description": "Variant picks semantic color; appearance controls fill weight the same way as buttons and badges. Use combinations to reflect participation, risk, or hierarchy without swapping the whole layout.",
+      "codeKey": "appearanceCode",
+      "componentKey": "appearance"
+    },
+    {
+      "id": "layout",
+      "title": "Size and shape",
+      "description": "`size` maps to Fluent density steps; `shape` trades rounded rectangles for circles or squares so lists and cards stay visually aligned.",
+      "codeKey": "layoutCode",
+      "componentKey": "layout"
+    },
+    {
+      "id": "states",
+      "title": "Disabled and loading",
+      "description": "`disabled` lowers contrast and sets `aria-disabled`. `loading` keeps the frame, shows a spinner overlay, and sets `aria-busy` until the portrait or metadata resolves.",
+      "codeKey": "statesCode",
+      "componentKey": "states"
+    },
+    {
+      "id": "strip",
+      "title": "Collaborator strip",
+      "description": "Stacked small circular avatars next to metadata show who is in a room or on a ticket—add a secondary button for the obvious next step without building custom chrome.",
+      "codeKey": "stripCode",
+      "componentKey": "strip"
+    },
+    {
+      "id": "profile",
+      "title": "Profile header",
+      "description": "Large circular portrait plus text column and a primary action is the canonical account summary you can lift into settings or directory drawers.",
+      "codeKey": "profileCode",
+      "componentKey": "profile"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Accessible name",
+      "body": "The host is `role=\"img\"`. Provide `ariaLabel`, or `name` (also used for initials), or rely on i18n fallback text. When only `initials` are shown, set `ariaLabel` if those letters are not enough to identify the person or workspace."
+    },
+    {
+      "title": "Photograph",
+      "body": "Inner `<img>` uses an empty `alt` because the host carries the name; avoid duplicating long descriptions on both layers."
+    },
+    {
+      "title": "Busy and disabled",
+      "body": "`loading` sets `aria-busy=\"true\"`. `disabled` sets `aria-disabled=\"true\"` while the surface stays in the tree for layout continuity."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "AvatarComponent - <code>ui-avatar</code>",
+      "lead": "Decorative identity chip. Not a focusable control—wrap in a button or link when the avatar itself should open a profile or menu.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["variant", "InputSignal<Variant>", "'secondary'", "Semantic palette."],
+            ["appearance", "InputSignal<Appearance>", "'filled'", "Surface treatment."],
+            ["size", "InputSignal<Size>", "'medium'", "Overall scale and icon sizing."],
+            ["shape", "InputSignal<Shape>", "'rounded'", "Corner treatment including circular."],
+            [
+              "image",
+              "InputSignal<string | undefined>",
+              "undefined",
+              "Optional photo URL; shown when present and not loading."
+            ],
+            [
+              "initials",
+              "InputSignal<string | undefined>",
+              "undefined",
+              "Up to two displayed characters; uppercase slice of input."
+            ],
+            [
+              "name",
+              "InputSignal<string | undefined>",
+              "undefined",
+              "Full name for initials derivation and accessible name fallback."
+            ],
+            [
+              "icon",
+              "InputSignal<IconName | undefined>",
+              "undefined",
+              "Fluent icon when no image or initials render."
+            ],
+            [
+              "disabled",
+              "InputSignal<boolean>",
+              "false",
+              "Muted presentation and `aria-disabled`."
+            ],
+            [
+              "loading",
+              "InputSignal<boolean>",
+              "false",
+              "Spinner overlay, suppresses image until finished."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string | undefined>",
+              "undefined",
+              "Explicit accessible name override."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "When `name` produces initials from multiple words, first and last word initials combine; a single token yields one letter.",
+            "Spinner size scales with avatar `size` through an internal map."
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -547,14 +547,15 @@ describe('TreeNodeComponent', () => {
   });
 
   describe('Children Rendering', () => {
-    it('should not render children when collapsed', () => {
+    it('should keep children mounted and hidden when collapsed for animation', () => {
       const child = createMockNode({ id: 'child-1', label: 'Child' });
       const mockNode = createMockNode({ hasChildren: true, children: [child], expanded: false });
       fixture.componentRef.setInput('node', mockNode);
       fixture.detectChanges();
 
       const childrenContainer = fixture.debugElement.query(By.css('.tree-node__children'));
-      expect(childrenContainer).toBeFalsy();
+      expect(childrenContainer).toBeTruthy();
+      expect(childrenContainer.nativeElement.getAttribute('aria-hidden')).toBe('true');
     });
 
     it('should render children when expanded', () => {
@@ -565,6 +566,7 @@ describe('TreeNodeComponent', () => {
 
       const childrenContainer = fixture.debugElement.query(By.css('.tree-node__children'));
       expect(childrenContainer).toBeTruthy();
+      expect(childrenContainer.nativeElement.getAttribute('aria-hidden')).toBe('false');
     });
 
     it('should render multiple children', () => {
@@ -578,7 +580,7 @@ describe('TreeNodeComponent', () => {
       fixture.detectChanges();
 
       const childNodes = fixture.debugElement.queryAll(
-        By.css('.tree-node__children > ui-tree-node'),
+        By.css('.tree-node__children-inner > ui-tree-node'),
       );
       expect(childNodes.length).toBe(3);
     });
@@ -591,7 +593,9 @@ describe('TreeNodeComponent', () => {
       fixture.componentRef.setInput('variant', 'secondary');
       fixture.detectChanges();
 
-      const childNode = fixture.debugElement.query(By.css('.tree-node__children > ui-tree-node'));
+      const childNode = fixture.debugElement.query(
+        By.css('.tree-node__children-inner > ui-tree-node'),
+      );
       expect(childNode.componentInstance.size()).toBe('large');
       expect(childNode.componentInstance.variant()).toBe('secondary');
     });
@@ -607,7 +611,9 @@ describe('TreeNodeComponent', () => {
       fixture.componentRef.setInput('node', mockNode);
       fixture.detectChanges();
 
-      const childNode = fixture.debugElement.query(By.css('.tree-node__children > ui-tree-node'));
+      const childNode = fixture.debugElement.query(
+        By.css('.tree-node__children-inner > ui-tree-node'),
+      );
       childNode.componentInstance.nodeClick.emit(child);
 
       expect(clickedNode).toBe(child);
@@ -1309,7 +1315,9 @@ describe('TreeNodeComponent', () => {
       fixture.componentRef.setInput('node', mockNode);
       fixture.detectChanges();
 
-      let childNodes = fixture.debugElement.queryAll(By.css('.tree-node__children > ui-tree-node'));
+      let childNodes = fixture.debugElement.queryAll(
+        By.css('.tree-node__children-inner > ui-tree-node'),
+      );
       expect(childNodes.length).toBe(1);
 
       const child2 = createMockNode({ id: 'child-2' });
@@ -1317,7 +1325,9 @@ describe('TreeNodeComponent', () => {
       fixture.componentRef.setInput('node', { ...mockNode });
       fixture.detectChanges();
 
-      childNodes = fixture.debugElement.queryAll(By.css('.tree-node__children > ui-tree-node'));
+      childNodes = fixture.debugElement.queryAll(
+        By.css('.tree-node__children-inner > ui-tree-node'),
+      );
       expect(childNodes.length).toBe(2);
     });
   });

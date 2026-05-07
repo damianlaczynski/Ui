@@ -1,0 +1,170 @@
+{
+  "slug": "tabs",
+  "title": "Tabs",
+  "description": "Tabs provide compact local navigation between related views. They support semantic variants, appearances, sizes, shapes, horizontal or vertical orientation, closable items, controlled selection, and an optional overflow entry point.",
+  "intro": "Use `ui-tabs` when users need to move between a small number of sibling sections inside the same page, panel, or drawer. The component focuses on the tablist itself, so the surrounding view is responsible for swapping the content that each tab represents.",
+  "importCode": "import { TabsComponent, type Tab } from 'ui';",
+  "containerClass": "tabs-doc",
+  "snippets": {
+    "basicCode": "tabs-basic-demo.ts",
+    "appearanceLayoutCode": "tabs-appearance-layout-demo.ts",
+    "orientationCode": "tabs-orientation-demo.ts",
+    "optionsCode": "tabs-options-demo.ts",
+    "overflowCode": "tabs-overflow-demo.ts",
+    "workspacePanelCode": "tabs-workspace-panel-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic local navigation",
+      "description": "The most common tabs pattern: a short list of related sections with the active tab driving the content below it.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "appearance-layout",
+      "title": "Appearance, size, and full-width layout",
+      "description": "Appearance and variant tune emphasis, while size and full-width layout help tabs fit either compact toolbars or broader section headers.",
+      "codeKey": "appearanceLayoutCode",
+      "componentKey": "appearanceLayout"
+    },
+    {
+      "id": "orientation",
+      "title": "Vertical orientation",
+      "description": "Vertical tabs are useful when labels are longer or when the tablist belongs in a left-side settings rail beside richer panel content.",
+      "codeKey": "orientationCode",
+      "componentKey": "orientation"
+    },
+    {
+      "id": "options",
+      "title": "Disabled and closable tabs",
+      "description": "Tabs can represent pinned, temporary, and unavailable states. Closable items work well for drafts, ephemeral views, or removable sub-panels.",
+      "codeKey": "optionsCode",
+      "componentKey": "options"
+    },
+    {
+      "id": "overflow",
+      "title": "Overflow entry point",
+      "description": "When not every destination should stay visible in the main row, keep the primary tabs exposed and add a custom overflow trigger for the rest.",
+      "codeKey": "overflowCode",
+      "componentKey": "overflow"
+    },
+    {
+      "id": "workspace-panel",
+      "title": "Workspace panel composition",
+      "description": "A stronger end-to-end example: the tabs stay at the top of a panel and swap a metrics or detail area underneath instead of acting as decoration.",
+      "codeKey": "workspacePanelCode",
+      "componentKey": "workspacePanel"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Tablist semantics",
+      "body": "`ui-tabs` exposes a container with `role=\"tablist\"` and sets `aria-orientation` from the `orientation` input. Each tab item is rendered through the underlying node button model and reflects the selected state through the node selection semantics."
+    },
+    {
+      "title": "Keyboard navigation",
+      "body": "| Key | Action |\n| --- | --- |\n| Arrow Left / Right | Moves between enabled tabs in horizontal mode. |\n| Arrow Up / Down | Moves between enabled tabs in vertical mode. |\n| Home | Moves to the first enabled tab. |\n| End | Moves to the last enabled tab. |\n| Tab | Moves focus into or out of the tablist according to normal document order. |"
+    },
+    {
+      "title": "Selection model",
+      "body": "If `selectedTabId` is not provided, the component selects the first tab automatically. Disabled tabs are skipped during arrow-key navigation, and clicking the currently selected tab does not emit another change event."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "TabsComponent - <code>ui-tabs</code>",
+      "lead": "Standalone tablist component for local navigation. It renders tab items from data, manages selected state, and emits changes, while the surrounding view remains responsible for the actual tab panel content.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Key inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["tabs", "InputSignal<Tab[]>", "-", "The tab data set to render."],
+            [
+              "selectedTabId",
+              "InputSignal<string | number | undefined>",
+              "undefined",
+              "Controlled selected tab id. When omitted, the first tab is auto-selected."
+            ],
+            [
+              "variant",
+              "InputSignal<Variant>",
+              "'primary'",
+              "Semantic styling variant inherited by tab items."
+            ],
+            [
+              "appearance",
+              "InputSignal<Appearance>",
+              "'transparent'",
+              "Visual emphasis level for tab items."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Tab density token."],
+            ["shape", "InputSignal<Shape>", "'rounded'", "Corner treatment for tab items."],
+            [
+              "orientation",
+              "InputSignal<'horizontal' | 'vertical'>",
+              "'horizontal'",
+              "Layout direction for the tablist."
+            ],
+            [
+              "showSelectionIndicator",
+              "InputSignal<boolean>",
+              "true",
+              "Shows or hides the active-tab indicator."
+            ],
+            [
+              "fullWidth",
+              "InputSignal<boolean>",
+              "false",
+              "Stretches tabs to fill the available horizontal width."
+            ],
+            [
+              "showMoreButton",
+              "InputSignal<boolean>",
+              "false",
+              "Reserves space for projected overflow UI via `[moreButton]` content."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Tab interface and outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "Tab",
+              "{ id, label, icon?, disabled?, closable?, selected?, data? }",
+              "Data contract for each tab item."
+            ],
+            [
+              "tabChange",
+              "OutputEmitterRef<Tab>",
+              "Emits when the user selects a different enabled tab."
+            ],
+            [
+              "selectedTabIdChange",
+              "OutputEmitterRef<string | number>",
+              "Emits the selected id for controlled two-way binding."
+            ],
+            [
+              "tabClose",
+              "OutputEmitterRef<Tab>",
+              "Emits when the user activates a closable tab's close affordance."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "The component manages only the tablist state and keyboard behavior. It does not render tab panels, so the parent view should swap the associated content when `selectedTabId` changes.",
+            "For overflow scenarios, project custom content marked with `[moreButton]` and enable `showMoreButton` so the main tab row can stay focused on the primary destinations."
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,269 @@
+{
+  "slug": "menu",
+  "title": "Menu",
+  "description": "Menu provides dropdown, split-button, and plain button triggers plus standalone menu lists with sections, shortcuts, submenus, and overlay behavior for dense command surfaces.",
+  "intro": "Use `ui-menu` for compact action menus, overflow controls, contextual actions, and split-button patterns. Use `ui-menu-list` when you need to render the list surface itself, for example in custom overlays or embedded command panels.",
+  "importCode": "import { MenuComponent, MenuListComponent, type MenuItem, type MenuSection } from 'ui';",
+  "containerClass": "menu-doc",
+  "snippets": {
+    "basicCode": "menu-basic-demo.ts",
+    "triggerVariantsCode": "menu-trigger-variants-demo.ts",
+    "sectionsShortcutsCode": "menu-sections-shortcuts-demo.ts",
+    "submenuCode": "menu-submenu-demo.ts",
+    "contextActionsCode": "menu-context-actions-demo.ts",
+    "overflowCode": "menu-overflow-demo.ts",
+    "workspaceHeaderCode": "menu-workspace-header-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic menu button",
+      "description": "Start with a single dropdown trigger when a compact button needs to reveal a small action set.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "trigger-variants",
+      "title": "Dropdown, split, and button triggers",
+      "description": "Choose the trigger based on intent: dropdown for secondary actions, split for one clear primary action plus alternatives, and button when there is no menu at all.",
+      "codeKey": "triggerVariantsCode",
+      "componentKey": "triggerVariants"
+    },
+    {
+      "id": "sections-shortcuts",
+      "title": "Sections and shortcuts",
+      "description": "Structured menu lists work well for editor-style and desktop-like command surfaces where grouping and shortcut hints improve scanning speed.",
+      "codeKey": "sectionsShortcutsCode",
+      "componentKey": "sectionsShortcuts"
+    },
+    {
+      "id": "submenu",
+      "title": "Nested submenu flows",
+      "description": "Submenus fit insertion, export, and format trees where one top-level action branches into a small, well-scoped second level.",
+      "codeKey": "submenuCode",
+      "componentKey": "submenu"
+    },
+    {
+      "id": "context-actions",
+      "title": "Contextual row actions",
+      "description": "Per-row menus are one of the most common production uses of this component. Keep them short and focused on actions users expect in place.",
+      "codeKey": "contextActionsCode",
+      "componentKey": "contextActions"
+    },
+    {
+      "id": "overflow",
+      "title": "Overlay behavior in constrained shells",
+      "description": "Menus often live inside clipped cards, drawers, and scroll regions. The overlay should still escape the local layout cleanly.",
+      "codeKey": "overflowCode",
+      "componentKey": "overflow"
+    },
+    {
+      "id": "workspace-header",
+      "title": "Workspace command header",
+      "description": "A realistic menu setup often appears beside search and primary actions in a compact command header rather than as an isolated button.",
+      "codeKey": "workspaceHeaderCode",
+      "componentKey": "workspaceHeader"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Trigger and menu semantics",
+      "body": "`ui-menu` exposes a button-like trigger. When it opens a menu, the trigger reflects `aria-haspopup=\"menu\"` and `aria-expanded`. `ui-menu-list` renders the actual menu surface with `role=\"menu\"`."
+    },
+    {
+      "title": "Keyboard behavior",
+      "body": "Keyboard handling matters most inside `ui-menu-list`.\n\n| Key | Action |\n| --- | --- |\n| ArrowDown / ArrowUp | Move focus between enabled menu rows. |\n| Enter / Space | Activate the focused row. |\n| ArrowRight | Open a submenu when the focused row has nested items. |\n| ArrowLeft | Close the current submenu level. |\n| Escape | Close the current menu surface. |\n| Tab | Closes the menu instead of tabbing through every row. |"
+    },
+    {
+      "title": "Labels and split actions",
+      "body": "Icon-only triggers need a clear `ariaLabel`. For split buttons, the primary action and the dropdown affordance serve different purposes, so both need understandable labeling and should not duplicate hidden meaning."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "MenuComponent - <code>ui-menu</code>",
+      "lead": "Standalone trigger component for dropdown, split-button, and plain-button command patterns. It renders the trigger and manages the overlay-backed menu list.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Key inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "triggerVariant",
+              "\"dropdown\" | \"split\" | \"button\"",
+              "'button'",
+              "Trigger style and behavior model."
+            ],
+            [
+              "buttonType",
+              "ButtonType",
+              "'button'",
+              "Native button type used for trigger buttons."
+            ],
+            [
+              "variant",
+              "InputSignal<Variant>",
+              "'secondary'",
+              "Semantic styling variant for the trigger."
+            ],
+            ["appearance", "InputSignal<Appearance>", "'filled'", "Trigger appearance token."],
+            [
+              "menuItemVariant",
+              "InputSignal<Variant>",
+              "'secondary'",
+              "Variant passed to nested menu rows."
+            ],
+            [
+              "menuItemAppearance",
+              "InputSignal<Appearance>",
+              "'subtle'",
+              "Appearance passed to nested menu rows."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Trigger and list density."],
+            ["shape", "InputSignal<Shape>", "'rounded'", "Trigger corner treatment."],
+            [
+              "icon",
+              "InputSignal<IconName | undefined>",
+              "undefined",
+              "Optional leading trigger icon."
+            ],
+            [
+              "triggerIcon",
+              "InputSignal<IconName>",
+              "'chevron_down'",
+              "Icon used for dropdown affordance."
+            ],
+            ["text", "InputSignal<string | undefined>", "undefined", "Visible trigger label."],
+            [
+              "shortcut",
+              "InputSignal<string | undefined>",
+              "undefined",
+              "Optional shortcut hint shown in the trigger."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string | undefined>",
+              "-",
+              "Accessible name for icon-only triggers."
+            ],
+            ["selected", "InputSignal<boolean>", "false", "Marks the trigger as selected."],
+            ["disabled", "InputSignal<boolean>", "false", "Disables the trigger."],
+            ["menuItems", "InputSignal<MenuItem[]>", "[]", "Items rendered in the overlay menu."],
+            [
+              "menuMaxHeight",
+              "InputSignal<string>",
+              "''",
+              "Optional max height for the rendered menu list."
+            ],
+            [
+              "openAsSubmenu",
+              "InputSignal<boolean>",
+              "false",
+              "Internal flag used when the menu is rendered as a nested submenu."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            ["menuItemClick", "OutputEmitterRef<MenuItem>", "Emits when a menu row is activated."],
+            ["menuOpened", "OutputEmitterRef<void>", "Emits when the overlay menu opens."],
+            ["menuClosed", "OutputEmitterRef<void>", "Emits when the overlay menu closes."],
+            [
+              "primaryClick",
+              "OutputEmitterRef<MouseEvent>",
+              "Emits when the primary half of a split trigger or a plain button trigger is activated."
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "title": "MenuListComponent - <code>ui-menu-list</code>",
+      "lead": "Standalone menu surface component used by `ui-menu` overlays and available directly for embedded command lists or custom overlay flows.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Key inputs and models",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "sections",
+              "InputSignal<MenuSection[]>",
+              "[]",
+              "Grouped menu sections with optional headers and dividers."
+            ],
+            [
+              "items",
+              "InputSignal<MenuItem[]>",
+              "[]",
+              "Flat menu item list used when sections are not provided."
+            ],
+            [
+              "maxHeight",
+              "InputSignal<string>",
+              "''",
+              "Optional max height for the scrollable menu surface."
+            ],
+            ["visible", "InputSignal<boolean>", "true", "Whether the menu surface should render."],
+            ["size", "InputSignal<Size>", "'medium'", "Menu density."],
+            ["variant", "InputSignal<Variant>", "'primary'", "Surface variant token."],
+            ["appearance", "InputSignal<Appearance>", "'subtle'", "Surface appearance token."],
+            [
+              "menuItemVariant",
+              "InputSignal<Variant>",
+              "'secondary'",
+              "Default row variant applied to items."
+            ],
+            [
+              "menuItemAppearance",
+              "InputSignal<Appearance>",
+              "'subtle'",
+              "Default row appearance applied to items."
+            ],
+            [
+              "MenuItem",
+              "{ id, label, icon?, shortcut?, disabled?, selected?, submenuItems?, action?, submenuAction?, type? }",
+              "-",
+              "Menu row contract used for buttons, submenu rows, and split rows."
+            ],
+            [
+              "MenuSection",
+              "{ header?, items, divider? }",
+              "-",
+              "Grouping contract for sectioned menu lists."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            ["itemClick", "OutputEmitterRef<MenuItem>", "Emits when a row action is executed."],
+            ["submenuClick", "OutputEmitterRef<MenuItem>", "Emits when a submenu row opens."],
+            [
+              "closed",
+              "OutputEmitterRef<void>",
+              "Emits when keyboard interaction closes the current menu surface."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "Use `ui-menu` when you want a ready-made trigger plus overlay. Use `ui-menu-list` directly only when you genuinely need to control the shell around the menu surface.",
+            "Keep production menus short. If one menu becomes a navigation system or a settings panel, it usually needs a different component."
+          ]
+        }
+      ]
+    }
+  ]
+}

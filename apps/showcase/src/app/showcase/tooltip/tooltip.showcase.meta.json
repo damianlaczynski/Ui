@@ -1,0 +1,147 @@
+{
+  "slug": "tooltip",
+  "title": "Tooltip",
+  "description": "Tooltip shows short contextual help on hover or focus without taking permanent space in the layout. Use it for clarifications, control hints, and lightweight metadata, not for essential instructions users must always read.",
+  "intro": "Tooltip is exposed as a standalone directive applied to an existing trigger element. It supports placement, size, show delay, optional arrow rendering, disabled mode, and an accessibility relationship that can behave as a description or as the element label.",
+  "importCode": "import { TooltipDirective } from 'ui';",
+  "containerClass": "tooltip-doc",
+  "snippets": {
+    "basicCode": "tooltip-basic-demo.ts",
+    "positionsCode": "tooltip-positions-demo.ts",
+    "sizesCode": "tooltip-sizes-demo.ts",
+    "relationshipCode": "tooltip-relationship-demo.ts",
+    "toolbarCode": "tooltip-toolbar-demo.ts",
+    "tableCode": "tooltip-data-table-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic usage",
+      "description": "Attach the directive to the element users already interact with. Keep the message short and supplemental so the trigger still makes sense without the tooltip.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "positions",
+      "title": "Placement and fallback",
+      "description": "Choose the preferred side that best matches the layout, but expect the overlay to fall back when viewport space is limited. The preferred value is a hint, not a hard guarantee.",
+      "codeKey": "positionsCode",
+      "componentKey": "positions"
+    },
+    {
+      "id": "sizes",
+      "title": "Sizes, delays, and arrow",
+      "description": "Size and delay should stay restrained. A tooltip is a lightweight hint, so it should appear quickly enough to feel helpful and stay visually secondary to the trigger.",
+      "codeKey": "sizesCode",
+      "componentKey": "sizes"
+    },
+    {
+      "id": "relationship",
+      "title": "Accessible relationship",
+      "description": "Use the default description relationship for most cases. Switch to label mode only when the tooltip should provide the accessible name for an otherwise unlabeled trigger.",
+      "codeKey": "relationshipCode",
+      "componentKey": "relationship"
+    },
+    {
+      "id": "toolbar",
+      "title": "Toolbar and compact actions",
+      "description": "Tooltips are especially useful in dense toolbars with icon-only actions. This is a more realistic production pattern than isolated hover examples alone.",
+      "codeKey": "toolbarCode",
+      "componentKey": "toolbar"
+    },
+    {
+      "id": "table",
+      "title": "Metadata in dense data views",
+      "description": "In tables and admin surfaces, tooltips can carry lightweight status context or timestamps without permanently expanding every row. Keep them brief and avoid turning them into hidden dialogs.",
+      "codeKey": "tableCode",
+      "componentKey": "table"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Description versus label",
+      "body": "By default the directive sets `aria-describedby`, which is the right choice when the trigger already has a visible label and the tooltip adds supporting context. Use `uiTooltipRelationship=\"label\"` only when the tooltip should act as the accessible name.\n\n| Relationship | Behavior |\n| --- | --- |\n| `description` | adds tooltip text as supplemental context |\n| `label` | uses tooltip text as the accessible name |\n| disabled tooltip | no overlay and no relationship wiring |"
+    },
+    {
+      "title": "Keyboard access",
+      "body": "The directive listens to both hover and focus, so keyboard users can reveal the tooltip when the trigger itself is focusable.\n\n| Trigger state | Result |\n| --- | --- |\n| hover | tooltip opens after the configured delay |\n| focus | tooltip opens for keyboard users |\n| blur / mouse leave | tooltip closes |\n\nDo not rely on tooltip text for information that is required before the trigger can be understood or used."
+    },
+    {
+      "title": "Tooltip role",
+      "body": "The overlay renders with `role=\"tooltip\"`. Keep content short, plain, and non-interactive so it behaves like a tooltip rather than a popover or inline help panel."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "TooltipDirective - <code>[uiTooltip]</code>",
+      "lead": "Standalone directive that attaches a CDK overlay tooltip to an existing trigger element. It handles hover and focus activation, preferred placement with viewport fallback, optional arrow rendering, and accessible relationship wiring.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "uiTooltip",
+              "InputSignal<string>",
+              "''",
+              "Tooltip text content. Empty content prevents the overlay from opening."
+            ],
+            [
+              "uiTooltipPosition",
+              "InputSignal<'top' | 'bottom' | 'left' | 'right'>",
+              "'top'",
+              "Preferred placement relative to the trigger. The overlay may fall back to other sides when needed."
+            ],
+            [
+              "uiTooltipSize",
+              "InputSignal<'small' | 'medium' | 'large'>",
+              "'medium'",
+              "Visual size token for the tooltip surface."
+            ],
+            [
+              "uiTooltipDisabled",
+              "InputSignal<boolean>",
+              "false",
+              "Disables tooltip behavior for the trigger."
+            ],
+            [
+              "uiTooltipDelay",
+              "InputSignal<number>",
+              "300",
+              "Delay in milliseconds before the tooltip opens on hover or focus."
+            ],
+            [
+              "uiTooltipRelationship",
+              "InputSignal<'label' | 'description'>",
+              "'description'",
+              "Controls whether the tooltip is connected with `aria-label` or `aria-describedby`."
+            ],
+            [
+              "uiTooltipWithArrow",
+              "InputSignal<boolean>",
+              "true",
+              "Shows or hides the tooltip arrow."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "The directive listens to `mouseenter`, `mouseleave`, `focus`, and `blur` on the host element. The host should therefore remain interactive or focusable when keyboard access matters.",
+            "The overlay uses the CDK scroll close strategy, so open tooltips close automatically when their scroll context changes."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Related mechanisms",
+          "items": [
+            "<code>TooltipOverlayComponent</code> - renders the tooltip surface and `role=\"tooltip\"` content.",
+            "Angular CDK Overlay - provides connected positioning and viewport fallback behavior."
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,224 @@
+{
+  "slug": "text",
+  "title": "Text Input",
+  "description": "Text Input is the default single-line field for names, titles, IDs, and short freeform values. It supports shared field labeling, helper and error text, validation, clear affordances, and multiple Fluent input variants.",
+  "intro": "Text Input builds on the shared field foundation, so it inherits label positioning, helper and error messaging, validation hooks, disabled and readonly states, and accessible naming. Use it for short single-line values rather than long-form content.",
+  "importCode": "import { TextComponent } from 'ui';",
+  "containerClass": "text-doc",
+  "snippets": {
+    "basicCode": "text-basic-demo.ts",
+    "variantsCode": "text-variants-demo.ts",
+    "labelClearCode": "text-label-clear-demo.ts",
+    "statesValidationCode": "text-states-validation-demo.ts",
+    "profileFormCode": "text-profile-form-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic field",
+      "description": "Start with a clear label, a useful placeholder only when it adds context, and short helper text when users benefit from format or expectation guidance.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "variants",
+      "title": "Input variants and sizes",
+      "description": "Use visual variants to match the surrounding surface and density. The field should stay readable and calm rather than trying to stand out on its own.",
+      "codeKey": "variantsCode",
+      "componentKey": "variants"
+    },
+    {
+      "id": "label-clear",
+      "title": "Label positions and clear button",
+      "description": "The shared field wrapper supports labels above or inline around the control. Text Input also exposes a clear affordance when a value exists and the field is editable.",
+      "codeKey": "labelClearCode",
+      "componentKey": "labelClear"
+    },
+    {
+      "id": "states-validation",
+      "title": "States, required, and validation",
+      "description": "Reactive form with Save / Discard: required, email, minLength, optional pattern-style coupon, manual errorText with auto validation off, plus readonly/disabled benchmarks. Saving marks all touched so Angular messages surface together.",
+      "codeKey": "statesValidationCode",
+      "componentKey": "statesValidation"
+    },
+    {
+      "id": "profile-form",
+      "title": "Form composition",
+      "description": "Show text fields as part of a real form with helper text, validation, and related actions so users can copy an actual pattern instead of reconstructing one from fragments.",
+      "codeKey": "profileFormCode",
+      "componentKey": "profileForm"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Accessible name",
+      "body": "The input uses `ariaLabel` when provided; otherwise it falls back to the visible `label`. If both are empty, no fallback name is invented, so visible labeling should remain the default pattern.\n\n| Source | Accessible name |\n| --- | --- |\n| `ariaLabel` | explicit accessible name |\n| visible `label` | default fallback |\n| placeholder | not a label substitute |"
+    },
+    {
+      "title": "Keyboard",
+      "body": "| Key | Action |\n| --- | --- |\n| `Tab` | moves focus to or from the field |\n| standard text editing keys | handled by the native text input |\n| `Escape` / `Enter` | no custom component behavior is added |"
+    },
+    {
+      "title": "Descriptions, errors, and validation",
+      "body": "Helper text and error text are wired into `aria-describedby`. When an error is present, helper text is suppressed and the error message becomes the active description.\n\n| State | Attribute |\n| --- | --- |\n| helper or error text | `aria-describedby` |\n| visible error | `aria-invalid=\"true\"` |\n| required field | native `required` |\n\nWith `autoValidation`, Angular form control errors can populate the field message automatically."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "TextComponent - <code>ui-text</code>",
+      "lead": "Standalone single-line text field built on the shared <code class=\"showcase-doc__api-code\">FieldComponent</code>. It integrates with Angular forms through <code class=\"showcase-doc__api-code\">ControlValueAccessor</code> and inherits the shared field API for labeling, validation, and descriptive messaging.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "label",
+              "InputSignal<string>",
+              "''",
+              "Visible field label and default accessible name fallback when `ariaLabel` is not provided."
+            ],
+            [
+              "labelPosition",
+              "InputSignal<'above' | 'before' | 'after' | 'below'>",
+              "'above'",
+              "Controls whether the label appears above the field or inline around it."
+            ],
+            [
+              "placeholder",
+              "InputSignal<string>",
+              "''",
+              "Optional hint inside the input. Use it for examples or short format hints, not as a replacement for the label."
+            ],
+            [
+              "helpText",
+              "InputSignal<string>",
+              "''",
+              "Supporting text shown below the field when there is no active error."
+            ],
+            [
+              "errorText",
+              "ModelSignal<string>",
+              "''",
+              "Validation or manual error message shown below the field. When present, it replaces helper text."
+            ],
+            [
+              "required",
+              "InputSignal<boolean>",
+              "false",
+              "Marks the field as required and affects visible label styling and the native input attribute."
+            ],
+            [
+              "disabled",
+              "ModelSignal<boolean>",
+              "false",
+              "Disables editing and removes the field from normal interaction."
+            ],
+            [
+              "readonly",
+              "ModelSignal<boolean>",
+              "false",
+              "Keeps the value visible but non-editable while preserving the field in layout."
+            ],
+            [
+              "size",
+              "InputSignal<Size>",
+              "'medium'",
+              "Shared density token for field height and typography."
+            ],
+            [
+              "inputVariant",
+              "InputSignal<InputVariant>",
+              "'filled'",
+              "Visual style of the field surface: filled, filled-gray, filled-lighter, or underlined."
+            ],
+            [
+              "name",
+              "InputSignal<string>",
+              "''",
+              "Native input name. Also used to seed the generated id when explicit `id` is not supplied."
+            ],
+            [
+              "id",
+              "ModelSignal<string | number>",
+              "generated",
+              "Native input id used to connect the label, help text, and error text."
+            ],
+            [
+              "autocomplete",
+              "InputSignal<string | null>",
+              "null",
+              "Passes native autocomplete behavior through to the input element."
+            ],
+            [
+              "showClearButton",
+              "InputSignal<boolean>",
+              "true",
+              "Controls whether the clear affordance appears when the field has a value and is editable."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "''",
+              "Explicit accessible name override for cases where the visible label is absent or insufficient."
+            ],
+            [
+              "ariaDescribedBy",
+              "InputSignal<string>",
+              "''",
+              "Additional ids appended to the computed description chain."
+            ],
+            [
+              "autoValidation",
+              "InputSignal<boolean>",
+              "true",
+              "When used with Angular forms, keeps `errorText` in sync with control validation state."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "change",
+              "OutputRef<any>",
+              "Emitted when the text value changes from user input or a clear action."
+            ],
+            ["focus", "OutputRef<FocusEvent>", "Emitted when the inner input receives focus."],
+            ["blur", "OutputRef<FocusEvent>", "Emitted when the inner input loses focus."],
+            [
+              "keyup",
+              "OutputRef<KeyboardEvent>",
+              "Keyboard event passthrough from the inner input."
+            ],
+            [
+              "keydown",
+              "OutputRef<KeyboardEvent>",
+              "Keyboard event passthrough from the inner input."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "The component implements <code class=\"showcase-doc__api-code\">ControlValueAccessor</code>, so it works with <code class=\"showcase-doc__api-code\">ngModel</code>, reactive forms, and Angular validators.",
+            "The clear button appears only when the field currently has a value and is neither disabled nor readonly."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Related mechanisms",
+          "items": [
+            "<code>FieldComponent</code> - shared base handling labels, helper and error text, aria wiring, and validation synchronization.",
+            "<code>ActionButtonComponent</code> - renders the built-in clear affordance."
+          ]
+        }
+      ]
+    }
+  ]
+}

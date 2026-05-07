@@ -1,0 +1,148 @@
+{
+  "slug": "tag",
+  "title": "Tag",
+  "description": "Tag renders compact labels for metadata, status, selection chips, and removable tokens. It supports semantic variants, appearances, optional icons, secondary text, selectable state, and dismiss actions.",
+  "intro": "Use `ui-tag` for short labels that add context without taking much space: status chips, filter tokens, categories, owner metadata, or removable selections. Tags can be purely informational, selectable like filter chips, or dismissible like lightweight tokens.",
+  "importCode": "import { TagComponent } from 'ui';",
+  "containerClass": "tag-doc",
+  "snippets": {
+    "basicCode": "tag-basic-demo.ts",
+    "appearanceVariantCode": "tag-appearance-variant-demo.ts",
+    "sizeShapeCode": "tag-size-shape-demo.ts",
+    "selectableFiltersCode": "tag-selectable-filters-demo.ts",
+    "dismissibleCode": "tag-dismissible-demo.ts",
+    "workspacePanelCode": "tag-workspace-panel-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic metadata tags",
+      "description": "Use tags for short metadata and lightweight labels. Secondary text is useful for compact paired values such as owner plus name or label plus code.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "appearance-variant",
+      "title": "Appearance and variant",
+      "description": "Appearance changes visual emphasis, while variant carries semantic meaning. Use quieter styles for metadata and stronger styles for status or priority.",
+      "codeKey": "appearanceVariantCode",
+      "componentKey": "appearanceVariant"
+    },
+    {
+      "id": "size-shape",
+      "title": "Size and shape",
+      "description": "Size helps tags fit dense toolbars or larger cards, while shape changes how soft or structural the chip feels in the surrounding layout.",
+      "codeKey": "sizeShapeCode",
+      "componentKey": "sizeShape"
+    },
+    {
+      "id": "selectable-filters",
+      "title": "Selectable filter chips",
+      "description": "Tags become interactive chips when `selectable` is enabled. This works well for lightweight filter states that should not require full checkbox controls.",
+      "codeKey": "selectableFiltersCode",
+      "componentKey": "selectableFilters"
+    },
+    {
+      "id": "dismissible",
+      "title": "Dismissible tokens",
+      "description": "Dismissible tags fit selected values, assigned labels, and quick-edit token groups where the user should be able to remove items one by one.",
+      "codeKey": "dismissibleCode",
+      "componentKey": "dismissible"
+    },
+    {
+      "id": "workspace-panel",
+      "title": "Metadata panel composition",
+      "description": "A stronger end-to-end example: tags grouped inside a richer panel to communicate project state, ownership, and cross-system references.",
+      "codeKey": "workspacePanelCode",
+      "componentKey": "workspacePanel"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Informational vs interactive",
+      "body": "Plain informational tags are not focusable by default. When `selectable` is enabled, the tag becomes keyboard-focusable and exposes button-like interaction with `aria-selected`."
+    },
+    {
+      "title": "Keyboard",
+      "body": "| Key | Action |\n| --- | --- |\n| Tab | Moves focus to selectable or dismissible tags only. |\n| Enter / Space | Toggles a selectable tag. |\n| Enter / Space on dismiss button | Removes the tag when dismissible. |"
+    },
+    {
+      "title": "Dismiss semantics",
+      "body": "Dismissible tags render a dedicated button with an accessible label like `Remove Design`. The dismiss button is hidden when the tag is disabled, so users do not encounter an unavailable removal control."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "TagComponent - <code>ui-tag</code>",
+      "lead": "Standalone tag component for metadata, selection chips, and removable tokens. It can stay purely informational or become interactive through selectable and dismissible states.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Key inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["text", "InputSignal<string>", "-", "Primary visible label. Required."],
+            [
+              "secondaryText",
+              "InputSignal<string | undefined>",
+              "undefined",
+              "Optional secondary line. Rendered only for medium size."
+            ],
+            ["icon", "InputSignal<IconName | undefined>", "undefined", "Optional leading icon."],
+            ["variant", "InputSignal<Variant>", "'secondary'", "Semantic color variant."],
+            ["appearance", "InputSignal<Appearance>", "'filled'", "Visual emphasis style."],
+            ["size", "InputSignal<Size>", "'medium'", "Chip density token."],
+            ["shape", "InputSignal<Shape>", "'rounded'", "Corner treatment."],
+            [
+              "selectable",
+              "InputSignal<boolean>",
+              "false",
+              "Makes the tag interactive and toggles `selected` on click or keyboard activation."
+            ],
+            [
+              "dismissible",
+              "InputSignal<boolean>",
+              "false",
+              "Shows a remove button inside the tag."
+            ],
+            ["selected", "ModelSignal<boolean>", "false", "Selected state for interactive chips."],
+            [
+              "disabled",
+              "ModelSignal<boolean>",
+              "false",
+              "Disables selection and dismiss interactions."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "''",
+              "Optional accessible name override for the main tag element."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "tagClick",
+              "OutputEmitterRef<MouseEvent>",
+              "Emits when a selectable tag is activated."
+            ],
+            ["dismiss", "OutputEmitterRef<void>", "Emits when the dismiss button is activated."]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "Secondary text is intentionally limited to medium size so the component stays compact in denser layouts.",
+            "Informational tags are not focusable by default. If users need to interact with a tag, prefer `selectable`, `dismissible`, or both so the semantics stay explicit."
+          ]
+        }
+      ]
+    }
+  ]
+}

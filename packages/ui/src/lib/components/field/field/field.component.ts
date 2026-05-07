@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, input, output, model, inject } from '@angular/core';
 import { ControlValueAccessor, NgControl, AbstractControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Subscription } from 'rxjs';
+import { Subscription, type Observable } from 'rxjs';
 import { ContentPosition, InputVariant, Size } from '../../utils';
 import { getValidationErrorMessage, shouldShowValidationError } from './validation-helper';
 
@@ -78,6 +78,7 @@ export class FieldComponent implements ControlValueAccessor, OnInit, OnDestroy {
 
   private _statusChangesSubscription?: Subscription;
   private _valueChangesSubscription?: Subscription;
+  private _controlEventsSubscription?: Subscription;
   private _manualErrorText: string | null = null;
 
   protected onChange = (value: any) => {};
@@ -159,6 +160,7 @@ export class FieldComponent implements ControlValueAccessor, OnInit, OnDestroy {
   ngOnDestroy(): void {
     this._statusChangesSubscription?.unsubscribe();
     this._valueChangesSubscription?.unsubscribe();
+    this._controlEventsSubscription?.unsubscribe();
   }
 
   onInputChange(event: Event): void {
@@ -288,6 +290,13 @@ export class FieldComponent implements ControlValueAccessor, OnInit, OnDestroy {
     this._valueChangesSubscription = control.valueChanges.subscribe(() => {
       this.updateValidationError(control);
     });
+
+    const unified = (control as AbstractControl & { events?: Observable<unknown> }).events;
+    if (unified) {
+      this._controlEventsSubscription = unified.subscribe(() => {
+        this.updateValidationError(control);
+      });
+    }
   }
 
   private updateValidationError(control: AbstractControl): void {

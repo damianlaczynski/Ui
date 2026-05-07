@@ -1,0 +1,128 @@
+{
+  "slug": "tel",
+  "title": "Tel",
+  "description": "Tel is a field-specialized wrapper around the shared input foundation with native `type=\"tel\"`, built-in clear affordance, and a phone-oriented action icon.",
+  "intro": "Use `ui-tel` for customer contact fields, support callbacks, escalation paths, and any workflow that captures phone numbers. It inherits the shared field API for labels, help text, size, variant, readonly, disabled, and validation messaging while using telephone-friendly input semantics.",
+  "importCode": "import { TelComponent } from 'ui';",
+  "containerClass": "tel-doc",
+  "snippets": {
+    "basicCode": "tel-basic-demo.ts",
+    "layoutCode": "tel-layout-demo.ts",
+    "statesCode": "tel-states-demo.ts",
+    "validationCode": "tel-validation-demo.ts",
+    "contactFormCode": "tel-contact-form-demo.ts",
+    "supportPanelCode": "tel-support-panel-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic telephone fields",
+      "description": "Use the default field for direct contact numbers and let the built-in clear action handle quick replacements when the number is already populated.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "layout",
+      "title": "Layout, size, and variant",
+      "description": "Telephone fields follow the same density and label rhythm as the rest of the field family, so they can fit compact admin forms and larger support flows without special-case styling.",
+      "codeKey": "layoutCode",
+      "componentKey": "layout"
+    },
+    {
+      "id": "states",
+      "title": "Readonly, disabled, and inline error states",
+      "description": "Readonly works for visible but locked contact details, disabled removes interaction completely, and lightweight inline formatting checks can surface before form submission.",
+      "codeKey": "statesCode",
+      "componentKey": "states"
+    },
+    {
+      "id": "validation",
+      "title": "Validation with reactive forms",
+      "description": "When a phone number is required for verification or workflow routing, use reactive-form validation so the field behaves consistently with the rest of the form.",
+      "codeKey": "validationCode",
+      "componentKey": "validation"
+    },
+    {
+      "id": "contact-form",
+      "title": "Contact routing form",
+      "description": "A practical pattern for admin or profile screens: group primary, escalation, and after-hours numbers in one contact surface with a compact value summary.",
+      "codeKey": "contactFormCode",
+      "componentKey": "contactForm"
+    },
+    {
+      "id": "support-panel",
+      "title": "Callback request panel",
+      "description": "A stronger end-to-end example: collect the preferred number, keep service-window context visible, and place the next action directly beside the field.",
+      "codeKey": "supportPanelCode",
+      "componentKey": "supportPanel"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Label and name",
+      "body": "Prefer a visible `label` so the phone number's purpose is explicit, especially when multiple contact fields appear together. Help and error text contribute through `aria-describedby`."
+    },
+    {
+      "title": "Native telephone semantics",
+      "body": "The inner input uses native `type=\"tel\"`, which helps mobile browsers show phone-friendly keyboards and aligns the field with browser autofill expectations. When `autocomplete` is omitted, the inner input falls back to `tel`."
+    },
+    {
+      "title": "Keyboard and actions",
+      "body": "This is a standard text-entry field backed by a native telephone input. Clear and call affordances are exposed in the field chrome when the field is editable.\n\n| Aspect | Behavior |\n| --- | --- |\n| focus | native tel input receives focus |\n| typing | native tel input behavior |\n| clear action | appears only when the field has a value and is editable |\n| call action | stays visible while editable to reinforce the contact purpose |\n| readonly / disabled | actions are hidden and direct editing is blocked |"
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "TelComponent - <code>ui-tel</code>",
+      "lead": "Standalone telephone field built on the shared field base. It keeps the same layout, validation, and form-control model as the other field components while adding phone-oriented input semantics and actions.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Key inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["label", "InputSignal<string>", "''", "Visible field label."],
+            [
+              "labelPosition",
+              "InputSignal<ContentPosition>",
+              "'above'",
+              "Shared field label placement token."
+            ],
+            ["placeholder", "InputSignal<string>", "''", "Hint shown when the number is empty."],
+            ["helpText", "InputSignal<string>", "''", "Supporting guidance below the field."],
+            ["errorText", "ModelSignal<string>", "''", "Validation or submission error message."],
+            ["required", "InputSignal<boolean>", "false", "Marks the native input as required."],
+            ["disabled", "ModelSignal<boolean>", "false", "Prevents editing and hides actions."],
+            [
+              "readonly",
+              "ModelSignal<boolean>",
+              "false",
+              "Keeps the number visible but not editable."
+            ],
+            [
+              "autocomplete",
+              "InputSignal<string | null>",
+              "null",
+              "Optional autocomplete hint. The inner input falls back to `tel` when omitted."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Shared field density token."],
+            [
+              "inputVariant",
+              "InputSignal<Variant>",
+              "'filled'",
+              "Visual treatment of the input surface."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "The component extends the shared `FieldComponent`, so CVA integration, focus handling, described-by wiring, and validation behavior match the rest of the field family.",
+            "Clear appears only when a value is present, while the call icon remains visible for editable fields to reinforce that the field captures a phone number rather than a generic text string."
+          ]
+        }
+      ]
+    }
+  ]
+}

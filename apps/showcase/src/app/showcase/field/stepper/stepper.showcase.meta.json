@@ -1,0 +1,159 @@
+{
+  "slug": "stepper",
+  "title": "Stepper",
+  "description": "Guided flows with numbered or icon indicators, optional descriptions, horizontal or vertical rails, and linear gating so users finish prerequisites before jumping ahead.",
+  "intro": "Drive the UI with `activeStepIndex` and `(stepChange)`. Set `linear` when steps must be completed in order, and mutate each `Step`’s `completed`, `error`, `warning`, or `disabled` flags to mirror validation. Use `showDescriptions` for subtitled milestones and `orientation=\"vertical\"` beside a detail pane.",
+  "importCode": "import { StepperComponent, type Step } from 'ui';",
+  "containerClass": "stepper-doc",
+  "snippets": {
+    "basicCode": "stepper-basic-demo.ts",
+    "linearCode": "stepper-linear-progress-demo.ts",
+    "verticalCode": "stepper-vertical-demo.ts",
+    "statesCode": "stepper-step-states-demo.ts",
+    "wizardCode": "stepper-onboarding-wizard-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Navigation without linear gating",
+      "description": "Bind `activeStepIndex` from the parent and let users jump across steps when `linear` is false. Pair with footer buttons that simply move the index.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "linear",
+      "title": "Linear completion",
+      "description": "With `linear` true, clicking a future step requires every prior step marked `completed`. Primary actions should set `completed` on the current step before advancing the index.",
+      "codeKey": "linearCode",
+      "componentKey": "linear"
+    },
+    {
+      "id": "vertical",
+      "title": "Vertical rail",
+      "description": "Stack steps in reading order for side-by-side layouts. Descriptions clarify each milestone while the main column holds the heavy UI.",
+      "codeKey": "verticalCode",
+      "componentKey": "vertical"
+    },
+    {
+      "id": "states",
+      "title": "Step signals",
+      "description": "`completed`, `error`, `warning`, and `disabled` change indicator color and behavior. Turn off `clickable` when the strip is purely read-only.",
+      "codeKey": "statesCode",
+      "componentKey": "states"
+    },
+    {
+      "id": "wizard",
+      "title": "Onboarding-style wizard",
+      "description": "Combine the stepper with fields, consent, inline validation, and a summary: `MessageBar`, `Text`, `Checkbox`, and `Button` mirror how product teams ship multi-step setup without bespoke chrome.",
+      "codeKey": "wizardCode",
+      "componentKey": "wizard"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Step control",
+      "body": "Each step is a `role=\"button\"` with `tabindex=\"0\"` when enabled. The active step sets `aria-current=\"step\"`; disabled steps use `aria-disabled`."
+    },
+    {
+      "title": "Linear order",
+      "body": "In linear mode, clicks that would skip incomplete work are ignored—keep primary actions in the content area so keyboard and pointer users get the same guardrails."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "StepperComponent - <code>ui-stepper</code>",
+      "lead": "Imperative helpers (`nextStep`, `previousStep`, `goToStep`, `reset`) update internal state and emit `stepChange`; they still respect `linear` and disabled steps.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "steps",
+              "InputSignal<Step[]>",
+              "(required)",
+              "Step definitions including labels and state flags."
+            ],
+            [
+              "activeStepIndex",
+              "InputSignal<number>",
+              "0",
+              "Syncs the focused step when within range."
+            ],
+            [
+              "orientation",
+              "InputSignal<StepOrientation>",
+              "'horizontal'",
+              "`horizontal` or `vertical`."
+            ],
+            [
+              "indicatorType",
+              "InputSignal<StepIndicatorType>",
+              "'numeric'",
+              "`numeric` checkmarks when complete, or `icon` placeholder markup."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Indicator and label density."],
+            [
+              "linear",
+              "InputSignal<boolean>",
+              "false",
+              "Block forward navigation until prior steps are `completed`."
+            ],
+            ["showLabels", "InputSignal<boolean>", "true", "Toggle label column."],
+            [
+              "showDescriptions",
+              "InputSignal<boolean>",
+              "false",
+              "Renders `step.description` when truthy."
+            ],
+            ["clickable", "InputSignal<boolean>", "true", "Disables pointer navigation when false."]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "stepChange",
+              "OutputRef<{ step: Step; index: number }>",
+              "Fired when the active step changes from clicks or imperative API."
+            ],
+            [
+              "stepClick",
+              "OutputRef<{ step: Step; index: number }>",
+              "Emitted together with `stepChange` after a successful `onStepClick`."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Step",
+          "columns": ["Field", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            ["id", "string | number", "Stable key for `track`."],
+            ["label", "string", "Primary title."],
+            [
+              "description",
+              "string | undefined",
+              "Optional subtitle when `showDescriptions` is on."
+            ],
+            ["icon", "string | undefined", "Raw indicator slot when `indicatorType` is `icon`."],
+            ["disabled", "boolean | undefined", "Non-interactive step."],
+            [
+              "completed",
+              "boolean | undefined",
+              "Finished state; drives checkmark and linear rules."
+            ],
+            ["error", "boolean | undefined", "Danger styling."],
+            ["warning", "boolean | undefined", "Warning styling."]
+          ]
+        }
+      ]
+    }
+  ]
+}

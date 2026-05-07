@@ -13,6 +13,7 @@ import {
 import { A11yModule } from '@angular/cdk/a11y';
 import { FormsModule } from '@angular/forms';
 import { SearchComponent } from '../field/search';
+import { EmptyStateComponent } from '../empty-state';
 import { IconComponent, IconName } from '../icon';
 import { UiI18nService } from '../../i18n';
 
@@ -36,15 +37,23 @@ export interface CommandPaletteGroup {
 @Component({
   selector: 'ui-command-palette',
   templateUrl: './command-palette.component.html',
-  imports: [A11yModule, FormsModule, SearchComponent, IconComponent],
+  imports: [A11yModule, FormsModule, SearchComponent, EmptyStateComponent, IconComponent],
 })
 export class CommandPaletteComponent {
+  private static readonly CLOSE_FALLBACK_MS = 320;
+  private static readonly BACKDROP_EXIT = 'fadeOut';
+  private static readonly CONTENT_EXIT = new Set(['scaleOut']);
+
   private readonly i18n = inject(UiI18nService);
+  private readonly rendered = signal(false);
+  readonly isClosing = signal(false);
+  private closeFallbackTimer: ReturnType<typeof setTimeout> | null = null;
 
   visible = model<boolean>(false);
   items = input<CommandPaletteItem[]>([]);
   placeholder = input<string>('');
   emptyText = input<string>('');
+  emptyDescription = input<string>('');
   maxResults = input<number>(10);
 
   // Outputs
@@ -119,39 +128,78 @@ export class CommandPaletteComponent {
     }));
   });
 
-  // Reset selection when items change
+  shouldRender = computed(() => this.rendered());
+
+  backdropClasses = computed(() =>
+    ['command-palette__backdrop', this.isClosing() ? 'command-palette__backdrop--closing' : '']
+      .filter(Boolean)
+      .join(' '),
+  );
+
+  frameClasses = computed(() =>
+    ['command-palette__frame', this.isClosing() ? 'command-palette__frame--closing' : '']
+      .filter(Boolean)
+      .join(' '),
+  );
+
+  surfaceClasses = computed(() => 'command-palette__surface');
+
   constructor() {
     effect(() => {
       this.filteredItems();
       this.setFirstSelectableIndex();
+    });
+
+    effect(() => {
+      const visible = this.visible();
+      if (visible) {
+        this.clearCloseFallback();
+        this.isClosing.set(false);
+        this.rendered.set(true);
+        return;
+      }
+
+      if (!this.rendered() || this.isClosing()) {
+        return;
+      }
+
+      this.isClosing.set(true);
+      if (this.prefersReducedMotion()) {
+        this.finalizeClose();
+        return;
+      }
+
+      this.closeFallbackTimer = setTimeout(() => {
+        this.finalizeClose();
+      }, CommandPaletteComponent.CLOSE_FALLBACK_MS);
     });
   }
 
   // Keyboard navigation
   @HostListener('document:keydown.arrowdown', ['$event'])
   onArrowDown(event: KeyboardEvent): void {
-    if (!this.visible()) return;
+    if (!this.visible() || this.isClosing()) return;
     event.preventDefault();
     this.moveSelection(1);
   }
 
   @HostListener('document:keydown.arrowup', ['$event'])
   onArrowUp(event: KeyboardEvent): void {
-    if (!this.visible()) return;
+    if (!this.visible() || this.isClosing()) return;
     event.preventDefault();
     this.moveSelection(-1);
   }
 
   @HostListener('document:keydown.enter', ['$event'])
   onEnter(event: KeyboardEvent): void {
-    if (!this.visible()) return;
+    if (!this.visible() || this.isClosing()) return;
     event.preventDefault();
     this.executeSelectedCommand();
   }
 
   @HostListener('document:keydown.escape', ['$event'])
   onEscape(event: KeyboardEvent): void {
-    if (!this.visible()) return;
+    if (!this.visible() || this.isClosing()) return;
     event.preventDefault();
     this.close();
   }
@@ -166,8 +214,37 @@ export class CommandPaletteComponent {
   }
 
   close(): void {
+    if (!this.visible()) {
+      return;
+    }
     this.visible.set(false);
     this.closed.emit();
+  }
+
+  onBackdropMouseDown(event: MouseEvent): void {
+    if (event.target === event.currentTarget) {
+      this.close();
+    }
+  }
+
+  onBackdropAnimationEnd(event: AnimationEvent): void {
+    if (event.target !== event.currentTarget || !this.isClosing()) {
+      return;
+    }
+    if (event.animationName !== CommandPaletteComponent.BACKDROP_EXIT) {
+      return;
+    }
+    this.finalizeClose();
+  }
+
+  onSurfaceAnimationEnd(event: AnimationEvent): void {
+    if (event.target !== event.currentTarget || !this.isClosing()) {
+      return;
+    }
+    if (!CommandPaletteComponent.CONTENT_EXIT.has(event.animationName)) {
+      return;
+    }
+    this.finalizeClose();
   }
 
   onSearchChange(query: string): void {
@@ -178,6 +255,16 @@ export class CommandPaletteComponent {
   onItemClick(item: CommandPaletteItem): void {
     if (item.disabled) return;
     this.executeCommand(item);
+  }
+
+  onItemFocus(item: CommandPaletteItem): void {
+    if (item.disabled) {
+      return;
+    }
+    const idx = this.filteredItems().findIndex(i => i.id === item.id);
+    if (idx >= 0) {
+      this._selectedIndex.set(idx);
+    }
   }
 
   private executeSelectedCommand(): void {
@@ -192,23 +279,6 @@ export class CommandPaletteComponent {
     item.action();
     this.commandExecuted.emit(item);
     this.close();
-  }
-
-  // Computed classes and styles
-  backdropClasses(): string {
-    const classes = ['command-palette__backdrop'];
-    if (!this.visible()) {
-      classes.push('command-palette__backdrop--hidden');
-    }
-    return classes.join(' ');
-  }
-
-  containerClasses(): string {
-    const classes = ['command-palette'];
-    if (!this.visible()) {
-      classes.push('command-palette--hidden');
-    }
-    return classes.join(' ');
   }
 
   isItemSelected(item: CommandPaletteItem): boolean {
@@ -256,12 +326,33 @@ export class CommandPaletteComponent {
 
     if (direction > 0) {
       const nextIndex = enabledIndices.find(index => index > currentIndex);
-      this._selectedIndex.set(nextIndex ?? enabledIndices[enabledIndices.length - 1]);
-      return;
+      this._selectedIndex.set(nextIndex ?? enabledIndices[0]);
+    } else {
+      const previousIndex = [...enabledIndices].reverse().find(index => index < currentIndex);
+      this._selectedIndex.set(previousIndex ?? enabledIndices[enabledIndices.length - 1]);
     }
 
-    const previousIndex = [...enabledIndices].reverse().find(index => index < currentIndex);
-    this._selectedIndex.set(previousIndex ?? enabledIndices[0]);
+    this.syncFocusToSelectedAfterArrow();
+  }
+
+  private syncFocusToSelectedAfterArrow(): void {
+    if (!this.visible() || this.isClosing() || typeof document === 'undefined') {
+      return;
+    }
+    const active = document.activeElement;
+    if (!active?.closest('.command-palette__body')) {
+      return;
+    }
+    const id = this.selectedItemId();
+    if (!id) {
+      return;
+    }
+    queueMicrotask(() => {
+      if (!this.visible() || this.isClosing()) {
+        return;
+      }
+      document.getElementById(id)?.focus({ preventScroll: true });
+    });
   }
 
   private toDomToken(value: string): string {
@@ -279,11 +370,44 @@ export class CommandPaletteComponent {
     return this.emptyText().trim() || this.i18n.t('commandPalette.emptyText', 'No commands found');
   }
 
+  getEmptyDescription(): string {
+    return (
+      this.emptyDescription().trim() ||
+      this.i18n.t(
+        'commandPalette.emptyDescription',
+        'Try a different search term or adjust your filters.',
+      )
+    );
+  }
+
   getDialogAriaLabel(): string {
     return this.i18n.t('commandPalette.dialogAriaLabel', 'Command palette');
   }
 
   getResultsAriaLabel(): string {
     return this.i18n.t('commandPalette.resultsAriaLabel', 'Command results');
+  }
+
+  private prefersReducedMotion(): boolean {
+    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+      return false;
+    }
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  private clearCloseFallback(): void {
+    if (this.closeFallbackTimer) {
+      clearTimeout(this.closeFallbackTimer);
+      this.closeFallbackTimer = null;
+    }
+  }
+
+  private finalizeClose(): void {
+    this.clearCloseFallback();
+    if (!this.rendered()) {
+      return;
+    }
+    this.isClosing.set(false);
+    this.rendered.set(false);
   }
 }

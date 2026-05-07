@@ -1015,13 +1015,14 @@ describe('DropdownComponent', () => {
       expect(node.data).toBe(item);
     });
 
-    it('should set selected state in node', () => {
+    it('should keep node selected false so label styling comes from checkmark only', () => {
       const item = createMockItems()[0];
       component.selectItem(item);
       fixture.detectChanges();
 
       const node = component.itemToNode(item);
-      expect(node.selected).toBe(true);
+      expect(node.selected).toBe(false);
+      expect(component.isItemSelected(item)).toBe(true);
     });
 
     it('should handle disabled item', () => {

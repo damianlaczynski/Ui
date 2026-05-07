@@ -1,0 +1,192 @@
+{
+  "slug": "node",
+  "title": "Node",
+  "description": "Node renders a single interactive row for navigation, metadata lists, compact explorers, and tree-like shells with selection, quick actions, custom content, and drag-drop hooks.",
+  "intro": "Use `ui-node` when you need one reusable row primitive rather than a full tree or nav container. It works well for sidebars, result rows, explorer items, and any compact structure where icon, label, selection, and row actions need to stay aligned.",
+  "importCode": "import { NodeComponent, type Node } from 'ui';",
+  "containerClass": "node-doc",
+  "snippets": {
+    "basicCode": "node-basic-demo.ts",
+    "appearanceVariantCode": "node-appearance-variant-demo.ts",
+    "sizeShapeCode": "node-size-shape-demo.ts",
+    "selectionBehaviorCode": "node-selection-behavior-demo.ts",
+    "customContentCode": "node-custom-content-demo.ts",
+    "quickActionsCode": "node-quick-actions-demo.ts",
+    "dragDropCode": "node-drag-drop-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic rows",
+      "description": "The base pattern is a compact row with optional icon and selected state. This is the right starting point for simple nav or result lists.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "appearance-variant",
+      "title": "Appearance and semantic variant",
+      "description": "Use appearance for emphasis and variant for meaning. In practice this helps separate neutral navigation rows from status-heavy management rows.",
+      "codeKey": "appearanceVariantCode",
+      "componentKey": "appearanceVariant"
+    },
+    {
+      "id": "size-shape",
+      "title": "Density and shape",
+      "description": "Size and shape let the same row primitive fit calmer sidebars, denser explorers, or more card-like compact lists.",
+      "codeKey": "sizeShapeCode",
+      "componentKey": "sizeShape"
+    },
+    {
+      "id": "selection-behavior",
+      "title": "Selection and interaction behavior",
+      "description": "Selection indicator placement, button mode, and click-select behavior change how strong the row feels as an interactive control.",
+      "codeKey": "selectionBehaviorCode",
+      "componentKey": "selectionBehavior"
+    },
+    {
+      "id": "custom-content",
+      "title": "Custom content templates",
+      "description": "When a row needs status chips, timestamps, or other metadata, replace the default content but keep the layout compact and scannable.",
+      "codeKey": "customContentCode",
+      "componentKey": "customContent"
+    },
+    {
+      "id": "quick-actions",
+      "title": "Quick actions",
+      "description": "Inline actions are useful in file explorers, task lists, and admin surfaces where each row can be opened, renamed, or archived.",
+      "codeKey": "quickActionsCode",
+      "componentKey": "quickActions"
+    },
+    {
+      "id": "drag-drop",
+      "title": "Drag source and drop target",
+      "description": "Drag and drop support is meant for lightweight move flows where a row can act as a source, a target, or both inside a larger structure.",
+      "codeKey": "dragDropCode",
+      "componentKey": "dragDrop"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Role and row semantics",
+      "body": "`ui-node` exposes `role=\"treeitem\"` by default and switches to `role=\"button\"` when `asButton` is enabled. Selected and disabled state are reflected through `aria-selected` and `aria-disabled` where applicable."
+    },
+    {
+      "title": "Keyboard behavior",
+      "body": "Keyboard support follows the rendered role.\n\n| Key | Action |\n| --- | --- |\n| Tab / Shift+Tab | Moves focus to or from the row. |\n| Enter / Space | Activates the row when focus is on the main node content. |\n| Delete or Backspace | Not handled automatically for closable rows; wire your own removal shortcut if needed. |"
+    },
+    {
+      "title": "Custom content and row actions",
+      "body": "If you replace the default content template, preserve a clear primary label. Quick-action menus and close buttons need their own accessible names and should not make the main row purpose ambiguous."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "NodeComponent - <code>ui-node</code>",
+      "lead": "Standalone row primitive for compact navigation and list structures. It supports semantic styling, selected and disabled states, button-like behavior, custom templates, quick actions, and lightweight drag-drop events.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Key inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["node", "InputSignal<Node>", "-", "Node data to render."],
+            ["size", "InputSignal<Size>", "'medium'", "Row density token."],
+            ["variant", "InputSignal<Variant>", "'primary'", "Semantic styling variant."],
+            [
+              "appearance",
+              "InputSignal<Appearance>",
+              "'transparent'",
+              "Visual emphasis of the row."
+            ],
+            ["shape", "InputSignal<Shape>", "'rounded'", "Corner treatment of the row container."],
+            [
+              "showSelectionIndicator",
+              "InputSignal<boolean>",
+              "false",
+              "Shows a selected-row indicator."
+            ],
+            [
+              "indicatorPosition",
+              "InputSignal<'horizontal' | 'vertical'>",
+              "'horizontal'",
+              "Placement of the selection indicator."
+            ],
+            [
+              "slideDirection",
+              "InputSignal<'left' | 'right' | null>",
+              "null",
+              "Optional motion direction class for selection transitions."
+            ],
+            [
+              "asButton",
+              "InputSignal<boolean>",
+              "false",
+              "Renders the row with button semantics and styling hooks."
+            ],
+            [
+              "selectOnClick",
+              "InputSignal<boolean>",
+              "true",
+              "Emits selection when the row is clicked."
+            ],
+            [
+              "ariaCurrent",
+              "InputSignal<string | null>",
+              "null",
+              "Optional `aria-current` value for the row."
+            ],
+            [
+              "showQuickActions",
+              "InputSignal<boolean>",
+              "false",
+              "Enables a quick-actions region in the row."
+            ],
+            [
+              "quickActionsTemplate",
+              "InputSignal<TemplateRef<any> | null>",
+              "null",
+              "Template rendered in the quick-actions region."
+            ],
+            ["draggable", "InputSignal<boolean>", "false", "Makes the row draggable."],
+            ["dragData", "InputSignal<any>", "null", "Custom payload used for drag operations."],
+            ["dropZone", "InputSignal<boolean>", "false", "Allows the row to act as a drop target."]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs and node shape",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            ["nodeClick", "OutputEmitterRef<Node>", "Emits when the main row is activated."],
+            ["nodeSelect", "OutputEmitterRef<Node>", "Emits when selection is triggered by click."],
+            ["nodeClose", "OutputEmitterRef<Node>", "Emits when the close affordance is used."],
+            [
+              "dragStart / dragEnd / drag",
+              "OutputEmitterRef<{ node, event, data? }>",
+              "Emit during drag lifecycle."
+            ],
+            [
+              "drop / dragOver / dragLeave",
+              "OutputEmitterRef<{ node, event, position? }>",
+              "Emit while the row acts as a drop target."
+            ],
+            [
+              "Node",
+              "{ id, label, icon?, disabled?, selected?, data?, onClick?, closable? }",
+              "Minimal row contract used by the component."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "Use `ui-node` when you need one row primitive. If you need recursive nesting or full tree keyboard behavior, `ui-tree-node` or `ui-tree` is usually a better fit.",
+            "Custom content should stay compact. If the row turns into a mini card, it usually means the layout needs a different component."
+          ]
+        }
+      ]
+    }
+  ]
+}

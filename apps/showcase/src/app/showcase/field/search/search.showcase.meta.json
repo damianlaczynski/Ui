@@ -1,0 +1,128 @@
+{
+  "slug": "search",
+  "title": "Search",
+  "description": "Search is a field-specialized wrapper around the shared input foundation with native `type=\"search\"`, built-in clear affordance, and an explicit search action inside the field chrome.",
+  "intro": "Use `ui-search` for filtering lists, querying content, and compact toolbar search patterns. It inherits the shared field API for labels, help text, size, variant, readonly, disabled, and validation messaging while keeping the behavior aligned with native search inputs.",
+  "importCode": "import { SearchComponent } from 'ui';",
+  "containerClass": "search-doc",
+  "snippets": {
+    "basicCode": "search-basic-demo.ts",
+    "layoutCode": "search-layout-demo.ts",
+    "statesCode": "search-states-demo.ts",
+    "validationCode": "search-validation-demo.ts",
+    "filterBarCode": "search-filter-bar-demo.ts",
+    "resultsPanelCode": "search-results-panel-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic search fields",
+      "description": "Use the default field for workspace-wide search or local list filtering, then rely on the built-in clear action when the query becomes part of an iterative search flow.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "layout",
+      "title": "Layout, size, and variant",
+      "description": "Search follows the same density and label rhythm as the rest of the field family, so it can fit header bars, side panels, and larger content surfaces without custom field styling.",
+      "codeKey": "layoutCode",
+      "componentKey": "layout"
+    },
+    {
+      "id": "states",
+      "title": "Readonly, disabled, and inline error states",
+      "description": "Readonly is useful when you want to display the active query without allowing edits, disabled removes interaction completely, and short-query feedback can be surfaced inline for lightweight validation.",
+      "codeKey": "statesCode",
+      "componentKey": "states"
+    },
+    {
+      "id": "validation",
+      "title": "Validation with reactive forms",
+      "description": "When search is required before continuing a workflow, use reactive-form validation instead of ad hoc string checks so the field behaves like the rest of the form.",
+      "codeKey": "validationCode",
+      "componentKey": "validation"
+    },
+    {
+      "id": "filter-bar",
+      "title": "Filter bar composition",
+      "description": "Search often sits inside a compact filter bar with quick actions and reset affordances. Treat it as one part of a filtering surface, not a disconnected input.",
+      "codeKey": "filterBarCode",
+      "componentKey": "filterBar"
+    },
+    {
+      "id": "results-panel",
+      "title": "Results panel composition",
+      "description": "A stronger end-to-end example: one panel that combines the query field, result count, clear action, and a compact list of matching entities.",
+      "codeKey": "resultsPanelCode",
+      "componentKey": "resultsPanel"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Label and name",
+      "body": "Prefer a visible `label` so the search scope is explicit, especially when several search fields can appear in the same product. Help and error text contribute through `aria-describedby`."
+    },
+    {
+      "title": "Keyboard and actions",
+      "body": "This is a standard text-entry field backed by a native `type=\"search\"` input. Search and clear are exposed as separate actions in the field chrome when the field is editable.\n\n| Aspect | Behavior |\n| --- | --- |\n| focus | native search input receives focus |\n| typing | native search input behavior |\n| clear action | appears only when the field has a value and is editable |\n| search action | stays visible while editable to reinforce the field purpose |\n| readonly / disabled | actions are hidden and direct editing is blocked |"
+    },
+    {
+      "title": "Autocomplete and semantics",
+      "body": "The inner input uses `type=\"search\"` and falls back to `autocomplete=\"off\"` unless you override it. Use explicit autocomplete values only when the search query should participate in browser-assisted history or form completion."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "SearchComponent - <code>ui-search</code>",
+      "lead": "Standalone search field built on the shared field base. It keeps the same layout, validation, and form-control model as the other field components while adding search and clear actions in the field chrome.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Key inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["label", "InputSignal<string>", "''", "Visible field label."],
+            [
+              "labelPosition",
+              "InputSignal<ContentPosition>",
+              "'above'",
+              "Shared field label placement token."
+            ],
+            ["placeholder", "InputSignal<string>", "''", "Hint shown when the query is empty."],
+            ["helpText", "InputSignal<string>", "''", "Supporting guidance below the field."],
+            ["errorText", "ModelSignal<string>", "''", "Validation or submission error message."],
+            ["required", "InputSignal<boolean>", "false", "Marks the native input as required."],
+            ["disabled", "ModelSignal<boolean>", "false", "Prevents editing and hides actions."],
+            [
+              "readonly",
+              "ModelSignal<boolean>",
+              "false",
+              "Keeps the query visible but not editable."
+            ],
+            [
+              "autocomplete",
+              "InputSignal<string | null>",
+              "null",
+              "Optional autocomplete hint. The inner input falls back to `off` when omitted."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Shared field density token."],
+            [
+              "inputVariant",
+              "InputSignal<Variant>",
+              "'filled'",
+              "Visual treatment of the input surface."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "The component extends the shared `FieldComponent`, so CVA integration, focus handling, described-by wiring, and validation behavior match the rest of the field family.",
+            "Search and clear actions are built into the field chrome. Clear appears only when a value is present, while search remains visible for editable fields to reinforce the control’s intent."
+          ]
+        }
+      ]
+    }
+  ]
+}

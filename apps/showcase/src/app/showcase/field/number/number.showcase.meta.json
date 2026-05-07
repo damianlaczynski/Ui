@@ -1,0 +1,158 @@
+{
+  "slug": "number",
+  "title": "Number",
+  "description": "Number provides numeric text entry with min, max, and step constraints on top of the shared field system, making it suitable for quantities, pricing, bounded values, and small calculation flows.",
+  "intro": "Use `ui-number` for quantities, currency-like inputs, percentages, rates, and other numeric values that benefit from browser-native number input behavior plus your shared field styling and validation patterns.",
+  "importCode": "import { NumberComponent } from 'ui';",
+  "containerClass": "number-doc",
+  "snippets": {
+    "basicCode": "number-basic-demo.ts",
+    "stepRangesCode": "number-step-ranges-demo.ts",
+    "sizeVariantCode": "number-size-variant-demo.ts",
+    "statesValidationCode": "number-states-validation-demo.ts",
+    "budgetFormCode": "number-budget-form-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic numeric inputs",
+      "description": "The simplest use cases are counts and decimal values. This is the right baseline for seats, quantities, totals, or pricing fields.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "step-ranges",
+      "title": "Min, max, and step ranges",
+      "description": "Range constraints and step increments are the most important behavior differences between a plain text field and a dedicated number field.",
+      "codeKey": "stepRangesCode",
+      "componentKey": "stepRanges"
+    },
+    {
+      "id": "size-variant",
+      "title": "Size and input variant",
+      "description": "Size and visual variant help the same numeric field fit dense tables, standard forms, or more prominent pricing and configuration surfaces.",
+      "codeKey": "sizeVariantCode",
+      "componentKey": "sizeVariant"
+    },
+    {
+      "id": "states-validation",
+      "title": "States and validation",
+      "description": "Readonly, disabled, required, and error states matter just as much as numeric constraints when the field participates in real forms.",
+      "codeKey": "statesValidationCode",
+      "componentKey": "statesValidation"
+    },
+    {
+      "id": "budget-form",
+      "title": "Budget or estimate form",
+      "description": "A realistic numeric form usually combines multiple fields that contribute to a derived total, estimate, or threshold rather than standing alone.",
+      "codeKey": "budgetFormCode",
+      "componentKey": "budgetForm"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Label and description",
+      "body": "`ui-number` inherits the shared field labeling model. Use the visible label as the primary accessible name and reserve `ariaLabel` for exceptional cases where no visible label exists."
+    },
+    {
+      "title": "Keyboard behavior",
+      "body": "Keyboard behavior largely follows the native number input.\n\n| Key | Action |\n| --- | --- |\n| Tab / Shift+Tab | Moves focus to or from the input. |\n| ArrowUp / ArrowDown | May increment or decrement the native number input depending on browser behavior. |\n| Enter | Follows the surrounding form behavior rather than a custom component action. |"
+    },
+    {
+      "title": "Validation and constraints",
+      "body": "When you use `min`, `max`, and `step`, keep the visible help text or validation feedback aligned with those constraints so users understand why a value was clamped or rejected."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "NumberComponent - <code>ui-number</code>",
+      "lead": "Standalone numeric field component built on top of the shared field primitive. It adds numeric parsing plus `step`, `min`, and `max` constraints while keeping the same form and validation integration as other field components.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Key inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["label", "InputSignal<string>", "''", "Visible field label."],
+            [
+              "labelPosition",
+              "InputSignal<ContentPosition>",
+              "'above'",
+              "Label placement relative to the input."
+            ],
+            ["placeholder", "InputSignal<string>", "''", "Placeholder text."],
+            ["helpText", "InputSignal<string>", "''", "Supporting text shown below the field."],
+            ["errorText", "ModelSignal<string>", "''", "Error text rendered below the field."],
+            ["required", "InputSignal<boolean>", "false", "Marks the field as required."],
+            ["disabled", "ModelSignal<boolean>", "false", "Disables user interaction."],
+            ["readonly", "ModelSignal<boolean>", "false", "Makes the field read-only."],
+            ["size", "InputSignal<Size>", "'medium'", "Field density token."],
+            [
+              "inputVariant",
+              "InputSignal<InputVariant>",
+              "'filled'",
+              "Visual style of the input shell."
+            ],
+            [
+              "name / id / autocomplete",
+              "InputSignal<string | null>",
+              "'' / generated / null",
+              "Native form and browser autofill wiring."
+            ],
+            [
+              "step",
+              "InputSignal<number | string>",
+              "1",
+              "Numeric increment size exposed through the native `step` attribute."
+            ],
+            [
+              "min",
+              "InputSignal<number | undefined>",
+              "undefined",
+              "Minimum allowed numeric value."
+            ],
+            [
+              "max",
+              "InputSignal<number | undefined>",
+              "undefined",
+              "Maximum allowed numeric value."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs and methods",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            ["change", "OutputEmitterRef<any>", "Emits when the numeric value changes."],
+            [
+              "focus / blur / keyup / keydown",
+              "OutputEmitterRef<DOM event>",
+              "Forward native interaction events from the underlying input."
+            ],
+            [
+              "increment()",
+              "method",
+              "Increases the current value by `step` while respecting `max` and readonly/disabled state."
+            ],
+            [
+              "decrement()",
+              "method",
+              "Decreases the current value by `step` while respecting `min` and readonly/disabled state."
+            ],
+            ["clear()", "method", "Clears the current value through the shared field behavior."]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "The component inherits its general field behavior from the shared field base, so form integration, validation, and common field styling work the same way as for text, email, or password.",
+            "Use `ui-number` only for real numeric values. If the value is an identifier such as an account number or phone-like string, a text-oriented field is usually safer."
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -8,6 +8,7 @@ import {
   ElementRef,
   ViewChild,
   ViewContainerRef,
+  viewChild,
   effect,
   untracked,
   OnDestroy,
@@ -44,6 +45,7 @@ import {
   DEFAULT_CONNECTED_POSITIONS,
   DEFAULT_VIEWPORT_MARGIN,
 } from '../../overlay/open-connected-overlay';
+import { EmptyStateComponent } from '../../empty-state/empty-state.component';
 
 export { DropdownHelper } from './dropdown.helper';
 
@@ -74,6 +76,7 @@ export type DropdownMode = 'single' | 'multi';
     SearchComponent,
     TagComponent,
     ScrollContainerComponent,
+    EmptyStateComponent,
   ],
   templateUrl: './dropdown.component.html',
   styles: [
@@ -110,6 +113,8 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
   private readonly defaultPlaceholderText = this.ts('placeholder', 'Select...');
   private readonly clearSelectionAriaLabel = this.ts('clearSelectionAriaLabel', 'Clear selection');
   private readonly toggleMenuAriaLabel = this.ts('toggleMenuAriaLabel', 'Toggle menu');
+  private readonly panelEmptyItemsText = this.ts('emptyItems', 'No items to display');
+  private readonly panelNoMatchingItemsText = this.ts('noMatchingItems', 'No matching options');
 
   private overlayHandle: OverlayHandle | null = null;
 
@@ -152,6 +157,7 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
 
   //Templates
   itemTemplate = contentChild<TemplateRef<any>>('itemTemplate');
+  dropdownPanelEmptyTpl = viewChild<TemplateRef<unknown>>('dropdownPanelEmpty');
   @ViewChild('scrollItemTemplate') scrollItemTemplate?: TemplateRef<any>;
   @ViewChild('scrollContainer') scrollContainer?: ScrollContainerComponent<DropdownItem>;
   @ViewChild('triggerElement', { read: ElementRef }) triggerElement!: ElementRef;
@@ -206,6 +212,16 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
     }
     return this.compactIcon();
   });
+
+  panelEmptyDescription = computed(() =>
+    this.searchable() && this.searchQuery().trim().length > 0
+      ? this.panelNoMatchingItemsText()
+      : this.panelEmptyItemsText(),
+  );
+
+  panelEmptyIcon = computed<IconName | undefined>(() =>
+    this.searchable() && this.searchQuery().trim().length > 0 ? 'search' : undefined,
+  );
 
   // === COMPUTED - Scroll container data source ===
   scrollContainerDataSource = computed<ScrollContainerDataSource<DropdownItem>>(() => {
@@ -564,7 +580,7 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
       label: item.label,
       icon: item.icon,
       disabled: item.disabled || false,
-      selected: this.isItemSelected(item),
+      selected: false,
       data: item,
       onClick: () => this.selectItem(item),
     };

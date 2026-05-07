@@ -1,0 +1,229 @@
+{
+  "slug": "button",
+  "title": "Button",
+  "description": "Button triggers user actions. It builds on the native button element with design-system theming, optional leading icons, loading and disabled feedback, and selectable patterns while staying accessible and form-friendly.",
+  "intro": "Button triggers user actions. It extends the standard button element with icons, semantic variants and appearances, sizes and shapes, loading state, and optional selection models while staying grounded in shared theming.",
+  "importCode": "import { ButtonComponent } from 'ui';",
+  "containerClass": "button-doc",
+  "snippets": {
+    "basicCode": "button-basic-demo.ts",
+    "appearanceVariantCode": "button-appearance-variant-demo.ts",
+    "shapesCode": "button-shapes-demo.ts",
+    "iconsCode": "button-icons-demo.ts",
+    "iconOnlyCode": "button-icon-only-demo.ts",
+    "sizesCode": "button-sizes-demo.ts",
+    "statesCode": "button-states-demo.ts",
+    "otherCode": "button-other-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic actions",
+      "description": "Invoke submit, cancel, or confirm flows with primary emphasis versus secondary actions so users see what matters first.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "appearance-variant",
+      "title": "Appearance and variant",
+      "description": "Pair semantic color (variant) with surface style (appearance) to signal intent-primary CTA, neutral action, or status-and match emphasis next to other controls.",
+      "codeKey": "appearanceVariantCode",
+      "componentKey": "appearanceVariant"
+    },
+    {
+      "id": "shapes",
+      "title": "Shapes",
+      "description": "Change corner geometry for pill, tile, or circular hit targets; circular works best for equal-width icon buttons in toolbars.",
+      "codeKey": "shapesCode",
+      "componentKey": "shapes"
+    },
+    {
+      "id": "icons",
+      "title": "Icons",
+      "description": "Add a leading Fluent icon so actions are scannable; the icon hides while loading so the spinner stays visible.",
+      "codeKey": "iconsCode",
+      "componentKey": "icons"
+    },
+    {
+      "id": "icon-only",
+      "title": "Icon-only",
+      "description": "Compact actions with no visible label-always set an accessible name so assistive tech announces what the control does.",
+      "codeKey": "iconOnlyCode",
+      "componentKey": "iconOnly"
+    },
+    {
+      "id": "sizes",
+      "title": "Sizes",
+      "description": "Scale tap targets and label size up or down for dense tables and lists versus prominent hero or empty-state actions.",
+      "codeKey": "sizesCode",
+      "componentKey": "sizes"
+    },
+    {
+      "id": "states",
+      "title": "States and feedback",
+      "description": "Show async work in progress, block duplicate submits while loading, or disable actions the user cannot take yet.",
+      "codeKey": "statesCode",
+      "componentKey": "states"
+    },
+    {
+      "id": "layout-selectable",
+      "title": "Layout and selection",
+      "description": "Stretch buttons across a container for stacked layouts, or toggle a persistent selected state for filters, segments, and toolbars.",
+      "codeKey": "otherCode",
+      "componentKey": "other"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Accessible name",
+      "body": "`ButtonComponent` renders a native `button`. The accessible name comes from projected content or the `text` input. Use `ariaLabel` when there is no suitable visible label (required for icon-only). The component does not translate strings, so pass localized `text`, `ariaLabel`, or projected content from your app."
+    },
+    {
+      "title": "Keyboard",
+      "body": "Focus uses the inner native button; the `ui-button` host is not an extra tab stop. Use `tabIndex` only to adjust order on the inner button; call `ButtonComponent.focus()` to focus it from code.\n\n| Key | Action |\n| --- | --- |\n| Tab | Moves focus to or from the button. |\n| Enter / Space | Activates the button when focused and not disabled or loading. |"
+    },
+    {
+      "title": "ARIA",
+      "body": "| Input / state | Attribute |\n| --- | --- |\n| `ariaLabel` | `aria-label` |\n| `selectable` and role is not `radio` | `aria-pressed` mirrors `selected` |\n| `role` is `radio` | `aria-checked` from `ariaChecked` or `selected` |\n| `disabled` | native `disabled` |\n| `loading` | click ignored; no automatic `disabled` or `aria-busy`, combine with `disabled` if needed |"
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "ButtonComponent - <code>ui-button</code>",
+      "lead": "Standalone component wrapping a native <code class=\"showcase-doc__api-code\">button</code> with shared tokens for variant, appearance, size, and shape. Project content for rich labels, or pass <code class=\"showcase-doc__api-code\">text</code> for plain strings.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "variant",
+              "InputSignal<Variant>",
+              "'secondary'",
+              "Chooses the semantic color palette (primary CTA, neutral secondary, success, etc.) so intent is recognizable at a glance."
+            ],
+            [
+              "appearance",
+              "InputSignal<Appearance>",
+              "'filled'",
+              "Sets how strongly the button fills its surface - filled, outline, subtle, or tint - for hierarchy next to siblings."
+            ],
+            [
+              "size",
+              "InputSignal<Size>",
+              "'medium'",
+              "Scales padding and label typography for dense chrome versus prominent actions."
+            ],
+            [
+              "shape",
+              "InputSignal<Shape>",
+              "'rounded'",
+              "Controls corner treatment from rounded to square to circular; circular suits equal-width icon controls."
+            ],
+            [
+              "icon",
+              "InputSignal<IconName | undefined>",
+              "undefined",
+              "Renders an optional leading Fluent icon before the label; it is omitted while loading so the spinner is unobstructed."
+            ],
+            [
+              "text",
+              "InputSignal<string | undefined>",
+              "undefined",
+              "Supplies a plain-text label when you do not need projected markup inside the button."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string | undefined>",
+              null,
+              "Defines the accessible name for icon-only buttons or when visible text does not fully describe the action."
+            ],
+            [
+              "selectable",
+              "InputSignal<boolean>",
+              "false",
+              "When true, each successful click flips the bound selected model - use for toggle-like behavior."
+            ],
+            [
+              "type",
+              "InputSignal<'button' | 'submit' | 'reset'>",
+              "'button'",
+              "Maps to the native button type: generic click, form submit, or form reset when placed inside a form."
+            ],
+            [
+              "fullWidth",
+              "InputSignal<boolean>",
+              "false",
+              "When true, the control stretches to the full width of its parent layout."
+            ],
+            [
+              "role",
+              "InputSignal<'button' | 'radio'>",
+              "'button'",
+              "Overrides the exposed ARIA role so the control can read as a radio item in segmented controls or toolbars."
+            ],
+            [
+              "ariaChecked",
+              "InputSignal<boolean | undefined>",
+              null,
+              "Announces checked versus unchecked state when the button is presented with role radio."
+            ],
+            [
+              "tabIndex",
+              "InputSignal<number | undefined>",
+              null,
+              "Sets keyboard focus order on the inner native button element when you need a custom tab sequence."
+            ],
+            [
+              "selected",
+              "ModelSignal<boolean>",
+              "false",
+              "Two-way bound selection flag - drive it from the parent or let selectable clicks keep it in sync."
+            ],
+            [
+              "disabled",
+              "ModelSignal<boolean>",
+              "false",
+              "Two-way bound disabled flag that prevents activation and applies disabled styling."
+            ],
+            [
+              "loading",
+              "InputSignal<boolean>",
+              "false",
+              "Shows an inline spinner, ignores further clicks until cleared, and hides the leading icon while active."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "click",
+              "OutputRef<MouseEvent>",
+              "Fires after a successful press when the control is not disabled or loading; hook here for app logic. Non-submit buttons cancel default navigation and bubbling so only your handler runs; submit defers to native form submission."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "The inner native element receives focus and activation keys; the <code class=\"showcase-doc__api-code\">ui-button</code> host is not an extra tab stop. Use <code class=\"showcase-doc__api-code\">ButtonComponent.focus()</code> to move focus from application code."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Related mechanisms",
+          "items": [
+            "<code>IconComponent</code> - renders the optional glyph from <code>icon</code>; it is skipped during loading so progress feedback stays clear.",
+            "<code>SpinnerComponent</code> - displays the busy indicator whenever <code>loading</code> is true."
+          ]
+        }
+      ]
+    }
+  ]
+}

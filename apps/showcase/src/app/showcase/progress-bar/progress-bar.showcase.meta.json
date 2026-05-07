@@ -1,0 +1,141 @@
+{
+  "slug": "progress-bar",
+  "title": "Progress Bar",
+  "description": "Progress Bar visualizes completion for uploads, processing, quotas, and multi-step work. Use determinate mode when you know the percentage and indeterminate mode when work is active but duration is unknown.",
+  "intro": "Progress Bar renders a compact linear indicator with semantic variants, three sizes, and determinate or indeterminate behavior. Pair it with nearby text so users understand what is progressing and what happens next.",
+  "importCode": "import { ProgressBarComponent } from 'ui';",
+  "containerClass": "progress-bar-doc",
+  "snippets": {
+    "basicCode": "progress-bar-basic-demo.ts",
+    "statesCode": "progress-bar-states-demo.ts",
+    "sizesCode": "progress-bar-sizes-demo.ts",
+    "variantsCode": "progress-bar-variants-demo.ts",
+    "uploadQueueCode": "progress-bar-upload-queue-demo.ts",
+    "taskFlowCode": "progress-bar-task-flow-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic determinate progress",
+      "description": "Use determinate mode when the system can report a real percentage. Keep a short label nearby so the bar is not just visual decoration.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "states",
+      "title": "Determinate and indeterminate states",
+      "description": "Switch to indeterminate when work is active but exact completion is unknown, then return to determinate once a real percentage is available again.",
+      "codeKey": "statesCode",
+      "componentKey": "states"
+    },
+    {
+      "id": "sizes",
+      "title": "Sizes and density",
+      "description": "Small fits dense tables and rows, medium is the default for forms and panels, and large gives more visual weight in banners or prominent status areas.",
+      "codeKey": "sizesCode",
+      "componentKey": "sizes"
+    },
+    {
+      "id": "variants",
+      "title": "Semantic variants",
+      "description": "Color should communicate status, not decoration: success for completion, warning for near-limit states, danger for failure, and info or primary for active work.",
+      "codeKey": "variantsCode",
+      "componentKey": "variants"
+    },
+    {
+      "id": "upload-queue",
+      "title": "Upload queue pattern",
+      "description": "A queue with filenames, percentages, and mixed statuses is more useful than isolated bars because it mirrors a real product surface users actually need to build.",
+      "codeKey": "uploadQueueCode",
+      "componentKey": "uploadQueue"
+    },
+    {
+      "id": "task-flow",
+      "title": "Task flow with actions",
+      "description": "Combine progress, status copy, and actions in one panel so users can retry, continue, or wait without hunting for context elsewhere.",
+      "codeKey": "taskFlowCode",
+      "componentKey": "taskFlow"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Role and value",
+      "body": "`ProgressBarComponent` renders with `role=\"progressbar\"`. In determinate mode it exposes `aria-valuenow`, `aria-valuemin`, and `aria-valuemax`; in indeterminate mode those numeric value attributes are omitted.\n\n| Mode | Accessibility behavior |\n| --- | --- |\n| determinate | exposes current value and range |\n| indeterminate | omits numeric value attributes |"
+    },
+    {
+      "title": "Accessible name",
+      "body": "Use `ariaLabel` to describe what is progressing, for example `Uploading contract.pdf` or `Storage usage`. The default label is only a generic fallback."
+    },
+    {
+      "title": "Value text",
+      "body": "Use `ariaValueText` when percent alone is not enough, such as `Step 2 of 4`, `3 files remaining`, or `Waiting for virus scan`.\n\n| State | Attribute / guidance |\n| --- | --- |\n| current progress | `aria-valuenow` when determinate |\n| min / max | `aria-valuemin` and `aria-valuemax` |\n| richer wording | `aria-valuetext` or adjacent status text |"
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "ProgressBarComponent - <code>ui-progress-bar</code>",
+      "lead": "Standalone linear progress indicator for known percentages and unknown-duration work. The component stays intentionally compact, so surrounding text should carry most of the task meaning.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "variant",
+              "InputSignal<Variant>",
+              "'primary'",
+              "Applies the semantic track color. Use it to communicate task state rather than to decorate the page."
+            ],
+            [
+              "size",
+              "InputSignal<Size>",
+              "'medium'",
+              "Controls bar thickness for dense rows versus more prominent status surfaces."
+            ],
+            [
+              "type",
+              "InputSignal<'determinate' | 'indeterminate'>",
+              "'determinate'",
+              "Determinate expects a real value; indeterminate shows ongoing work with animated motion and no numeric completion."
+            ],
+            [
+              "value",
+              "InputSignal<number>",
+              "0",
+              "Used in determinate mode. Values are clamped into the 0 to 100 range before rendering and before ARIA exposure."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "''",
+              "Accessible name for the progress bar. When empty, the component falls back to the shared i18n progress label."
+            ],
+            [
+              "ariaValueText",
+              "InputSignal<string | undefined>",
+              "undefined",
+              "Optional human-readable status text when percent alone is not descriptive enough."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "In indeterminate mode the component omits <code class=\"showcase-doc__api-code\">aria-valuenow</code>, <code class=\"showcase-doc__api-code\">aria-valuemin</code>, and <code class=\"showcase-doc__api-code\">aria-valuemax</code> because exact completion is unknown.",
+            "The visual track width is driven only by <code class=\"showcase-doc__api-code\">value</code> in determinate mode. Indeterminate mode ignores width input and uses the built-in animated segment."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Related mechanisms",
+          "items": [
+            "<code>Variant</code> and <code>Size</code> - shared unions used across surfaces and controls.",
+            "Shared i18n service - provides the fallback accessible label when <code>ariaLabel</code> is not supplied."
+          ]
+        }
+      ]
+    }
+  ]
+}

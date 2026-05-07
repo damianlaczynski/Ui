@@ -1,0 +1,131 @@
+{
+  "slug": "empty-state",
+  "title": "Empty State",
+  "description": "Empty State communicates that there is currently no content to show and helps the user understand what to do next through concise copy, optional icons, actions, and custom content.",
+  "intro": "Use `ui-empty-state` for empty lists, first-run experiences, no-results states, and permission-related blanks. Focus on clear explanation and the next sensible step instead of decorative filler.",
+  "importCode": "import { EmptyStateComponent, type QuickAction } from 'ui';",
+  "containerClass": "empty-state-doc",
+  "snippets": {
+    "basicCode": "empty-state-basic-demo.ts",
+    "iconsSizesCode": "empty-state-icons-sizes-demo.ts",
+    "actionsCode": "empty-state-actions-demo.ts",
+    "customContentCode": "empty-state-custom-content-demo.ts",
+    "scenariosCode": "empty-state-scenarios-demo.ts",
+    "listLayoutCode": "empty-state-list-layout-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic empty messaging",
+      "description": "The default pattern is short, calm, and direct. Most empty states do not need more than a clear title and one sentence of context.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "icons-sizes",
+      "title": "Icons and sizes",
+      "description": "Icons add context and sizes help the component fit compact panels or larger first-run surfaces. Use them to support the message, not to overpower it.",
+      "codeKey": "iconsSizesCode",
+      "componentKey": "iconsSizes"
+    },
+    {
+      "id": "actions",
+      "title": "Primary and secondary actions",
+      "description": "Actions are useful when the next step is obvious, such as inviting users, importing data, or creating the first record.",
+      "codeKey": "actionsCode",
+      "componentKey": "actions"
+    },
+    {
+      "id": "custom-content",
+      "title": "Custom projected content",
+      "description": "Projected content helps when the empty state needs richer explanation, setup guidance, or a slightly more tailored layout.",
+      "codeKey": "customContentCode",
+      "componentKey": "customContent"
+    },
+    {
+      "id": "scenarios",
+      "title": "Common empty-state scenarios",
+      "description": "Different causes of emptiness need different copy. A no-results state should not read like a first-run state or a permissions block.",
+      "codeKey": "scenariosCode",
+      "componentKey": "scenarios"
+    },
+    {
+      "id": "list-layout",
+      "title": "Embedded list or panel layout",
+      "description": "Empty states often sit inside larger application shells rather than on a blank page. This is the pattern users usually encounter in practice.",
+      "codeKey": "listLayoutCode",
+      "componentKey": "listLayout"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Content clarity",
+      "body": "An empty state is primarily explanatory content. The title and description should clearly communicate why nothing is shown and what the user can do next."
+    },
+    {
+      "title": "Actions",
+      "body": "If actions are present, they should have clear visible labels and remain keyboard reachable like any other buttons.\n\n| Element | Guidance |\n| --- | --- |\n| Primary action | Use when there is one obvious next step. |\n| Secondary action | Use for alternate paths such as import, learn more, or view docs. |\n| Custom projected controls | Keep them simple and semantically clear. |"
+    },
+    {
+      "title": "Decorative icons",
+      "body": "Icons in empty states are supporting visuals. They should reinforce meaning but not be the only way the state is understood."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "EmptyStateComponent - <code>ui-empty-state</code>",
+      "lead": "Standalone component for presenting a no-content state with concise messaging, optional iconography, optional actions, and projected custom content.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Key inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["title", "InputSignal<string>", "''", "Primary empty-state heading."],
+            ["description", "InputSignal<string>", "''", "Supporting explanation text."],
+            [
+              "icon",
+              "InputSignal<IconName | undefined>",
+              "undefined",
+              "Optional icon that adds visual context."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Overall scale of the empty state."],
+            ["primaryAction", "InputSignal<QuickAction | null>", "null", "Primary call to action."],
+            [
+              "secondaryAction",
+              "InputSignal<QuickAction | null>",
+              "null",
+              "Secondary call to action."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Projected content and action model",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "content",
+              "content child `TemplateRef<any>`",
+              "Optional projected custom content rendered under the main message."
+            ],
+            [
+              "QuickAction",
+              "{ label, variant?, appearance?, icon?, size?, disabled?, action? }",
+              "Action contract used by primary and secondary buttons."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "Keep empty-state copy specific to the cause of the absence. 'No results', 'Nothing created yet', and 'No permission' are different situations and should not reuse the same wording.",
+            "Use projected custom content sparingly. If the state becomes too dense, it usually means the surrounding flow should be redesigned rather than making the empty state more complicated."
+          ]
+        }
+      ]
+    }
+  ]
+}

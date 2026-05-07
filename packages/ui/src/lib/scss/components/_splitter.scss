@@ -34,8 +34,12 @@
     position: relative;
     flex-shrink: 0;
     flex-grow: 0;
-    background-color: var(--color-neutral-background-rest);
-    border: 1px solid var(--color-neutral-stroke-rest);
+    background-color: color-mix(
+      in srgb,
+      var(--color-neutral-background2-rest) 78%,
+      var(--color-neutral-stroke-rest)
+    );
+    border: 1px solid color-mix(in srgb, var(--color-neutral-stroke-rest) 88%, transparent);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -72,7 +76,11 @@
 
   &__gutter-handle {
     position: absolute;
-    background-color: var(--color-neutral-stroke-rest);
+    background-color: color-mix(
+      in srgb,
+      var(--color-neutral-stroke-rest) 75%,
+      var(--color-neutral-foreground-rest)
+    );
     border-radius: $border-radius-400;
     @include smooth-hover;
 
@@ -109,14 +117,14 @@
       &.splitter__gutter--dragging {
         .splitter__gutter-handle {
           width: 4px;
-          height: 40px;
+          height: 44px;
         }
       }
     }
 
     > .splitter__gutter .splitter__gutter-handle {
-      width: 2px;
-      height: 32px;
+      width: 3px;
+      height: 36px;
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
@@ -135,7 +143,6 @@
       cursor: row-resize;
       user-select: none;
       min-height: 4px;
-      max-height: 12px;
       border-left: none;
       border-right: none;
 
@@ -150,8 +157,8 @@
     }
 
     > .splitter__gutter .splitter__gutter-handle {
-      width: 32px;
-      height: 2px;
+      width: 40px;
+      height: 3px;
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);

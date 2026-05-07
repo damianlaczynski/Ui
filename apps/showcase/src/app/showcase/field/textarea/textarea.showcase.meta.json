@@ -1,0 +1,118 @@
+{
+  "slug": "textarea",
+  "title": "Textarea",
+  "description": "Textarea is a field-specialized wrapper around the shared multiline input foundation. It supports configurable rows, shared field variants and sizes, and the same validation and state model as the rest of the field family.",
+  "intro": "Use `ui-textarea` for notes, comments, descriptions, summaries, and any input that needs more vertical room than a single-line field. It inherits the shared field API for labels, help text, size, variant, readonly, disabled, and validation messaging while exposing multiline-specific sizing through `rows`.",
+  "importCode": "import { TextareaComponent } from 'ui';",
+  "containerClass": "textarea-doc",
+  "snippets": {
+    "basicCode": "textarea-basic-demo.ts",
+    "layoutCode": "textarea-layout-demo.ts",
+    "statesCode": "textarea-states-demo.ts",
+    "validationCode": "textarea-validation-demo.ts",
+    "formCode": "textarea-form-demo.ts",
+    "feedbackPanelCode": "textarea-feedback-panel-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic multiline fields",
+      "description": "Use the default textarea for notes, summaries, and longer written input. Existing multiline content should stay easy to review and refine.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "layout",
+      "title": "Layout, size, and rows",
+      "description": "Textarea follows the same field density model as the rest of the system, while `rows` controls how much writing space is visible before scrolling is needed.",
+      "codeKey": "layoutCode",
+      "componentKey": "layout"
+    },
+    {
+      "id": "states",
+      "title": "Readonly, disabled, and inline error states",
+      "description": "Readonly is useful for review surfaces, disabled removes interaction entirely, and lightweight inline checks can guide writing quality before submission.",
+      "codeKey": "statesCode",
+      "componentKey": "states"
+    },
+    {
+      "id": "validation",
+      "title": "Validation with reactive forms",
+      "description": "When a reason, description, or escalation note is required, use reactive-form validation so the field behaves consistently with the rest of the form.",
+      "codeKey": "validationCode",
+      "componentKey": "validation"
+    },
+    {
+      "id": "form",
+      "title": "Brief authoring form",
+      "description": "A practical pattern for content and product flows: group summary, context, and handoff notes in one writing surface and keep lightweight feedback nearby.",
+      "codeKey": "formCode",
+      "componentKey": "form"
+    },
+    {
+      "id": "feedback-panel",
+      "title": "Review feedback panel",
+      "description": "A stronger end-to-end example: enough space for actionable writing, guidance on tone, and direct actions to send or save the feedback.",
+      "codeKey": "feedbackPanelCode",
+      "componentKey": "feedbackPanel"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Label and description",
+      "body": "Prefer a visible `label` so the purpose of the multiline field is explicit, especially when several writing areas appear in the same view. Help and error text contribute through the standard field description model."
+    },
+    {
+      "title": "Keyboard and editing model",
+      "body": "This is a native multiline text input, so users rely on standard textarea behavior for typing, selection, line breaks, and cursor movement.\n\n| Aspect | Behavior |\n| --- | --- |\n| focus | native textarea receives focus |\n| typing | native multiline editing behavior |\n| Enter | inserts a new line |\n| Tab | moves focus according to normal document order |\n| readonly / disabled | editing is blocked, but readonly content remains visible |"
+    },
+    {
+      "title": "Rows and visible space",
+      "body": "`rows` affects the visible writing area only. It does not limit content length, so if the flow needs length rules or character guidance, pair the textarea with helper text or form validation."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "TextareaComponent - <code>ui-textarea</code>",
+      "lead": "Standalone multiline field built on the shared field base. It keeps the same layout, validation, and form-control model as the other field components while adding multiline sizing through rows and cols.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Key inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["label", "InputSignal<string>", "''", "Visible field label."],
+            ["placeholder", "InputSignal<string>", "''", "Hint shown when no content is present."],
+            ["helpText", "InputSignal<string>", "''", "Supporting guidance below the field."],
+            ["errorText", "ModelSignal<string>", "''", "Validation or submission error message."],
+            ["required", "InputSignal<boolean>", "false", "Marks the native textarea as required."],
+            ["disabled", "ModelSignal<boolean>", "false", "Prevents editing."],
+            [
+              "readonly",
+              "ModelSignal<boolean>",
+              "false",
+              "Keeps the content visible but not editable."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Shared field density token."],
+            [
+              "inputVariant",
+              "InputSignal<Variant>",
+              "'filled'",
+              "Visual treatment of the textarea surface."
+            ],
+            ["rows", "InputSignal<number>", "4", "Initial number of visible text rows."],
+            ["cols", "InputSignal<number | null>", "null", "Optional native column hint."]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "The component extends the shared `FieldComponent`, so CVA integration, focus handling, and validation behavior match the rest of the field family.",
+            "Because the underlying control is a native textarea, content length, formatting guidance, and writing quality rules should be handled by helper text or form validation rather than by the component itself."
+          ]
+        }
+      ]
+    }
+  ]
+}

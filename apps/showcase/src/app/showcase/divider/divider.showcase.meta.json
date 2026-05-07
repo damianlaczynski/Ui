@@ -1,0 +1,129 @@
+{
+  "slug": "divider",
+  "title": "Divider",
+  "description": "Divider separates content into clearer groups without adding heavy visual chrome. Use it to split sections, inline actions, or alternative paths such as auth options and toolbar groups.",
+  "intro": "Divider renders a semantic separator with horizontal or vertical orientation, optional text, and configurable text alignment. It should support layout comprehension quietly rather than become a visual focal point.",
+  "importCode": "import { DividerComponent } from 'ui';",
+  "containerClass": "divider-doc",
+  "snippets": {
+    "basicCode": "divider-basic-demo.ts",
+    "orientationCode": "divider-orientation-demo.ts",
+    "alignmentCode": "divider-alignment-demo.ts",
+    "authSplitCode": "divider-auth-split-demo.ts",
+    "panelSectionsCode": "divider-panel-sections-demo.ts",
+    "toolbarGroupingCode": "divider-toolbar-grouping-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic separators",
+      "description": "Use a plain divider when the layout already provides enough context and the separator only needs to suggest a new block or pause in reading.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "orientation",
+      "title": "Horizontal and vertical orientation",
+      "description": "Horizontal dividers split stacked content; vertical dividers separate side-by-side tools, metadata, or compact action groups.",
+      "codeKey": "orientationCode",
+      "componentKey": "orientation"
+    },
+    {
+      "id": "alignment",
+      "title": "Text alignment",
+      "description": "Start, center, and end alignment help when the label should visually attach to surrounding content instead of floating neutrally in the middle.",
+      "codeKey": "alignmentCode",
+      "componentKey": "alignment"
+    },
+    {
+      "id": "auth-split",
+      "title": "Alternative path split",
+      "description": "The classic `OR` divider works best when two actions are truly equivalent alternatives, such as email sign-in versus SSO or magic link entry.",
+      "codeKey": "authSplitCode",
+      "componentKey": "authSplit"
+    },
+    {
+      "id": "panel-sections",
+      "title": "Sectioned panels",
+      "description": "Inside drawers, dialogs, and cards, dividers help break longer panels into digestible groups without introducing separate containers everywhere.",
+      "codeKey": "panelSectionsCode",
+      "componentKey": "panelSections"
+    },
+    {
+      "id": "toolbar-grouping",
+      "title": "Toolbar and metadata grouping",
+      "description": "Vertical dividers are useful in dense horizontal layouts where spacing alone is not enough to explain grouping.",
+      "codeKey": "toolbarGroupingCode",
+      "componentKey": "toolbarGrouping"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Role and orientation",
+      "body": "`DividerComponent` renders with `role=\"separator\"` and exposes `aria-orientation` so assistive technologies understand whether it separates horizontal or vertical content."
+    },
+    {
+      "title": "Accessible label",
+      "body": "If `ariaLabel` is provided, it is used directly. Otherwise the component falls back to divider text when present, or to a generic localized divider label."
+    },
+    {
+      "title": "Applicability",
+      "body": "Divider is purely structural and not interactive, so there is no keyboard section. Add visible text only when it adds meaning, not as decoration."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "DividerComponent - <code>ui-divider</code>",
+      "lead": "Standalone structural separator for layouts, action groups, and labeled content boundaries. It keeps the API intentionally small: orientation, optional text, text alignment, and accessible labeling.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "orientation",
+              "InputSignal<'horizontal' | 'vertical'>",
+              "'horizontal'",
+              "Controls whether the divider separates stacked or side-by-side content."
+            ],
+            [
+              "alignment",
+              "InputSignal<'start' | 'center' | 'end'>",
+              "'center'",
+              "Positions divider text when text is present."
+            ],
+            [
+              "text",
+              "InputSignal<string>",
+              "''",
+              "Optional visible label such as `OR`, `Details`, or `Section`. When empty, the divider renders as a plain line."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "''",
+              "Explicit accessible label override when the default fallback is not descriptive enough."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "When <code class=\"showcase-doc__api-code\">text</code> is empty, the divider renders as a full uninterrupted line.",
+            "When <code class=\"showcase-doc__api-code\">ariaLabel</code> is empty, the component falls back to visible text or a localized generic divider label."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Related mechanisms",
+          "items": [
+            "<code>Orientation</code> and <code>Alignment</code> - shared unions used across layout-oriented components.",
+            "Shared i18n service - provides the fallback localized aria label when no explicit text or label is supplied."
+          ]
+        }
+      ]
+    }
+  ]
+}

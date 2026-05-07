@@ -1,0 +1,173 @@
+{
+  "slug": "nav",
+  "title": "Nav",
+  "description": "Nav builds side navigation and hierarchical local rails on top of tree-node behavior. It supports semantic variants, appearances, sizes, shapes, section headers, dividers, deep nesting, content templates, and quick actions.",
+  "intro": "Use `ui-nav` for sidebars, workspace rails, settings navigation, and other structured navigation surfaces where a flat menu is not enough. It manages rendering and tree behavior for navigation rows, while the surrounding app handles routing or state updates when a node is selected.",
+  "importCode": "import { NavComponent, type NavNode } from 'ui';",
+  "containerClass": "nav-doc",
+  "snippets": {
+    "basicCode": "nav-basic-demo.ts",
+    "appearanceCode": "nav-appearance-demo.ts",
+    "deepTreeCode": "nav-deep-tree-demo.ts",
+    "sectionsCode": "nav-sections-demo.ts",
+    "contentTemplateCode": "nav-content-template-demo.ts",
+    "quickActionsCode": "nav-quick-actions-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic side navigation",
+      "description": "A small flat rail is enough for simple local navigation. Use this when the section list is short and there is no need for grouping or hierarchy.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "appearance",
+      "title": "Appearance, variant, and shape",
+      "description": "Appearance and variant control how prominent the navigation feels against the surrounding shell, while shape adjusts the row geometry to match your product language.",
+      "codeKey": "appearanceCode",
+      "componentKey": "appearance"
+    },
+    {
+      "id": "deep-tree",
+      "title": "Deep navigation trees",
+      "description": "Use deeper trees when a workspace contains several nested areas such as projects, releases, files, or operations. The selected path should remain understandable even across multiple levels.",
+      "codeKey": "deepTreeCode",
+      "componentKey": "deepTree"
+    },
+    {
+      "id": "sections",
+      "title": "Sections and dividers",
+      "description": "Section headers and dividers help separate unrelated destinations inside one rail, especially in admin shells that mix navigation and utilities.",
+      "codeKey": "sectionsCode",
+      "componentKey": "sections"
+    },
+    {
+      "id": "content-template",
+      "title": "Content templates with badges",
+      "description": "Custom node content is useful when navigation should carry counts, status chips, or compact metadata without building a separate sidebar component.",
+      "codeKey": "contentTemplateCode",
+      "componentKey": "contentTemplate"
+    },
+    {
+      "id": "quick-actions",
+      "title": "Quick actions on nodes",
+      "description": "Quick actions fit management-style sidebars where users may pin, remove, or edit navigation items directly from the rail.",
+      "codeKey": "quickActionsCode",
+      "componentKey": "quickActions"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Navigation semantics",
+      "body": "`ui-nav` renders its content inside a navigation region and uses tree-node semantics for hierarchical items. Section headers and dividers remain non-interactive, while actual navigation rows expose button-like interaction through the underlying tree node model."
+    },
+    {
+      "title": "Keyboard behavior",
+      "body": "Keyboard behavior follows the tree-node interaction model.\n\n| Key | Action |\n| --- | --- |\n| Tab | Moves focus into or out of the navigation region according to document order. |\n| Enter / Space | Activates the focused row according to its click behavior. |\n| Arrow keys | Move between rows and expand or collapse nested items through the underlying tree navigation model. |"
+    },
+    {
+      "title": "Selected item handling",
+      "body": "Selected nodes should reflect the current location or active workspace context. When `autoScrollToSelected` is enabled, the component will attempt to bring the selected item into view after the data changes."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "NavComponent - <code>ui-nav</code>",
+      "lead": "Standalone side-navigation component built on top of tree-node rendering. It accepts navigation data, renders structural rows such as section headers and dividers, and exposes hooks for custom content and quick actions.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Key inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["items", "InputSignal<NavNode[]>", "-", "Navigation data set to render."],
+            [
+              "variant",
+              "InputSignal<Variant>",
+              "'primary'",
+              "Semantic styling variant for interactive rows."
+            ],
+            [
+              "appearance",
+              "InputSignal<Appearance>",
+              "'subtle'",
+              "Visual emphasis of navigation rows."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Row density token."],
+            ["shape", "InputSignal<Shape>", "'rounded'", "Corner treatment for rows."],
+            [
+              "chevronPosition",
+              "InputSignal<'before' | 'after'>",
+              "'after'",
+              "Placement of the expand or collapse chevron for items with children."
+            ],
+            [
+              "showSelectionIndicator",
+              "InputSignal<boolean>",
+              "true",
+              "Shows or hides the selected-row indicator."
+            ],
+            [
+              "indicatorPosition",
+              "InputSignal<'horizontal' | 'vertical'>",
+              "'vertical'",
+              "Placement of the selection indicator."
+            ],
+            [
+              "showQuickActions",
+              "InputSignal<boolean>",
+              "false",
+              "Enables a quick-actions region on each row."
+            ],
+            [
+              "quickActionsTemplate",
+              "InputSignal<TemplateRef<any> | null>",
+              "null",
+              "Projected template for row quick actions."
+            ],
+            [
+              "contentTemplate",
+              "InputSignal<TemplateRef<any> | null>",
+              "null",
+              "Projected template for custom row content."
+            ],
+            [
+              "autoScrollToSelected",
+              "InputSignal<boolean>",
+              "true",
+              "Attempts to scroll the selected row into view after data changes."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Nav node shape and outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "NavNode",
+              "TreeNode plus `isDivider?`, `isSectionHeader?`, `size?`",
+              "Navigation-specific node contract with support for structural rows."
+            ],
+            ["nodeClick", "OutputEmitterRef<NavNode>", "Emits when a navigation row is activated."],
+            [
+              "onClick",
+              "callback on node",
+              "Optional callback invoked when the node is activated before the component emits `nodeClick`."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "The component does not perform routing by itself. Use `nodeClick`, selected node state, or node callbacks to integrate the rail with your router or view state.",
+            "For large navigation trees, favor clear sectioning and keep the selected path obvious. Deep hierarchies are most useful when the app genuinely has nested areas, not as a substitute for better information architecture."
+          ]
+        }
+      ]
+    }
+  ]
+}

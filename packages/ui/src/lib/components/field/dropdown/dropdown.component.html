@@ -92,6 +92,8 @@
 
           <!-- Actions: Chevron button -->
           <ui-action-button
+            class="dropdown-trigger__chevron"
+            [class.dropdown-trigger__chevron--open]="isOpen()"
             [icon]="'chevron_down'"
             [size]="size()"
             [ariaLabel]="getToggleMenuAriaLabel()"
@@ -124,7 +126,7 @@
       <div class="dropdown-panel__search">
         <ui-search
           [size]="size()"
-          variant="filled-gray"
+          inputVariant="filled-gray"
           [placeholder]="getSearchPlaceholderText()"
           (input)="onSearchInput($event)"
           (click)="$event.stopPropagation()"
@@ -132,12 +134,16 @@
       </div>
     }
     <!-- Items list -->
+    <ng-template #dropdownPanelEmpty>
+      <ui-empty-state [icon]="panelEmptyIcon()" [description]="panelEmptyDescription()" />
+    </ng-template>
     <ui-scroll-container
       #scrollContainer
       [dataSource]="scrollContainerDataSource()"
       [pageSize]="pageSize()"
       [useNodeComponent]="false"
       [itemTemplate]="scrollItemTemplate || null"
+      [emptyTemplate]="dropdownPanelEmptyTpl() ?? null"
       [orientation]="'vertical'"
       [scrollbarBehavior]="'auto'"
       (loadMore)="onScrollContainerLoadMore($event)"
@@ -168,16 +174,18 @@
             </ng-template>
           }
           <ng-template #before>
-            @if (shouldShowCheckmark(item)) {
-              <ui-icon [icon]="'checkmark'" [size]="size()" />
-            } @else if (shouldShowCheckbox(item)) {
-              <ui-checkbox
-                size="medium"
-                [ngModel]="isItemSelected(item)"
-                (ngModelChange)="selectItem(item, $event)"
-                (click)="$event.stopPropagation()"
-              />
-            }
+            <span class="dropdown-panel__option-leading" aria-hidden="true">
+              @if (shouldShowCheckbox(item)) {
+                <ui-checkbox
+                  size="medium"
+                  [ngModel]="isItemSelected(item)"
+                  (ngModelChange)="selectItem(item)"
+                  (click)="$event.stopPropagation()"
+                />
+              } @else if (isItemSelected(item)) {
+                <ui-icon [icon]="'checkmark'" [size]="size()" />
+              }
+            </span>
           </ng-template>
         </ui-node>
       </ng-template>

@@ -47,3 +47,8 @@ Thumbs.db
 /blob-report/
 /playwright/.cache/
 /test-results/
+
+# Local env files
+.env
+
+public/llms/

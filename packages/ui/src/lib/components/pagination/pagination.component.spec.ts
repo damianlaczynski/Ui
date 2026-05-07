@@ -412,6 +412,24 @@ describe('PaginationComponent', () => {
       expect(emittedSize).toBe(50);
     });
 
+    it('should handle dropdown item page size values', () => {
+      let emittedSize: number | undefined;
+      component.pageSizeChange.subscribe(size => (emittedSize = size));
+
+      fixture.componentRef.setInput(
+        'config',
+        createBasicConfig({
+          showPageSizeSelector: true,
+          pageSizeOptions: [10, 25, 50],
+        }),
+      );
+      fixture.detectChanges();
+
+      component.onPageSizeSelected(25);
+
+      expect(emittedSize).toBe(25);
+    });
+
     it('should create dropdown items from page size options', () => {
       fixture.componentRef.setInput(
         'config',
@@ -492,6 +510,12 @@ describe('PaginationComponent', () => {
       expect(component.isEllipsis(1)).toBe(false);
       expect(component.isEllipsis(5)).toBe(false);
       expect(component.isEllipsis(10)).toBe(false);
+    });
+
+    it('should return unique track keys for duplicate ellipsis markers', () => {
+      expect(component.getPageTrackKey(1, -1)).toBe('ellipsis-1');
+      expect(component.getPageTrackKey(7, -1)).toBe('ellipsis-7');
+      expect(component.getPageTrackKey(3, 5)).toBe(5);
     });
   });
 

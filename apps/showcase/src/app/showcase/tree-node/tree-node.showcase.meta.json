@@ -1,0 +1,213 @@
+{
+  "slug": "tree-node",
+  "title": "Tree Node",
+  "description": "Tree Node renders a single hierarchical row with optional nested children, chevrons, selection indicators, custom content, quick actions, and drop targets.",
+  "intro": "Use `ui-tree-node` when you need one expandable branch or want fine-grained control over recursive rows. For full collections of root nodes, use `ui-tree` instead.",
+  "importCode": "import { TreeNodeComponent, type TreeNode } from 'ui';",
+  "containerClass": "tree-node-doc",
+  "snippets": {
+    "basicCode": "tree-node-basic-demo.ts",
+    "behaviorCode": "tree-node-behavior-demo.ts",
+    "statesCode": "tree-node-states-demo.ts",
+    "contentTemplateCode": "tree-node-content-template-demo.ts",
+    "quickActionsCode": "tree-node-quick-actions-demo.ts",
+    "recursiveCode": "tree-node-recursive-demo.ts",
+    "dragDropCode": "tree-node-drag-drop-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Leaf and parent rows",
+      "description": "A tree node can represent either a single leaf item or a parent row that exposes nested children. This is the smallest useful mental model for the component.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "behavior",
+      "title": "Interaction behavior",
+      "description": "Chevron position, button-like rendering, and selection indicator placement change how the row feels. Use calmer behavior for file structures and stronger interaction for command-style rows.",
+      "codeKey": "behaviorCode",
+      "componentKey": "behavior"
+    },
+    {
+      "id": "states",
+      "title": "Common states",
+      "description": "Selected and disabled states should remain obvious even when the node is nested. Keep them consistent with the surrounding tree or navigation pattern.",
+      "codeKey": "statesCode",
+      "componentKey": "states"
+    },
+    {
+      "id": "content-template",
+      "title": "Custom content templates",
+      "description": "A custom row template is useful when nodes need metadata such as sync state, timestamps, or item details alongside the main label.",
+      "codeKey": "contentTemplateCode",
+      "componentKey": "contentTemplate"
+    },
+    {
+      "id": "quick-actions",
+      "title": "Quick actions",
+      "description": "Quick actions fit management or explorer surfaces where users may rename, archive, or otherwise act on a row in place.",
+      "codeKey": "quickActionsCode",
+      "componentKey": "quickActions"
+    },
+    {
+      "id": "recursive",
+      "title": "Recursive nesting",
+      "description": "`ui-tree-node` can render nested children recursively. This is useful for one focused branch, embedded subtrees, or custom shells that do not need the full `ui-tree` container.",
+      "codeKey": "recursiveCode",
+      "componentKey": "recursive"
+    },
+    {
+      "id": "drag-drop",
+      "title": "Drop targets inside a branch",
+      "description": "Drop-zone support on `ui-tree-node` is useful when a single branch needs inline reordering or item moves without rendering a separate tree container.",
+      "codeKey": "dragDropCode",
+      "componentKey": "dragDrop"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Tree-item semantics",
+      "body": "`ui-tree-node` exposes `role=\"treeitem\"` and reflects hierarchical state through attributes such as `aria-expanded`, `aria-selected`, `aria-disabled`, and `aria-level` when applicable."
+    },
+    {
+      "title": "Keyboard behavior",
+      "body": "Keyboard behavior follows the tree-item model.\n\n| Key | Action |\n| --- | --- |\n| Enter / Space | Activates the focused node. |\n| ArrowRight | Expands a collapsed parent node. |\n| ArrowLeft | Collapses an expanded parent node. |\n| * | Expands sibling branches at the same level when supported by the current context. |"
+    },
+    {
+      "title": "Custom content and quick actions",
+      "body": "If you replace the default row content with a custom template, preserve a clear primary label. Quick actions and extra controls need their own accessible labels and should not make the main tree-item purpose ambiguous."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "TreeNodeComponent - <code>ui-tree-node</code>",
+      "lead": "Recursive standalone row component for hierarchical content. It can render one node with children, expose custom content and quick actions, and participate in selection, keyboard interaction, and drag-and-drop flows.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Key inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["node", "InputSignal<TreeNode>", "-", "Node data to render."],
+            ["size", "InputSignal<Size>", "'medium'", "Row density token."],
+            ["variant", "InputSignal<Variant>", "'primary'", "Semantic styling variant."],
+            ["appearance", "InputSignal<Appearance>", "'subtle'", "Visual emphasis of the row."],
+            ["shape", "InputSignal<Shape>", "'rounded'", "Corner treatment of the row container."],
+            [
+              "showSelectionIndicator",
+              "InputSignal<boolean>",
+              "false",
+              "Shows a selected-row indicator."
+            ],
+            [
+              "indicatorPosition",
+              "InputSignal<'horizontal' | 'vertical'>",
+              "'vertical'",
+              "Placement of the selection indicator."
+            ],
+            [
+              "chevronPosition",
+              "InputSignal<'before' | 'after'>",
+              "'before'",
+              "Placement of the expand/collapse chevron."
+            ],
+            [
+              "chevronIconCollapsed",
+              "InputSignal<IconName>",
+              "'chevron_right'",
+              "Chevron icon used while collapsed."
+            ],
+            [
+              "chevronIconExpanded",
+              "InputSignal<IconName>",
+              "'chevron_down'",
+              "Chevron icon used while expanded."
+            ],
+            [
+              "asButton",
+              "InputSignal<boolean>",
+              "false",
+              "Renders the node with a more button-like interaction style."
+            ],
+            [
+              "expandOnClick",
+              "InputSignal<boolean>",
+              "false",
+              "Expands parent nodes when the row itself is clicked."
+            ],
+            [
+              "selectOnClick",
+              "InputSignal<boolean>",
+              "true",
+              "Marks the row as selected on click."
+            ],
+            [
+              "showQuickActions",
+              "InputSignal<boolean>",
+              "false",
+              "Enables an actions region in the row."
+            ],
+            [
+              "quickActionsTemplate",
+              "InputSignal<TemplateRef<any> | null>",
+              "null",
+              "Template rendered in the quick-actions region."
+            ],
+            [
+              "contentTemplate",
+              "InputSignal<TemplateRef<any> | null>",
+              "null",
+              "Template that replaces the default icon and label content."
+            ],
+            ["draggable", "InputSignal<boolean>", "false", "Makes the row draggable."],
+            [
+              "dropZone",
+              "InputSignal<boolean>",
+              "false",
+              "Shows child drop targets and accepts drops."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs and node shape",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            ["nodeClick", "OutputEmitterRef<TreeNode>", "Emits when the row is activated."],
+            [
+              "nodeToggle",
+              "OutputEmitterRef<TreeNode>",
+              "Emits when a parent node expands or collapses."
+            ],
+            ["nodeSelect", "OutputEmitterRef<TreeNode>", "Emits when the row selection changes."],
+            [
+              "dragStart / dragEnd",
+              "OutputEmitterRef<{ node, event }>",
+              "Emit during row drag operations."
+            ],
+            [
+              "drop / dragOver",
+              "OutputEmitterRef<{ node, event, position }>",
+              "Emit while dragging over or dropping before, after, or inside a child target."
+            ],
+            [
+              "TreeNode",
+              "Node plus `hasChildren?`, `children?`, `expanded?`, `parent?`, `level?`",
+              "Recursive node contract used by the component."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "Use `ui-tree-node` directly for one recursive branch or embedded subtree patterns. For a full tree root collection, `ui-tree` usually gives a clearer API.",
+            "When you provide custom templates, keep the row compact and avoid burying the primary label under too much secondary metadata."
+          ]
+        }
+      ]
+    }
+  ]
+}

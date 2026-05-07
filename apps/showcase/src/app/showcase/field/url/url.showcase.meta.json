@@ -1,0 +1,128 @@
+{
+  "slug": "url",
+  "title": "URL",
+  "description": "URL is a field-specialized wrapper around the shared input foundation with native `type=\"url\"`, built-in clear affordance, and a link-oriented action icon.",
+  "intro": "Use `ui-url` for website fields, profile links, source references, support pages, and any workflow that captures navigable destinations. It inherits the shared field API for labels, help text, size, variant, readonly, disabled, and validation messaging while using URL-friendly input semantics.",
+  "importCode": "import { UrlComponent } from 'ui';",
+  "containerClass": "url-doc",
+  "snippets": {
+    "basicCode": "url-basic-demo.ts",
+    "layoutCode": "url-layout-demo.ts",
+    "statesCode": "url-states-demo.ts",
+    "validationCode": "url-validation-demo.ts",
+    "profileFormCode": "url-profile-form-demo.ts",
+    "linkPanelCode": "url-link-panel-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic URL fields",
+      "description": "Use the default field for destination links and let the built-in clear action handle quick replacement when a URL is already present.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "layout",
+      "title": "Layout, size, and variant",
+      "description": "URL fields follow the same density and label rhythm as the rest of the field family, so they can fit compact admin forms and larger setup surfaces without special-case styling.",
+      "codeKey": "layoutCode",
+      "componentKey": "layout"
+    },
+    {
+      "id": "states",
+      "title": "Readonly, disabled, and inline error states",
+      "description": "Readonly works for visible but locked canonical links, disabled removes interaction completely, and lightweight inline checks can guide users toward full URLs before form submission.",
+      "codeKey": "statesCode",
+      "componentKey": "states"
+    },
+    {
+      "id": "validation",
+      "title": "Validation with reactive forms",
+      "description": "When a link is required for publishing or workflow routing, use reactive-form validation so the field behaves consistently with the rest of the form.",
+      "codeKey": "validationCode",
+      "componentKey": "validation"
+    },
+    {
+      "id": "profile-form",
+      "title": "Profile links form",
+      "description": "A practical pattern for admin or profile screens: group website, repository, and support links in one surface with a compact value summary.",
+      "codeKey": "profileFormCode",
+      "componentKey": "profileForm"
+    },
+    {
+      "id": "link-panel",
+      "title": "Share destination panel",
+      "description": "A stronger end-to-end example: collect the destination URL, show where it will be used, and keep the next action nearby.",
+      "codeKey": "linkPanelCode",
+      "componentKey": "linkPanel"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Label and name",
+      "body": "Prefer a visible `label` so the link purpose is explicit, especially when several URL fields appear together. Help and error text contribute through `aria-describedby`."
+    },
+    {
+      "title": "Native URL semantics",
+      "body": "The inner input uses native `type=\"url\"`, which helps browsers apply URL-specific validation heuristics and aligns the field with browser autofill expectations. When `autocomplete` is omitted, the inner input falls back to `url`."
+    },
+    {
+      "title": "Keyboard and actions",
+      "body": "This is a standard text-entry field backed by a native URL input. Clear and link affordances are exposed in the field chrome when the field is editable.\n\n| Aspect | Behavior |\n| --- | --- |\n| focus | native url input receives focus |\n| typing | native url input behavior |\n| clear action | appears only when the field has a value and is editable |\n| link action | stays visible while editable to reinforce the destination purpose |\n| readonly / disabled | actions are hidden and direct editing is blocked |"
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "UrlComponent - <code>ui-url</code>",
+      "lead": "Standalone URL field built on the shared field base. It keeps the same layout, validation, and form-control model as the other field components while adding link-oriented input semantics and actions.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Key inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["label", "InputSignal<string>", "''", "Visible field label."],
+            [
+              "labelPosition",
+              "InputSignal<ContentPosition>",
+              "'above'",
+              "Shared field label placement token."
+            ],
+            ["placeholder", "InputSignal<string>", "''", "Hint shown when the URL is empty."],
+            ["helpText", "InputSignal<string>", "''", "Supporting guidance below the field."],
+            ["errorText", "ModelSignal<string>", "''", "Validation or submission error message."],
+            ["required", "InputSignal<boolean>", "false", "Marks the native input as required."],
+            ["disabled", "ModelSignal<boolean>", "false", "Prevents editing and hides actions."],
+            [
+              "readonly",
+              "ModelSignal<boolean>",
+              "false",
+              "Keeps the URL visible but not editable."
+            ],
+            [
+              "autocomplete",
+              "InputSignal<string | null>",
+              "null",
+              "Optional autocomplete hint. The inner input falls back to `url` when omitted."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Shared field density token."],
+            [
+              "inputVariant",
+              "InputSignal<Variant>",
+              "'filled'",
+              "Visual treatment of the input surface."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "The component extends the shared `FieldComponent`, so CVA integration, focus handling, described-by wiring, and validation behavior match the rest of the field family.",
+            "Clear appears only when a value is present, while the link icon remains visible for editable fields to reinforce that the field captures a navigable destination rather than generic text."
+          ]
+        }
+      ]
+    }
+  ]
+}

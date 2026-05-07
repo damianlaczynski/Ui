@@ -1,0 +1,188 @@
+{
+  "slug": "tree",
+  "title": "Tree",
+  "description": "Tree displays hierarchical content with expandable nodes, selection, custom row content, quick actions, and drag-and-drop reordering.",
+  "intro": "Use `ui-tree` for file explorers, content maps, structured settings, and other places where parent-child relationships matter. Keep the hierarchy meaningful and make the active branch easy to scan.",
+  "importCode": "import { TreeComponent, type TreeNode } from 'ui';",
+  "containerClass": "tree-doc",
+  "snippets": {
+    "basicCode": "tree-basic-demo.ts",
+    "interactionCode": "tree-interaction-demo.ts",
+    "deepStructureCode": "tree-deep-structure-demo.ts",
+    "contentTemplateCode": "tree-content-template-demo.ts",
+    "quickActionsCode": "tree-quick-actions-demo.ts",
+    "dragDropCode": "tree-drag-drop-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic hierarchical content",
+      "description": "A compact tree works well for file explorers, content folders, and other simple hierarchies where the current branch needs to stay visible.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "interaction",
+      "title": "Selection and interaction behavior",
+      "description": "Chevron placement, selection indicator position, and click behavior change how the tree feels. Pick a calmer browser-like model for content trees and a more button-like model for navigation-style trees.",
+      "codeKey": "interactionCode",
+      "componentKey": "interaction"
+    },
+    {
+      "id": "deep-structure",
+      "title": "Deeper structures",
+      "description": "Use deeper trees only when the nesting is real. Expanded parent branches should make the selected path easy to follow across several levels.",
+      "codeKey": "deepStructureCode",
+      "componentKey": "deepStructure"
+    },
+    {
+      "id": "content-template",
+      "title": "Custom content templates",
+      "description": "Row templates are useful when each node should expose counts, status, or lightweight metadata without building a separate explorer component.",
+      "codeKey": "contentTemplateCode",
+      "componentKey": "contentTemplate"
+    },
+    {
+      "id": "quick-actions",
+      "title": "Quick actions on rows",
+      "description": "Quick actions fit management tools where users may rename, archive, or otherwise act on nodes directly in the tree.",
+      "codeKey": "quickActionsCode",
+      "componentKey": "quickActions"
+    },
+    {
+      "id": "drag-drop",
+      "title": "Drag and drop reordering",
+      "description": "Drag and drop is useful in real workspace tools where users move files or reorganize branches. Keep the operation visible and offer a clear reset or undo path in demos.",
+      "codeKey": "dragDropCode",
+      "componentKey": "dragDrop"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Tree semantics",
+      "body": "`ui-tree` renders a `role=\"tree\"` container and `ui-tree-node` rows provide tree-item style interaction for hierarchical content. Use clear labels and only model a tree when the structure is truly parent-child."
+    },
+    {
+      "title": "Keyboard behavior",
+      "body": "Keyboard behavior follows the tree-node model.\n\n| Key | Action |\n| --- | --- |\n| Tab | Moves focus into or out of the tree according to document order. |\n| Enter / Space | Activates the focused node. |\n| ArrowRight | Expands a collapsed parent node. |\n| ArrowLeft | Collapses an expanded parent node. |\n| * | Expands sibling branches at the same level when supported by the current node context. |"
+    },
+    {
+      "title": "Selection and custom actions",
+      "body": "When `selectOnClick` is enabled, keep selection aligned with the current document, item, or active branch. If you add quick actions or custom row content, ensure those controls have their own accessible labels and do not obscure the main node label."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "TreeComponent - <code>ui-tree</code>",
+      "lead": "Standalone tree component for hierarchical content. It renders nested `TreeNode` data, supports selection and toggling, and can expose custom row content, quick actions, and drag-and-drop behavior.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Key inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["nodes", "ModelSignal<TreeNode[]>", "[]", "Hierarchical data to render."],
+            ["size", "InputSignal<Size>", "'medium'", "Density of tree rows."],
+            ["variant", "InputSignal<Variant>", "'primary'", "Semantic styling variant."],
+            ["appearance", "InputSignal<Appearance>", "'subtle'", "Visual emphasis of tree rows."],
+            ["shape", "InputSignal<Shape>", "'rounded'", "Corner treatment for rows."],
+            [
+              "showSelectionIndicator",
+              "InputSignal<boolean>",
+              "false",
+              "Shows a selected-row indicator."
+            ],
+            [
+              "indicatorPosition",
+              "InputSignal<'horizontal' | 'vertical'>",
+              "'vertical'",
+              "Placement of the selection indicator."
+            ],
+            [
+              "chevronPosition",
+              "InputSignal<'before' | 'after'>",
+              "'before'",
+              "Placement of the expand/collapse chevron."
+            ],
+            [
+              "asButton",
+              "InputSignal<boolean>",
+              "false",
+              "Renders nodes with a more button-like interaction model."
+            ],
+            [
+              "expandOnClick",
+              "InputSignal<boolean>",
+              "false",
+              "Expands parent nodes when the row itself is clicked."
+            ],
+            [
+              "selectOnClick",
+              "InputSignal<boolean>",
+              "false",
+              "Marks the clicked node as selected."
+            ],
+            [
+              "showQuickActions",
+              "InputSignal<boolean>",
+              "false",
+              "Enables a quick-actions region on rows."
+            ],
+            [
+              "contentTemplate",
+              "content child / template input",
+              "null",
+              "Custom template for row content."
+            ],
+            [
+              "quickActionsTemplate",
+              "content child / template input",
+              "null",
+              "Custom template for row quick actions."
+            ],
+            ["draggable", "InputSignal<boolean>", "false", "Makes rows draggable."],
+            [
+              "dropZone",
+              "InputSignal<boolean>",
+              "false",
+              "Shows drop targets and accepts drops between or inside nodes."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs and node shape",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            ["nodeClick", "OutputEmitterRef<TreeNode>", "Emits when a row is activated."],
+            ["nodeToggle", "OutputEmitterRef<TreeNode>", "Emits when a node expands or collapses."],
+            [
+              "nodeSelect",
+              "OutputEmitterRef<TreeNode>",
+              "Emits when selection changes through tree interaction."
+            ],
+            [
+              "nodeMoved",
+              "OutputEmitterRef<{ node, target, position }>",
+              "Emits after drag-and-drop reordering."
+            ],
+            [
+              "TreeNode",
+              "Node plus `hasChildren?`, `children?`, `expanded?`, `parent?`, `level?`",
+              "Hierarchical node contract used by the tree."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "Use `ui-tree` when the relationship between items is hierarchical. For flat navigation rails, simpler menu or nav patterns are often easier to scan.",
+            "If you enable drag and drop, pair it with clear status feedback and a safe way to reset or undo changes in the surrounding experience."
+          ]
+        }
+      ]
+    }
+  ]
+}

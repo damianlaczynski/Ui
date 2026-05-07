@@ -1,0 +1,355 @@
+{
+  "slug": "toast",
+  "title": "Toast",
+  "description": "Transient feedback for confirmations, status, and errors. Compose inline with ToastComponent for demos and documentation, or push notifications through ToastService while ToastContainerComponent anchors stacks to a screen corner.",
+  "intro": "Transient feedback for confirmations, warnings, and errors. Use `ToastComponent` for inline previews and layouts, and pair `ToastService` with `ToastContainerComponent` for stacked notifications from application logic.",
+  "importCode": "import { ToastComponent, ToastContainerComponent, ToastService } from 'ui';",
+  "containerClass": "toast-doc",
+  "snippets": {
+    "serviceCode": "toast-service-demo.ts",
+    "basicCode": "toast-basic-demo.ts",
+    "variantsCode": "toast-variants-demo.ts",
+    "appearanceCode": "toast-appearance-demo.ts",
+    "sizesCode": "toast-sizes-demo.ts",
+    "optionsCode": "toast-options-demo.ts",
+    "stickyCode": "toast-sticky-demo.ts",
+    "actionsCode": "toast-actions-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "service",
+      "title": "Toast service and container",
+      "description": "Primary and secondary via add(), plus helper shortcuts (info, success, warning, error). Reset clears the queue after manual dismissals. One ToastContainer per corner renders the shared ToastService queue.",
+      "codeKey": "serviceCode",
+      "componentKey": "service"
+    },
+    {
+      "id": "basic",
+      "title": "Basic toast",
+      "description": "Title and message with primary variant and filled appearance; Reset restores the toast after dismiss.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "variants",
+      "title": "Variants",
+      "description": "Full semantic set including primary and secondary for hierarchy, plus info, success, warning, and danger. Icons follow the variant unless you hide them.",
+      "codeKey": "variantsCode",
+      "componentKey": "variants"
+    },
+    {
+      "id": "appearance",
+      "title": "Appearance",
+      "description": "Surface weight from filled through outline, subtle, tint, and transparent using the same semantic variant.",
+      "codeKey": "appearanceCode",
+      "componentKey": "appearance"
+    },
+    {
+      "id": "sizes",
+      "title": "Sizes",
+      "description": "Scale density from small inline hints to large banner-style feedback.",
+      "codeKey": "sizesCode",
+      "componentKey": "sizes"
+    },
+    {
+      "id": "options",
+      "title": "Dismiss, icon, and progress",
+      "description": "Control the close affordance, optional leading icon, and the timed progress strip tied to duration.",
+      "codeKey": "optionsCode",
+      "componentKey": "options"
+    },
+    {
+      "id": "sticky",
+      "title": "Sticky (ToastService)",
+      "description": "When ToastMessage.sticky is true, automatic removal after duration is skipped-use for confirmations users must read, then dismiss or call clear(). Uses the same queue as above; no second ToastContainer.",
+      "codeKey": "stickyCode",
+      "componentKey": "sticky"
+    },
+    {
+      "id": "content-actions",
+      "title": "Custom content and actions",
+      "description": "Four NgTemplates mirror rich body content (default slot) and footer actions (slot actions). Each button enqueues the same composition via ToastMessage.contentTemplate and ToastService.add-use the ToastContainer from the Toast service section above. Reset clears the queue.",
+      "codeKey": "actionsCode",
+      "componentKey": "actions"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Role and live region",
+      "body": "The root uses `role=\"alert\"`. `aria-live` is `assertive` for the danger variant and `polite` for others so assistive technologies prioritize errors without shouting over every hint.\n\n| Variant | Live region |\n| --- | --- |\n| `danger` | `assertive` |\n| all other variants | `polite` |"
+    },
+    {
+      "title": "Keyboard and actions",
+      "body": "Toast itself is not a focus trap. Keyboard interaction depends on whether dismiss and action buttons are rendered.\n\n| Element | Keyboard behavior |\n| --- | --- |\n| dismiss button | standard button keyboard support |\n| projected actions | standard keyboard support from the projected control |\n| non-interactive toast body | announced through the live region rather than focused |"
+    },
+    {
+      "title": "Dismiss and progress",
+      "body": "When `dismissible` is true, the dismiss control is a `ButtonComponent`; keep toast copy concise so the name and message remain the primary announcement.\n\nThe progress strip is decorative timing feedback. Critical status should still appear in `title` and `message` instead of relying on the countdown bar."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "ToastComponent - <code>ui-toast</code>",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["title", "InputSignal<string>", "''", "Primary heading announced with the toast."],
+            [
+              "message",
+              "InputSignal<string>",
+              "''",
+              "Supporting body copy; may be empty for title-only feedback."
+            ],
+            [
+              "variant",
+              "InputSignal<Variant>",
+              "'info'",
+              "Semantic palette (primary, secondary, success, warning, danger, info)."
+            ],
+            [
+              "appearance",
+              "InputSignal<Appearance>",
+              "'filled'",
+              "Surface treatment shared with buttons and banners."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Spacing and typography density."],
+            [
+              "duration",
+              "InputSignal<number>",
+              "5000",
+              "Milliseconds for progress styling; ToastService applies auto-removal separately when used."
+            ],
+            [
+              "dismissible",
+              "InputSignal<boolean>",
+              "true",
+              "Shows the dismiss icon button when true."
+            ],
+            [
+              "showIcon",
+              "InputSignal<boolean>",
+              "true",
+              "Controls the leading Fluent icon derived from variant."
+            ],
+            [
+              "showProgress",
+              "InputSignal<boolean>",
+              "true",
+              "When false, adds toast--no-progress and hides the bottom timing strip (use with dense or action-heavy toasts). When true and duration > 0, animates the strip."
+            ],
+            [
+              "position",
+              "InputSignal<ToastPosition>",
+              "'top-right'",
+              "Corner hint on the component; stacks still rely on ToastContainer placement in real apps."
+            ],
+            [
+              "visible",
+              "ModelSignal<boolean>",
+              "true",
+              "Two-way visibility; dismiss sets false and emits dismiss."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "dismiss",
+              "OutputRef<void>",
+              "Emitted after the user closes the toast or programmatic dismissal."
+            ],
+            [
+              "actionClick",
+              "OutputRef<void>",
+              "Hook for custom actions supplied through projected content (optional pattern)."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "Default projection fills <code class=\"showcase-doc__api-code\">toast__slot</code>. Elements with <code class=\"showcase-doc__api-code\">slot=\"actions\"</code> render in <code class=\"showcase-doc__api-code\">toast__footer</code> below the body so they stay clear of the dismiss control and the optional progress strip at the bottom edge."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ToastContainerComponent - <code>ui-toast-container</code>",
+      "lead": "Subscribes to <code class=\"showcase-doc__api-code\">ToastService.toasts</code> and renders each entry as <code class=\"showcase-doc__api-code\">ui-toast</code>. Place one container per viewport corner (or region) you want stacked toasts.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "position",
+              "InputSignal<ToastPosition>",
+              "'top-right'",
+              "Viewport corner / edge for the stacked list wrapper."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "Use separate containers if you intentionally split toast stacks (for example one host per drawer); each instance reads the same service signal."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ToastService",
+      "lead": "Injectable (<code class=\"showcase-doc__api-code\">providedIn: 'root'</code>). Holds a reactive queue of <code class=\"showcase-doc__api-code\">ToastMessage</code> items and schedules removal when <code class=\"showcase-doc__api-code\">duration</code> is set and <code class=\"showcase-doc__api-code\">sticky</code> is false.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Methods",
+          "columns": ["Method", "Returns", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "success(title, message?, options?)",
+              "string",
+              "Adds a success toast; merges Partial<ToastMessage> overrides."
+            ],
+            ["info(title, message?, options?)", "string", "Adds an informational toast."],
+            ["warn(title, message?, options?)", "string", "Adds a warning toast."],
+            ["error(title, message?, options?)", "string", "Adds a danger-variant toast."],
+            [
+              "add(toast)",
+              "string",
+              "Low-level enqueue with full ToastMessage shape; assigns id; schedules removal unless sticky."
+            ],
+            ["remove(id)", "void", "Removes a toast by id from the queue."],
+            [
+              "removeToast(toast)",
+              "void",
+              "Removes using the message reference when id is present."
+            ],
+            ["clear()", "void", "Empties all queued toasts."],
+            ["getToasts()", "ToastMessage[]", "Snapshot helper around the current signal value."]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "Convenience methods delegate to <code class=\"showcase-doc__api-code\">add</code> with a preset <code class=\"showcase-doc__api-code\">variant</code>. The optional <code class=\"showcase-doc__api-code\">options</code> argument accepts <code class=\"showcase-doc__api-code\">Partial&lt;ToastMessage&gt;</code> to override duration, appearance, sticky, and other fields.",
+            "<code class=\"showcase-doc__api-code\">clear</code> empties the entire queue - useful after users manually dismiss several toasts and you want a predictable reset state in demos or tests."
+          ]
+        },
+        {
+          "type": "table",
+          "title": "State",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "toasts",
+              "WritableSignal<ToastMessage[]>",
+              "Live list consumed by <code class=\"showcase-doc__api-code\">ToastContainerComponent</code>."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "UI code should treat <code class=\"showcase-doc__api-code\">toasts</code> as the source of truth for rendered stacks; <code class=\"showcase-doc__api-code\">getToasts()</code> is a snapshot helper for diagnostics or unit tests."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ToastMessage",
+      "lead": "Payload for <code class=\"showcase-doc__api-code\">ToastService.add</code> and the implicit helpers. Title and message are required strings; other fields override defaults when rendering through the container.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Fields",
+          "columns": ["Field", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            ["title", "string", "Required headline."],
+            ["message", "string", "Body text; may be an empty string."],
+            [
+              "duration",
+              "number | undefined",
+              "Auto-dismiss timeout for ToastService; defaults are applied inside helpers."
+            ],
+            [
+              "sticky",
+              "boolean | undefined",
+              "When true, ToastService skips automatic removal after duration."
+            ],
+            ["id", "string | undefined", "Optional stable id; generated when omitted."],
+            [
+              "variant",
+              "Variant | undefined",
+              "Overrides semantic palette when rendering through the container."
+            ],
+            ["appearance", "Appearance | undefined", "Overrides surface treatment."],
+            ["size", "Size | undefined", "Overrides toast density."],
+            ["showIcon", "boolean | undefined", "Hide or show the leading icon."],
+            [
+              "dismissible",
+              "boolean | undefined",
+              "Controls dismiss affordance for service-driven instances."
+            ],
+            [
+              "showProgress",
+              "boolean | undefined",
+              "Controls the progress strip for container-rendered toasts."
+            ],
+            [
+              "contentTemplate",
+              "TemplateRef<unknown> | undefined",
+              "Optional template rendered in the default projection slot below title/message (ToastContainer only). Define with ng-template in the host and pass the TemplateRef into ToastService.add."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "Fields omitted when calling helpers pick up defaults inside <code class=\"showcase-doc__api-code\">ToastContainerComponent</code> (for example icon visibility and dismiss behavior)."
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ToastPosition",
+      "lead": "String union for anchoring a container. Match the value on <code class=\"showcase-doc__api-code\">ToastContainerComponent</code> (and the optional <code class=\"showcase-doc__api-code\">position</code> input on <code class=\"showcase-doc__api-code\">ToastComponent</code> when you coordinate manual layout).",
+      "blocks": [
+        {
+          "type": "list",
+          "title": "Values",
+          "items": [
+            "<code class=\"showcase-doc__api-code\">top-left</code>",
+            "<code class=\"showcase-doc__api-code\">top-center</code>",
+            "<code class=\"showcase-doc__api-code\">top-right</code>",
+            "<code class=\"showcase-doc__api-code\">bottom-left</code>",
+            "<code class=\"showcase-doc__api-code\">bottom-center</code>",
+            "<code class=\"showcase-doc__api-code\">bottom-right</code>"
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Related mechanisms",
+          "items": [
+            "<code>ButtonComponent</code> - dismiss control and any <code>slot=\"actions\"</code> actions you project.",
+            "<code>IconComponent</code> - leading glyph derived from <code>ToastComponent</code> variant when <code>showIcon</code> is true.",
+            "Shared tokens - <code>Variant</code>, <code>Appearance</code>, and <code>Size</code> align toast styling with buttons and other surfaces."
+          ]
+        }
+      ]
+    }
+  ]
+}
