@@ -1,3 +1,4 @@
+import { NgTemplateOutlet } from '@angular/common';
 import { Component, inject, input } from '@angular/core';
 
 import { ToastComponent } from './toast.component';
@@ -7,7 +8,7 @@ import { ToastService } from './services/toast.service';
 @Component({
   selector: 'ui-toast-container',
 
-  imports: [ToastComponent],
+  imports: [ToastComponent, NgTemplateOutlet],
   template: `
     <div [class]="containerClasses()">
       @for (toast of toasts(); track toast.id) {
@@ -22,7 +23,11 @@ import { ToastService } from './services/toast.service';
           [showProgress]="toast.showProgress !== false"
           [duration]="toast.duration || 5000"
           (dismiss)="onToastDismiss(toast)"
-        />
+        >
+          @if (toast.contentTemplate) {
+            <ng-container [ngTemplateOutlet]="toast.contentTemplate" />
+          }
+        </ui-toast>
       }
     </div>
   `,

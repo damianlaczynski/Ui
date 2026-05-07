@@ -90,6 +90,28 @@ describe('TimePickerComponent', () => {
     expect(component.hourOptions[11]).toBe(12);
   });
 
+  it('should map 24h value to 12h clock when use24HourFormat is false', () => {
+    fixture.componentRef.setInput('use24HourFormat', false);
+    fixture.componentRef.setInput('value', '16:35');
+    fixture.detectChanges();
+
+    expect(component.selectedHour()).toBe(4);
+    expect(component.selectedMeridiem()).toBe('pm');
+  });
+
+  it('should emit 24h time when meridiem changes in 12h mode', () => {
+    fixture.componentRef.setInput('use24HourFormat', false);
+    fixture.componentRef.setInput('value', '09:05');
+    fixture.detectChanges();
+
+    const emitted: string[] = [];
+    component.timeChange.subscribe(value => emitted.push(value));
+
+    component.onMeridiemSelect('pm');
+
+    expect(emitted.at(-1)).toBe('21:05');
+  });
+
   it('should sync selected values from value input', () => {
     fixture.componentRef.setInput('value', '16:35');
     fixture.detectChanges();

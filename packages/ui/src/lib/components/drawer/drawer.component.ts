@@ -28,6 +28,11 @@ export type DrawerModalType = 'modal' | 'non-modal' | 'alert';
   selector: 'ui-drawer',
   templateUrl: './drawer.component.html',
   imports: [ButtonComponent, IconComponent, CdkTrapFocus],
+  host: {
+    '[style.display]': '"block"',
+    '[style.height]': 'type() === "inline" ? "100%" : null',
+    '[style.minWidth]': '"0"',
+  },
 })
 export class DrawerComponent {
   private static readonly CLOSE_ANIMATION_FALLBACK_MS = 340;
@@ -36,6 +41,7 @@ export class DrawerComponent {
     'slideOutRight',
     'slideOutTop',
     'slideOutBottom',
+    'panelInlineWidthCollapse',
   ]);
 
   //Service
@@ -108,6 +114,7 @@ export class DrawerComponent {
       'drawer',
       `drawer--${this.effectivePosition()}`,
       `drawer--${this.type()}`,
+      `drawer--size-${this.size()}`,
       this.isClosing() ? 'drawer--closing' : '',
     ].join(' ');
   });
@@ -191,6 +198,18 @@ export class DrawerComponent {
 
   onContentAnimationEnd(event: AnimationEvent): void {
     if (event.target !== event.currentTarget || !this.isClosing()) {
+      return;
+    }
+
+    if (!DrawerComponent.CLOSE_ANIMATION_NAMES.has(event.animationName)) {
+      return;
+    }
+
+    this.finalizeCloseAnimation();
+  }
+
+  onContainerAnimationEnd(event: AnimationEvent): void {
+    if (event.target !== event.currentTarget || !this.isClosing() || !this.isInline()) {
       return;
     }
 

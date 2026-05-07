@@ -20,7 +20,7 @@
         [style]="getGutterStyle()"
         [attr.role]="canResize(i) ? 'separator' : null"
         [attr.aria-label]="getGutterAriaLabel(i)"
-        [attr.aria-orientation]="orientation()"
+        [attr.aria-orientation]="separatorAriaOrientation()"
         [attr.aria-valuenow]="panelSizes()[i]"
         [attr.aria-valuemin]="panels()[i].minSize || 0"
         [attr.aria-valuemax]="panels()[i].maxSize || 100"

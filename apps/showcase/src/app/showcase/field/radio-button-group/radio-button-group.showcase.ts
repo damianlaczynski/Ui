@@ -6,7 +6,6 @@ import {
   type RadioButtonItem,
   type Appearance,
   type Orientation,
-  type SegmentLayout,
   type Shape,
   type Size,
   type Variant,
@@ -18,7 +17,6 @@ import {
   SIZES,
   SHAPES,
   ORIENTATIONS,
-  SEGMENT_LAYOUTS,
 } from '@shared/utils/showcase/component-options.utils';
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
@@ -54,10 +52,10 @@ const DEFAULT_ITEMS: RadioButtonItem[] = [
       <div class="showcase-content">
         <app-showcase-header title="Radio Button Group" />
         <p class="showcase__description">
-          Radio Button Group renders a set of options as selectable buttons. It supports variants,
-          appearances, sizes, shapes, orientation (horizontal/vertical), and layout
-          (segmented/separate). Use for single-choice selection where button-style options fit the
-          UI better than traditional radio buttons.
+          Radio Button Group renders a set of options as selectable buttons inside a bordered
+          container. It supports variants, appearances, sizes, shapes, and horizontal or vertical
+          orientation. Use for single-choice selection where button-style options fit the UI better
+          than traditional radio buttons.
         </p>
 
         <app-section-with-drawer
@@ -78,7 +76,6 @@ const DEFAULT_ITEMS: RadioButtonItem[] = [
                   [size]="appearanceForm().size"
                   [shape]="appearanceForm().shape"
                   [orientation]="appearanceForm().orientation"
-                  [layout]="appearanceForm().layout"
                   [disabled]="appearanceForm().disabled"
                   [readonly]="appearanceForm().readonly"
                   [required]="appearanceForm().required"
@@ -109,7 +106,6 @@ const DEFAULT_ITEMS: RadioButtonItem[] = [
                   [size]="variantForm().size"
                   [shape]="variantForm().shape"
                   [orientation]="variantForm().orientation"
-                  [layout]="variantForm().layout"
                   [disabled]="variantForm().disabled"
                   [readonly]="variantForm().readonly"
                   [required]="variantForm().required"
@@ -136,7 +132,6 @@ const DEFAULT_ITEMS: RadioButtonItem[] = [
                 <ui-radio-button-group
                   [label]="orientation + ' orientation'"
                   [orientation]="orientation"
-                  [layout]="orientationForm().layout"
                   [variant]="orientationForm().variant"
                   [appearance]="orientationForm().appearance"
                   [size]="orientationForm().size"
@@ -147,37 +142,6 @@ const DEFAULT_ITEMS: RadioButtonItem[] = [
                   [items]="defaultItems"
                   [(ngModel)]="orientationValues[orientation]"
                   [name]="'orientation-' + orientation"
-                />
-              </div>
-            }
-          </div>
-        </app-section-with-drawer>
-
-        <app-section-with-drawer
-          sectionTitle="Layout"
-          sectionDescription="Layout controls whether buttons are segmented (connected) or separate (spaced)."
-          [formConfig]="layoutDrawerFormConfig"
-          [formValues]="layoutFormValues()"
-          (formValuesChange)="layoutFormValues.set($event)"
-        >
-          <div class="showcase__grid showcase__grid--large">
-            @for (layout of segmentLayouts; track layout) {
-              <div class="showcase__item">
-                <h3 class="showcase__item__title">{{ layout | titlecase }}</h3>
-                <ui-radio-button-group
-                  [label]="layout + ' layout'"
-                  [layout]="layout"
-                  [orientation]="layoutForm().orientation"
-                  [variant]="layoutForm().variant"
-                  [appearance]="layoutForm().appearance"
-                  [size]="layoutForm().size"
-                  [shape]="layoutForm().shape"
-                  [disabled]="layoutForm().disabled"
-                  [readonly]="layoutForm().readonly"
-                  [required]="layoutForm().required"
-                  [items]="defaultItems"
-                  [(ngModel)]="layoutValues[layout]"
-                  [name]="'layout-' + layout"
                 />
               </div>
             }
@@ -202,7 +166,6 @@ const DEFAULT_ITEMS: RadioButtonItem[] = [
                   [appearance]="sizeForm().appearance"
                   [shape]="sizeForm().shape"
                   [orientation]="sizeForm().orientation"
-                  [layout]="sizeForm().layout"
                   [disabled]="sizeForm().disabled"
                   [readonly]="sizeForm().readonly"
                   [required]="sizeForm().required"
@@ -233,7 +196,6 @@ const DEFAULT_ITEMS: RadioButtonItem[] = [
                   [appearance]="shapeForm().appearance"
                   [size]="shapeForm().size"
                   [orientation]="shapeForm().orientation"
-                  [layout]="shapeForm().layout"
                   [disabled]="shapeForm().disabled"
                   [readonly]="shapeForm().readonly"
                   [required]="shapeForm().required"
@@ -248,7 +210,7 @@ const DEFAULT_ITEMS: RadioButtonItem[] = [
 
         <app-section-with-drawer
           sectionTitle="States"
-          sectionDescription="Normal, disabled, required, and readonly states. Use the Customize drawer to adjust variant, appearance, size, shape, orientation, and layout across all state examples."
+          sectionDescription="Normal, disabled, required, and readonly states. Use the Customize drawer to adjust variant, appearance, size, shape, and orientation across all state examples."
           [formConfig]="statesDrawerFormConfig"
           [formValues]="statesFormValues()"
           (formValuesChange)="statesFormValues.set($event)"
@@ -264,7 +226,6 @@ const DEFAULT_ITEMS: RadioButtonItem[] = [
                   [size]="statesForm().size"
                   [shape]="statesForm().shape"
                   [orientation]="statesForm().orientation"
-                  [layout]="statesForm().layout"
                   [disabled]="state.disabled"
                   [readonly]="state.readonly"
                   [required]="state.required"
@@ -280,9 +241,9 @@ const DEFAULT_ITEMS: RadioButtonItem[] = [
         <section id="interactive-demo" class="showcase__section">
           <h2 class="showcase__section__title">Interactive Demo</h2>
           <p class="showcase__section__description">
-            Experiment with all radio button group options in real time. Change variant, appearance,
-            orientation, layout, size, shape, and toggle states. The component emits change
-            events—check the event log to see interactions.
+            Experiment with radio button group options in real time. Change variant, appearance,
+            orientation, size, shape, and toggle states. The component emits change events—check the
+            event log to see interactions.
           </p>
           <app-radio-button-group-interactive />
         </section>
@@ -296,14 +257,12 @@ export class RadioButtonGroupShowcaseComponent {
   sizes: Size[] = [...SIZES];
   shapes: Shape[] = [...SHAPES];
   orientations: Orientation[] = [...ORIENTATIONS];
-  segmentLayouts: SegmentLayout[] = [...SEGMENT_LAYOUTS];
 
   defaultItems = DEFAULT_ITEMS;
 
   appearanceDrawerFormConfig = RADIO_BUTTON_GROUP_DRAWER_CONFIGS.appearance;
   variantDrawerFormConfig = RADIO_BUTTON_GROUP_DRAWER_CONFIGS.variant;
   orientationDrawerFormConfig = RADIO_BUTTON_GROUP_DRAWER_CONFIGS.orientation;
-  layoutDrawerFormConfig = RADIO_BUTTON_GROUP_DRAWER_CONFIGS.layout;
   sizeDrawerFormConfig = RADIO_BUTTON_GROUP_DRAWER_CONFIGS.size;
   shapeDrawerFormConfig = RADIO_BUTTON_GROUP_DRAWER_CONFIGS.shape;
   statesDrawerFormConfig = RADIO_BUTTON_GROUP_DRAWER_CONFIGS.states;
@@ -318,7 +277,6 @@ export class RadioButtonGroupShowcaseComponent {
   appearanceValues: Record<string, unknown> = {};
   variantValues: Record<string, unknown> = {};
   orientationValues: Record<string, unknown> = {};
-  layoutValues: Record<string, unknown> = {};
   sizeValues: Record<string, unknown> = {};
   shapeValues: Record<string, unknown> = {};
   stateValues: Record<string, unknown> = {};
@@ -328,7 +286,6 @@ export class RadioButtonGroupShowcaseComponent {
     size: 'medium',
     shape: 'rounded',
     orientation: 'horizontal',
-    layout: 'separate',
     disabled: false,
     readonly: false,
     required: false,
@@ -341,7 +298,6 @@ export class RadioButtonGroupShowcaseComponent {
     size: 'medium',
     shape: 'rounded',
     orientation: 'horizontal',
-    layout: 'separate',
     disabled: false,
     readonly: false,
     required: false,
@@ -354,7 +310,6 @@ export class RadioButtonGroupShowcaseComponent {
     appearance: 'outline',
     size: 'medium',
     shape: 'rounded',
-    layout: 'separate',
     disabled: false,
     readonly: false,
     required: false,
@@ -362,25 +317,11 @@ export class RadioButtonGroupShowcaseComponent {
 
   orientationForm = computed(() => this.toForm(this.orientationFormValues()));
 
-  layoutFormValues = signal<Record<string, unknown>>({
-    variant: 'secondary',
-    appearance: 'outline',
-    size: 'medium',
-    shape: 'rounded',
-    orientation: 'horizontal',
-    disabled: false,
-    readonly: false,
-    required: false,
-  });
-
-  layoutForm = computed(() => this.toForm(this.layoutFormValues()));
-
   sizeFormValues = signal<Record<string, unknown>>({
     variant: 'secondary',
     appearance: 'outline',
     shape: 'rounded',
     orientation: 'horizontal',
-    layout: 'separate',
     disabled: false,
     readonly: false,
     required: false,
@@ -393,7 +334,6 @@ export class RadioButtonGroupShowcaseComponent {
     appearance: 'outline',
     size: 'medium',
     orientation: 'horizontal',
-    layout: 'separate',
     disabled: false,
     readonly: false,
     required: false,
@@ -407,7 +347,6 @@ export class RadioButtonGroupShowcaseComponent {
     size: 'medium',
     shape: 'rounded',
     orientation: 'horizontal',
-    layout: 'separate',
   });
 
   statesForm = computed(() => this.toForm(this.statesFormValues()));
@@ -419,7 +358,6 @@ export class RadioButtonGroupShowcaseComponent {
       size: (v['size'] as Size) ?? 'medium',
       shape: (v['shape'] as Shape) ?? 'rounded',
       orientation: (v['orientation'] as Orientation) ?? 'horizontal',
-      layout: (v['layout'] as SegmentLayout) ?? 'separate',
       disabled: !!v['disabled'],
       readonly: !!v['readonly'],
       required: !!v['required'],

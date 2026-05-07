@@ -25,7 +25,6 @@ type CarouselSize = 'small' | 'medium' | 'large';
           [autoPlay]="currentAutoPlay()"
           [autoPlayInterval]="currentAutoPlayInterval()"
           [loop]="currentLoop()"
-          [size]="currentSize()"
           (itemChange)="onItemChange($event)"
         />
       </div>
@@ -67,7 +66,6 @@ export class CarouselInteractiveComponent {
     loop: true,
   });
 
-  currentSize = computed(() => (this.values()['size'] as CarouselSize) ?? 'medium');
   currentShowControls = computed(() => !!this.values()['showControls']);
   currentShowIndicators = computed(() => !!this.values()['showIndicators']);
   currentAutoPlay = computed(() => !!this.values()['autoPlay']);

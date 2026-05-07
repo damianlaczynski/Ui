@@ -8,7 +8,34 @@
 
 .radio-button-group {
   display: flex;
+  width: fit-content;
+  max-width: 100%;
   gap: 8px;
+  padding: 6px;
+  border: 1px solid var(--color-neutral-stroke-rest);
+  border-radius: $border-radius-600;
+  background: linear-gradient(
+    180deg,
+    var(--color-neutral-background1-rest) 0%,
+    var(--color-neutral-background2-rest) 100%
+  );
+
+  .radio-button-group__item {
+    display: inline-flex;
+    position: relative;
+  }
+}
+
+.radio-button-group--rounded {
+  border-radius: $border-radius-600;
+}
+
+.radio-button-group--square {
+  border-radius: 0;
+}
+
+.radio-button-group--circular {
+  border-radius: $border-radius-circular;
 }
 
 .radio-button-group--horizontal {
@@ -18,57 +45,18 @@
 }
 
 .radio-button-group--vertical {
+  width: 100%;
+  max-width: 100%;
   flex-direction: column;
-  align-items: flex-start;
-}
+  align-items: stretch;
 
-.radio-button-group--segmented {
-  gap: 0;
+  .radio-button-group__item {
+    min-width: 0;
+    width: 100%;
 
-  &.radio-button-group--horizontal {
-    flex-wrap: nowrap;
-
-    ui-button:first-of-type .button {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-    }
-
-    ui-button:last-of-type .button {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
-
-    ui-button:not(:first-of-type):not(:last-of-type) .button {
-      border-radius: 0;
-    }
-  }
-
-  &.radio-button-group--vertical {
-    width: max-content;
-    max-width: 100%;
-    align-items: stretch;
-
-    ui-button {
-      min-width: 0;
-
-      .button {
-        width: 100%;
-        height: 100%;
-      }
-    }
-
-    ui-button:first-of-type .button {
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-    }
-
-    ui-button:last-of-type .button {
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-    }
-
-    ui-button:not(:first-of-type):not(:last-of-type) .button {
-      border-radius: 0;
+    .button {
+      width: 100%;
+      height: 100%;
     }
   }
 }
@@ -76,4 +64,12 @@
 .radio-button-group--disabled {
   opacity: 0.6;
   pointer-events: none;
+}
+
+.radio-button-group--readonly {
+  pointer-events: none;
+
+  .button {
+    cursor: default;
+  }
 }

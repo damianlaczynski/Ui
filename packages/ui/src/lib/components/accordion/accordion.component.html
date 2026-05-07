@@ -19,11 +19,15 @@
   />
 
   <!-- Accordion Panel -->
-  @if (expanded()) {
-    <div class="accordion__panel">
+  <div
+    class="accordion__panel"
+    [attr.aria-hidden]="expanded() ? 'false' : 'true'"
+    [attr.inert]="expanded() ? null : ''"
+  >
+    <div class="accordion__panel-inner">
       <div class="accordion__panel-content">
         <ng-content></ng-content>
       </div>
     </div>
-  }
+  </div>
 </div>

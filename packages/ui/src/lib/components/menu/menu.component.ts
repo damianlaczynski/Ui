@@ -68,6 +68,8 @@ export class MenuComponent implements OnDestroy {
 
   variant = input<Variant>('secondary');
   appearance = input<Appearance>('filled');
+  menuItemVariant = input<Variant>('secondary');
+  menuItemAppearance = input<Appearance>('subtle');
   size = input<Size>('medium');
   shape = input<Shape>('rounded');
 

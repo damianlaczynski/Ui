@@ -751,22 +751,6 @@ interface CardFormState {
         gap: 12px;
       }
 
-      .card-showcase [uiCardHeader] {
-        padding: var(--card-padding) var(--card-padding);
-      }
-
-      .card-showcase [uiCardBody] {
-        padding-inline: var(--card-padding);
-      }
-
-      .card-showcase [uiCardBody]:last-child {
-        padding-bottom: var(--card-padding);
-      }
-
-      .card-showcase [uiCardFooter] {
-        padding: var(--card-padding) var(--card-padding);
-      }
-
       .card-showcase__header--center {
         align-items: center;
       }
@@ -802,7 +786,9 @@ interface CardFormState {
       }
 
       .card-showcase__body--media {
-        padding-inline: 0 !important;
+        margin-inline: calc(-1 * var(--card-padding));
+        width: calc(100% + 2 * var(--card-padding));
+        max-width: none;
       }
 
       .card-showcase__media-1x1 {

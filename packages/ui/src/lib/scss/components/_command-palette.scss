@@ -1,96 +1,137 @@
 // ==========================================================================
-// Command Palette Component - Fluent 2 Design System (BEM Block)
+// Command Palette — Fluent 2 (BEM block: command-palette)
 // ==========================================================================
 
 @use '../utils/variables' as *;
 @use '../utils/mixins' as *;
 @use '../utils/functions' as *;
 
-.command-palette {
-  position: relative;
-  width: min(100%, 680px);
-  max-height: min(80vh, 720px);
-  display: flex;
-  flex-direction: column;
-  background: var(--color-neutral-background-rest);
-  border: 1px solid var(--color-neutral-stroke-rest);
-  box-shadow: $elevation-28;
-  border-radius: $border-radius-800;
-  overflow: hidden;
-  transform: translateY(0) scale(1);
-  opacity: 1;
-  @include transition(transform opacity, $duration-normal, $easing-decelerate-min);
+$command-palette-block: '.command-palette';
 
+.command-palette {
   &__backdrop {
     position: fixed;
     inset: 0;
     display: flex;
     align-items: flex-start;
     justify-content: center;
-    padding: clamp(#{$spacing-8}, 12vh, #{$spacing-20}) $spacing-6 $spacing-6;
     background-color: rgba(0, 0, 0, 0.4);
-    z-index: $z-index-modal;
     opacity: 1;
-    @include transition-opacity($duration-normal);
-
-    &--hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
+    padding: clamp(#{$spacing-8}, 12vh, #{$spacing-20}) $spacing-6 $spacing-6;
+    overflow-y: auto;
+    z-index: $z-index-modal-backdrop;
 
     @include respond-to(small) {
       padding: $spacing-4;
-      align-items: stretch;
+      align-items: flex-start;
+    }
+
+    &--closing {
+      pointer-events: none;
+      animation: fadeOut $duration-normal $easing-accelerate-min forwards;
+      @include respect-reduced-motion;
     }
   }
 
-  &--hidden {
-    transform: translateY(-20px) scale(0.95);
-    opacity: 0;
+  &__frame {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    pointer-events: none;
   }
 
-  // Search section
-  &__search {
-    position: sticky;
-    top: 0;
-    z-index: 1;
-    padding: $spacing-3;
+  &__surface {
+    position: relative;
+    width: 100%;
+    max-width: min(100%, 560px);
+    max-height: calc(100vh - #{$spacing-12});
+    display: flex;
+    flex-direction: column;
     background: var(--color-neutral-background-rest);
-    border-bottom: 1px solid var(--color-neutral-stroke-rest);
+    border-radius: $border-radius-800;
+    box-shadow: $elevation-16;
+    overflow: hidden;
+    z-index: $z-index-modal;
+    pointer-events: auto;
+
+    @include respond-to(small) {
+      max-width: 100%;
+      max-height: min(88vh, 620px);
+    }
   }
 
-  // Results section
+  &__body {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    box-sizing: border-box;
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    padding: $spacing-4 $spacing-5 $spacing-4;
+    gap: $spacing-2;
+
+    @include respond-to(small) {
+      padding: $spacing-3 $spacing-4 $spacing-4;
+    }
+
+    > .command-palette__search,
+    > .command-palette__results {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+
+  &__search {
+    flex-shrink: 0;
+  }
+
   &__results {
     display: flex;
     flex-direction: column;
-    max-height: min(60vh, 560px);
+    gap: $spacing-1;
+    flex: 1;
+    min-height: 0;
+    max-height: min(48vh, 420px);
     overflow-y: auto;
     overflow-x: hidden;
-    scrollbar-gutter: stable;
+    scrollbar-gutter: stable both-edges;
+    padding-block: $spacing-1;
+    box-sizing: border-box;
+
+    @include respond-to(small) {
+      max-height: min(56vh, 480px);
+    }
+
+    > ui-empty-state {
+      display: block;
+      width: 100%;
+    }
   }
 
-  // Group headers
   &__group-header {
-    display: flex;
-    align-items: center;
-    min-width: 0;
-    padding: $spacing-2 $spacing-4 $spacing-1;
-    margin-bottom: $spacing-0_5;
+    padding: $spacing-2 $spacing-2 $spacing-0_5;
+    margin-top: $spacing-1;
     color: var(--color-neutral-foreground3-rest);
     font-size: $font-size-200;
     font-family: $font-family-base;
     font-weight: $font-weight-semibold;
     line-height: $line-height-200;
-    letter-spacing: 0.04em;
-    background: transparent;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+
+    &:first-child {
+      margin-top: 0;
+    }
   }
 
-  // Group items container
-  &__group-items:not(:last-child) {
-    border-bottom: 1px solid var(--color-neutral-stroke-rest);
+  &__group-items {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-1_5;
   }
 
-  // Individual items
   &__item {
     position: relative;
     width: 100%;
@@ -100,60 +141,64 @@
     min-height: 44px;
     padding: $spacing-2 $spacing-4;
     background: transparent;
-    border: 0;
-    border-radius: 0;
+    border: 1px solid var(--color-neutral-stroke-rest);
+    border-radius: $border-radius-400;
     color: var(--color-neutral-foreground-rest);
     text-align: left;
     cursor: pointer;
+    @include focus-ring(2px);
     @include smooth-hover;
     @include smooth-press;
 
-    @include focus-ring(-2px);
-
-    &::before {
-      content: '';
-      position: absolute;
-      inset-inline-start: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 3px;
-      height: 20px;
-      border-radius: $border-radius-200;
-      background: transparent;
-      @include transition-colors($duration-fast);
-    }
-
     &:hover:not(:disabled) {
-      background: var(--color-subtle-background-hover);
+      background: var(--color-neutral-background-hover);
     }
 
     &:active:not(:disabled) {
-      background: var(--color-subtle-background-pressed);
+      background: var(--color-neutral-background-pressed);
     }
 
-    &--selected:not(:disabled) {
-      background: var(--color-neutral-background-brand-selected);
+    &-icon {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      margin-top: 2px;
+      color: var(--color-neutral-foreground2-rest);
+    }
 
-      &::before {
-        background: var(--color-brand-primary);
-      }
+    &-content {
+      flex: 1;
+      min-width: 0;
+    }
 
-      .command-palette__item-label {
-        color: var(--color-brand-foreground);
-        font-weight: $font-weight-semibold;
-      }
+    &-label {
+      color: inherit;
+      font-size: $font-size-300;
+      font-family: $font-family-base;
+      font-weight: $font-weight-regular;
+      line-height: $line-height-300;
+      word-wrap: break-word;
+    }
 
-      .command-palette__item-icon {
-        color: var(--color-brand-foreground);
-      }
+    &-description {
+      margin-top: $spacing-0_5;
+      color: var(--color-neutral-foreground2-rest);
+      font-size: $font-size-200;
+      font-family: $font-family-base;
+      font-weight: $font-weight-regular;
+      line-height: $line-height-200;
+      word-wrap: break-word;
+    }
 
-      &:hover {
-        background: var(--color-neutral-background-brand-hover);
-      }
-
-      &:active {
-        background: var(--color-neutral-background-brand-pressed);
-      }
+    &-status {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-neutral-foreground3-rest);
     }
 
     &--disabled,
@@ -162,106 +207,48 @@
       color: var(--color-neutral-foreground-disabled);
       background: transparent;
 
-      .command-palette__item-label,
-      .command-palette__item-description,
-      .command-palette__item-icon,
-      .command-palette__item-status {
+      #{$command-palette-block}__item-label,
+      #{$command-palette-block}__item-description,
+      #{$command-palette-block}__item-icon,
+      #{$command-palette-block}__item-status {
         color: var(--color-neutral-foreground-disabled);
       }
 
-      &:hover {
-        background: transparent;
-      }
-
+      &:hover,
       &:active {
         background: transparent;
       }
     }
-
-    @include respond-to(small) {
-      padding: $spacing-2 $spacing-3;
-      gap: $spacing-2;
-    }
-  }
-
-  // Item icon
-  &__item-icon {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 20px;
-    color: var(--color-neutral-foreground2-rest);
-  }
-
-  // Item content
-  &__item-content {
-    flex: 1;
-    min-width: 0;
-  }
-
-  // Item label
-  &__item-label {
-    color: inherit;
-    font-size: $font-size-300;
-    font-family: $font-family-base;
-    font-weight: $font-weight-regular;
-    line-height: $line-height-300;
-    word-wrap: break-word;
-  }
-
-  // Item description
-  &__item-description {
-    margin-top: $spacing-0_5;
-    color: var(--color-neutral-foreground2-rest);
-    font-size: $font-size-200;
-    font-family: $font-family-base;
-    font-weight: $font-weight-regular;
-    line-height: $line-height-200;
-    word-wrap: break-word;
-  }
-
-  // Item status
-  &__item-status {
-    flex-shrink: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-neutral-foreground3-rest);
-  }
-
-  // Empty state
-  &__empty {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: $spacing-2;
-    padding: $spacing-8 $spacing-4;
-    color: var(--color-neutral-foreground2-rest);
-    text-align: center;
-  }
-
-  &__empty-icon {
-    color: var(--color-neutral-foreground3-rest);
-    opacity: 0.6;
-  }
-
-  &__empty-text {
-    font-size: $font-size-300;
-    font-family: $font-family-base;
-    font-weight: $font-weight-regular;
-    line-height: $line-height-300;
-  }
-
-  // Animations
-  &:not(.command-palette--hidden) {
-    @include slide-in-down($duration-normal, $easing-decelerate-min);
   }
 }
 
-// Body scroll lock when command palette is open
-body:has(.command-palette__backdrop:not(.command-palette__backdrop--hidden)) {
+.command-palette__backdrop:not(.command-palette__backdrop--closing) {
+  animation: fadeIn $duration-normal $easing-decelerate-min both;
+  @include respect-reduced-motion;
+}
+
+.command-palette__frame:not(.command-palette__frame--closing) .command-palette__surface {
+  @include overlay-surface-enter(
+    $duration: $duration-normal,
+    $easing: $easing-decelerate-min,
+    $origin: top center
+  );
+}
+
+.command-palette__frame.command-palette__frame--closing .command-palette__surface {
+  animation: scaleOut $duration-normal $easing-accelerate-min forwards;
+  transform-origin: top center;
+  @include respect-reduced-motion;
+}
+
+body:has(.command-palette__backdrop) {
   overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .command-palette__backdrop,
+  .command-palette__surface {
+    animation: none !important;
+    transform: none;
+  }
 }

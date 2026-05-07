@@ -267,7 +267,7 @@ export class ThemeBuilderService {
         lines.push(`  ${key}: ${value};`);
       });
       lines.push('}\n\n');
-      lines.push(":root[data-theme='dark'],\n:root.dark {");
+      lines.push(":root[data-theme='dark'],\n:root.dark,\nbody.dark-theme {");
       Object.entries(darkPalette).forEach(([key, value]) => {
         lines.push(`  ${key}: ${value};`);
       });

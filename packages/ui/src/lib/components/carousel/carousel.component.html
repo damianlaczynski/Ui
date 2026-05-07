@@ -1,4 +1,4 @@
-<div [class]="carouselClasses()" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
+<div class="carousel" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
   <!-- Carousel Content -->
   <div class="carousel__content">
     <div class="carousel__track" [style.transform]="'translateX(-' + currentIndex() * 100 + '%)'">

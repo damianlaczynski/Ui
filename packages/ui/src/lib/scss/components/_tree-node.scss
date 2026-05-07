@@ -9,6 +9,7 @@
 
 .tree-node {
   width: 100%;
+  min-width: 0;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -23,12 +24,30 @@
 
   // Children container
   &__children {
+    display: grid;
+    grid-template-rows: 1fr;
+    gap: $spacing-0_5;
+    width: 100%;
+    min-width: 0;
+    padding-left: $spacing-6;
+    padding-top: $spacing-0_5;
+    overflow: hidden;
+    opacity: 1;
+    @include transition(opacity padding-top, $duration-normal, $easing-decelerate-min);
+    transition-property: grid-template-rows, opacity, padding-top;
+    transition-duration: $duration-normal;
+    transition-timing-function: $easing-decelerate-min;
+  }
+
+  &__children-inner {
+    min-height: 0;
+    min-width: 0;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     gap: $spacing-0_5;
-    width: 100%;
-    padding-left: $spacing-6;
-    padding-top: $spacing-0_5;
+    transform: translateY(calc(#{$spacing-0_5} * -1));
+    @include transition(transform, $duration-normal, $easing-decelerate-min);
   }
 
   // ==========================================================================
@@ -69,5 +88,26 @@
     align-items: center;
     gap: $spacing-2;
     flex-shrink: 0;
+  }
+
+  &[aria-expanded='false'] {
+    .tree-node__children {
+      grid-template-rows: 0fr;
+      opacity: 0;
+      padding-top: 0;
+      transition-timing-function: $easing-accelerate-min;
+      pointer-events: none;
+    }
+
+    .tree-node__children-inner {
+      transform: translateY(calc(#{$spacing-0_5} * -1));
+      transition-timing-function: $easing-accelerate-min;
+    }
+  }
+
+  &[aria-expanded='true'] {
+    .tree-node__children-inner {
+      transform: translateY(0);
+    }
   }
 }

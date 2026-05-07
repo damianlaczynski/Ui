@@ -40,6 +40,25 @@ export class ToastComponent {
       classes.push('toast--hidden');
     }
 
+    if (!this.dismissible()) {
+      classes.push('toast--no-dismiss');
+    }
+
+    if (!this.showProgress()) {
+      classes.push('toast--no-progress');
+    }
+
+    return classes.join(' ');
+  }
+
+  toastCopyClasses(): string {
+    const classes = ['toast__copy'];
+    if (this.showIcon()) {
+      classes.push('toast__copy--has-icon');
+    }
+    if (this.title()) {
+      classes.push('toast__copy--has-title');
+    }
     return classes.join(' ');
   }
 

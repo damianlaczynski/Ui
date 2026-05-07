@@ -18,7 +18,11 @@
       </div>
     } @else if (items().length === 0) {
       <div class="scroll-container__empty">
-        <p>{{ emptyTextComputed() }}</p>
+        @if (emptyTemplate(); as customEmpty) {
+          <ng-container *ngTemplateOutlet="customEmpty" />
+        } @else {
+          <p>{{ emptyTextComputed() }}</p>
+        }
       </div>
     } @else {
       <div class="scroll-container__items">

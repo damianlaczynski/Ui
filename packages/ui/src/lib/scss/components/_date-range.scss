@@ -14,7 +14,7 @@
   display: flex;
   min-width: 320px;
   max-width: 400px;
-  @include fade-scale-in($duration-fast, $easing-decelerate-mid);
+  @include overlay-surface-enter($duration-fast, $easing-decelerate-mid, top center);
 
   &[data-size='small'] {
     min-width: 280px;

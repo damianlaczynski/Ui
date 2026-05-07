@@ -20,7 +20,6 @@ import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { CarouselInteractiveComponent } from './carousel.interactive';
 import { CAROUSEL_DRAWER_CONFIGS } from './carousel.showcase.config';
 
-type CarouselSize = 'small' | 'medium' | 'large';
 type ComponentSlideType =
   | 'button'
   | 'date'
@@ -33,7 +32,6 @@ type ComponentSlideType =
 type ComponentCarouselItem = CarouselItem & { componentType: ComponentSlideType };
 
 interface CarouselSectionForm {
-  size: CarouselSize;
   showControls: boolean;
   showIndicators: boolean;
   autoPlay: boolean;
@@ -114,7 +112,7 @@ interface CarouselSectionForm {
 
         <app-section-with-drawer
           sectionTitle="Overview"
-          sectionDescription="Core carousel setup. Use the Customize drawer to configure controls, indicators, autoplay, interval, loop mode, and size."
+          sectionDescription="Core carousel setup. Use the Customize drawer to configure controls, indicators, autoplay, interval, loop mode."
           [formConfig]="overviewDrawerFormConfig"
           [formValues]="overviewFormValues()"
           (formValuesChange)="overviewFormValues.set($event)"
@@ -126,33 +124,7 @@ interface CarouselSectionForm {
             [autoPlay]="overviewForm().autoPlay"
             [autoPlayInterval]="overviewForm().autoPlayInterval"
             [loop]="overviewForm().loop"
-            [size]="overviewForm().size"
           />
-        </app-section-with-drawer>
-
-        <app-section-with-drawer
-          sectionTitle="Size"
-          sectionDescription="Small, medium, and large variants for compact UI, default layouts, and prominent hero usage."
-          [formConfig]="sizeDrawerFormConfig"
-          [formValues]="sizeFormValues()"
-          (formValuesChange)="sizeFormValues.set($event)"
-        >
-          <div class="showcase__preview showcase__preview--column">
-            @for (size of sizes; track size) {
-              <div class="showcase__preview-item">
-                <h3 class="showcase__item__title">{{ size | titlecase }}</h3>
-                <ui-carousel
-                  [items]="basicItems"
-                  [showControls]="sizeForm().showControls"
-                  [showIndicators]="sizeForm().showIndicators"
-                  [autoPlay]="sizeForm().autoPlay"
-                  [autoPlayInterval]="sizeForm().autoPlayInterval"
-                  [loop]="sizeForm().loop"
-                  [size]="size"
-                />
-              </div>
-            }
-          </div>
         </app-section-with-drawer>
 
         <app-section-with-drawer
@@ -172,7 +144,6 @@ interface CarouselSectionForm {
                 [autoPlay]="controlsForm().autoPlay"
                 [autoPlayInterval]="controlsForm().autoPlayInterval"
                 [loop]="controlsForm().loop"
-                [size]="controlsForm().size"
               />
             </div>
             <div class="showcase__preview-item">
@@ -184,7 +155,6 @@ interface CarouselSectionForm {
                 [autoPlay]="controlsForm().autoPlay"
                 [autoPlayInterval]="controlsForm().autoPlayInterval"
                 [loop]="controlsForm().loop"
-                [size]="controlsForm().size"
               />
             </div>
           </div>
@@ -207,7 +177,6 @@ interface CarouselSectionForm {
                 [autoPlay]="indicatorsForm().autoPlay"
                 [autoPlayInterval]="indicatorsForm().autoPlayInterval"
                 [loop]="indicatorsForm().loop"
-                [size]="indicatorsForm().size"
               />
             </div>
             <div class="showcase__preview-item">
@@ -219,7 +188,6 @@ interface CarouselSectionForm {
                 [autoPlay]="indicatorsForm().autoPlay"
                 [autoPlayInterval]="indicatorsForm().autoPlayInterval"
                 [loop]="indicatorsForm().loop"
-                [size]="indicatorsForm().size"
               />
             </div>
           </div>
@@ -242,7 +210,6 @@ interface CarouselSectionForm {
                 [autoPlay]="true"
                 [autoPlayInterval]="autoPlayForm().autoPlayInterval"
                 [loop]="autoPlayForm().loop"
-                [size]="autoPlayForm().size"
               />
             </div>
             <div class="showcase__preview-item">
@@ -254,7 +221,6 @@ interface CarouselSectionForm {
                 [autoPlay]="false"
                 [autoPlayInterval]="autoPlayForm().autoPlayInterval"
                 [loop]="autoPlayForm().loop"
-                [size]="autoPlayForm().size"
               />
             </div>
           </div>
@@ -277,7 +243,6 @@ interface CarouselSectionForm {
                 [autoPlay]="loopForm().autoPlay"
                 [autoPlayInterval]="loopForm().autoPlayInterval"
                 [loop]="true"
-                [size]="loopForm().size"
               />
             </div>
             <div class="showcase__preview-item">
@@ -289,7 +254,6 @@ interface CarouselSectionForm {
                 [autoPlay]="loopForm().autoPlay"
                 [autoPlayInterval]="loopForm().autoPlayInterval"
                 [loop]="false"
-                [size]="loopForm().size"
               />
             </div>
           </div>
@@ -301,12 +265,7 @@ interface CarouselSectionForm {
             Slides with image, title, and description overlay for storytelling and marketing
             content.
           </p>
-          <ui-carousel
-            [items]="overlayItems"
-            [showControls]="true"
-            [showIndicators]="true"
-            size="medium"
-          />
+          <ui-carousel [items]="overlayItems" [showControls]="true" [showIndicators]="true" />
         </section>
 
         <section class="showcase__section">
@@ -372,19 +331,16 @@ interface CarouselSectionForm {
                         triggerVariant="dropdown"
                         text="Dropdown"
                         [menuItems]="componentShowcaseMenuItems"
-                        [size]="'medium'"
                       />
                       <ui-menu
                         triggerVariant="split"
                         text="Split"
                         [menuItems]="componentShowcaseMenuItems"
-                        [size]="'medium'"
                       />
                       <ui-menu
                         triggerVariant="button"
                         text="Button"
                         [menuItems]="componentShowcaseMenuItems"
-                        [size]="'medium'"
                       />
                     </div>
                   }
@@ -405,7 +361,6 @@ interface CarouselSectionForm {
               [showIndicators]="true"
               [loop]="true"
               [autoPlay]="true"
-              size="large"
             />
           </div>
         </section>
@@ -430,10 +385,7 @@ interface CarouselSectionForm {
   `,
 })
 export class CarouselShowcaseComponent {
-  sizes: CarouselSize[] = ['small', 'medium', 'large'];
-
   overviewDrawerFormConfig = CAROUSEL_DRAWER_CONFIGS.overview;
-  sizeDrawerFormConfig = CAROUSEL_DRAWER_CONFIGS.size;
   controlsDrawerFormConfig = CAROUSEL_DRAWER_CONFIGS.controls;
   indicatorsDrawerFormConfig = CAROUSEL_DRAWER_CONFIGS.indicators;
   autoPlayDrawerFormConfig = CAROUSEL_DRAWER_CONFIGS.autoPlay;
@@ -512,15 +464,6 @@ export class CarouselShowcaseComponent {
   ];
 
   overviewFormValues = signal<Record<string, unknown>>({
-    size: 'medium',
-    showControls: true,
-    showIndicators: true,
-    autoPlay: false,
-    autoPlayInterval: 3000,
-    loop: true,
-  });
-
-  sizeFormValues = signal<Record<string, unknown>>({
     showControls: true,
     showIndicators: true,
     autoPlay: false,
@@ -529,7 +472,6 @@ export class CarouselShowcaseComponent {
   });
 
   controlsFormValues = signal<Record<string, unknown>>({
-    size: 'medium',
     showIndicators: true,
     autoPlay: false,
     autoPlayInterval: 3000,
@@ -537,7 +479,6 @@ export class CarouselShowcaseComponent {
   });
 
   indicatorsFormValues = signal<Record<string, unknown>>({
-    size: 'medium',
     showControls: true,
     autoPlay: false,
     autoPlayInterval: 3000,
@@ -545,7 +486,6 @@ export class CarouselShowcaseComponent {
   });
 
   autoPlayFormValues = signal<Record<string, unknown>>({
-    size: 'medium',
     showControls: true,
     showIndicators: true,
     autoPlayInterval: 3000,
@@ -553,7 +493,6 @@ export class CarouselShowcaseComponent {
   });
 
   loopFormValues = signal<Record<string, unknown>>({
-    size: 'medium',
     showControls: true,
     showIndicators: true,
     autoPlay: false,
@@ -561,7 +500,6 @@ export class CarouselShowcaseComponent {
   });
 
   overviewForm = computed(() => this.toForm(this.overviewFormValues()));
-  sizeForm = computed(() => this.toForm(this.sizeFormValues()));
   controlsForm = computed(() => this.toForm(this.controlsFormValues()));
   indicatorsForm = computed(() => this.toForm(this.indicatorsFormValues()));
   autoPlayForm = computed(() => this.toForm(this.autoPlayFormValues()));
@@ -578,7 +516,6 @@ export class CarouselShowcaseComponent {
       [autoPlay]="false"
       [autoPlayInterval]="3000"
       [loop]="true"
-      size="medium"
       (itemChange)="onItemChange($event)"
     />
   \`,
@@ -602,7 +539,6 @@ export class MyComponent {
 
   private toForm(v: Record<string, unknown>): CarouselSectionForm {
     return {
-      size: (v['size'] as CarouselSize) ?? 'medium',
       showControls: !!v['showControls'],
       showIndicators: !!v['showIndicators'],
       autoPlay: !!v['autoPlay'],
