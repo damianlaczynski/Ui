@@ -96,10 +96,11 @@
       "goToSlideAriaLabel": "Przejdz do slajdu {{slide}}"
     },
     "commandPalette": {
-      "dialogAriaLabel": "Paleta polecen",
-      "resultsAriaLabel": "Wyniki polecen",
+      "dialogAriaLabel": "Paleta poleceń",
+      "resultsAriaLabel": "Wyniki poleceń",
       "placeholder": "Wpisz polecenie lub wyszukaj...",
-      "emptyText": "Nie znaleziono polecen"
+      "emptyText": "Nie znaleziono poleceń",
+      "emptyDescription": "Spróbuj inny termin wyszukiwania lub dostosuj swoje filtry."
     },
     "pagination": {
       "aria": {

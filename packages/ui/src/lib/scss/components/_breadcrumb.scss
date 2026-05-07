@@ -9,9 +9,11 @@
 
 .breadcrumb {
   // Base breadcrumb container
-  display: inline-flex;
+  display: flex;
   justify-content: flex-start;
   align-items: flex-start;
+  min-width: 0;
+  max-width: 100%;
 
   // Ordered list
   &__list {
@@ -22,6 +24,8 @@
     margin: 0;
     padding: 0;
     list-style: none;
+    min-width: 0;
+    max-width: 100%;
   }
 
   // Individual breadcrumb item (li)
@@ -30,6 +34,7 @@
     justify-content: flex-start;
     align-items: center;
     margin: 0;
+    min-width: 0;
   }
 
   // Divider (chevron separator)
@@ -43,5 +48,17 @@
 
   &__item--overflow .menu-trigger {
     @include smooth-hover;
+  }
+
+  &__focusable {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .node,
+  .node__wrapper,
+  .node__content,
+  .node__label {
+    min-width: 0;
   }
 }

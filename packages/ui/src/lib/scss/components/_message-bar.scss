@@ -168,14 +168,6 @@
   }
 }
 
-.message-bar--filled {
-  background-color: var(--message-bar-bg-filled);
-  border-color: var(--message-bar-bg-filled);
-  --message-bar-text: var(--message-bar-fg-filled);
-  --message-bar-action: var(--message-bar-fg-filled);
-  --message-bar-accent: var(--message-bar-fg-filled);
-}
-
 .message-bar--outline {
   background-color: var(--color-neutral-background-rest);
   border-color: var(--message-bar-accent);
@@ -238,6 +230,14 @@
   --message-bar-bg-tint: var(--color-shared-blue-background);
   --message-bar-border-tint: var(--color-shared-blue-border);
   --message-bar-bg-filled: var(--color-shared-blue-foreground);
+}
+
+.message-bar--filled {
+  background-color: var(--message-bar-bg-filled);
+  border-color: var(--message-bar-bg-filled);
+  --message-bar-text: var(--message-bar-fg-filled);
+  --message-bar-action: var(--message-bar-fg-filled);
+  --message-bar-accent: var(--message-bar-fg-filled);
 }
 
 @media (max-width: $breakpoint-small) {

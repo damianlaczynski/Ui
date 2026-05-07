@@ -326,16 +326,14 @@
     height: 100%;
     overflow: auto;
     min-width: 0;
-    background: linear-gradient(
-      135deg,
-      var(--color-neutral-background2-rest) 0%,
-      var(--color-neutral-background-rest) 50%,
-      color-mix(in srgb, var(--color-neutral-stroke-rest) 8%, var(--color-neutral-background-rest))
-        100%
-    );
   }
 
-  .drawer--left .drawer__body {
-    padding: 0;
+  &__sidebar-drawer {
+    border-right: 1px solid
+      color-mix(in srgb, var(--color-neutral-stroke-rest) 85%, var(--color-brand-primary) 15%);
+
+    .drawer__body {
+      padding: 0;
+    }
   }
 }

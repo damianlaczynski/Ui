@@ -73,6 +73,8 @@ export class MenuListComponent implements AfterViewInit {
   size = input<Size>('medium');
   variant = input<Variant>('primary');
   appearance = input<Appearance>('subtle');
+  menuItemVariant = input<Variant>('secondary');
+  menuItemAppearance = input<Appearance>('subtle');
 
   itemClick = output<MenuItem>();
   submenuClick = output<MenuItem>();
@@ -269,6 +271,14 @@ export class MenuListComponent implements AfterViewInit {
     if (t === 'split') return 'split';
     if (t === 'menu' || (item.submenuItems?.length ?? 0) > 0) return 'dropdown';
     return 'button';
+  }
+
+  resolveItemVariant(item: MenuItem): Variant {
+    return item.variant ?? this.menuItemVariant();
+  }
+
+  resolveItemAppearance(item: MenuItem): Appearance {
+    return item.appearance ?? this.menuItemAppearance();
   }
 
   trackByItemId(index: number, item: MenuItem): string {

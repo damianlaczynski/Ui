@@ -35,6 +35,7 @@ import {
   SkeletonComponent,
   AccordionComponent,
 } from 'ui';
+import { environment } from '@environments/environment';
 
 interface ShowcaseComponent {
   id: string;
@@ -158,7 +159,7 @@ const ALL_SHOWCASE_COMPONENTS: ShowcaseComponent[] = [
 export class LandingComponent {
   private readonly themeService = inject(ThemeService);
 
-  readonly version = '1.0.0';
+  readonly version = environment.libraryVersion;
   readonly currentYear = new Date().getFullYear();
   readonly githubUrl = 'https://github.com/DamianLaczynski/ui';
   readonly npmUrl = 'https://www.npmjs.com/';

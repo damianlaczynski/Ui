@@ -11,24 +11,38 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  min-width: 0;
   border-radius: $border-radius-400;
 
   // Expandable panel
   &__panel {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 0fr;
     width: 100%;
-    padding: 0 $spacing-3 0;
-    max-height: 0;
+    min-width: 0;
     overflow: hidden;
     opacity: 0;
-    @include transition(max-height opacity padding, $duration-normal, $easing-decelerate-min);
+    @include transition(opacity padding, $duration-normal, $easing-decelerate-min);
+    transition-property: grid-template-rows, opacity, padding;
+    transition-duration: $duration-normal;
+    transition-timing-function: $easing-decelerate-min;
+    padding: 0 $spacing-3 0;
+    pointer-events: none;
+  }
+
+  &__panel-inner {
+    min-height: 0;
+    min-width: 0;
+    overflow: hidden;
   }
 
   // Panel content wrapper
   &__panel-content {
     width: 100%;
+    min-width: 0;
     padding: $spacing-2 0;
+    transform: translateY(calc(#{$spacing-1} * -1));
+    @include transition(transform, $duration-normal, $easing-decelerate-min);
   }
 
   // ==========================================================================
@@ -53,9 +67,14 @@
 
   &--expanded {
     .accordion__panel {
-      max-height: 2000px;
+      grid-template-rows: 1fr;
       opacity: 1;
       padding-bottom: $spacing-3;
+      pointer-events: auto;
+    }
+
+    .accordion__panel-content {
+      transform: translateY(0);
     }
   }
 
@@ -65,9 +84,14 @@
 
   &:not(.accordion--expanded) {
     .accordion__panel {
-      max-height: 0;
+      grid-template-rows: 0fr;
       opacity: 0;
       padding: 0;
+      transition-timing-function: $easing-accelerate-min;
+    }
+
+    .accordion__panel-content {
+      transform: translateY(calc(#{$spacing-1} * -1));
       transition-timing-function: $easing-accelerate-min;
     }
   }

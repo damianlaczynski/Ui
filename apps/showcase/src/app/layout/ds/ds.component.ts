@@ -22,6 +22,7 @@ import { Subscription } from 'rxjs';
 import { ScrollService } from '@shared/scroll/scroll.service';
 import { Direction, DirectionService } from '@shared/direction/direction.service';
 import { ThemeMode, ThemeService, ThemeVariant } from '@shared/theme/theme.service';
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'app-ds',
@@ -46,7 +47,7 @@ export class DsComponent implements OnInit, OnDestroy, AfterViewInit {
   private readonly themeService = inject(ThemeService);
   readonly themeBuilder = inject(ThemeBuilderService);
 
-  readonly version = '1.0.0';
+  readonly version = environment.libraryVersion;
   readonly githubUrl = 'https://github.com/DamianLaczynski/ui';
   readonly npmUrl = 'https://www.npmjs.com/';
 

@@ -24,6 +24,22 @@
     flex-shrink: 0;
     pointer-events: auto;
     height: 100%;
+    overflow: hidden;
+    width: var(--drawer-panel-inline-size);
+    max-width: min(var(--drawer-panel-inline-size), 90vw);
+    will-change: width;
+  }
+
+  &.drawer--size-small {
+    --drawer-panel-inline-size: 240px;
+  }
+
+  &.drawer--size-medium {
+    --drawer-panel-inline-size: 320px;
+  }
+
+  &.drawer--size-large {
+    --drawer-panel-inline-size: 480px;
   }
 
   // Position modifiers for drawer container
@@ -55,11 +71,13 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.4);
     opacity: 1;
-    @include transition-opacity($duration-normal);
     pointer-events: auto;
 
+    .drawer--overlay & {
+      transition: none;
+    }
+
     &--hidden {
-      opacity: 0;
       pointer-events: none;
     }
   }
@@ -72,6 +90,8 @@
     overflow: hidden;
     pointer-events: auto;
     z-index: 1;
+    container-type: inline-size;
+    container-name: drawer-panel;
 
     .drawer--overlay & {
       box-shadow: $elevation-16;
@@ -82,6 +102,8 @@
     .drawer--inline & {
       box-shadow: none;
       height: 100%;
+      width: 100%;
+      will-change: transform, opacity;
     }
 
     // Position modifiers
@@ -155,6 +177,10 @@
     }
 
     @include respond-to(small) {
+      .drawer--inline {
+        --drawer-panel-inline-size: 100vw;
+      }
+
       &.drawer__content--left,
       &.drawer__content--right {
         width: 100vw;
@@ -245,36 +271,49 @@
 
   &__footer {
     align-self: stretch;
-    display: inline-flex;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
+    row-gap: $spacing-3;
+    column-gap: $spacing-2;
     padding: $spacing-5;
     padding-top: $spacing-4;
-    gap: $spacing-2;
     border-top: 1px solid var(--color-neutral-stroke-rest);
     flex-shrink: 0;
+    min-width: 0;
   }
 
   &__footer-left {
     display: flex;
+    flex-wrap: wrap;
     justify-content: flex-start;
     align-items: flex-start;
     gap: $spacing-2;
+    min-width: 0;
+    max-width: 100%;
   }
 
   &__footer-right {
     display: flex;
-    justify-content: flex-start;
+    flex-wrap: wrap;
+    justify-content: flex-end;
     align-items: flex-start;
     gap: $spacing-2;
+    min-width: 0;
+    flex: 1 1 auto;
+    margin-left: auto;
   }
 
-  // Make buttons full width on small screens
   @media (max-width: 479px) {
     .drawer__footer-left,
     .drawer__footer-right {
+      flex: 1 1 100%;
+      margin-left: 0;
+
       ui-button {
-        width: 100%;
+        flex: 1 1 auto;
+        min-width: 0;
 
         button {
           width: 100%;
@@ -284,63 +323,159 @@
     }
   }
 
-  // Animations
-  .drawer__backdrop:not(.drawer__backdrop--hidden) {
-    @include fade-in($duration-normal, $easing-ease-in-out);
+  &.drawer--overlay:not(.drawer--closing) .drawer__backdrop:not(.drawer__backdrop--hidden) {
+    animation: fadeIn $duration-gentle $easing-ease-in-out both;
+    @include respect-reduced-motion;
+  }
+
+  &.drawer--overlay.drawer--closing .drawer__backdrop {
+    animation: fadeOut $duration-gentle $easing-ease-in-out forwards;
+    pointer-events: none;
+    @include respect-reduced-motion;
   }
 
   &:not(.drawer--closing) {
-    .drawer__content {
+    &.drawer--inline.drawer--left,
+    &.drawer--inline.drawer--right {
+      animation: panelInlineWidthExpand $duration-slow $easing-ease-in-out both;
+    }
+
+    &.drawer--overlay .drawer__content {
       animation-fill-mode: both;
 
       &.drawer__content--left {
-        @include slide-in-left($duration-slow, $easing-ease-in-out);
+        animation: slideInLeft $duration-gentle $easing-ease-in-out both;
       }
 
       &.drawer__content--right {
-        @include slide-in-right($duration-slow, $easing-ease-in-out);
+        animation: slideInRight $duration-gentle $easing-ease-in-out both;
       }
 
       &.drawer__content--top {
-        @include slide-in-top($duration-slow, $easing-ease-in-out);
+        animation: slideInTop $duration-gentle $easing-ease-in-out both;
       }
 
       &.drawer__content--bottom {
-        @include slide-in-bottom($duration-slow, $easing-ease-in-out);
+        animation: slideInBottom $duration-gentle $easing-ease-in-out both;
+      }
+    }
+
+    &.drawer--inline .drawer__content {
+      animation-fill-mode: both;
+
+      &.drawer__content--left {
+        animation: slideInLeft $duration-gentle $easing-ease-in-out both;
+      }
+
+      &.drawer__content--right {
+        animation: slideInRight $duration-gentle $easing-ease-in-out both;
+      }
+
+      &.drawer__content--top {
+        animation: slideInTop $duration-gentle $easing-ease-in-out both;
+      }
+
+      &.drawer__content--bottom {
+        animation: slideInBottom $duration-gentle $easing-ease-in-out both;
       }
     }
   }
 
   &.drawer--closing {
-    .drawer__content {
+    &.drawer--inline.drawer--left,
+    &.drawer--inline.drawer--right {
+      animation: panelInlineWidthCollapse $duration-slow $easing-ease-in-out both;
+    }
+
+    &.drawer--overlay .drawer__content {
       animation-fill-mode: both;
       pointer-events: none;
 
       &.drawer__content--left {
-        @include slide-out-left($duration-slow, $easing-ease-in-out);
+        animation: slideOutLeft $duration-gentle $easing-ease-in-out both;
       }
 
       &.drawer__content--right {
-        @include slide-out-right($duration-slow, $easing-ease-in-out);
+        animation: slideOutRight $duration-gentle $easing-ease-in-out both;
       }
 
       &.drawer__content--top {
-        @include slide-out-top($duration-slow, $easing-ease-in-out);
+        animation: slideOutTop $duration-gentle $easing-ease-in-out both;
       }
 
       &.drawer__content--bottom {
-        @include slide-out-bottom($duration-slow, $easing-ease-in-out);
+        animation: slideOutBottom $duration-gentle $easing-ease-in-out both;
+      }
+    }
+
+    &.drawer--inline .drawer__content {
+      animation-fill-mode: both;
+      pointer-events: none;
+
+      &.drawer__content--left {
+        animation: slideOutLeft $duration-gentle $easing-ease-in-out both;
+      }
+
+      &.drawer__content--right {
+        animation: slideOutRight $duration-gentle $easing-ease-in-out both;
+      }
+
+      &.drawer__content--top {
+        animation: slideOutTop $duration-gentle $easing-ease-in-out both;
+      }
+
+      &.drawer__content--bottom {
+        animation: slideOutBottom $duration-gentle $easing-ease-in-out both;
       }
     }
   }
 }
 
+@container drawer-panel (max-width: 560px) {
+  .drawer__footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .drawer__footer-left,
+  .drawer__footer-right {
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+  }
+
+  .drawer__footer-left {
+    justify-content: flex-start;
+  }
+
+  .drawer__footer-right {
+    justify-content: flex-end;
+  }
+
+  .drawer__footer-left ui-button,
+  .drawer__footer-right ui-button {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .drawer__footer-left ui-button button,
+  .drawer__footer-right ui-button button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 // Body scroll lock when drawer is open
-body:has(.drawer__backdrop:not(.drawer__backdrop--hidden)) {
+body:has(.drawer.drawer--overlay) {
   overflow: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .drawer {
+    animation: none;
+  }
+
   .drawer__backdrop {
     transition: none;
     animation: none;

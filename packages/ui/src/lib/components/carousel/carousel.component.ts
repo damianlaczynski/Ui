@@ -7,6 +7,7 @@ import {
   effect,
   TemplateRef,
   inject,
+  DestroyRef,
 } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 
@@ -21,22 +22,21 @@ import { UiI18nService } from '../../i18n';
 })
 export class CarouselComponent {
   private readonly i18n = inject(UiI18nService);
+  private readonly destroyRef = inject(DestroyRef);
+  private isDestroyed = false;
 
   items = input<CarouselItem[]>([]);
   slideTemplate = input<TemplateRef<{ $implicit: CarouselItem; index: number }> | null>(null);
   activeIndex = input<number>(0);
   autoPlay = input<boolean>(false);
-  autoPlayInterval = input<number>(3000); // milliseconds
+  autoPlayInterval = input<number>(3000);
   showIndicators = input<boolean>(true);
   showControls = input<boolean>(true);
   loop = input<boolean>(true);
-  size = input<'small' | 'medium' | 'large'>('medium');
 
-  // Outputs
   itemChange = output<{ item: CarouselItem; index: number }>();
   itemClick = output<{ item: CarouselItem; index: number }>();
 
-  // Internal state
   currentIndex = signal<number>(0);
   autoPlayTimer: any = null;
 
@@ -65,14 +65,7 @@ export class CarouselComponent {
     return index > 0;
   });
 
-  carouselClasses = computed(() => {
-    const classes = ['carousel'];
-    classes.push(`carousel--${this.size()}`);
-    return classes.join(' ');
-  });
-
   constructor() {
-    // Sync external activeIndex with internal state
     effect(() => {
       const newIndex = this.activeIndex();
       const items = this.items();
@@ -81,7 +74,6 @@ export class CarouselComponent {
       }
     });
 
-    // Handle auto-play
     effect(() => {
       if (this.autoPlay() && this.items().length > 1) {
         this.startAutoPlay();
@@ -89,6 +81,11 @@ export class CarouselComponent {
         this.stopAutoPlay();
       }
       return () => this.stopAutoPlay();
+    });
+
+    this.destroyRef.onDestroy(() => {
+      this.isDestroyed = true;
+      this.stopAutoPlay();
     });
   }
 
@@ -147,6 +144,7 @@ export class CarouselComponent {
   }
 
   private emitItemChange(): void {
+    if (this.isDestroyed) return;
     const items = this.items();
     const index = this.currentIndex();
     const item = items[index];
@@ -156,8 +154,13 @@ export class CarouselComponent {
   }
 
   private startAutoPlay(): void {
+    if (this.isDestroyed) return;
     this.stopAutoPlay();
     this.autoPlayTimer = setInterval(() => {
+      if (this.isDestroyed) {
+        this.stopAutoPlay();
+        return;
+      }
       this.next();
     }, this.autoPlayInterval());
   }

@@ -19,6 +19,11 @@ import { IconName } from '../icon';
   templateUrl: './tree.component.html',
   imports: [CommonModule, TreeNodeComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[style.display]': '"block"',
+    '[style.width]': '"100%"',
+    '[style.minWidth]': '"0"',
+  },
 })
 export class TreeComponent {
   // Inputs - Tree Data

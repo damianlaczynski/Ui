@@ -5,7 +5,6 @@ import {
   type RadioButtonItem,
   type Appearance,
   type Orientation,
-  type SegmentLayout,
   type Shape,
   type Size,
   type Variant,
@@ -22,7 +21,7 @@ const DEFAULT_ITEMS: RadioButtonItem[] = [
 
 @Component({
   selector: 'app-radio-button-group-interactive',
-  imports: [RadioButtonGroupComponent, FormsModule, InteractiveShowcaseComponent],
+  imports: [RadioButtonGroupComponent, InteractiveShowcaseComponent, FormsModule],
   template: `
     <app-interactive-showcase
       #showcase
@@ -38,7 +37,6 @@ const DEFAULT_ITEMS: RadioButtonItem[] = [
           [variant]="currentVariant()"
           [appearance]="currentAppearance()"
           [orientation]="currentOrientation()"
-          [layout]="currentLayout()"
           [size]="currentSize()"
           [shape]="currentShape()"
           [disabled]="currentDisabled()"
@@ -70,7 +68,6 @@ export class RadioButtonGroupInteractiveComponent {
     variant: 'secondary',
     appearance: 'outline',
     orientation: 'horizontal',
-    layout: 'separate',
     size: 'medium',
     shape: 'rounded',
     disabled: false,
@@ -83,7 +80,6 @@ export class RadioButtonGroupInteractiveComponent {
   currentVariant = computed(() => this.values()['variant'] as Variant);
   currentAppearance = computed(() => this.values()['appearance'] as Appearance);
   currentOrientation = computed(() => this.values()['orientation'] as Orientation);
-  currentLayout = computed(() => this.values()['layout'] as SegmentLayout);
   currentSize = computed(() => this.values()['size'] as Size);
   currentShape = computed(() => this.values()['shape'] as Shape);
   currentDisabled = computed(() => this.values()['disabled'] as boolean);

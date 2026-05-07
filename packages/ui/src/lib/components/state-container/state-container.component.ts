@@ -22,6 +22,9 @@ import { UiI18nService } from '../../i18n';
   templateUrl: './state-container.component.html',
   imports: [CommonModule, LoadingStateComponent, ErrorStateComponent, EmptyStateComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '[class.ui-state-container--delegate-scroll]': 'delegateScrollToParent()',
+  },
   styles: [
     `
       :host {
@@ -31,6 +34,12 @@ import { UiI18nService } from '../../i18n';
         overflow-y: auto;
         overflow-x: hidden;
         scroll-behavior: smooth;
+      }
+
+      :host.ui-state-container--delegate-scroll {
+        flex: 0 0 auto;
+        max-height: none;
+        overflow: visible;
       }
     `,
   ],
@@ -47,6 +56,8 @@ export class StateContainerComponent<T> {
 
   showEmptyOnInitial = input<boolean>(false);
   emptyOverride = input<boolean | null>(null);
+
+  delegateScrollToParent = input<boolean>(false);
 
   // Loading state inputs
   loadingTitle = input<string>('');

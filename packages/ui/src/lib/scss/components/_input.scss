@@ -14,36 +14,47 @@
   color: var(--color-neutral-foreground-rest);
   word-wrap: break-word;
   margin-bottom: $spacing-1;
+  box-sizing: border-box;
 
   // Size variants
   &--small {
     font-size: $font-size-200;
     line-height: $line-height-200;
     font-weight: $font-weight-regular;
+    padding-block: $spacing-0_5;
+    padding-inline: $spacing-1;
   }
 
   &--small-bold {
     font-size: $font-size-200;
     line-height: $line-height-200;
     font-weight: $font-weight-semibold;
+    padding-block: $spacing-0_5;
+    padding-inline: $spacing-1;
   }
 
   &--medium {
     font-size: $font-size-300;
     line-height: $line-height-300;
     font-weight: $font-weight-regular;
+    padding-block: $spacing-1;
+    padding-inline: $spacing-1_5;
   }
 
   &--medium-bold {
     font-size: $font-size-300;
     line-height: $line-height-300;
     font-weight: $font-weight-semibold;
+    padding-block: $spacing-1;
+    padding-inline: $spacing-1_5;
   }
 
   &--large {
     font-size: $font-size-400;
     line-height: $line-height-400;
     font-weight: $font-weight-semibold;
+    padding-block: $spacing-1_5;
+    padding-inline: $spacing-2;
   }
 
   // Disabled state
@@ -361,6 +372,35 @@
   &::after {
     border-radius: $border-radius-200;
   }
+}
+
+// Textarea-specific styles
+.input-wrapper {
+  textarea.input {
+    resize: vertical;
+    border-radius: $border-radius-400;
+    box-sizing: border-box;
+    width: 100%;
+    scrollbar-width: thin;
+  }
+}
+
+.input-wrapper--small textarea.input {
+  padding: $spacing-1 $spacing-2;
+  font-size: $font-size-200;
+  line-height: $line-height-200;
+}
+
+.input-wrapper--medium textarea.input {
+  padding: $spacing-1_5 $spacing-3;
+  font-size: $font-size-300;
+  line-height: $line-height-300;
+}
+
+.input-wrapper--large textarea.input {
+  padding: $spacing-2 $spacing-4;
+  font-size: $font-size-400;
+  line-height: $line-height-400;
 }
 .field__actions {
   display: inline-flex;
