@@ -118,6 +118,9 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
 
   private overlayHandle: OverlayHandle | null = null;
 
+  private isDestroyed = false;
+  private closeDropdownScheduled?: ReturnType<typeof setTimeout>;
+
   private typeaheadTimeout?: number;
   private typeaheadString = '';
   private searchSubject = new Subject<string>();
@@ -347,11 +350,26 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
   }
 
   override ngOnDestroy(): void {
+    this.isDestroyed = true;
+    if (this.closeDropdownScheduled !== undefined) {
+      clearTimeout(this.closeDropdownScheduled);
+      this.closeDropdownScheduled = undefined;
+    }
     if (this.typeaheadTimeout) {
       clearTimeout(this.typeaheadTimeout);
     }
     this.searchSubject.complete();
     this.overlayHandle?.destroy();
+  }
+
+  private scheduleCloseDropdown(shouldFocusTrigger: boolean): void {
+    if (this.closeDropdownScheduled !== undefined) {
+      clearTimeout(this.closeDropdownScheduled);
+    }
+    this.closeDropdownScheduled = window.setTimeout(() => {
+      this.closeDropdownScheduled = undefined;
+      this.closeDropdown(shouldFocusTrigger);
+    }, 0);
   }
 
   toggleDropdown(): void {
@@ -414,7 +432,7 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
         if (focusTrigger) {
           this.closeDropdown(true);
         } else {
-          setTimeout(() => this.closeDropdown(false), 0);
+          this.scheduleCloseDropdown(false);
         }
       },
     });
@@ -430,6 +448,9 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
   }
 
   closeDropdown(shouldFocusTrigger: boolean = false): void {
+    if (this.isDestroyed) {
+      return;
+    }
     this.overlayHandle?.destroy();
     this.overlayHandle = null;
     this.isOpen.set(false);
@@ -483,7 +504,7 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
       }
 
       if (closeOnSelect) {
-        setTimeout(() => this.closeDropdown(), 0);
+        this.scheduleCloseDropdown(false);
       }
     } else {
       // Multi mode: toggle selection
