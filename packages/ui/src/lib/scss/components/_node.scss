@@ -94,7 +94,7 @@
         }
       }
 
-      &:active:not(:disabled) {
+      &:active:not(:disabled):not(:has(.node__quick-actions :active, .node__close:active)) {
         @if $use-filter {
           filter: brightness(0.9);
         } @else {
@@ -122,7 +122,7 @@
         background-color: $bg-hover;
       }
 
-      &:active:not(:disabled) {
+      &:active:not(:disabled):not(:has(.node__quick-actions :active, .node__close:active)) {
         outline-color: $border-pressed;
         background-color: $bg-pressed;
       }
@@ -138,7 +138,7 @@
       background-color: $bg-hover;
     }
 
-    &:active:not(:disabled) {
+    &:active:not(:disabled):not(:has(.node__quick-actions :active, .node__close:active)) {
       background-color: $bg-pressed;
     }
 
@@ -170,7 +170,7 @@
       }
     }
 
-    &:active:not(:disabled) {
+    &:active:not(:disabled):not(:has(.node__quick-actions :active, .node__close:active)) {
       outline-color: $outline-pressed;
       @if $use-filter {
         filter: brightness(0.9);
@@ -282,7 +282,7 @@
       }
     }
 
-    &:active:not(:disabled) {
+    &:active:not(:disabled):not(:has(.node__quick-actions :active, .node__close:active)) {
       background-color: var(--color-subtle-background-pressed);
       @include smooth-press;
     }
@@ -539,7 +539,7 @@ $node-sizes: (
       background-color: var(--color-neutral-background-brand-hover);
     }
 
-    &:active:not(:disabled) {
+    &:active:not(:disabled):not(:has(.node__quick-actions :active, .node__close:active)) {
       outline-color: var(--color-brand-primary-pressed);
       background-color: var(--color-neutral-background-brand-pressed);
     }
@@ -581,7 +581,7 @@ $node-sizes: (
       background-color: var(--color-neutral-background2-hover);
     }
 
-    &:active:not(:disabled) {
+    &:active:not(:disabled):not(:has(.node__quick-actions :active, .node__close:active)) {
       background-color: var(--color-neutral-background2-pressed);
     }
   }
@@ -601,7 +601,7 @@ $node-sizes: (
       outline-color: var(--color-neutral-stroke-accessible-hover);
     }
 
-    &:active:not(:disabled) {
+    &:active:not(:disabled):not(:has(.node__quick-actions :active, .node__close:active)) {
       outline-color: var(--color-neutral-stroke-accessible-pressed);
     }
   }
@@ -625,7 +625,7 @@ $node-sizes: (
       background-color: var(--color-subtle-background-hover);
     }
 
-    &:active:not(:disabled) {
+    &:active:not(:disabled):not(:has(.node__quick-actions :active, .node__close:active)) {
       background-color: var(--color-subtle-background-pressed);
     }
   }
@@ -667,7 +667,7 @@ $color-variants: (
           background-color: var(--color-shared-#{$color}-background);
         }
 
-        &:active:not(:disabled) {
+        &:active:not(:disabled):not(:has(.node__quick-actions :active, .node__close:active)) {
           outline-color: var(--color-shared-#{$color}-foreground-pressed);
           background-color: var(--color-shared-#{$color}-background);
           filter: brightness(0.95);
@@ -682,7 +682,7 @@ $color-variants: (
           outline-color: var(--color-shared-#{$color}-foreground-hover);
         }
 
-        &:active:not(:disabled) {
+        &:active:not(:disabled):not(:has(.node__quick-actions :active, .node__close:active)) {
           outline-color: var(--color-shared-#{$color}-foreground-pressed);
           filter: brightness(0.95);
         }
