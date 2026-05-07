@@ -21,7 +21,11 @@ import { Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import { FieldComponent } from '../field/field.component';
 import { ActionButtonComponent } from '../action-button.component';
-import { TimePickerComponent } from '../../time-picker';
+import {
+  TimePickerComponent,
+  formatHhmmForDisplay,
+  parseFlexibleTimeToHhmm,
+} from '../../time-picker';
 import {
   DEFAULT_CONNECTED_POSITIONS,
   DEFAULT_VIEWPORT_MARGIN,
@@ -79,7 +83,7 @@ export class TimeComponent extends FieldComponent implements OnDestroy {
   isMobile = signal(false);
   selectedTime = signal<string>('');
   private breakpointSub?: Subscription;
-  displayText = computed(() => this.selectedTime());
+  displayText = computed(() => formatHhmmForDisplay(this.selectedTime(), this.use24HourFormat()));
 
   @ViewChild('triggerElement') triggerElement!: ElementRef;
   @ViewChild('panelTemplate') panelTemplate!: TemplateRef<unknown>;
@@ -144,7 +148,10 @@ export class TimeComponent extends FieldComponent implements OnDestroy {
       return;
     }
 
-    this.selectedTime.set(inputValue);
+    const normalized = parseFlexibleTimeToHhmm(inputValue);
+    if (normalized) {
+      this.selectedTime.set(normalized);
+    }
   }
 
   onNativeTimeChange(event: Event): void {
