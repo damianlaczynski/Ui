@@ -20,7 +20,7 @@
   box-shadow: $elevation-16;
   padding: $spacing-4;
   width: 100%;
-  @include slide-down($duration-normal, $easing-decelerate-min);
+  @include overlay-surface-enter($duration-fast, $easing-decelerate-mid, top center);
 
   &[data-size='small'] {
     padding: $spacing-3;
@@ -238,5 +238,12 @@
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     gap: $spacing-1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .color-panel {
+    animation: none !important;
+    transform: none;
   }
 }
