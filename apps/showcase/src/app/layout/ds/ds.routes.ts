@@ -26,7 +26,7 @@ import { DateShowcaseComponent } from '@showcase/field/date/date.showcase';
 import { DatetimeShowcaseComponent } from '@showcase/field/datetime/datetime.showcase';
 import { MonthShowcaseComponent } from '@showcase/field/month/month.showcase';
 import { TimeSpanShowcaseComponent } from '@showcase/field/time-span/time-span.showcase';
-import { WeekShowcaseComponent } from '@showcase/field/week/week.showcase';
+import { WEEK_DOC_ASSET_PATHS, WEEK_DOC_PAGE_CONFIG } from '@showcase/field/week/week.showcase.doc';
 import { DateRangeShowcaseComponent } from '@showcase/field/date-range/date-range.showcase';
 import {
   DROPDOWN_DOC_ASSET_PATHS,
@@ -599,7 +599,11 @@ export const dsRoutes: Routes = [
   },
   {
     path: 'week',
-    component: WeekShowcaseComponent,
+    component: ShowcaseDocPageComponent,
+    data: {
+      config: WEEK_DOC_PAGE_CONFIG,
+      assetPaths: WEEK_DOC_ASSET_PATHS,
+    },
   },
   {
     path: 'toast',

@@ -1,0 +1,166 @@
+{
+  "slug": "week",
+  "title": "Week",
+  "description": "Week is a form field for ISO week selection. It supports display formats for date range, week and year, or raw ISO value, plus min and max constraints and a desktop picker panel.",
+  "intro": "Use `ui-week` when planning, reporting, or scheduling is organized by ISO week instead of a specific date. It is stronger than a plain text field because it can present a week list, enforce valid ISO week values, and keep the chosen week readable in a user-facing format.",
+  "importCode": "import { WeekComponent, type WeekDisplayFormat } from 'ui';",
+  "containerClass": "week-doc",
+  "snippets": {
+    "basicCode": "week-basic-demo.ts",
+    "formatsCode": "week-formats-demo.ts",
+    "constraintsCode": "week-constraints-demo.ts",
+    "statesCode": "week-states-demo.ts",
+    "reactiveFormCode": "week-reactive-form-demo.ts",
+    "planningPanelCode": "week-planning-panel-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic week selection",
+      "description": "The simplest pattern is a single field that stores an ISO week while presenting it in a friendlier visible format.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "formats",
+      "title": "Display formats",
+      "description": "The same underlying week value can be shown as a date range, compact week and year label, or raw ISO code depending on the surrounding workflow.",
+      "codeKey": "formatsCode",
+      "componentKey": "formats"
+    },
+    {
+      "id": "constraints",
+      "title": "Min and max constraints",
+      "description": "Constrain the available window when only a subset of weeks is valid for release planning, reporting, or operational cycles.",
+      "codeKey": "constraintsCode",
+      "componentKey": "constraints"
+    },
+    {
+      "id": "states",
+      "title": "Size and field states",
+      "description": "Week behaves like the rest of the field system, so size, readonly, disabled, required, and helper text should be shown in realistic form contexts.",
+      "codeKey": "statesCode",
+      "componentKey": "states"
+    },
+    {
+      "id": "reactive-form",
+      "title": "Reactive form integration",
+      "description": "Validation and submit state usually matter more than the picker itself, so the showcase should include a real reactive form example.",
+      "codeKey": "reactiveFormCode",
+      "componentKey": "reactiveForm"
+    },
+    {
+      "id": "planning-panel",
+      "title": "Planning panel composition",
+      "description": "A practical week field often sits inside a release, sprint, or reporting panel with context tags, status text, and action buttons around it.",
+      "codeKey": "planningPanelCode",
+      "componentKey": "planningPanel"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Input and popup behavior",
+      "body": "`ui-week` behaves like a text field on desktop and can fall back to a native `type=\"week\"` input on mobile when `useNativeOnMobile` is enabled.\n\n| Mode | Behavior |\n| --- | --- |\n| desktop text input | exposes `aria-haspopup=\"dialog\"` and `aria-expanded` |\n| mobile native week input | relies on native platform week input semantics |\n| disabled or readonly | blocks opening or changing the value |"
+    },
+    {
+      "title": "Keyboard",
+      "body": "Keyboard behavior follows the field and popup model rather than a custom roving picker.\n\n| Key | Action |\n| --- | --- |\n| `Tab` / `Shift+Tab` | moves through the field and overlay controls |\n| `Enter` / click on trigger actions | opens the week picker panel on desktop |\n| button activation | selects a week or runs footer actions like clear or this week |"
+    },
+    {
+      "title": "Labels and guidance",
+      "body": "Use explicit labels such as sprint week, reporting week, or release week so users understand the ISO-week context. When the valid window is narrow, add helper text or nearby status text that explains the allowed range."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "WeekComponent - <code>ui-week</code>",
+      "lead": "Standalone week field built on the shared field system and the date overlay service. It stores an ISO week value while presenting it through a desktop overlay picker or native mobile input.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Key inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["label", "InputSignal<string>", "''", "Visible field label."],
+            [
+              "placeholder",
+              "InputSignal<string>",
+              "''",
+              "Placeholder shown before a week is chosen."
+            ],
+            ["helpText", "InputSignal<string>", "''", "Supporting helper text under the field."],
+            [
+              "errorText",
+              "ModelSignal<string>",
+              "''",
+              "Validation message managed by the shared field base."
+            ],
+            ["required", "InputSignal<boolean>", "false", "Marks the field as required."],
+            [
+              "disabled",
+              "InputSignal<boolean>",
+              "false",
+              "Disables the field and its trigger actions."
+            ],
+            [
+              "readonly",
+              "InputSignal<boolean>",
+              "false",
+              "Prevents changes while keeping the selected week visible."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Field and action-button density token."],
+            [
+              "inputVariant",
+              "InputSignal<InputVariant>",
+              "'outline'",
+              "Visual style of the input shell."
+            ],
+            [
+              "displayFormat",
+              "InputSignal<WeekDisplayFormat>",
+              "'date-range'",
+              "Controls whether the visible value is shown as a date range, week and year, or raw ISO week."
+            ],
+            ["min", "InputSignal<string>", "''", "Minimum allowed ISO week value."],
+            ["max", "InputSignal<string>", "''", "Maximum allowed ISO week value."],
+            ["panelWidth", "InputSignal<number>", "300", "Desktop overlay width in pixels."],
+            [
+              "useNativeOnMobile",
+              "InputSignal<boolean>",
+              "true",
+              "Switches to a native mobile week input on small screens."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Important behavior",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "ControlValueAccessor",
+              "form integration",
+              "Works with `ngModel`, `formControl`, and `formControlName` like the other field components."
+            ],
+            ["clear()", "method", "Resets the selected week and underlying value."],
+            [
+              "openPanel() / closePanel()",
+              "method",
+              "Programmatically controls the desktop picker overlay."
+            ],
+            ["value", "string", "Stored ISO week string such as `2026-W20`."]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "This field is best when the domain model truly works in ISO weeks. If users think in exact dates, a date or calendar component is usually clearer.",
+            "The displayed label can differ from the stored value, but the actual written value remains an ISO week string."
+          ]
+        }
+      ]
+    }
+  ]
+}

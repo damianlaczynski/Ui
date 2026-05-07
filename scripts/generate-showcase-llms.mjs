@@ -60,6 +60,7 @@ const showcases = [
   loadShowcaseMeta({ slug: 'tree-node' }),
   loadShowcaseMeta({ slug: 'tooltip' }),
   loadShowcaseMeta({ slug: 'url', showcaseDir: 'field/url' }),
+  loadShowcaseMeta({ slug: 'week', showcaseDir: 'field/week' }),
 ];
 
 mkdirSync(outputDir, { recursive: true });
