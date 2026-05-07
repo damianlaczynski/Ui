@@ -20,13 +20,7 @@
     opacity: 1;
     padding: $spacing-6;
     overflow-y: auto;
-    z-index: 1100;
-    @include transition-opacity($duration-normal);
-
-    &--hidden {
-      opacity: 0;
-      pointer-events: none;
-    }
+    z-index: $z-index-modal-backdrop;
 
     @include respond-to(small) {
       padding: $spacing-4;
@@ -34,6 +28,12 @@
 
     &--fullscreen {
       padding: 0;
+    }
+
+    &--closing {
+      pointer-events: none;
+      animation: fadeOut $duration-normal $easing-accelerate-min forwards;
+      @include respect-reduced-motion;
     }
   }
 
@@ -45,8 +45,7 @@
     box-shadow: $elevation-16;
     border-radius: $border-radius-800;
     transform: scale(1);
-    z-index: 1001;
-    @include transition-transform($duration-normal);
+    z-index: $z-index-modal;
 
     &--fullscreen {
       width: 100vw;
@@ -186,22 +185,43 @@
       }
     }
   }
-
-  // Animations - only for opening (element is removed from DOM on close)
-  .dialog__backdrop:not(.dialog__backdrop--hidden) {
-    @include fade-in($duration-normal, $easing-decelerate-min);
-  }
-
-  .dialog__content:not(.dialog__content--fullscreen) {
-    @include scale-in($duration-normal, $easing-decelerate-min);
-  }
-
-  .dialog__content--fullscreen {
-    @include fade-in($duration-fast, $easing-decelerate-min);
-  }
 }
 
-// Body scroll lock when dialog is open
-body:has(.dialog__backdrop:not(.dialog__backdrop--hidden)) {
+.dialog__backdrop:not(.dialog__backdrop--closing) {
+  animation: fadeIn $duration-normal $easing-decelerate-min both;
+  @include respect-reduced-motion;
+}
+
+.dialog:not(.dialog--closing) .dialog__content:not(.dialog__content--fullscreen) {
+  animation: scaleIn $duration-normal $easing-decelerate-min both;
+  transform-origin: center center;
+  @include respect-reduced-motion;
+}
+
+.dialog.dialog--closing .dialog__content:not(.dialog__content--fullscreen) {
+  animation: scaleOut $duration-normal $easing-accelerate-min forwards;
+  transform-origin: center center;
+  @include respect-reduced-motion;
+}
+
+.dialog:not(.dialog--closing) .dialog__content--fullscreen {
+  animation: fadeIn $duration-normal $easing-decelerate-min both;
+  @include respect-reduced-motion;
+}
+
+.dialog.dialog--closing .dialog__content--fullscreen {
+  animation: fadeOut $duration-normal $easing-accelerate-min forwards;
+  @include respect-reduced-motion;
+}
+
+body:has(.dialog__backdrop) {
   overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dialog__backdrop,
+  .dialog__content {
+    animation: none !important;
+    transform: none;
+  }
 }
