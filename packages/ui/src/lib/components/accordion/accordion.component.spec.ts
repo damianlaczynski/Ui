@@ -54,7 +54,8 @@ describe('AccordionComponent', () => {
 
       expect(component.expanded()).toBe(false);
       const panel = fixture.debugElement.query(By.css('.accordion__panel'));
-      expect(panel).toBeFalsy();
+      expect(panel).toBeTruthy();
+      expect(panel.nativeElement.getAttribute('aria-hidden')).toBe('true');
     });
   });
 
@@ -238,6 +239,7 @@ describe('AccordionComponent', () => {
 
       const panel = fixture.debugElement.query(By.css('.accordion__panel'));
       expect(panel).toBeTruthy();
+      expect(panel.nativeElement.getAttribute('aria-hidden')).toBe('false');
     });
 
     it('should hide panel when collapsed', () => {
@@ -246,7 +248,8 @@ describe('AccordionComponent', () => {
       fixture.detectChanges();
 
       const panel = fixture.debugElement.query(By.css('.accordion__panel'));
-      expect(panel).toBeFalsy();
+      expect(panel).toBeTruthy();
+      expect(panel.nativeElement.getAttribute('aria-hidden')).toBe('true');
     });
 
     it('should pass expanded state to tree node', () => {
@@ -364,6 +367,7 @@ describe('AccordionComponent', () => {
       expect(component.expanded()).toBe(true);
       const panel = fixture.debugElement.query(By.css('.accordion__panel'));
       expect(panel).toBeTruthy();
+      expect(panel.nativeElement.getAttribute('aria-hidden')).toBe('false');
     });
 
     it('should toggle from expanded to collapsed', () => {
@@ -546,13 +550,13 @@ describe('AccordionComponent', () => {
       expect(panelContent).toBeTruthy();
     });
 
-    it('should not render panel content when collapsed', () => {
+    it('should keep panel content mounted when collapsed for animation', () => {
       fixture.componentRef.setInput('label', 'Accordion');
       component.expanded.set(false);
       fixture.detectChanges();
 
       const panelContent = fixture.debugElement.query(By.css('.accordion__panel-content'));
-      expect(panelContent).toBeFalsy();
+      expect(panelContent).toBeTruthy();
     });
   });
 
@@ -657,12 +661,16 @@ describe('AccordionComponent', () => {
       fixture.componentRef.setInput('label', 'Accordion');
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('.accordion__panel'))).toBeFalsy();
+      const collapsedPanel = fixture.debugElement.query(By.css('.accordion__panel'));
+      expect(collapsedPanel).toBeTruthy();
+      expect(collapsedPanel.nativeElement.getAttribute('aria-hidden')).toBe('true');
 
       component.expanded.set(true);
       fixture.detectChanges();
 
-      expect(fixture.debugElement.query(By.css('.accordion__panel'))).toBeTruthy();
+      const expandedPanel = fixture.debugElement.query(By.css('.accordion__panel'));
+      expect(expandedPanel).toBeTruthy();
+      expect(expandedPanel.nativeElement.getAttribute('aria-hidden')).toBe('false');
     });
 
     it('should update computed values when inputs change', () => {
