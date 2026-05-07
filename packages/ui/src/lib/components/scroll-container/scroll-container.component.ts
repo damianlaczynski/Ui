@@ -69,7 +69,8 @@ export class ScrollContainerComponent<T = any> {
   initialPage = input<number>(1);
 
   // Display configuration
-  itemTemplate = input<TemplateRef<any> | null>(null);
+  itemTemplate = input<TemplateRef<unknown> | null>(null);
+  emptyTemplate = input<TemplateRef<unknown> | null>(null);
   useNodeComponent = input<boolean>(true);
   nodeMapper = input<((item: T) => Node | null) | null>(null);
 
