@@ -1,4 +1,5 @@
 import { IconName } from '../../icon';
+import type { Appearance, Variant } from '../../utils';
 
 export type MenuItemType = 'button' | 'menu' | 'split' | 'header' | 'divider';
 
@@ -7,6 +8,8 @@ export interface MenuItem {
   type?: MenuItemType;
   label: string;
   icon?: IconName;
+  variant?: Variant;
+  appearance?: Appearance;
   shortcut?: string;
   disabled?: boolean;
   selected?: boolean;

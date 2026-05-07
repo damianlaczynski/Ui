@@ -1,4 +1,5 @@
 @use '../utils/variables' as *;
+@use '../utils/mixins' as *;
 
 .menu-trigger-host {
   display: inline-flex;
@@ -28,6 +29,22 @@
       padding-left: $spacing-1;
       padding-right: $spacing-1;
     }
+  }
+}
+
+.menu-trigger,
+.menu-trigger-split__dropdown {
+  ui-icon:last-child {
+    display: inline-flex;
+    @include transition(transform, $duration-fast, $easing-decelerate-mid);
+    transform: rotate(0deg);
+  }
+}
+
+.menu-trigger--open,
+.menu-trigger-split__dropdown--open {
+  ui-icon:last-child {
+    transform: rotate(180deg);
   }
 }
 
