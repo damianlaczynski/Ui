@@ -12,7 +12,6 @@ import {
   SIZES,
   SHAPES,
   ORIENTATIONS,
-  SEGMENT_LAYOUTS,
   SHOWCASE_GROUP_ICONS,
 } from '@shared/utils/showcase/component-options.utils';
 
@@ -59,15 +58,6 @@ const RADIO_BUTTON_GROUP_CONTROL_DEFS: SharedControlDef[] = [
     type: 'dropdown',
     options: toOptions([...ORIENTATIONS]),
     defaultValue: 'horizontal',
-    group: 'layout',
-  },
-  {
-    key: 'layout',
-    label: 'Layout',
-    type: 'dropdown',
-    options: toOptions([...SEGMENT_LAYOUTS]),
-    description: 'Segmented or separate buttons',
-    defaultValue: 'separate',
     group: 'layout',
   },
   {
@@ -118,7 +108,6 @@ export const RADIO_BUTTON_GROUP_DRAWER_CONFIGS = createDrawerFormConfigs(ALL_CON
   appearance: { excludeKey: 'appearance' },
   variant: { excludeKey: 'variant' },
   orientation: { excludeKey: 'orientation' },
-  layout: { excludeKey: 'layout' },
   size: { excludeKey: 'size' },
   shape: { excludeKey: 'shape' },
   states: { excludeKeys: ['disabled', 'readonly', 'required'] },
