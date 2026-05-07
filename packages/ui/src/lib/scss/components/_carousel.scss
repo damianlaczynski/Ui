@@ -15,25 +15,6 @@
   border-radius: $border-radius-800;
   overflow: hidden;
 
-  // Size Modifiers
-  &--small {
-    &__content {
-      min-height: 200px;
-    }
-  }
-
-  &--medium {
-    &__content {
-      min-height: 400px;
-    }
-  }
-
-  &--large {
-    &__content {
-      min-height: 600px;
-    }
-  }
-
   // Elements
   &__container {
     position: relative;
@@ -47,6 +28,7 @@
     position: relative;
     width: 100%;
     flex: 1 1 auto;
+    min-height: 400px;
     overflow: hidden;
     border-radius: $border-radius-800 $border-radius-800 0 0;
   }
@@ -234,22 +216,8 @@
   }
 
   @include respond-to(small) {
-    &--small {
-      &__content {
-        min-height: 150px;
-      }
-    }
-
-    &--medium {
-      &__content {
-        min-height: 300px;
-      }
-    }
-
-    &--large {
-      &__content {
-        min-height: 400px;
-      }
+    &__content {
+      min-height: 300px;
     }
 
     &__navigation {
