@@ -90,8 +90,34 @@
   flex-direction: column;
   width: 100%;
   min-width: 0;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.data-grid__horizontal-track {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
   overflow-x: auto;
-  overflow-y: auto; // Allow vertical scrolling for large datasets
+  overflow-y: hidden;
+}
+
+.data-grid__vertical-track {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: max-content;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  ui-data-grid-header,
+  ui-data-grid-filter-row {
+    flex-shrink: 0;
+  }
 }
 
 // =============================================================================
