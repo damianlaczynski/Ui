@@ -17,6 +17,7 @@
   min-width: fit-content;
   max-width: 300px;
   white-space: normal;
+  @include fade-in($duration-slow, $easing-decelerate-min);
 
   &__content {
     display: inline-block;
