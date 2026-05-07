@@ -121,7 +121,6 @@ export class DsSidebarComponent {
     { id: 'tooltip', label: 'Tooltip', icon: 'info' },
     { id: 'url', label: 'URL', icon: 'link' },
     { id: 'video', label: 'Video', icon: 'video' },
-    { id: 'speed-dial', label: 'Speed Dial', icon: 'add_circle' },
   ];
 
   private readonly groupedNavSource = this.buildGroupedNav();
