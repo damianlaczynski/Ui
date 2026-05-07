@@ -130,15 +130,16 @@ export class CommandPaletteComponent {
 
   shouldRender = computed(() => this.rendered());
 
-  backdropClasses = computed(() => [
-    'command-palette__backdrop',
-    this.isClosing() ? 'command-palette__backdrop--closing' : '',
-  ]);
+  backdropClasses = computed(() =>
+    [
+      'command-palette__backdrop',
+      this.isClosing() ? 'command-palette__backdrop--closing' : '',
+    ].join(' '),
+  );
 
-  frameClasses = computed(() => [
-    'command-palette__frame',
-    this.isClosing() ? 'command-palette__frame--closing' : '',
-  ]);
+  frameClasses = computed(() =>
+    ['command-palette__frame', this.isClosing() ? 'command-palette__frame--closing' : ''].join(' '),
+  );
 
   surfaceClasses = computed(() => 'command-palette__surface');
 
