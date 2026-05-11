@@ -23,7 +23,7 @@ import { ShowcaseDocHeaderComponent } from '../showcase-doc-header/showcase-doc-
   template: `
     <div class="showcase-doc-layout showcase-doc-layout--with-toc">
       <ui-table-of-content
-        headingSelector="h1, h2, h3, h4, h5, h6"
+        headingSelector="h2, h3, h4, h5, h6"
         variant="primary"
         appearance="subtle"
         [sticky]="true"

@@ -21,7 +21,7 @@ export const INSTALLATION_PAGE_CONFIG: GuideDocPageConfig = {
           items: [
             'Node.js 18+ (LTS recommended)',
             'Angular 17+ project (standalone or module-based)',
-            'Package manager: npm, yarn or pnpm',
+            'Package manager: npm',
           ],
         },
       ],

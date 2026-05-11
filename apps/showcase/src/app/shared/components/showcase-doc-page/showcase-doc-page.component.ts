@@ -30,7 +30,7 @@ import {
     <div class="showcase-doc-layout showcase-doc-layout--with-toc">
       @for (tocTabId of [activeTabId()]; track tocTabId) {
         <ui-table-of-content
-          headingSelector="h1, h2, h3, h4, h5, h6"
+          headingSelector="h2, h3, h4, h5, h6"
           ignoreWithinSelector=".showcase-doc__example-preview"
           variant="primary"
           appearance="subtle"
