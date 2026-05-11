@@ -4,7 +4,6 @@
 
 @use '../utils/variables' as *;
 @use '../utils/mixins' as *;
-@use '../utils/functions' as *;
 
 // =============================================================================
 // DataGrid Container
@@ -13,18 +12,30 @@
 .data-grid {
   display: flex;
   flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
   width: 100%;
   min-width: 0;
+  box-sizing: border-box;
+  border: 1px solid var(--color-neutral-stroke-rest);
+  border-radius: $border-radius-800;
   background: var(--color-neutral-background-rest);
+  color: var(--color-neutral-foreground-rest);
+  overflow-x: hidden;
+  overflow-y: visible;
 
-  // Size variants
   &--small {
     font-size: $font-size-200;
+    line-height: $line-height-200;
 
-    .data-grid__header-cell {
-      &--selection {
-        padding: 8px 8px 9px 8px;
-      }
+    .data-grid__header-cell--selection {
+      padding: $spacing-1 $spacing-2;
+    }
+
+    .data-grid__header-label-content {
+      min-height: 28px;
+      padding-block: $spacing-1;
+      padding-inline: $spacing-2;
     }
 
     .data-grid__cell {
@@ -34,21 +45,31 @@
 
   &--medium {
     font-size: $font-size-300;
+    line-height: $line-height-300;
 
-    .data-grid__header-cell {
-      &--selection {
-        padding: 8px 16px 9px 16px;
-      }
+    .data-grid__header-cell--selection {
+      padding: $spacing-2 $spacing-4;
+    }
+
+    .data-grid__header-label-content {
+      min-height: 36px;
+      padding-block: $spacing-1_5;
+      padding-inline: $spacing-2;
     }
   }
 
   &--large {
     font-size: $font-size-300;
+    line-height: $line-height-300;
 
-    .data-grid__header-cell {
-      &--selection {
-        padding: 8px 16px 9px 16px;
-      }
+    .data-grid__header-cell--selection {
+      padding: $spacing-2 $spacing-4;
+    }
+
+    .data-grid__header-label-content {
+      min-height: 44px;
+      padding-block: $spacing-2;
+      padding-inline: $spacing-2;
     }
 
     .data-grid__cell {
@@ -56,10 +77,9 @@
     }
   }
 
-  // Style variants
   &--striped {
-    .data-grid__row:nth-child(even) {
-      background: var(--color-neutral-background-selected);
+    .data-grid__row:nth-child(even):not(.data-grid__row--selected):not(.data-grid__row--hovered) {
+      background: var(--color-neutral-background2-rest);
     }
   }
 
@@ -67,6 +87,7 @@
     .data-grid__header-cell,
     .data-grid__cell {
       border-right: 1px solid var(--color-neutral-stroke-rest);
+      @include transition(border-color, $duration-faster, $easing-decelerate-min);
 
       &:last-child {
         border-right: none;
@@ -81,6 +102,23 @@
   }
 }
 
+.data-grid__footer {
+  flex-shrink: 0;
+  border-top: 1px solid var(--color-neutral-stroke-rest);
+  background: var(--color-neutral-background-rest);
+  padding: $spacing-2 $spacing-3;
+  border-bottom-left-radius: max(0px, calc(#{$border-radius-400} - 1px));
+  border-bottom-right-radius: max(0px, calc(#{$border-radius-400} - 1px));
+
+  .data-grid--small & {
+    padding: $spacing-1 $spacing-2;
+  }
+
+  .data-grid--large & {
+    padding: $spacing-3 $spacing-4;
+  }
+}
+
 // =============================================================================
 // Scroll Container
 // =============================================================================
@@ -92,7 +130,8 @@
   min-width: 0;
   flex: 1 1 auto;
   min-height: 0;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: visible;
 }
 
 .data-grid__horizontal-track {
@@ -102,22 +141,42 @@
   min-width: 0;
   min-height: 0;
   overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: visible;
 }
 
 .data-grid__vertical-track {
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
+  align-items: stretch;
+  isolation: isolate;
   min-width: max-content;
   min-height: 0;
   overflow-x: hidden;
   overflow-y: auto;
+}
 
-  ui-data-grid-header,
-  ui-data-grid-filter-row {
-    flex-shrink: 0;
-  }
+.data-grid:not(:has(> .data-grid__footer)) .data-grid__vertical-track {
+  border-bottom-left-radius: max(0px, calc(#{$border-radius-400} - 1px));
+  border-bottom-right-radius: max(0px, calc(#{$border-radius-400} - 1px));
+}
+
+.data-grid__sticky-head {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  align-self: stretch;
+  width: 100%;
+  min-width: 0;
+  border-top-left-radius: max(0px, calc(#{$border-radius-400} - 1px));
+  border-top-right-radius: max(0px, calc(#{$border-radius-400} - 1px));
+}
+
+.data-grid__sticky-head--sticky {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--color-neutral-background2-rest);
 }
 
 // =============================================================================
@@ -126,23 +185,20 @@
 
 .data-grid__header {
   align-items: center;
-  background: var(--color-neutral-background-rest);
-  overflow: visible; // Allow dropdown panels to be visible
-  position: relative; // Create positioning context
-  flex-shrink: 0; // Prevent header from shrinking
-
-  &--sticky {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-  }
+  background: var(--color-neutral-background2-rest);
+  color: var(--color-neutral-foreground-rest);
+  overflow: visible;
+  position: relative;
+  flex-shrink: 0;
 }
 
 .data-grid__header-row {
   display: flex;
   width: 100%;
-  min-width: max-content; // Ensure row takes full width
+  min-width: max-content;
   border-bottom: 1px solid var(--color-neutral-stroke-rest);
+  background: transparent;
+  @include transition(border-color, $duration-faster, $easing-decelerate-min);
 }
 
 .data-grid__header-cell {
@@ -151,36 +207,86 @@
   background: transparent;
   overflow: visible;
   flex: 1 1 auto;
-  box-sizing: border-box; // Include padding in width calculation
-  position: relative; // For resize handle positioning
-  min-width: 0; // Allow shrinking below content size
+  box-sizing: border-box;
+  position: relative;
+  min-width: 0;
+
+  &:not(.data-grid__header-cell--selection):not(.data-grid__header-cell--expand) {
+    @include transition(background-color, $duration-faster, $easing-decelerate-min);
+  }
+
+  &:not(.data-grid__header-cell--selection):not(.data-grid__header-cell--expand):hover {
+    background: var(--color-subtle-background-hover);
+  }
+
+  &--sortable:active {
+    background: var(--color-subtle-background-pressed);
+  }
 
   &--selection {
-    padding: 8px 16px 9px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-2 $spacing-4;
     flex: 0 0 auto;
     min-width: auto;
   }
 
   &--expand {
-    padding: 5px 8px 6px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-1 $spacing-2;
     flex: 0 0 40px;
     min-width: 40px;
     max-width: 40px;
   }
+}
 
-  // Sorted state is now handled by ButtonComponent with selected prop
+.data-grid__header-cell--selection,
+.data-grid__cell--selection {
+  ui-checkbox {
+    flex: 0 0 auto;
+    align-self: center;
+
+    .input-container {
+      width: auto;
+      flex: 0 0 auto;
+      align-items: center;
+    }
+
+    .input-main {
+      flex: 0 0 auto;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .input-control {
+      flex: 0 0 auto;
+      width: auto;
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .checkbox-wrapper {
+      align-items: center;
+    }
+  }
 }
 
 .data-grid__header-label-content {
   display: flex;
-  min-height: 33px;
-  padding: 5px 8px 6px 8px;
   justify-content: space-between;
   align-items: center;
   gap: $spacing-1;
   width: 100%;
-  min-width: 0; // Allow shrinking
-  box-sizing: border-box; // Include padding in width calculation
+  min-width: 0;
+  min-height: 36px;
+  padding-block: $spacing-1_5;
+  padding-inline: $spacing-2;
+  box-sizing: border-box;
 }
 
 .data-grid__header-actions {
@@ -196,18 +302,26 @@
   flex-direction: column;
   justify-content: center;
   color: var(--color-neutral-foreground-rest);
-  font-size: $font-size-300;
+  font-size: inherit;
   font-family: $font-family-base;
-  font-weight: $font-weight-regular;
-  line-height: $line-height-300;
+  font-weight: $font-weight-semibold;
+  line-height: inherit;
+  letter-spacing: 0.01em;
   word-wrap: break-word;
   text-overflow: ellipsis;
   white-space: nowrap;
   min-width: 0;
 }
 
-// Sort button uses ButtonComponent styles
-// Additional data-grid specific styling if needed
+.data-grid--small .data-grid__header-text {
+  font-weight: $font-weight-medium;
+}
+
+.data-grid__header-cell--sorted-asc .data-grid__header-text,
+.data-grid__header-cell--sorted-desc .data-grid__header-text {
+  color: var(--color-neutral-foreground-rest);
+}
+
 .data-grid__header-sort-button {
   flex-shrink: 0;
 
@@ -218,30 +332,29 @@
   }
 }
 
-// Filter operator selector in header
 .data-grid__header-filter-operator {
   flex-shrink: 0;
 }
 
-// Resize handle
 .data-grid__header-resize-handle {
   position: absolute;
   top: 0;
   right: 0;
-  width: 4px;
+  width: 6px;
   height: 100%;
+  margin-right: -1px;
   cursor: col-resize;
-  z-index: 1;
+  z-index: 2;
   background: transparent;
-  @include smooth-hover;
+  @include transition-colors($duration-faster);
 
   &:hover {
-    background: var(--color-brand-primary);
+    background: var(--color-neutral-stroke-accessible);
   }
 
   &:active {
-    background: var(--color-brand-primary);
-    opacity: 0.8;
+    background: var(--color-brand-stroke-rest);
+    opacity: 1;
   }
 }
 
@@ -252,31 +365,34 @@
 .data-grid__filter-row {
   display: flex;
   width: 100%;
-  min-width: max-content; // Ensure row takes full width
-  background: var(--color-neutral-background-hover);
+  min-width: max-content;
+  background: var(--color-neutral-background2-rest);
   border-bottom: 1px solid var(--color-neutral-stroke-rest);
-  padding: 0 0;
-  overflow: visible; // Allow dropdown panels to be visible
-  position: relative; // Create positioning context
-  flex-shrink: 0; // Prevent filter row from shrinking
+  padding: 0;
+  overflow: visible;
+  position: relative;
+  flex-shrink: 0;
+  @include transition(border-color background-color, $duration-faster, $easing-decelerate-min);
 }
 
 .data-grid__filter-cell {
   display: flex;
   align-items: stretch;
   padding: $spacing-1 $spacing-2;
-  overflow: visible; // Allow dropdown/date picker panels to be visible - inputs are controlled by max-width
+  overflow: visible;
   flex: 1 1 auto;
-  position: relative; // Create positioning context for dropdown panels
-  max-width: 100%; // Ensure cell doesn't exceed column width
-  box-sizing: border-box; // Include padding in width calculation
-  min-width: 0; // Allow shrinking below content size
+  position: relative;
+  max-width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
 
   &--selection {
     padding: $spacing-1 $spacing-4;
     flex: 0 0 auto;
     min-width: auto;
     max-width: none;
+    align-items: center;
+    justify-content: center;
 
     &::after {
       content: '';
@@ -295,8 +411,8 @@
 
 .data-grid__filter-wrapper {
   width: 100%;
-  min-width: 0; // Allow shrinking
-  box-sizing: border-box; // Include padding in width calculation
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .data-grid__filter-separator {
@@ -305,16 +421,11 @@
   font-size: $font-size-200;
   padding: 0 $spacing-1;
   white-space: nowrap;
-  flex: 0 0 auto; // Don't grow or shrink
+  flex: 0 0 auto;
 }
 
-// Size variants for filter row
 .data-grid {
   &--small {
-    .data-grid__filter-row {
-      padding: 0 0;
-    }
-
     .data-grid__filter-cell {
       padding: $spacing-0_5 $spacing-1;
       min-height: 28px;
@@ -327,10 +438,6 @@
   }
 
   &--medium {
-    .data-grid__filter-row {
-      padding: 0 0;
-    }
-
     .data-grid__filter-cell {
       padding: $spacing-1 $spacing-2;
       min-height: 36px;
@@ -342,10 +449,6 @@
   }
 
   &--large {
-    .data-grid__filter-row {
-      padding: 0 0;
-    }
-
     .data-grid__filter-cell {
       padding: $spacing-2 $spacing-2;
       min-height: 44px;
@@ -357,10 +460,10 @@
   }
 }
 
-// Bordered variant for filters
 .data-grid--bordered {
   .data-grid__filter-cell {
     border-right: 1px solid var(--color-neutral-stroke-rest);
+    @include transition(border-color, $duration-faster, $easing-decelerate-min);
 
     &:last-child {
       border-right: none;
@@ -375,8 +478,9 @@
 .data-grid__rows-container {
   position: relative;
   width: 100%;
-  flex-shrink: 0; // Prevent rows container from shrinking
-  overflow-y: visible; // Allow dropdown panels to be visible (if any filters in rows)
+  flex-shrink: 0;
+  overflow-y: visible;
+  background: var(--color-neutral-background-rest);
 }
 
 // =============================================================================
@@ -386,14 +490,15 @@
 .data-grid__row {
   display: flex;
   align-items: stretch;
+  background: var(--color-neutral-background-rest);
   border-bottom: 1px solid var(--color-neutral-stroke-rest);
   @include smooth-hover;
+  @include transition(border-color, $duration-faster, $easing-decelerate-min);
   cursor: default;
   outline: none;
   width: 100%;
-  min-width: max-content; // Ensure row takes full width
+  min-width: max-content;
 
-  // Only show pointer cursor when row is clickable
   .data-grid--hoverable &:not(&--disabled) {
     cursor: pointer;
   }
@@ -415,7 +520,6 @@
     background: var(--color-subtle-background-hover);
   }
 
-  // Fluent 2 Focus Indicator
   &:focus-visible {
     position: relative;
     z-index: 1;
@@ -440,10 +544,13 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  box-sizing: border-box; // Include padding in width calculation
-  min-width: 0; // Allow shrinking below content size
+  box-sizing: border-box;
+  min-width: 0;
 
   &--selection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: $spacing-3 $spacing-4;
     flex: 0 0 auto;
     min-width: auto;
@@ -451,11 +558,13 @@
   }
 
   &--expand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: $spacing-2;
     flex: 0 0 40px;
     min-width: 40px;
     max-width: 40px;
-    justify-content: center;
   }
 
   &--none {
@@ -472,8 +581,8 @@
   align-items: center;
   gap: $spacing-2;
   width: 100%;
-  min-width: 0; // Allow shrinking
-  box-sizing: border-box; // Include padding in width calculation
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .data-grid__cell-text {
@@ -494,20 +603,57 @@
 }
 
 // =============================================================================
-// Expandable Rows
+// Expandable Rows (same motion model as tree-node__children / __children-inner)
 // =============================================================================
 
 .data-grid__row-details {
-  background: var(--color-neutral-background-selected);
-  border-bottom: 1px solid var(--color-neutral-stroke-rest);
-  border-top: 1px solid var(--color-neutral-stroke-rest);
-  margin-top: -1px; // Overlap with row border
-  @include slide-down($duration-normal, $easing-ease-in-out);
+  display: grid;
+  grid-template-rows: 0fr;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition-property: grid-template-rows, opacity;
+  transition-duration: $duration-normal;
+  transition-timing-function: $easing-decelerate-min;
+  @include respect-reduced-motion;
+
+  &:not(.data-grid__row-details--expanded) {
+    pointer-events: none;
+    transition-timing-function: $easing-accelerate-min;
+
+    .data-grid__row-details-inner {
+      transition-timing-function: $easing-accelerate-min;
+    }
+  }
+
+  &--expanded {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    background: var(--color-neutral-background2-rest);
+    border-bottom: 1px solid var(--color-neutral-stroke-rest);
+    border-top: 1px solid var(--color-neutral-stroke-rest);
+    margin-top: -1px;
+  }
+}
+
+.data-grid__row-details-inner {
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(calc(#{$spacing-0_5} * -1));
+  @include transition(transform, $duration-normal, $easing-decelerate-min);
+}
+
+.data-grid__row-details--expanded .data-grid__row-details-inner {
+  transform: translateY(0);
 }
 
 .data-grid__row-details-content {
   padding: $spacing-4 $spacing-4;
-  padding-left: calc(40px + $spacing-4); // Align with expand column
+  padding-left: calc(40px + $spacing-4);
   color: var(--color-neutral-foreground-rest);
   font-size: $font-size-300;
   line-height: $line-height-300;
@@ -527,11 +673,10 @@
   }
 }
 
-// Adjust padding when selection column is present
 .data-grid__row:has(.data-grid__cell--selection)
   + .data-grid__row-details
   .data-grid__row-details-content {
-  padding-left: calc(40px + 48px + $spacing-4); // expand + selection + padding
+  padding-left: calc(40px + 48px + $spacing-4);
 
   .data-grid--small & {
     padding-left: calc(40px + 48px + $spacing-3);

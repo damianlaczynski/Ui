@@ -207,14 +207,6 @@
   }
 }
 
-/// Expand row animation (for data grid) - uses slide-down
-/// @param {Duration} $duration - Animation duration
-/// @param {Function} $easing - Easing function
-@mixin expand-row($duration: $duration-normal, $easing: $easing-ease-in-out) {
-  @include slide-down($duration, $easing);
-}
-
-/// Progress indeterminate animation
 /// @param {Duration} $duration - Animation duration
 @mixin progress-indeterminate($duration: 2s) {
   animation: progressIndeterminate $duration $easing-linear infinite;

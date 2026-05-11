@@ -18,6 +18,13 @@ import { DataGridFilterService } from '../services/data-grid-filter.service';
   selector: 'ui-data-grid-filter-row',
 
   imports: [CommonModule, FormsModule],
+  styles: [
+    `
+      :host {
+        display: contents;
+      }
+    `,
+  ],
   template: `
     <div class="data-grid__filter-row">
       <!-- Expand Column Filter (empty) -->
