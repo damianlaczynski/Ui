@@ -7,9 +7,7 @@ import { DateComponent } from 'ui';
   standalone: true,
   imports: [FormsModule, DateComponent],
   template: `
-    <div
-      style="display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1rem;align-items:start"
-    >
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1rem;align-items:start">
       <ui-date
         label="Readonly"
         placeholder="YYYY-MM-DD"

@@ -6,17 +6,13 @@ import { ButtonComponent, LoadingStateComponent } from 'ui';
   standalone: true,
   imports: [ButtonComponent, LoadingStateComponent],
   template: `
-    <div
-      style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:52rem"
-    >
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:52rem">
       <div
         style="flex:1 1 18rem;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >
-        <p
-          style="margin:0 0 0.75rem;font-size:0.875rem;line-height:1.5;color:var(--color-neutral-foreground2-rest)"
-        >
-          Use fullscreen loading only for blocking transitions such as app bootstrap, secure
-          redirects, or major workspace switches.
+        <p style="margin:0 0 0.75rem;font-size:0.875rem;line-height:1.5;color:var(--color-neutral-foreground2-rest)">
+          Use fullscreen loading only for blocking transitions such as app bootstrap, secure redirects, or major
+          workspace switches.
         </p>
         <ui-button variant="primary" (click)="showDemo()">Show fullscreen loading</ui-button>
       </div>

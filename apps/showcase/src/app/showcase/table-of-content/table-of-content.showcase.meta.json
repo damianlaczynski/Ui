@@ -105,30 +105,15 @@
             ["size", "InputSignal<Size>", "'medium'", "Density of TOC rows."],
             ["appearance", "InputSignal<Appearance>", "'subtle'", "Visual emphasis of TOC rows."],
             ["shape", "InputSignal<Shape>", "'rounded'", "Corner treatment of TOC rows."],
-            [
-              "showSelectionIndicator",
-              "InputSignal<boolean>",
-              "true",
-              "Shows the active-section indicator."
-            ],
+            ["showSelectionIndicator", "InputSignal<boolean>", "true", "Shows the active-section indicator."],
             [
               "indicatorPosition",
               "InputSignal<'horizontal' | 'vertical'>",
               "'vertical'",
               "Placement of the active indicator."
             ],
-            [
-              "sticky",
-              "InputSignal<boolean>",
-              "false",
-              "Makes the TOC stick within its layout column."
-            ],
-            [
-              "offsetTop",
-              "InputSignal<number>",
-              "0",
-              "Top offset used for sticky positioning and scroll targeting."
-            ]
+            ["sticky", "InputSignal<boolean>", "false", "Makes the TOC stick within its layout column."],
+            ["offsetTop", "InputSignal<number>", "0", "Top offset used for sticky positioning and scroll targeting."]
           ]
         },
         {
@@ -142,11 +127,7 @@
               "{ id, label, level, element, children? }",
               "Internal outline item generated from source headings."
             ],
-            [
-              "treeNodes",
-              "ComputedSignal<TreeNode[]>",
-              "Derived recursive structure rendered through `ui-tree-node`."
-            ]
+            ["treeNodes", "ComputedSignal<TreeNode[]>", "Derived recursive structure rendered through `ui-tree-node`."]
           ]
         },
         {

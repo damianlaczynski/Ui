@@ -26,8 +26,8 @@ const labelItems: DropdownItem[] = [
       <div style="display:flex;flex-direction:column;gap:0.25rem">
         <div style="font-size:0.9375rem;font-weight:600">Inline filter toolbar</div>
         <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          Compact mode works well in tables, toolbars, and dense filter rows where a full field
-          shell would add too much weight.
+          Compact mode works well in tables, toolbars, and dense filter rows where a full field shell would add too much
+          weight.
         </div>
       </div>
 
@@ -58,9 +58,7 @@ const labelItems: DropdownItem[] = [
           ariaLabel="Label filter"
         />
 
-        <ui-button type="button" variant="secondary" appearance="outline" (click)="resetFilters()">
-          Reset
-        </ui-button>
+        <ui-button type="button" variant="secondary" appearance="outline" (click)="resetFilters()"> Reset </ui-button>
       </div>
 
       <div
@@ -72,9 +70,7 @@ const labelItems: DropdownItem[] = [
           >
             Assignee
           </span>
-          <strong
-            style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)"
-          >
+          <strong style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)">
             {{ selectedAssigneeLabel }}
           </strong>
         </div>
@@ -84,9 +80,7 @@ const labelItems: DropdownItem[] = [
           >
             Labels
           </span>
-          <strong
-            style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)"
-          >
+          <strong style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)">
             {{ selectedLabelText }}
           </strong>
         </div>
@@ -105,9 +99,7 @@ export class DropdownCompactPanelExampleComponent {
   }
 
   protected get selectedLabelText(): string {
-    const labels = this.labelItems
-      .filter(item => this.selectedLabels.includes(item.value))
-      .map(item => item.label);
+    const labels = this.labelItems.filter(item => this.selectedLabels.includes(item.value)).map(item => item.label);
 
     return labels.length > 0 ? labels.join(', ') : 'None';
   }

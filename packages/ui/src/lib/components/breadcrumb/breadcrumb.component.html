@@ -9,9 +9,7 @@
     @if (partitionedItems(); as partition) {
       @for (item of partition.startDisplayedItems; track item.id) {
         <li class="breadcrumb__item">
-          <ng-container
-            *ngTemplateOutlet="breadcrumbItemTpl; context: { $implicit: item, isLast: false }"
-          />
+          <ng-container *ngTemplateOutlet="breadcrumbItemTpl; context: { $implicit: item, isLast: false }" />
           <div class="breadcrumb__divider" aria-hidden="true">
             <ui-icon [icon]="'chevron_right'" [size]="size()" variant="regular" />
           </div>
@@ -34,9 +32,7 @@
       </li>
       @for (item of partition.endDisplayedItems; track item.id; let isLast = $last) {
         <li class="breadcrumb__item">
-          <ng-container
-            *ngTemplateOutlet="breadcrumbItemTpl; context: { $implicit: item, isLast: isLast }"
-          />
+          <ng-container *ngTemplateOutlet="breadcrumbItemTpl; context: { $implicit: item, isLast: isLast }" />
           @if (!isLast) {
             <div class="breadcrumb__divider" aria-hidden="true">
               <ui-icon [icon]="'chevron_right'" [size]="size()" variant="regular" />
@@ -47,9 +43,7 @@
     } @else {
       @for (item of items(); track item.id; let isLast = $last) {
         <li class="breadcrumb__item">
-          <ng-container
-            *ngTemplateOutlet="breadcrumbItemTpl; context: { $implicit: item, isLast: isLast }"
-          />
+          <ng-container *ngTemplateOutlet="breadcrumbItemTpl; context: { $implicit: item, isLast: isLast }" />
           @if (!isLast) {
             <div class="breadcrumb__divider" aria-hidden="true">
               <ui-icon [icon]="'chevron_right'" [size]="size()" variant="regular" />
@@ -82,11 +76,7 @@
         >
           @if (shouldShowIcon(item)) {
             <span class="node__icon">
-              <ui-icon
-                [icon]="item.icon!"
-                [size]="size()"
-                [variant]="item.selected ? 'filled' : 'regular'"
-              />
+              <ui-icon [icon]="item.icon!" [size]="size()" [variant]="item.selected ? 'filled' : 'regular'" />
             </span>
           }
           <span class="node__label">{{ getDisplayLabel(item) }}</span>
@@ -104,11 +94,7 @@
         >
           @if (shouldShowIcon(item)) {
             <span class="node__icon">
-              <ui-icon
-                [icon]="item.icon!"
-                [size]="size()"
-                [variant]="item.selected ? 'filled' : 'regular'"
-              />
+              <ui-icon [icon]="item.icon!" [size]="size()" [variant]="item.selected ? 'filled' : 'regular'" />
             </span>
           }
           <span class="node__label">{{ getDisplayLabel(item) }}</span>

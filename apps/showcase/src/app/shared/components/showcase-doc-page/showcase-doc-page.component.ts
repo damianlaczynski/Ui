@@ -159,11 +159,7 @@ import {
                             @for (row of block.rows; track $index) {
                               <tr>
                                 @for (cell of row; track $index; let cellIndex = $index) {
-                                  <td
-                                    [class.showcase-doc__api-desc-cell]="
-                                      isDescCell(block, cellIndex)
-                                    "
-                                  >
+                                  <td [class.showcase-doc__api-desc-cell]="isDescCell(block, cellIndex)">
                                     @switch (columnKind(block, cellIndex)) {
                                       @case ('code') {
                                         <code class="showcase-doc__api-code">{{ cell }}</code>
@@ -175,8 +171,7 @@ import {
                                         @if (cell !== null) {
                                           <code class="showcase-doc__api-default">{{ cell }}</code>
                                         } @else {
-                                          <span
-                                            class="showcase-doc__api-default showcase-doc__api-default--empty"
+                                          <span class="showcase-doc__api-default showcase-doc__api-default--empty"
                                             >-</span
                                           >
                                         }
@@ -227,9 +222,7 @@ export class ShowcaseDocPageComponent {
   readonly assetPaths = input.required<ShowcaseDocAssetPaths>();
 
   private readonly docs = toSignal(
-    toObservable(this.assetPaths).pipe(
-      switchMap(assetPaths => this.docAssets.loadMany(assetPaths)),
-    ),
+    toObservable(this.assetPaths).pipe(switchMap(assetPaths => this.docAssets.loadMany(assetPaths))),
     {
       initialValue: { markdown: '' },
     },
@@ -259,9 +252,7 @@ export class ShowcaseDocPageComponent {
 
   accessibilityParts(
     block: ShowcaseDocAccessibilityBlock,
-  ): Array<
-    { type: 'html'; content: string } | { type: 'table'; headers: string[]; rows: string[][] }
-  > {
+  ): Array<{ type: 'html'; content: string } | { type: 'table'; headers: string[]; rows: string[][] }> {
     const segments = block.body.split('\n\n');
     return segments.map(segment => {
       const lines = segment.trim().split('\n');
@@ -284,13 +275,8 @@ export class ShowcaseDocPageComponent {
   }
 
   formatAccessibilityHtml(content: string): string {
-    const escaped = content
-      .replaceAll('&', '&amp;')
-      .replaceAll('<', '&lt;')
-      .replaceAll('>', '&gt;');
+    const escaped = content.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 
-    return escaped
-      .replace(/`([^`]+)`/g, '<code class="showcase-doc__api-code">$1</code>')
-      .replaceAll('\n', '<br />');
+    return escaped.replace(/`([^`]+)`/g, '<code class="showcase-doc__api-code">$1</code>').replaceAll('\n', '<br />');
   }
 }

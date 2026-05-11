@@ -10,13 +10,7 @@ import { BadgeComponent, ToolbarComponent, type ToolbarItem } from 'ui';
       style="width:100%;max-width:46rem;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
     >
       <ui-toolbar [items]="items">
-        <ui-badge
-          text="Draft"
-          size="small"
-          appearance="outline"
-          variant="secondary"
-          shape="rounded"
-        />
+        <ui-badge text="Draft" size="small" appearance="outline" variant="secondary" shape="rounded" />
       </ui-toolbar>
     </div>
   `,

@@ -25,10 +25,7 @@ const componentMap = {
 export const TABS_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   markdown: `/docs/components/${tabsMeta.slug}.md`,
   ...(Object.fromEntries(
-    Object.entries(tabsMeta.snippets).map(([key, file]) => [
-      key,
-      `/docs/components/snippets/${tabsMeta.slug}/${file}`,
-    ]),
+    Object.entries(tabsMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${tabsMeta.slug}/${file}`]),
   ) as Record<string, string>),
 };
 

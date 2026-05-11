@@ -30,9 +30,7 @@ const directoryItems: DropdownItem[] = [
   selector: 'app-dropdown-async-data-example',
   imports: [FormsModule, DropdownComponent],
   template: `
-    <div
-      style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:42rem"
-    >
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:42rem">
       <div style="flex:1 1 18rem;min-width:16rem;max-width:24rem">
         <ui-dropdown
           label="Assignee"
@@ -57,14 +55,10 @@ const directoryItems: DropdownItem[] = [
         >
           Current value
         </p>
-        <strong
-          style="display:block;font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)"
-        >
+        <strong style="display:block;font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)">
           {{ selectedAssigneeLabel }}
         </strong>
-        <p
-          style="margin:0.5rem 0 0;font-size:0.75rem;line-height:1.4;color:var(--color-neutral-foreground2-rest)"
-        >
+        <p style="margin:0.5rem 0 0;font-size:0.75rem;line-height:1.4;color:var(--color-neutral-foreground2-rest)">
           Search runs against the data source instead of filtering the local array in memory.
         </p>
       </div>
@@ -75,15 +69,9 @@ export class DropdownAsyncDataExampleComponent {
   protected readonly directoryItems = directoryItems;
   protected selectedAssignee: string | number = 12;
 
-  protected readonly directoryDataSource = (params: {
-    page?: number;
-    pageSize?: number;
-    searchTerm?: string;
-  }) => {
+  protected readonly directoryDataSource = (params: { page?: number; pageSize?: number; searchTerm?: string }) => {
     const query = params.searchTerm?.trim().toLowerCase() ?? '';
-    const filtered = query
-      ? directoryItems.filter(item => item.label.toLowerCase().includes(query))
-      : directoryItems;
+    const filtered = query ? directoryItems.filter(item => item.label.toLowerCase().includes(query)) : directoryItems;
 
     const page = params.page ?? 1;
     const pageSize = params.pageSize ?? 6;

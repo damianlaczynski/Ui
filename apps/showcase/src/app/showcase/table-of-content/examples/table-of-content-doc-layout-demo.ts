@@ -16,10 +16,7 @@ import { DividerComponent, MessageBarComponent, TableOfContentComponent } from '
         appearance="outline"
       />
 
-      <div
-        class="toc-doc-layout-content"
-        style="display:flex;flex-direction:column;gap:1rem;min-width:0"
-      >
+      <div class="toc-doc-layout-content" style="display:flex;flex-direction:column;gap:1rem;min-width:0">
         <ui-message-bar
           title="Draft documentation"
           message="This example shows TOC in a richer docs layout with callouts and section separators."
@@ -29,22 +26,17 @@ import { DividerComponent, MessageBarComponent, TableOfContentComponent } from '
         />
 
         <h2 id="toc-doc-overview">Overview</h2>
-        <p style="margin:0">
-          TOC works best when the content column is already intentionally structured.
-        </p>
+        <p style="margin:0">TOC works best when the content column is already intentionally structured.</p>
         <ui-divider />
         <h2 id="toc-doc-recommendations">Recommendations</h2>
         <p style="margin:0">
-          Keep the number of top-level sections manageable and avoid four layers unless the content
-          truly needs it.
+          Keep the number of top-level sections manageable and avoid four layers unless the content truly needs it.
         </p>
         <h3 id="toc-doc-copy">Copy style</h3>
         <p style="margin:0">Headings should be scannable labels, not vague marketing phrases.</p>
         <ui-divider />
         <h2 id="toc-doc-reference">Reference</h2>
-        <p style="margin:0">
-          Reference-heavy pages benefit from a stable, always-visible contents rail.
-        </p>
+        <p style="margin:0">Reference-heavy pages benefit from a stable, always-visible contents rail.</p>
       </div>
     </div>
   `,

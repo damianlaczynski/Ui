@@ -7,9 +7,7 @@ import { TimeSpanComponent } from 'ui';
   standalone: true,
   imports: [FormsModule, TimeSpanComponent],
   template: `
-    <div
-      style="display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:1rem;align-items:start"
-    >
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:1rem;align-items:start">
       <ui-time-span
         label="Readonly"
         helpText="The duration stays visible but cannot be changed."

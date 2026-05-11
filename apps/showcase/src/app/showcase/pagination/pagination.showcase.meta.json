@@ -107,11 +107,7 @@
               "OutputRef<number>",
               "Emitted when the user requests a different page through numbered or directional controls."
             ],
-            [
-              "pageSizeChange",
-              "OutputRef<number>",
-              "Emitted when the optional page size selector changes."
-            ]
+            ["pageSizeChange", "OutputRef<number>", "Emitted when the optional page size selector changes."]
           ]
         },
         {
@@ -163,12 +159,7 @@
               "Maximum count of visible numbered pages in the active window before compression."
             ],
             ["showFirstLast", "boolean | undefined", "false", "Adds first and last jump buttons."],
-            [
-              "showInfo",
-              "boolean | undefined",
-              "false",
-              "Shows the range summary, for example `Showing 21-40 of 234`."
-            ]
+            ["showInfo", "boolean | undefined", "false", "Shows the range summary, for example `Showing 21-40 of 234`."]
           ]
         },
         {

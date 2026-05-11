@@ -17,9 +17,7 @@ import { ButtonComponent, TabsComponent, type Tab } from 'ui';
           appearance="subtle"
           variant="primary"
         >
-          <ui-button moreButton type="button" variant="secondary" appearance="subtle" size="small">
-            More
-          </ui-button>
+          <ui-button moreButton type="button" variant="secondary" appearance="subtle" size="small"> More </ui-button>
         </ui-tabs>
       </div>
 

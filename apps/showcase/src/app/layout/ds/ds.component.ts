@@ -26,14 +26,7 @@ import { environment } from '@environments/environment';
 
 @Component({
   selector: 'app-ds',
-  imports: [
-    RouterOutlet,
-    DsSidebarComponent,
-    ThemeDrawerComponent,
-    ButtonComponent,
-    DrawerComponent,
-    IconComponent,
-  ],
+  imports: [RouterOutlet, DsSidebarComponent, ThemeDrawerComponent, ButtonComponent, DrawerComponent, IconComponent],
   templateUrl: './ds.component.html',
 })
 export class DsComponent implements OnInit, OnDestroy, AfterViewInit {
@@ -57,9 +50,7 @@ export class DsComponent implements OnInit, OnDestroy, AfterViewInit {
   readonly themeVariants = this.themeService.themeVariants;
   currentThemeVariant = computed(() => this.themeService.$themeVariant());
   currentThemeVariantLabel = computed(
-    () =>
-      this.themeVariants.find(variant => variant.id === this.currentThemeVariant())?.label ??
-      'Theme',
+    () => this.themeVariants.find(variant => variant.id === this.currentThemeVariant())?.label ?? 'Theme',
   );
   private breakpointSubscription?: Subscription;
 
@@ -87,17 +78,15 @@ export class DsComponent implements OnInit, OnDestroy, AfterViewInit {
   private readonly mobileBreakpoint = '(max-width: 1279.98px)';
 
   ngOnInit(): void {
-    this.breakpointSubscription = this.breakpointObserver
-      .observe(this.mobileBreakpoint)
-      .subscribe(result => {
-        this.isMobile.set(result.matches);
-        if (result.matches) {
-          this.isSidebarOpen.set(false);
-        } else {
-          this.isSidebarOpen.set(true);
-        }
-        this.syncHeaderHeight();
-      });
+    this.breakpointSubscription = this.breakpointObserver.observe(this.mobileBreakpoint).subscribe(result => {
+      this.isMobile.set(result.matches);
+      if (result.matches) {
+        this.isSidebarOpen.set(false);
+      } else {
+        this.isSidebarOpen.set(true);
+      }
+      this.syncHeaderHeight();
+    });
 
     this.navSubscription = this.router.events
       .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))

@@ -7,9 +7,7 @@ import { TimeComponent } from 'ui';
   standalone: true,
   imports: [FormsModule, TimeComponent],
   template: `
-    <div
-      style="display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1rem;align-items:start"
-    >
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1rem;align-items:start">
       <ui-time
         label="Small filled"
         placeholder="HH:mm"

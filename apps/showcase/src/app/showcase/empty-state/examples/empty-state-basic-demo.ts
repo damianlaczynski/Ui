@@ -7,10 +7,7 @@ import { CardComponent, EmptyStateComponent } from 'ui';
   imports: [CardComponent, EmptyStateComponent],
   template: `
     <ui-card style="width:100%;max-width:28rem;" ariaLabel="Basic empty state card">
-      <ui-empty-state
-        title="No items yet"
-        description="There is nothing to show in this section right now."
-      />
+      <ui-empty-state title="No items yet" description="There is nothing to show in this section right now." />
     </ui-card>
   `,
 })

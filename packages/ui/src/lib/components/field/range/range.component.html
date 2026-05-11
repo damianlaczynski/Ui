@@ -13,17 +13,10 @@
   [size]="size()"
   [inputVariant]="inputVariant()"
 >
-  <div
-    class="range-wrapper"
-    [ngClass]="rangeClasses()"
-    role="group"
-    [attr.aria-label]="rangeGroupAriaLabel()"
-  >
+  <div class="range-wrapper" [ngClass]="rangeClasses()" role="group" [attr.aria-label]="rangeGroupAriaLabel()">
     <div class="range-container" [class.range-container--with-minmax]="showMinMax()">
       @if (showMinMax()) {
-        <span class="range-minmax range-minmax--min" [attr.aria-hidden]="true">{{
-          formatValue()(min())
-        }}</span>
+        <span class="range-minmax range-minmax--min" [attr.aria-hidden]="true">{{ formatValue()(min()) }}</span>
       }
       <div
         #trackWrapper
@@ -93,11 +86,7 @@
           (blur)="onBlur($event)"
         />
 
-        <div
-          class="range-visual"
-          [class.range-visual--with-steps]="showStepMarkers()"
-          [ngStyle]="visualStyle()"
-        >
+        <div class="range-visual" [class.range-visual--with-steps]="showStepMarkers()" [ngStyle]="visualStyle()">
           <div class="range-thumb-wrapper range-thumb-wrapper--lower" [ngStyle]="lowerThumbStyle()">
             <div class="range-thumb range-thumb--lower"></div>
           </div>
@@ -107,9 +96,7 @@
         </div>
       </div>
       @if (showMinMax()) {
-        <span class="range-minmax range-minmax--max" [attr.aria-hidden]="true">{{
-          formatValue()(max())
-        }}</span>
+        <span class="range-minmax range-minmax--max" [attr.aria-hidden]="true">{{ formatValue()(max()) }}</span>
       }
     </div>
   </div>

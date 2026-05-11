@@ -84,25 +84,10 @@
           "rows": [
             ["title", "InputSignal<string>", "''", "Primary error heading."],
             ["description", "InputSignal<string>", "''", "Supporting explanation text."],
-            [
-              "icon",
-              "InputSignal<IconName>",
-              "'error_circle'",
-              "Contextual icon used for the error state."
-            ],
+            ["icon", "InputSignal<IconName>", "'error_circle'", "Contextual icon used for the error state."],
             ["size", "InputSignal<Size>", "'medium'", "Overall scale of the error state."],
-            [
-              "primaryAction",
-              "InputSignal<QuickAction | null>",
-              "null",
-              "Primary recovery action."
-            ],
-            [
-              "secondaryAction",
-              "InputSignal<QuickAction | null>",
-              "null",
-              "Secondary recovery action."
-            ]
+            ["primaryAction", "InputSignal<QuickAction | null>", "null", "Primary recovery action."],
+            ["secondaryAction", "InputSignal<QuickAction | null>", "null", "Secondary recovery action."]
           ]
         },
         {

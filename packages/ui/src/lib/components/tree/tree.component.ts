@@ -114,11 +114,7 @@ export class TreeComponent {
     this.dragOverPosition.set(null);
   }
 
-  onDrop(event: {
-    node: TreeNode;
-    event: DragEvent;
-    position: 'before' | 'after' | 'inside';
-  }): void {
+  onDrop(event: { node: TreeNode; event: DragEvent; position: 'before' | 'after' | 'inside' }): void {
     try {
       const data = event.event.dataTransfer!.getData('application/json');
       const draggedNodeData = JSON.parse(data);
@@ -157,11 +153,7 @@ export class TreeComponent {
     }
   }
 
-  onDragOver(event: {
-    node: TreeNode;
-    event: DragEvent;
-    position: 'before' | 'after' | 'inside';
-  }): void {
+  onDragOver(event: { node: TreeNode; event: DragEvent; position: 'before' | 'after' | 'inside' }): void {
     if (!this.dropZone() || event.node.disabled) {
       return;
     }
@@ -261,9 +253,7 @@ export class TreeComponent {
       return false;
     }
 
-    return (
-      this.dropZone() && this.dragOverNodeId() === nodeId && this.dragOverPosition() === position
-    );
+    return this.dropZone() && this.dragOverNodeId() === nodeId && this.dragOverPosition() === position;
   }
 
   private findNodeById(nodes: TreeNode[], id: string | number): TreeNode | null {
@@ -363,21 +353,14 @@ export class TreeComponent {
       return true;
     }
     for (const child of children) {
-      if (
-        child.children &&
-        this.insertNodeInChildren(child.children, nodeToInsert, targetNode, position)
-      ) {
+      if (child.children && this.insertNodeInChildren(child.children, nodeToInsert, targetNode, position)) {
         return true;
       }
     }
     return false;
   }
 
-  private updateTreeStructure(
-    nodes: TreeNode[],
-    parent: TreeNode | null = null,
-    level: number = 0,
-  ): void {
+  private updateTreeStructure(nodes: TreeNode[], parent: TreeNode | null = null, level: number = 0): void {
     nodes.forEach(node => {
       node.parent = parent || undefined;
       node.level = level;

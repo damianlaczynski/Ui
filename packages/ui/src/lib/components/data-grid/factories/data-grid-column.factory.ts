@@ -31,12 +31,7 @@ export class DataGridColumnFactory {
    * const column = DataGridColumnFactory.text('name', 'Name', 'name');
    * ```
    */
-  static text<T>(
-    id: string,
-    header: string,
-    field: keyof T,
-    options?: Partial<DataGridColumn<T>>,
-  ): DataGridColumn<T> {
+  static text<T>(id: string, header: string, field: keyof T, options?: Partial<DataGridColumn<T>>): DataGridColumn<T> {
     const filter = FilterFactory.getDefinition('text');
 
     return {
@@ -110,12 +105,7 @@ export class DataGridColumnFactory {
    * const column = DataGridColumnFactory.date('createdAt', 'Created', 'createdAt');
    * ```
    */
-  static date<T>(
-    id: string,
-    header: string,
-    field: keyof T,
-    options?: Partial<DataGridColumn<T>>,
-  ): DataGridColumn<T> {
+  static date<T>(id: string, header: string, field: keyof T, options?: Partial<DataGridColumn<T>>): DataGridColumn<T> {
     const filter = FilterFactory.getDefinition('date');
 
     return {

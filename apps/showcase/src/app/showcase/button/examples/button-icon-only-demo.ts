@@ -50,41 +50,11 @@ import { ButtonComponent } from 'ui';
         ></ui-button>
       </div>
       <div style="display:flex;align-items:center;gap:0.5rem">
-        <ui-button
-          variant="secondary"
-          appearance="filled"
-          icon="save"
-          ariaLabel="Save"
-          size="large"
-        ></ui-button>
-        <ui-button
-          variant="secondary"
-          appearance="tint"
-          icon="toilet"
-          ariaLabel="Restroom"
-          size="large"
-        ></ui-button>
-        <ui-button
-          variant="secondary"
-          appearance="outline"
-          icon="star"
-          ariaLabel="Favorite"
-          size="large"
-        ></ui-button>
-        <ui-button
-          variant="secondary"
-          appearance="subtle"
-          icon="home"
-          ariaLabel="Home"
-          size="large"
-        ></ui-button>
-        <ui-button
-          variant="secondary"
-          appearance="transparent"
-          icon="heart"
-          ariaLabel="Like"
-          size="large"
-        ></ui-button>
+        <ui-button variant="secondary" appearance="filled" icon="save" ariaLabel="Save" size="large"></ui-button>
+        <ui-button variant="secondary" appearance="tint" icon="toilet" ariaLabel="Restroom" size="large"></ui-button>
+        <ui-button variant="secondary" appearance="outline" icon="star" ariaLabel="Favorite" size="large"></ui-button>
+        <ui-button variant="secondary" appearance="subtle" icon="home" ariaLabel="Home" size="large"></ui-button>
+        <ui-button variant="secondary" appearance="transparent" icon="heart" ariaLabel="Like" size="large"></ui-button>
       </div>
       <div style="display:flex;align-items:center;gap:0.5rem">
         <ui-button
@@ -171,41 +141,11 @@ import { ButtonComponent } from 'ui';
         ></ui-button>
       </div>
       <div style="display:flex;align-items:center;gap:0.5rem">
-        <ui-button
-          variant="danger"
-          appearance="filled"
-          icon="save"
-          ariaLabel="Save"
-          size="large"
-        ></ui-button>
-        <ui-button
-          variant="danger"
-          appearance="tint"
-          icon="toilet"
-          ariaLabel="Restroom"
-          size="large"
-        ></ui-button>
-        <ui-button
-          variant="danger"
-          appearance="outline"
-          icon="star"
-          ariaLabel="Favorite"
-          size="large"
-        ></ui-button>
-        <ui-button
-          variant="danger"
-          appearance="subtle"
-          icon="home"
-          ariaLabel="Home"
-          size="large"
-        ></ui-button>
-        <ui-button
-          variant="danger"
-          appearance="transparent"
-          icon="heart"
-          ariaLabel="Like"
-          size="large"
-        ></ui-button>
+        <ui-button variant="danger" appearance="filled" icon="save" ariaLabel="Save" size="large"></ui-button>
+        <ui-button variant="danger" appearance="tint" icon="toilet" ariaLabel="Restroom" size="large"></ui-button>
+        <ui-button variant="danger" appearance="outline" icon="star" ariaLabel="Favorite" size="large"></ui-button>
+        <ui-button variant="danger" appearance="subtle" icon="home" ariaLabel="Home" size="large"></ui-button>
+        <ui-button variant="danger" appearance="transparent" icon="heart" ariaLabel="Like" size="large"></ui-button>
       </div>
       <div style="display:flex;align-items:center;gap:0.5rem">
         <ui-button

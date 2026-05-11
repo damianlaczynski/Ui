@@ -10,9 +10,7 @@ import { ButtonComponent, ToastComponent } from 'ui';
       <div
         style="display:flex;flex-wrap:wrap;align-items:center;gap:0.5rem;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
       >
-        <ui-button type="button" variant="secondary" appearance="outline" (click)="reset()"
-          >Reset</ui-button
-        >
+        <ui-button type="button" variant="secondary" appearance="outline" (click)="reset()">Reset</ui-button>
       </div>
       <ui-toast
         variant="primary"

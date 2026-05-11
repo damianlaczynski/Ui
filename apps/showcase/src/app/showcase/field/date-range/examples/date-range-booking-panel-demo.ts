@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import {
-  ButtonComponent,
-  DateRange,
-  DateRangeComponent,
-  MessageBarComponent,
-  TagComponent,
-} from 'ui';
+import { ButtonComponent, DateRange, DateRangeComponent, MessageBarComponent, TagComponent } from 'ui';
 
 @Component({
   selector: 'app-date-range-booking-panel-demo',
@@ -22,8 +16,7 @@ import {
         <div style="display:flex;flex-direction:column;gap:0.25rem">
           <div style="font-size:0.9375rem;font-weight:600">Stay planning</div>
           <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-            Date range is strongest when users need a clear start and end period with surrounding
-            booking context.
+            Date range is strongest when users need a clear start and end period with surrounding booking context.
           </div>
         </div>
 
@@ -53,9 +46,7 @@ import {
         </div>
 
         <div style="display:flex;flex-direction:column;gap:0.375rem">
-          <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-            Selected range
-          </div>
+          <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">Selected range</div>
           <div style="font-size:0.9375rem;font-weight:600">
             {{ value?.startDate || '...' }} - {{ value?.endDate || '...' }}
           </div>

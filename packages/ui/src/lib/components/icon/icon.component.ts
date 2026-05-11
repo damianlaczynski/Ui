@@ -1,12 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  LOCALE_ID,
-  computed,
-  effect,
-  inject,
-  input,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, LOCALE_ID, computed, effect, inject, input } from '@angular/core';
 import { DOCUMENT, getLocaleDirection } from '@angular/common';
 import { Size } from '../utils';
 import { IconName } from './generated/icon-name.type';
@@ -59,20 +51,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconComponent {
-  private readonly rtlLanguageCodes = new Set([
-    'ar',
-    'dv',
-    'fa',
-    'ha',
-    'he',
-    'iw',
-    'ji',
-    'ps',
-    'sd',
-    'ug',
-    'ur',
-    'yi',
-  ]);
+  private readonly rtlLanguageCodes = new Set(['ar', 'dv', 'fa', 'ha', 'he', 'iw', 'ji', 'ps', 'sd', 'ug', 'ur', 'yi']);
 
   icon = input<IconName, IconName | undefined>('' as IconName, {
     transform: (value: IconName | undefined) => value ?? ('' as IconName),
@@ -113,10 +92,7 @@ export class IconComponent {
       return forcedDirection;
     }
 
-    const documentDirection = this.document.documentElement
-      .getAttribute('dir')
-      ?.toLowerCase()
-      .trim();
+    const documentDirection = this.document.documentElement.getAttribute('dir')?.toLowerCase().trim();
     if (documentDirection === 'ltr' || documentDirection === 'rtl') {
       return documentDirection;
     }
@@ -253,9 +229,7 @@ export class IconComponent {
   }
 
   private getSizeFallbackOrder(requestedSize: number): number[] {
-    const availableSizes = ICON_SPRITE_AVAILABLE_SIZES.length
-      ? ICON_SPRITE_AVAILABLE_SIZES
-      : [16, 20, 24];
+    const availableSizes = ICON_SPRITE_AVAILABLE_SIZES.length ? ICON_SPRITE_AVAILABLE_SIZES : [16, 20, 24];
     const uniqueSizes = Array.from(new Set([requestedSize, ...availableSizes]));
     uniqueSizes.sort((a, b) => Math.abs(a - requestedSize) - Math.abs(b - requestedSize));
     return uniqueSizes;

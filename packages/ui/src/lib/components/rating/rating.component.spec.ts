@@ -39,9 +39,7 @@ describe('RatingComponent', () => {
     let emitted: number | null = null;
     component.valueChange.subscribe(value => (emitted = value));
 
-    const star: HTMLButtonElement = fixture.nativeElement.querySelector(
-      '.rating__star[data-star="4"]',
-    );
+    const star: HTMLButtonElement = fixture.nativeElement.querySelector('.rating__star[data-star="4"]');
     star.click();
 
     expect(emitted).toBe(4);
@@ -54,9 +52,7 @@ describe('RatingComponent', () => {
     let emitted = false;
     component.valueChange.subscribe(() => (emitted = true));
 
-    const star: HTMLButtonElement = fixture.nativeElement.querySelector(
-      '.rating__star[data-star="2"]',
-    );
+    const star: HTMLButtonElement = fixture.nativeElement.querySelector('.rating__star[data-star="2"]');
     star.click();
 
     expect(emitted).toBe(false);
@@ -66,12 +62,8 @@ describe('RatingComponent', () => {
     fixture.componentRef.setInput('value', 3);
     fixture.detectChanges();
 
-    const thirdStar: HTMLButtonElement = fixture.nativeElement.querySelector(
-      '.rating__star[data-star="3"]',
-    );
-    const secondStar: HTMLButtonElement = fixture.nativeElement.querySelector(
-      '.rating__star[data-star="2"]',
-    );
+    const thirdStar: HTMLButtonElement = fixture.nativeElement.querySelector('.rating__star[data-star="3"]');
+    const secondStar: HTMLButtonElement = fixture.nativeElement.querySelector('.rating__star[data-star="2"]');
     expect(thirdStar.getAttribute('tabindex')).toBe('0');
     expect(secondStar.getAttribute('tabindex')).toBe('-1');
   });
@@ -80,9 +72,7 @@ describe('RatingComponent', () => {
     let emitted: number | null = null;
     component.valueChange.subscribe(value => (emitted = value));
 
-    const thirdStar: HTMLButtonElement = fixture.nativeElement.querySelector(
-      '.rating__star[data-star="3"]',
-    );
+    const thirdStar: HTMLButtonElement = fixture.nativeElement.querySelector('.rating__star[data-star="3"]');
     thirdStar.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
 
     expect(emitted).toBe(4);
@@ -95,9 +85,7 @@ describe('RatingComponent', () => {
     let emitted: number | null = null;
     component.valueChange.subscribe(value => (emitted = value));
 
-    const thirdStar: HTMLButtonElement = fixture.nativeElement.querySelector(
-      '.rating__star[data-star="3"]',
-    );
+    const thirdStar: HTMLButtonElement = fixture.nativeElement.querySelector('.rating__star[data-star="3"]');
     thirdStar.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
 
     expect(emitted).toBe(4);
@@ -110,9 +98,7 @@ describe('RatingComponent', () => {
     let emitted: number | null = null;
     component.valueChange.subscribe(value => (emitted = value));
 
-    const firstStar: HTMLButtonElement = fixture.nativeElement.querySelector(
-      '.rating__star[data-star="1"]',
-    );
+    const firstStar: HTMLButtonElement = fixture.nativeElement.querySelector('.rating__star[data-star="1"]');
     firstStar.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
 
     expect(emitted).toBe(2);

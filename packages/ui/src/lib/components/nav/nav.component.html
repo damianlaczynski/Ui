@@ -28,9 +28,7 @@
         >
           @if (contentTemplate()) {
             <ng-template #content let-node>
-              <ng-container
-                *ngTemplateOutlet="contentTemplate()!; context: { $implicit: node }"
-              ></ng-container>
+              <ng-container *ngTemplateOutlet="contentTemplate()!; context: { $implicit: node }"></ng-container>
             </ng-template>
           }
         </ui-tree-node>

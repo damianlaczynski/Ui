@@ -16,8 +16,7 @@ import { ButtonComponent, DatetimeComponent, MessageBarComponent, TagComponent }
         <div style="display:flex;flex-direction:column;gap:0.25rem">
           <div style="font-size:0.9375rem;font-weight:600">Interview scheduling</div>
           <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-            Datetime is strongest when users need one precise appointment slot with both date and
-            time context.
+            Datetime is strongest when users need one precise appointment slot with both date and time context.
           </div>
         </div>
 
@@ -48,9 +47,7 @@ import { ButtonComponent, DatetimeComponent, MessageBarComponent, TagComponent }
         </div>
 
         <div style="display:flex;flex-direction:column;gap:0.375rem">
-          <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-            Selected slot
-          </div>
+          <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">Selected slot</div>
           <div style="font-size:0.9375rem;font-weight:600">{{ value || 'Not selected' }}</div>
         </div>
 

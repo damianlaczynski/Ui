@@ -25,10 +25,7 @@ const componentMap = {
 export const WEEK_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   markdown: `/docs/components/${weekMeta.slug}.md`,
   ...(Object.fromEntries(
-    Object.entries(weekMeta.snippets).map(([key, file]) => [
-      key,
-      `/docs/components/snippets/${weekMeta.slug}/${file}`,
-    ]),
+    Object.entries(weekMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${weekMeta.slug}/${file}`]),
   ) as Record<string, string>),
 };
 

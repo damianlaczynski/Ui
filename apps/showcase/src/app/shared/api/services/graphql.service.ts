@@ -240,12 +240,7 @@ export class GraphQLService {
     if (!options?.fieldsFragment) {
       const fieldsFragment = this.getFieldsFragmentFromCache(queryName);
       if (fieldsFragment) {
-        return this.executePaginatedQuery<T>(
-          queryName,
-          params,
-          { ...options, fieldsFragment },
-          showErrorToast,
-        );
+        return this.executePaginatedQuery<T>(queryName, params, { ...options, fieldsFragment }, showErrorToast);
       } else {
         return this.fetchFieldsFragmentAndQuery(queryName, params, options, showErrorToast);
       }
@@ -292,12 +287,7 @@ export class GraphQLService {
       catchError(error => {
         console.warn(`Failed to fetch fields fragment for ${queryName}, using default:`, error);
         const optionsWithDefaultFields = { ...options, fieldsFragment: 'id' };
-        return this.executePaginatedQuery<T>(
-          queryName,
-          params,
-          optionsWithDefaultFields,
-          showErrorToast,
-        );
+        return this.executePaginatedQuery<T>(queryName, params, optionsWithDefaultFields, showErrorToast);
       }),
     );
   }
@@ -313,10 +303,7 @@ export class GraphQLService {
    * @param fieldName - Field name to check
    * @returns Observable with sort type: 'numeric' for numeric types, 'alphanumeric' for string types
    */
-  public getFieldSortType(
-    queryName: string,
-    fieldName: string,
-  ): Observable<'numeric' | 'alphanumeric'> {
+  public getFieldSortType(queryName: string, fieldName: string): Observable<'numeric' | 'alphanumeric'> {
     const cacheKey = `${queryName}.${fieldName}`;
 
     if (this.fieldTypeCache.has(cacheKey)) {
@@ -415,9 +402,7 @@ export class GraphQLService {
     const queryResult = response[queryName];
 
     if (!queryResult) {
-      throw new Error(
-        `Query result not found for ${queryName}. Available keys: ${Object.keys(response).join(', ')}`,
-      );
+      throw new Error(`Query result not found for ${queryName}. Available keys: ${Object.keys(response).join(', ')}`);
     }
 
     const itemsFieldName = options?.itemsFieldName || 'items';
@@ -523,10 +508,7 @@ export class GraphQLService {
   /**
    * Builds query arguments string
    */
-  private buildQueryArguments<T = any>(
-    params: QueryParams<T>,
-    options?: GraphQLQueryOptions,
-  ): string {
+  private buildQueryArguments<T = any>(params: QueryParams<T>, options?: GraphQLQueryOptions): string {
     const args: string[] = ['skip: $skip', 'take: $take'];
 
     if (params.filters && params.filters.length > 0) {
@@ -627,22 +609,14 @@ export class GraphQLService {
     }
 
     // Check for empty objects
-    if (
-      typeof filter.value === 'object' &&
-      !Array.isArray(filter.value) &&
-      Object.keys(filter.value).length === 0
-    ) {
+    if (typeof filter.value === 'object' && !Array.isArray(filter.value) && Object.keys(filter.value).length === 0) {
       return null;
     }
 
     const field = filter.columnName;
     const fieldString = String(field);
-    const isEnumField = options?.isEnumField
-      ? options.isEnumField(fieldString)
-      : this.isDefaultEnumField(fieldString);
-    const isDateField = options?.isDateField
-      ? options.isDateField(fieldString)
-      : this.isDefaultDateField(fieldString);
+    const isEnumField = options?.isEnumField ? options.isEnumField(fieldString) : this.isDefaultEnumField(fieldString);
+    const isDateField = options?.isDateField ? options.isDateField(fieldString) : this.isDefaultDateField(fieldString);
 
     let value = filter.value;
     let operator = filter.filterType;
@@ -672,12 +646,7 @@ export class GraphQLService {
    * Converts date value for filter (handles ranges)
    */
   private convertDateValueForFilter(value: any, operator?: string): any {
-    if (
-      operator === 'between' &&
-      typeof value === 'object' &&
-      value !== null &&
-      !Array.isArray(value)
-    ) {
+    if (operator === 'between' && typeof value === 'object' && value !== null && !Array.isArray(value)) {
       const range = value as { startDate?: any; endDate?: any };
       if (range.startDate) {
         range.startDate = this.convertDateValue(range.startDate);
@@ -699,12 +668,7 @@ export class GraphQLService {
     convertEnum: (field: string, value: any) => any,
     operator: string | undefined,
   ): any {
-    if (
-      operator === 'between' &&
-      typeof value === 'object' &&
-      value !== null &&
-      !Array.isArray(value)
-    ) {
+    if (operator === 'between' && typeof value === 'object' && value !== null && !Array.isArray(value)) {
       const range = value as { start?: any; end?: any };
       if (range.start != null) {
         range.start = convertEnum(field, range.start);
@@ -722,11 +686,7 @@ export class GraphQLService {
   /**
    * Builds GraphQL filter object based on operator
    */
-  private buildGraphQLFilter(
-    field: string,
-    operator: string,
-    value: any,
-  ): Record<string, any> | null {
+  private buildGraphQLFilter(field: string, operator: string, value: any): Record<string, any> | null {
     switch (operator) {
       case 'contains':
         return this.buildContainsFilter(field, value);
@@ -1028,9 +988,7 @@ export class GraphQLService {
     }
 
     // Get all field names, excluding nested objects (we only want scalar/enum fields)
-    const fields = type.fields
-      .filter((field: any) => this.isScalarOrEnumField(field))
-      .map((field: any) => field.name);
+    const fields = type.fields.filter((field: any) => this.isScalarOrEnumField(field)).map((field: any) => field.name);
 
     const fieldsFragment = fields.length > 0 ? fields.join('\n        ') : 'id';
 
@@ -1071,11 +1029,7 @@ export class GraphQLService {
   /**
    * Extracts sort type for a single field from introspection response
    */
-  private extractFieldSortType(
-    response: any,
-    cacheKey: string,
-    fieldName: string,
-  ): 'numeric' | 'alphanumeric' {
+  private extractFieldSortType(response: any, cacheKey: string, fieldName: string): 'numeric' | 'alphanumeric' {
     const type = response?.__type;
     if (!type || !type.fields) {
       this.fieldTypeCache.set(cacheKey, 'alphanumeric');
@@ -1145,9 +1099,7 @@ export class GraphQLService {
       fieldTypeName === 'Float' ||
       fieldTypeName === 'Decimal' ||
       (kind === 'SCALAR' &&
-        (fieldTypeName.includes('Int') ||
-          fieldTypeName.includes('Float') ||
-          fieldTypeName.includes('Decimal')));
+        (fieldTypeName.includes('Int') || fieldTypeName.includes('Float') || fieldTypeName.includes('Decimal')));
 
     return isNumeric ? 'numeric' : 'alphanumeric';
   }
@@ -1155,10 +1107,7 @@ export class GraphQLService {
   /**
    * Creates default sort types map (all alphanumeric)
    */
-  private createDefaultSortTypesMap(
-    queryName: string,
-    fieldNames: string[],
-  ): Map<string, 'numeric' | 'alphanumeric'> {
+  private createDefaultSortTypesMap(queryName: string, fieldNames: string[]): Map<string, 'numeric' | 'alphanumeric'> {
     const result = new Map<string, 'numeric' | 'alphanumeric'>();
     fieldNames.forEach(fieldName => {
       const cacheKey = `${queryName}.${fieldName}`;

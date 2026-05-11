@@ -12,11 +12,9 @@ import { ButtonComponent, UrlComponent } from 'ui';
     >
       <div style="display:flex;flex-direction:column;gap:0.375rem">
         <div style="font-size:1rem;font-weight:600">Share destination panel</div>
-        <div
-          style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest);line-height:1.45"
-        >
-          A realistic URL surface combines the destination field, context about where the link will
-          be used, and immediate next-step actions.
+        <div style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest);line-height:1.45">
+          A realistic URL surface combines the destination field, context about where the link will be used, and
+          immediate next-step actions.
         </div>
       </div>
 
@@ -32,12 +30,7 @@ import { ButtonComponent, UrlComponent } from 'ui';
         style="display:flex;gap:0.75rem;flex-wrap:wrap;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
       >
         <ui-button type="button" variant="primary">Save link</ui-button>
-        <ui-button
-          type="button"
-          variant="secondary"
-          appearance="outline"
-          (click)="destinationUrl = ''"
-        >
+        <ui-button type="button" variant="secondary" appearance="outline" (click)="destinationUrl = ''">
           Clear
         </ui-button>
       </div>

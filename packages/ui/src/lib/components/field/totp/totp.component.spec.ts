@@ -62,9 +62,7 @@ describe('TotpComponent', () => {
     let emitted: string | null = null;
     component.change.subscribe(value => (emitted = value));
 
-    const inputs: HTMLInputElement[] = Array.from(
-      fixture.nativeElement.querySelectorAll('.totp-digit'),
-    );
+    const inputs: HTMLInputElement[] = Array.from(fixture.nativeElement.querySelectorAll('.totp-digit'));
     inputs[0].value = '1';
     inputs[0].dispatchEvent(new Event('input', { bubbles: true }));
     inputs[1].value = '2';
@@ -87,9 +85,7 @@ describe('TotpComponent', () => {
     document.documentElement.dir = 'rtl';
     fixture.detectChanges();
 
-    const inputs: HTMLInputElement[] = Array.from(
-      fixture.nativeElement.querySelectorAll('.totp-digit'),
-    );
+    const inputs: HTMLInputElement[] = Array.from(fixture.nativeElement.querySelectorAll('.totp-digit'));
     inputs[2].focus();
     inputs[2].dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
 
@@ -100,9 +96,7 @@ describe('TotpComponent', () => {
     document.documentElement.dir = 'rtl';
     fixture.detectChanges();
 
-    const inputs: HTMLInputElement[] = Array.from(
-      fixture.nativeElement.querySelectorAll('.totp-digit'),
-    );
+    const inputs: HTMLInputElement[] = Array.from(fixture.nativeElement.querySelectorAll('.totp-digit'));
     inputs[0].focus();
     inputs[0].value = '1';
     inputs[0].dispatchEvent(new Event('input', { bubbles: true }));

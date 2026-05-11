@@ -75,20 +75,10 @@
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
             ["visible", "ModelSignal<boolean>", "false", "Controls whether the palette is open."],
-            [
-              "items",
-              "InputSignal<CommandPaletteItem[]>",
-              "[]",
-              "Command dataset to search and render."
-            ],
+            ["items", "InputSignal<CommandPaletteItem[]>", "[]", "Command dataset to search and render."],
             ["placeholder", "InputSignal<string>", "''", "Optional search input placeholder."],
             ["emptyText", "InputSignal<string>", "''", "Optional empty-results title."],
-            [
-              "emptyDescription",
-              "InputSignal<string>",
-              "''",
-              "Optional empty-results supporting text."
-            ],
+            ["emptyDescription", "InputSignal<string>", "''", "Optional empty-results supporting text."],
             ["maxResults", "InputSignal<number>", "10", "Maximum number of visible matches."]
           ]
         },
@@ -98,11 +88,7 @@
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
-            [
-              "commandExecuted",
-              "OutputEmitterRef<CommandPaletteItem>",
-              "Emits when a command is executed."
-            ],
+            ["commandExecuted", "OutputEmitterRef<CommandPaletteItem>", "Emits when a command is executed."],
             ["closed", "OutputEmitterRef<void>", "Emits when the palette closes."],
             [
               "CommandPaletteItem",

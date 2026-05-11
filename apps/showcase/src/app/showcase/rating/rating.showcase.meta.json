@@ -90,18 +90,8 @@
             ],
             ["max", "InputSignal<number>", "5", "Inclusive upper bound; length of the star strip."],
             ["size", "InputSignal<Size>", "'medium'", "Visual scale of stars and hit targets."],
-            [
-              "readOnly",
-              "InputSignal<boolean>",
-              "false",
-              "Presentation-only; no hover commit or clicks."
-            ],
-            [
-              "disabled",
-              "InputSignal<boolean>",
-              "false",
-              "Disables buttons; keeps structure for layout."
-            ],
+            ["readOnly", "InputSignal<boolean>", "false", "Presentation-only; no hover commit or clicks."],
+            ["disabled", "InputSignal<boolean>", "false", "Disables buttons; keeps structure for layout."],
             [
               "showValue",
               "InputSignal<boolean>",
@@ -134,11 +124,7 @@
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
-            [
-              "valueChange",
-              "OutputRef<number>",
-              "Emitted with the committed value after click or keyboard activation."
-            ]
+            ["valueChange", "OutputRef<number>", "Emitted with the committed value after click or keyboard activation."]
           ]
         },
         {

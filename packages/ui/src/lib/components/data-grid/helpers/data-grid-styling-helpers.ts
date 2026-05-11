@@ -9,12 +9,7 @@ import { DataGridColumn, DataGridRow } from '../models/data-grid-column.model';
 /**
  * Get data grid CSS classes
  */
-export function getDataGridClasses(
-  size: string,
-  striped: boolean,
-  bordered: boolean,
-  hoverable: boolean,
-): string {
+export function getDataGridClasses(size: string, striped: boolean, bordered: boolean, hoverable: boolean): string {
   const classes = ['data-grid'];
   classes.push(`data-grid--${size}`);
 
@@ -92,10 +87,7 @@ export function getRowClasses<T>(
 /**
  * Get cell CSS classes
  */
-export function getCellClasses<T>(
-  column: DataGridColumn<T> | null,
-  isSelection: boolean = false,
-): string {
+export function getCellClasses<T>(column: DataGridColumn<T> | null, isSelection: boolean = false): string {
   const classes = ['data-grid__cell'];
 
   if (isSelection) {

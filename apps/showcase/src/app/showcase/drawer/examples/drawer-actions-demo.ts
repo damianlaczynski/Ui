@@ -7,9 +7,7 @@ import { ButtonComponent, DrawerComponent, QuickAction } from 'ui';
   imports: [ButtonComponent, DrawerComponent],
   template: `
     <div style="display:flex;flex-direction:column;gap:0.75rem;width:100%;max-width:24rem">
-      <ui-button variant="secondary" appearance="outline" (click)="visible.set(true)">
-        Open actions drawer
-      </ui-button>
+      <ui-button variant="secondary" appearance="outline" (click)="visible.set(true)"> Open actions drawer </ui-button>
       <div
         style="display:flex;flex-wrap:wrap;align-items:center;gap:0.5rem;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest);font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
       >

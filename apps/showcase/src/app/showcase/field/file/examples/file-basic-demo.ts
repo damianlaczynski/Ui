@@ -17,11 +17,7 @@ import { FileComponent } from 'ui';
           </div>
         </div>
 
-        <ui-file
-          label="Upload file"
-          helpText="PDF, DOC, or DOCX up to 10 MB."
-          accept=".pdf,.doc,.docx"
-        />
+        <ui-file label="Upload file" helpText="PDF, DOC, or DOCX up to 10 MB." accept=".pdf,.doc,.docx" />
       </div>
 
       <div

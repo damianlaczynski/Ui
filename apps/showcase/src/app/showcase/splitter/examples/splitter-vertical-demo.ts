@@ -1,10 +1,5 @@
 import { Component, signal } from '@angular/core';
-import {
-  SplitterComponent,
-  SplitterPanelDirective,
-  type SplitterPanel,
-  type SplitterResizeEvent,
-} from 'ui';
+import { SplitterComponent, SplitterPanelDirective, type SplitterPanel, type SplitterResizeEvent } from 'ui';
 
 @Component({
   selector: 'app-splitter-vertical-demo',
@@ -26,20 +21,12 @@ import {
       <div
         style="height:24rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;overflow:hidden;background:var(--color-neutral-background-rest)"
       >
-        <ui-splitter
-          [panels]="panels()"
-          orientation="vertical"
-          [gutterSize]="8"
-          (panelResize)="onResize($event)"
-        >
+        <ui-splitter [panels]="panels()" orientation="vertical" [gutterSize]="8" (panelResize)="onResize($event)">
           <ng-template uiSplitterPanel="summary">
             <div style="height:100%;padding:1rem;background:var(--color-neutral-background-rest)">
               <div style="font-size:0.875rem;font-weight:600">Summary</div>
-              <div
-                style="margin-top:0.5rem;font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
-              >
-                Vertical splitters fit dashboards with a compact header region above a denser
-                content area.
+              <div style="margin-top:0.5rem;font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
+                Vertical splitters fit dashboards with a compact header region above a denser content area.
               </div>
             </div>
           </ng-template>
@@ -49,9 +36,7 @@ import {
               style="height:100%;padding:1rem;background:linear-gradient(180deg,var(--color-neutral-background-rest),var(--color-neutral-background2-rest))"
             >
               <div style="font-size:0.875rem;font-weight:600">Activity feed</div>
-              <div
-                style="margin-top:0.5rem;font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
-              >
+              <div style="margin-top:0.5rem;font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
                 The lower region can grow when users need more scrolling room.
               </div>
             </div>

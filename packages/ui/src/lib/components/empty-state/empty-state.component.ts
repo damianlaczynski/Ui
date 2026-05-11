@@ -1,10 +1,4 @@
-import {
-  Component,
-  input,
-  contentChild,
-  TemplateRef,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, input, contentChild, TemplateRef, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../button/button.component';
 import { IconComponent } from '../icon/icon.component';

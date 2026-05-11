@@ -20,8 +20,7 @@ import { ButtonComponent, CardComponent, CardOnSelectionChangeEvent, CheckboxCom
           <div uiCardHeader style="display:grid;gap:0.25rem;">
             <strong style="font-size:0.9375rem;">Click-anywhere selection</strong>
             <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);"
-              >Useful for galleries or bulk management where the whole tile represents one
-              choice</span
+              >Useful for galleries or bulk management where the whole tile represents one choice</span
             >
           </div>
         </ui-card>
@@ -45,8 +44,7 @@ import { ButtonComponent, CardComponent, CardOnSelectionChangeEvent, CheckboxCom
           <div uiCardHeader style="display:grid;gap:0.25rem;">
             <strong style="font-size:0.9375rem;">Projected checkbox</strong>
             <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);"
-              >Better when users expect an explicit selection affordance instead of a surface
-              click</span
+              >Better when users expect an explicit selection affordance instead of a surface click</span
             >
           </div>
         </ui-card>

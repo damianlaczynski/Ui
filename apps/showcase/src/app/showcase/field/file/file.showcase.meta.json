@@ -120,12 +120,7 @@
               "'Click to upload or drag and drop'",
               "Primary message inside area mode when no file is selected."
             ],
-            [
-              "uploadHint",
-              "InputSignal<string>",
-              "''",
-              "Secondary guidance below the main upload message."
-            ]
+            ["uploadHint", "InputSignal<string>", "''", "Secondary guidance below the main upload message."]
           ]
         },
         {
@@ -140,24 +135,14 @@
               "'filled'",
               "Shared field surface token inherited from `FieldComponent`."
             ],
-            [
-              "label",
-              "InputSignal<string>",
-              "''",
-              "Visible field label inherited from `FieldComponent`."
-            ],
+            ["label", "InputSignal<string>", "''", "Visible field label inherited from `FieldComponent`."],
             [
               "labelPosition",
               "InputSignal<ContentPosition>",
               "'above'",
               "Controls where the field label is placed relative to the control."
             ],
-            [
-              "placeholder",
-              "InputSignal<string>",
-              "''",
-              "Inherited shared-field placeholder input."
-            ],
+            ["placeholder", "InputSignal<string>", "''", "Inherited shared-field placeholder input."],
             [
               "helpText",
               "InputSignal<string>",
@@ -171,18 +156,8 @@
               "Validation or manual error message managed by the shared field base."
             ],
             ["required", "InputSignal<boolean>", "false", "Marks the field as required."],
-            [
-              "disabled",
-              "ModelSignal<boolean>",
-              "false",
-              "Disables the field and its interactive affordances."
-            ],
-            [
-              "readonly",
-              "ModelSignal<boolean>",
-              "false",
-              "Keeps the value visible while preventing user changes."
-            ],
+            ["disabled", "ModelSignal<boolean>", "false", "Disables the field and its interactive affordances."],
+            ["readonly", "ModelSignal<boolean>", "false", "Keeps the value visible while preventing user changes."],
             ["size", "InputSignal<Size>", "'medium'", "Shared field density token."],
             [
               "name",
@@ -234,16 +209,8 @@
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
-            [
-              "fileSelect",
-              "OutputEmitterRef<File[]>",
-              "Emits after new files are accepted by filters and limits."
-            ],
-            [
-              "fileRemove",
-              "OutputEmitterRef<File>",
-              "Emits when a selected file is removed or cleared."
-            ],
+            ["fileSelect", "OutputEmitterRef<File[]>", "Emits after new files are accepted by filters and limits."],
+            ["fileRemove", "OutputEmitterRef<File>", "Emits when a selected file is removed or cleared."],
             [
               "value",
               "File | File[] | null",
@@ -257,22 +224,10 @@
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
-            [
-              "focus",
-              "OutputEmitterRef<FocusEvent>",
-              "Inherited focus event from `FieldComponent`."
-            ],
+            ["focus", "OutputEmitterRef<FocusEvent>", "Inherited focus event from `FieldComponent`."],
             ["blur", "OutputEmitterRef<FocusEvent>", "Inherited blur event from `FieldComponent`."],
-            [
-              "keyup",
-              "OutputEmitterRef<KeyboardEvent>",
-              "Inherited keyboard-up event from `FieldComponent`."
-            ],
-            [
-              "keydown",
-              "OutputEmitterRef<KeyboardEvent>",
-              "Inherited keyboard-down event from `FieldComponent`."
-            ]
+            ["keyup", "OutputEmitterRef<KeyboardEvent>", "Inherited keyboard-up event from `FieldComponent`."],
+            ["keydown", "OutputEmitterRef<KeyboardEvent>", "Inherited keyboard-down event from `FieldComponent`."]
           ]
         },
         {

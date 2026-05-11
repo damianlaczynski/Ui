@@ -54,15 +54,11 @@ const GROUPED_ITEMS: CommandPaletteItem[] = [
   standalone: true,
   imports: [ButtonComponent, CommandPaletteComponent],
   template: `
-    <div
-      style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:48rem"
-    >
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:48rem">
       <div
         style="flex:1 1 18rem;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >
-        <p
-          style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)"
-        >
+        <p style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)">
           Grouped commands
         </p>
         <ui-button variant="primary" appearance="outline" (click)="groupedVisible.set(true)">
@@ -80,9 +76,7 @@ const GROUPED_ITEMS: CommandPaletteItem[] = [
       <div
         style="flex:1 1 18rem;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >
-        <p
-          style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)"
-        >
+        <p style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)">
           Flat commands
         </p>
         <ui-button variant="secondary" appearance="outline" (click)="flatVisible.set(true)">

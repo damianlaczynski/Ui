@@ -44,10 +44,7 @@
             }
           } @else if (effectiveItemTemplate()) {
             <ng-container
-              *ngTemplateOutlet="
-                effectiveItemTemplate()!;
-                context: { $implicit: item, index: index }
-              "
+              *ngTemplateOutlet="effectiveItemTemplate()!; context: { $implicit: item, index: index }"
             ></ng-container>
           } @else {
             <div class="scroll-container__item-fallback">{{ item }}</div>

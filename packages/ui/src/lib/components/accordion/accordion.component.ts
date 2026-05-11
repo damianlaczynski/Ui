@@ -1,12 +1,4 @@
-import {
-  Component,
-  input,
-  output,
-  signal,
-  computed,
-  TemplateRef,
-  ChangeDetectionStrategy,
-} from '@angular/core';
+import { Component, input, output, signal, computed, TemplateRef, ChangeDetectionStrategy } from '@angular/core';
 import { ChevronPosition, Size, Shape, Appearance, Orientation } from '../utils';
 import { TreeNode, TreeNodeComponent } from '../tree';
 import { IconName } from '../icon';

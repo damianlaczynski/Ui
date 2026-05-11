@@ -616,9 +616,7 @@ describe('DropdownComponent', () => {
       component.onKeyDown(event);
       fixture.detectChanges();
 
-      const activeItem = selectableItems.find(
-        item => component.getItemId(item) === component.activeDescendant(),
-      );
+      const activeItem = selectableItems.find(item => component.getItemId(item) === component.activeDescendant());
       expect(activeItem?.disabled).toBeFalsy();
     });
   });
@@ -711,9 +709,7 @@ describe('DropdownComponent', () => {
       await tick(100);
       fixture.detectChanges();
 
-      activeItem = component
-        .selectableItems()
-        .find(item => component.getItemId(item) === component.activeDescendant());
+      activeItem = component.selectableItems().find(item => component.getItemId(item) === component.activeDescendant());
       expect(activeItem?.label).toBe('Option 2');
 
       await tick(1000);

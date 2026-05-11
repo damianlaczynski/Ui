@@ -1,14 +1,6 @@
 import { Component, ElementRef, computed, effect, signal, viewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import {
-  ALL_ICON_NAMES,
-  DropdownComponent,
-  DropdownItem,
-  IconComponent,
-  IconName,
-  SearchComponent,
-  Size,
-} from 'ui';
+import { ALL_ICON_NAMES, DropdownComponent, DropdownItem, IconComponent, IconName, SearchComponent, Size } from 'ui';
 
 const ICON_BROWSER_BATCH_SIZE = 120;
 const variants = ['regular', 'filled'] as const;
@@ -34,9 +26,7 @@ const variantItems: DropdownItem[] = variants.map(variant => ({
       <div
         style="display:grid;gap:0.875rem;justify-items:center;width:100%;max-width:40rem;margin-inline:auto;padding:0.875rem 1rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:12px;background:var(--color-neutral-background2-rest);"
       >
-        <div
-          style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:end;gap:0.75rem;width:100%;"
-        >
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:end;gap:0.75rem;width:100%;">
           <div style="min-width:0;">
             <ui-search
               label="Search icons"
@@ -150,9 +140,7 @@ export class IconBrowserDemoComponent {
     return this.iconNames.filter(iconName => iconName.toLowerCase().includes(query)) as IconName[];
   });
 
-  protected readonly visibleIcons = computed<IconName[]>(() =>
-    this.filteredIcons().slice(0, this.visibleIconsCount()),
-  );
+  protected readonly visibleIcons = computed<IconName[]>(() => this.filteredIcons().slice(0, this.visibleIconsCount()));
 
   private readonly hasMoreVisibleIcons = computed<boolean>(
     () => this.visibleIcons().length < this.filteredIcons().length,

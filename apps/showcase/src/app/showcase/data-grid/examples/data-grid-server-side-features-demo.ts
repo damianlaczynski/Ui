@@ -122,11 +122,7 @@ export class DataGridServerSideFeaturesDemoComponent {
       return of({
         items,
         totalCount,
-        hasNextPage: !!(
-          params.page &&
-          params.pageSize &&
-          params.page * params.pageSize < totalCount
-        ),
+        hasNextPage: !!(params.page && params.pageSize && params.page * params.pageSize < totalCount),
         hasPreviousPage: !!(params.page && params.page > 1),
       });
     };

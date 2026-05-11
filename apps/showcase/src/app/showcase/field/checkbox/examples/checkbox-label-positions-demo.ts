@@ -41,9 +41,7 @@ import { CheckboxComponent } from 'ui';
       <div
         style="display:flex;flex-direction:column;gap:0.375rem;padding:0.875rem 1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
       >
-        <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          Hidden visible label
-        </div>
+        <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">Hidden visible label</div>
         <ui-checkbox
           labelPosition="none"
           ariaLabel="Enable compact table rows"

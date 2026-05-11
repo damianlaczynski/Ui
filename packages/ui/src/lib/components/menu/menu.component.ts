@@ -44,8 +44,7 @@ export type MenuTriggerVariant = 'dropdown' | 'split' | 'button';
     '[class.menu-trigger-host]':
       'triggerVariant() === "dropdown" || triggerVariant() === "split" || triggerVariant() === "button"',
     '[class.menu-trigger-host--split]': 'triggerVariant() === "split"',
-    '[class.menu-trigger-host--menu]':
-      'triggerVariant() === "dropdown" || triggerVariant() === "button"',
+    '[class.menu-trigger-host--menu]': 'triggerVariant() === "dropdown" || triggerVariant() === "button"',
   },
 })
 export class MenuComponent implements OnDestroy {

@@ -228,11 +228,7 @@ $command-palette-block: '.command-palette';
 }
 
 .command-palette__frame:not(.command-palette__frame--closing) .command-palette__surface {
-  @include overlay-surface-enter(
-    $duration: $duration-normal,
-    $easing: $easing-decelerate-min,
-    $origin: top center
-  );
+  @include overlay-surface-enter($duration: $duration-normal, $easing: $easing-decelerate-min, $origin: top center);
 }
 
 .command-palette__frame.command-palette__frame--closing .command-palette__surface {

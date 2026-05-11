@@ -16,9 +16,7 @@ import { ButtonComponent, MenuComponent, type MenuItem } from 'ui';
         </span>
       </div>
 
-      <div
-        style="display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:1rem;width:100%"
-      >
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:1rem;width:100%">
         <div
           style="display:flex;flex-direction:column;gap:0.75rem;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
         >

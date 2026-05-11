@@ -87,12 +87,7 @@
             ["variant", "InputSignal<Variant>", "'primary'", "Semantic styling variant."],
             ["appearance", "InputSignal<Appearance>", "'subtle'", "Visual emphasis of tree rows."],
             ["shape", "InputSignal<Shape>", "'rounded'", "Corner treatment for rows."],
-            [
-              "showSelectionIndicator",
-              "InputSignal<boolean>",
-              "false",
-              "Shows a selected-row indicator."
-            ],
+            ["showSelectionIndicator", "InputSignal<boolean>", "false", "Shows a selected-row indicator."],
             [
               "indicatorPosition",
               "InputSignal<'horizontal' | 'vertical'>",
@@ -105,36 +100,11 @@
               "'before'",
               "Placement of the expand/collapse chevron."
             ],
-            [
-              "asButton",
-              "InputSignal<boolean>",
-              "false",
-              "Renders nodes with a more button-like interaction model."
-            ],
-            [
-              "expandOnClick",
-              "InputSignal<boolean>",
-              "false",
-              "Expands parent nodes when the row itself is clicked."
-            ],
-            [
-              "selectOnClick",
-              "InputSignal<boolean>",
-              "false",
-              "Marks the clicked node as selected."
-            ],
-            [
-              "showQuickActions",
-              "InputSignal<boolean>",
-              "false",
-              "Enables a quick-actions region on rows."
-            ],
-            [
-              "contentTemplate",
-              "content child / template input",
-              "null",
-              "Custom template for row content."
-            ],
+            ["asButton", "InputSignal<boolean>", "false", "Renders nodes with a more button-like interaction model."],
+            ["expandOnClick", "InputSignal<boolean>", "false", "Expands parent nodes when the row itself is clicked."],
+            ["selectOnClick", "InputSignal<boolean>", "false", "Marks the clicked node as selected."],
+            ["showQuickActions", "InputSignal<boolean>", "false", "Enables a quick-actions region on rows."],
+            ["contentTemplate", "content child / template input", "null", "Custom template for row content."],
             [
               "quickActionsTemplate",
               "content child / template input",
@@ -158,16 +128,8 @@
           "rows": [
             ["nodeClick", "OutputEmitterRef<TreeNode>", "Emits when a row is activated."],
             ["nodeToggle", "OutputEmitterRef<TreeNode>", "Emits when a node expands or collapses."],
-            [
-              "nodeSelect",
-              "OutputEmitterRef<TreeNode>",
-              "Emits when selection changes through tree interaction."
-            ],
-            [
-              "nodeMoved",
-              "OutputEmitterRef<{ node, target, position }>",
-              "Emits after drag-and-drop reordering."
-            ],
+            ["nodeSelect", "OutputEmitterRef<TreeNode>", "Emits when selection changes through tree interaction."],
+            ["nodeMoved", "OutputEmitterRef<{ node, target, position }>", "Emits after drag-and-drop reordering."],
             [
               "TreeNode",
               "Node plus `hasChildren?`, `children?`, `expanded?`, `parent?`, `level?`",

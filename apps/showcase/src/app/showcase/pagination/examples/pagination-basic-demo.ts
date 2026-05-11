@@ -6,9 +6,7 @@ import { PaginationComponent, PaginationConfig } from 'ui';
   standalone: true,
   imports: [PaginationComponent],
   template: `
-    <div
-      style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:44rem"
-    >
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:44rem">
       <div style="flex:1 1 22rem;min-width:18rem">
         <ui-pagination [config]="paginationConfig()" (pageChange)="currentPage.set($event)" />
       </div>
@@ -21,9 +19,7 @@ import { PaginationComponent, PaginationConfig } from 'ui';
         >
           State
         </p>
-        <div
-          style="display:flex;flex-direction:column;gap:0.375rem;font-size:0.875rem;line-height:1.4"
-        >
+        <div style="display:flex;flex-direction:column;gap:0.375rem;font-size:0.875rem;line-height:1.4">
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Current page</span>
             <strong>{{ currentPage() }}</strong>

@@ -7,9 +7,7 @@ import { MonthComponent } from 'ui';
   standalone: true,
   imports: [FormsModule, MonthComponent],
   template: `
-    <div
-      style="display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1rem;align-items:start"
-    >
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1rem;align-items:start">
       <ui-month
         label="Small filled"
         placeholder="YYYY-MM"

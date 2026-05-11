@@ -8,9 +8,7 @@ import { ButtonComponent, PasswordComponent } from 'ui';
   imports: [ButtonComponent, FormsModule, PasswordComponent],
   template: `
     <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%">
-      <div
-        style="flex:1 1 20rem;min-width:18rem;max-width:30rem;display:flex;flex-direction:column;gap:0.875rem"
-      >
+      <div style="flex:1 1 20rem;min-width:18rem;max-width:30rem;display:flex;flex-direction:column;gap:0.875rem">
         <ui-password
           label="Create password"
           placeholder="Create a strong password"
@@ -21,10 +19,7 @@ import { ButtonComponent, PasswordComponent } from 'ui';
           [errorText]="strengthErrorText"
         />
 
-        <div
-          style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0.375rem"
-          aria-hidden="true"
-        >
+        <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0.375rem" aria-hidden="true">
           @for (segment of [1, 2, 3, 4]; track segment) {
             <div
               style="height:0.375rem;border-radius:999px;background:color-mix(in srgb,var(--color-neutral-stroke-rest) 70%,transparent)"
@@ -57,9 +52,7 @@ import { ButtonComponent, PasswordComponent } from 'ui';
           Strength checks
         </p>
 
-        <div
-          style="display:flex;flex-direction:column;gap:0.45rem;font-size:0.875rem;line-height:1.4"
-        >
+        <div style="display:flex;flex-direction:column;gap:0.45rem;font-size:0.875rem;line-height:1.4">
           @for (check of checks; track check.label) {
             <div style="display:flex;justify-content:space-between;gap:1rem">
               <span style="color:var(--color-neutral-foreground2-rest)">{{ check.label }}</span>

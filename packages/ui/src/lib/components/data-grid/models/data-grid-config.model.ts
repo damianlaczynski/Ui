@@ -58,15 +58,7 @@ export interface DataGridCallbacks<T> {
 export interface DataGridLoadingConfig {
   title?: string;
   description?: string;
-  spinnerSize?:
-    | 'extra-tiny'
-    | 'tiny'
-    | 'extra-small'
-    | 'small'
-    | 'medium'
-    | 'large'
-    | 'extra-large'
-    | 'huge';
+  spinnerSize?: 'extra-tiny' | 'tiny' | 'extra-small' | 'small' | 'medium' | 'large' | 'extra-large' | 'huge';
 }
 
 export interface DataGridEmptyConfig {
@@ -130,9 +122,7 @@ export interface DataGridConfigInput<T> {
   expandable?: boolean;
 }
 
-export interface DataGridConfig<T> extends Required<
-  Omit<DataGridConfigInput<T>, 'columns' | 'dataSource'>
-> {
+export interface DataGridConfig<T> extends Required<Omit<DataGridConfigInput<T>, 'columns' | 'dataSource'>> {
   columns: DataGridColumn<T>[];
   dataSource: (params: QueryParams<T>) => Observable<QueryResult<T>>;
 }

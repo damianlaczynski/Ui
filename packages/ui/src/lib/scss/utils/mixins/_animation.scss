@@ -27,11 +27,7 @@
 
 /// Smooth press transition (for buttons and clickable elements)
 @mixin smooth-press {
-  @include transition(
-    transform background-color border-color,
-    $duration-ultra-fast,
-    $easing-accelerate-min
-  );
+  @include transition(transform background-color border-color, $duration-ultra-fast, $easing-accelerate-min);
 }
 
 /// Color transition only
@@ -182,11 +178,7 @@
 }
 
 /// Anchored overlay surfaces (menus, dropdowns, picker panels).
-@mixin overlay-surface-enter(
-  $duration: $duration-fast,
-  $easing: $easing-decelerate-mid,
-  $origin: top center
-) {
+@mixin overlay-surface-enter($duration: $duration-fast, $easing: $easing-decelerate-mid, $origin: top center) {
   animation: overlaySurfaceEnter $duration $easing both;
   transform-origin: $origin;
   @include respect-reduced-motion;

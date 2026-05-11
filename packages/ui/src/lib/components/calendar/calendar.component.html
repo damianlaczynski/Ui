@@ -2,26 +2,11 @@
   <!-- Month Picker -->
   <div class="calendar__month-picker">
     <div class="calendar__header">
-      <ui-button
-        appearance="subtle"
-        [size]="size()"
-        icon="chevron_left"
-        (click)="onPreviousYear($event)"
-      />
-      <ui-button
-        appearance="subtle"
-        [size]="size()"
-        [fullWidth]="true"
-        (click)="onSwitchToYearsView($event)"
-      >
+      <ui-button appearance="subtle" [size]="size()" icon="chevron_left" (click)="onPreviousYear($event)" />
+      <ui-button appearance="subtle" [size]="size()" [fullWidth]="true" (click)="onSwitchToYearsView($event)">
         {{ currentMonth().getFullYear() }}
       </ui-button>
-      <ui-button
-        appearance="subtle"
-        [size]="size()"
-        icon="chevron_right"
-        (click)="onNextYear($event)"
-      />
+      <ui-button appearance="subtle" [size]="size()" icon="chevron_right" (click)="onNextYear($event)" />
     </div>
     <div class="calendar__months">
       @for (month of calendarMonths(); track month.index) {
@@ -41,19 +26,9 @@
   <!-- Year Picker -->
   <div class="calendar__year-picker">
     <div class="calendar__header">
-      <ui-button
-        appearance="subtle"
-        [size]="size()"
-        icon="chevron_left"
-        (click)="onPreviousYearRange($event)"
-      />
+      <ui-button appearance="subtle" [size]="size()" icon="chevron_left" (click)="onPreviousYearRange($event)" />
       <span class="calendar__title">{{ getYearRangeText() }}</span>
-      <ui-button
-        appearance="subtle"
-        [size]="size()"
-        icon="chevron_right"
-        (click)="onNextYearRange($event)"
-      />
+      <ui-button appearance="subtle" [size]="size()" icon="chevron_right" (click)="onNextYearRange($event)" />
     </div>
     <div class="calendar__years">
       @for (yearItem of calendarYears(); track yearItem.year) {
@@ -74,30 +49,15 @@
   <div class="calendar">
     <!-- Calendar Header -->
     <div class="calendar__header">
-      <ui-button
-        appearance="subtle"
-        [size]="size()"
-        icon="chevron_left"
-        (click)="onPreviousMonth($event)"
-      />
+      <ui-button appearance="subtle" [size]="size()" icon="chevron_left" (click)="onPreviousMonth($event)" />
       @if (showMonthYearPicker()) {
-        <ui-button
-          appearance="subtle"
-          [size]="size()"
-          [fullWidth]="true"
-          (click)="onSwitchToMonthsView($event)"
-        >
+        <ui-button appearance="subtle" [size]="size()" [fullWidth]="true" (click)="onSwitchToMonthsView($event)">
           {{ monthYearText() }}
         </ui-button>
       } @else {
         <span class="calendar__title"> {{ monthYearText() }} </span>
       }
-      <ui-button
-        appearance="subtle"
-        [size]="size()"
-        icon="chevron_right"
-        (click)="onNextMonth($event)"
-      />
+      <ui-button appearance="subtle" [size]="size()" icon="chevron_right" (click)="onNextMonth($event)" />
     </div>
 
     <!-- Week Days Header -->

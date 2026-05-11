@@ -17,11 +17,9 @@ type SearchResult = {
     >
       <div style="display:flex;flex-direction:column;gap:0.375rem">
         <div style="font-size:1rem;font-weight:600">Workspace search panel</div>
-        <div
-          style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest);line-height:1.45"
-        >
-          A realistic search surface includes the query field, lightweight result count, and a
-          compact list of matching entities.
+        <div style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest);line-height:1.45">
+          A realistic search surface includes the query field, lightweight result count, and a compact list of matching
+          entities.
         </div>
       </div>
 
@@ -73,8 +71,6 @@ export class SearchResultsPanelDemoComponent {
       return this.results;
     }
 
-    return this.results.filter(result =>
-      `${result.title} ${result.meta}`.toLowerCase().includes(query),
-    );
+    return this.results.filter(result => `${result.title} ${result.meta}`.toLowerCase().includes(query));
   }
 }

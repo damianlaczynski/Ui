@@ -43,9 +43,7 @@ import { ButtonComponent, CardComponent, TimePickerComponent } from 'ui';
         <div style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;">
           <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest);">
             Current span:
-            <strong style="color:var(--color-neutral-foreground1-rest)"
-              >{{ startValue }} - {{ endValue }}</strong
-            >
+            <strong style="color:var(--color-neutral-foreground1-rest)">{{ startValue }} - {{ endValue }}</strong>
           </span>
           <ui-button variant="secondary" appearance="outline" (click)="reset()">Reset</ui-button>
         </div>

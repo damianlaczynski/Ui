@@ -17,9 +17,7 @@ import { ScrollPanelComponent } from 'ui';
                 style="padding:0.875rem 1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
               >
                 <div style="font-size:0.875rem;font-weight:600">{{ item.title }}</div>
-                <div
-                  style="margin-top:0.25rem;font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
-                >
+                <div style="margin-top:0.25rem;font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
                   {{ item.body }}
                 </div>
               </div>

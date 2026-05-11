@@ -25,10 +25,7 @@ const componentMap = {
 export const TEL_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   markdown: `/docs/components/${telMeta.slug}.md`,
   ...(Object.fromEntries(
-    Object.entries(telMeta.snippets).map(([key, file]) => [
-      key,
-      `/docs/components/snippets/${telMeta.slug}/${file}`,
-    ]),
+    Object.entries(telMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${telMeta.slug}/${file}`]),
   ) as Record<string, string>),
 };
 

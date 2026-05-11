@@ -12,9 +12,7 @@ import { RadioButtonGroupComponent } from 'ui';
     >
       <div style="font-size:0.9375rem;font-weight:600">Publishing settings</div>
 
-      <div
-        style="display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem;width:100%"
-      >
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem;width:100%">
         <ui-radio-button-group
           label="Audience"
           [formControl]="settingsForm.controls.audience"

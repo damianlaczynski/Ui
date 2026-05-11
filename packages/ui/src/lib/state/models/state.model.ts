@@ -88,9 +88,7 @@ export function isLoading<T>(state: Signal<State<T>>): boolean {
 }
 
 export function isLoaded<T>(state: Signal<State<T>>): boolean {
-  return (
-    !state().isLoading && !state().isError && (state().data !== undefined || state().data === null)
-  );
+  return !state().isLoading && !state().isError && (state().data !== undefined || state().data === null);
 }
 
 export function isError<T>(state: Signal<State<T>>): boolean {

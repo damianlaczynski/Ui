@@ -99,12 +99,7 @@
             ],
             ["showStepMarkers", "InputSignal<boolean>", "false", "Displays discrete step notches."],
             ["showMinMax", "InputSignal<boolean>", "false", "Shows formatted min and max labels."],
-            [
-              "valueModel",
-              "ModelSignal<NumericRange>",
-              "{ min: 0, max: 100 }",
-              "Two-way model for the selected range."
-            ]
+            ["valueModel", "ModelSignal<NumericRange>", "{ min: 0, max: 100 }", "Two-way model for the selected range."]
           ]
         },
         {
@@ -118,19 +113,9 @@
             ["errorText", "ModelSignal<string>", "''", "Validation or manual error message."],
             ["required", "InputSignal<boolean>", "false", "Marks the field as required."],
             ["disabled", "ModelSignal<boolean>", "false", "Disables both thumbs and interaction."],
-            [
-              "readonly",
-              "ModelSignal<boolean>",
-              "false",
-              "Keeps the interval visible while preventing edits."
-            ],
+            ["readonly", "ModelSignal<boolean>", "false", "Keeps the interval visible while preventing edits."],
             ["size", "InputSignal<Size>", "'medium'", "Shared field density token."],
-            [
-              "inputVariant",
-              "InputSignal<InputVariant>",
-              "'filled'",
-              "Shared field surface token."
-            ],
+            ["inputVariant", "InputSignal<InputVariant>", "'filled'", "Shared field surface token."],
             ["ariaLabel", "InputSignal<string>", "''", "Accessible-name override when needed."]
           ]
         },

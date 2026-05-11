@@ -10,9 +10,7 @@ const dashedCardStyle =
   standalone: true,
   imports: [FormsModule, SliderComponent],
   template: `
-    <div
-      style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:36rem;"
-    >
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:36rem;">
       <div style="flex:1 1 16rem;min-width:14rem">
         <ui-slider
           label="Volume"
@@ -23,14 +21,8 @@ const dashedCardStyle =
         />
       </div>
       <div [attr.style]="dashedCardStyle">
-        <p style="margin:0 0 0.35rem;font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">
-          Value
-        </p>
-        <p
-          style="margin:0;font-size:1rem;font-weight:600;color:var(--color-neutral-foreground-rest)"
-        >
-          {{ volume }}%
-        </p>
+        <p style="margin:0 0 0.35rem;font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">Value</p>
+        <p style="margin:0;font-size:1rem;font-weight:600;color:var(--color-neutral-foreground-rest)">{{ volume }}%</p>
         <p style="margin:0.35rem 0 0;font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">
           {{ getVolumeAriaValueText(volume) }}
         </p>

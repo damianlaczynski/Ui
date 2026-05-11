@@ -10,18 +10,14 @@ import { CarouselComponent, CarouselItem } from 'ui';
       <div
         style="display:grid;gap:0.75rem;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >
-        <strong style="font-size:0.875rem;color:var(--color-neutral-foreground-rest)"
-          >Full navigation</strong
-        >
+        <strong style="font-size:0.875rem;color:var(--color-neutral-foreground-rest)">Full navigation</strong>
         <ui-carousel [items]="slides" />
       </div>
 
       <div
         style="display:grid;gap:0.75rem;padding:1rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background2-rest)"
       >
-        <strong style="font-size:0.875rem;color:var(--color-neutral-foreground-rest)"
-          >Indicators only, no loop</strong
-        >
+        <strong style="font-size:0.875rem;color:var(--color-neutral-foreground-rest)">Indicators only, no loop</strong>
         <ui-carousel [items]="slides" [showControls]="false" [loop]="false" />
       </div>
     </div>

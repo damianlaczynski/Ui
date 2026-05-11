@@ -6,8 +6,7 @@ function isScrollable(el: HTMLElement): boolean {
   const { overflowY, overflow } = getComputedStyle(el);
   const canScrollY = el.scrollHeight > el.clientHeight;
   const canScrollX = el.scrollWidth > el.clientWidth;
-  const overflowScroll =
-    overflowY === 'auto' || overflowY === 'scroll' || overflow === 'auto' || overflow === 'scroll';
+  const overflowScroll = overflowY === 'auto' || overflowY === 'scroll' || overflow === 'auto' || overflow === 'scroll';
   return (canScrollY || canScrollX) && overflowScroll;
 }
 
@@ -49,9 +48,7 @@ export function registerScrollableAncestors(
       removeListener: () => {
         el.removeEventListener('scroll', listener);
         subject.complete();
-        scrollDispatcher.deregister(
-          adapter as unknown as Parameters<ScrollDispatcher['deregister']>[0],
-        );
+        scrollDispatcher.deregister(adapter as unknown as Parameters<ScrollDispatcher['deregister']>[0]);
       },
     });
   }

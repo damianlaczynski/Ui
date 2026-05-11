@@ -1,13 +1,4 @@
-import {
-  Component,
-  inject,
-  effect,
-  ViewChild,
-  ElementRef,
-  computed,
-  signal,
-  input,
-} from '@angular/core';
+import { Component, inject, effect, ViewChild, ElementRef, computed, signal, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ThemeBuilderService } from '@shared/theme/theme-builder.service';
 import { ThemeService, ThemeVariant } from '@shared/theme/theme.service';

@@ -1,10 +1,5 @@
 import { Component, signal } from '@angular/core';
-import {
-  SplitterComponent,
-  SplitterPanelDirective,
-  type SplitterPanel,
-  type SplitterResizeEvent,
-} from 'ui';
+import { SplitterComponent, SplitterPanelDirective, type SplitterPanel, type SplitterResizeEvent } from 'ui';
 
 @Component({
   selector: 'app-splitter-basic-demo',
@@ -29,20 +24,13 @@ import {
       <div
         style="height:22rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;overflow:hidden;background:var(--color-neutral-background-rest)"
       >
-        <ui-splitter
-          [panels]="panels()"
-          orientation="horizontal"
-          [gutterSize]="8"
-          (panelResize)="onResize($event)"
-        >
+        <ui-splitter [panels]="panels()" orientation="horizontal" [gutterSize]="8" (panelResize)="onResize($event)">
           <ng-template uiSplitterPanel="sidebar">
             <div
               style="height:100%;padding:1rem;background:var(--color-neutral-background-rest);border-right:1px solid var(--color-neutral-stroke-rest)"
             >
               <div style="font-size:0.875rem;font-weight:600">Navigation</div>
-              <div
-                style="margin-top:0.5rem;font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
-              >
+              <div style="margin-top:0.5rem;font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
                 Keep project or file navigation resizable, but not too narrow.
               </div>
             </div>
@@ -53,9 +41,7 @@ import {
               style="height:100%;padding:1rem;background:linear-gradient(180deg,var(--color-neutral-background-rest),var(--color-neutral-background2-rest))"
             >
               <div style="font-size:0.875rem;font-weight:600">Main workspace</div>
-              <div
-                style="margin-top:0.5rem;font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
-              >
+              <div style="margin-top:0.5rem;font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
                 This center region usually gets the most flexible space.
               </div>
             </div>
@@ -66,9 +52,7 @@ import {
               style="height:100%;padding:1rem;background:var(--color-neutral-background-rest);border-left:1px solid var(--color-neutral-stroke-rest)"
             >
               <div style="font-size:0.875rem;font-weight:600">Inspector</div>
-              <div
-                style="margin-top:0.5rem;font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
-              >
+              <div style="margin-top:0.5rem;font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
                 A secondary panel can stay resizable without taking over the layout.
               </div>
             </div>

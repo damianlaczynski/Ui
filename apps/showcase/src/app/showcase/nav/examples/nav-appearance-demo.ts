@@ -16,18 +16,14 @@ const items: NavNode[] = [
       <div
         style="padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >
-        <div style="margin:0 0 0.75rem;font-size:0.9375rem;font-weight:600">
-          Subtle workspace rail
-        </div>
+        <div style="margin:0 0 0.75rem;font-size:0.9375rem;font-weight:600">Subtle workspace rail</div>
         <ui-nav [items]="items" appearance="subtle" variant="primary" />
       </div>
 
       <div
         style="padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >
-        <div style="margin:0 0 0.75rem;font-size:0.9375rem;font-weight:600">
-          Filled secondary rail
-        </div>
+        <div style="margin:0 0 0.75rem;font-size:0.9375rem;font-weight:600">Filled secondary rail</div>
         <ui-nav [items]="items" appearance="filled" variant="secondary" shape="circular" />
       </div>
     </div>

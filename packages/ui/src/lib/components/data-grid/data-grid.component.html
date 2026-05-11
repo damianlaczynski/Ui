@@ -3,10 +3,7 @@
   <div class="data-grid__scroll-container">
     <div class="data-grid__horizontal-track">
       <div class="data-grid__vertical-track">
-        <div
-          class="data-grid__sticky-head"
-          [class.data-grid__sticky-head--sticky]="stickyHeaders()"
-        >
+        <div class="data-grid__sticky-head" [class.data-grid__sticky-head--sticky]="stickyHeaders()">
           <ui-data-grid-header
             [columns]="columns()"
             [size]="size()"
@@ -23,14 +20,7 @@
             (headerClick)="onHeaderClick($event.column, $event.event)"
             (toggleAllRows)="toggleAllRows()"
             (filterOperatorChange)="onFilterOperatorChange($event.column, $event.operator)"
-            (columnResize)="
-              onColumnResize(
-                $event.columnId,
-                $event.width,
-                $event.nextColumnId,
-                $event.nextColumnWidth
-              )
-            "
+            (columnResize)="onColumnResize($event.columnId, $event.width, $event.nextColumnId, $event.nextColumnWidth)"
           />
 
           @if (hasFilterableColumns()) {
@@ -57,9 +47,7 @@
           [loadingOverlay]="hasData() && loading()"
           [loadingBlurContent]="true"
           [errorTitle]="errorTitle() || 'Error loading data'"
-          [errorDescription]="
-            errorDescription() || 'An error occurred while loading the data grid.'
-          "
+          [errorDescription]="errorDescription() || 'An error occurred while loading the data grid.'"
           [errorIcon]="errorIcon()"
           [errorPrimaryAction]="errorPrimaryAction()"
           [errorSecondaryAction]="errorSecondaryAction()"
@@ -129,22 +117,13 @@
                         [style.width]="column.width || null"
                         [style.min-width]="column.minWidth || (column.width ? null : '0')"
                         [style.max-width]="column.maxWidth || null"
-                        [style.flex]="
-                          column.width
-                            ? '0 0 ' + column.width
-                            : column.minWidth
-                              ? '1 1 auto'
-                              : '1 1 0'
-                        "
+                        [style.flex]="column.width ? '0 0 ' + column.width : column.minWidth ? '1 1 auto' : '1 1 0'"
                         (click)="onCellClick(row, column, $event)"
                       >
                         <div class="data-grid__cell-content">
                           @if (column.cellTemplate) {
                             <ng-container
-                              *ngTemplateOutlet="
-                                column.cellTemplate;
-                                context: { $implicit: row, column: column }
-                              "
+                              *ngTemplateOutlet="column.cellTemplate; context: { $implicit: row, column: column }"
                             ></ng-container>
                           } @else if (column.actions && column.actions.length > 0) {
                             @for (action of column.actions; track action.id) {

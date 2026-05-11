@@ -82,11 +82,7 @@ export interface FilterDefinition {
   /**
    * Get display text for the filter
    */
-  getDisplayText(
-    column: DataGridColumn<any>,
-    filter: DataGridFilterValue,
-    config: DataGridFilterConfig,
-  ): string;
+  getDisplayText(column: DataGridColumn<any>, filter: DataGridFilterValue, config: DataGridFilterConfig): string;
 
   /**
    * Check if filter has active value

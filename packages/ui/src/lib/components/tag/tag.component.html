@@ -13,10 +13,7 @@
       <ui-icon [icon]="icon()!" [size]="size()" variant="regular" class="tag__icon" />
     }
 
-    <div
-      class="tag__text-slot"
-      [class.tag__text-slot--with-secondary]="secondaryText() && size() === 'medium'"
-    >
+    <div class="tag__text-slot" [class.tag__text-slot--with-secondary]="secondaryText() && size() === 'medium'">
       <span class="button__text tag__primary">{{ text() }}</span>
       @if (secondaryText() && size() === 'medium') {
         <span class="tag__secondary">{{ secondaryText() }}</span>

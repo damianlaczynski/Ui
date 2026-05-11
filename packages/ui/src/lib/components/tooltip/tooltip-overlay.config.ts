@@ -1,8 +1,6 @@
 import { ConnectedPosition } from '@angular/cdk/overlay';
 
-export function getTooltipPositions(
-  preferred: 'top' | 'bottom' | 'left' | 'right',
-): ConnectedPosition[] {
+export function getTooltipPositions(preferred: 'top' | 'bottom' | 'left' | 'right'): ConnectedPosition[] {
   const all: ConnectedPosition[] = [
     { originX: 'center', originY: 'top', overlayX: 'center', overlayY: 'bottom', offsetY: -4 },
     { originX: 'center', originY: 'bottom', overlayX: 'center', overlayY: 'top', offsetY: 4 },

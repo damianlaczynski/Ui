@@ -72,10 +72,7 @@
             }
           </div>
         } @else {
-          <span
-            class="dropdown-display-text"
-            [class.dropdown-placeholder]="selectedValues().size === 0"
-          >
+          <span class="dropdown-display-text" [class.dropdown-placeholder]="selectedValues().size === 0">
             {{ displayText() }}
           </span>
         }
@@ -166,10 +163,7 @@
           @if (itemTemplate(); as customTemplate) {
             <ng-template #content>
               <ng-container
-                *ngTemplateOutlet="
-                  customTemplate;
-                  context: { $implicit: item, selected: isItemSelected(item) }
-                "
+                *ngTemplateOutlet="customTemplate; context: { $implicit: item, selected: isItemSelected(item) }"
               ></ng-container>
             </ng-template>
           }

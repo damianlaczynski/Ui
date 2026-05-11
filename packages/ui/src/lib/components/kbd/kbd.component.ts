@@ -17,12 +17,8 @@ export class KbdComponent {
   text = input.required<string>();
   size = input<Size>('medium');
   appearance = input<'default' | 'filled'>('default');
-  ariaLabelText = computed(() =>
-    this.i18n.t('kbd.ariaLabel', `Keyboard key: ${this.text()}`, { text: this.text() }),
-  );
+  ariaLabelText = computed(() => this.i18n.t('kbd.ariaLabel', `Keyboard key: ${this.text()}`, { text: this.text() }));
 
   //Computed
-  kbdClasses = computed(() =>
-    ['kbd', `kbd--${this.size()}`, `kbd--${this.appearance()}`].join(' '),
-  );
+  kbdClasses = computed(() => ['kbd', `kbd--${this.size()}`, `kbd--${this.appearance()}`].join(' '));
 }

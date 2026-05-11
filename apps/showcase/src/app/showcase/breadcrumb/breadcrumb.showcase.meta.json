@@ -82,30 +82,10 @@
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
-            [
-              "items",
-              "InputSignal<Breadcrumb[]>",
-              "required",
-              "Ordered path items from root to current location."
-            ],
-            [
-              "showIcons",
-              "InputSignal<boolean>",
-              "true",
-              "Shows item icons when an item provides `icon`."
-            ],
-            [
-              "ariaLabel",
-              "InputSignal<string>",
-              "'Breadcrumb'",
-              "Accessible label for the navigation landmark."
-            ],
-            [
-              "size",
-              "InputSignal<Size>",
-              "'medium'",
-              "Density token for item spacing and icon sizing."
-            ],
+            ["items", "InputSignal<Breadcrumb[]>", "required", "Ordered path items from root to current location."],
+            ["showIcons", "InputSignal<boolean>", "true", "Shows item icons when an item provides `icon`."],
+            ["ariaLabel", "InputSignal<string>", "'Breadcrumb'", "Accessible label for the navigation landmark."],
+            ["size", "InputSignal<Size>", "'medium'", "Density token for item spacing and icon sizing."],
             [
               "variant",
               "InputSignal<Variant>",
@@ -119,12 +99,7 @@
               "Surface style used when an item does not override its own appearance."
             ],
             ["shape", "InputSignal<Shape>", "'rounded'", "Shape token for breadcrumb item chrome."],
-            [
-              "showSelectionIndicator",
-              "InputSignal<boolean>",
-              "false",
-              "Shows an indicator on selected items."
-            ],
+            ["showSelectionIndicator", "InputSignal<boolean>", "false", "Shows an indicator on selected items."],
             [
               "indicatorPosition",
               "InputSignal<Orientation>",

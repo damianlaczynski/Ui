@@ -6,9 +6,7 @@ import { TreeComponent, type TreeNode } from 'ui';
   standalone: true,
   imports: [TreeComponent],
   template: `
-    <div
-      style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:52rem"
-    >
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:52rem">
       <div
         style="flex:0 0 22rem;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >
@@ -24,9 +22,7 @@ import { TreeComponent, type TreeNode } from 'ui';
           Suggested use
         </p>
         <div style="display:grid;gap:0.5rem;font-size:0.875rem;line-height:1.5">
-          <div>
-            Use deeper trees for repositories, operations, or content maps with real nesting.
-          </div>
+          <div>Use deeper trees for repositories, operations, or content maps with real nesting.</div>
           <div>Keep the active branch expanded so the selected path remains readable.</div>
           <div>Avoid turning a flat list into a tree if the relationships are not meaningful.</div>
         </div>

@@ -12,8 +12,7 @@ import { MenuItem, SpeedDialComponent } from 'ui';
       <div style="display:grid;gap:0.25rem;">
         <h3 style="margin:0;font-size:1rem;">Coordination between dials</h3>
         <p style="margin:0;font-size:0.875rem;color:var(--color-neutral-foreground2-rest);">
-          Multiple floating triggers should usually coordinate so only one menu stays open at a
-          time.
+          Multiple floating triggers should usually coordinate so only one menu stays open at a time.
         </p>
       </div>
       <div

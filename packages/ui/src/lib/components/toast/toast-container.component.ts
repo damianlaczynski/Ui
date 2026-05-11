@@ -42,9 +42,7 @@ export class ToastContainerComponent {
   toasts = this.toastService.toasts;
   position = input<ToastPosition>('top-right');
 
-  stackFrom = computed<'top' | 'bottom'>(() =>
-    this.position().startsWith('top') ? 'top' : 'bottom',
-  );
+  stackFrom = computed<'top' | 'bottom'>(() => (this.position().startsWith('top') ? 'top' : 'bottom'));
 
   containerClasses(): string {
     const p = this.position();

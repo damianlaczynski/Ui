@@ -100,12 +100,7 @@
               "'medium'",
               "Visual size token for the tooltip surface."
             ],
-            [
-              "uiTooltipDisabled",
-              "InputSignal<boolean>",
-              "false",
-              "Disables tooltip behavior for the trigger."
-            ],
+            ["uiTooltipDisabled", "InputSignal<boolean>", "false", "Disables tooltip behavior for the trigger."],
             [
               "uiTooltipDelay",
               "InputSignal<number>",
@@ -118,12 +113,7 @@
               "'description'",
               "Controls whether the tooltip is connected with `aria-label` or `aria-describedby`."
             ],
-            [
-              "uiTooltipWithArrow",
-              "InputSignal<boolean>",
-              "true",
-              "Shows or hides the tooltip arrow."
-            ]
+            ["uiTooltipWithArrow", "InputSignal<boolean>", "true", "Shows or hides the tooltip arrow."]
           ]
         },
         {

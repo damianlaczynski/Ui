@@ -6,9 +6,7 @@ import { AvatarComponent } from 'ui';
   standalone: true,
   imports: [AvatarComponent],
   template: `
-    <div
-      style="display:flex;flex-wrap:wrap;gap:1.25rem;align-items:flex-end;justify-content:center;width:100%"
-    >
+    <div style="display:flex;flex-wrap:wrap;gap:1.25rem;align-items:flex-end;justify-content:center;width:100%">
       <div style="display:flex;flex-direction:column;gap:0.35rem;align-items:center">
         <ui-avatar image="https://i.pravatar.cc/150?img=12" name="River Chen" />
         <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">image</span>

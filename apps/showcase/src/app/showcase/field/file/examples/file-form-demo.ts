@@ -44,9 +44,7 @@ import { ButtonComponent, FileComponent } from 'ui';
           style="display:flex;gap:0.75rem;flex-wrap:wrap;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
         >
           <ui-button type="button" variant="primary">Save draft</ui-button>
-          <ui-button type="button" variant="secondary" appearance="outline"
-            >Send for review</ui-button
-          >
+          <ui-button type="button" variant="secondary" appearance="outline">Send for review</ui-button>
           <ui-button type="button" appearance="subtle" (click)="resetForm()">Reset</ui-button>
         </div>
       </div>
@@ -59,9 +57,7 @@ import { ButtonComponent, FileComponent } from 'ui';
         >
           Form values
         </p>
-        <div
-          style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.875rem;line-height:1.4"
-        >
+        <div style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.875rem;line-height:1.4">
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Cover image</span>
             <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
@@ -86,9 +82,7 @@ import { ButtonComponent, FileComponent } from 'ui';
 })
 export class FileFormDemoComponent {
   protected readonly uploadForm = new FormGroup({
-    coverImage: new FormControl<File | null>(
-      new File(['cover'], 'cover-image.png', { type: 'image/png' }),
-    ),
+    coverImage: new FormControl<File | null>(new File(['cover'], 'cover-image.png', { type: 'image/png' })),
     attachments: new FormControl<File[] | null>([
       new File(['brief'], 'campaign-brief.pdf', { type: 'application/pdf' }),
     ]),

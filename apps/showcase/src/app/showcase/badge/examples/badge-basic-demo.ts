@@ -24,9 +24,7 @@ import { BadgeComponent } from 'ui';
           style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0.75rem;padding:0.875rem 1rem;border-radius:0.875rem;background:var(--color-neutral-background-rest)"
         >
           <div style="display:flex;flex-direction:column;gap:0.25rem;min-width:0">
-            <strong style="font-size:0.875rem;color:var(--color-neutral-foreground-rest)"
-              >Release checklist</strong
-            >
+            <strong style="font-size:0.875rem;color:var(--color-neutral-foreground-rest)">Release checklist</strong>
             <span style="font-size:0.8125rem;color:var(--color-neutral-foreground3-rest)"
               >Badge should summarize state without needing a sentence.</span
             >

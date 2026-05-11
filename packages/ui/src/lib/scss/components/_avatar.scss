@@ -157,25 +157,15 @@ $avatar-sizes: (
 
 .avatar--primary {
   &.avatar--filled {
-    @include avatar-variant-filled(
-      var(--color-brand-primary),
-      var(--color-neutral-foreground-on-brand)
-    );
+    @include avatar-variant-filled(var(--color-brand-primary), var(--color-neutral-foreground-on-brand));
   }
 
   &.avatar--outline {
-    @include avatar-variant-outline(
-      transparent,
-      var(--color-brand-primary),
-      var(--color-brand-stroke-rest)
-    );
+    @include avatar-variant-outline(transparent, var(--color-brand-primary), var(--color-brand-stroke-rest));
   }
 
   &.avatar--subtle {
-    @include avatar-variant-subtle(
-      var(--color-neutral-background-brand-selected),
-      var(--color-brand-foreground)
-    );
+    @include avatar-variant-subtle(var(--color-neutral-background-brand-selected), var(--color-brand-foreground));
   }
 
   &.avatar--transparent {
@@ -183,10 +173,7 @@ $avatar-sizes: (
   }
 
   &.avatar--tint {
-    @include avatar-variant-tint(
-      var(--color-neutral-background-brand-selected),
-      var(--color-brand-foreground)
-    );
+    @include avatar-variant-tint(var(--color-neutral-background-brand-selected), var(--color-brand-foreground));
   }
 }
 
@@ -196,10 +183,7 @@ $avatar-sizes: (
 
 .avatar--secondary {
   &.avatar--filled {
-    @include avatar-variant-filled(
-      var(--color-neutral-background2-rest),
-      var(--color-neutral-foreground-rest)
-    );
+    @include avatar-variant-filled(var(--color-neutral-background2-rest), var(--color-neutral-foreground-rest));
   }
 
   &.avatar--outline {
@@ -211,10 +195,7 @@ $avatar-sizes: (
   }
 
   &.avatar--subtle {
-    @include avatar-variant-subtle(
-      var(--color-subtle-background-selected),
-      var(--color-neutral-foreground2-rest)
-    );
+    @include avatar-variant-subtle(var(--color-subtle-background-selected), var(--color-neutral-foreground2-rest));
   }
 
   &.avatar--transparent {
@@ -222,10 +203,7 @@ $avatar-sizes: (
   }
 
   &.avatar--tint {
-    @include avatar-variant-tint(
-      var(--color-neutral-background2-rest),
-      var(--color-neutral-foreground2-rest)
-    );
+    @include avatar-variant-tint(var(--color-neutral-background2-rest), var(--color-neutral-foreground2-rest));
   }
 }
 
@@ -235,10 +213,7 @@ $avatar-sizes: (
 
 .avatar--success {
   &.avatar--filled {
-    @include avatar-variant-filled(
-      var(--color-shared-green-foreground),
-      var(--color-shared-green-background)
-    );
+    @include avatar-variant-filled(var(--color-shared-green-foreground), var(--color-shared-green-background));
   }
 
   &.avatar--outline {
@@ -250,10 +225,7 @@ $avatar-sizes: (
   }
 
   &.avatar--subtle {
-    @include avatar-variant-subtle(
-      var(--color-shared-green-background),
-      var(--color-shared-green-foreground)
-    );
+    @include avatar-variant-subtle(var(--color-shared-green-background), var(--color-shared-green-foreground));
   }
 
   &.avatar--transparent {
@@ -261,10 +233,7 @@ $avatar-sizes: (
   }
 
   &.avatar--tint {
-    @include avatar-variant-tint(
-      var(--color-shared-green-background),
-      var(--color-shared-green-foreground)
-    );
+    @include avatar-variant-tint(var(--color-shared-green-background), var(--color-shared-green-foreground));
   }
 }
 
@@ -274,10 +243,7 @@ $avatar-sizes: (
 
 .avatar--warning {
   &.avatar--filled {
-    @include avatar-variant-filled(
-      var(--color-shared-orange-foreground),
-      var(--color-shared-orange-background)
-    );
+    @include avatar-variant-filled(var(--color-shared-orange-foreground), var(--color-shared-orange-background));
   }
 
   &.avatar--outline {
@@ -289,10 +255,7 @@ $avatar-sizes: (
   }
 
   &.avatar--subtle {
-    @include avatar-variant-subtle(
-      var(--color-shared-orange-background),
-      var(--color-shared-orange-foreground)
-    );
+    @include avatar-variant-subtle(var(--color-shared-orange-background), var(--color-shared-orange-foreground));
   }
 
   &.avatar--transparent {
@@ -300,10 +263,7 @@ $avatar-sizes: (
   }
 
   &.avatar--tint {
-    @include avatar-variant-tint(
-      var(--color-shared-orange-background),
-      var(--color-shared-orange-foreground)
-    );
+    @include avatar-variant-tint(var(--color-shared-orange-background), var(--color-shared-orange-foreground));
   }
 }
 
@@ -313,10 +273,7 @@ $avatar-sizes: (
 
 .avatar--danger {
   &.avatar--filled {
-    @include avatar-variant-filled(
-      var(--color-shared-red-foreground),
-      var(--color-shared-red-background)
-    );
+    @include avatar-variant-filled(var(--color-shared-red-foreground), var(--color-shared-red-background));
   }
 
   &.avatar--outline {
@@ -328,10 +285,7 @@ $avatar-sizes: (
   }
 
   &.avatar--subtle {
-    @include avatar-variant-subtle(
-      var(--color-shared-red-background),
-      var(--color-shared-red-foreground)
-    );
+    @include avatar-variant-subtle(var(--color-shared-red-background), var(--color-shared-red-foreground));
   }
 
   &.avatar--transparent {
@@ -339,10 +293,7 @@ $avatar-sizes: (
   }
 
   &.avatar--tint {
-    @include avatar-variant-tint(
-      var(--color-shared-red-background),
-      var(--color-shared-red-foreground)
-    );
+    @include avatar-variant-tint(var(--color-shared-red-background), var(--color-shared-red-foreground));
   }
 }
 
@@ -352,10 +303,7 @@ $avatar-sizes: (
 
 .avatar--info {
   &.avatar--filled {
-    @include avatar-variant-filled(
-      var(--color-shared-blue-foreground),
-      var(--color-shared-blue-background)
-    );
+    @include avatar-variant-filled(var(--color-shared-blue-foreground), var(--color-shared-blue-background));
   }
 
   &.avatar--outline {
@@ -367,10 +315,7 @@ $avatar-sizes: (
   }
 
   &.avatar--subtle {
-    @include avatar-variant-subtle(
-      var(--color-shared-blue-background),
-      var(--color-shared-blue-foreground)
-    );
+    @include avatar-variant-subtle(var(--color-shared-blue-background), var(--color-shared-blue-foreground));
   }
 
   &.avatar--transparent {
@@ -378,10 +323,7 @@ $avatar-sizes: (
   }
 
   &.avatar--tint {
-    @include avatar-variant-tint(
-      var(--color-shared-blue-background),
-      var(--color-shared-blue-foreground)
-    );
+    @include avatar-variant-tint(var(--color-shared-blue-background), var(--color-shared-blue-foreground));
   }
 }
 

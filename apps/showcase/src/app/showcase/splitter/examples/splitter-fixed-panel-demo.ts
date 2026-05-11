@@ -8,8 +8,8 @@ import { SplitterComponent, SplitterPanelDirective, type SplitterPanel } from 'u
   template: `
     <div style="display:flex;flex-direction:column;gap:1rem;width:100%;max-width:52rem">
       <div style="font-size:0.875rem;line-height:1.5;color:var(--color-neutral-foreground2-rest)">
-        Sometimes one panel should stay fixed while the neighboring region absorbs resizing. This is
-        useful for a locked utility rail or a compact metrics strip.
+        Sometimes one panel should stay fixed while the neighboring region absorbs resizing. This is useful for a locked
+        utility rail or a compact metrics strip.
       </div>
 
       <div
@@ -21,9 +21,7 @@ import { SplitterComponent, SplitterPanelDirective, type SplitterPanel } from 'u
               style="height:100%;padding:1rem;background:var(--color-neutral-background-rest);border-right:1px solid var(--color-neutral-stroke-rest)"
             >
               <div style="font-size:0.875rem;font-weight:600">Utility rail</div>
-              <div
-                style="margin-top:0.5rem;font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
-              >
+              <div style="margin-top:0.5rem;font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
                 This panel is marked non-resizable.
               </div>
             </div>
@@ -34,9 +32,7 @@ import { SplitterComponent, SplitterPanelDirective, type SplitterPanel } from 'u
               style="height:100%;padding:1rem;background:linear-gradient(180deg,var(--color-neutral-background-rest),var(--color-neutral-background2-rest))"
             >
               <div style="font-size:0.875rem;font-weight:600">Flexible content</div>
-              <div
-                style="margin-top:0.5rem;font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
-              >
+              <div style="margin-top:0.5rem;font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
                 Use this pattern when only one side of the layout is meant to stretch and compress.
               </div>
             </div>

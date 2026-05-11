@@ -25,10 +25,8 @@ export class ApiErrorService {
     const errorWithValidation = new Error(errorMessage);
     (errorWithValidation as any).validationErrors =
       error?.validationErrors || error?.result?.validationErrors || error?.error?.validationErrors;
-    (errorWithValidation as any).errors =
-      error?.errors || error?.result?.errors || error?.error?.errors;
-    (errorWithValidation as any).status =
-      error?.status || error?.result?.status || error?.error?.status;
+    (errorWithValidation as any).errors = error?.errors || error?.result?.errors || error?.error?.errors;
+    (errorWithValidation as any).status = error?.status || error?.result?.status || error?.error?.status;
     (errorWithValidation as any).result = error?.result || error?.error;
     (errorWithValidation as any).originalError = error;
 

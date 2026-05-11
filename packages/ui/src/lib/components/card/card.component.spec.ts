@@ -282,10 +282,8 @@ describe('CardComponent', () => {
       await hostFixture.whenStable();
 
       const cardElement = getCardElement(hostFixture);
-      const firstButton = hostFixture.debugElement.query(By.css('#no-tab-first'))
-        .nativeElement as HTMLButtonElement;
-      const secondButton = hostFixture.debugElement.query(By.css('#no-tab-second'))
-        .nativeElement as HTMLButtonElement;
+      const firstButton = hostFixture.debugElement.query(By.css('#no-tab-first')).nativeElement as HTMLButtonElement;
+      const secondButton = hostFixture.debugElement.query(By.css('#no-tab-second')).nativeElement as HTMLButtonElement;
 
       cardElement.focus();
       cardElement.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
@@ -294,9 +292,7 @@ describe('CardComponent', () => {
       firstButton.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab', bubbles: true }));
       expect(document.activeElement).toBe(secondButton);
 
-      secondButton.dispatchEvent(
-        new KeyboardEvent('keydown', { key: 'Tab', bubbles: true, shiftKey: true }),
-      );
+      secondButton.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab', bubbles: true, shiftKey: true }));
       expect(document.activeElement).toBe(firstButton);
     });
 
@@ -323,8 +319,7 @@ describe('CardComponent', () => {
       await hostFixture.whenStable();
 
       const cardElement = getCardElement(hostFixture);
-      const firstButton = hostFixture.debugElement.query(By.css('#tab-exit-first'))
-        .nativeElement as HTMLButtonElement;
+      const firstButton = hostFixture.debugElement.query(By.css('#tab-exit-first')).nativeElement as HTMLButtonElement;
 
       cardElement.focus();
       cardElement.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));

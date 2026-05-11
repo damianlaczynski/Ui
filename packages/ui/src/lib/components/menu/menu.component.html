@@ -52,11 +52,7 @@
       [attr.aria-expanded]="isMenuOpen()"
       (click)="onDropdownClick($event)"
     >
-      <ui-icon
-        [icon]="triggerIcon()"
-        [size]="size()"
-        [variant]="selected() ? 'filled' : 'regular'"
-      />
+      <ui-icon [icon]="triggerIcon()" [size]="size()" [variant]="selected() ? 'filled' : 'regular'" />
     </button>
   </div>
 } @else {

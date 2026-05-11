@@ -12,18 +12,14 @@ const sizes: Array<{ size: Size; label: string }> = [
   standalone: true,
   imports: [IconComponent],
   template: `
-    <div
-      style="display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));max-width:44rem;"
-    >
+    <div style="display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));max-width:44rem;">
       @for (item of sizes; track item.size) {
         <div
           style="display:grid;gap:0.75rem;justify-items:center;padding:1rem;border:1px solid color-mix(in srgb,var(--color-neutral-stroke-rest) 60%,transparent);border-radius:12px;background:var(--color-neutral-background-rest);"
         >
           <ui-icon icon="calendar_clock" [size]="item.size" />
           <strong style="font-size:0.875rem;">{{ item.label }}</strong>
-          <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest);">
-            preset {{ item.size }}
-          </span>
+          <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest);"> preset {{ item.size }} </span>
         </div>
       }
 
@@ -32,9 +28,7 @@ const sizes: Array<{ size: Size; label: string }> = [
       >
         <ui-icon icon="calendar_clock" [sizePx]="32" />
         <strong style="font-size:0.875rem;">Custom</strong>
-        <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest);">
-          sizePx="32"
-        </span>
+        <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest);"> sizePx="32" </span>
       </div>
     </div>
   `,

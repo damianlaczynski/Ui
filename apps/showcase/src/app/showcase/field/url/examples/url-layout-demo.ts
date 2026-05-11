@@ -11,12 +11,7 @@ import { UrlComponent } from 'ui';
         style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >
         <div style="flex:1 1 15rem;min-width:14rem">
-          <ui-url
-            label="Compact source link"
-            size="small"
-            inputVariant="filled-lighter"
-            placeholder="https://"
-          />
+          <ui-url label="Compact source link" size="small" inputVariant="filled-lighter" placeholder="https://" />
         </div>
 
         <div style="flex:1 1 15rem;min-width:14rem">

@@ -1,12 +1,4 @@
-import {
-  Component,
-  input,
-  output,
-  computed,
-  ChangeDetectionStrategy,
-  model,
-  inject,
-} from '@angular/core';
+import { Component, input, output, computed, ChangeDetectionStrategy, model, inject } from '@angular/core';
 
 import { Variant, Appearance, Shape, Size } from '../utils';
 import { IconComponent } from '../icon/icon.component';

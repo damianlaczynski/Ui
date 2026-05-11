@@ -6,9 +6,7 @@ import { DividerComponent } from 'ui';
   standalone: true,
   imports: [DividerComponent],
   template: `
-    <div
-      style="display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1.5rem;width:100%"
-    >
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1.5rem;width:100%">
       <div style="display:flex;flex-direction:column;gap:0.75rem">
         <div style="font-size:0.8125rem;font-weight:600">Horizontal</div>
         <div style="font-size:0.875rem">Title</div>

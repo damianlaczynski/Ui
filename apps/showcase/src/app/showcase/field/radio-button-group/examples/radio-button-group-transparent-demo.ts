@@ -22,14 +22,7 @@ import { RadioButtonGroupComponent, type RadioButtonItem, type Variant } from 'u
   `,
 })
 export class RadioButtonGroupTransparentDemoComponent {
-  protected readonly variants: Variant[] = [
-    'primary',
-    'secondary',
-    'success',
-    'warning',
-    'danger',
-    'info',
-  ];
+  protected readonly variants: Variant[] = ['primary', 'secondary', 'success', 'warning', 'danger', 'info'];
 
   protected readonly selection: Record<Variant, string> = {
     primary: 'comfortable',

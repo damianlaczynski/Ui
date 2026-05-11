@@ -16,11 +16,7 @@ import { AvatarComponent } from 'ui';
         <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">disabled</span>
       </div>
       <div style="display:flex;flex-direction:column;gap:0.35rem;align-items:center">
-        <ui-avatar
-          name="Syncing portrait"
-          image="https://i.pravatar.cc/150?img=8"
-          [loading]="true"
-        />
+        <ui-avatar name="Syncing portrait" image="https://i.pravatar.cc/150?img=8" [loading]="true" />
         <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">loading</span>
       </div>
     </div>

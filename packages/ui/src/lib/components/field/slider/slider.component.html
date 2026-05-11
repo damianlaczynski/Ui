@@ -16,9 +16,7 @@
   <div class="slider-wrapper" [ngClass]="sliderClasses()">
     <div class="slider-container" [class.slider-container--with-minmax]="showMinMax()">
       @if (showMinMax()) {
-        <span class="slider-minmax slider-minmax--min" [attr.aria-hidden]="true">{{
-          formatValue()(min())
-        }}</span>
+        <span class="slider-minmax slider-minmax--min" [attr.aria-hidden]="true">{{ formatValue()(min()) }}</span>
       }
       <div class="slider-input-wrapper" (mousedown)="onMouseDown()" (mouseup)="onMouseUp()">
         <input
@@ -50,20 +48,14 @@
           (blur)="onBlur($event)"
         />
 
-        <div
-          class="slider-visual"
-          [class.slider-visual--with-steps]="showStepMarkers()"
-          [ngStyle]="visualStyle()"
-        >
+        <div class="slider-visual" [class.slider-visual--with-steps]="showStepMarkers()" [ngStyle]="visualStyle()">
           <div class="slider-thumb-wrapper" [ngStyle]="thumbWrapperStyle()">
             <div class="slider-thumb"></div>
           </div>
         </div>
       </div>
       @if (showMinMax()) {
-        <span class="slider-minmax slider-minmax--max" [attr.aria-hidden]="true">{{
-          formatValue()(max())
-        }}</span>
+        <span class="slider-minmax slider-minmax--max" [attr.aria-hidden]="true">{{ formatValue()(max()) }}</span>
       }
     </div>
   </div>

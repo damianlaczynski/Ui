@@ -8,8 +8,7 @@ const iconSpriteAssetJson = `{
 
 export const INSTALLATION_PAGE_CONFIG: GuideDocPageConfig = {
   title: 'Installation',
-  description:
-    'End-to-end setup for @laczynski/ui, from package install to first successful render.',
+  description: 'End-to-end setup for @laczynski/ui, from package install to first successful render.',
   containerClass: 'installation-doc',
   sections: [
     {

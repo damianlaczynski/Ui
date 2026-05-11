@@ -37,8 +37,7 @@ import { Variant, Size, Appearance } from '../../utils';
             width: 100%;
           }
 
-          .button:not(.menu-trigger-split__dropdown):not(:has(.menu-trigger__shortcut))
-            > *:last-child {
+          .button:not(.menu-trigger-split__dropdown):not(:has(.menu-trigger__shortcut)) > *:last-child {
             margin-left: auto;
           }
 
@@ -84,9 +83,7 @@ export class MenuListComponent implements AfterViewInit {
 
   hasContent = computed(() => this.sections().length > 0 || this.items().length > 0);
 
-  menuClasses = computed(
-    () => `menu menu--${this.size()} menu--${this.variant()} menu--${this.appearance()}`,
-  );
+  menuClasses = computed(() => `menu menu--${this.size()} menu--${this.variant()} menu--${this.appearance()}`);
 
   allSections = computed(() => {
     if (this.items().length > 0 && this.sections().length === 0) {

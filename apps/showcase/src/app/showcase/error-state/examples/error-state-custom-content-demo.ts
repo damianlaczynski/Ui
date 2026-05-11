@@ -11,9 +11,7 @@ import { ButtonComponent, ErrorStateComponent } from 'ui';
     >
       <ui-error-state title="Fix the highlighted issues" icon="error_circle">
         <ng-template #content>
-          <div
-            style="display:flex;flex-direction:column;gap:0.875rem;align-items:center;text-align:center"
-          >
+          <div style="display:flex;flex-direction:column;gap:0.875rem;align-items:center;text-align:center">
             <div style="color:var(--color-shared-red-foreground);font-size:0.875rem">
               We found problems in your submission:
             </div>

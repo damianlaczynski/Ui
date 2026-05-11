@@ -75,12 +75,7 @@
     left: 0;
     right: 0;
     padding: $spacing-6 $spacing-4;
-    background: linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0.7) 0%,
-      rgba(0, 0, 0, 0.4) 50%,
-      transparent 100%
-    );
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 50%, transparent 100%);
     color: var(--color-neutral-foreground-on-brand);
     display: flex;
     flex-direction: column;

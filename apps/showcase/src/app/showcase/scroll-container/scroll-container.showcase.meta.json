@@ -89,30 +89,15 @@
               "Paged data source function returning a query result observable."
             ],
             ["pageSize", "InputSignal<number>", "20", "Number of items requested per page."],
-            [
-              "initialPage",
-              "InputSignal<number>",
-              "1",
-              "Initial page index used during first load."
-            ],
-            [
-              "itemTemplate",
-              "InputSignal<TemplateRef<unknown> | null>",
-              "null",
-              "Optional custom row template."
-            ],
+            ["initialPage", "InputSignal<number>", "1", "Initial page index used during first load."],
+            ["itemTemplate", "InputSignal<TemplateRef<unknown> | null>", "null", "Optional custom row template."],
             [
               "emptyTemplate",
               "InputSignal<TemplateRef<unknown> | null>",
               "null",
               "Optional custom empty state template."
             ],
-            [
-              "useNodeComponent",
-              "InputSignal<boolean>",
-              "true",
-              "Whether rows should render as `ui-node` by default."
-            ],
+            ["useNodeComponent", "InputSignal<boolean>", "true", "Whether rows should render as `ui-node` by default."],
             [
               "nodeMapper",
               "InputSignal<((item: T) => Node | null) | null>",
@@ -125,24 +110,9 @@
               "'vertical'",
               "Scroll direction passed to the underlying scroll panel."
             ],
-            [
-              "scrollbarBehavior",
-              "InputSignal<ScrollPanelBehavior>",
-              "'auto'",
-              "Scrollbar visibility behavior."
-            ],
-            [
-              "maxHeight / maxWidth",
-              "InputSignal<string>",
-              "'100%'",
-              "Size constraints of the scroll region."
-            ],
-            [
-              "ariaLabel",
-              "InputSignal<string>",
-              "''",
-              "Accessible label for the scrollable region."
-            ],
+            ["scrollbarBehavior", "InputSignal<ScrollPanelBehavior>", "'auto'", "Scrollbar visibility behavior."],
+            ["maxHeight / maxWidth", "InputSignal<string>", "'100%'", "Size constraints of the scroll region."],
+            ["ariaLabel", "InputSignal<string>", "''", "Accessible label for the scrollable region."],
             ["nodeSize", "InputSignal<Size>", "'medium'", "Size passed to rendered node rows."],
             [
               "showSelectionIndicator",
@@ -156,25 +126,10 @@
               "'horizontal'",
               "Selection indicator placement for node rows."
             ],
-            [
-              "appearance",
-              "InputSignal<Appearance>",
-              "'subtle'",
-              "Appearance passed to node rows."
-            ],
+            ["appearance", "InputSignal<Appearance>", "'subtle'", "Appearance passed to node rows."],
             ["shape", "InputSignal<Shape>", "'rounded'", "Shape passed to node rows."],
-            [
-              "asButton",
-              "InputSignal<boolean>",
-              "false",
-              "Renders node rows with button semantics."
-            ],
-            [
-              "selectOnClick",
-              "InputSignal<boolean>",
-              "true",
-              "Whether node rows emit selection on click."
-            ]
+            ["asButton", "InputSignal<boolean>", "false", "Renders node rows with button semantics."],
+            ["selectOnClick", "InputSignal<boolean>", "true", "Whether node rows emit selection on click."]
           ]
         },
         {
@@ -183,26 +138,10 @@
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
-            [
-              "itemClick",
-              "OutputEmitterRef<{ item, node }>",
-              "Emits when a rendered node row is clicked."
-            ],
-            [
-              "itemSelect",
-              "OutputEmitterRef<{ item, node }>",
-              "Emits when a rendered node row becomes selected."
-            ],
-            [
-              "loadMore",
-              "OutputEmitterRef<{ page, items }>",
-              "Emits after each successful page load."
-            ],
-            [
-              "loadComplete",
-              "OutputEmitterRef<void>",
-              "Emits when the container reaches the last page."
-            ]
+            ["itemClick", "OutputEmitterRef<{ item, node }>", "Emits when a rendered node row is clicked."],
+            ["itemSelect", "OutputEmitterRef<{ item, node }>", "Emits when a rendered node row becomes selected."],
+            ["loadMore", "OutputEmitterRef<{ page, items }>", "Emits after each successful page load."],
+            ["loadComplete", "OutputEmitterRef<void>", "Emits when the container reaches the last page."]
           ]
         },
         {

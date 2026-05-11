@@ -1,14 +1,4 @@
-import {
-  Component,
-  input,
-  output,
-  model,
-  HostListener,
-  computed,
-  signal,
-  effect,
-  inject,
-} from '@angular/core';
+import { Component, input, output, model, HostListener, computed, signal, effect, inject } from '@angular/core';
 
 import { A11yModule } from '@angular/cdk/a11y';
 import { FormsModule } from '@angular/forms';
@@ -131,10 +121,7 @@ export class CommandPaletteComponent {
   shouldRender = computed(() => this.rendered());
 
   backdropClasses = computed(() =>
-    [
-      'command-palette__backdrop',
-      this.isClosing() ? 'command-palette__backdrop--closing' : '',
-    ].join(' '),
+    ['command-palette__backdrop', this.isClosing() ? 'command-palette__backdrop--closing' : ''].join(' '),
   );
 
   frameClasses = computed(() =>
@@ -359,10 +346,7 @@ export class CommandPaletteComponent {
   }
 
   getPlaceholderText(): string {
-    return (
-      this.placeholder().trim() ||
-      this.i18n.t('commandPalette.placeholder', 'Type a command or search...')
-    );
+    return this.placeholder().trim() || this.i18n.t('commandPalette.placeholder', 'Type a command or search...');
   }
 
   getEmptyText(): string {
@@ -372,10 +356,7 @@ export class CommandPaletteComponent {
   getEmptyDescription(): string {
     return (
       this.emptyDescription().trim() ||
-      this.i18n.t(
-        'commandPalette.emptyDescription',
-        'Try a different search term or adjust your filters.',
-      )
+      this.i18n.t('commandPalette.emptyDescription', 'Try a different search term or adjust your filters.')
     );
   }
 

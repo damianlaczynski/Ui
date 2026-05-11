@@ -1,13 +1,4 @@
-import {
-  Component,
-  computed,
-  ElementRef,
-  forwardRef,
-  input,
-  model,
-  signal,
-  ViewChild,
-} from '@angular/core';
+import { Component, computed, ElementRef, forwardRef, input, model, signal, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FieldComponent } from '../field/field.component';
@@ -207,8 +198,7 @@ export class RangeComponent extends FieldComponent implements ControlValueAccess
   private pointerToPercent(clientX: number, rect: DOMRect): number {
     const el = this.trackWrapper?.nativeElement;
     const w = rect.width || 1;
-    const rtl =
-      el && typeof getComputedStyle !== 'undefined' && getComputedStyle(el).direction === 'rtl';
+    const rtl = el && typeof getComputedStyle !== 'undefined' && getComputedStyle(el).direction === 'rtl';
     if (rtl) {
       return Math.min(100, Math.max(0, ((rect.right - clientX) / w) * 100));
     }
@@ -254,8 +244,7 @@ export class RangeComponent extends FieldComponent implements ControlValueAccess
     }
     this.dragging.set(true);
     this.draggingThumb.set(thumb);
-    const activeEl =
-      thumb === 'lower' ? this.lowerInputEl?.nativeElement : this.upperInputEl?.nativeElement;
+    const activeEl = thumb === 'lower' ? this.lowerInputEl?.nativeElement : this.upperInputEl?.nativeElement;
     activeEl?.focus({ preventScroll: true });
     this.applyClientXToThumb(pointerEvent.clientX, thumb);
   }
@@ -394,16 +383,7 @@ export class RangeComponent extends FieldComponent implements ControlValueAccess
       return;
     }
 
-    const handled = new Set([
-      'ArrowRight',
-      'ArrowUp',
-      'ArrowLeft',
-      'ArrowDown',
-      'PageUp',
-      'PageDown',
-      'Home',
-      'End',
-    ]);
+    const handled = new Set(['ArrowRight', 'ArrowUp', 'ArrowLeft', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End']);
     if (!handled.has(event.key)) {
       return;
     }

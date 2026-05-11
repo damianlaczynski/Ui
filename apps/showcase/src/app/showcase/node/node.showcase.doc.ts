@@ -27,10 +27,7 @@ const componentMap = {
 export const NODE_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   markdown: `/docs/components/${nodeMeta.slug}.md`,
   ...(Object.fromEntries(
-    Object.entries(nodeMeta.snippets).map(([key, file]) => [
-      key,
-      `/docs/components/snippets/${nodeMeta.slug}/${file}`,
-    ]),
+    Object.entries(nodeMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${nodeMeta.slug}/${file}`]),
   ) as Record<string, string>),
 };
 

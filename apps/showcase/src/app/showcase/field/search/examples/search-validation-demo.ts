@@ -22,9 +22,7 @@ import { ButtonComponent, SearchComponent } from 'ui';
 
       <div style="display:flex;flex-wrap:wrap;gap:0.75rem">
         <ui-button type="submit">Validate</ui-button>
-        <ui-button type="button" appearance="outline" (click)="fillExample()"
-          >Use example</ui-button
-        >
+        <ui-button type="button" appearance="outline" (click)="fillExample()">Use example</ui-button>
       </div>
     </form>
   `,

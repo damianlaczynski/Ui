@@ -9,21 +9,11 @@ import { ButtonComponent, TooltipDirective } from 'ui';
     <div
       style="display:grid;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));gap:1rem;width:100%;max-width:36rem"
     >
-      <ui-button
-        type="button"
-        appearance="outline"
-        uiTooltip="Appears above the trigger."
-        uiTooltipPosition="top"
-      >
+      <ui-button type="button" appearance="outline" uiTooltip="Appears above the trigger." uiTooltipPosition="top">
         Top
       </ui-button>
 
-      <ui-button
-        type="button"
-        appearance="outline"
-        uiTooltip="Appears below the trigger."
-        uiTooltipPosition="bottom"
-      >
+      <ui-button type="button" appearance="outline" uiTooltip="Appears below the trigger." uiTooltipPosition="bottom">
         Bottom
       </ui-button>
 

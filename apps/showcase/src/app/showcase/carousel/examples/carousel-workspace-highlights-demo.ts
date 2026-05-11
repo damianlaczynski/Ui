@@ -10,16 +10,8 @@ import { BadgeComponent, CarouselComponent, CarouselItem } from 'ui';
       <div
         style="display:flex;flex-wrap:wrap;gap:0.75rem;padding:0.875rem 1rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background2-rest)"
       >
-        <ui-badge
-          text="Use for a small set of high-value slides"
-          variant="secondary"
-          appearance="tint"
-        />
-        <ui-badge
-          text="Avoid dumping long feeds into a carousel"
-          variant="warning"
-          appearance="outline"
-        />
+        <ui-badge text="Use for a small set of high-value slides" variant="secondary" appearance="tint" />
+        <ui-badge text="Avoid dumping long feeds into a carousel" variant="warning" appearance="outline" />
       </div>
 
       <ui-carousel [items]="workspaceSlides" [autoPlay]="true" [autoPlayInterval]="4500" />

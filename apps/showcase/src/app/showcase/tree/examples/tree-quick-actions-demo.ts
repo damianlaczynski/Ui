@@ -7,9 +7,7 @@ import { ButtonComponent, TreeComponent, type TreeNode } from 'ui';
   standalone: true,
   imports: [CommonModule, ButtonComponent, TreeComponent],
   template: `
-    <div
-      style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:50rem"
-    >
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:50rem">
       <div
         style="flex:0 0 22rem;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >

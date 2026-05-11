@@ -1,10 +1,5 @@
 import { Component, computed, signal } from '@angular/core';
-import {
-  createDataGridConfig,
-  DataGridActiveFilter,
-  DataGridColumnFactory,
-  DataGridComponent,
-} from 'ui';
+import { createDataGridConfig, DataGridActiveFilter, DataGridColumnFactory, DataGridComponent } from 'ui';
 import { Observable, of } from 'rxjs';
 import { QueryParams, QueryResult } from '@shared/api/models/query-params.model';
 

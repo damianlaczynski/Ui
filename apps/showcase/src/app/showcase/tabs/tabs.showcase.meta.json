@@ -89,18 +89,8 @@
               "undefined",
               "Controlled selected tab id. When omitted, the first tab is auto-selected."
             ],
-            [
-              "variant",
-              "InputSignal<Variant>",
-              "'primary'",
-              "Semantic styling variant inherited by tab items."
-            ],
-            [
-              "appearance",
-              "InputSignal<Appearance>",
-              "'transparent'",
-              "Visual emphasis level for tab items."
-            ],
+            ["variant", "InputSignal<Variant>", "'primary'", "Semantic styling variant inherited by tab items."],
+            ["appearance", "InputSignal<Appearance>", "'transparent'", "Visual emphasis level for tab items."],
             ["size", "InputSignal<Size>", "'medium'", "Tab density token."],
             ["shape", "InputSignal<Shape>", "'rounded'", "Corner treatment for tab items."],
             [
@@ -109,18 +99,8 @@
               "'horizontal'",
               "Layout direction for the tablist."
             ],
-            [
-              "showSelectionIndicator",
-              "InputSignal<boolean>",
-              "true",
-              "Shows or hides the active-tab indicator."
-            ],
-            [
-              "fullWidth",
-              "InputSignal<boolean>",
-              "false",
-              "Stretches tabs to fill the available horizontal width."
-            ],
+            ["showSelectionIndicator", "InputSignal<boolean>", "true", "Shows or hides the active-tab indicator."],
+            ["fullWidth", "InputSignal<boolean>", "false", "Stretches tabs to fill the available horizontal width."],
             [
               "showMoreButton",
               "InputSignal<boolean>",
@@ -135,26 +115,14 @@
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
-            [
-              "Tab",
-              "{ id, label, icon?, disabled?, closable?, selected?, data? }",
-              "Data contract for each tab item."
-            ],
-            [
-              "tabChange",
-              "OutputEmitterRef<Tab>",
-              "Emits when the user selects a different enabled tab."
-            ],
+            ["Tab", "{ id, label, icon?, disabled?, closable?, selected?, data? }", "Data contract for each tab item."],
+            ["tabChange", "OutputEmitterRef<Tab>", "Emits when the user selects a different enabled tab."],
             [
               "selectedTabIdChange",
               "OutputEmitterRef<string | number>",
               "Emits the selected id for controlled two-way binding."
             ],
-            [
-              "tabClose",
-              "OutputEmitterRef<Tab>",
-              "Emits when the user activates a closable tab's close affordance."
-            ]
+            ["tabClose", "OutputEmitterRef<Tab>", "Emits when the user activates a closable tab's close affordance."]
           ]
         },
         {

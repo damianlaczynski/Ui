@@ -40,8 +40,7 @@ export class ToastComponent {
       if (!this.isExiting() || !this.toastId()) {
         return;
       }
-      const reduced =
-        typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const reduced = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (!reduced) {
         return;
       }

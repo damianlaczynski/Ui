@@ -1,13 +1,4 @@
-import {
-  Component,
-  input,
-  output,
-  model,
-  computed,
-  ChangeDetectionStrategy,
-  ElementRef,
-  inject,
-} from '@angular/core';
+import { Component, input, output, model, computed, ChangeDetectionStrategy, ElementRef, inject } from '@angular/core';
 import { Variant, Appearance, Size, Shape, ExtendedSize, ButtonType } from '../utils';
 import { IconComponent, IconName } from '../icon';
 import { SpinnerComponent } from '../spinner';
@@ -102,9 +93,7 @@ export class ButtonComponent {
   }
 
   focus(): void {
-    (this.elementRef.nativeElement as HTMLElement)
-      .querySelector<HTMLButtonElement>('button')
-      ?.focus();
+    (this.elementRef.nativeElement as HTMLElement).querySelector<HTMLButtonElement>('button')?.focus();
   }
 
   contains(node: Node | null): boolean {

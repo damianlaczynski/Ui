@@ -86,11 +86,7 @@ export abstract class BaseFilterDefinition implements FilterDefinition {
   /**
    * Get display text for the filter
    */
-  getDisplayText(
-    column: DataGridColumn<any>,
-    filter: DataGridFilterValue,
-    config: DataGridFilterConfig,
-  ): string {
+  getDisplayText(column: DataGridColumn<any>, filter: DataGridFilterValue, config: DataGridFilterConfig): string {
     const operatorText = this.getOperatorText(filter.operator || this.getDefaultOperator().value);
     return `${column.header} ${operatorText} "${filter.value}"`;
   }

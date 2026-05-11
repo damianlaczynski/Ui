@@ -31,10 +31,7 @@ import { NodeComponent, Node } from '../../node';
 import { ButtonComponent } from '../../button';
 import { SearchComponent } from '../search';
 import { TagComponent } from '../../tag';
-import {
-  ScrollContainerComponent,
-  ScrollContainerDataSource,
-} from '../../scroll-container/scroll-container.component';
+import { ScrollContainerComponent, ScrollContainerDataSource } from '../../scroll-container/scroll-container.component';
 import { Observable, Subject, debounceTime, distinctUntilChanged, of } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { QueryParams, QueryResult } from '../../../api';
@@ -128,9 +125,7 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
 
   //Inputs
   items = input<DropdownItem[]>([]);
-  dataSource = input<
-    ((params: QueryParams<any>) => Observable<QueryResult<DropdownItem>>) | undefined
-  >(undefined);
+  dataSource = input<((params: QueryParams<any>) => Observable<QueryResult<DropdownItem>>) | undefined>(undefined);
   mode = input<DropdownMode>('single');
   searchable = input<boolean>(false);
   clearable = input<boolean>(false);
@@ -337,11 +332,7 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
 
     // Setup search debounce
     this.searchSubject
-      .pipe(
-        debounceTime(this.searchDebounceMs()),
-        distinctUntilChanged(),
-        takeUntilDestroyed(this.destroyRef),
-      )
+      .pipe(debounceTime(this.searchDebounceMs()), distinctUntilChanged(), takeUntilDestroyed(this.destroyRef))
       .subscribe(search => {
         this.searchQuery.set(search);
         // Note: refresh is called by Effect 3 when searchQuery changes
@@ -461,10 +452,7 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
 
     if (shouldFocusTrigger) {
       try {
-        if (
-          this.triggerElement?.nativeElement &&
-          document.contains(this.triggerElement.nativeElement)
-        ) {
+        if (this.triggerElement?.nativeElement && document.contains(this.triggerElement.nativeElement)) {
           setTimeout(() => this.triggerElement.nativeElement.focus({ preventScroll: true }), 0);
         }
       } catch {
@@ -665,8 +653,7 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
         if (!this.isOpen()) {
           this.openDropdown(true);
           const selected = Array.from(this.selectedValues());
-          const selectedItem =
-            selected.length > 0 ? selectable.find(item => selected.includes(item.value)) : null;
+          const selectedItem = selected.length > 0 ? selectable.find(item => selected.includes(item.value)) : null;
           const targetItem = selectedItem || selectable[0];
           this.activeDescendant.set(this.getItemId(targetItem));
           if (this.mode() === 'single' && targetItem) {
@@ -697,8 +684,7 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
         if (!this.isOpen()) {
           this.openDropdown(true);
           const selected = Array.from(this.selectedValues());
-          const selectedItem =
-            selected.length > 0 ? selectable.find(item => selected.includes(item.value)) : null;
+          const selectedItem = selected.length > 0 ? selectable.find(item => selected.includes(item.value)) : null;
           const targetItem = selectedItem || selectable[selectable.length - 1];
           this.activeDescendant.set(this.getItemId(targetItem));
           if (this.mode() === 'single' && targetItem) {

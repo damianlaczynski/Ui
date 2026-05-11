@@ -11,9 +11,7 @@ import { CardComponent } from 'ui';
         <ui-card appearance="filled" ariaLabel="Filled card">
           <div uiCardHeader style="display:grid;gap:0.25rem;">
             <strong style="font-size:0.9375rem;">Filled</strong>
-            <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);"
-              >Dense, default emphasis</span
-            >
+            <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);">Dense, default emphasis</span>
           </div>
         </ui-card>
 
@@ -46,11 +44,7 @@ import { CardComponent } from 'ui';
           </div>
         </ui-card>
 
-        <ui-card
-          appearance="filled-alternative"
-          borderStyle="none"
-          ariaLabel="Soft card without border"
-        >
+        <ui-card appearance="filled-alternative" borderStyle="none" ariaLabel="Soft card without border">
           <div uiCardHeader style="display:grid;gap:0.25rem;">
             <strong style="font-size:0.9375rem;">Soft shell</strong>
             <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);"
@@ -63,8 +57,7 @@ import { CardComponent } from 'ui';
           <div uiCardHeader style="display:grid;gap:0.25rem;">
             <strong style="font-size:0.9375rem;">Dashed border</strong>
             <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);"
-              >Use border style when the shell should feel more editorial, draft-like, or
-              utility-oriented</span
+              >Use border style when the shell should feel more editorial, draft-like, or utility-oriented</span
             >
           </div>
         </ui-card>
@@ -84,11 +77,8 @@ import { CardComponent } from 'ui';
         </div>
 
         <div uiCardBody>
-          <p
-            style="margin:0;font-size:0.875rem;line-height:1.5;color:var(--color-neutral-foreground2-rest);"
-          >
-            Horizontal cards are useful for compact media rows, attachment previews, and list-style
-            summaries.
+          <p style="margin:0;font-size:0.875rem;line-height:1.5;color:var(--color-neutral-foreground2-rest);">
+            Horizontal cards are useful for compact media rows, attachment previews, and list-style summaries.
           </p>
         </div>
       </ui-card>

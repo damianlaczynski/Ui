@@ -1,13 +1,4 @@
-import {
-  Directive,
-  ElementRef,
-  inject,
-  input,
-  OnDestroy,
-  Injector,
-  PLATFORM_ID,
-  afterNextRender,
-} from '@angular/core';
+import { Directive, ElementRef, inject, input, OnDestroy, Injector, PLATFORM_ID, afterNextRender } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Overlay } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';

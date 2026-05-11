@@ -98,24 +98,14 @@
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
             ["title", "InputSignal<string>", "''", "Primary heading announced with the toast."],
-            [
-              "message",
-              "InputSignal<string>",
-              "''",
-              "Supporting body copy; may be empty for title-only feedback."
-            ],
+            ["message", "InputSignal<string>", "''", "Supporting body copy; may be empty for title-only feedback."],
             [
               "variant",
               "InputSignal<Variant>",
               "'info'",
               "Semantic palette (primary, secondary, success, warning, danger, info)."
             ],
-            [
-              "appearance",
-              "InputSignal<Appearance>",
-              "'filled'",
-              "Surface treatment shared with buttons and banners."
-            ],
+            ["appearance", "InputSignal<Appearance>", "'filled'", "Surface treatment shared with buttons and banners."],
             ["size", "InputSignal<Size>", "'medium'", "Spacing and typography density."],
             [
               "duration",
@@ -123,18 +113,8 @@
               "5000",
               "Milliseconds for progress styling; ToastService applies auto-removal separately when used."
             ],
-            [
-              "dismissible",
-              "InputSignal<boolean>",
-              "true",
-              "Shows the dismiss icon button when true."
-            ],
-            [
-              "showIcon",
-              "InputSignal<boolean>",
-              "true",
-              "Controls the leading Fluent icon derived from variant."
-            ],
+            ["dismissible", "InputSignal<boolean>", "true", "Shows the dismiss icon button when true."],
+            ["showIcon", "InputSignal<boolean>", "true", "Controls the leading Fluent icon derived from variant."],
             [
               "showProgress",
               "InputSignal<boolean>",
@@ -147,12 +127,7 @@
               "'top-right'",
               "Corner hint on the component; stacks still rely on ToastContainer placement in real apps."
             ],
-            [
-              "visible",
-              "ModelSignal<boolean>",
-              "true",
-              "Two-way visibility; dismiss sets false and emits dismiss."
-            ]
+            ["visible", "ModelSignal<boolean>", "true", "Two-way visibility; dismiss sets false and emits dismiss."]
           ]
         },
         {
@@ -161,11 +136,7 @@
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
-            [
-              "dismiss",
-              "OutputRef<void>",
-              "Emitted after the user closes the toast or programmatic dismissal."
-            ],
+            ["dismiss", "OutputRef<void>", "Emitted after the user closes the toast or programmatic dismissal."],
             [
               "actionClick",
               "OutputRef<void>",
@@ -233,11 +204,7 @@
               "Low-level enqueue with full ToastMessage shape; assigns id; schedules removal unless sticky."
             ],
             ["remove(id)", "void", "Removes a toast by id from the queue."],
-            [
-              "removeToast(toast)",
-              "void",
-              "Removes using the message reference when id is present."
-            ],
+            ["removeToast(toast)", "void", "Removes using the message reference when id is present."],
             ["clear()", "void", "Empties all queued toasts."],
             ["getToasts()", "ToastMessage[]", "Snapshot helper around the current signal value."]
           ]
@@ -289,30 +256,14 @@
               "number | undefined",
               "Auto-dismiss timeout for ToastService; defaults are applied inside helpers."
             ],
-            [
-              "sticky",
-              "boolean | undefined",
-              "When true, ToastService skips automatic removal after duration."
-            ],
+            ["sticky", "boolean | undefined", "When true, ToastService skips automatic removal after duration."],
             ["id", "string | undefined", "Optional stable id; generated when omitted."],
-            [
-              "variant",
-              "Variant | undefined",
-              "Overrides semantic palette when rendering through the container."
-            ],
+            ["variant", "Variant | undefined", "Overrides semantic palette when rendering through the container."],
             ["appearance", "Appearance | undefined", "Overrides surface treatment."],
             ["size", "Size | undefined", "Overrides toast density."],
             ["showIcon", "boolean | undefined", "Hide or show the leading icon."],
-            [
-              "dismissible",
-              "boolean | undefined",
-              "Controls dismiss affordance for service-driven instances."
-            ],
-            [
-              "showProgress",
-              "boolean | undefined",
-              "Controls the progress strip for container-rendered toasts."
-            ],
+            ["dismissible", "boolean | undefined", "Controls dismiss affordance for service-driven instances."],
+            ["showProgress", "boolean | undefined", "Controls the progress strip for container-rendered toasts."],
             [
               "contentTemplate",
               "TemplateRef<unknown> | undefined",

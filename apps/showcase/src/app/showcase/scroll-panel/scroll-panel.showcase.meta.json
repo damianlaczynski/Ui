@@ -82,12 +82,7 @@
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
-            [
-              "orientation",
-              "\"vertical\" | \"horizontal\" | \"both\"",
-              "'vertical'",
-              "Scroll direction of the panel."
-            ],
+            ["orientation", "\"vertical\" | \"horizontal\" | \"both\"", "'vertical'", "Scroll direction of the panel."],
             [
               "scrollbarBehavior",
               "\"auto\" | \"always\" | \"never\"",
@@ -106,11 +101,7 @@
           "columnKinds": ["code", "type", "text"],
           "rows": [
             ["scroll", "OutputEmitterRef<Event>", "Emits while the user scrolls the panel."],
-            [
-              "scrollEnd",
-              "OutputEmitterRef<void>",
-              "Emits after scrolling settles, using a small debounce."
-            ]
+            ["scrollEnd", "OutputEmitterRef<void>", "Emits after scrolling settles, using a small debounce."]
           ]
         },
         {

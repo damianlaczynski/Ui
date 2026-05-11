@@ -97,11 +97,7 @@ export class DateFieldOverlayService implements OnDestroy {
     this.overlayHandle = null;
     this.isOpen.set(false);
 
-    if (
-      shouldFocusTrigger &&
-      triggerElement?.nativeElement &&
-      document.contains(triggerElement.nativeElement)
-    ) {
+    if (shouldFocusTrigger && triggerElement?.nativeElement && document.contains(triggerElement.nativeElement)) {
       try {
         setTimeout(() => triggerElement.nativeElement.focus({ preventScroll: true }), 0);
       } catch {

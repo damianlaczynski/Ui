@@ -108,8 +108,7 @@
     display: grid;
     gap: $spacing-3;
     padding: 0 0 $spacing-6;
-    border-bottom: 1px solid
-      color-mix(in srgb, var(--color-neutral-stroke-rest) 85%, var(--color-brand-primary) 15%);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-neutral-stroke-rest) 85%, var(--color-brand-primary) 15%);
   }
 
   &__header-top {
@@ -140,8 +139,7 @@
 
   &__config {
     padding: 0 0 $spacing-6;
-    border-bottom: 1px solid
-      color-mix(in srgb, var(--color-neutral-stroke-rest) 88%, var(--color-brand-primary) 12%);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-neutral-stroke-rest) 88%, var(--color-brand-primary) 12%);
   }
 
   &__section-title {
@@ -193,8 +191,7 @@
     min-width: 0;
     padding: $spacing-5;
     border-radius: $border-radius-800;
-    border: 1px solid
-      color-mix(in srgb, var(--color-brand-primary) 14%, var(--color-neutral-stroke-rest));
+    border: 1px solid color-mix(in srgb, var(--color-brand-primary) 14%, var(--color-neutral-stroke-rest));
     background:
       linear-gradient(
         180deg,
@@ -255,11 +252,7 @@
   &__guide-card-link:hover,
   &__guide-card-link:focus-visible {
     transform: translateY(-3px);
-    border-color: color-mix(
-      in srgb,
-      var(--color-brand-primary) 44%,
-      var(--color-neutral-stroke-rest)
-    );
+    border-color: color-mix(in srgb, var(--color-brand-primary) 44%, var(--color-neutral-stroke-rest));
     background:
       linear-gradient(
         180deg,
@@ -336,8 +329,7 @@
   &__page-tabs {
     min-width: 0;
     padding-bottom: $spacing-2;
-    border-bottom: 1px solid
-      color-mix(in srgb, var(--color-neutral-stroke-rest) 88%, var(--color-brand-primary) 8%);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-neutral-stroke-rest) 88%, var(--color-brand-primary) 8%);
 
     &--full {
       width: 100%;

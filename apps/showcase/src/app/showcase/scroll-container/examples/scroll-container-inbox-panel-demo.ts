@@ -23,22 +23,14 @@ interface InboxItem {
     <div
       style="display:flex;flex-direction:column;gap:1rem;width:100%;max-width:34rem;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
     >
-      <div
-        style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:1rem"
-      >
+      <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:1rem">
         <div>
           <div style="font-size:0.9375rem;font-weight:600">Inbox panel</div>
           <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-            A scroll container often sits inside a real panel with search, status, and compact
-            actions.
+            A scroll container often sits inside a real panel with search, status, and compact actions.
           </div>
         </div>
-        <ui-button
-          variant="secondary"
-          appearance="outline"
-          size="small"
-          (click)="lastAction.set('Marked all as read')"
-        >
+        <ui-button variant="secondary" appearance="outline" size="small" (click)="lastAction.set('Marked all as read')">
           Mark all as read
         </ui-button>
       </div>
@@ -84,10 +76,7 @@ export class ScrollContainerInboxPanelDemoComponent {
     const start = (page - 1) * pageSize + 1;
     const items = Array.from({ length: pageSize }, (_, index) => ({
       id: start + index,
-      label:
-        index % 2 === 0
-          ? `Review request ${start + index}`
-          : `Mention from design ${start + index}`,
+      label: index % 2 === 0 ? `Review request ${start + index}` : `Mention from design ${start + index}`,
       icon: (index % 2 === 0 ? 'document' : 'mail') as Node['icon'],
     }));
 

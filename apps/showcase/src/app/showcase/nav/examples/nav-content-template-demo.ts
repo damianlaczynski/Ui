@@ -14,9 +14,7 @@ import { NavComponent, type NavNode } from 'ui';
     </div>
 
     <ng-template #navContentTemplate let-node>
-      <div
-        style="display:flex;align-items:center;justify-content:space-between;gap:0.5rem;width:100%"
-      >
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:0.5rem;width:100%">
         <span>{{ node.label }}</span>
         <span
           style="min-width:1.5rem;padding:0.125rem 0.45rem;border-radius:999px;background:var(--color-neutral-background3-rest);font-size:0.75rem;text-align:center"

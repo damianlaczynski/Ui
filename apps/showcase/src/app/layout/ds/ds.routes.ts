@@ -1,98 +1,44 @@
 import { Routes } from '@angular/router';
-import {
-  ACCORDION_DOC_ASSET_PATHS,
-  ACCORDION_DOC_PAGE_CONFIG,
-} from '@showcase/accordion/accordion.showcase.doc';
-import {
-  AVATAR_DOC_ASSET_PATHS,
-  AVATAR_DOC_PAGE_CONFIG,
-} from '@showcase/avatar/avatar.showcase.doc';
+import { ACCORDION_DOC_ASSET_PATHS, ACCORDION_DOC_PAGE_CONFIG } from '@showcase/accordion/accordion.showcase.doc';
+import { AVATAR_DOC_ASSET_PATHS, AVATAR_DOC_PAGE_CONFIG } from '@showcase/avatar/avatar.showcase.doc';
 import { BADGE_DOC_ASSET_PATHS, BADGE_DOC_PAGE_CONFIG } from '@showcase/badge/badge.showcase.doc';
-import {
-  BUTTON_DOC_ASSET_PATHS,
-  BUTTON_DOC_PAGE_CONFIG,
-} from '@showcase/button/button.showcase.doc';
-import {
-  CALENDAR_DOC_ASSET_PATHS,
-  CALENDAR_DOC_PAGE_CONFIG,
-} from '@showcase/calendar/calendar.showcase.doc';
+import { BUTTON_DOC_ASSET_PATHS, BUTTON_DOC_PAGE_CONFIG } from '@showcase/button/button.showcase.doc';
+import { CALENDAR_DOC_ASSET_PATHS, CALENDAR_DOC_PAGE_CONFIG } from '@showcase/calendar/calendar.showcase.doc';
 import { CARD_DOC_ASSET_PATHS, CARD_DOC_PAGE_CONFIG } from '@showcase/card/card.showcase.doc';
 import {
   COMMAND_PALETTE_DOC_ASSET_PATHS,
   COMMAND_PALETTE_DOC_PAGE_CONFIG,
 } from '@showcase/command-palette/command-palette.showcase.doc';
-import {
-  DATA_GRID_DOC_ASSET_PATHS,
-  DATA_GRID_DOC_PAGE_CONFIG,
-} from '@showcase/data-grid/data-grid.showcase.doc';
+import { DATA_GRID_DOC_ASSET_PATHS, DATA_GRID_DOC_PAGE_CONFIG } from '@showcase/data-grid/data-grid.showcase.doc';
 import { TIME_DOC_ASSET_PATHS, TIME_DOC_PAGE_CONFIG } from '@showcase/time/time.showcase.doc';
 import {
   TIME_PICKER_DOC_ASSET_PATHS,
   TIME_PICKER_DOC_PAGE_CONFIG,
 } from '@showcase/time-picker/time-picker.showcase.doc';
 import { DATE_DOC_ASSET_PATHS, DATE_DOC_PAGE_CONFIG } from '@showcase/field/date/date.showcase.doc';
-import {
-  DATETIME_DOC_ASSET_PATHS,
-  DATETIME_DOC_PAGE_CONFIG,
-} from '@showcase/field/datetime/datetime.showcase.doc';
-import {
-  MONTH_DOC_ASSET_PATHS,
-  MONTH_DOC_PAGE_CONFIG,
-} from '@showcase/field/month/month.showcase.doc';
-import {
-  TIME_SPAN_DOC_ASSET_PATHS,
-  TIME_SPAN_DOC_PAGE_CONFIG,
-} from '@showcase/field/time-span/time-span.showcase.doc';
+import { DATETIME_DOC_ASSET_PATHS, DATETIME_DOC_PAGE_CONFIG } from '@showcase/field/datetime/datetime.showcase.doc';
+import { MONTH_DOC_ASSET_PATHS, MONTH_DOC_PAGE_CONFIG } from '@showcase/field/month/month.showcase.doc';
+import { TIME_SPAN_DOC_ASSET_PATHS, TIME_SPAN_DOC_PAGE_CONFIG } from '@showcase/field/time-span/time-span.showcase.doc';
 import { WEEK_DOC_ASSET_PATHS, WEEK_DOC_PAGE_CONFIG } from '@showcase/field/week/week.showcase.doc';
 import {
   DATE_RANGE_DOC_ASSET_PATHS,
   DATE_RANGE_DOC_PAGE_CONFIG,
 } from '@showcase/field/date-range/date-range.showcase.doc';
-import {
-  DROPDOWN_DOC_ASSET_PATHS,
-  DROPDOWN_DOC_PAGE_CONFIG,
-} from '@showcase/field/dropdown/dropdown.showcase.doc';
-import {
-  NUMBER_DOC_ASSET_PATHS,
-  NUMBER_DOC_PAGE_CONFIG,
-} from '@showcase/field/number/number.showcase.doc';
-import {
-  PASSWORD_DOC_ASSET_PATHS,
-  PASSWORD_DOC_PAGE_CONFIG,
-} from '@showcase/field/password/password.showcase.doc';
+import { DROPDOWN_DOC_ASSET_PATHS, DROPDOWN_DOC_PAGE_CONFIG } from '@showcase/field/dropdown/dropdown.showcase.doc';
+import { NUMBER_DOC_ASSET_PATHS, NUMBER_DOC_PAGE_CONFIG } from '@showcase/field/number/number.showcase.doc';
+import { PASSWORD_DOC_ASSET_PATHS, PASSWORD_DOC_PAGE_CONFIG } from '@showcase/field/password/password.showcase.doc';
 import { TEXT_DOC_ASSET_PATHS, TEXT_DOC_PAGE_CONFIG } from '@showcase/field/text/text.showcase.doc';
-import {
-  EMAIL_DOC_ASSET_PATHS,
-  EMAIL_DOC_PAGE_CONFIG,
-} from '@showcase/field/email/email.showcase.doc';
+import { EMAIL_DOC_ASSET_PATHS, EMAIL_DOC_PAGE_CONFIG } from '@showcase/field/email/email.showcase.doc';
 import { FILE_DOC_ASSET_PATHS, FILE_DOC_PAGE_CONFIG } from '@showcase/field/file/file.showcase.doc';
-import {
-  SEARCH_DOC_ASSET_PATHS,
-  SEARCH_DOC_PAGE_CONFIG,
-} from '@showcase/field/search/search.showcase.doc';
+import { SEARCH_DOC_ASSET_PATHS, SEARCH_DOC_PAGE_CONFIG } from '@showcase/field/search/search.showcase.doc';
 import { TEL_DOC_ASSET_PATHS, TEL_DOC_PAGE_CONFIG } from '@showcase/field/tel/tel.showcase.doc';
-import {
-  TEXTAREA_DOC_ASSET_PATHS,
-  TEXTAREA_DOC_PAGE_CONFIG,
-} from '@showcase/field/textarea/textarea.showcase.doc';
+import { TEXTAREA_DOC_ASSET_PATHS, TEXTAREA_DOC_PAGE_CONFIG } from '@showcase/field/textarea/textarea.showcase.doc';
 import { URL_DOC_ASSET_PATHS, URL_DOC_PAGE_CONFIG } from '@showcase/field/url/url.showcase.doc';
-import {
-  SWITCH_DOC_ASSET_PATHS,
-  SWITCH_DOC_PAGE_CONFIG,
-} from '@showcase/field/switch/switch.showcase.doc';
+import { SWITCH_DOC_ASSET_PATHS, SWITCH_DOC_PAGE_CONFIG } from '@showcase/field/switch/switch.showcase.doc';
 import { TABS_DOC_ASSET_PATHS, TABS_DOC_PAGE_CONFIG } from '@showcase/tabs/tabs.showcase.doc';
-import {
-  SKELETON_DOC_ASSET_PATHS,
-  SKELETON_DOC_PAGE_CONFIG,
-} from '@showcase/skeleton/skeleton.showcase.doc';
-import {
-  SPEED_DIAL_DOC_ASSET_PATHS,
-  SPEED_DIAL_DOC_PAGE_CONFIG,
-} from '@showcase/speed-dial/speed-dial.showcase.doc';
-import {
-  DIALOG_DOC_ASSET_PATHS,
-  DIALOG_DOC_PAGE_CONFIG,
-} from '@showcase/dialog/dialog.showcase.doc';
+import { SKELETON_DOC_ASSET_PATHS, SKELETON_DOC_PAGE_CONFIG } from '@showcase/skeleton/skeleton.showcase.doc';
+import { SPEED_DIAL_DOC_ASSET_PATHS, SPEED_DIAL_DOC_PAGE_CONFIG } from '@showcase/speed-dial/speed-dial.showcase.doc';
+import { DIALOG_DOC_ASSET_PATHS, DIALOG_DOC_PAGE_CONFIG } from '@showcase/dialog/dialog.showcase.doc';
 import {
   EMPTY_STATE_DOC_ASSET_PATHS,
   EMPTY_STATE_DOC_PAGE_CONFIG,
@@ -121,34 +67,16 @@ import {
   STATE_CONTAINER_DOC_ASSET_PATHS,
   STATE_CONTAINER_DOC_PAGE_CONFIG,
 } from '@showcase/state-container/state-container.showcase.doc';
-import {
-  SLIDER_DOC_ASSET_PATHS,
-  SLIDER_DOC_PAGE_CONFIG,
-} from '@showcase/field/slider/slider.showcase.doc';
-import {
-  DIVIDER_DOC_ASSET_PATHS,
-  DIVIDER_DOC_PAGE_CONFIG,
-} from '@showcase/divider/divider.showcase.doc';
-import {
-  CHECKBOX_DOC_ASSET_PATHS,
-  CHECKBOX_DOC_PAGE_CONFIG,
-} from '@showcase/field/checkbox/checkbox.showcase.doc';
-import {
-  COLOR_DOC_ASSET_PATHS,
-  COLOR_DOC_PAGE_CONFIG,
-} from '@showcase/field/color/color.showcase.doc';
+import { SLIDER_DOC_ASSET_PATHS, SLIDER_DOC_PAGE_CONFIG } from '@showcase/field/slider/slider.showcase.doc';
+import { DIVIDER_DOC_ASSET_PATHS, DIVIDER_DOC_PAGE_CONFIG } from '@showcase/divider/divider.showcase.doc';
+import { CHECKBOX_DOC_ASSET_PATHS, CHECKBOX_DOC_PAGE_CONFIG } from '@showcase/field/checkbox/checkbox.showcase.doc';
+import { COLOR_DOC_ASSET_PATHS, COLOR_DOC_PAGE_CONFIG } from '@showcase/field/color/color.showcase.doc';
 import {
   RADIO_BUTTON_GROUP_DOC_ASSET_PATHS,
   RADIO_BUTTON_GROUP_DOC_PAGE_CONFIG,
 } from '@showcase/field/radio-button-group/radio-button-group.showcase.doc';
-import {
-  RANGE_DOC_ASSET_PATHS,
-  RANGE_DOC_PAGE_CONFIG,
-} from '@showcase/field/range/range.showcase.doc';
-import {
-  SPLITTER_DOC_ASSET_PATHS,
-  SPLITTER_DOC_PAGE_CONFIG,
-} from '@showcase/splitter/splitter.showcase.doc';
+import { RANGE_DOC_ASSET_PATHS, RANGE_DOC_PAGE_CONFIG } from '@showcase/field/range/range.showcase.doc';
+import { SPLITTER_DOC_ASSET_PATHS, SPLITTER_DOC_PAGE_CONFIG } from '@showcase/splitter/splitter.showcase.doc';
 import {
   SCROLL_PANEL_DOC_ASSET_PATHS,
   SCROLL_PANEL_DOC_PAGE_CONFIG,
@@ -157,55 +85,25 @@ import {
   SCROLL_CONTAINER_DOC_ASSET_PATHS,
   SCROLL_CONTAINER_DOC_PAGE_CONFIG,
 } from '@showcase/scroll-container/scroll-container.showcase.doc';
-import {
-  SPINNER_DOC_ASSET_PATHS,
-  SPINNER_DOC_PAGE_CONFIG,
-} from '@showcase/spinner/spinner.showcase.doc';
-import {
-  STEPPER_DOC_ASSET_PATHS,
-  STEPPER_DOC_PAGE_CONFIG,
-} from '@showcase/field/stepper/stepper.showcase.doc';
+import { SPINNER_DOC_ASSET_PATHS, SPINNER_DOC_PAGE_CONFIG } from '@showcase/spinner/spinner.showcase.doc';
+import { STEPPER_DOC_ASSET_PATHS, STEPPER_DOC_PAGE_CONFIG } from '@showcase/field/stepper/stepper.showcase.doc';
 import { TOAST_DOC_ASSET_PATHS, TOAST_DOC_PAGE_CONFIG } from '@showcase/toast/toast.showcase.doc';
 import { TOTP_DOC_ASSET_PATHS, TOTP_DOC_PAGE_CONFIG } from '@showcase/field/totp/totp.showcase.doc';
 import { TREE_DOC_ASSET_PATHS, TREE_DOC_PAGE_CONFIG } from '@showcase/tree/tree.showcase.doc';
-import {
-  TREE_NODE_DOC_ASSET_PATHS,
-  TREE_NODE_DOC_PAGE_CONFIG,
-} from '@showcase/tree-node/tree-node.showcase.doc';
-import {
-  PAGINATION_DOC_ASSET_PATHS,
-  PAGINATION_DOC_PAGE_CONFIG,
-} from '@showcase/pagination/pagination.showcase.doc';
-import {
-  TOOLBAR_DOC_ASSET_PATHS,
-  TOOLBAR_DOC_PAGE_CONFIG,
-} from '@showcase/toolbar/toolbar.showcase.doc';
+import { TREE_NODE_DOC_ASSET_PATHS, TREE_NODE_DOC_PAGE_CONFIG } from '@showcase/tree-node/tree-node.showcase.doc';
+import { PAGINATION_DOC_ASSET_PATHS, PAGINATION_DOC_PAGE_CONFIG } from '@showcase/pagination/pagination.showcase.doc';
+import { TOOLBAR_DOC_ASSET_PATHS, TOOLBAR_DOC_PAGE_CONFIG } from '@showcase/toolbar/toolbar.showcase.doc';
 import { ICON_DOC_ASSET_PATHS, ICON_DOC_PAGE_CONFIG } from '@showcase/icon/icon.showcase.doc';
 import {
   TABLE_OF_CONTENT_DOC_ASSET_PATHS,
   TABLE_OF_CONTENT_DOC_PAGE_CONFIG,
 } from '@showcase/table-of-content/table-of-content.showcase.doc';
-import {
-  BREADCRUMB_DOC_ASSET_PATHS,
-  BREADCRUMB_DOC_PAGE_CONFIG,
-} from '@showcase/breadcrumb/breadcrumb.showcase.doc';
-import {
-  CAROUSEL_DOC_ASSET_PATHS,
-  CAROUSEL_DOC_PAGE_CONFIG,
-} from '@showcase/carousel/carousel.showcase.doc';
-import {
-  DRAWER_DOC_ASSET_PATHS,
-  DRAWER_DOC_PAGE_CONFIG,
-} from '@showcase/drawer/drawer.showcase.doc';
+import { BREADCRUMB_DOC_ASSET_PATHS, BREADCRUMB_DOC_PAGE_CONFIG } from '@showcase/breadcrumb/breadcrumb.showcase.doc';
+import { CAROUSEL_DOC_ASSET_PATHS, CAROUSEL_DOC_PAGE_CONFIG } from '@showcase/carousel/carousel.showcase.doc';
+import { DRAWER_DOC_ASSET_PATHS, DRAWER_DOC_PAGE_CONFIG } from '@showcase/drawer/drawer.showcase.doc';
 import { KBD_DOC_ASSET_PATHS, KBD_DOC_PAGE_CONFIG } from '@showcase/kbd/kbd.showcase.doc';
-import {
-  TOOLTIP_DOC_ASSET_PATHS,
-  TOOLTIP_DOC_PAGE_CONFIG,
-} from '@showcase/tooltip/tooltip.showcase.doc';
-import {
-  RATING_DOC_ASSET_PATHS,
-  RATING_DOC_PAGE_CONFIG,
-} from '@showcase/rating/rating.showcase.doc';
+import { TOOLTIP_DOC_ASSET_PATHS, TOOLTIP_DOC_PAGE_CONFIG } from '@showcase/tooltip/tooltip.showcase.doc';
+import { RATING_DOC_ASSET_PATHS, RATING_DOC_PAGE_CONFIG } from '@showcase/rating/rating.showcase.doc';
 import { GuideDocPageComponent } from '@shared/components/guide-doc-page/guide-doc-page.component';
 import { ShowcaseDocPageComponent } from '@shared/components/showcase-doc-page/showcase-doc-page.component';
 import { GETTING_STARTED_PAGE_CONFIG } from '../../pages/docs/getting-started/getting-started.page';

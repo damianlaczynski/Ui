@@ -2,8 +2,7 @@ import { GuideDocPageConfig } from '@shared/components/guide-doc-page/guide-doc-
 
 export const ROADMAP_PAGE_CONFIG: GuideDocPageConfig = {
   title: 'Roadmap',
-  description:
-    'Our current direction for @laczynski/ui. This roadmap reflects planned priorities, not fixed promises.',
+  description: 'Our current direction for @laczynski/ui. This roadmap reflects planned priorities, not fixed promises.',
   containerClass: 'roadmap-doc',
   sections: [
     {

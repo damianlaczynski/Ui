@@ -63,18 +63,10 @@
       />
       @if (!disabled() && !readonly()) {
         <div class="field__actions">
-          <ui-action-button
-            [size]="size()"
-            [icon]="getIcon()"
-            (click)="togglePanel()"
-          ></ui-action-button>
+          <ui-action-button [size]="size()" [icon]="getIcon()" (click)="togglePanel()"></ui-action-button>
 
           @if (value) {
-            <ui-action-button
-              [icon]="'dismiss'"
-              [size]="size()"
-              (click)="clear()"
-            ></ui-action-button>
+            <ui-action-button [icon]="'dismiss'" [size]="size()" (click)="clear()"></ui-action-button>
           }
         </div>
       }
@@ -86,20 +78,10 @@
   <div class="date-panel" [attr.data-size]="size()" cdkTrapFocus>
     <div class="date-calendar">
       <div class="date-calendar__header">
-        <ui-button
-          [size]="size()"
-          appearance="outline"
-          icon="chevron_left"
-          (click)="onCalendarPreviousYear()"
-        >
+        <ui-button [size]="size()" appearance="outline" icon="chevron_left" (click)="onCalendarPreviousYear()">
         </ui-button>
         <span class="date-calendar__title">{{ currentMonth().getFullYear() }}</span>
-        <ui-button
-          [size]="size()"
-          appearance="outline"
-          icon="chevron_right"
-          (click)="onCalendarNextYear()"
-        >
+        <ui-button [size]="size()" appearance="outline" icon="chevron_right" (click)="onCalendarNextYear()">
         </ui-button>
       </div>
 

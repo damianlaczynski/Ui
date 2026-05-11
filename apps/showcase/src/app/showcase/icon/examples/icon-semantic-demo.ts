@@ -12,8 +12,8 @@ import { BadgeComponent, ButtonComponent, IconComponent } from 'ui';
       <div style="display:grid;gap:0.25rem;">
         <h3 style="margin:0;font-size:1rem;">Decorative and semantic usage</h3>
         <p style="margin:0;font-size:0.875rem;color:var(--color-neutral-foreground2-rest);">
-          Most icons are decorative. Add ariaLabel only when the icon itself needs to be announced
-          as meaningful content.
+          Most icons are decorative. Add ariaLabel only when the icon itself needs to be announced as meaningful
+          content.
         </p>
       </div>
 

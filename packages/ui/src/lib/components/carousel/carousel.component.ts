@@ -1,14 +1,4 @@
-import {
-  Component,
-  input,
-  output,
-  signal,
-  computed,
-  effect,
-  TemplateRef,
-  inject,
-  DestroyRef,
-} from '@angular/core';
+import { Component, input, output, signal, computed, effect, TemplateRef, inject, DestroyRef } from '@angular/core';
 import { NgTemplateOutlet } from '@angular/common';
 
 import { CarouselItem } from './models/carousel-item.model';

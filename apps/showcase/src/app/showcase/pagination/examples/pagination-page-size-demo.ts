@@ -30,15 +30,11 @@ import { PaginationComponent, PaginationConfig } from 'ui';
           <strong>{{ currentPage() }}</strong>
         </div>
         <div style="display:flex;flex-direction:column;gap:0.125rem;min-width:8rem">
-          <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)"
-            >Per page</span
-          >
+          <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">Per page</span>
           <strong>{{ pageSize() }}</strong>
         </div>
         <div style="display:flex;flex-direction:column;gap:0.125rem;min-width:8rem">
-          <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)"
-            >Total pages</span
-          >
+          <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">Total pages</span>
           <strong>{{ totalPages() }}</strong>
         </div>
       </div>

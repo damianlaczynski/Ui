@@ -1,13 +1,4 @@
-import {
-  Component,
-  computed,
-  effect,
-  forwardRef,
-  input,
-  model,
-  OnInit,
-  signal,
-} from '@angular/core';
+import { Component, computed, effect, forwardRef, input, model, OnInit, signal } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Shape } from '../../utils';
 import { FieldComponent } from '../field/field.component';
@@ -125,9 +116,7 @@ export class CheckboxComponent extends FieldComponent implements ControlValueAcc
     return shape === 'square' ? 'square' : 'checkbox_unchecked';
   });
 
-  readonly iconVariant = computed<'regular' | 'filled'>(() =>
-    this.isChecked() ? 'filled' : 'regular',
-  );
+  readonly iconVariant = computed<'regular' | 'filled'>(() => (this.isChecked() ? 'filled' : 'regular'));
 
   onCheckboxChange(event: Event): void {
     const target = event.target as HTMLInputElement;

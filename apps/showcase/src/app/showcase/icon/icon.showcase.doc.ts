@@ -23,10 +23,7 @@ const componentMap = {
 export const ICON_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   markdown: `/docs/components/${iconMeta.slug}.md`,
   ...(Object.fromEntries(
-    Object.entries(iconMeta.snippets).map(([key, file]) => [
-      key,
-      `/docs/components/snippets/${iconMeta.slug}/${file}`,
-    ]),
+    Object.entries(iconMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${iconMeta.slug}/${file}`]),
   ) as Record<string, string>),
 };
 

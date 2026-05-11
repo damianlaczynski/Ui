@@ -12,25 +12,16 @@ import { ErrorStateComponent } from 'ui';
       <div
         style="padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >
-        <p
-          style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)"
-        >
+        <p style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)">
           Small
         </p>
-        <ui-error-state
-          title="Sync failed"
-          description="Please try again."
-          icon="arrow_sync"
-          size="small"
-        />
+        <ui-error-state title="Sync failed" description="Please try again." icon="arrow_sync" size="small" />
       </div>
 
       <div
         style="padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >
-        <p
-          style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)"
-        >
+        <p style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)">
           Medium
         </p>
         <ui-error-state
@@ -43,9 +34,7 @@ import { ErrorStateComponent } from 'ui';
       <div
         style="padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >
-        <p
-          style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)"
-        >
+        <p style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)">
           Large
         </p>
         <ui-error-state

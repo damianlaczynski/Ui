@@ -135,27 +135,15 @@ export class CalendarComponent {
     const selectedDateOnly = selected
       ? new Date(selected.getFullYear(), selected.getMonth(), selected.getDate())
       : null;
-    const startDateOnly = start
-      ? new Date(start.getFullYear(), start.getMonth(), start.getDate())
-      : null;
+    const startDateOnly = start ? new Date(start.getFullYear(), start.getMonth(), start.getDate()) : null;
     const endDateOnly = end ? new Date(end.getFullYear(), end.getMonth(), end.getDate()) : null;
-    const hoveredDateOnly = hovered
-      ? new Date(hovered.getFullYear(), hovered.getMonth(), hovered.getDate())
-      : null;
+    const hoveredDateOnly = hovered ? new Date(hovered.getFullYear(), hovered.getMonth(), hovered.getDate()) : null;
 
     // Add days from previous month
     for (let i = firstDayWeekday - 1; i >= 0; i--) {
       const date = new Date(year, monthIndex, -i);
       days.push(
-        this.createCalendarDay(
-          date,
-          false,
-          today,
-          selectedDateOnly,
-          startDateOnly,
-          endDateOnly,
-          hoveredDateOnly,
-        ),
+        this.createCalendarDay(date, false, today, selectedDateOnly, startDateOnly, endDateOnly, hoveredDateOnly),
       );
     }
 
@@ -163,15 +151,7 @@ export class CalendarComponent {
     for (let day = 1; day <= lastDayOfMonth.getDate(); day++) {
       const date = new Date(year, monthIndex, day);
       days.push(
-        this.createCalendarDay(
-          date,
-          true,
-          today,
-          selectedDateOnly,
-          startDateOnly,
-          endDateOnly,
-          hoveredDateOnly,
-        ),
+        this.createCalendarDay(date, true, today, selectedDateOnly, startDateOnly, endDateOnly, hoveredDateOnly),
       );
     }
 
@@ -180,15 +160,7 @@ export class CalendarComponent {
     for (let day = 1; day <= remainingDays; day++) {
       const date = new Date(year, monthIndex + 1, day);
       days.push(
-        this.createCalendarDay(
-          date,
-          false,
-          today,
-          selectedDateOnly,
-          startDateOnly,
-          endDateOnly,
-          hoveredDateOnly,
-        ),
+        this.createCalendarDay(date, false, today, selectedDateOnly, startDateOnly, endDateOnly, hoveredDateOnly),
       );
     }
 
@@ -378,13 +350,7 @@ export class CalendarComponent {
   }
 
   getDayVariant(day: CalendarDay): 'primary' | 'secondary' {
-    if (
-      day.isSelected ||
-      day.isRangeStart ||
-      day.isRangeEnd ||
-      day.isInRange ||
-      this.isInHoverRange(day)
-    ) {
+    if (day.isSelected || day.isRangeStart || day.isRangeEnd || day.isInRange || this.isInHoverRange(day)) {
       return 'primary';
     }
 

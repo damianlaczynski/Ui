@@ -302,11 +302,7 @@ export class FieldComponent implements ControlValueAccessor, OnInit, OnDestroy {
     }
 
     if (shouldShowValidationError(control)) {
-      const errorMessage = getValidationErrorMessage(
-        control.errors,
-        control,
-        this.label() || undefined,
-      );
+      const errorMessage = getValidationErrorMessage(control.errors, control, this.label() || undefined);
 
       if (currentErrorText !== errorMessage) {
         this.errorText.set(errorMessage);

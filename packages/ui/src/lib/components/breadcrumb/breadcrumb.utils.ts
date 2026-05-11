@@ -13,10 +13,7 @@ export interface PartitionBreadcrumbItemsResult<T> {
   endDisplayedItems: T[];
 }
 
-export function partitionBreadcrumbItems<T>(
-  items: T[],
-  maxDisplayedItems: number,
-): PartitionBreadcrumbItemsResult<T> {
+export function partitionBreadcrumbItems<T>(items: T[], maxDisplayedItems: number): PartitionBreadcrumbItemsResult<T> {
   if (items.length <= maxDisplayedItems) {
     return {
       startDisplayedItems: [...items],

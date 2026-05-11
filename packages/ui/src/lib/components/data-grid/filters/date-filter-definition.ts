@@ -82,10 +82,7 @@ export class DateFilterDefinition extends BaseFilterDefinition {
     // For 'between', check if DateRange has values
     if (typeof filter.value === 'object' && filter.value !== null && !Array.isArray(filter.value)) {
       const range = filter.value as DateRange;
-      return (
-        (range.startDate != null && range.startDate !== '') ||
-        (range.endDate != null && range.endDate !== '')
-      );
+      return (range.startDate != null && range.startDate !== '') || (range.endDate != null && range.endDate !== '');
     }
 
     return filter.value !== '';

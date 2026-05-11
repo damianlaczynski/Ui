@@ -6,11 +6,7 @@ import { BadgeComponent, ButtonComponent, CarouselComponent, CarouselItem } from
   standalone: true,
   imports: [CarouselComponent, BadgeComponent, ButtonComponent],
   template: `
-    <ui-carousel
-      [items]="workspaceSlides"
-      [slideTemplate]="workspaceTemplate"
-      [showIndicators]="true"
-    />
+    <ui-carousel [items]="workspaceSlides" [slideTemplate]="workspaceTemplate" [showIndicators]="true" />
 
     <ng-template #workspaceTemplate let-item>
       <div
@@ -23,9 +19,7 @@ import { BadgeComponent, ButtonComponent, CarouselComponent, CarouselItem } from
 
         <div style="display:grid;gap:0.75rem;max-width:34rem">
           <h3 style="margin:0;font-size:1.5rem;line-height:1.2">{{ item.title }}</h3>
-          <p
-            style="margin:0;font-size:0.9375rem;line-height:1.6;color:var(--color-neutral-foreground2-rest)"
-          >
+          <p style="margin:0;font-size:0.9375rem;line-height:1.6;color:var(--color-neutral-foreground2-rest)">
             {{ item.description }}
           </p>
         </div>
@@ -36,15 +30,11 @@ import { BadgeComponent, ButtonComponent, CarouselComponent, CarouselItem } from
           <div style="display:flex;flex-wrap:wrap;gap:0.75rem">
             <div style="display:grid;gap:0.125rem">
               <strong style="font-size:0.875rem">{{ item.metricA }}</strong>
-              <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest)"
-                >open items</span
-              >
+              <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest)">open items</span>
             </div>
             <div style="display:grid;gap:0.125rem">
               <strong style="font-size:0.875rem">{{ item.metricB }}</strong>
-              <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest)"
-                >contributors</span
-              >
+              <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest)">contributors</span>
             </div>
           </div>
 

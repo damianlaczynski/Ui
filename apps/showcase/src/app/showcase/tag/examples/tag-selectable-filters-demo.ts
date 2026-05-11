@@ -17,20 +17,8 @@ import { TagComponent } from 'ui';
           [selectable]="true"
           [(selected)]="assignedToMe"
         />
-        <ui-tag
-          text="Open"
-          appearance="tint"
-          variant="success"
-          [selectable]="true"
-          [(selected)]="openOnly"
-        />
-        <ui-tag
-          text="Blocked"
-          appearance="tint"
-          variant="danger"
-          [selectable]="true"
-          [(selected)]="blockedOnly"
-        />
+        <ui-tag text="Open" appearance="tint" variant="success" [selectable]="true" [(selected)]="openOnly" />
+        <ui-tag text="Blocked" appearance="tint" variant="danger" [selectable]="true" [(selected)]="blockedOnly" />
         <ui-tag
           text="Needs review"
           appearance="tint"

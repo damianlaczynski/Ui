@@ -7,9 +7,7 @@ import { ButtonComponent, TreeComponent, type TreeNode } from 'ui';
   standalone: true,
   imports: [CommonModule, ButtonComponent, TreeComponent],
   template: `
-    <div
-      style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:52rem"
-    >
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:52rem">
       <div
         style="flex:0 0 22rem;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >
@@ -36,9 +34,7 @@ import { ButtonComponent, TreeComponent, type TreeNode } from 'ui';
           </div>
         </div>
 
-        <ui-button variant="secondary" appearance="outline" size="small" (click)="resetTree()">
-          Reset tree
-        </ui-button>
+        <ui-button variant="secondary" appearance="outline" size="small" (click)="resetTree()"> Reset tree </ui-button>
 
         <div style="font-size:0.875rem;line-height:1.5;color:var(--color-neutral-foreground-rest)">
           {{ lastAction() || 'No move yet.' }}

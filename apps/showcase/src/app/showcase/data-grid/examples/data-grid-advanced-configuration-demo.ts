@@ -1,11 +1,5 @@
 import { Component, computed, signal } from '@angular/core';
-import {
-  createDataGridConfig,
-  DataGridActiveFilter,
-  DataGridColumnFactory,
-  DataGridComponent,
-  DataGridRow,
-} from 'ui';
+import { createDataGridConfig, DataGridActiveFilter, DataGridColumnFactory, DataGridComponent, DataGridRow } from 'ui';
 import { Observable, of } from 'rxjs';
 import { QueryParams, QueryResult } from '@shared/api/models/query-params.model';
 
@@ -81,8 +75,7 @@ export class DataGridAdvancedConfigurationDemoComponent {
       callbacks: {
         onRowClick: (row: DataGridRow<FileRow>) => this.info.set(`Clicked ${row.data.name}.`),
         onSortChange: sort => this.info.set(`Sorted by ${sort.field} (${sort.direction}).`),
-        onFilterChange: (filters: DataGridActiveFilter[]) =>
-          this.info.set(`Active filters: ${filters.length}.`),
+        onFilterChange: (filters: DataGridActiveFilter[]) => this.info.set(`Active filters: ${filters.length}.`),
         onSelectionChange: rows => this.info.set(`Selected rows: ${rows.length}.`),
       },
     }),

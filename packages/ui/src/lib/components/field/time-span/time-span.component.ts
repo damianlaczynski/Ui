@@ -344,11 +344,7 @@ export class TimeSpanComponent extends FieldComponent implements OnDestroy {
     };
   }
 
-  onWheelPointerMove(
-    unit: keyof TimeSpanValue,
-    wheelElement: HTMLDivElement,
-    event: PointerEvent,
-  ): void {
+  onWheelPointerMove(unit: keyof TimeSpanValue, wheelElement: HTMLDivElement, event: PointerEvent): void {
     const state = this.dragStates[unit];
     if (!state || state.pointerId !== event.pointerId) {
       return;
@@ -384,11 +380,7 @@ export class TimeSpanComponent extends FieldComponent implements OnDestroy {
     event.preventDefault();
   }
 
-  onWheelPointerUp(
-    unit: keyof TimeSpanValue,
-    wheelElement: HTMLDivElement,
-    event: PointerEvent,
-  ): void {
+  onWheelPointerUp(unit: keyof TimeSpanValue, wheelElement: HTMLDivElement, event: PointerEvent): void {
     const state = this.dragStates[unit];
     if (!state || state.pointerId !== event.pointerId) {
       return;
@@ -446,11 +438,7 @@ export class TimeSpanComponent extends FieldComponent implements OnDestroy {
     this.emitValueChange({});
   }
 
-  private updateTimeSpanValue(
-    current: TimeSpanValue,
-    unit: keyof TimeSpanValue,
-    value: number | null,
-  ): TimeSpanValue {
+  private updateTimeSpanValue(current: TimeSpanValue, unit: keyof TimeSpanValue, value: number | null): TimeSpanValue {
     const updated = { ...current };
     if (this.isInvalidUnitValue(value)) {
       delete updated[unit];
@@ -589,14 +577,7 @@ export class TimeSpanComponent extends FieldComponent implements OnDestroy {
   }
 
   private isTimeSpanValueEmpty(value: TimeSpanValue): boolean {
-    return (
-      !value.years &&
-      !value.months &&
-      !value.days &&
-      !value.hours &&
-      !value.minutes &&
-      !value.seconds
-    );
+    return !value.years && !value.months && !value.days && !value.hours && !value.minutes && !value.seconds;
   }
 
   private appendDatePart(parts: string[], value: TimeSpanValue): void {
@@ -655,10 +636,7 @@ export class TimeSpanComponent extends FieldComponent implements OnDestroy {
     }
 
     // Cannot be just 'P' or 'PT' - must have at least one unit
-    if (
-      trimmed === ISO8601_DURATION_PREFIX ||
-      trimmed === `${ISO8601_DURATION_PREFIX}${ISO8601_TIME_SEPARATOR}`
-    ) {
+    if (trimmed === ISO8601_DURATION_PREFIX || trimmed === `${ISO8601_DURATION_PREFIX}${ISO8601_TIME_SEPARATOR}`) {
       return {};
     }
 
@@ -796,9 +774,7 @@ export class TimeSpanComponent extends FieldComponent implements OnDestroy {
     }
 
     const timeSpanValue =
-      typeof value === 'string'
-        ? this.parseTimeSpanString(value)
-        : this.convertObjectToTimeSpanValue(value);
+      typeof value === 'string' ? this.parseTimeSpanString(value) : this.convertObjectToTimeSpanValue(value);
 
     this.internalValue.set(timeSpanValue);
     const outputValue = this.toTimeSpanString(timeSpanValue);
@@ -856,14 +832,7 @@ export class TimeSpanComponent extends FieldComponent implements OnDestroy {
   }
 
   private hasValidTimeSpanValue(value: TimeSpanValue): boolean {
-    return !!(
-      value.years ||
-      value.months ||
-      value.days ||
-      value.hours ||
-      value.minutes ||
-      value.seconds
-    );
+    return !!(value.years || value.months || value.days || value.hours || value.minutes || value.seconds);
   }
 
   private parseInputTimeSpanString(inputValue: string): TimeSpanValue {

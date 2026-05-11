@@ -25,10 +25,7 @@ const componentMap = {
 export const DATE_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   markdown: `/docs/components/${dateMeta.slug}.md`,
   ...(Object.fromEntries(
-    Object.entries(dateMeta.snippets).map(([key, file]) => [
-      key,
-      `/docs/components/snippets/${dateMeta.slug}/${file}`,
-    ]),
+    Object.entries(dateMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${dateMeta.slug}/${file}`]),
   ) as Record<string, string>),
 };
 

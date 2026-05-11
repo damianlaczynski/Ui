@@ -13,11 +13,9 @@ import { ButtonComponent, PasswordComponent } from 'ui';
     >
       <div style="display:flex;flex-direction:column;gap:0.375rem">
         <div style="font-size:1rem;font-weight:600">Reset workspace password</div>
-        <div
-          style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest);line-height:1.45"
-        >
-          A realistic reset flow usually combines the current password, a new password, and short
-          policy guidance in one contained surface.
+        <div style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest);line-height:1.45">
+          A realistic reset flow usually combines the current password, a new password, and short policy guidance in one
+          contained surface.
         </div>
       </div>
 
@@ -53,12 +51,7 @@ import { ButtonComponent, PasswordComponent } from 'ui';
         <ui-button type="button" variant="primary" [disabled]="resetForm.invalid || !!confirmError">
           Update password
         </ui-button>
-        <ui-button
-          type="button"
-          variant="secondary"
-          appearance="outline"
-          (click)="resetForm.reset(defaults)"
-        >
+        <ui-button type="button" variant="secondary" appearance="outline" (click)="resetForm.reset(defaults)">
           Reset values
         </ui-button>
       </div>
@@ -92,9 +85,7 @@ export class PasswordResetPanelDemoComponent {
     if (!confirmValue) {
       return '';
     }
-    return confirmValue === this.resetForm.controls.newPassword.value
-      ? ''
-      : 'Passwords do not match.';
+    return confirmValue === this.resetForm.controls.newPassword.value ? '' : 'Passwords do not match.';
   }
 
   protected get confirmHelpText(): string {

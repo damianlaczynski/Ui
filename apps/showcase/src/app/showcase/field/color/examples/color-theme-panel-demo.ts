@@ -17,12 +17,7 @@ import { ButtonComponent, ColorComponent } from 'ui';
         </div>
       </div>
 
-      <ui-color
-        label="Header accent"
-        [(ngModel)]="headerAccent"
-        [ngModelOptions]="{ standalone: true }"
-        format="hex"
-      />
+      <ui-color label="Header accent" [(ngModel)]="headerAccent" [ngModelOptions]="{ standalone: true }" format="hex" />
 
       <ui-color
         label="Data highlight"
@@ -43,29 +38,16 @@ import { ButtonComponent, ColorComponent } from 'ui';
         style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
       >
         <div style="display:flex;gap:0.5rem;align-items:center">
-          <span
-            style="width:0.875rem;height:0.875rem;border-radius:999px"
-            [style.background]="headerAccent"
-          ></span>
-          <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
-            >Header</span
-          >
+          <span style="width:0.875rem;height:0.875rem;border-radius:999px" [style.background]="headerAccent"></span>
+          <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">Header</span>
         </div>
         <div style="display:flex;gap:0.5rem;align-items:center">
-          <span
-            style="width:0.875rem;height:0.875rem;border-radius:999px"
-            [style.background]="dataHighlight"
-          ></span>
+          <span style="width:0.875rem;height:0.875rem;border-radius:999px" [style.background]="dataHighlight"></span>
           <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">Data</span>
         </div>
         <div style="display:flex;gap:0.5rem;align-items:center">
-          <span
-            style="width:0.875rem;height:0.875rem;border-radius:999px"
-            [style.background]="overlayTint"
-          ></span>
-          <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
-            >Overlay</span
-          >
+          <span style="width:0.875rem;height:0.875rem;border-radius:999px" [style.background]="overlayTint"></span>
+          <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">Overlay</span>
         </div>
       </div>
 
@@ -73,9 +55,7 @@ import { ButtonComponent, ColorComponent } from 'ui';
         style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
       >
         <ui-button type="button" variant="primary">Save theme</ui-button>
-        <ui-button type="button" variant="secondary" appearance="outline"
-          >Reset to defaults</ui-button
-        >
+        <ui-button type="button" variant="secondary" appearance="outline">Reset to defaults</ui-button>
       </div>
     </div>
   `,

@@ -17,10 +17,7 @@
           (click)="toggleTheme()"
           [attr.aria-label]="themeMode() === 'dark' ? 'Light mode' : 'Dark mode'"
         >
-          <ui-icon
-            [icon]="themeMode() === 'dark' ? 'weather_sunny' : 'weather_moon'"
-            size="small"
-          ></ui-icon>
+          <ui-icon [icon]="themeMode() === 'dark' ? 'weather_sunny' : 'weather_moon'" size="small"></ui-icon>
           <span>{{ themeMode() === 'dark' ? 'Light' : 'Dark' }}</span>
         </button>
       </div>
@@ -81,17 +78,15 @@
 
     <div class="theme-drawer__usage">
       <p class="theme-drawer__usage-text">
-        Save the exported file (e.g. <code>src/theme.scss</code>) and add it to
-        <code>angular.json</code> after the library styles.
+        Save the exported file (e.g. <code>src/theme.scss</code>) and add it to <code>angular.json</code> after the
+        library styles.
       </p>
       <pre class="theme-drawer__code"><code>"styles": [
   "node_modules/ui/styles/main.scss",
   "src/theme.scss",
   "src/styles.scss"
 ]</code></pre>
-      <p class="theme-drawer__usage-text">
-        Then import the theme in your <code>styles.scss</code>:
-      </p>
+      <p class="theme-drawer__usage-text">Then import the theme in your <code>styles.scss</code>:</p>
       <pre class="theme-drawer__code"><code>&#64;use 'theme';</code></pre>
     </div>
   </div>

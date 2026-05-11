@@ -27,9 +27,7 @@ import { TabsComponent, type Tab } from 'ui';
         >
           Current tabs
         </p>
-        <div
-          style="display:flex;flex-direction:column;gap:0.45rem;font-size:0.875rem;line-height:1.4"
-        >
+        <div style="display:flex;flex-direction:column;gap:0.45rem;font-size:0.875rem;line-height:1.4">
           @for (tab of editableTabs; track tab.id) {
             <div style="display:flex;justify-content:space-between;gap:1rem">
               <span style="color:var(--color-neutral-foreground2-rest)">{{ tab.label }}</span>

@@ -34,8 +34,8 @@ const releaseItems: DropdownItem[] = [
       <div style="display:flex;flex-direction:column;gap:0.25rem">
         <div style="font-size:0.9375rem;font-weight:600">Release handoff</div>
         <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          A realistic form usually mixes single and multi-select fields with actions and a compact
-          summary of the current choice set.
+          A realistic form usually mixes single and multi-select fields with actions and a compact summary of the
+          current choice set.
         </div>
       </div>
 
@@ -78,9 +78,7 @@ const releaseItems: DropdownItem[] = [
           >
             Owner
           </span>
-          <strong
-            style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)"
-          >
+          <strong style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)">
             {{ ownerLabel }}
           </strong>
         </div>
@@ -90,9 +88,7 @@ const releaseItems: DropdownItem[] = [
           >
             Reviewers
           </span>
-          <strong
-            style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)"
-          >
+          <strong style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)">
             {{ reviewerLabels }}
           </strong>
         </div>
@@ -102,9 +98,7 @@ const releaseItems: DropdownItem[] = [
           >
             Last submit
           </span>
-          <strong
-            style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)"
-          >
+          <strong style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)">
             {{ submitState }}
           </strong>
         </div>
@@ -114,9 +108,7 @@ const releaseItems: DropdownItem[] = [
         style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
       >
         <ui-button type="submit" variant="primary">Save handoff</ui-button>
-        <ui-button type="button" variant="secondary" appearance="outline" (click)="reset()">
-          Reset
-        </ui-button>
+        <ui-button type="button" variant="secondary" appearance="outline" (click)="reset()"> Reset </ui-button>
       </div>
     </form>
   `,

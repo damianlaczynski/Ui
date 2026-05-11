@@ -112,18 +112,8 @@
               "false",
               "Expands the dialog to the fullscreen treatment instead of a constrained modal width."
             ],
-            [
-              "width",
-              "InputSignal<string>",
-              "''",
-              "Optional custom width for non-fullscreen dialogs."
-            ],
-            [
-              "height",
-              "InputSignal<string>",
-              "''",
-              "Optional custom height for non-fullscreen dialogs."
-            ],
+            ["width", "InputSignal<string>", "''", "Optional custom width for non-fullscreen dialogs."],
+            ["height", "InputSignal<string>", "''", "Optional custom height for non-fullscreen dialogs."],
             [
               "visible",
               "ModelSignal<boolean>",
@@ -156,16 +146,8 @@
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
-            [
-              "close",
-              "OutputRef<void>",
-              "Emitted after the dialog closes through built-in close handling."
-            ],
-            [
-              "backdropClick",
-              "OutputRef<void>",
-              "Emitted when a dynamic backdrop click dismisses the dialog."
-            ]
+            ["close", "OutputRef<void>", "Emitted after the dialog closes through built-in close handling."],
+            ["backdropClick", "OutputRef<void>", "Emitted when a dynamic backdrop click dismisses the dialog."]
           ]
         },
         {

@@ -11,9 +11,7 @@ const bodyStackStyle =
   template: `
     <div style="display:flex;flex-wrap:wrap;gap:0.75rem">
       <ui-button appearance="outline" (click)="leftVisible.set(true)">Left small</ui-button>
-      <ui-button appearance="outline" (click)="rightVisible.set(true)"
-        >Right large · scroll</ui-button
-      >
+      <ui-button appearance="outline" (click)="rightVisible.set(true)">Right large · scroll</ui-button>
       <ui-button appearance="outline" (click)="bottomVisible.set(true)">Bottom medium</ui-button>
 
       <ui-drawer
@@ -25,8 +23,8 @@ const bodyStackStyle =
       >
         <div [attr.style]="bodyStackStyle">
           <p style="margin:0">
-            The compact width suits navigation rails, shortcuts to sibling views, or secondary
-            actions that should not dominate the canvas.
+            The compact width suits navigation rails, shortcuts to sibling views, or secondary actions that should not
+            dominate the canvas.
           </p>
           <p style="margin:0"><strong style="font-weight:600">Quick links</strong></p>
           <ul style="margin:0;padding-left:1.25rem">
@@ -60,12 +58,12 @@ const bodyStackStyle =
       >
         <div [attr.style]="bodyStackStyle">
           <p style="margin:0">
-            Bottom placements work well for cart summaries, approvals, or short step-through flows
-            that should stay attached to the page chrome.
+            Bottom placements work well for cart summaries, approvals, or short step-through flows that should stay
+            attached to the page chrome.
           </p>
           <p style="margin:0">
-            This copy stays concise on purpose — open “Right large · scroll” to see the drawer body
-            scroll when content exceeds the available height.
+            This copy stays concise on purpose — open “Right large · scroll” to see the drawer body scroll when content
+            exceeds the available height.
           </p>
         </div>
       </ui-drawer>

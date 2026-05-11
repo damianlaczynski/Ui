@@ -16,9 +16,7 @@ import { ButtonComponent, ToastContainerComponent, ToastService } from 'ui';
         <ui-button type="button" variant="success" (click)="pushSuccess()">Success</ui-button>
         <ui-button type="button" variant="warning" (click)="pushWarn()">Warning</ui-button>
         <ui-button type="button" variant="danger" (click)="pushError()">Error</ui-button>
-        <ui-button type="button" variant="secondary" appearance="outline" (click)="clearAll()"
-          >Reset</ui-button
-        >
+        <ui-button type="button" variant="secondary" appearance="outline" (click)="clearAll()">Reset</ui-button>
       </div>
     </div>
     <ui-toast-container position="top-right" />

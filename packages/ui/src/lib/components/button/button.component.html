@@ -6,13 +6,7 @@
   [attr.role]="role()"
   [attr.aria-label]="ariaLabel()"
   [attr.aria-pressed]="
-    role() === 'radio' || role() === 'menuitem'
-      ? null
-      : selectable()
-        ? selected()
-          ? 'true'
-          : 'false'
-        : null
+    role() === 'radio' || role() === 'menuitem' ? null : selectable() ? (selected() ? 'true' : 'false') : null
   "
   [attr.aria-checked]="role() === 'radio' ? (ariaChecked() ?? selected()) : null"
   (click)="onClick($event)"

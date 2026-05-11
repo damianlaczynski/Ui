@@ -36,21 +36,12 @@ const channelItems: DropdownItem[] = [
           >
             Selected
           </span>
-          <strong
-            style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)"
-          >
+          <strong style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)">
             {{ selectedChannelLabels }}
           </strong>
         </div>
 
-        <ui-button
-          type="button"
-          variant="secondary"
-          appearance="outline"
-          (click)="resetSelection()"
-        >
-          Reset
-        </ui-button>
+        <ui-button type="button" variant="secondary" appearance="outline" (click)="resetSelection()"> Reset </ui-button>
       </div>
     </div>
   `,

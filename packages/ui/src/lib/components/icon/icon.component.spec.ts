@@ -46,9 +46,7 @@ describe('IconComponent', () => {
     const use = fixture.debugElement.query(By.css('use'));
     expect(svg).toBeTruthy();
     expect(use).toBeTruthy();
-    expect(use.nativeElement.getAttribute('href')).toContain(
-      'assets/icons/sprite.svg#book_20_regular',
-    );
+    expect(use.nativeElement.getAttribute('href')).toContain('assets/icons/sprite.svg#book_20_regular');
   });
 
   it('should fallback to available sprite size without rendering img requests', () => {

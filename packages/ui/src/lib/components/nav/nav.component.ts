@@ -1,13 +1,4 @@
-import {
-  Component,
-  input,
-  output,
-  TemplateRef,
-  ElementRef,
-  inject,
-  effect,
-  OnDestroy,
-} from '@angular/core';
+import { Component, input, output, TemplateRef, ElementRef, inject, effect, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TreeNode, TreeNodeComponent } from '../tree-node/tree-node.component';
 import { NavSectionHeaderComponent } from './nav-section-header.component';

@@ -21,11 +21,7 @@ import { Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
 import { FieldComponent } from '../field/field.component';
 import { ActionButtonComponent } from '../action-button.component';
-import {
-  TimePickerComponent,
-  formatHhmmForDisplay,
-  parseFlexibleTimeToHhmm,
-} from '../../time-picker';
+import { TimePickerComponent, formatHhmmForDisplay, parseFlexibleTimeToHhmm } from '../../time-picker';
 import {
   DEFAULT_CONNECTED_POSITIONS,
   DEFAULT_VIEWPORT_MARGIN,
@@ -39,14 +35,7 @@ const MOBILE_BREAKPOINT = '(max-width: 768px)';
 @Component({
   selector: 'ui-time',
   standalone: true,
-  imports: [
-    CommonModule,
-    A11yModule,
-    OverlayModule,
-    FieldComponent,
-    ActionButtonComponent,
-    TimePickerComponent,
-  ],
+  imports: [CommonModule, A11yModule, OverlayModule, FieldComponent, ActionButtonComponent, TimePickerComponent],
   templateUrl: './time.component.html',
   host: {
     '[style.display]': '"block"',

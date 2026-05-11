@@ -11,9 +11,7 @@ import { EmailComponent } from 'ui';
       style="display:grid;gap:1rem;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
     >
       <div style="display:grid;gap:0.25rem">
-        <strong style="font-size:0.9375rem;color:var(--color-neutral-foreground-rest)"
-          >Notification settings</strong
-        >
+        <strong style="font-size:0.9375rem;color:var(--color-neutral-foreground-rest)">Notification settings</strong>
         <span style="font-size:0.875rem;color:var(--color-neutral-foreground3-rest)">
           Separate addresses for primary contact, invoices, and incident routing.
         </span>

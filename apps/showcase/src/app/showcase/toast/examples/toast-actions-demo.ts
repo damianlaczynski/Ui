@@ -12,14 +12,10 @@ import { ButtonComponent, ToastService } from 'ui';
           style="margin-top:0.35rem;display:flex;flex-direction:column;gap:0.35rem;font-size:0.8125rem;line-height:1.45;color:inherit"
         >
           <span style="font-weight:600;opacity:0.95">Conference room B · Building 2</span>
-          <span style="opacity:0.85"
-            >Teams link was copied—paste into chat if guests join late.</span
-          >
+          <span style="opacity:0.85">Teams link was copied—paste into chat if guests join late.</span>
         </div>
         <div style="display:flex;gap:0.5rem">
-          <ui-button slot="actions" type="button" variant="primary" appearance="outline">
-            Accept
-          </ui-button>
+          <ui-button slot="actions" type="button" variant="primary" appearance="outline"> Accept </ui-button>
           <ui-button slot="actions" type="button" variant="secondary" appearance="outline">
             Propose new time
           </ui-button>
@@ -37,39 +33,28 @@ import { ButtonComponent, ToastService } from 'ui';
           <div
             style="height:6px;border-radius:999px;background:color-mix(in srgb, currentColor 18%, transparent);overflow:hidden"
           >
-            <div
-              style="height:100%;width:92%;border-radius:inherit;background:currentColor;opacity:0.65"
-            ></div>
+            <div style="height:100%;width:92%;border-radius:inherit;background:currentColor;opacity:0.65"></div>
           </div>
         </div>
         <div style="display:flex;gap:0.5rem">
-          <ui-button slot="actions" type="button" variant="warning" appearance="tint">
-            Manage storage
-          </ui-button>
+          <ui-button slot="actions" type="button" variant="warning" appearance="tint"> Manage storage </ui-button>
         </div>
       </ng-template>
 
       <ng-template #payment>
         <div style="margin-top:0.35rem;font-size:0.8125rem;line-height:1.45;opacity:0.9">
-          <span
-            style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:0.75rem;opacity:0.85"
+          <span style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:0.75rem;opacity:0.85"
             >card_···4196 · declined (insufficient funds)</span
           >
         </div>
         <div style="display:flex;gap:0.5rem">
-          <ui-button slot="actions" type="button" variant="danger" appearance="outline">
-            Retry payment
-          </ui-button>
-          <ui-button slot="actions" type="button" variant="secondary" appearance="outline">
-            Update card
-          </ui-button>
+          <ui-button slot="actions" type="button" variant="danger" appearance="outline"> Retry payment </ui-button>
+          <ui-button slot="actions" type="button" variant="secondary" appearance="outline"> Update card </ui-button>
         </div>
       </ng-template>
 
       <ng-template #backup>
-        <div
-          style="display:flex;flex-direction:column;gap:0.35rem;font-size:0.8125rem;line-height:1.5"
-        >
+        <div style="display:flex;flex-direction:column;gap:0.35rem;font-size:0.8125rem;line-height:1.5">
           <div style="display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap">
             <span style="font-weight:600">12 files</span>
             <span style="opacity:0.9">2 duplicates skipped</span>
@@ -80,9 +65,7 @@ import { ButtonComponent, ToastService } from 'ui';
       <div
         style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
       >
-        <ui-button type="button" variant="secondary" appearance="outline" (click)="reset()"
-          >Reset</ui-button
-        >
+        <ui-button type="button" variant="secondary" appearance="outline" (click)="reset()">Reset</ui-button>
         <ui-button type="button" variant="info" (click)="pushInvite()">Meeting invite</ui-button>
         <ui-button type="button" variant="warning" (click)="pushQuota()">Storage warning</ui-button>
         <ui-button type="button" variant="danger" (click)="pushPayment()">Payment failed</ui-button>

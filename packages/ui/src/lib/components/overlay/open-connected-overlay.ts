@@ -43,17 +43,7 @@ export function openConnectedOverlay(params: {
   onClose: (focusTrigger: boolean) => void;
   onDetach?: () => void;
 }): OverlayHandle {
-  const {
-    overlay,
-    scrollDispatcher,
-    ngZone,
-    trigger,
-    template,
-    viewContainerRef,
-    config,
-    onClose,
-    onDetach,
-  } = params;
+  const { overlay, scrollDispatcher, ngZone, trigger, template, viewContainerRef, config, onClose, onDetach } = params;
   const sub = new Subscription();
   let scrollCleanup: (() => void) | null = null;
 

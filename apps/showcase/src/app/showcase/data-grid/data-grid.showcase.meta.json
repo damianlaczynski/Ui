@@ -120,27 +120,15 @@
           "columns": ["Area", "Purpose", "Typical fields"],
           "columnKinds": ["code", "text", "text"],
           "rows": [
-            [
-              "columns",
-              "Defines visible columns and field behavior.",
-              "text, number, date, select, multiSelect"
-            ],
-            [
-              "dataSource",
-              "Loads rows from static or server-driven query state.",
-              "QueryParams -> QueryResult"
-            ],
+            ["columns", "Defines visible columns and field behavior.", "text, number, date, select, multiSelect"],
+            ["dataSource", "Loads rows from static or server-driven query state.", "QueryParams -> QueryResult"],
             ["selection", "Controls row selection mode.", "none, single, multi"],
             [
               "sorting / filtering / pagination",
               "Enables query refinement and page navigation.",
               "enabled, pageSize, debounceMs"
             ],
-            [
-              "styling",
-              "Controls visual density and chrome.",
-              "size, striped, bordered, hoverable, stickyHeaders"
-            ],
+            ["styling", "Controls visual density and chrome.", "size, striped, bordered, hoverable, stickyHeaders"],
             [
               "expandable / virtualization",
               "Adds master-detail rows or large-list rendering optimization.",
@@ -171,22 +159,10 @@
           "rows": [
             ["onRowClick", "DataGridRow<T>", "Open details or route to a record page."],
             ["onSelectionChange", "DataGridRow<T>[]", "Enable bulk actions and summary UI."],
-            [
-              "onSortChange",
-              "{ field: string; direction: 'asc' | 'desc' }",
-              "Update local or server-side sorting."
-            ],
-            [
-              "onFilterChange",
-              "DataGridActiveFilter[]",
-              "Persist filters and show active filter summaries."
-            ],
+            ["onSortChange", "{ field: string; direction: 'asc' | 'desc' }", "Update local or server-side sorting."],
+            ["onFilterChange", "DataGridActiveFilter[]", "Persist filters and show active filter summaries."],
             ["onPageChange", "number", "Move the result set to another page."],
-            [
-              "onRowExpand / onRowCollapse",
-              "DataGridRow<T>",
-              "Track detail usage or lazy-load secondary metadata."
-            ]
+            ["onRowExpand / onRowCollapse", "DataGridRow<T>", "Track detail usage or lazy-load secondary metadata."]
           ]
         },
         {

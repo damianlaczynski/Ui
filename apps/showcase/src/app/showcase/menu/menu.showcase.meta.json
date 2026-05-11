@@ -96,45 +96,15 @@
               "'button'",
               "Trigger style and behavior model."
             ],
-            [
-              "buttonType",
-              "ButtonType",
-              "'button'",
-              "Native button type used for trigger buttons."
-            ],
-            [
-              "variant",
-              "InputSignal<Variant>",
-              "'secondary'",
-              "Semantic styling variant for the trigger."
-            ],
+            ["buttonType", "ButtonType", "'button'", "Native button type used for trigger buttons."],
+            ["variant", "InputSignal<Variant>", "'secondary'", "Semantic styling variant for the trigger."],
             ["appearance", "InputSignal<Appearance>", "'filled'", "Trigger appearance token."],
-            [
-              "menuItemVariant",
-              "InputSignal<Variant>",
-              "'secondary'",
-              "Variant passed to nested menu rows."
-            ],
-            [
-              "menuItemAppearance",
-              "InputSignal<Appearance>",
-              "'subtle'",
-              "Appearance passed to nested menu rows."
-            ],
+            ["menuItemVariant", "InputSignal<Variant>", "'secondary'", "Variant passed to nested menu rows."],
+            ["menuItemAppearance", "InputSignal<Appearance>", "'subtle'", "Appearance passed to nested menu rows."],
             ["size", "InputSignal<Size>", "'medium'", "Trigger and list density."],
             ["shape", "InputSignal<Shape>", "'rounded'", "Trigger corner treatment."],
-            [
-              "icon",
-              "InputSignal<IconName | undefined>",
-              "undefined",
-              "Optional leading trigger icon."
-            ],
-            [
-              "triggerIcon",
-              "InputSignal<IconName>",
-              "'chevron_down'",
-              "Icon used for dropdown affordance."
-            ],
+            ["icon", "InputSignal<IconName | undefined>", "undefined", "Optional leading trigger icon."],
+            ["triggerIcon", "InputSignal<IconName>", "'chevron_down'", "Icon used for dropdown affordance."],
             ["text", "InputSignal<string | undefined>", "undefined", "Visible trigger label."],
             [
               "shortcut",
@@ -142,21 +112,11 @@
               "undefined",
               "Optional shortcut hint shown in the trigger."
             ],
-            [
-              "ariaLabel",
-              "InputSignal<string | undefined>",
-              "-",
-              "Accessible name for icon-only triggers."
-            ],
+            ["ariaLabel", "InputSignal<string | undefined>", "-", "Accessible name for icon-only triggers."],
             ["selected", "InputSignal<boolean>", "false", "Marks the trigger as selected."],
             ["disabled", "InputSignal<boolean>", "false", "Disables the trigger."],
             ["menuItems", "InputSignal<MenuItem[]>", "[]", "Items rendered in the overlay menu."],
-            [
-              "menuMaxHeight",
-              "InputSignal<string>",
-              "''",
-              "Optional max height for the rendered menu list."
-            ],
+            ["menuMaxHeight", "InputSignal<string>", "''", "Optional max height for the rendered menu list."],
             [
               "openAsSubmenu",
               "InputSignal<boolean>",
@@ -199,46 +159,21 @@
               "[]",
               "Grouped menu sections with optional headers and dividers."
             ],
-            [
-              "items",
-              "InputSignal<MenuItem[]>",
-              "[]",
-              "Flat menu item list used when sections are not provided."
-            ],
-            [
-              "maxHeight",
-              "InputSignal<string>",
-              "''",
-              "Optional max height for the scrollable menu surface."
-            ],
+            ["items", "InputSignal<MenuItem[]>", "[]", "Flat menu item list used when sections are not provided."],
+            ["maxHeight", "InputSignal<string>", "''", "Optional max height for the scrollable menu surface."],
             ["visible", "InputSignal<boolean>", "true", "Whether the menu surface should render."],
             ["size", "InputSignal<Size>", "'medium'", "Menu density."],
             ["variant", "InputSignal<Variant>", "'primary'", "Surface variant token."],
             ["appearance", "InputSignal<Appearance>", "'subtle'", "Surface appearance token."],
-            [
-              "menuItemVariant",
-              "InputSignal<Variant>",
-              "'secondary'",
-              "Default row variant applied to items."
-            ],
-            [
-              "menuItemAppearance",
-              "InputSignal<Appearance>",
-              "'subtle'",
-              "Default row appearance applied to items."
-            ],
+            ["menuItemVariant", "InputSignal<Variant>", "'secondary'", "Default row variant applied to items."],
+            ["menuItemAppearance", "InputSignal<Appearance>", "'subtle'", "Default row appearance applied to items."],
             [
               "MenuItem",
               "{ id, label, icon?, shortcut?, disabled?, selected?, submenuItems?, action?, submenuAction?, type? }",
               "-",
               "Menu row contract used for buttons, submenu rows, and split rows."
             ],
-            [
-              "MenuSection",
-              "{ header?, items, divider? }",
-              "-",
-              "Grouping contract for sectioned menu lists."
-            ]
+            ["MenuSection", "{ header?, items, divider? }", "-", "Grouping contract for sectioned menu lists."]
           ]
         },
         {
@@ -249,11 +184,7 @@
           "rows": [
             ["itemClick", "OutputEmitterRef<MenuItem>", "Emits when a row action is executed."],
             ["submenuClick", "OutputEmitterRef<MenuItem>", "Emits when a submenu row opens."],
-            [
-              "closed",
-              "OutputEmitterRef<void>",
-              "Emits when keyboard interaction closes the current menu surface."
-            ]
+            ["closed", "OutputEmitterRef<void>", "Emits when keyboard interaction closes the current menu surface."]
           ]
         },
         {

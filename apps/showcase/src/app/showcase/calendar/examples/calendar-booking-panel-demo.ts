@@ -1,11 +1,5 @@
 import { Component, computed, signal } from '@angular/core';
-import {
-  ButtonComponent,
-  CalendarComponent,
-  CalendarDay,
-  MessageBarComponent,
-  TagComponent,
-} from 'ui';
+import { ButtonComponent, CalendarComponent, CalendarDay, MessageBarComponent, TagComponent } from 'ui';
 
 @Component({
   selector: 'app-calendar-booking-panel-demo',
@@ -52,9 +46,7 @@ import {
         </ui-message-bar>
 
         <div style="display:flex;flex-direction:column;gap:0.375rem">
-          <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-            Selection
-          </div>
+          <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">Selection</div>
           <div style="font-size:0.9375rem;font-weight:600">{{ summary() }}</div>
         </div>
 

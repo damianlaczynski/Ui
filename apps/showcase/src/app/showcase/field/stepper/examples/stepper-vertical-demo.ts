@@ -6,9 +6,7 @@ import { BadgeComponent, Step, StepperComponent } from 'ui';
   standalone: true,
   imports: [BadgeComponent, StepperComponent],
   template: `
-    <div
-      style="display:flex;flex-wrap:wrap;gap:1.25rem;align-items:flex-start;width:100%;max-width:46rem"
-    >
+    <div style="display:flex;flex-wrap:wrap;gap:1.25rem;align-items:flex-start;width:100%;max-width:46rem">
       <ui-stepper
         style="flex:0 0 auto"
         [steps]="steps()"
@@ -18,15 +16,11 @@ import { BadgeComponent, Step, StepperComponent } from 'ui';
         [clickable]="true"
         (stepChange)="active.set($event.index)"
       />
-      <div
-        style="flex:1;min-width:14rem;display:flex;flex-direction:column;gap:0.5rem;padding:0.75rem 0"
-      >
+      <div style="flex:1;min-width:14rem;display:flex;flex-direction:column;gap:0.5rem;padding:0.75rem 0">
         <ui-badge appearance="tint" variant="secondary" text="Draft policy" />
-        <p
-          style="margin:0;font-size:0.875rem;color:var(--color-neutral-foreground2-rest);line-height:1.45"
-        >
-          Vertical steppers suit narrow rails next to a detail pane. Labels and descriptions stay
-          aligned while the main surface swaps content.
+        <p style="margin:0;font-size:0.875rem;color:var(--color-neutral-foreground2-rest);line-height:1.45">
+          Vertical steppers suit narrow rails next to a detail pane. Labels and descriptions stay aligned while the main
+          surface swaps content.
         </p>
       </div>
     </div>

@@ -10,12 +10,8 @@ const dashedCardStyle =
   standalone: true,
   imports: [FormsModule, RangeComponent],
   template: `
-    <div
-      style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:50rem;"
-    >
-      <div
-        style="flex:1 1 18rem;display:flex;min-width:16rem;max-width:32rem;flex-direction:column;gap:1rem;"
-      >
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:50rem;">
+      <div style="flex:1 1 18rem;display:flex;min-width:16rem;max-width:32rem;flex-direction:column;gap:1rem;">
         <ui-range
           label="Price filter"
           [min]="0"

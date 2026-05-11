@@ -27,10 +27,7 @@ import { ButtonComponent, CheckboxComponent } from 'ui';
         (change)="toggleManagementGroup()"
       />
 
-      <form
-        [formGroup]="permissionsForm"
-        style="display:flex;flex-direction:column;gap:0.625rem;padding-left:1.5rem"
-      >
+      <form [formGroup]="permissionsForm" style="display:flex;flex-direction:column;gap:0.625rem;padding-left:1.5rem">
         <ui-checkbox
           labelPosition="after"
           label="Create and archive projects"
@@ -66,9 +63,7 @@ import { ButtonComponent, CheckboxComponent } from 'ui';
         >
           Values
         </p>
-        <div
-          style="display:flex;flex-direction:column;gap:0.45rem;font-size:0.875rem;line-height:1.4"
-        >
+        <div style="display:flex;flex-direction:column;gap:0.45rem;font-size:0.875rem;line-height:1.4">
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Management access</span>
             <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{

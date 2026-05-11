@@ -93,19 +93,9 @@
             ["node", "InputSignal<Node>", "-", "Node data to render."],
             ["size", "InputSignal<Size>", "'medium'", "Row density token."],
             ["variant", "InputSignal<Variant>", "'primary'", "Semantic styling variant."],
-            [
-              "appearance",
-              "InputSignal<Appearance>",
-              "'transparent'",
-              "Visual emphasis of the row."
-            ],
+            ["appearance", "InputSignal<Appearance>", "'transparent'", "Visual emphasis of the row."],
             ["shape", "InputSignal<Shape>", "'rounded'", "Corner treatment of the row container."],
-            [
-              "showSelectionIndicator",
-              "InputSignal<boolean>",
-              "false",
-              "Shows a selected-row indicator."
-            ],
+            ["showSelectionIndicator", "InputSignal<boolean>", "false", "Shows a selected-row indicator."],
             [
               "indicatorPosition",
               "InputSignal<'horizontal' | 'vertical'>",
@@ -118,30 +108,10 @@
               "null",
               "Optional motion direction class for selection transitions."
             ],
-            [
-              "asButton",
-              "InputSignal<boolean>",
-              "false",
-              "Renders the row with button semantics and styling hooks."
-            ],
-            [
-              "selectOnClick",
-              "InputSignal<boolean>",
-              "true",
-              "Emits selection when the row is clicked."
-            ],
-            [
-              "ariaCurrent",
-              "InputSignal<string | null>",
-              "null",
-              "Optional `aria-current` value for the row."
-            ],
-            [
-              "showQuickActions",
-              "InputSignal<boolean>",
-              "false",
-              "Enables a quick-actions region in the row."
-            ],
+            ["asButton", "InputSignal<boolean>", "false", "Renders the row with button semantics and styling hooks."],
+            ["selectOnClick", "InputSignal<boolean>", "true", "Emits selection when the row is clicked."],
+            ["ariaCurrent", "InputSignal<string | null>", "null", "Optional `aria-current` value for the row."],
+            ["showQuickActions", "InputSignal<boolean>", "false", "Enables a quick-actions region in the row."],
             [
               "quickActionsTemplate",
               "InputSignal<TemplateRef<any> | null>",
@@ -162,11 +132,7 @@
             ["nodeClick", "OutputEmitterRef<Node>", "Emits when the main row is activated."],
             ["nodeSelect", "OutputEmitterRef<Node>", "Emits when selection is triggered by click."],
             ["nodeClose", "OutputEmitterRef<Node>", "Emits when the close affordance is used."],
-            [
-              "dragStart / dragEnd / drag",
-              "OutputEmitterRef<{ node, event, data? }>",
-              "Emit during drag lifecycle."
-            ],
+            ["dragStart / dragEnd / drag", "OutputEmitterRef<{ node, event, data? }>", "Emit during drag lifecycle."],
             [
               "drop / dragOver / dragLeave",
               "OutputEmitterRef<{ node, event, position? }>",

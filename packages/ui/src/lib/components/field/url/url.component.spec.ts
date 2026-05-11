@@ -58,8 +58,6 @@ describe('UrlComponent', () => {
     const actionButtons: HTMLButtonElement[] = Array.from(
       fixture.nativeElement.querySelectorAll('.field__actions .field__action'),
     );
-    expect(actionButtons.some(btn => btn.getAttribute('aria-label') === 'Open link actions')).toBe(
-      true,
-    );
+    expect(actionButtons.some(btn => btn.getAttribute('aria-label') === 'Open link actions')).toBe(true);
   });
 });

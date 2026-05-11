@@ -28,10 +28,7 @@ import { LoadingStateComponent } from '../loading-state/loading-state.component'
 import { Size, Shape, Appearance } from '../utils';
 import { UiI18nService } from '../../i18n';
 
-export type ScrollContainerDataSource<T = any> = (
-  page: number,
-  pageSize: number,
-) => Observable<QueryResult<T>>;
+export type ScrollContainerDataSource<T = any> = (page: number, pageSize: number) => Observable<QueryResult<T>>;
 
 @Component({
   selector: 'ui-scroll-container',
@@ -45,22 +42,10 @@ export class ScrollContainerComponent<T = any> {
   private readonly destroyRef = inject(DestroyRef);
 
   //Translations
-  private readonly scrollAriaLabel = this.i18n.tSignal(
-    'scrollContainer.ariaLabel',
-    'Scrollable container with items',
-  );
-  private readonly emptyText = this.i18n.tSignal(
-    'scrollContainer.emptyText',
-    'No items to display',
-  );
-  private readonly loadDataErrorText = this.i18n.tSignal(
-    'scrollContainer.loadDataError',
-    'Failed to load data',
-  );
-  private readonly loadMoreErrorText = this.i18n.tSignal(
-    'scrollContainer.loadMoreError',
-    'Failed to load more data',
-  );
+  private readonly scrollAriaLabel = this.i18n.tSignal('scrollContainer.ariaLabel', 'Scrollable container with items');
+  private readonly emptyText = this.i18n.tSignal('scrollContainer.emptyText', 'No items to display');
+  private readonly loadDataErrorText = this.i18n.tSignal('scrollContainer.loadDataError', 'Failed to load data');
+  private readonly loadMoreErrorText = this.i18n.tSignal('scrollContainer.loadMoreError', 'Failed to load more data');
 
   //Inputs
   // Data source configuration

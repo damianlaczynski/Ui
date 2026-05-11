@@ -15,8 +15,8 @@ import { KbdComponent, MessageBarComponent, TagComponent } from 'ui';
         <div style="display:flex;flex-direction:column;gap:0.25rem">
           <div style="font-size:0.9375rem;font-weight:600">Editor shortcuts</div>
           <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-            The kbd component is most useful when it appears inside real shortcut help, command
-            hints, or training surfaces.
+            The kbd component is most useful when it appears inside real shortcut help, command hints, or training
+            surfaces.
           </div>
         </div>
 

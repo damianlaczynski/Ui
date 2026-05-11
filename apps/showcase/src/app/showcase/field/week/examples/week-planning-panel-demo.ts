@@ -16,8 +16,7 @@ import { ButtonComponent, MessageBarComponent, TagComponent, WeekComponent } fro
         <div style="display:flex;flex-direction:column;gap:0.25rem">
           <div style="font-size:0.9375rem;font-weight:600">Launch preparation</div>
           <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-            Weeks are useful when planning releases, reporting cycles, and recurring operational
-            work.
+            Weeks are useful when planning releases, reporting cycles, and recurring operational work.
           </div>
         </div>
 
@@ -48,9 +47,7 @@ import { ButtonComponent, MessageBarComponent, TagComponent, WeekComponent } fro
         </div>
 
         <div style="display:flex;flex-direction:column;gap:0.375rem">
-          <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-            Selected week
-          </div>
+          <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">Selected week</div>
           <div style="font-size:0.9375rem;font-weight:600">{{ week || 'Not selected' }}</div>
         </div>
 

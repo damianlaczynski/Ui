@@ -13,18 +13,14 @@ import { StateContainerComponent, type State, initialState, loadedState, loading
         <ng-template #loadingContent>
           <div style="padding:2rem;text-align:center">
             <div style="margin-bottom:0.75rem;font-weight:600">Syncing records...</div>
-            <div style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest)">
-              Step 2 of 3
-            </div>
+            <div style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest)">Step 2 of 3</div>
           </div>
         </ng-template>
 
         <ng-template #emptyContent>
           <div style="padding:2rem;text-align:center">
             <div style="margin-bottom:0.5rem;font-weight:600">All caught up</div>
-            <div style="color:var(--color-neutral-foreground2-rest)">
-              There are no new records to review.
-            </div>
+            <div style="color:var(--color-neutral-foreground2-rest)">There are no new records to review.</div>
           </div>
         </ng-template>
 

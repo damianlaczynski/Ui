@@ -17,26 +17,14 @@ import { CheckboxComponent } from 'ui';
         </div>
       </div>
 
-      <ui-checkbox
-        label="Assigned to me"
-        [(ngModel)]="assignedToMe"
-        [ngModelOptions]="{ standalone: true }"
-      />
-      <ui-checkbox
-        label="Created this week"
-        [(ngModel)]="createdThisWeek"
-        [ngModelOptions]="{ standalone: true }"
-      />
+      <ui-checkbox label="Assigned to me" [(ngModel)]="assignedToMe" [ngModelOptions]="{ standalone: true }" />
+      <ui-checkbox label="Created this week" [(ngModel)]="createdThisWeek" [ngModelOptions]="{ standalone: true }" />
       <ui-checkbox
         label="Includes blocked tasks"
         [(ngModel)]="includesBlocked"
         [ngModelOptions]="{ standalone: true }"
       />
-      <ui-checkbox
-        label="Has customer impact"
-        [(ngModel)]="customerImpact"
-        [ngModelOptions]="{ standalone: true }"
-      />
+      <ui-checkbox label="Has customer impact" [(ngModel)]="customerImpact" [ngModelOptions]="{ standalone: true }" />
     </div>
   `,
 })

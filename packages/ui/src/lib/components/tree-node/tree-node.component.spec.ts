@@ -299,10 +299,7 @@ describe('TreeNodeComponent', () => {
     });
 
     it('should return true for node with hasChildren but no children array', () => {
-      fixture.componentRef.setInput(
-        'node',
-        createMockNode({ hasChildren: true, children: undefined }),
-      );
+      fixture.componentRef.setInput('node', createMockNode({ hasChildren: true, children: undefined }));
       fixture.detectChanges();
 
       expect(component.isLeaf()).toBe(true);
@@ -317,10 +314,7 @@ describe('TreeNodeComponent', () => {
 
     it('should return false for node with children', () => {
       const child = createMockNode({ id: 'child-1' });
-      fixture.componentRef.setInput(
-        'node',
-        createMockNode({ hasChildren: true, children: [child] }),
-      );
+      fixture.componentRef.setInput('node', createMockNode({ hasChildren: true, children: [child] }));
       fixture.detectChanges();
 
       expect(component.isLeaf()).toBe(false);
@@ -579,9 +573,7 @@ describe('TreeNodeComponent', () => {
       fixture.componentRef.setInput('node', mockNode);
       fixture.detectChanges();
 
-      const childNodes = fixture.debugElement.queryAll(
-        By.css('.tree-node__children-inner > ui-tree-node'),
-      );
+      const childNodes = fixture.debugElement.queryAll(By.css('.tree-node__children-inner > ui-tree-node'));
       expect(childNodes.length).toBe(3);
     });
 
@@ -593,9 +585,7 @@ describe('TreeNodeComponent', () => {
       fixture.componentRef.setInput('variant', 'secondary');
       fixture.detectChanges();
 
-      const childNode = fixture.debugElement.query(
-        By.css('.tree-node__children-inner > ui-tree-node'),
-      );
+      const childNode = fixture.debugElement.query(By.css('.tree-node__children-inner > ui-tree-node'));
       expect(childNode.componentInstance.size()).toBe('large');
       expect(childNode.componentInstance.variant()).toBe('secondary');
     });
@@ -611,9 +601,7 @@ describe('TreeNodeComponent', () => {
       fixture.componentRef.setInput('node', mockNode);
       fixture.detectChanges();
 
-      const childNode = fixture.debugElement.query(
-        By.css('.tree-node__children-inner > ui-tree-node'),
-      );
+      const childNode = fixture.debugElement.query(By.css('.tree-node__children-inner > ui-tree-node'));
       childNode.componentInstance.nodeClick.emit(child);
 
       expect(clickedNode).toBe(child);
@@ -1335,9 +1323,7 @@ describe('TreeNodeComponent', () => {
       fixture.componentRef.setInput('node', mockNode);
       fixture.detectChanges();
 
-      let childNodes = fixture.debugElement.queryAll(
-        By.css('.tree-node__children-inner > ui-tree-node'),
-      );
+      let childNodes = fixture.debugElement.queryAll(By.css('.tree-node__children-inner > ui-tree-node'));
       expect(childNodes.length).toBe(1);
 
       const child2 = createMockNode({ id: 'child-2' });
@@ -1345,9 +1331,7 @@ describe('TreeNodeComponent', () => {
       fixture.componentRef.setInput('node', { ...mockNode });
       fixture.detectChanges();
 
-      childNodes = fixture.debugElement.queryAll(
-        By.css('.tree-node__children-inner > ui-tree-node'),
-      );
+      childNodes = fixture.debugElement.queryAll(By.css('.tree-node__children-inner > ui-tree-node'));
       expect(childNodes.length).toBe(2);
     });
   });

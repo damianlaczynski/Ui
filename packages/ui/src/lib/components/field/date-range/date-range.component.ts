@@ -132,9 +132,7 @@ export class DateRangeComponent extends FieldComponent implements OnDestroy {
 
       const currentValue = this.value as DateRange;
       const hasChanged =
-        !currentValue ||
-        currentValue.startDate !== rangeValue.startDate ||
-        currentValue.endDate !== rangeValue.endDate;
+        !currentValue || currentValue.startDate !== rangeValue.startDate || currentValue.endDate !== rangeValue.endDate;
 
       if (hasChanged) {
         this.value = rangeValue;

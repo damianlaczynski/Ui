@@ -7,10 +7,7 @@ import { ButtonComponent, CardComponent, MessageBarComponent, TimePickerComponen
   imports: [ButtonComponent, CardComponent, MessageBarComponent, TimePickerComponent],
   template: `
     <ui-card appearance="filled-alternative" ariaLabel="Interview scheduling panel">
-      <div
-        uiCardPreview
-        style="min-height:7rem;background:linear-gradient(135deg,#dfe9fb 0%,#c8d9f4 100%)"
-      ></div>
+      <div uiCardPreview style="min-height:7rem;background:linear-gradient(135deg,#dfe9fb 0%,#c8d9f4 100%)"></div>
 
       <div uiCardHeader style="display:grid;gap:0.25rem;">
         <strong style="font-size:1rem;line-height:1.35;">Candidate review session</strong>
@@ -28,9 +25,7 @@ import { ButtonComponent, CardComponent, MessageBarComponent, TimePickerComponen
           size="small"
         />
 
-        <div
-          style="display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem;align-items:start"
-        >
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem;align-items:start">
           <ui-time-picker
             [value]="reviewTime"
             [showLabel]="true"

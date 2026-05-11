@@ -6,9 +6,7 @@ import { AvatarComponent, ButtonComponent, CardComponent } from 'ui';
   standalone: true,
   imports: [AvatarComponent, ButtonComponent, CardComponent],
   template: `
-    <div
-      style="display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:1rem;width:100%;"
-    >
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:1rem;width:100%;">
       <ui-card appearance="filled" [interactive]="true" ariaLabel="Product card">
         <div
           uiCardPreview
@@ -17,17 +15,12 @@ import { AvatarComponent, ButtonComponent, CardComponent } from 'ui';
 
         <div uiCardHeader style="display:grid;gap:0.25rem;">
           <strong style="font-size:1rem;line-height:1.35;">Noise-canceling headphones</strong>
-          <span style="font-size:0.8125rem;color:var(--color-neutral-foreground3-rest);"
-            >$249 · In stock</span
-          >
+          <span style="font-size:0.8125rem;color:var(--color-neutral-foreground3-rest);">$249 · In stock</span>
         </div>
 
         <div uiCardBody style="display:grid;gap:0.75rem;">
-          <p
-            style="margin:0;font-size:0.875rem;line-height:1.5;color:var(--color-neutral-foreground2-rest);"
-          >
-            Keep commerce cards focused on product value, stock state, and one primary purchase
-            action.
+          <p style="margin:0;font-size:0.875rem;line-height:1.5;color:var(--color-neutral-foreground2-rest);">
+            Keep commerce cards focused on product value, stock state, and one primary purchase action.
           </p>
         </div>
 
@@ -49,11 +42,8 @@ import { AvatarComponent, ButtonComponent, CardComponent } from 'ui';
         </div>
 
         <div uiCardBody style="display:grid;gap:0.75rem;">
-          <p
-            style="margin:0;font-size:0.875rem;line-height:1.5;color:var(--color-neutral-foreground2-rest);"
-          >
-            Profile cards work best when they answer who this person is, what they own, and the next
-            likely action.
+          <p style="margin:0;font-size:0.875rem;line-height:1.5;color:var(--color-neutral-foreground2-rest);">
+            Profile cards work best when they answer who this person is, what they own, and the next likely action.
           </p>
           <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
             <span

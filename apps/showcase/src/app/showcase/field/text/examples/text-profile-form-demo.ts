@@ -7,10 +7,7 @@ import { ButtonComponent, TextComponent } from 'ui';
   standalone: true,
   imports: [ReactiveFormsModule, ButtonComponent, TextComponent],
   template: `
-    <form
-      [formGroup]="form"
-      style="display:flex;flex-direction:column;gap:1rem;width:100%;max-width:34rem"
-    >
+    <form [formGroup]="form" style="display:flex;flex-direction:column;gap:1rem;width:100%;max-width:34rem">
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:1rem">
         <ui-text
           label="First name"
@@ -45,15 +42,8 @@ import { ButtonComponent, TextComponent } from 'ui';
       <div
         style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
       >
-        <ui-button type="button" variant="primary" [disabled]="form.invalid"
-          >Save profile</ui-button
-        >
-        <ui-button
-          type="button"
-          variant="secondary"
-          appearance="outline"
-          (click)="form.reset(defaults)"
-        >
+        <ui-button type="button" variant="primary" [disabled]="form.invalid">Save profile</ui-button>
+        <ui-button type="button" variant="secondary" appearance="outline" (click)="form.reset(defaults)">
           Reset
         </ui-button>
       </div>

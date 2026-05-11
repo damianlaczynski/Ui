@@ -8,9 +8,7 @@ import { TimeComponent } from 'ui';
   imports: [FormsModule, TimeComponent],
   template: `
     <div style="display:flex;flex-direction:column;gap:1rem">
-      <div
-        style="display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:1rem;align-items:start"
-      >
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:1rem;align-items:start">
         <ui-time
           label="30 minute steps"
           placeholder="HH:mm"

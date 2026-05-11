@@ -7,11 +7,7 @@ import { ButtonComponent, EmailComponent } from 'ui';
   standalone: true,
   imports: [EmailComponent, ButtonComponent, ReactiveFormsModule],
   template: `
-    <form
-      [formGroup]="inviteForm"
-      style="display:grid;gap:1rem;max-width:34rem"
-      (ngSubmit)="markTouched()"
-    >
+    <form [formGroup]="inviteForm" style="display:grid;gap:1rem;max-width:34rem" (ngSubmit)="markTouched()">
       <ui-email
         label="Invite email"
         placeholder="person@company.com"
@@ -22,9 +18,7 @@ import { ButtonComponent, EmailComponent } from 'ui';
 
       <div style="display:flex;flex-wrap:wrap;gap:0.75rem">
         <ui-button type="submit">Validate</ui-button>
-        <ui-button type="button" appearance="outline" (click)="fillExample()"
-          >Use example</ui-button
-        >
+        <ui-button type="button" appearance="outline" (click)="fillExample()">Use example</ui-button>
       </div>
     </form>
   `,

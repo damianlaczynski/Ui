@@ -1,14 +1,4 @@
-import {
-  Component,
-  input,
-  output,
-  model,
-  HostListener,
-  computed,
-  effect,
-  inject,
-  signal,
-} from '@angular/core';
+import { Component, input, output, model, HostListener, computed, effect, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { CdkTrapFocus } from '@angular/cdk/a11y';
 import { Directionality, Direction } from '@angular/cdk/bidi';
@@ -47,10 +37,9 @@ export class DrawerComponent {
   //Service
   private readonly i18n = inject(UiI18nService);
   private readonly directionality = inject(Directionality);
-  private readonly direction = toSignal(
-    this.directionality.change.pipe(startWith(this.directionality.value)),
-    { initialValue: this.directionality.value },
-  );
+  private readonly direction = toSignal(this.directionality.change.pipe(startWith(this.directionality.value)), {
+    initialValue: this.directionality.value,
+  });
   private readonly rendered = signal(false);
   readonly isClosing = signal(false);
   private wasTrapFocusActive = false;
@@ -124,11 +113,9 @@ export class DrawerComponent {
   });
 
   contentClasses = computed(() => {
-    return [
-      'drawer__content',
-      `drawer__content--${this.effectivePosition()}`,
-      `drawer__content--${this.size()}`,
-    ].join(' ');
+    return ['drawer__content', `drawer__content--${this.effectivePosition()}`, `drawer__content--${this.size()}`].join(
+      ' ',
+    );
   });
 
   headerClasses = computed(() => {

@@ -12,9 +12,7 @@ import { TableOfContentComponent } from 'ui';
       <div
         style="padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >
-        <p
-          style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)"
-        >
+        <p style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)">
           Subtle
         </p>
         <ui-table-of-content containerSelector=".toc-appearance-content" appearance="subtle" />
@@ -23,9 +21,7 @@ import { TableOfContentComponent } from 'ui';
       <div
         style="padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >
-        <p
-          style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)"
-        >
+        <p style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)">
           Outline
         </p>
         <ui-table-of-content containerSelector=".toc-appearance-content" appearance="outline" />
@@ -34,9 +30,7 @@ import { TableOfContentComponent } from 'ui';
       <div
         style="padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >
-        <p
-          style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)"
-        >
+        <p style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)">
           Filled
         </p>
         <ui-table-of-content
@@ -57,9 +51,7 @@ import { TableOfContentComponent } from 'ui';
         <h3 id="toc-appearance-spacing">Spacing</h3>
         <p style="margin:0 0 1rem">Choose the calmer style for long documentation panes.</p>
         <h2 id="toc-appearance-accessibility">Accessibility</h2>
-        <p style="margin:0">
-          Indicators should remain visible without overpowering the reading surface.
-        </p>
+        <p style="margin:0">Indicators should remain visible without overpowering the reading surface.</p>
       </div>
     </div>
   `,

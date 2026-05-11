@@ -10,9 +10,7 @@ const dashedCardStyle =
   standalone: true,
   imports: [FormsModule, SliderComponent],
   template: `
-    <div
-      style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:38rem;"
-    >
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:38rem;">
       <div style="flex:1 1 17rem;min-width:14rem">
         <ui-slider
           label="Review score"
@@ -27,12 +25,8 @@ const dashedCardStyle =
         />
       </div>
       <div [attr.style]="dashedCardStyle">
-        <p style="margin:0 0 0.35rem;font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">
-          Selected score
-        </p>
-        <p
-          style="margin:0;font-size:1rem;font-weight:600;color:var(--color-neutral-foreground-rest)"
-        >
+        <p style="margin:0 0 0.35rem;font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">Selected score</p>
+        <p style="margin:0;font-size:1rem;font-weight:600;color:var(--color-neutral-foreground-rest)">
           {{ score }}
         </p>
       </div>

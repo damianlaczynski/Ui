@@ -38,9 +38,7 @@ import { ButtonComponent, DatetimeComponent, MessageBarComponent } from 'ui';
       <div
         style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
       >
-        <ui-button type="button" variant="primary" [disabled]="datetimeControl.invalid">
-          Save schedule
-        </ui-button>
+        <ui-button type="button" variant="primary" [disabled]="datetimeControl.invalid"> Save schedule </ui-button>
         <ui-button type="button" appearance="subtle" (click)="reset()">Reset</ui-button>
         <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">
           {{ summary() }}
@@ -55,9 +53,7 @@ export class DatetimeReactiveFormDemoComponent {
     validators: [Validators.required],
   });
 
-  protected readonly summary = computed(
-    () => this.datetimeControl.value || 'No date and time selected.',
-  );
+  protected readonly summary = computed(() => this.datetimeControl.value || 'No date and time selected.');
 
   protected reset(): void {
     this.datetimeControl.reset('2026-05-14T11:00');

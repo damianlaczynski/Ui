@@ -17,9 +17,7 @@ import { BreadcrumbComponent, ButtonComponent, type Breadcrumb } from 'ui';
         [responsiveOverflow]="false"
       />
 
-      <div
-        style="display:flex;justify-content:space-between;gap:1rem;align-items:flex-start;flex-wrap:wrap"
-      >
+      <div style="display:flex;justify-content:space-between;gap:1rem;align-items:flex-start;flex-wrap:wrap">
         <div style="display:flex;flex-direction:column;gap:0.35rem;min-width:16rem">
           <div style="font-size:1rem;font-weight:600">Migration plan review</div>
           <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">

@@ -7,11 +7,7 @@ import { PaginationComponent, PaginationConfig } from 'ui';
   imports: [PaginationComponent],
   template: `
     <div style="display:flex;flex-direction:column;gap:1rem;width:100%;max-width:42rem">
-      <ui-pagination
-        [config]="withJumpConfig()"
-        size="medium"
-        (pageChange)="currentPage.set($event)"
-      />
+      <ui-pagination [config]="withJumpConfig()" size="medium" (pageChange)="currentPage.set($event)" />
 
       <div
         style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;padding:0.875rem 1rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background2-rest)"
@@ -23,8 +19,8 @@ import { PaginationComponent, PaginationConfig } from 'ui';
             Why use this
           </span>
           <span style="font-size:0.875rem;color:var(--color-neutral-foreground-rest)">
-            Faster jumps make sense when users routinely move across distant pages, such as audit
-            logs or archived records.
+            Faster jumps make sense when users routinely move across distant pages, such as audit logs or archived
+            records.
           </span>
         </div>
         <div style="display:flex;flex-direction:column;gap:0.25rem;min-width:8rem">

@@ -38,14 +38,7 @@ interface CalendarWeek {
 @Component({
   selector: 'ui-week',
   standalone: true,
-  imports: [
-    CommonModule,
-    A11yModule,
-    OverlayModule,
-    FieldComponent,
-    ActionButtonComponent,
-    ButtonComponent,
-  ],
+  imports: [CommonModule, A11yModule, OverlayModule, FieldComponent, ActionButtonComponent, ButtonComponent],
   templateUrl: './week.component.html',
   providers: [
     {
@@ -218,9 +211,7 @@ export class WeekComponent extends FieldComponent implements OnDestroy {
   }
 
   private scrollSelectedWeekIntoView(overlayRef: OverlayRef): void {
-    const selected = overlayRef.overlayElement.querySelector<HTMLElement>(
-      '[data-ui-week-picker-selected]',
-    );
+    const selected = overlayRef.overlayElement.querySelector<HTMLElement>('[data-ui-week-picker-selected]');
     if (selected && typeof selected.scrollIntoView === 'function') {
       selected.scrollIntoView({ block: 'nearest', inline: 'nearest' });
     }
@@ -254,9 +245,7 @@ export class WeekComponent extends FieldComponent implements OnDestroy {
     }
   }
 
-  private parseISOWeekValue(
-    value: string,
-  ): { date: Date; weekNumber: number; weekYear: number } | null {
+  private parseISOWeekValue(value: string): { date: Date; weekNumber: number; weekYear: number } | null {
     const match = value.match(/^(\d{4})-W(\d{2})$/);
     if (!match) {
       return null;

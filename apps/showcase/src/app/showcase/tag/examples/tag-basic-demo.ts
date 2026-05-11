@@ -19,20 +19,8 @@ import { TagComponent } from 'ui';
       <div
         style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:flex-start;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >
-        <ui-tag
-          text="Campaign launch"
-          secondaryText="Q3"
-          icon="rocket"
-          appearance="filled"
-          variant="primary"
-        />
-        <ui-tag
-          text="Owner"
-          secondaryText="Ava Lopez"
-          icon="person"
-          appearance="tint"
-          variant="secondary"
-        />
+        <ui-tag text="Campaign launch" secondaryText="Q3" icon="rocket" appearance="filled" variant="primary" />
+        <ui-tag text="Owner" secondaryText="Ava Lopez" icon="person" appearance="tint" variant="secondary" />
       </div>
     </div>
   `,

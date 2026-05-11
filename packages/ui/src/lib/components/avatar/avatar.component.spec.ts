@@ -66,9 +66,7 @@ describe('AvatarComponent', () => {
     fixture.detectChanges();
 
     const host: HTMLElement = fixture.nativeElement;
-    const overlay: HTMLElement | null = fixture.nativeElement.querySelector(
-      '.avatar__loading-overlay',
-    );
+    const overlay: HTMLElement | null = fixture.nativeElement.querySelector('.avatar__loading-overlay');
 
     expect(host.getAttribute('aria-busy')).toBe('true');
     expect(overlay).toBeTruthy();

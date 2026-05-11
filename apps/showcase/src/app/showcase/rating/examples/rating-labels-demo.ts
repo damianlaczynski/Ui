@@ -25,8 +25,7 @@ import { RatingComponent } from 'ui';
 export class RatingLabelsExampleComponent {
   protected readonly value = signal(0);
 
-  protected readonly starLabel = (star: number, max: number) =>
-    `Set satisfaction to ${star} out of ${max}`;
+  protected readonly starLabel = (star: number, max: number) => `Set satisfaction to ${star} out of ${max}`;
 
   protected readonly summaryLabel = (v: number, max: number) =>
     v === 0 ? `Satisfaction not chosen, scale is ${max} stars` : `Satisfaction ${v} out of ${max}`;
