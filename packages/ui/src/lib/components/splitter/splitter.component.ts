@@ -48,7 +48,7 @@ export interface SplitterResizeEvent {
 export class SplitterComponent {
   orientation = input<Orientation>('horizontal');
   panels = input.required<SplitterPanel[]>();
-  gutterSize = input<number>(6);
+  gutterSize = input<number>(8);
   ariaLabel = input<string>('Resizable splitter');
 
   panelResize = output<SplitterResizeEvent>();
