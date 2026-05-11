@@ -1,8 +1,10 @@
 <div
   [class]="toastClasses()"
+  [class.toast--exiting]="isExiting()"
   role="alert"
   [attr.aria-live]="variant() === 'danger' ? 'assertive' : 'polite'"
   [style.--toast-progress-duration]="showProgress() && duration() > 0 ? duration() + 'ms' : 'none'"
+  (animationend)="onHostAnimationEnd($event)"
 >
   <div class="toast__main">
     <div [class]="toastCopyClasses()">

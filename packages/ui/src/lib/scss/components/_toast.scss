@@ -20,6 +20,32 @@
   display: flex;
   flex-direction: column;
   gap: $spacing-2;
+  width: max-content;
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
+.toast-container--stack-from-top {
+  flex-direction: column;
+}
+
+.toast-container--stack-from-bottom {
+  flex-direction: column-reverse;
+}
+
+.toast-container--top-right,
+.toast-container--bottom-right {
+  align-items: flex-end;
+}
+
+.toast-container--top-left,
+.toast-container--bottom-left {
+  align-items: flex-start;
+}
+
+.toast-container--top-center,
+.toast-container--bottom-center {
+  align-items: center;
 }
 
 // Container Positions
@@ -68,7 +94,6 @@
   flex-direction: column;
   padding: $spacing-4;
   padding-inline-end: calc(#{$spacing-4} + var(--toast-dismiss-size) + var(--toast-dismiss-gap));
-  margin-bottom: $spacing-2;
   border-radius: $border-radius-400;
   box-shadow: $elevation-2;
   background-color: var(--color-neutral-background-rest);
@@ -77,10 +102,36 @@
   font-family: $font-family-base;
   max-width: 400px;
   min-width: 300px;
-  z-index: $z-index-tooltip;
+  z-index: 0;
   pointer-events: auto;
   box-sizing: border-box;
+  transform: translateZ(0);
+  backface-visibility: hidden;
   @include transition((color, background-color, border-color, box-shadow), $duration-normal);
+
+  &.toast--exiting {
+    z-index: 10;
+  }
+
+  &.toast--stack-from-top:not(.toast--exiting):not(.toast--hidden) {
+    animation: toast-enter-top $duration-slower $easing-decelerate-max both;
+    @include respect-reduced-motion;
+  }
+
+  &.toast--stack-from-bottom:not(.toast--exiting):not(.toast--hidden) {
+    animation: toast-enter-bottom $duration-slower $easing-decelerate-max both;
+    @include respect-reduced-motion;
+  }
+
+  &.toast--exiting.toast--stack-from-top {
+    animation: toast-exit-top $duration-slow $easing-ease-in-out forwards;
+    @include respect-reduced-motion;
+  }
+
+  &.toast--exiting.toast--stack-from-bottom {
+    animation: toast-exit-bottom $duration-slow $easing-ease-in-out forwards;
+    @include respect-reduced-motion;
+  }
 
   @include focus-ring;
 
@@ -299,7 +350,17 @@
 .toast--hidden {
   opacity: 0;
   pointer-events: none;
-  transform: translateX(100%);
+  transition:
+    opacity $duration-gentle $easing-ease-in-out,
+    transform $duration-slower $easing-decelerate-max;
+}
+
+.toast--hidden-from-top {
+  transform: translate3d(0, -0.75rem, 0) scale(0.99);
+}
+
+.toast--hidden-from-bottom {
+  transform: translate3d(0, 0.75rem, 0) scale(0.99);
 }
 
 .toast--no-progress {
@@ -831,6 +892,54 @@
 
 // ==========================================================================
 // Animations
+// ==========================================================================
+
+@keyframes toast-enter-top {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -18px, 0) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes toast-enter-bottom {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes toast-exit-top {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, -22px, 0) scale(0.97);
+  }
+}
+
+@keyframes toast-exit-bottom {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0) scale(0.97);
+  }
+}
+
+// ==========================================================================
+// Legacy slide classes (optional hooks)
 // ==========================================================================
 
 // Animation classes

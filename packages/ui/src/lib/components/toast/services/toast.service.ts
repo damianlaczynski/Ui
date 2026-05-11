@@ -6,6 +6,8 @@ import { ToastMessage } from '../models/toast.model';
 })
 export class ToastService {
   toasts = signal<ToastMessage[]>([]);
+  /** IDs currently playing the exit animation; removed from list after animation ends. */
+  exitingToastIds = signal<ReadonlySet<string>>(new Set());
 
   /**
    * Show a success toast
@@ -72,11 +74,10 @@ export class ToastService {
       id: toast.id || this.generateId(),
     };
 
-    this.toasts.set([...this.toasts(), toastWithId]);
-    // Auto-remove toast after specified life time
+    this.toasts.update(list => [toastWithId, ...list]);
     if (toast.duration && !toast.sticky) {
       setTimeout(() => {
-        this.remove(toastWithId.id!);
+        this.beginExit(toastWithId.id!);
       }, toast.duration);
     }
 
@@ -84,10 +85,37 @@ export class ToastService {
   }
 
   /**
-   * Remove a specific toast by ID
+   * Start exit animation; DOM removal happens after `finishExit` (called from toast animation end).
+   */
+  beginExit(id: string): void {
+    if (!this.toasts().some(t => t.id === id)) {
+      return;
+    }
+    this.exitingToastIds.update(ids => new Set(ids).add(id));
+  }
+
+  finishExit(id: string): void {
+    if (!this.toasts().some(t => t.id === id)) {
+      return;
+    }
+    this.toasts.update(list => list.filter(t => t.id !== id));
+    this.exitingToastIds.update(ids => {
+      const next = new Set(ids);
+      next.delete(id);
+      return next;
+    });
+  }
+
+  /**
+   * Remove a specific toast by ID (immediate, no animation)
    */
   remove(id: string): void {
-    this.toasts.set(this.toasts().filter(t => t.id !== id));
+    this.toasts.update(list => list.filter(t => t.id !== id));
+    this.exitingToastIds.update(ids => {
+      const next = new Set(ids);
+      next.delete(id);
+      return next;
+    });
   }
 
   /**
@@ -104,6 +132,7 @@ export class ToastService {
    */
   clear(): void {
     this.toasts.set([]);
+    this.exitingToastIds.set(new Set());
   }
 
   /**
