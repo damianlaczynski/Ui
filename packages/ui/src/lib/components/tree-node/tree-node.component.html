@@ -25,6 +25,7 @@
       [quickActionsTemplate]="quickActionsTemplate() || null"
       [draggable]="draggable()"
       [dropZone]="dropZone() && draggedNodeId() !== node().id"
+      [pointerSplitDropZones]="dropZone()"
       (nodeClick)="onNodeClick($event)"
       (nodeSelect)="onNodeSelect($event)"
       (dragStart)="onDragStart($event)"

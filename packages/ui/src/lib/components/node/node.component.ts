@@ -67,6 +67,7 @@ export class NodeComponent<T extends Node> {
   dragData = input<any>(null);
   dropZone = input<boolean>(false);
   dropZonePosition = input<'before' | 'after' | 'inside'>('inside');
+  pointerSplitDropZones = input<boolean>(false);
 
   // Outputs
   nodeClick = output<T>();
@@ -319,7 +320,10 @@ export class NodeComponent<T extends Node> {
       return;
     }
 
-    // Only clear if we're actually leaving the drop zone
+    if (event.relatedTarget === null) {
+      return;
+    }
+
     const relatedTarget = event.relatedTarget as HTMLElement;
     const currentTarget = event.currentTarget as HTMLElement;
     if (!currentTarget.contains(relatedTarget)) {
@@ -349,13 +353,25 @@ export class NodeComponent<T extends Node> {
       return 'inside';
     }
 
+    if (!this.pointerSplitDropZones()) {
+      return 'inside';
+    }
+
     const element = event.currentTarget as HTMLElement;
     if (!element) {
       return this.dropZonePosition();
     }
 
-    // Only support 'inside' position for node component
-    // 'before' and 'after' are handled by parent tree components
+    const rect = element.getBoundingClientRect();
+    const height = Math.max(rect.height, 1);
+    const ratio = (event.clientY - rect.top) / height;
+
+    if (ratio < 1 / 3) {
+      return 'before';
+    }
+    if (ratio > 2 / 3) {
+      return 'after';
+    }
     return 'inside';
   }
 

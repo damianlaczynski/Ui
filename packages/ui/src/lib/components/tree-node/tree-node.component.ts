@@ -258,10 +258,17 @@ export class TreeNodeComponent<T extends TreeNode<T>> {
   }
 
   onDragOver(event: { node: T; event: DragEvent; position: 'before' | 'after' | 'inside' }): void {
-    // Clear between-elements indicators when dragging over node itself
-    if (event.position === 'inside') {
-      this.dragOverNodeId.set(null);
-      this.dragOverPosition.set(null);
+    const children = this.node().children;
+    const isHoverOverChild = !!children?.some(c => c.id === event.node.id);
+
+    if (isHoverOverChild) {
+      if (event.position === 'inside') {
+        this.dragOverNodeId.set(null);
+        this.dragOverPosition.set(null);
+      } else {
+        this.dragOverNodeId.set(event.node.id);
+        this.dragOverPosition.set(event.position);
+      }
     }
 
     this.dragOver.emit({ node: event.node, event: event.event, position: event.position });
@@ -283,7 +290,9 @@ export class TreeNodeComponent<T extends TreeNode<T>> {
   }
 
   onBetweenElementsDragLeave(event: DragEvent): void {
-    // Only clear if we're actually leaving the drop indicator
+    if (event.relatedTarget === null) {
+      return;
+    }
     const relatedTarget = event.relatedTarget as HTMLElement;
     const currentTarget = event.currentTarget as HTMLElement;
     if (!currentTarget.contains(relatedTarget)) {
