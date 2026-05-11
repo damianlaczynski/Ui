@@ -1,0 +1,276 @@
+{
+  "slug": "datetime",
+  "title": "Datetime",
+  "description": "Datetime combines date and time selection in a single field. It uses a calendar plus time picker on desktop and can fall back to a native datetime-local input on mobile.",
+  "intro": "Use `ui-datetime` when users need one exact appointment or event moment rather than separate date and time fields. It works well for interviews, approvals, bookings, reminders, and any workflow where the final value needs both the day and the time.",
+  "importCode": "import { DatetimeComponent } from 'ui';",
+  "containerClass": "datetime-doc",
+  "snippets": {
+    "basicCode": "datetime-basic-demo.ts",
+    "stepFormatCode": "datetime-step-format-demo.ts",
+    "constraintsCode": "datetime-constraints-demo.ts",
+    "statesCode": "datetime-states-demo.ts",
+    "reactiveFormCode": "datetime-reactive-form-demo.ts",
+    "schedulingPanelCode": "datetime-scheduling-panel-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic date and time selection",
+      "description": "The default pattern is a single field that captures one precise moment and keeps both date and time visible in one place.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "step-format",
+      "title": "Time step and 12h or 24h clock",
+      "description": "Step size and explicit 12 hour versus 24 hour presentation shape how operational the picker feels and whether users see AM or PM directly in the time selector.",
+      "codeKey": "stepFormatCode",
+      "componentKey": "stepFormat"
+    },
+    {
+      "id": "constraints",
+      "title": "Min and max constraints",
+      "description": "Use a constrained datetime window when bookings or approvals can happen only inside a known operating range.",
+      "codeKey": "constraintsCode",
+      "componentKey": "constraints"
+    },
+    {
+      "id": "states",
+      "title": "Size and field states",
+      "description": "Datetime still follows the shared field model, so size, readonly, disabled, required, and helper text need to look coherent with the rest of the form system.",
+      "codeKey": "statesCode",
+      "componentKey": "states"
+    },
+    {
+      "id": "reactive-form",
+      "title": "Reactive form integration",
+      "description": "A good showcase should demonstrate validation and save flow instead of only exposing the picker shell in isolation.",
+      "codeKey": "reactiveFormCode",
+      "componentKey": "reactiveForm"
+    },
+    {
+      "id": "scheduling-panel",
+      "title": "Scheduling panel composition",
+      "description": "A practical datetime field often sits inside a scheduling or booking panel with status context and follow-up actions around the chosen slot.",
+      "codeKey": "schedulingPanelCode",
+      "componentKey": "schedulingPanel"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Input and popup behavior",
+      "body": "`ui-datetime` behaves like a text field on desktop and can fall back to a native `type=\"datetime-local\"` input on mobile when `useNativeOnMobile` is enabled.\n\n| Mode | Behavior |\n| --- | --- |\n| desktop text input | exposes `aria-haspopup=\"dialog\"` and `aria-expanded` |\n| mobile native datetime input | relies on native platform datetime semantics |\n| disabled or readonly | prevents opening or changing the value |"
+    },
+    {
+      "title": "Keyboard",
+      "body": "Keyboard handling follows the shared field and popup model.\n\n| Key | Action |\n| --- | --- |\n| `Tab` / `Shift+Tab` | moves through the field, calendar controls, and time picker |\n| `Enter` / click on trigger actions | opens the combined picker panel on desktop |\n| button activation | selects a date, changes panel navigation, or runs footer actions like clear or now |"
+    },
+    {
+      "title": "Labels and guidance",
+      "body": "Use a label that explains the real task, such as interview slot, approval time, or meeting start. If there is a timezone assumption or a narrow booking window, add helper text or nearby status copy so users understand the expected datetime context."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "DatetimeComponent - <code>ui-datetime</code>",
+      "lead": "Standalone datetime field built on the shared field system with a calendar and time-picker overlay on desktop and optional native mobile fallback.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["min", "InputSignal<string>", "''", "Minimum allowed datetime value."],
+            ["max", "InputSignal<string>", "''", "Maximum allowed datetime value."],
+            [
+              "step",
+              "InputSignal<number | string>",
+              "''",
+              "Minute or second stepping passed to the time picker and native input."
+            ],
+            [
+              "panelWidth",
+              "InputSignal<number | undefined>",
+              "undefined",
+              "Desktop overlay width."
+            ],
+            [
+              "use24HourFormat",
+              "InputSignal<boolean>",
+              "true",
+              "Switches the time picker between 24 hour and 12 hour display."
+            ],
+            [
+              "useNativeOnMobile",
+              "InputSignal<boolean>",
+              "true",
+              "Switches to a native mobile datetime input on small screens."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "inputVariant",
+              "InputSignal<InputVariant>",
+              "'filled'",
+              "Shared field surface token inherited from `FieldComponent`."
+            ],
+            [
+              "label",
+              "InputSignal<string>",
+              "''",
+              "Visible field label inherited from `FieldComponent`."
+            ],
+            [
+              "labelPosition",
+              "InputSignal<ContentPosition>",
+              "'above'",
+              "Controls where the field label is placed relative to the control."
+            ],
+            [
+              "placeholder",
+              "InputSignal<string>",
+              "''",
+              "Inherited shared-field placeholder input."
+            ],
+            [
+              "helpText",
+              "InputSignal<string>",
+              "''",
+              "Supporting helper text rendered below the field when there is no active error."
+            ],
+            [
+              "errorText",
+              "ModelSignal<string>",
+              "''",
+              "Validation or manual error message managed by the shared field base."
+            ],
+            ["required", "InputSignal<boolean>", "false", "Marks the field as required."],
+            [
+              "disabled",
+              "ModelSignal<boolean>",
+              "false",
+              "Disables the field and its interactive affordances."
+            ],
+            [
+              "readonly",
+              "ModelSignal<boolean>",
+              "false",
+              "Keeps the value visible while preventing user changes."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Shared field density token."],
+            [
+              "name",
+              "InputSignal<string>",
+              "''",
+              "HTML form name used by the field wrapper and native control wiring."
+            ],
+            [
+              "id",
+              "ModelSignal<string | number>",
+              "auto-generated",
+              "Control id used to connect label, help text, and error messaging."
+            ],
+            [
+              "autocomplete",
+              "InputSignal<string | null>",
+              "null",
+              "Inherited autocomplete hint for native form compatibility."
+            ],
+            [
+              "showClearButton",
+              "InputSignal<boolean>",
+              "true",
+              "Inherited shared-field clear-button flag when supported by the concrete control."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "''",
+              "Overrides the accessible name when no visible label is appropriate."
+            ],
+            [
+              "ariaDescribedBy",
+              "InputSignal<string>",
+              "''",
+              "Appends extra descriptive ids to the computed `aria-describedby` value."
+            ],
+            [
+              "autoValidation",
+              "InputSignal<boolean>",
+              "true",
+              "Enables inherited automatic validation error handling from `FieldComponent`."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Methods",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            ["clear()", "method", "Resets the selected date and time."],
+            [
+              "openPanel() / closePanel()",
+              "method",
+              "Programmatically controls the desktop picker overlay."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Models",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "ControlValueAccessor",
+              "form integration",
+              "Works with `ngModel`, `formControl`, and `formControlName` like the other field components."
+            ],
+            ["value", "string", "Stored local datetime string such as `2026-05-12T09:30`."]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "focus",
+              "OutputEmitterRef<FocusEvent>",
+              "Inherited focus event from `FieldComponent`."
+            ],
+            ["blur", "OutputEmitterRef<FocusEvent>", "Inherited blur event from `FieldComponent`."],
+            [
+              "keyup",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-up event from `FieldComponent`."
+            ],
+            [
+              "keydown",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-down event from `FieldComponent`."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "Use this component when one exact local datetime matters. If users can choose date and time independently in different steps, separate fields may be clearer.",
+            "On desktop the overlay combines a calendar and time picker, while on mobile the control can defer to native input semantics."
+          ],
+          "title": "Notes"
+        }
+      ]
+    }
+  ]
+}

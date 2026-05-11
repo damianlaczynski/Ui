@@ -1,0 +1,146 @@
+{
+  "slug": "carousel",
+  "title": "Carousel",
+  "description": "Carousel rotates through a bounded set of slides with shared navigation, indicators, and optional auto-play. It works best for a small number of hero messages, workspace highlights, or richer card-like slides that need more room than a compact list item.",
+  "intro": "Use carousel when each slide deserves focused attention and users benefit from comparing a small sequence of items. It supports image slides, custom templates, manual navigation, indicators, looping, and auto-play with hover pause.",
+  "importCode": "import { CarouselComponent } from 'ui';",
+  "containerClass": "carousel-doc",
+  "snippets": {
+    "basicCode": "carousel-basic-demo.ts",
+    "navigationCode": "carousel-navigation-demo.ts",
+    "autoplayCode": "carousel-autoplay-demo.ts",
+    "customTemplateCode": "carousel-custom-template-demo.ts",
+    "workspaceHighlightsCode": "carousel-workspace-highlights-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Image slides",
+      "description": "The default image mode covers the common hero-banner case: one image, one title, one short description, and shared navigation around them.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "navigation",
+      "title": "Controls, indicators, and loop",
+      "description": "You can independently show controls and indicators, and disable looping when the sequence should have a clear beginning and end.",
+      "codeKey": "navigationCode",
+      "componentKey": "navigation"
+    },
+    {
+      "id": "autoplay",
+      "title": "Auto-play behavior",
+      "description": "Auto-play is useful for passive highlights, but keep intervals generous and preserve manual navigation. Hover pauses rotation so users can finish reading.",
+      "codeKey": "autoplayCode",
+      "componentKey": "autoplay"
+    },
+    {
+      "id": "custom-template",
+      "title": "Custom slide template",
+      "description": "Pass a slide template when the built-in image overlay is too limited and each slide needs badges, metrics, richer content, or a more editorial card structure.",
+      "codeKey": "customTemplateCode",
+      "componentKey": "customTemplate"
+    },
+    {
+      "id": "workspace-highlights",
+      "title": "Workspace highlights",
+      "description": "A stronger product pattern: use carousel for a small, curated set of highlights on team hubs, dashboards, or landing surfaces instead of dumping long feeds into it.",
+      "codeKey": "workspaceHighlightsCode",
+      "componentKey": "workspaceHighlights"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Controls",
+      "body": "Previous, next, and indicator affordances are real buttons, so they stay keyboard reachable and expose clear labels such as `Previous slide`, `Next slide`, and `Go to slide N`."
+    },
+    {
+      "title": "Auto-play",
+      "body": "Auto-play pauses on hover. Use it only for passive content and keep intervals long enough for reading. Avoid using auto-play for critical instructional or form content that users must parse precisely."
+    },
+    {
+      "title": "Images and custom slides",
+      "body": "Image slides derive `alt` from slide `title`, with a localized fallback when no title is present. For custom templates, make sure meaningful text stays visible inside the slide and do not rely on imagery alone.\n\n| Aspect | Behavior |\n| --- | --- |\n| controls | native buttons with labels |\n| indicators | native buttons with labels per slide |\n| image alt | slide `title` or fallback text |\n| focus order | controls and indicators are keyboard reachable |\n| auto-play | pauses on hover; should remain optional |"
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "CarouselComponent - <code>ui-carousel</code>",
+      "lead": "Standalone slide rotator for a bounded list of `CarouselItem` data. Supports either built-in image rendering or a projected custom slide template.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "items",
+              "InputSignal<CarouselItem[]>",
+              "[]",
+              "Ordered slide data. Each item may include `title`, `description`, `image`, `content`, or additional custom fields."
+            ],
+            [
+              "slideTemplate",
+              "InputSignal<TemplateRef<{ $implicit: CarouselItem; index: number }> | null>",
+              "null",
+              "Optional custom template for richer slide layouts."
+            ],
+            ["activeIndex", "InputSignal<number>", "0", "Externally supplied starting index."],
+            [
+              "autoPlay",
+              "InputSignal<boolean>",
+              "false",
+              "Automatically advances slides when more than one item exists."
+            ],
+            [
+              "autoPlayInterval",
+              "InputSignal<number>",
+              "3000",
+              "Delay in milliseconds between auto-play transitions."
+            ],
+            ["showIndicators", "InputSignal<boolean>", "true", "Shows slide indicator buttons."],
+            [
+              "showControls",
+              "InputSignal<boolean>",
+              "true",
+              "Shows previous and next navigation buttons."
+            ],
+            [
+              "loop",
+              "InputSignal<boolean>",
+              "true",
+              "When true, navigation wraps from last to first and first to last."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "itemChange",
+              "OutputRef<{ item: CarouselItem; index: number }>",
+              "Emits whenever navigation changes the active slide."
+            ],
+            [
+              "itemClick",
+              "OutputRef<{ item: CarouselItem; index: number }>",
+              "Emits when a slide surface itself is clicked."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "Hover pauses auto-play and leaving resumes it when `autoPlay` is enabled.",
+            "The component exposes imperative navigation internally through previous, next, and indicator buttons, so most integrations only need `items` plus optional output listeners."
+          ],
+          "title": "Notes"
+        }
+      ]
+    }
+  ]
+}

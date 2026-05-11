@@ -1,0 +1,189 @@
+{
+  "slug": "calendar",
+  "title": "Calendar",
+  "description": "Calendar renders days, months, and years views for single-date picking, range flows, and constrained scheduling surfaces with previous and next navigation.",
+  "intro": "Use `ui-calendar` when users need a visible calendar surface instead of a compact field. It works for booking, review scheduling, availability picking, and range selection where the month context matters and the user benefits from seeing adjacent days.",
+  "importCode": "import { CalendarComponent, type CalendarDay, type CalendarView } from 'ui';",
+  "containerClass": "calendar-doc",
+  "snippets": {
+    "basicCode": "calendar-basic-demo.ts",
+    "viewsCode": "calendar-views-demo.ts",
+    "sizePickerCode": "calendar-size-picker-demo.ts",
+    "constraintsCode": "calendar-constraints-demo.ts",
+    "rangeCode": "calendar-range-demo.ts",
+    "bookingPanelCode": "calendar-booking-panel-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic single-date selection",
+      "description": "The default pattern is a single visible month where users can pick one date and move month by month.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "views",
+      "title": "Days, months, and years views",
+      "description": "The component supports dedicated days, months, and years surfaces, so advanced date flows can jump across larger time ranges without forcing repeated next-month clicks.",
+      "codeKey": "viewsCode",
+      "componentKey": "views"
+    },
+    {
+      "id": "size-picker",
+      "title": "Sizes and month or year picker",
+      "description": "Size and header picker behavior change how prominent the control feels. Smaller variants suit dense forms, while larger ones fit more touch-friendly scheduling surfaces.",
+      "codeKey": "sizePickerCode",
+      "componentKey": "sizePicker"
+    },
+    {
+      "id": "constraints",
+      "title": "Min and max constraints",
+      "description": "When only part of the month is valid, disabled dates should stay visible so users understand the available booking window instead of guessing why selection fails.",
+      "codeKey": "constraintsCode",
+      "componentKey": "constraints"
+    },
+    {
+      "id": "range",
+      "title": "Range selection with hover preview",
+      "description": "Range picking is stronger when users can see both confirmed boundaries and the provisional hover span before they commit the second date.",
+      "codeKey": "rangeCode",
+      "componentKey": "range"
+    },
+    {
+      "id": "booking-panel",
+      "title": "Booking panel composition",
+      "description": "A practical calendar often lives inside a booking or review panel with availability context, summary text, and follow-up actions around the calendar itself.",
+      "codeKey": "bookingPanelCode",
+      "componentKey": "bookingPanel"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Current semantics",
+      "body": "`ui-calendar` exposes interactive day, month, and year cells as buttons, but it does not currently provide a full ARIA grid pattern.\n\n| Element | Current behavior |\n| --- | --- |\n| previous and next controls | native button semantics |\n| month, day, and year cells | button semantics through `ui-button` |\n| disabled dates | native disabled button state |"
+    },
+    {
+      "title": "Keyboard",
+      "body": "The component currently relies on standard button focus order rather than a roving-focus calendar grid.\n\n| Key | Action |\n| --- | --- |\n| `Tab` / `Shift+Tab` | moves across the header controls and visible cells |\n| `Enter` / `Space` | activates the focused day, month, or year button |\n| browser focus order | determines movement through the visible buttons |"
+    },
+    {
+      "title": "Labels and announcements",
+      "body": "Because the surface is button-based, the surrounding heading or panel label should explain what the calendar is for, such as booking, scheduling, or range selection. If you need stronger screen-reader guidance, add nearby text that announces the current selection and allowed date window."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "CalendarComponent - <code>ui-calendar</code>",
+      "lead": "Standalone calendar surface for single-date and range-oriented flows. It renders separate days, months, and years views and emits navigation and selection events so parent components can own the actual date state.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "currentMonth",
+              "InputSignal<Date>",
+              "required",
+              "Visible month context used by all views."
+            ],
+            [
+              "calendarView",
+              "InputSignal<CalendarView>",
+              "required",
+              "Rendered surface: `days`, `months`, or `years`."
+            ],
+            ["selectedDate", "InputSignal<Date | null>", "null", "Selected single date."],
+            ["startDate", "InputSignal<Date | null>", "null", "Range start date."],
+            ["endDate", "InputSignal<Date | null>", "null", "Range end date."],
+            [
+              "hoveredDate",
+              "InputSignal<Date | null>",
+              "null",
+              "Transient hovered date used for preview range behavior."
+            ],
+            ["min", "InputSignal<string>", "''", "Minimum allowed date in `YYYY-MM-DD` form."],
+            ["max", "InputSignal<string>", "''", "Maximum allowed date in `YYYY-MM-DD` form."],
+            [
+              "size",
+              "InputSignal<'small' | 'medium' | 'large'>",
+              "'medium'",
+              "Density token applied to navigation and cell buttons."
+            ],
+            [
+              "showMonthYearPicker",
+              "InputSignal<boolean>",
+              "true",
+              "Turns the center header button into a month or year picker trigger in days view."
+            ],
+            [
+              "isDayInHoverRangeFn",
+              "InputSignal<(day: CalendarDay) => boolean>",
+              "undefined",
+              "Optional callback used to mark provisional hover ranges before the end date is chosen."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs and models",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            ["dateSelect", "OutputEmitterRef<CalendarDay>", "Emits the chosen day cell."],
+            [
+              "monthSelect",
+              "OutputEmitterRef<number>",
+              "Emits the chosen month index in months view."
+            ],
+            ["yearSelect", "OutputEmitterRef<number>", "Emits the chosen year in years view."],
+            [
+              "previousMonth / nextMonth",
+              "OutputEmitterRef<void>",
+              "Navigation events for days view."
+            ],
+            [
+              "previousYear / nextYear",
+              "OutputEmitterRef<void>",
+              "Navigation events for months view."
+            ],
+            [
+              "previousYearRange / nextYearRange",
+              "OutputEmitterRef<void>",
+              "Navigation events for years view."
+            ],
+            [
+              "switchToMonthsView / switchToYearsView / switchToDaysView",
+              "OutputEmitterRef<void>",
+              "View-switch requests emitted from header interactions."
+            ],
+            [
+              "dateHover / dateLeave",
+              "OutputEmitterRef<CalendarDay | void>",
+              "Hover events useful for previewing a range before confirmation."
+            ],
+            [
+              "CalendarView",
+              "'days' | 'months' | 'years'",
+              "Public view type used to drive the visible calendar surface."
+            ],
+            [
+              "CalendarDay",
+              "{ date, day, isCurrentMonth, isToday, isSelected, isInRange?, isRangeStart?, isRangeEnd?, isDisabled }",
+              "Day-cell model returned by selection and hover events."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "The component is intentionally state-light. Parent components own the current month, selected dates, range logic, and responses to navigation events.",
+            "For compact form entry, use a field-level date component instead. This calendar is stronger when the visible month context matters."
+          ],
+          "title": "Notes"
+        }
+      ]
+    }
+  ]
+}

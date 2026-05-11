@@ -1,0 +1,98 @@
+{
+  "slug": "spinner",
+  "title": "Spinner",
+  "description": "Indeterminate progress: compact SVG ring with semantic color, extended size scale, and optional caption placement for inline buttons or centered shells.",
+  "intro": "Use `labelPosition=\"none\"` for icon-only chrome and set `ariaLabel` to describe the wait. Turn on `label` with a position when the spinner substitutes for a block of content. `variant` and `size` follow the same tokens as buttons so loading states stay visually aligned with surrounding actions.",
+  "importCode": "import { SpinnerComponent } from 'ui';",
+  "containerClass": "spinner-doc",
+  "snippets": {
+    "basicCode": "spinner-basic-demo.ts",
+    "semanticsCode": "spinner-semantics-demo.ts",
+    "labelsCode": "spinner-label-positions-demo.ts",
+    "saveCode": "spinner-save-action-demo.ts",
+    "sectionCode": "spinner-section-loader-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Label and aria",
+      "description": "The host always exposes a status announcement via `aria-label`. Pair a visible `label` with the same intent in `ariaLabel` so speech does not contradict the caption.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "semantics",
+      "title": "Variant and size",
+      "description": "`variant` mirrors semantic palettes for neutral, success, warning, and danger contexts. `size` spans `extra-small` through `extra-large` for toolbars, forms, and empty regions.",
+      "codeKey": "semanticsCode",
+      "componentKey": "semantics"
+    },
+    {
+      "id": "label-layout",
+      "title": "Label placement",
+      "description": "`before`, `after`, `above`, and `below` wrap the ring for tight rows or stacked hero loaders without custom flex wrappers.",
+      "codeKey": "labelsCode",
+      "componentKey": "labels"
+    },
+    {
+      "id": "save",
+      "title": "Primary action with wait",
+      "description": "Disable the committing control and reveal a small trailing spinner so users see work in flight. Mirror this pattern for publish, sync, or import.",
+      "codeKey": "saveCode",
+      "componentKey": "save"
+    },
+    {
+      "id": "section",
+      "title": "Section placeholder",
+      "description": "Center a large spinner inside a neutral frame when a panel has no data yet, then swap it for content when the request completes.",
+      "codeKey": "sectionCode",
+      "componentKey": "section"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Status and name",
+      "body": "Root uses `role=\"status\"` with `aria-label` from `ariaLabel` or the shared i18n loading string. Prefer an explicit `ariaLabel` that names the task, such as `Saving draft` or `Fetching board`, instead of repeating the word loading everywhere."
+    },
+    {
+      "title": "Visible label and busy context",
+      "body": "Optional `label` text is visual only; it is not automatically referenced from `aria-labelledby`. Keep `ariaLabel` consistent with the caption when both are present.\n\n| Pattern | Guidance |\n| --- | --- |\n| inline wait | nearby context may already explain the task |\n| longer region load | pair spinner with status text or a busy container |\n| keyboard | spinner is not interactive and should not be focusable |"
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "SpinnerComponent - <code>ui-spinner</code>",
+      "lead": "Purely presentational loading indicator; pair with disabled controls or replace skeleton regions until data resolves.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["variant", "InputSignal<Variant>", "'primary'", "Semantic stroke color."],
+            ["size", "InputSignal<ExtendedSize>", "'medium'", "Ring and label density."],
+            [
+              "labelPosition",
+              "InputSignal<ContentPosition>",
+              "'none'",
+              "Where the optional `label` sits: `before`, `after`, `above`, `below`, or `none`."
+            ],
+            [
+              "label",
+              "InputSignal<string>",
+              "''",
+              "Caption; shown only when `labelPosition` is not `none` and text is non-empty."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "''",
+              "Accessible name; falls back to the i18n loading string when empty."
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,255 @@
+{
+  "slug": "checkbox",
+  "title": "Checkbox",
+  "description": "Checkbox is a multi-select binary control for consent, filters, permissions, and grouped option lists. Use it when users can select zero, one, or many independent items rather than making a mutually exclusive choice.",
+  "intro": "Checkbox builds on the shared field foundation, so it supports labels, helper and error text, validation hooks, disabled and readonly states, and Angular forms integration. It also adds checkbox-specific shape options and an indeterminate state for partially selected groups.",
+  "importCode": "import { CheckboxComponent } from 'ui';",
+  "containerClass": "checkbox-doc",
+  "snippets": {
+    "basicCode": "checkbox-basic-demo.ts",
+    "positionsCode": "checkbox-label-positions-demo.ts",
+    "shapesCode": "checkbox-shapes-demo.ts",
+    "statesCode": "checkbox-states-demo.ts",
+    "filtersCode": "checkbox-filter-group-demo.ts",
+    "permissionsCode": "checkbox-permissions-panel-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic selection",
+      "description": "Use checkboxes when options are independent and users may select several of them at once. Each label should describe the chosen state clearly without needing extra interpretation.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "label-positions",
+      "title": "Label positions",
+      "description": "The shared field wrapper supports labels around the control or no visible label at all. When the visible label is hidden, provide `ariaLabel` so the checkbox still has an accessible name.",
+      "codeKey": "positionsCode",
+      "componentKey": "positions"
+    },
+    {
+      "id": "shapes",
+      "title": "Shapes and density",
+      "description": "Shape and size let the checkbox align with different surfaces, but the component should still feel quiet and utilitarian. Most product UIs should stay close to the default rounded appearance.",
+      "codeKey": "shapesCode",
+      "componentKey": "shapes"
+    },
+    {
+      "id": "states",
+      "title": "States and indeterminate",
+      "description": "Disabled and readonly communicate different product states, while indeterminate is useful for grouped selection where some but not all children are active.",
+      "codeKey": "statesCode",
+      "componentKey": "states"
+    },
+    {
+      "id": "filters",
+      "title": "Filter group pattern",
+      "description": "Checkboxes are often used in stacked filter panels or sidebars. Showing them as a grouped surface is more useful than isolated single controls.",
+      "codeKey": "filtersCode",
+      "componentKey": "filters"
+    },
+    {
+      "id": "permissions",
+      "title": "Permissions panel",
+      "description": "More advanced examples should combine related controls and realistic structure. This pattern uses parent and child checkboxes to model a partially selected permissions surface users can adapt directly.",
+      "codeKey": "permissionsCode",
+      "componentKey": "permissions"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Accessible name",
+      "body": "The inner checkbox uses `ariaLabel` when provided and otherwise falls back to the visible `label`. If the visible label is hidden or omitted, provide an explicit accessible name.\n\n| Source | Accessible name |\n| --- | --- |\n| `ariaLabel` | explicit accessible name |\n| visible `label` | default fallback |\n| no label + no `ariaLabel` | avoid this state |"
+    },
+    {
+      "title": "Keyboard and state",
+      "body": "The control is backed by a native checkbox input, so it keeps the expected browser interaction model.\n\n| Key | Action |\n| --- | --- |\n| `Tab` | moves focus to or from the checkbox |\n| `Space` | toggles checked state when interactive |\n\n| State | Attribute |\n| --- | --- |\n| checked | native `checked` |\n| indeterminate | native mixed checkbox state |\n| disabled | native `disabled` |\n| required | native `required` |"
+    },
+    {
+      "title": "Descriptions, errors, and indeterminate",
+      "body": "Helper text and error text are wired into `aria-describedby` through the shared field wrapper. When an error is present, it becomes the active description and helper text is suppressed.\n\nUse `indeterminate` only for partially selected parent groups. It should communicate mixed child state, not act as a third standalone choice."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "CheckboxComponent - <code>ui-checkbox</code>",
+      "lead": "Standalone checkbox control built on the shared <code class=\"showcase-doc__api-code\">FieldComponent</code>. It integrates with Angular forms through <code class=\"showcase-doc__api-code\">ControlValueAccessor</code> and renders a native checkbox input behind the visual treatment.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "shape",
+              "InputSignal<Shape>",
+              "'rounded'",
+              "Visual checkbox shape: rounded, circular, or square."
+            ],
+            [
+              "indeterminate",
+              "ModelSignal<boolean>",
+              "false",
+              "Puts the checkbox into a partially selected visual state until the next user change resolves it."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "inputVariant",
+              "InputSignal<InputVariant>",
+              "'filled'",
+              "Shared field surface token inherited from `FieldComponent`."
+            ],
+            [
+              "label",
+              "InputSignal<string>",
+              "''",
+              "Visible field label inherited from `FieldComponent`."
+            ],
+            [
+              "labelPosition",
+              "InputSignal<ContentPosition>",
+              "'above'",
+              "Controls where the field label is placed relative to the control."
+            ],
+            [
+              "placeholder",
+              "InputSignal<string>",
+              "''",
+              "Inherited shared-field placeholder input."
+            ],
+            [
+              "helpText",
+              "InputSignal<string>",
+              "''",
+              "Supporting helper text rendered below the field when there is no active error."
+            ],
+            [
+              "errorText",
+              "ModelSignal<string>",
+              "''",
+              "Validation or manual error message managed by the shared field base."
+            ],
+            ["required", "InputSignal<boolean>", "false", "Marks the field as required."],
+            [
+              "disabled",
+              "ModelSignal<boolean>",
+              "false",
+              "Disables the field and its interactive affordances."
+            ],
+            [
+              "readonly",
+              "ModelSignal<boolean>",
+              "false",
+              "Keeps the value visible while preventing user changes."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Shared field density token."],
+            [
+              "name",
+              "InputSignal<string>",
+              "''",
+              "HTML form name used by the field wrapper and native control wiring."
+            ],
+            [
+              "id",
+              "ModelSignal<string | number>",
+              "auto-generated",
+              "Control id used to connect label, help text, and error messaging."
+            ],
+            [
+              "autocomplete",
+              "InputSignal<string | null>",
+              "null",
+              "Inherited autocomplete hint for native form compatibility."
+            ],
+            [
+              "showClearButton",
+              "InputSignal<boolean>",
+              "true",
+              "Inherited shared-field clear-button flag when supported by the concrete control."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "''",
+              "Overrides the accessible name when no visible label is appropriate."
+            ],
+            [
+              "ariaDescribedBy",
+              "InputSignal<string>",
+              "''",
+              "Appends extra descriptive ids to the computed `aria-describedby` value."
+            ],
+            [
+              "autoValidation",
+              "InputSignal<boolean>",
+              "true",
+              "Enables inherited automatic validation error handling from `FieldComponent`."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "change",
+              "OutputRef<boolean>",
+              "Emitted when the checked value changes from user interaction."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "focus",
+              "OutputEmitterRef<FocusEvent>",
+              "Inherited focus event from `FieldComponent`."
+            ],
+            ["blur", "OutputEmitterRef<FocusEvent>", "Inherited blur event from `FieldComponent`."],
+            [
+              "keyup",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-up event from `FieldComponent`."
+            ],
+            [
+              "keydown",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-down event from `FieldComponent`."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "The component implements <code class=\"showcase-doc__api-code\">ControlValueAccessor</code>, so it works with <code class=\"showcase-doc__api-code\">ngModel</code>, reactive forms, and Angular validators.",
+            "When `indeterminate` is true, the next user change resolves the control to the checked state and clears the indeterminate flag."
+          ],
+          "title": "Notes"
+        },
+        {
+          "type": "list",
+          "title": "Related mechanisms",
+          "items": [
+            "<code>FieldComponent</code> - shared base handling labels, helper and error text, aria wiring, and validation synchronization.",
+            "Native checkbox input - provides the underlying focus, form, and keyboard semantics."
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,214 @@
+{
+  "slug": "email",
+  "title": "Email",
+  "description": "Email is a field-specialized wrapper around the shared input foundation with native `type=\"email\"`, built-in clear affordance, and address-oriented defaults like email autocomplete. Use it for invites, contact points, billing addresses, and notification settings.",
+  "intro": "Use `ui-email` when the value is specifically an email address and should benefit from native browser validation, mobile keyboard hints, and shared field behavior. It inherits the design-system field API for labels, help text, size, variant, readonly, disabled, and validation messaging.",
+  "importCode": "import { EmailComponent } from 'ui';",
+  "containerClass": "email-doc",
+  "snippets": {
+    "basicCode": "email-basic-demo.ts",
+    "layoutCode": "email-layout-demo.ts",
+    "validationCode": "email-validation-demo.ts",
+    "statesCode": "email-states-demo.ts",
+    "formCode": "email-form-demo.ts",
+    "invitePanelCode": "email-invite-panel-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic email field",
+      "description": "Good default for a single contact point. Keep the label explicit and use help text only when the user needs extra context about where the address will be used.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "layout",
+      "title": "Label position and size",
+      "description": "Label placement should match surrounding form rhythm, while size helps the same field fit compact tables, dialogs, or roomier settings surfaces.",
+      "codeKey": "layoutCode",
+      "componentKey": "layout"
+    },
+    {
+      "id": "validation",
+      "title": "Validation states",
+      "description": "Pair native email semantics with reactive-form validation so required and malformed addresses surface clearly before users submit an invite or workflow step.",
+      "codeKey": "validationCode",
+      "componentKey": "validation"
+    },
+    {
+      "id": "states",
+      "title": "Readonly, disabled, and autocomplete",
+      "description": "Readonly is useful for visible identifiers that should still be copyable, disabled preserves context without editing, and autocomplete keeps the field aligned with browser email behavior.",
+      "codeKey": "statesCode",
+      "componentKey": "states"
+    },
+    {
+      "id": "form",
+      "title": "Multiple address form",
+      "description": "A practical pattern for settings screens: primary contact, billing, and alert routing in one consistent field family instead of mixing generic text inputs.",
+      "codeKey": "formCode",
+      "componentKey": "form"
+    },
+    {
+      "id": "invite-panel",
+      "title": "Invite panel composition",
+      "description": "A stronger end-to-end example: contextual copy, a single email field, and direct actions for invite or link sharing. This is usually how email fields appear in product flows.",
+      "codeKey": "invitePanelCode",
+      "componentKey": "invitePanel"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Label and name",
+      "body": "Accessible naming follows the shared field model: prefer a visible `label`, or provide `ariaLabel` when no visible label is appropriate. Help and error text contribute through `aria-describedby`."
+    },
+    {
+      "title": "Native email semantics",
+      "body": "The inner input uses native `type=\"email\"`, so browsers can offer email-specific keyboards, autofill behavior, and baseline validity checks. `autocomplete` defaults to `email` when you do not override it."
+    },
+    {
+      "title": "Keyboard and actions",
+      "body": "This is a standard text-entry field, so focus and editing use native input behavior. When the field is editable and non-empty, the built-in clear action becomes available beside the mail affordance.\n\n| Aspect | Behavior |\n| --- | --- |\n| focus | native input receives focus |\n| typing | native email input behavior |\n| clear action | appears only when editable and value is present |\n| described by | help and error text IDs when present |\n| autocomplete | defaults to `email` |"
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "EmailComponent - <code>ui-email</code>",
+      "lead": "Standalone email-specific field built on the shared field foundation. It keeps the same layout and validation hooks as other field components while enforcing native email input semantics.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inherited field inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "inputVariant",
+              "InputSignal<InputVariant>",
+              "'filled'",
+              "Shared field surface token inherited from `FieldComponent`."
+            ],
+            [
+              "label",
+              "InputSignal<string>",
+              "''",
+              "Visible field label inherited from `FieldComponent`."
+            ],
+            [
+              "labelPosition",
+              "InputSignal<ContentPosition>",
+              "'above'",
+              "Controls where the field label is placed relative to the control."
+            ],
+            [
+              "placeholder",
+              "InputSignal<string>",
+              "''",
+              "Inherited shared-field placeholder input."
+            ],
+            [
+              "helpText",
+              "InputSignal<string>",
+              "''",
+              "Supporting helper text rendered below the field when there is no active error."
+            ],
+            [
+              "errorText",
+              "ModelSignal<string>",
+              "''",
+              "Validation or manual error message managed by the shared field base."
+            ],
+            ["required", "InputSignal<boolean>", "false", "Marks the field as required."],
+            [
+              "disabled",
+              "ModelSignal<boolean>",
+              "false",
+              "Disables the field and its interactive affordances."
+            ],
+            [
+              "readonly",
+              "ModelSignal<boolean>",
+              "false",
+              "Keeps the value visible while preventing user changes."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Shared field density token."],
+            [
+              "name",
+              "InputSignal<string>",
+              "''",
+              "HTML form name used by the field wrapper and native control wiring."
+            ],
+            [
+              "id",
+              "ModelSignal<string | number>",
+              "auto-generated",
+              "Control id used to connect label, help text, and error messaging."
+            ],
+            [
+              "autocomplete",
+              "InputSignal<string | null>",
+              "null",
+              "Inherited autocomplete hint for native form compatibility."
+            ],
+            [
+              "showClearButton",
+              "InputSignal<boolean>",
+              "true",
+              "Inherited shared-field clear-button flag when supported by the concrete control."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "''",
+              "Overrides the accessible name when no visible label is appropriate."
+            ],
+            [
+              "ariaDescribedBy",
+              "InputSignal<string>",
+              "''",
+              "Appends extra descriptive ids to the computed `aria-describedby` value."
+            ],
+            [
+              "autoValidation",
+              "InputSignal<boolean>",
+              "true",
+              "Enables inherited automatic validation error handling from `FieldComponent`."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "focus",
+              "OutputEmitterRef<FocusEvent>",
+              "Inherited focus event from `FieldComponent`."
+            ],
+            ["blur", "OutputEmitterRef<FocusEvent>", "Inherited blur event from `FieldComponent`."],
+            [
+              "keyup",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-up event from `FieldComponent`."
+            ],
+            [
+              "keydown",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-down event from `FieldComponent`."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "The component extends the shared `FieldComponent`, so value access, validation hooks, keyboard handling, and focus state follow the same base behavior as the rest of the field family.",
+            "On focus, a populated editable email input selects its full value to make replacement faster in address-editing flows."
+          ],
+          "title": "Notes"
+        }
+      ]
+    }
+  ]
+}

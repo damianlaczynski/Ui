@@ -1,0 +1,154 @@
+{
+  "slug": "toolbar",
+  "title": "Toolbar",
+  "description": "Toolbar organizes actions into a compact row or column with support for grouping, toggles, split buttons, dividers, overflow, and mixed custom content.",
+  "intro": "Use `ui-toolbar` for command rows, editor headers, file actions, and other compact action clusters. Keep the highest-frequency actions visible and separate unrelated groups clearly.",
+  "importCode": "import { ToolbarComponent, type ToolbarItem, type ToolbarGroup } from 'ui';",
+  "containerClass": "toolbar-doc",
+  "snippets": {
+    "basicCode": "toolbar-basic-demo.ts",
+    "groupsCode": "toolbar-groups-demo.ts",
+    "sizesOrientationCode": "toolbar-sizes-orientation-demo.ts",
+    "splitActionsCode": "toolbar-split-actions-demo.ts",
+    "overflowCode": "toolbar-overflow-demo.ts",
+    "editorHeaderCode": "toolbar-editor-header-demo.ts",
+    "allTypesCode": "toolbar-all-types-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic action row",
+      "description": "A simple horizontal toolbar is enough for small command clusters such as document, file, or page actions.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "groups",
+      "title": "Grouped actions",
+      "description": "Groups add structure without forcing a separate component. They work well when clipboard, formatting, and insert actions should stay visually distinct.",
+      "codeKey": "groupsCode",
+      "componentKey": "groups"
+    },
+    {
+      "id": "sizes-orientation",
+      "title": "Size and orientation",
+      "description": "Toolbar can run horizontally or vertically. Size changes help match compact side panels or larger primary command rows.",
+      "codeKey": "sizesOrientationCode",
+      "componentKey": "sizesOrientation"
+    },
+    {
+      "id": "split-actions",
+      "title": "Split actions",
+      "description": "Split buttons fit actions such as save or publish where there is one primary action and a small set of related alternatives.",
+      "codeKey": "splitActionsCode",
+      "componentKey": "splitActions"
+    },
+    {
+      "id": "overflow",
+      "title": "Overflow in constrained space",
+      "description": "Overflow mode is useful when the action count is larger than the available width or when the toolbar sits inside a resizable shell.",
+      "codeKey": "overflowCode",
+      "componentKey": "overflow"
+    },
+    {
+      "id": "editor-header",
+      "title": "Composition with other controls",
+      "description": "A toolbar often lives beside dropdowns, search fields, or filters. This pattern is common in editor headers and dense work surfaces.",
+      "codeKey": "editorHeaderCode",
+      "componentKey": "editorHeader"
+    },
+    {
+      "id": "all-types",
+      "title": "Buttons, toggles, splits, dividers, and custom content",
+      "description": "The component supports mixed item types in one row. Keep the sequence purposeful and avoid turning one toolbar into a crowded control shelf.",
+      "codeKey": "allTypesCode",
+      "componentKey": "allTypes"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Toolbar semantics",
+      "body": "`ui-toolbar` groups related actions into one command surface. Individual controls inside the toolbar keep their own semantics, such as button, toggle button, menu button, or custom projected content."
+    },
+    {
+      "title": "Keyboard behavior",
+      "body": "Keyboard behavior primarily comes from the controls placed inside the toolbar.\n\n| Key | Action |\n| --- | --- |\n| Tab / Shift+Tab | Move focus into, through, and out of the toolbar according to document order. |\n| Enter / Space | Activate the focused button, toggle, or split action. |\n| Arrow keys | Follow the behavior of the focused inner control or menu when applicable. |"
+    },
+    {
+      "title": "Labels and tooltips",
+      "body": "Icon-only actions should still expose a clear accessible name through `ariaLabel`, `label`, or tooltip-derived labeling. When you project custom content, make sure that content remains keyboard reachable and semantically clear."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "ToolbarComponent - <code>ui-toolbar</code>",
+      "lead": "Standalone command surface component for rendering toolbar items or grouped toolbar items. It supports standard buttons, toggles, dividers, split buttons, and projected custom content.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["items", "InputSignal<ToolbarItem[]>", "[]", "Flat toolbar item list."],
+            [
+              "groups",
+              "InputSignal<ToolbarGroup[]>",
+              "[]",
+              "Grouped item collection. Groups are flattened with dividers between them."
+            ],
+            [
+              "size",
+              "InputSignal<'small' | 'medium' | 'large'>",
+              "'medium'",
+              "Toolbar density and button sizing."
+            ],
+            [
+              "orientation",
+              "InputSignal<'horizontal' | 'vertical'>",
+              "'horizontal'",
+              "Direction of the command surface."
+            ],
+            [
+              "overflow",
+              "InputSignal<boolean>",
+              "false",
+              "Applies overflow styling for constrained layouts."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs and models",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "itemClick",
+              "OutputEmitterRef<ToolbarItem>",
+              "Emits when a non-divider item without its own `action` callback is activated."
+            ],
+            [
+              "ToolbarItem",
+              "{ id, label?, icon?, disabled?, selected?, type?, variant?, appearance?, action?, tooltip?, ariaLabel?, menuItems? }",
+              "Item model for button, divider, toggle, custom, and split toolbar entries."
+            ],
+            [
+              "ToolbarGroup",
+              "{ id, items: ToolbarItem[] }",
+              "Logical group of toolbar items rendered with separators between groups."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "Use `groups` when the action set has natural clusters such as clipboard, formatting, or review actions.",
+            "For split items, keep the primary action obvious and limit the menu to closely related alternatives. Custom projected content should stay visually and semantically secondary to the main action row."
+          ],
+          "title": "Notes"
+        }
+      ]
+    }
+  ]
+}

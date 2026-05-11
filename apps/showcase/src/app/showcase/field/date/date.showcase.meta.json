@@ -1,0 +1,259 @@
+{
+  "slug": "date",
+  "title": "Date",
+  "description": "Date is a form field for single-day selection. It uses a calendar overlay on desktop and can fall back to a native date input on mobile.",
+  "intro": "Use `ui-date` when users need one exact day rather than a month, week, or date-time value. It works well for booking, deadlines, confirmations, and review workflows where the day matters but the time does not.",
+  "importCode": "import { DateComponent } from 'ui';",
+  "containerClass": "date-doc",
+  "snippets": {
+    "basicCode": "date-basic-demo.ts",
+    "sizeVariantCode": "date-size-variant-demo.ts",
+    "constraintsCode": "date-constraints-demo.ts",
+    "statesCode": "date-states-demo.ts",
+    "reactiveFormCode": "date-reactive-form-demo.ts",
+    "bookingPanelCode": "date-booking-panel-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic date selection",
+      "description": "The default pattern is a single field that stores an ISO date and presents it through a readable input plus calendar picker.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "size-variant",
+      "title": "Size and input variant",
+      "description": "Date follows the shared field system, so density and shell styling should stay aligned with the rest of the form rather than behaving like a special-case widget.",
+      "codeKey": "sizeVariantCode",
+      "componentKey": "sizeVariant"
+    },
+    {
+      "id": "constraints",
+      "title": "Min and max constraints",
+      "description": "Use a constrained date window when users can book or submit only inside a known operating range.",
+      "codeKey": "constraintsCode",
+      "componentKey": "constraints"
+    },
+    {
+      "id": "states",
+      "title": "Readonly, disabled, and required states",
+      "description": "State handling is often more important than the picker itself, so the showcase should demonstrate realistic form states.",
+      "codeKey": "statesCode",
+      "componentKey": "states"
+    },
+    {
+      "id": "reactive-form",
+      "title": "Reactive form integration",
+      "description": "A good showcase should include validation and submit flow instead of only isolated picker chrome.",
+      "codeKey": "reactiveFormCode",
+      "componentKey": "reactiveForm"
+    },
+    {
+      "id": "booking-panel",
+      "title": "Booking panel composition",
+      "description": "A practical date field often sits inside a booking or review panel with status context and follow-up actions around the chosen day.",
+      "codeKey": "bookingPanelCode",
+      "componentKey": "bookingPanel"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Input and popup behavior",
+      "body": "`ui-date` behaves like a text field on desktop and can fall back to a native `type=\"date\"` input on mobile when `useNativeOnMobile` is enabled.\n\n| Mode | Behavior |\n| --- | --- |\n| desktop text input | exposes `aria-haspopup=\"dialog\"` and `aria-expanded` |\n| mobile native date input | relies on native platform date input semantics |\n| disabled or readonly | prevents opening or changing the value |"
+    },
+    {
+      "title": "Keyboard",
+      "body": "Keyboard handling follows the shared field and popup model.\n\n| Key | Action |\n| --- | --- |\n| `Tab` / `Shift+Tab` | moves through the field and calendar controls |\n| `Enter` / click on trigger actions | opens the date picker panel on desktop |\n| button activation | selects a day or runs footer actions like clear or today |"
+    },
+    {
+      "title": "Labels and guidance",
+      "body": "Use a task-specific label such as deadline date, visit date, or confirmation date so the meaning of the chosen day is obvious. If the valid window is narrow, add helper text or nearby status text that explains the allowed range."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "DateComponent - <code>ui-date</code>",
+      "lead": "Standalone date field built on the shared field system with a calendar overlay on desktop and optional native mobile fallback.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["min", "InputSignal<string>", "''", "Minimum allowed date value."],
+            ["max", "InputSignal<string>", "''", "Maximum allowed date value."],
+            ["panelWidth", "InputSignal<number>", "300", "Desktop overlay width in pixels."],
+            [
+              "useNativeOnMobile",
+              "InputSignal<boolean>",
+              "true",
+              "Switches to a native mobile date input on small screens."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "inputVariant",
+              "InputSignal<InputVariant>",
+              "'filled'",
+              "Shared field surface token inherited from `FieldComponent`."
+            ],
+            [
+              "label",
+              "InputSignal<string>",
+              "''",
+              "Visible field label inherited from `FieldComponent`."
+            ],
+            [
+              "labelPosition",
+              "InputSignal<ContentPosition>",
+              "'above'",
+              "Controls where the field label is placed relative to the control."
+            ],
+            [
+              "placeholder",
+              "InputSignal<string>",
+              "''",
+              "Inherited shared-field placeholder input."
+            ],
+            [
+              "helpText",
+              "InputSignal<string>",
+              "''",
+              "Supporting helper text rendered below the field when there is no active error."
+            ],
+            [
+              "errorText",
+              "ModelSignal<string>",
+              "''",
+              "Validation or manual error message managed by the shared field base."
+            ],
+            ["required", "InputSignal<boolean>", "false", "Marks the field as required."],
+            [
+              "disabled",
+              "ModelSignal<boolean>",
+              "false",
+              "Disables the field and its interactive affordances."
+            ],
+            [
+              "readonly",
+              "ModelSignal<boolean>",
+              "false",
+              "Keeps the value visible while preventing user changes."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Shared field density token."],
+            [
+              "name",
+              "InputSignal<string>",
+              "''",
+              "HTML form name used by the field wrapper and native control wiring."
+            ],
+            [
+              "id",
+              "ModelSignal<string | number>",
+              "auto-generated",
+              "Control id used to connect label, help text, and error messaging."
+            ],
+            [
+              "autocomplete",
+              "InputSignal<string | null>",
+              "null",
+              "Inherited autocomplete hint for native form compatibility."
+            ],
+            [
+              "showClearButton",
+              "InputSignal<boolean>",
+              "true",
+              "Inherited shared-field clear-button flag when supported by the concrete control."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "''",
+              "Overrides the accessible name when no visible label is appropriate."
+            ],
+            [
+              "ariaDescribedBy",
+              "InputSignal<string>",
+              "''",
+              "Appends extra descriptive ids to the computed `aria-describedby` value."
+            ],
+            [
+              "autoValidation",
+              "InputSignal<boolean>",
+              "true",
+              "Enables inherited automatic validation error handling from `FieldComponent`."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Methods",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            ["clear()", "method", "Resets the selected date."],
+            [
+              "openPanel() / closePanel()",
+              "method",
+              "Programmatically controls the desktop picker overlay."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Models",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "ControlValueAccessor",
+              "form integration",
+              "Works with `ngModel`, `formControl`, and `formControlName` like the other field components."
+            ],
+            ["value", "string", "Stored ISO date string such as `2026-05-12`."]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "focus",
+              "OutputEmitterRef<FocusEvent>",
+              "Inherited focus event from `FieldComponent`."
+            ],
+            ["blur", "OutputEmitterRef<FocusEvent>", "Inherited blur event from `FieldComponent`."],
+            [
+              "keyup",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-up event from `FieldComponent`."
+            ],
+            [
+              "keydown",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-down event from `FieldComponent`."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "Use this component when one exact day matters. If users need a month, week, or date and time, use the corresponding specialized field instead.",
+            "On desktop the overlay uses the shared calendar component, while on mobile the control can defer to native date input semantics."
+          ],
+          "title": "Notes"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "slug": "message-bar",
+  "title": "Message Bar",
+  "description": "Message Bar keeps important inline status visible in layout. Use it for confirmations, warnings, blockers, and contextual guidance that should remain present until the user acts or the state changes.",
+  "intro": "Message Bar renders persistent inline feedback with semantic variants, multiple appearances, optional actions, dismiss support, and richer projected content. It fits places where a toast would disappear too quickly and a dialog would be too heavy.",
+  "importCode": "import { MessageBarComponent } from 'ui';",
+  "containerClass": "message-bar-doc",
+  "snippets": {
+    "basicCode": "message-bar-basic-demo.ts",
+    "variantsCode": "message-bar-variants-demo.ts",
+    "appearanceCode": "message-bar-appearance-demo.ts",
+    "layoutCode": "message-bar-layout-demo.ts",
+    "actionsCode": "message-bar-actions-demo.ts",
+    "richContentCode": "message-bar-rich-content-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic inline notice",
+      "description": "Use a short title and message when users need persistent context inside a page, panel, or form rather than a temporary notification.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "variants",
+      "title": "Semantic variants",
+      "description": "Choose variant by meaning, not decoration: success for completion, warning for caution, danger for blockers, and info or primary for guidance and active notices.",
+      "codeKey": "variantsCode",
+      "componentKey": "variants"
+    },
+    {
+      "id": "appearance",
+      "title": "Appearances",
+      "description": "Tint is a balanced default, filled is stronger when the message must dominate, outline works well on busy surfaces, and subtle or transparent fit calmer embedded layouts.",
+      "codeKey": "appearanceCode",
+      "componentKey": "appearance"
+    },
+    {
+      "id": "layout",
+      "title": "Single-line and multiline layout",
+      "description": "Use single-line mode for compact rows and tool surfaces. Switch to multiline when message length or actions need more space and you do not want cramped wrapping.",
+      "codeKey": "layoutCode",
+      "componentKey": "layout"
+    },
+    {
+      "id": "actions",
+      "title": "Built-in actions and dismiss",
+      "description": "Quick actions work well for recovery, review, or follow-up flows. Pair them with dismiss only when users can safely postpone the message.",
+      "codeKey": "actionsCode",
+      "componentKey": "actions"
+    },
+    {
+      "id": "rich-content",
+      "title": "Rich content and custom action area",
+      "description": "Projected content lets you add secondary details, summaries, or compact inline metrics. The custom actions slot is useful when simple quick actions are not enough.",
+      "codeKey": "richContentCode",
+      "componentKey": "richContent"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Role and live region",
+      "body": "`MessageBarComponent` uses `role=\"alert\"` with assertive live announcements for the `danger` variant, and `role=\"status\"` with polite announcements for other variants.\n\n| Variant group | Live region |\n| --- | --- |\n| `danger` | `role=\"alert\"` + assertive announcement |\n| all other variants | `role=\"status\"` + polite announcement |"
+    },
+    {
+      "title": "Atomic announcement and actions",
+      "body": "The root sets `aria-atomic=\"true\"`, so assistive technologies announce the message as one unit instead of piecemeal fragments.\n\n| Element | Keyboard behavior |\n| --- | --- |\n| dismiss button | standard button keyboard support |\n| quick actions | standard button keyboard support |\n| custom `slot=\"actions\"` content | follows the projected control semantics |"
+    },
+    {
+      "title": "Dismiss control",
+      "body": "When `dismissible` is true, the dismiss control receives an accessible label from the shared i18n message. Keep visible copy concise so the main announcement remains understandable before users reach the dismiss button."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "MessageBarComponent - <code>ui-message-bar</code>",
+      "lead": "Standalone inline status surface for persistent contextual feedback. It supports semantic styling, optional quick actions, dismiss, and projected content without forcing a separate overlay or toast queue.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "title",
+              "InputSignal<string>",
+              "''",
+              "Optional heading for the message. Use it when users need a fast summary before reading the detail text."
+            ],
+            [
+              "message",
+              "InputSignal<string>",
+              "''",
+              "Primary supporting text for the current state, warning, or recommendation."
+            ],
+            [
+              "actions",
+              "InputSignal<QuickAction[]>",
+              "[]",
+              "Quick actions rendered as buttons in the aside area. Good for compact follow-up actions such as review, retry, or learn more."
+            ],
+            [
+              "icon",
+              "InputSignal<IconName | undefined>",
+              "undefined",
+              "Optional explicit icon override. When omitted, the icon is derived from the variant."
+            ],
+            [
+              "variant",
+              "InputSignal<Variant>",
+              "'info'",
+              "Semantic intent of the message: guidance, success, warning, or danger."
+            ],
+            [
+              "appearance",
+              "InputSignal<Appearance>",
+              "'tint'",
+              "Visual weight of the surface. Use stronger appearances only when the notice should compete harder with page content."
+            ],
+            [
+              "size",
+              "InputSignal<Size>",
+              "'medium'",
+              "Spacing and typography density for compact rows versus more prominent panel notices."
+            ],
+            ["showIcon", "InputSignal<boolean>", "true", "Shows or hides the leading status icon."],
+            [
+              "dismissible",
+              "InputSignal<boolean>",
+              "true",
+              "Adds the dismiss control when users may hide the notice."
+            ],
+            [
+              "multiline",
+              "InputSignal<boolean>",
+              "true",
+              "Controls compact single-line versus expanded multiline layout."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "dismiss",
+              "OutputRef<void>",
+              "Emitted when the built-in dismiss control is activated."
+            ],
+            [
+              "actionSelect",
+              "OutputRef<QuickAction>",
+              "Emitted after a quick action runs so parent code can react, log analytics, or update local state."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "Default projection renders inside the main content area below the built-in title and message fields.",
+            "Projected elements marked with <code class=\"showcase-doc__api-code\">slot=\"actions\"</code> render in the aside area after quick actions, which is useful for custom layouts beyond the <code class=\"showcase-doc__api-code\">QuickAction[]</code> shortcut."
+          ],
+          "title": "Notes"
+        },
+        {
+          "type": "list",
+          "title": "Related mechanisms",
+          "items": [
+            "<code>QuickAction</code> - compact action model used to render built-in action buttons.",
+            "<code>ButtonComponent</code> - powers the quick action buttons.",
+            "<code>IconComponent</code> - renders the variant-derived or custom icon."
+          ]
+        }
+      ]
+    }
+  ]
+}

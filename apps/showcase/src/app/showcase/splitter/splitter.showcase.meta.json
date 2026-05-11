@@ -1,0 +1,150 @@
+{
+  "slug": "splitter",
+  "title": "Splitter",
+  "description": "Splitter creates resizable horizontal or vertical panel layouts with draggable and keyboard-accessible gutters, size constraints, and support for nested shells.",
+  "intro": "Use `ui-splitter` for editor shells, sidebars, inspector layouts, dashboard regions, and other work surfaces where users benefit from allocating more space to one region without leaving the current page.",
+  "importCode": "import { SplitterComponent, SplitterPanelDirective, type SplitterPanel, type SplitterResizeEvent } from 'ui';",
+  "containerClass": "splitter-doc",
+  "snippets": {
+    "basicCode": "splitter-basic-demo.ts",
+    "constraintsCode": "splitter-constraints-demo.ts",
+    "verticalCode": "splitter-vertical-demo.ts",
+    "fixedPanelCode": "splitter-fixed-panel-demo.ts",
+    "nestedWorkspaceCode": "splitter-nested-workspace-demo.ts",
+    "keyboardCode": "splitter-keyboard-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic workspace split",
+      "description": "A horizontal three-panel layout is the most common splitter pattern for content plus side regions such as navigation and inspectors.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "constraints",
+      "title": "Min and max constraints",
+      "description": "Constraints keep fields, lists, and dense views usable. They matter more than the raw resize affordance because they protect the layout from collapsing into unusable states.",
+      "codeKey": "constraintsCode",
+      "componentKey": "constraints"
+    },
+    {
+      "id": "vertical",
+      "title": "Vertical regions",
+      "description": "Vertical splitters work well for summary-plus-feed, toolbar-plus-content, and top-bottom dashboard layouts.",
+      "codeKey": "verticalCode",
+      "componentKey": "vertical"
+    },
+    {
+      "id": "fixed-panel",
+      "title": "Fixed utility panel",
+      "description": "Sometimes one side should stay locked while the neighboring region absorbs resizing. This is useful for narrow rails and persistent utility panels.",
+      "codeKey": "fixedPanelCode",
+      "componentKey": "fixedPanel"
+    },
+    {
+      "id": "nested-workspace",
+      "title": "Nested workspace shell",
+      "description": "Nested splitters are appropriate when a real product surface has more than one resizing axis, such as sidebar plus editor plus output panel.",
+      "codeKey": "nestedWorkspaceCode",
+      "componentKey": "nestedWorkspace"
+    },
+    {
+      "id": "keyboard",
+      "title": "Keyboard resizing",
+      "description": "The resize handle is keyboard reachable. This matters for accessibility, but it is also useful when users want smaller, more precise adjustments than a pointer drag.",
+      "codeKey": "keyboardCode",
+      "componentKey": "keyboard"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Group and separator semantics",
+      "body": "`ui-splitter` renders the whole layout as a grouped region and exposes each active gutter as a keyboard-focusable `separator`. The gutter reflects `aria-orientation`, `aria-valuenow`, `aria-valuemin`, and `aria-valuemax`."
+    },
+    {
+      "title": "Keyboard behavior",
+      "body": "The gutter supports keyboard resizing.\n\n| Key | Action |\n| --- | --- |\n| Tab / Shift+Tab | Moves focus to or from a resizable gutter. |\n| ArrowLeft / ArrowRight | Resize horizontal panels in small steps. |\n| ArrowUp / ArrowDown | Resize vertical panels in small steps. |\n| Home | Moves the gutter toward the minimum size of the leading panel. |\n| End | Moves the gutter toward the minimum size of the trailing panel. |"
+    },
+    {
+      "title": "Labels and constraints",
+      "body": "Use a meaningful `ariaLabel` when the default splitter label is not specific enough for the surrounding screen. Panel size constraints are not just visual rules; they also prevent keyboard resizing from creating unusable regions."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "SplitterComponent - <code>ui-splitter</code>",
+      "lead": "Standalone resizable layout component for horizontal or vertical panel arrangements. It uses declared panels plus projected templates identified by `uiSplitterPanel`.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "orientation",
+              "InputSignal<'horizontal' | 'vertical'>",
+              "'horizontal'",
+              "Direction of the splitter layout."
+            ],
+            [
+              "panels",
+              "InputSignal<SplitterPanel[]>",
+              "-",
+              "Panel configuration array that controls order, initial size, and constraints."
+            ],
+            [
+              "gutterSize",
+              "InputSignal<number>",
+              "8",
+              "Width of the resize gutter strip in pixels (visual grip stays narrow in the centre)."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "'Resizable splitter'",
+              "Accessible label for the splitter group."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs and models",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "panelResize",
+              "OutputEmitterRef<SplitterResizeEvent>",
+              "Emits whenever keyboard or pointer resizing updates a panel size."
+            ],
+            [
+              "SplitterPanel",
+              "{ id, size?, minSize?, maxSize?, collapsed?, resizable? }",
+              "Panel definition used by the component."
+            ],
+            [
+              "SplitterResizeEvent",
+              "{ panelIndex, newSize, panelId }",
+              "Resize event payload emitted for affected panels."
+            ],
+            [
+              "SplitterPanelDirective",
+              "`[uiSplitterPanel]`",
+              "Associates a projected `ng-template` with a panel id."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "Panel `size` values are treated as proportional layout percentages, while `minSize` and `maxSize` are pixel constraints converted against the current container size.",
+            "Use nested splitters sparingly. They are powerful for real workspace shells, but too many resize axes can make a layout noisy and hard to stabilize."
+          ],
+          "title": "Notes"
+        }
+      ]
+    }
+  ]
+}

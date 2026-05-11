@@ -1,15 +1,114 @@
 @use 'utils/variables' as *;
 
 .landing {
-  min-height: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
   position: relative;
+  overflow: hidden;
 }
 
-.landing__theme-fab {
+.landing__shell {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.landing__main {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.landing__theme-drawer-host {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  min-height: 0;
+
+  app-theme-drawer {
+    flex: 1 1 auto;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    height: 100%;
+  }
+
+  &--overlay {
+    flex: 0 0 0;
+    width: 0;
+    min-width: 0;
+    max-width: 0;
+    overflow: visible;
+    align-self: stretch;
+
+    app-theme-drawer {
+      flex: 0 0 auto;
+      height: auto;
+      min-height: 0;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-medium) {
+  .landing {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+  }
+
+  .landing__shell {
+    flex-direction: column;
+    overflow: visible;
+    min-height: 0;
+  }
+
+  .landing__main {
+    overflow: visible;
+  }
+
+  .landing__theme-drawer-host:not(.landing__theme-drawer-host--overlay) {
+    app-theme-drawer {
+      min-height: auto;
+      height: auto;
+    }
+
+    &::ng-deep .drawer.drawer--inline {
+      height: auto;
+      min-height: auto;
+      width: 100%;
+      max-width: none;
+      --drawer-panel-inline-size: 100%;
+    }
+
+    &::ng-deep ui-drawer {
+      min-height: auto;
+      height: auto;
+    }
+  }
+}
+
+.landing__theme-fabs {
   position: fixed;
   top: 16px;
   right: 16px;
   z-index: 1000;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  gap: $spacing-2;
+}
+
+.landing__theme-fab {
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -217,224 +316,6 @@
   }
 }
 
-// Carousel Section
-.landing__carousel {
-  padding: clamp(64px, 12vw, 96px) $spacing-6;
-  background: var(--color-neutral-background2-rest);
-}
-
-.landing__carousel__header {
-  max-width: 640px;
-  margin: 0 auto $spacing-12;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: $spacing-6;
-}
-
-.landing__carousel__header__text {
-  text-align: left;
-  flex: 1;
-}
-
-.landing__carousel__header__text .landing__carousel__description {
-  margin: 0;
-}
-
-.landing__carousel__title {
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  font-weight: $font-weight-semibold;
-  margin: 0 0 $spacing-4;
-  color: var(--color-neutral-foreground-rest);
-  letter-spacing: -0.01em;
-}
-
-.landing__carousel__description {
-  font-size: $font-size-400;
-  color: var(--color-neutral-foreground2-rest);
-  line-height: 1.6;
-  margin: 0;
-}
-
-.landing__carousel__wrapper {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.landing__carousel__slide {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 280px;
-  padding: $spacing-8;
-  gap: $spacing-6;
-}
-
-.landing__carousel__slide__title {
-  margin: 0;
-  font-size: $font-size-500;
-  font-weight: $font-weight-semibold;
-  color: var(--color-neutral-foreground-rest);
-}
-
-.landing__carousel__slide__content {
-  display: flex;
-  flex-wrap: wrap;
-  gap: $spacing-4;
-  align-items: center;
-  justify-content: center;
-
-  &--wide {
-    width: 100%;
-    min-width: 280px;
-    max-width: 420px;
-  }
-
-  &--wide ui-slider {
-    width: 100%;
-  }
-
-  &--grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: $spacing-4;
-    width: 100%;
-    min-width: 320px;
-    max-width: 480px;
-
-    ui-text,
-    ui-email,
-    ui-date,
-    ui-number {
-      width: 100%;
-    }
-  }
-
-  &--card-examples {
-    width: auto;
-    max-width: none;
-    flex-wrap: nowrap;
-    align-items: stretch;
-  }
-}
-
-.landing__card-demo {
-  flex: 0 1 auto;
-
-  &--compact {
-    width: 220px;
-  }
-
-  &--product {
-    width: 320px;
-  }
-
-  &__compact-body {
-    display: flex;
-    flex-direction: column;
-    gap: $spacing-3;
-  }
-
-  &__user {
-    display: flex;
-    align-items: center;
-    gap: $spacing-2;
-  }
-
-  &__user-info {
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-
-    strong {
-      font-size: $font-size-300;
-      line-height: $line-height-300;
-      color: var(--color-neutral-foreground-rest);
-    }
-
-    span {
-      font-size: $font-size-200;
-      line-height: $line-height-200;
-      color: var(--color-neutral-foreground3-rest);
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-  }
-
-  &__product-header {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-
-    strong {
-      font-size: $font-size-300;
-      line-height: $line-height-300;
-      color: var(--color-neutral-foreground-rest);
-    }
-
-    span {
-      font-size: $font-size-200;
-      line-height: $line-height-200;
-      color: var(--color-neutral-foreground3-rest);
-    }
-  }
-
-  &__product-media {
-    margin-inline: calc(-1 * var(--card-padding));
-    width: calc(100% + 2 * var(--card-padding));
-    max-width: none;
-
-    img {
-      display: block;
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-    }
-  }
-
-  &__product-footer {
-    display: flex;
-    justify-content: flex-start;
-  }
-}
-
-@media (max-width: $breakpoint-small) {
-  .landing__carousel__slide__content--card-examples {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-}
-
-.landing__carousel__slide__action {
-  margin-top: $spacing-4;
-}
-
-.landing__skeleton-list {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-3;
-}
-
-.landing__skeleton-list__item {
-  display: flex;
-  align-items: center;
-  gap: $spacing-3;
-  padding: $spacing-3;
-  border: 1px solid var(--color-neutral-stroke-rest);
-  border-radius: $border-radius-400;
-}
-
-.landing__skeleton-list__item-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-2;
-}
-
 // Components Showcase
 .landing__showcase {
   padding: clamp(64px, 12vw, 96px) $spacing-6;
@@ -448,7 +329,7 @@
 }
 
 .landing__showcase__search {
-  max-width: 400px;
+  max-width: 480px;
   margin: $spacing-8 auto 0;
 }
 
@@ -472,7 +353,7 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: $spacing-4;
+  gap: $spacing-5;
 }
 
 .landing__showcase__empty {
@@ -503,19 +384,35 @@
   align-items: center;
   gap: $spacing-3;
   padding: $spacing-6;
-  background: var(--color-neutral-background2-rest);
-  border: 1px solid var(--color-neutral-stroke-rest);
+  background: var(--color-neutral-background-rest);
+  border: 1px solid
+    color-mix(in srgb, var(--color-brand-primary) 14%, var(--color-neutral-stroke-rest));
   border-radius: $border-radius-800;
   cursor: pointer;
+  box-shadow:
+    0 1px 2px color-mix(in srgb, #000 6%, transparent),
+    0 10px 24px color-mix(in srgb, var(--color-brand-primary) 4%, transparent);
   transition:
     transform $duration-normal $easing-ease-in-out,
     border-color $duration-fast $easing-ease-in-out,
-    background $duration-fast $easing-ease-in-out;
+    background $duration-fast $easing-ease-in-out,
+    box-shadow $duration-fast $easing-ease-in-out;
 
   &:hover {
-    transform: translateY(-2px);
-    border-color: var(--color-brand-primary);
-    background: var(--color-neutral-background-rest);
+    transform: translateY(-3px);
+    border-color: color-mix(
+      in srgb,
+      var(--color-brand-primary) 44%,
+      var(--color-neutral-stroke-rest)
+    );
+    background: color-mix(
+      in srgb,
+      var(--color-brand-primary) 3%,
+      var(--color-neutral-background-rest)
+    );
+    box-shadow:
+      0 10px 24px color-mix(in srgb, #000 9%, transparent),
+      0 18px 40px color-mix(in srgb, var(--color-brand-primary) 8%, transparent);
 
     .landing__showcase__card__icon {
       color: var(--color-brand-primary);
@@ -555,69 +452,8 @@
 }
 
 .landing__roadmap__grid {
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: $spacing-5;
-}
-
-.landing__roadmap__card {
-  align-items: flex-start;
-  padding: $spacing-5;
-  cursor: default;
-  border-radius: $border-radius-600;
-  border: 1px solid
-    color-mix(in srgb, var(--color-brand-primary) 14%, var(--color-neutral-stroke-rest));
-  background:
-    radial-gradient(
-      circle at 110% -30%,
-      color-mix(in srgb, var(--color-brand-primary) 12%, transparent),
-      transparent 45%
-    ),
-    var(--color-neutral-background2-rest);
-
-  &:hover {
-    transform: none;
-    border-color: color-mix(
-      in srgb,
-      var(--color-brand-primary) 14%,
-      var(--color-neutral-stroke-rest)
-    );
-    background:
-      radial-gradient(
-        circle at 110% -30%,
-        color-mix(in srgb, var(--color-brand-primary) 12%, transparent),
-        transparent 45%
-      ),
-      var(--color-neutral-background2-rest);
-  }
-
-  &__time {
-    margin: 0;
-    color: var(--color-neutral-foreground3-rest);
-  }
-
-  &__status {
-    padding: 2px 8px;
-    border-radius: 999px;
-    font-size: $font-size-200;
-    font-weight: $font-weight-semibold;
-    color: var(--color-brand-primary);
-    background: color-mix(in srgb, var(--color-brand-primary) 14%, transparent);
-
-    &--done {
-      color: #0b6a36;
-      background: color-mix(in srgb, #2aa872 18%, transparent);
-    }
-
-    &--active {
-      color: #8f5b00;
-      background: color-mix(in srgb, #e5ac39 18%, transparent);
-    }
-
-    &--next {
-      color: #0a5fb4;
-      background: color-mix(in srgb, #5c9cff 18%, transparent);
-    }
-  }
+  max-width: 1120px;
+  margin: 0 auto;
 }
 
 .landing__roadmap__actions {

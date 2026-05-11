@@ -1,0 +1,130 @@
+{
+  "slug": "command-palette",
+  "title": "Command Palette",
+  "description": "Command Palette provides a searchable action launcher with grouped results, disabled items, keyword matching, empty-result messaging, and keyboard-oriented interaction.",
+  "intro": "Use `ui-command-palette` for global command search, quick navigation, and action launching in dense workspaces. Good palettes reduce hunting through menus and sidebars by making intent searchable.",
+  "importCode": "import { CommandPaletteComponent, type CommandPaletteItem } from 'ui';",
+  "containerClass": "command-palette-doc",
+  "snippets": {
+    "basicCode": "command-palette-basic-demo.ts",
+    "groupingCode": "command-palette-grouping-demo.ts",
+    "optionsCode": "command-palette-options-demo.ts",
+    "emptyResultsCode": "command-palette-empty-results-demo.ts",
+    "workspaceCode": "command-palette-workspace-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic action launcher",
+      "description": "The baseline pattern is a searchable action sheet opened from a global trigger. This is the most common command-palette use case.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "grouping",
+      "title": "Grouped versus flat commands",
+      "description": "Grouping helps when commands mix navigation, actions, and help entries. Flat lists are fine when the action count is smaller and more uniform.",
+      "codeKey": "groupingCode",
+      "componentKey": "grouping"
+    },
+    {
+      "id": "options",
+      "title": "Search-heavy, disabled, and configured palettes",
+      "description": "Keyword-heavy palettes and disabled commands are common in power-user flows. Placeholder and empty text also affect how understandable the search experience feels.",
+      "codeKey": "optionsCode",
+      "componentKey": "options"
+    },
+    {
+      "id": "empty-results",
+      "title": "No matching results",
+      "description": "The empty state inside a command palette should stay brief and search-specific, not read like a general empty page.",
+      "codeKey": "emptyResultsCode",
+      "componentKey": "emptyResults"
+    },
+    {
+      "id": "workspace",
+      "title": "Workspace command center",
+      "description": "A command palette usually sits behind a global workspace shortcut and acts as a fast entry point to navigation and high-frequency actions.",
+      "codeKey": "workspaceCode",
+      "componentKey": "workspace"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Dialog and result semantics",
+      "body": "`ui-command-palette` renders a modal command surface with a focused search field and a result list. Results behave like selectable options and the component keeps keyboard focus trapped while open."
+    },
+    {
+      "title": "Keyboard behavior",
+      "body": "The command palette is primarily a keyboard-first surface.\n\n| Key | Action |\n| --- | --- |\n| ArrowUp / ArrowDown | Move the active selection between enabled commands. |\n| Enter | Execute the currently selected command. |\n| Esc | Close the command palette. |\n| Tab / Shift+Tab | Move focus within the trapped dialog surface. |"
+    },
+    {
+      "title": "Labels and discoverability",
+      "body": "Commands should have concise labels, helpful descriptions when needed, and enough keywords to support search. Disabled commands should stay understandable rather than appearing as broken or missing actions."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "CommandPaletteComponent - <code>ui-command-palette</code>",
+      "lead": "Standalone searchable action launcher component. It renders a modal palette with search, grouped results, keyboard navigation, disabled states, and empty-result feedback.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["visible", "ModelSignal<boolean>", "false", "Controls whether the palette is open."],
+            [
+              "items",
+              "InputSignal<CommandPaletteItem[]>",
+              "[]",
+              "Command dataset to search and render."
+            ],
+            ["placeholder", "InputSignal<string>", "''", "Optional search input placeholder."],
+            ["emptyText", "InputSignal<string>", "''", "Optional empty-results title."],
+            [
+              "emptyDescription",
+              "InputSignal<string>",
+              "''",
+              "Optional empty-results supporting text."
+            ],
+            ["maxResults", "InputSignal<number>", "10", "Maximum number of visible matches."]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs and models",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "commandExecuted",
+              "OutputEmitterRef<CommandPaletteItem>",
+              "Emits when a command is executed."
+            ],
+            ["closed", "OutputEmitterRef<void>", "Emits when the palette closes."],
+            [
+              "CommandPaletteItem",
+              "{ id, label, description?, icon?, keywords?, action, disabled?, group? }",
+              "Command contract used for search, rendering, grouping, and execution."
+            ],
+            [
+              "CommandPaletteGroup",
+              "{ id, label, items }",
+              "Grouped result structure derived internally from the item list."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "Keep command labels short and scannable. Descriptions and keywords should help with discovery, not compensate for unclear labels.",
+            "Grouping is useful when the palette mixes navigation and actions. If the list is already short and uniform, a flat result set is often easier to scan."
+          ],
+          "title": "Notes"
+        }
+      ]
+    }
+  ]
+}

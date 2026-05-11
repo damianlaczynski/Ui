@@ -1,0 +1,161 @@
+{
+  "slug": "range",
+  "title": "Range",
+  "description": "Range exposes a dual-thumb numeric selection model for choosing lower and upper bounds within one field. Use it for filters, price bands, time windows, thresholds, and any workflow where users need a bounded interval instead of a single value.",
+  "intro": "Range extends the shared field system and combines two coordinated native range inputs into one control. It supports min and max bounds, step snapping, formatted values, step markers, readonly and disabled states, helper and error text, and Angular forms integration.",
+  "importCode": "import { RangeComponent, type NumericRange } from 'ui';",
+  "containerClass": "range-doc",
+  "snippets": {
+    "basicCode": "range-basic-demo.ts",
+    "boundsStepsCode": "range-bounds-steps-demo.ts",
+    "formattingCode": "range-formatting-demo.ts",
+    "statesCode": "range-states-demo.ts",
+    "reactiveFormCode": "range-reactive-form-demo.ts",
+    "filterPanelCode": "range-filter-panel-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic interval selection",
+      "description": "Use a range when the task is about choosing a lower and upper bound together, not two unrelated numbers.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "bounds-steps",
+      "title": "Bounds, steps, and markers",
+      "description": "Step snapping and visible markers help when the allowed interval is discrete or should stay aligned to business thresholds.",
+      "codeKey": "boundsStepsCode",
+      "componentKey": "boundsSteps"
+    },
+    {
+      "id": "formatting",
+      "title": "Formatting and min/max labels",
+      "description": "Formatted boundary labels make the control easier to read for money, time, ratings, and other domain-specific scales.",
+      "codeKey": "formattingCode",
+      "componentKey": "formatting"
+    },
+    {
+      "id": "states",
+      "title": "Readonly, disabled, and validation states",
+      "description": "Readonly keeps the current interval visible, disabled removes it from active interaction, and validation explains when the chosen band is not acceptable.",
+      "codeKey": "statesCode",
+      "componentKey": "states"
+    },
+    {
+      "id": "reactive-form",
+      "title": "Reactive forms",
+      "description": "Range works well with form-driven validation rules such as minimum gap, allowed windows, or policy-based constraints.",
+      "codeKey": "reactiveFormCode",
+      "componentKey": "reactiveForm"
+    },
+    {
+      "id": "filter-panel",
+      "title": "Filter panel composition",
+      "description": "A realistic range often lives in a filter or settings panel alongside adjacent controls and reset/apply actions.",
+      "codeKey": "filterPanelCode",
+      "componentKey": "filterPanel"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Accessible names and grouped semantics",
+      "body": "The component exposes a grouped range surface and gives each thumb its own label derived from the visible field label. The lower thumb is announced as the minimum and the upper thumb as the maximum.\n\n| Element | Accessibility behavior |\n| --- | --- |\n| group wrapper | labeled as a range group |\n| lower thumb | labeled as the minimum value |\n| upper thumb | labeled as the maximum value |\n| formatted speech | can be customized with `ariaValueText` |"
+    },
+    {
+      "title": "Keyboard",
+      "body": "| Key | Action |\n| --- | --- |\n| `ArrowLeft` / `ArrowDown` | decreases the focused thumb by one step |\n| `ArrowRight` / `ArrowUp` | increases the focused thumb by one step |\n| `PageDown` | decreases the focused thumb by a larger jump |\n| `PageUp` | increases the focused thumb by a larger jump |\n| `Home` | moves the focused thumb to the minimum |\n| `End` | moves the focused thumb to the maximum |\n| `Tab` | moves focus between thumbs and surrounding controls |"
+    },
+    {
+      "title": "Range value semantics",
+      "body": "Each thumb exposes `aria-valuemin`, `aria-valuemax`, and `aria-valuenow`. Use `ariaValueText` when the raw numbers need richer wording such as money, time, or human-readable windows.\n\n| State | Attribute |\n| --- | --- |\n| current focused thumb value | `aria-valuenow` |\n| shared bounds | `aria-valuemin` and `aria-valuemax` |\n| richer wording | `aria-valuetext` |\n| readonly | `aria-readonly=\"true\"` |"
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "RangeComponent - <code>ui-range</code>",
+      "lead": "Dual-thumb numeric range field built on the shared field system. It integrates with Angular forms and is suited to bounded interval selection rather than single-value scrubbing.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["min", "InputSignal<number>", "0", "Lower track bound."],
+            ["max", "InputSignal<number>", "100", "Upper track bound."],
+            ["step", "InputSignal<number>", "1", "Snapping increment for both thumbs."],
+            [
+              "formatValue",
+              "InputSignal<(value: number) => string>",
+              "value => value.toString()",
+              "Formats visible boundary labels and any contextual summaries."
+            ],
+            [
+              "ariaValueText",
+              "InputSignal<string | ((value: NumericRange) => string) | null>",
+              "null",
+              "Provides richer speech output for the selected interval."
+            ],
+            ["showStepMarkers", "InputSignal<boolean>", "false", "Displays discrete step notches."],
+            ["showMinMax", "InputSignal<boolean>", "false", "Shows formatted min and max labels."],
+            [
+              "valueModel",
+              "ModelSignal<NumericRange>",
+              "{ min: 0, max: 100 }",
+              "Two-way model for the selected range."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["label", "InputSignal<string>", "''", "Visible field label."],
+            ["helpText", "InputSignal<string>", "''", "Helper text shown below the field."],
+            ["errorText", "ModelSignal<string>", "''", "Validation or manual error message."],
+            ["required", "InputSignal<boolean>", "false", "Marks the field as required."],
+            ["disabled", "ModelSignal<boolean>", "false", "Disables both thumbs and interaction."],
+            [
+              "readonly",
+              "ModelSignal<boolean>",
+              "false",
+              "Keeps the interval visible while preventing edits."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Shared field density token."],
+            [
+              "inputVariant",
+              "InputSignal<InputVariant>",
+              "'filled'",
+              "Shared field surface token."
+            ],
+            ["ariaLabel", "InputSignal<string>", "''", "Accessible-name override when needed."]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "change",
+              "OutputRef<any>",
+              "Emitted after a committed interval change from pointer or keyboard interaction."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "title": "Notes",
+          "paragraphs": [
+            "The component implements `ControlValueAccessor`, so it works with `ngModel` and Angular reactive forms.",
+            "Unlike a single-value slider, range is specifically for interval selection and exposes two coordinated thumbs that may cross visually while still producing a sorted `NumericRange` model."
+          ]
+        }
+      ]
+    }
+  ]
+}

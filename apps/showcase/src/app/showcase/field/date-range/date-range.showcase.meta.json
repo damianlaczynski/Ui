@@ -1,0 +1,260 @@
+{
+  "slug": "date-range",
+  "title": "Date Range",
+  "description": "Date Range is a field for selecting start and end dates with a shared calendar surface, hover preview, and a single combined input value.",
+  "intro": "Use `ui-date-range` when users need one continuous period instead of two loosely related dates. It fits booking, availability, campaigns, reporting windows, and travel flows where the start and end date belong to the same interaction.",
+  "importCode": "import { DateRangeComponent, type DateRange } from 'ui';",
+  "containerClass": "date-range-doc",
+  "snippets": {
+    "basicCode": "date-range-basic-demo.ts",
+    "separatorPreviewCode": "date-range-separator-preview-demo.ts",
+    "constraintsCode": "date-range-constraints-demo.ts",
+    "statesCode": "date-range-states-demo.ts",
+    "reactiveFormCode": "date-range-reactive-form-demo.ts",
+    "bookingPanelCode": "date-range-booking-panel-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic range selection",
+      "description": "The default pattern is one field that captures a start date and an end date as one coherent value rather than two separate inputs.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "separator-preview",
+      "title": "Separator and range preview",
+      "description": "A small API like the separator matters when product language differs, and hover preview makes the end-date choice easier before the range is confirmed.",
+      "codeKey": "separatorPreviewCode",
+      "componentKey": "separatorPreview"
+    },
+    {
+      "id": "constraints",
+      "title": "Min and max constraints",
+      "description": "Use a constrained window when the selectable period must stay inside a known booking, reporting, or operational range.",
+      "codeKey": "constraintsCode",
+      "componentKey": "constraints"
+    },
+    {
+      "id": "states",
+      "title": "Readonly, disabled, and required states",
+      "description": "State handling is often more important than the range picker chrome itself, so the showcase should demonstrate realistic form states.",
+      "codeKey": "statesCode",
+      "componentKey": "states"
+    },
+    {
+      "id": "reactive-form",
+      "title": "Reactive form integration",
+      "description": "A good showcase should include validation and save flow instead of only an isolated picker shell.",
+      "codeKey": "reactiveFormCode",
+      "componentKey": "reactiveForm"
+    },
+    {
+      "id": "booking-panel",
+      "title": "Booking panel composition",
+      "description": "A practical range picker usually sits inside a booking or filter panel with status context and follow-up actions around the selected period.",
+      "codeKey": "bookingPanelCode",
+      "componentKey": "bookingPanel"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Input and popup behavior",
+      "body": "`ui-date-range` behaves like one combined text field and opens a calendar dialog-style popup for choosing the start and end dates.\n\n| Element | Behavior |\n| --- | --- |\n| desktop text input | exposes `aria-haspopup=\"dialog\"` and `aria-expanded` |\n| disabled or readonly | prevents opening or changing the range |\n| clear action | removes both dates from the current value |"
+    },
+    {
+      "title": "Keyboard",
+      "body": "Keyboard handling follows the shared field and popup model.\n\n| Key | Action |\n| --- | --- |\n| `Tab` / `Shift+Tab` | moves through the field and calendar controls |\n| `Enter` / click on trigger actions | opens the range picker panel |\n| calendar button activation | selects the start date, then the end date |"
+    },
+    {
+      "title": "Labels and guidance",
+      "body": "Use a task-specific label such as booking dates, launch period, or stay dates so users understand the period context immediately. Add helper text when the range must stay inside a known window or when the start and end dates have a domain-specific meaning."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "DateRangeComponent - <code>ui-date-range</code>",
+      "lead": "Standalone range field built on the shared field system with a connected calendar overlay. It manages start and end selection as one value object and supports hover preview during selection.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["min", "InputSignal<string>", "''", "Minimum allowed date value."],
+            ["max", "InputSignal<string>", "''", "Maximum allowed date value."],
+            [
+              "separator",
+              "InputSignal<string>",
+              "' - '",
+              "Visible separator between the formatted start and end dates."
+            ],
+            [
+              "showMonthYearPicker",
+              "InputSignal<boolean>",
+              "true",
+              "Controls whether the calendar header can jump through month and year views."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "inputVariant",
+              "InputSignal<InputVariant>",
+              "'filled'",
+              "Shared field surface token inherited from `FieldComponent`."
+            ],
+            [
+              "label",
+              "InputSignal<string>",
+              "''",
+              "Visible field label inherited from `FieldComponent`."
+            ],
+            [
+              "labelPosition",
+              "InputSignal<ContentPosition>",
+              "'above'",
+              "Controls where the field label is placed relative to the control."
+            ],
+            [
+              "placeholder",
+              "InputSignal<string>",
+              "''",
+              "Inherited shared-field placeholder input."
+            ],
+            [
+              "helpText",
+              "InputSignal<string>",
+              "''",
+              "Supporting helper text rendered below the field when there is no active error."
+            ],
+            [
+              "errorText",
+              "ModelSignal<string>",
+              "''",
+              "Validation or manual error message managed by the shared field base."
+            ],
+            ["required", "InputSignal<boolean>", "false", "Marks the field as required."],
+            [
+              "disabled",
+              "ModelSignal<boolean>",
+              "false",
+              "Disables the field and its interactive affordances."
+            ],
+            [
+              "readonly",
+              "ModelSignal<boolean>",
+              "false",
+              "Keeps the value visible while preventing user changes."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Shared field density token."],
+            [
+              "name",
+              "InputSignal<string>",
+              "''",
+              "HTML form name used by the field wrapper and native control wiring."
+            ],
+            [
+              "id",
+              "ModelSignal<string | number>",
+              "auto-generated",
+              "Control id used to connect label, help text, and error messaging."
+            ],
+            [
+              "autocomplete",
+              "InputSignal<string | null>",
+              "null",
+              "Inherited autocomplete hint for native form compatibility."
+            ],
+            [
+              "showClearButton",
+              "InputSignal<boolean>",
+              "true",
+              "Inherited shared-field clear-button flag when supported by the concrete control."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "''",
+              "Overrides the accessible name when no visible label is appropriate."
+            ],
+            [
+              "ariaDescribedBy",
+              "InputSignal<string>",
+              "''",
+              "Appends extra descriptive ids to the computed `aria-describedby` value."
+            ],
+            [
+              "autoValidation",
+              "InputSignal<boolean>",
+              "true",
+              "Enables inherited automatic validation error handling from `FieldComponent`."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs and models",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "rangeChange",
+              "OutputEmitterRef<DateRange>",
+              "Emits the normalized range whenever start or end changes."
+            ],
+            ["clear()", "method", "Resets both dates in the current range."],
+            [
+              "openPanel() / closePanel()",
+              "method",
+              "Programmatically controls the range picker overlay."
+            ],
+            [
+              "DateRange",
+              "{ startDate: string | null; endDate: string | null }",
+              "Stored range object using ISO date strings."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "focus",
+              "OutputEmitterRef<FocusEvent>",
+              "Inherited focus event from `FieldComponent`."
+            ],
+            ["blur", "OutputEmitterRef<FocusEvent>", "Inherited blur event from `FieldComponent`."],
+            [
+              "keyup",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-up event from `FieldComponent`."
+            ],
+            [
+              "keydown",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-down event from `FieldComponent`."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "Use this component when the start and end date belong to one interaction. If the dates are unrelated, separate date fields are usually clearer.",
+            "The component supports provisional hover preview while the second date is still being chosen, which is especially useful for booking and travel flows."
+          ],
+          "title": "Notes"
+        }
+      ]
+    }
+  ]
+}
