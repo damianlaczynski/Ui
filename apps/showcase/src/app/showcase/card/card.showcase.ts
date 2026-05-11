@@ -13,22 +13,15 @@ import {
   MenuComponent,
   MenuItem,
   Orientation,
-  Size,
   TableOfContentComponent,
 } from 'ui';
 
 import { SectionWithDrawerComponent } from '@shared/components/section-with-drawer';
 import { ShowcaseHeaderComponent } from '@shared/components/showcase-header';
 import { CardInteractiveComponent } from './card.interactive';
-import {
-  CARD_APPEARANCES,
-  CARD_DRAWER_CONFIGS,
-  CARD_FOCUS_MODES,
-  CARD_SIZES,
-} from './card.showcase.config';
+import { CARD_APPEARANCES, CARD_DRAWER_CONFIGS, CARD_FOCUS_MODES } from './card.showcase.config';
 
 interface CardFormState {
-  size: Size;
   orientation: Orientation;
   focusMode: CardFocusMode;
   interactive: boolean;
@@ -84,7 +77,6 @@ interface CardFormState {
                 <h3 class="showcase__item__title">{{ appearance | titlecase }}</h3>
                 <ui-card
                   [appearance]="appearance"
-                  [size]="appearanceForm().size"
                   [orientation]="appearanceForm().orientation"
                   [focusMode]="appearanceForm().focusMode"
                   [interactive]="appearanceForm().interactive"
@@ -152,51 +144,6 @@ interface CardFormState {
         </app-section-with-drawer>
 
         <app-section-with-drawer
-          sectionTitle="Size"
-          sectionDescription="Size changes card spacing and corner radius."
-          [formConfig]="sizeDrawerFormConfig"
-          [formValues]="sizeFormValues()"
-          (formValuesChange)="sizeFormValues.set($event)"
-        >
-          <div class="showcase__grid showcase__grid--large">
-            @for (size of sizes; track size) {
-              <div class="showcase__item">
-                <h3 class="showcase__item__title">{{ size | titlecase }}</h3>
-                <ui-card
-                  [appearance]="sizeForm().appearance"
-                  [size]="size"
-                  [orientation]="sizeForm().orientation"
-                  [focusMode]="sizeForm().focusMode"
-                  [interactive]="sizeForm().interactive"
-                  [selectable]="sizeForm().selectable"
-                  [checkbox]="sizeForm().checkbox"
-                  [disabled]="sizeForm().disabled"
-                  ariaLabel="Automation card"
-                  (cardClick)="onCardClick('size')"
-                >
-                  <div uiCardHeader class="card-showcase__header">
-                    <div class="card-showcase__logo card-showcase__logo--alt">AUT</div>
-                    <div class="card-showcase__header-text">
-                      <h3 class="card-showcase__title">Incident runbook</h3>
-                      <p class="card-showcase__subtitle">Ops workspace</p>
-                    </div>
-                  </div>
-
-                  <p uiCardBody class="card-showcase__body">
-                    If deployment fails, collect logs, notify on-call, and open an incident thread.
-                  </p>
-
-                  <div uiCardFooter class="card-showcase__mini-footer">
-                    <span>Runs/day: 42</span>
-                    <span>Success: 97%</span>
-                  </div>
-                </ui-card>
-              </div>
-            }
-          </div>
-        </app-section-with-drawer>
-
-        <app-section-with-drawer
           sectionTitle="Orientation"
           sectionDescription="Orientation switches card anatomy between vertical and horizontal layout."
           [formConfig]="orientationDrawerFormConfig"
@@ -209,7 +156,6 @@ interface CardFormState {
                 <h3 class="showcase__item__title">{{ orientation | titlecase }}</h3>
                 <ui-card
                   [appearance]="orientationForm().appearance"
-                  [size]="orientationForm().size"
                   [orientation]="orientation"
                   [focusMode]="orientationForm().focusMode"
                   [interactive]="orientationForm().interactive"
@@ -257,7 +203,6 @@ interface CardFormState {
                 <h3 class="showcase__item__title">{{ mode }}</h3>
                 <ui-card
                   [appearance]="focusModeForm().appearance"
-                  [size]="focusModeForm().size"
                   [orientation]="focusModeForm().orientation"
                   [focusMode]="mode"
                   [interactive]="focusModeForm().interactive"
@@ -315,7 +260,6 @@ interface CardFormState {
               <h3 class="showcase__item__title">Selectable with projected checkbox</h3>
               <ui-card
                 [appearance]="statesForm().appearance"
-                [size]="statesForm().size"
                 [orientation]="statesForm().orientation"
                 [focusMode]="statesForm().focusMode"
                 [interactive]="true"
@@ -327,7 +271,6 @@ interface CardFormState {
                 <ui-checkbox
                   uiCardCheckbox
                   [label]="''"
-                  [size]="statesForm().size"
                   ariaLabel="Select design handoff"
                   [ngModel]="selectedWithProjectedCheckbox()"
                   [ngModelOptions]="{ standalone: true }"
@@ -353,7 +296,6 @@ interface CardFormState {
               <h3 class="showcase__item__title">Selected preset</h3>
               <ui-card
                 [appearance]="statesForm().appearance"
-                [size]="statesForm().size"
                 [orientation]="statesForm().orientation"
                 [focusMode]="statesForm().focusMode"
                 [interactive]="true"
@@ -374,7 +316,6 @@ interface CardFormState {
               <h3 class="showcase__item__title">Disabled preset</h3>
               <ui-card
                 [appearance]="statesForm().appearance"
-                [size]="statesForm().size"
                 [orientation]="statesForm().orientation"
                 [focusMode]="statesForm().focusMode"
                 [interactive]="true"
@@ -868,18 +809,15 @@ interface CardFormState {
 })
 export class CardShowcaseComponent {
   appearances = CARD_APPEARANCES;
-  sizes = CARD_SIZES;
   focusModes = CARD_FOCUS_MODES;
   orientations: Orientation[] = ['horizontal', 'vertical'];
 
   appearanceDrawerFormConfig = CARD_DRAWER_CONFIGS.appearance;
-  sizeDrawerFormConfig = CARD_DRAWER_CONFIGS.size;
   orientationDrawerFormConfig = CARD_DRAWER_CONFIGS.orientation;
   focusModeDrawerFormConfig = CARD_DRAWER_CONFIGS.focusMode;
   statesDrawerFormConfig = CARD_DRAWER_CONFIGS.states;
 
   appearanceFormValues = signal<Record<string, unknown>>({
-    size: 'medium',
     orientation: 'vertical',
     focusMode: 'off',
     interactive: true,
@@ -898,7 +836,6 @@ export class CardShowcaseComponent {
 
   orientationFormValues = signal<Record<string, unknown>>({
     appearance: 'filled',
-    size: 'medium',
     focusMode: 'off',
     interactive: true,
     disabled: false,
@@ -906,7 +843,6 @@ export class CardShowcaseComponent {
 
   focusModeFormValues = signal<Record<string, unknown>>({
     appearance: 'filled',
-    size: 'medium',
     orientation: 'vertical',
     interactive: true,
     disabled: false,
@@ -914,13 +850,11 @@ export class CardShowcaseComponent {
 
   statesFormValues = signal<Record<string, unknown>>({
     appearance: 'filled',
-    size: 'medium',
     orientation: 'vertical',
     focusMode: 'off',
   });
 
   appearanceForm = computed(() => this.toCardForm(this.appearanceFormValues()));
-  sizeForm = computed(() => this.toCardForm(this.sizeFormValues()));
   orientationForm = computed(() => this.toCardForm(this.orientationFormValues()));
   focusModeForm = computed(() => this.toCardForm(this.focusModeFormValues()));
   statesForm = computed(() => this.toCardForm(this.statesFormValues()));
@@ -963,7 +897,6 @@ export class CardShowcaseComponent {
   private toCardForm(v: Record<string, unknown>): CardFormState & { appearance: CardAppearance } {
     return {
       appearance: (v['appearance'] as CardAppearance) ?? 'filled',
-      size: (v['size'] as Size) ?? 'medium',
       orientation: (v['orientation'] as Orientation) ?? 'vertical',
       focusMode: (v['focusMode'] as CardFocusMode) ?? 'off',
       interactive: (v['interactive'] as boolean) ?? true,

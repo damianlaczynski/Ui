@@ -65,7 +65,6 @@ import { DrawerShowcaseComponent } from '@showcase/drawer/drawer.showcase';
 import { KbdShowcaseComponent } from '@showcase/kbd/kbd.showcase';
 import { TooltipShowcaseComponent } from '@showcase/tooltip/tooltip.showcase';
 import { RatingShowcaseComponent } from '@showcase/rating/rating.showcase';
-import { VideoShowcaseComponent } from '@showcase/video/video.showcase';
 import { GettingStartedComponent } from '../../pages/docs/getting-started/getting-started.component';
 import { InstallationComponent } from '../../pages/docs/installation/installation.component';
 import { I18nComponent } from '../../pages/docs/i18n/i18n.component';
@@ -356,10 +355,6 @@ export const dsRoutes: Routes = [
   {
     path: 'rating',
     component: RatingShowcaseComponent,
-  },
-  {
-    path: 'video',
-    component: VideoShowcaseComponent,
   },
   {
     path: '**',

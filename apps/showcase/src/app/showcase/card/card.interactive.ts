@@ -27,7 +27,6 @@ import { CARD_SHOWCASE_CONFIG } from './card.showcase.config';
       <div preview>
         <ui-card
           [appearance]="currentAppearance()"
-          [size]="currentSize()"
           [orientation]="currentOrientation()"
           [focusMode]="currentFocusMode()"
           [interactive]="currentInteractive()"

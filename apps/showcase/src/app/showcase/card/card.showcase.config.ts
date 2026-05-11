@@ -1,10 +1,6 @@
 import type { ShowcaseConfig } from '@shared/components/interactive-showcase';
-import type { CardAppearance, CardFocusMode, Size } from 'ui';
-import {
-  SIZES,
-  ORIENTATIONS,
-  SHOWCASE_GROUP_ICONS,
-} from '@shared/utils/showcase/component-options.utils';
+import type { CardAppearance, CardFocusMode } from 'ui';
+import { ORIENTATIONS, SHOWCASE_GROUP_ICONS } from '@shared/utils/showcase/component-options.utils';
 import { createDrawerFormConfigs } from '@shared/utils/showcase/drawer-form-config.utils';
 import {
   toOptions,
@@ -19,7 +15,6 @@ export const CARD_APPEARANCES: CardAppearance[] = [
   'outline',
   'subtle',
 ];
-export const CARD_SIZES: Size[] = [...SIZES];
 export const CARD_FOCUS_MODES: CardFocusMode[] = ['off', 'no-tab', 'tab-exit', 'tab-only'];
 
 const CARD_CONTROL_DEFS: SharedControlDef[] = [
@@ -30,14 +25,6 @@ const CARD_CONTROL_DEFS: SharedControlDef[] = [
     options: toOptions(CARD_APPEARANCES),
     defaultValue: 'filled',
     group: 'appearance',
-  },
-  {
-    key: 'size',
-    label: 'Size',
-    type: 'dropdown',
-    options: toOptions(CARD_SIZES),
-    defaultValue: 'medium',
-    group: 'layout',
   },
   {
     key: 'orientation',
@@ -89,7 +76,6 @@ const CARD_FORM_CONTROLS = toDrawerFormControls(CARD_CONTROL_DEFS);
 
 export const CARD_DRAWER_CONFIGS = createDrawerFormConfigs(CARD_FORM_CONTROLS, {
   appearance: { excludeKey: 'appearance' },
-  size: { excludeKey: 'size' },
   orientation: { excludeKey: 'orientation' },
   focusMode: { excludeKey: 'focusMode' },
   states: { excludeKeys: ['interactive', 'selectable', 'checkbox', 'disabled'] },
