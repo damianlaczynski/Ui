@@ -14,7 +14,6 @@ import {
   NgZone,
 } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Subscription } from 'rxjs';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { A11yModule } from '@angular/cdk/a11y';
 import { Overlay, OverlayModule } from '@angular/cdk/overlay';
@@ -83,7 +82,6 @@ export class ColorComponent extends FieldComponent implements OnDestroy {
 
   isExpanded = signal<boolean>(false);
   isMobile = signal(false);
-  private breakpointSub?: Subscription;
   currentColor = signal<ColorValue>({
     hex: '#000000',
     rgb: { r: 0, g: 0, b: 0 },
@@ -136,8 +134,15 @@ export class ColorComponent extends FieldComponent implements OnDestroy {
   constructor() {
     super();
 
-    this.breakpointSub = this.breakpointObserver.observe(MOBILE_BREAKPOINT).subscribe(result => {
-      this.isMobile.set(result.matches);
+    effect(onCleanup => {
+      if (!this.useNativeOnMobile()) {
+        this.isMobile.set(false);
+        return;
+      }
+      const sub = this.breakpointObserver.observe(MOBILE_BREAKPOINT).subscribe(result => {
+        this.isMobile.set(result.matches);
+      });
+      onCleanup(() => sub.unsubscribe());
     });
 
     effect(() => {
@@ -152,7 +157,6 @@ export class ColorComponent extends FieldComponent implements OnDestroy {
 
   override ngOnDestroy(): void {
     super.ngOnDestroy();
-    this.breakpointSub?.unsubscribe();
     this.overlayHandle?.destroy();
   }
 

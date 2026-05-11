@@ -159,9 +159,9 @@
   gap: $spacing-0_5;
   align-items: stretch;
 
-  input,
-  input.input,
-  .input {
+  input:not(.input--color-native),
+  input.input:not(.input--color-native),
+  .input:not(.input--color-native) {
     border-top-left-radius: $border-radius-400;
     border-bottom-left-radius: $border-radius-400;
     min-height: 0;
@@ -247,7 +247,6 @@
 
 // Input element
 .input {
-  flex: 1;
   border: none;
   outline: none;
   background: transparent;
@@ -255,6 +254,10 @@
   font-family: $font-family-base;
   font-weight: $font-weight-regular;
   letter-spacing: $letter-spacing-normal;
+
+  &:not(.input--color-native) {
+    flex: 1;
+  }
 
   // Placeholder styles
   &::placeholder {
@@ -293,7 +296,7 @@
   &--small {
     min-height: $spacing-6;
 
-    .input {
+    .input:not(.input--color-native) {
       font-size: $font-size-200;
       line-height: $line-height-200;
       padding: 0 $spacing-2;
@@ -308,7 +311,7 @@
   &--medium {
     min-height: $spacing-8;
 
-    .input {
+    .input:not(.input--color-native) {
       font-size: $font-size-300;
       line-height: $line-height-300;
       padding: 0 $spacing-3;
@@ -323,7 +326,7 @@
   &--large {
     min-height: $spacing-10;
 
-    .input {
+    .input:not(.input--color-native) {
       font-size: $font-size-400;
       line-height: $line-height-400;
       padding: 0 $spacing-4;
