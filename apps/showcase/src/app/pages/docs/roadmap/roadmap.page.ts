@@ -5,6 +5,7 @@ export const ROADMAP_PAGE_CONFIG: GuideDocPageConfig = {
   description:
     'Our current direction for @laczynski/ui. This roadmap reflects planned priorities, not fixed promises.',
   containerClass: 'roadmap-doc',
+  markdownAssetPath: '/docs/roadmap.md',
   sections: [
     {
       id: 'planned-milestones',

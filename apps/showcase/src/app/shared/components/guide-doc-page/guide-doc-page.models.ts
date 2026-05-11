@@ -68,5 +68,6 @@ export type GuideDocPageConfig = {
   title: string;
   description: string;
   containerClass: string;
+  markdownAssetPath?: string;
   sections: GuideDocSection[];
 };

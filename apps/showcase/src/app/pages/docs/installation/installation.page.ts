@@ -11,6 +11,7 @@ export const INSTALLATION_PAGE_CONFIG: GuideDocPageConfig = {
   description:
     'End-to-end setup for @laczynski/ui, from package install to first successful render.',
   containerClass: 'installation-doc',
+  markdownAssetPath: '/docs/installation.md',
   sections: [
     {
       id: 'prerequisites',

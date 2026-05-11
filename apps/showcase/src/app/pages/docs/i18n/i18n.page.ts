@@ -64,6 +64,7 @@ export const I18N_PAGE_CONFIG: GuideDocPageConfig = {
   description:
     'How to configure translations for `ui` with the dedicated `ui/ngx-translate` adapter and how to wire your own translation runtime.',
   containerClass: 'i18n-doc',
+  markdownAssetPath: '/docs/i18n.md',
   sections: [
     {
       id: 'setup-with-ngx-translate',

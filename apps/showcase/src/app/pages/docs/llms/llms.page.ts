@@ -5,6 +5,7 @@ export const LLMS_PAGE_CONFIG: GuideDocPageConfig = {
   description:
     'LLM-friendly documentation endpoints for this showcase. Static Markdown mirrors structured guides under `/docs/*.md`; component bundles live under `/docs/components`.',
   containerClass: 'llms-doc',
+  markdownAssetPath: '/docs/llms.md',
   sections: [
     {
       id: 'overview',

@@ -39,6 +39,7 @@ import { ShowcaseDocHeaderComponent } from '../showcase-doc-header/showcase-doc-
             [title]="config().title"
             [description]="config().description"
             [markdown]="pageMarkdown()"
+            [markdownAssetPath]="config().markdownAssetPath ?? ''"
           />
 
           @for (section of config().sections; track section.id) {

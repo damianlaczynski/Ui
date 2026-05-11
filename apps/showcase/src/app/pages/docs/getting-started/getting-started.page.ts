@@ -5,6 +5,7 @@ export const GETTING_STARTED_PAGE_CONFIG: GuideDocPageConfig = {
   description:
     'Build a production-ready @laczynski/ui flow in minutes. This guide gives you the fastest path from installation to your first shipped screen.',
   containerClass: 'getting-started-doc',
+  markdownAssetPath: '/docs/getting-started.md',
   sections: [
     {
       id: 'who-this-guide-is-for',
