@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { CardAppearance, CardComponent } from './card.component';
+import { CardAppearance, CardBorderStyle, CardComponent } from './card.component';
 
 @Component({
   standalone: true,
@@ -80,7 +80,6 @@ describe('CardComponent', () => {
       expect(cardElement.getAttribute('role')).toBe('group');
       expect(cardElement.classList.contains('card')).toBe(true);
       expect(cardElement.classList.contains('card--filled')).toBe(true);
-      expect(cardElement.classList.contains('card--medium')).toBe(true);
       expect(cardElement.classList.contains('card--vertical')).toBe(true);
     });
 
@@ -102,6 +101,17 @@ describe('CardComponent', () => {
         const cardElement = getCardElement(fixture);
         expect(cardElement.classList.contains(`card--${appearance}`)).toBe(true);
       });
+    });
+  });
+
+  describe('border styling', () => {
+    it('should apply dashed border style class', () => {
+      const borderStyle: CardBorderStyle = 'dashed';
+      fixture.componentRef.setInput('borderStyle', borderStyle);
+      fixture.detectChanges();
+
+      const cardElement = getCardElement(fixture);
+      expect(cardElement.classList.contains('card--border-dashed')).toBe(true);
     });
   });
 

@@ -17,12 +17,14 @@ import {
 
 import { FormsModule } from '@angular/forms';
 import { CheckboxComponent } from '../field/checkbox';
-import { Orientation, Size } from '../utils';
+import { Orientation } from '../utils';
 import { UiI18nService } from '../../i18n';
 
 export type CardAppearance = 'filled' | 'filled-alternative' | 'outline' | 'subtle';
 
 export type CardFocusMode = 'off' | 'no-tab' | 'tab-exit' | 'tab-only';
+
+export type CardBorderStyle = 'solid' | 'dashed' | 'none';
 
 export interface CardOnSelectData {
   selected: boolean;
@@ -70,8 +72,8 @@ export class CardComponent {
   private readonly cardRoot = viewChild<ElementRef<HTMLElement>>('cardRoot');
 
   appearance = input<CardAppearance>('filled');
-  size = input<Size>('medium');
   orientation = input<Orientation>('vertical');
+  borderStyle = input<CardBorderStyle>('solid');
 
   focusMode = input<CardFocusMode>('off');
   interactive = input<boolean>(false);
@@ -141,8 +143,8 @@ export class CardComponent {
     const classes = ['card'];
 
     classes.push(`card--${this.appearance()}`);
-    classes.push(`card--${this.size()}`);
     classes.push(`card--${this.orientation()}`);
+    classes.push(`card--border-${this.borderStyle()}`);
 
     if (this.disabled()) {
       classes.push('card--disabled');
