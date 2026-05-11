@@ -3,7 +3,11 @@
 // =============================================================================
 
 import { Injectable, signal, inject, DestroyRef } from '@angular/core';
-import { DataGridFilterConfig, DataGridFilterValue, DataGridActiveFilter } from '../models/data-grid-filter.model';
+import {
+  DataGridFilterConfig,
+  DataGridFilterValue,
+  DataGridActiveFilter,
+} from '../models/data-grid-filter.model';
 import { DataGridColumn } from '../models/data-grid-column.model';
 import { FilterFactory } from '../filters/filter-factory';
 

@@ -101,14 +101,16 @@ export class TableOfContentComponent implements OnDestroy {
   private findHeadings(container: Element): HTMLElement[] {
     const ignoreWithinSelector = this.ignoreWithinSelector().trim();
 
-    return Array.from(container.querySelectorAll<HTMLElement>(this.headingSelector())).filter(heading => {
-      if (ignoreWithinSelector && heading.closest(ignoreWithinSelector)) {
-        return false;
-      }
+    return Array.from(container.querySelectorAll<HTMLElement>(this.headingSelector())).filter(
+      heading => {
+        if (ignoreWithinSelector && heading.closest(ignoreWithinSelector)) {
+          return false;
+        }
 
-      const level = parseInt(heading.tagName.charAt(1));
-      return level >= this.minLevel() && level <= this.maxLevel();
-    });
+        const level = parseInt(heading.tagName.charAt(1));
+        return level >= this.minLevel() && level <= this.maxLevel();
+      },
+    );
   }
 
   private prepareHeadings(headings: HTMLElement[]): void {
@@ -407,5 +409,7 @@ export class TableOfContentComponent implements OnDestroy {
 
   treeNodes = computed<TreeNode[]>(() => this.items().map(item => this.convertToTreeNode(item)));
 
-  navigationAriaLabel = computed(() => this.i18n.t('tableOfContent.navAriaLabel', 'Table of contents'));
+  navigationAriaLabel = computed(() =>
+    this.i18n.t('tableOfContent.navAriaLabel', 'Table of contents'),
+  );
 }

@@ -6,7 +6,9 @@ import { DividerComponent } from 'ui';
   standalone: true,
   imports: [DividerComponent],
   template: `
-    <div style="display:flex;flex-direction:column;gap:1rem;width:100%;max-width:34rem;min-width:16rem;">
+    <div
+      style="display:flex;flex-direction:column;gap:1rem;width:100%;max-width:34rem;min-width:16rem;"
+    >
       <div style="font-size:0.875rem">Overview section</div>
       <ui-divider />
       <div style="font-size:0.875rem">Details section</div>

@@ -99,15 +99,30 @@
             ["gap", "InputSignal<number>", "8", "Spacing between revealed actions."],
             ["itemSizePx", "InputSignal<number>", "48", "Size of each revealed action button."],
             ["mask", "InputSignal<boolean>", "false", "Shows a screen mask behind the open dial."],
-            ["hideOnClickOutside", "InputSignal<boolean>", "true", "Closes the dial when users click outside."],
-            ["coordinateWithOthers", "InputSignal<boolean>", "true", "Keeps only one dial open at a time by default."],
+            [
+              "hideOnClickOutside",
+              "InputSignal<boolean>",
+              "true",
+              "Closes the dial when users click outside."
+            ],
+            [
+              "coordinateWithOthers",
+              "InputSignal<boolean>",
+              "true",
+              "Keeps only one dial open at a time by default."
+            ],
             [
               "autoCloseIdleMs",
               "InputSignal<number | null>",
               "null",
               "Closes the dial after an idle timeout when provided."
             ],
-            ["showTooltips", "InputSignal<boolean>", "false", "Shows tooltip labels for action items."],
+            [
+              "showTooltips",
+              "InputSignal<boolean>",
+              "false",
+              "Shows tooltip labels for action items."
+            ],
             [
               "triggerButtonProps / actionButtonProps",
               "InputSignal<{ variant?: Variant; appearance?: Appearance; size?: Size; shape?: Shape }>",
@@ -125,7 +140,11 @@
             ["visible", "ModelSignal<boolean>", "Two-way open state model."],
             ["click", "OutputRef<MouseEvent>", "Emitted when the trigger button is clicked."],
             ["show", "OutputRef<Event>", "Emitted when the dial opens."],
-            ["hide", "OutputRef<Event>", "Emitted when the dial closes, including timeout and outside-click cases."]
+            [
+              "hide",
+              "OutputRef<Event>",
+              "Emitted when the dial closes, including timeout and outside-click cases."
+            ]
           ]
         },
         {

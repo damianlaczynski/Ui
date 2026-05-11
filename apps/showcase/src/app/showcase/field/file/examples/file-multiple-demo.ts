@@ -30,10 +30,14 @@ import { ButtonComponent, FileComponent } from 'ui';
           Selection
         </p>
 
-        <div style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.875rem;line-height:1.4">
+        <div
+          style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.875rem;line-height:1.4"
+        >
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Files</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{ files.length }}</strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
+              files.length
+            }}</strong>
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Total size</span>

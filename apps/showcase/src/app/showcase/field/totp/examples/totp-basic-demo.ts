@@ -18,7 +18,10 @@ import { TotpComponent } from 'ui';
           </div>
         </div>
 
-        <ui-totp label="Verification code" helpText="Enter the 6-digit code from your authenticator app." />
+        <ui-totp
+          label="Verification code"
+          helpText="Enter the 6-digit code from your authenticator app."
+        />
       </div>
 
       <div

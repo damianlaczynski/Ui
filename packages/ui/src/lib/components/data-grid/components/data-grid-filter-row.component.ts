@@ -44,7 +44,9 @@ import { DataGridFilterService } from '../services/data-grid-filter.service';
           [style.width]="column.width || null"
           [style.min-width]="column.minWidth || (column.width ? null : '0')"
           [style.max-width]="column.maxWidth || null"
-          [style.flex]="column.width ? '0 0 ' + column.width : column.minWidth ? '1 1 auto' : '1 1 0'"
+          [style.flex]="
+            column.width ? '0 0 ' + column.width : column.minWidth ? '1 1 auto' : '1 1 0'
+          "
         >
           @if (filterableColumnIds().has(column.id)) {
             @if (getFilterComponent(column)) {
@@ -194,7 +196,8 @@ export class DataGridFilterRowComponent<T = any> {
       throw new Error(`Filter definition not found for column ${column.id}`);
     }
     const defaultOperator = filter?.getDefaultOperator();
-    const operator = filter?.getOperators().find(op => op.value === filterValue?.operator) ?? defaultOperator;
+    const operator =
+      filter?.getOperators().find(op => op.value === filterValue?.operator) ?? defaultOperator;
     const value = filterValue?.value ?? null;
 
     const definition = FilterFactory.getDefinition(config.type);

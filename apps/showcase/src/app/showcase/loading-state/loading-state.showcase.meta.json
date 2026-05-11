@@ -95,8 +95,18 @@
             ["size", "InputSignal<Size>", "'medium'", "Overall scale of the loading state."],
             ["spinnerSize", "InputSignal<Size>", "'medium'", "Spinner scale."],
             ["overlay", "InputSignal<boolean>", "false", "Enables overlay mode."],
-            ["blurContent", "InputSignal<boolean>", "true", "Blurs underlying content while overlaying."],
-            ["fullScreen", "InputSignal<boolean>", "false", "Expands overlay mode to the full viewport."],
+            [
+              "blurContent",
+              "InputSignal<boolean>",
+              "true",
+              "Blurs underlying content while overlaying."
+            ],
+            [
+              "fullScreen",
+              "InputSignal<boolean>",
+              "false",
+              "Expands overlay mode to the full viewport."
+            ],
             [
               "isLoading",
               "InputSignal<boolean>",

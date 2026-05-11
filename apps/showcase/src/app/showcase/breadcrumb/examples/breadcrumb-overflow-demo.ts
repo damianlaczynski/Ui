@@ -12,7 +12,8 @@ import { BreadcrumbComponent, type Breadcrumb } from 'ui';
       <div style="display:flex;flex-direction:column;gap:0.35rem">
         <div style="font-size:0.875rem;font-weight:600">Hidden middle items in overflow menu</div>
         <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          This keeps the start and current location visible while intermediate levels move into the overflow menu.
+          This keeps the start and current location visible while intermediate levels move into the
+          overflow menu.
         </div>
       </div>
       <ui-breadcrumb
@@ -26,7 +27,8 @@ import { BreadcrumbComponent, type Breadcrumb } from 'ui';
       <div style="display:flex;flex-direction:column;gap:0.35rem">
         <div style="font-size:0.875rem;font-weight:600">Resizable container with truncation</div>
         <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          Shrink the frame to force a tighter layout, then use arrow keys to move across visible items.
+          Shrink the frame to force a tighter layout, then use arrow keys to move across visible
+          items.
         </div>
       </div>
       <div

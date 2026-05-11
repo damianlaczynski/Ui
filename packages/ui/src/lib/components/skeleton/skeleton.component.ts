@@ -14,7 +14,10 @@ export class SkeletonComponent {
   private readonly i18n = inject(UiI18nService);
 
   //Translations
-  private readonly loadingAriaLabel = this.i18n.tSignal('skeleton.loadingAriaLabel', 'Loading content');
+  private readonly loadingAriaLabel = this.i18n.tSignal(
+    'skeleton.loadingAriaLabel',
+    'Loading content',
+  );
 
   //Inputs
   shape = input<Shape>('rounded');

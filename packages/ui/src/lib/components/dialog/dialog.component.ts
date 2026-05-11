@@ -1,4 +1,14 @@
-import { Component, input, output, model, HostListener, inject, computed, effect, signal } from '@angular/core';
+import {
+  Component,
+  input,
+  output,
+  model,
+  HostListener,
+  inject,
+  computed,
+  effect,
+  signal,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { A11yModule } from '@angular/cdk/a11y';
 import { QuickAction } from '../utils';
@@ -50,7 +60,11 @@ export class DialogComponent {
   closeAriaLabelComputed = computed(() => this.closeAriaLabel());
 
   hasActions = computed(() => {
-    return !!(this.primaryAction() || this.secondaryAction() || this.additionalActions().length > 0);
+    return !!(
+      this.primaryAction() ||
+      this.secondaryAction() ||
+      this.additionalActions().length > 0
+    );
   });
 
   shouldRender = computed(() => this.rendered());

@@ -83,7 +83,11 @@
     pointer-events: none;
     flex-shrink: 0;
     z-index: 1;
-    background-color: color-mix(in srgb, var(--color-neutral-stroke-rest) 70%, var(--color-neutral-foreground3-rest));
+    background-color: color-mix(
+      in srgb,
+      var(--color-neutral-stroke-rest) 70%,
+      var(--color-neutral-foreground3-rest)
+    );
     opacity: 0.85;
     border-radius: $border-radius-circular;
     transition:
@@ -136,7 +140,11 @@
       &:hover:not(.splitter__gutter--disabled)::after,
       &:focus-visible:not(.splitter__gutter--disabled)::after,
       &.splitter__gutter--dragging::after {
-        background-color: color-mix(in srgb, var(--color-brand-primary) 45%, var(--color-neutral-stroke-hover));
+        background-color: color-mix(
+          in srgb,
+          var(--color-brand-primary) 45%,
+          var(--color-neutral-stroke-hover)
+        );
       }
 
       &.splitter__gutter--disabled::after {
@@ -180,7 +188,11 @@
       &:hover:not(.splitter__gutter--disabled)::after,
       &:focus-visible:not(.splitter__gutter--disabled)::after,
       &.splitter__gutter--dragging::after {
-        background-color: color-mix(in srgb, var(--color-brand-primary) 45%, var(--color-neutral-stroke-hover));
+        background-color: color-mix(
+          in srgb,
+          var(--color-brand-primary) 45%,
+          var(--color-neutral-stroke-hover)
+        );
       }
 
       &.splitter__gutter--disabled::after {

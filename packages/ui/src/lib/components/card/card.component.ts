@@ -99,7 +99,12 @@ export class CardComponent {
   hasCheckboxSlot = computed(() => this.projectedSlots().checkbox);
 
   isSelectionEnabled = computed(
-    () => this.selectable() || this.checkbox() || this.hasCheckboxSlot() || this.selected() || this.defaultSelected(),
+    () =>
+      this.selectable() ||
+      this.checkbox() ||
+      this.hasCheckboxSlot() ||
+      this.selected() ||
+      this.defaultSelected(),
   );
 
   hasFloatingAction = computed(() => this.hasFloatingActionSlot());

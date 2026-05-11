@@ -11,12 +11,18 @@ import { BadgeComponent, NodeComponent, type Node } from 'ui';
     >
       <ui-node [node]="syncNode" appearance="subtle">
         <ng-template #content let-node>
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:0.75rem;width:100%;min-width:0">
+          <div
+            style="display:flex;align-items:center;justify-content:space-between;gap:0.75rem;width:100%;min-width:0"
+          >
             <div style="display:flex;flex-direction:column;gap:0.1875rem;min-width:0">
-              <div style="font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
+              <div
+                style="font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"
+              >
                 {{ node.label }}
               </div>
-              <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">Updated 2 minutes ago</div>
+              <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
+                Updated 2 minutes ago
+              </div>
             </div>
             <ui-badge text="Synced" variant="success" appearance="subtle" size="small" />
           </div>
@@ -25,12 +31,18 @@ import { BadgeComponent, NodeComponent, type Node } from 'ui';
 
       <ui-node [node]="reviewNode" appearance="filled" variant="warning">
         <ng-template #content let-node>
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:0.75rem;width:100%;min-width:0">
+          <div
+            style="display:flex;align-items:center;justify-content:space-between;gap:0.75rem;width:100%;min-width:0"
+          >
             <div style="display:flex;flex-direction:column;gap:0.1875rem;min-width:0">
-              <div style="font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
+              <div
+                style="font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"
+              >
                 {{ node.label }}
               </div>
-              <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">3 unresolved comments</div>
+              <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
+                3 unresolved comments
+              </div>
             </div>
             <ui-badge text="Needs review" variant="warning" appearance="filled" size="small" />
           </div>

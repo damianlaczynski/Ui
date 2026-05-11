@@ -44,7 +44,11 @@
     <!-- Actions: Clear button and stepper -->
     @if (!disabled() && !readonly()) {
       <div class="field__actions">
-        <ui-action-button [icon]="'number_symbol'" [size]="size()" [ariaLabel]="'Number input'"></ui-action-button>
+        <ui-action-button
+          [icon]="'number_symbol'"
+          [size]="size()"
+          [ariaLabel]="'Number input'"
+        ></ui-action-button>
 
         @if (value) {
           <ui-action-button

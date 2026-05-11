@@ -11,7 +11,11 @@
         @if (readOnly()) {
           <!-- Read-only mode: use div instead of button -->
           <div class="rating__star" [class.rating__star--filled]="isStarFilled(star)">
-            <ui-icon icon="star" [size]="size()" [variant]="isStarFilled(star) ? 'filled' : 'regular'" />
+            <ui-icon
+              icon="star"
+              [size]="size()"
+              [variant]="isStarFilled(star) ? 'filled' : 'regular'"
+            />
           </div>
         } @else {
           <!-- Interactive mode: use button -->
@@ -30,7 +34,11 @@
             [attr.aria-label]="getStarAriaLabel(star)"
             [attr.tabindex]="getStarTabIndex(star)"
           >
-            <ui-icon icon="star" [size]="size()" [variant]="isStarFilled(star) ? 'filled' : 'regular'" />
+            <ui-icon
+              icon="star"
+              [size]="size()"
+              [variant]="isStarFilled(star) ? 'filled' : 'regular'"
+            />
           </button>
         }
       </div>

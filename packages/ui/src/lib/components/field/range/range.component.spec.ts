@@ -115,7 +115,9 @@ describe('RangeComponent', () => {
     component.writeValue({ min: 40, max: 80 });
     fixture.detectChanges();
     const lower = fixture.nativeElement.querySelectorAll('input')[0];
-    lower.dispatchEvent(new KeyboardEvent('keydown', { key: 'Home', bubbles: true, cancelable: true }));
+    lower.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'Home', bubbles: true, cancelable: true }),
+    );
     fixture.detectChanges();
     expect(component.lowValue()).toBe(10);
     expect(component.highValue()).toBe(80);
@@ -127,7 +129,9 @@ describe('RangeComponent', () => {
     component.writeValue({ min: 40, max: 80 });
     fixture.detectChanges();
     const upper = fixture.nativeElement.querySelectorAll('input')[1];
-    upper.dispatchEvent(new KeyboardEvent('keydown', { key: 'Home', bubbles: true, cancelable: true }));
+    upper.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'Home', bubbles: true, cancelable: true }),
+    );
     fixture.detectChanges();
     expect(component.lowValue()).toBe(10);
     expect(component.highValue()).toBe(40);

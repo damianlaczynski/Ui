@@ -1,7 +1,10 @@
 <div [class]="getToolbarClasses()">
   @for (item of toolbarItems(); track item.id) {
     @if (isDivider(item)) {
-      <ui-divider [orientation]="orientation() === 'horizontal' ? 'vertical' : 'horizontal'" class="toolbar__divider" />
+      <ui-divider
+        [orientation]="orientation() === 'horizontal' ? 'vertical' : 'horizontal'"
+        class="toolbar__divider"
+      />
     } @else if (isSplitButton(item)) {
       <div [class]="getItemClasses(item)">
         <ui-menu

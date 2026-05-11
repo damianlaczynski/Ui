@@ -21,9 +21,11 @@ import { ButtonComponent, DialogComponent, QuickAction, TextComponent } from 'ui
         [secondaryAction]="cancelAction()"
       >
         <div style="display:flex;flex-direction:column;gap:1rem">
-          <div style="font-size:0.875rem;line-height:1.55;color:var(--color-neutral-foreground2-rest)">
-            Update the public workspace name. This will be visible in navigation, email notifications, and shared review
-            pages.
+          <div
+            style="font-size:0.875rem;line-height:1.55;color:var(--color-neutral-foreground2-rest)"
+          >
+            Update the public workspace name. This will be visible in navigation, email
+            notifications, and shared review pages.
           </div>
 
           <ui-text
@@ -37,7 +39,9 @@ import { ButtonComponent, DialogComponent, QuickAction, TextComponent } from 'ui
           <div
             style="padding:0.875rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:0.75rem;background:var(--color-neutral-background2-rest)"
           >
-            <div style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest);margin-bottom:0.25rem">
+            <div
+              style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest);margin-bottom:0.25rem"
+            >
               Preview
             </div>
             <div style="font-size:0.9375rem;font-weight:600">

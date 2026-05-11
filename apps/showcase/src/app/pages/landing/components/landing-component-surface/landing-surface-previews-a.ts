@@ -51,11 +51,15 @@ import {
   imports: [AccordionComponent],
   template: `
     <ui-accordion label="Usage alerts & spend caps">
-      <p style="margin:0 0 0.75rem;font-size:0.875rem;line-height:1.55;color:var(--color-neutral-foreground2-rest)">
-        Route anomaly notifications to PagerDuty and throttle duplicate emails within a five-minute window. Caps apply
-        per workspace and reset on the first of each month.
+      <p
+        style="margin:0 0 0.75rem;font-size:0.875rem;line-height:1.55;color:var(--color-neutral-foreground2-rest)"
+      >
+        Route anomaly notifications to PagerDuty and throttle duplicate emails within a five-minute
+        window. Caps apply per workspace and reset on the first of each month.
       </p>
-      <p style="margin:0;font-size:0.8125rem;line-height:1.5;color:var(--color-neutral-foreground3-rest)">
+      <p
+        style="margin:0;font-size:0.8125rem;line-height:1.5;color:var(--color-neutral-foreground3-rest)"
+      >
         Tip: pair this with webhook signing so finance teams trust every alert payload.
       </p>
     </ui-accordion>
@@ -105,7 +109,12 @@ export class LspBadgePreviewComponent {}
   standalone: true,
   imports: [BreadcrumbComponent],
   template: `
-    <ui-breadcrumb [items]="path()" appearance="subtle" [responsiveOverflow]="false" (itemClick)="navigate($event)" />
+    <ui-breadcrumb
+      [items]="path()"
+      appearance="subtle"
+      [responsiveOverflow]="false"
+      (itemClick)="navigate($event)"
+    />
   `,
 })
 export class LspBreadcrumbPreviewComponent {
@@ -134,7 +143,13 @@ export class LspBreadcrumbPreviewComponent {
       <ui-button variant="secondary" appearance="subtle" size="small">Copy link</ui-button>
       <ui-button variant="secondary" appearance="filled" size="large">Invite teammate</ui-button>
       <ui-button variant="secondary" appearance="outline" shape="square">···</ui-button>
-      <ui-button variant="primary" appearance="filled" shape="circular" icon="add" ariaLabel="Create item" />
+      <ui-button
+        variant="primary"
+        appearance="filled"
+        shape="circular"
+        icon="add"
+        ariaLabel="Create item"
+      />
       <ui-button variant="secondary" appearance="outline" [disabled]="true">Coming soon</ui-button>
     </div>
   `,
@@ -188,9 +203,12 @@ export class LspCalendarPreviewComponent {
           >Billing API · May 16 GA</strong
         >
       </div>
-      <div uiCardBody style="margin:0;font-size:0.875rem;line-height:1.55;color:var(--color-neutral-foreground2-rest)">
-        Thirty-eight automated checks passed. Two security approvals outstanding before traffic shifts to the blue
-        cluster.
+      <div
+        uiCardBody
+        style="margin:0;font-size:0.875rem;line-height:1.55;color:var(--color-neutral-foreground2-rest)"
+      >
+        Thirty-eight automated checks passed. Two security approvals outstanding before traffic
+        shifts to the blue cluster.
       </div>
       <div uiCardFooter style="display:flex;flex-wrap:wrap;gap:0.5rem">
         <ui-button variant="primary" appearance="filled">Open pipeline</ui-button>
@@ -227,7 +245,8 @@ export class LspCarouselPreviewComponent {
       id: '3',
       image: 'https://picsum.photos/seed/northridge-mobile/900/480',
       title: 'Approvals that travel with you',
-      description: 'Resolve exceptions from mobile with biometric re-auth and tamper-evident audit trails baked in.',
+      description:
+        'Resolve exceptions from mobile with biometric re-auth and tamper-evident audit trails baked in.',
     },
   ];
 }
@@ -268,7 +287,12 @@ export class LspCheckboxPreviewComponent {
   standalone: true,
   imports: [FormsModule, ColorComponent],
   template: `
-    <ui-color label="Brand accent" [(ngModel)]="primary" [ngModelOptions]="{ standalone: true }" format="hex" />
+    <ui-color
+      label="Brand accent"
+      [(ngModel)]="primary"
+      [ngModelOptions]="{ standalone: true }"
+      format="hex"
+    />
   `,
 })
 export class LspColorPreviewComponent {
@@ -304,7 +328,9 @@ export class LspCommandPalettePreviewComponent {
   selector: 'app-lsp-date',
   standalone: true,
   imports: [FormsModule, DateComponent],
-  template: ` <ui-date label="Go-live date" [(ngModel)]="goLive" [ngModelOptions]="{ standalone: true }" /> `,
+  template: `
+    <ui-date label="Go-live date" [(ngModel)]="goLive" [ngModelOptions]="{ standalone: true }" />
+  `,
 })
 export class LspDatePreviewComponent {
   protected goLive = '2026-05-12';
@@ -314,7 +340,13 @@ export class LspDatePreviewComponent {
   selector: 'app-lsp-datetime',
   standalone: true,
   imports: [FormsModule, DatetimeComponent],
-  template: ` <ui-datetime label="Incident start" [(ngModel)]="value" [ngModelOptions]="{ standalone: true }" /> `,
+  template: `
+    <ui-datetime
+      label="Incident start"
+      [(ngModel)]="value"
+      [ngModelOptions]="{ standalone: true }"
+    />
+  `,
 })
 export class LspDatetimePreviewComponent {
   protected value = '2026-05-12 14:30';
@@ -324,7 +356,9 @@ export class LspDatetimePreviewComponent {
   selector: 'app-lsp-month',
   standalone: true,
   imports: [FormsModule, MonthComponent],
-  template: ` <ui-month label="Fiscal period" [(ngModel)]="fiscal" [ngModelOptions]="{ standalone: true }" /> `,
+  template: `
+    <ui-month label="Fiscal period" [(ngModel)]="fiscal" [ngModelOptions]="{ standalone: true }" />
+  `,
 })
 export class LspMonthPreviewComponent {
   protected fiscal = '2026-05';
@@ -334,7 +368,13 @@ export class LspMonthPreviewComponent {
   selector: 'app-lsp-week',
   standalone: true,
   imports: [FormsModule, WeekComponent],
-  template: ` <ui-week label="Reporting week" [(ngModel)]="weekLive" [ngModelOptions]="{ standalone: true }" /> `,
+  template: `
+    <ui-week
+      label="Reporting week"
+      [(ngModel)]="weekLive"
+      [ngModelOptions]="{ standalone: true }"
+    />
+  `,
 })
 export class LspWeekPreviewComponent {
   protected weekLive = '2026-W19';
@@ -345,7 +385,11 @@ export class LspWeekPreviewComponent {
   standalone: true,
   imports: [FormsModule, DateRangeComponent],
   template: `
-    <ui-date-range label="Invoice export window" [(ngModel)]="value" [ngModelOptions]="{ standalone: true }" />
+    <ui-date-range
+      label="Invoice export window"
+      [(ngModel)]="value"
+      [ngModelOptions]="{ standalone: true }"
+    />
   `,
 })
 export class LspDateRangePreviewComponent {
@@ -357,7 +401,9 @@ export class LspDateRangePreviewComponent {
   standalone: true,
   imports: [ButtonComponent, DialogComponent],
   template: `
-    <ui-button type="button" variant="secondary" appearance="outline" (click)="visible.set(true)">Rename</ui-button>
+    <ui-button type="button" variant="secondary" appearance="outline" (click)="visible.set(true)"
+      >Rename</ui-button
+    >
     <ui-dialog
       title="Rename production API key?"
       bodyText="Partners embed this label in audit logs. Changing it updates documentation links within five minutes."
@@ -392,7 +438,9 @@ export class LspDialogPreviewComponent {
       <ui-divider text="Overview section" alignment="start" />
       <ui-divider text="Section break" alignment="center" />
       <ui-divider text="Follow-up section" alignment="end" />
-      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0.75rem;width:100%">
+      <div
+        style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0.75rem;width:100%"
+      >
         @for (align of verticalDemo; track align.label) {
           <div
             style="display:flex;justify-content:center;align-items:stretch;min-height:5rem;padding:0.35rem;border-radius:0.5rem;background:var(--color-neutral-background2-rest)"
@@ -442,10 +490,20 @@ export class LspDropdownPreviewComponent {
   template: `
     <div style="display:flex;flex-direction:column;gap:0.5rem;width:100%;min-width:0">
       <div style="display:flex;flex-wrap:wrap;gap:0.5rem">
-        <ui-button type="button" appearance="outline" variant="secondary" (click)="overlayVisible.set(true)">
+        <ui-button
+          type="button"
+          appearance="outline"
+          variant="secondary"
+          (click)="overlayVisible.set(true)"
+        >
           Escalations inbox
         </ui-button>
-        <ui-button type="button" appearance="outline" variant="secondary" (click)="inlineVisible.set(true)">
+        <ui-button
+          type="button"
+          appearance="outline"
+          variant="secondary"
+          (click)="inlineVisible.set(true)"
+        >
           Routing rules
         </ui-button>
       </div>
@@ -455,11 +513,12 @@ export class LspDropdownPreviewComponent {
         <div
           style="flex:1;min-width:0;padding:0.5rem 0.75rem;font-size:0.8125rem;line-height:1.5;color:var(--color-neutral-foreground2-rest)"
         >
-          <strong style="color:var(--color-neutral-foreground-rest);display:block;margin-bottom:0.35rem"
+          <strong
+            style="color:var(--color-neutral-foreground-rest);display:block;margin-bottom:0.35rem"
             >Alert routing workspace</strong
           >
-          Inline drawers excel at inspectors beside editors — tweak webhook retries without covering your timeline
-          graph.
+          Inline drawers excel at inspectors beside editors — tweak webhook retries without covering
+          your timeline graph.
         </div>
         <ui-drawer
           title="Slack routing"
@@ -469,8 +528,11 @@ export class LspDropdownPreviewComponent {
           [(visible)]="inlineVisible"
           [primaryAction]="inlineDone()"
         >
-          <p style="margin:0;font-size:0.875rem;line-height:1.55;color:var(--color-neutral-foreground-rest)">
-            Mirror Sev‑1 incidents to #payments-war-room while piping Sev‑2 items into weekly digest threads only.
+          <p
+            style="margin:0;font-size:0.875rem;line-height:1.55;color:var(--color-neutral-foreground-rest)"
+          >
+            Mirror Sev‑1 incidents to #payments-war-room while piping Sev‑2 items into weekly digest
+            threads only.
           </p>
         </ui-drawer>
       </div>
@@ -575,7 +637,8 @@ export class LspFilePreviewComponent {}
   imports: [IconComponent],
   template: `
     <div style="display:flex;flex-direction:column;gap:0.5rem;width:100%;min-width:0">
-      <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);align-self:flex-end"
+      <span
+        style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);align-self:flex-end"
         >{{ icons.length }} / {{ iconsInSprite }} icons</span
       >
       <div
@@ -745,7 +808,9 @@ export class LspIconPreviewComponent {
       <div style="display:flex;flex-wrap:wrap;gap:0.45rem;align-items:center">
         <ui-kbd text="⌘" size="small" />
         <ui-kbd text="K" size="small" appearance="filled" />
-        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">Open palette</span>
+        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
+          >Open palette</span
+        >
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:0.45rem;align-items:center">
         <ui-kbd text="Ctrl" />
@@ -753,18 +818,24 @@ export class LspIconPreviewComponent {
         <ui-kbd text="Shift" appearance="filled" />
         <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest)">+</span>
         <ui-kbd text="P" />
-        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">Command palette (Win)</span>
+        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
+          >Command palette (Win)</span
+        >
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:0.45rem;align-items:center">
         <ui-kbd text="↑" size="large" />
         <ui-kbd text="↓" size="large" appearance="filled" />
         <ui-kbd text="Enter" size="large" />
-        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">List navigation</span>
+        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
+          >List navigation</span
+        >
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:0.45rem;align-items:center">
         <ui-kbd text="Esc" appearance="filled" />
         <ui-kbd text="/" />
-        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">Close · focus search</span>
+        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
+          >Close · focus search</span
+        >
       </div>
     </div>
   `,
@@ -813,7 +884,13 @@ export class LspMessageBarPreviewComponent {}
         appearance="filled"
         variant="primary"
       />
-      <ui-menu text="Share" icon="share" [menuItems]="shareItems" appearance="subtle" variant="secondary" />
+      <ui-menu
+        text="Share"
+        icon="share"
+        [menuItems]="shareItems"
+        appearance="subtle"
+        variant="secondary"
+      />
       <ui-menu
         triggerVariant="split"
         text="Export"

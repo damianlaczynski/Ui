@@ -7,9 +7,13 @@ import { ButtonComponent, DrawerComponent, QuickAction } from 'ui';
   imports: [ButtonComponent, DrawerComponent],
   template: `
     <div style="display:flex;flex-wrap:wrap;gap:0.75rem">
-      <ui-button appearance="outline" (click)="dynamicVisible.set(true)">Dynamic backdrop</ui-button>
+      <ui-button appearance="outline" (click)="dynamicVisible.set(true)"
+        >Dynamic backdrop</ui-button
+      >
       <ui-button appearance="outline" (click)="staticVisible.set(true)">Static backdrop</ui-button>
-      <ui-button variant="danger" appearance="outline" (click)="alertVisible.set(true)"> Alert drawer </ui-button>
+      <ui-button variant="danger" appearance="outline" (click)="alertVisible.set(true)">
+        Alert drawer
+      </ui-button>
 
       <ui-drawer
         title="Standard behavior"

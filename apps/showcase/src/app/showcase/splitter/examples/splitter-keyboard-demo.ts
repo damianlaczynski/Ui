@@ -23,14 +23,19 @@ import {
       </div>
 
       <div style="font-size:0.875rem;line-height:1.5;color:var(--color-neutral-foreground2-rest)">
-        Tab to the gutter, then use arrow keys for small adjustments or <code>Home</code> / <code>End</code> to move
-        toward the panel limits.
+        Tab to the gutter, then use arrow keys for small adjustments or <code>Home</code> /
+        <code>End</code> to move toward the panel limits.
       </div>
 
       <div
         style="height:16rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;overflow:hidden;background:var(--color-neutral-background-rest)"
       >
-        <ui-splitter [panels]="panels" orientation="horizontal" [gutterSize]="8" (panelResize)="onResize($event)">
+        <ui-splitter
+          [panels]="panels"
+          orientation="horizontal"
+          [gutterSize]="8"
+          (panelResize)="onResize($event)"
+        >
           <ng-template uiSplitterPanel="details">
             <div style="height:100%;padding:1rem;background:var(--color-neutral-background-rest)">
               <div style="font-size:0.875rem;font-weight:600">Details</div>

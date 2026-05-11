@@ -11,8 +11,14 @@ import { ButtonComponent, DividerComponent, TextComponent } from 'ui';
     >
       <ui-button variant="primary" [fullWidth]="true">Continue with Microsoft</ui-button>
       <ui-divider text="OR" />
-      <ui-text label="Work email" placeholder="name@company.com" helpText="We will send a secure sign-in link." />
-      <ui-button variant="secondary" appearance="outline" [fullWidth]="true"> Send magic link </ui-button>
+      <ui-text
+        label="Work email"
+        placeholder="name@company.com"
+        helpText="We will send a secure sign-in link."
+      />
+      <ui-button variant="secondary" appearance="outline" [fullWidth]="true">
+        Send magic link
+      </ui-button>
     </div>
   `,
 })

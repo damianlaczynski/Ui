@@ -129,7 +129,9 @@ describe('DropdownComponent - Keyboard Navigation', () => {
         component.onKeyDown(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
         fixture.detectChanges();
 
-        const activeItem = items.find(item => component.getItemId(item) === component.activeDescendant());
+        const activeItem = items.find(
+          item => component.getItemId(item) === component.activeDescendant(),
+        );
         expect(activeItem?.disabled).toBeFalsy();
       }
     });

@@ -17,7 +17,9 @@ interface Metric {
     >
       <ui-state-container [state]="state">
         <ng-template #dataState let-data>
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:0.75rem">
+          <div
+            style="display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:0.75rem"
+          >
             @for (item of data ?? []; track item.id) {
               <div
                 style="padding:0.875rem 1rem;border-radius:0.875rem;background:var(--color-neutral-background2-rest)"

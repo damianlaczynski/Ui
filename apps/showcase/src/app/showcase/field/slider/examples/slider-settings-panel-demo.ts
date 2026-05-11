@@ -10,7 +10,9 @@ const dashedCardStyle =
   standalone: true,
   imports: [FormsModule, SliderComponent, SwitchComponent],
   template: `
-    <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:52rem;">
+    <div
+      style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:52rem;"
+    >
       <div
         style="flex:1 1 22rem;display:flex;min-width:16rem;max-width:34rem;flex-direction:column;gap:1rem;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >
@@ -58,10 +60,14 @@ const dashedCardStyle =
         >
           Values
         </p>
-        <div style="display:flex;flex-direction:column;gap:0.45rem;font-size:0.875rem;line-height:1.4">
+        <div
+          style="display:flex;flex-direction:column;gap:0.45rem;font-size:0.875rem;line-height:1.4"
+        >
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Threshold</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{ threshold }}%</strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)"
+              >{{ threshold }}%</strong
+            >
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Reminder</span>

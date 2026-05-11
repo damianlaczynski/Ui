@@ -23,7 +23,10 @@ const componentMap = {
 export const KBD_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   markdown: `/docs/components/${kbdMeta.slug}.md`,
   ...(Object.fromEntries(
-    Object.entries(kbdMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${kbdMeta.slug}/${file}`]),
+    Object.entries(kbdMeta.snippets).map(([key, file]) => [
+      key,
+      `/docs/components/snippets/${kbdMeta.slug}/${file}`,
+    ]),
   ) as Record<string, string>),
 };
 

@@ -57,7 +57,9 @@ const NONFIELD_EXPLICIT_GRID: Record<string, LandingSurfaceNonFieldExplicitCell>
   'command-palette': { gridColumn: '5 / 7', gridRow: 'auto' },
 };
 
-export function landingSurfaceNonFieldExplicitCell(id: string): LandingSurfaceNonFieldExplicitCell | undefined {
+export function landingSurfaceNonFieldExplicitCell(
+  id: string,
+): LandingSurfaceNonFieldExplicitCell | undefined {
   return NONFIELD_EXPLICIT_GRID[id];
 }
 
@@ -121,7 +123,9 @@ const INPUT_EXPLICIT_GRID: Record<string, LandingSurfaceInputExplicitCell> = {
 
 const INPUT_RENDER_ORDER_SET = new Set(LANDING_SURFACE_INPUT_RENDER_ORDER);
 
-export function landingSurfaceInputExplicitCell(id: string): LandingSurfaceInputExplicitCell | undefined {
+export function landingSurfaceInputExplicitCell(
+  id: string,
+): LandingSurfaceInputExplicitCell | undefined {
   return INPUT_EXPLICIT_GRID[id];
 }
 
@@ -156,7 +160,9 @@ export const LANDING_SURFACE_FIELD_IDS = new Set([
 export function landingSurfaceOrderedInputIds(ids: string[]): string[] {
   const idSet = new Set(ids.filter(id => LANDING_SURFACE_FIELD_IDS.has(id)));
   const ordered = LANDING_SURFACE_INPUT_RENDER_ORDER.filter(id => idSet.has(id));
-  const rest = [...idSet].filter(id => !INPUT_RENDER_ORDER_SET.has(id)).sort((a, b) => a.localeCompare(b));
+  const rest = [...idSet]
+    .filter(id => !INPUT_RENDER_ORDER_SET.has(id))
+    .sort((a, b) => a.localeCompare(b));
   return [...ordered, ...rest];
 }
 
@@ -273,7 +279,8 @@ function buildPlacements(): Record<string, LandingSurfaceTilePlacement> {
   return out;
 }
 
-export const LANDING_SURFACE_GRID_PLACEMENTS: Record<string, LandingSurfaceTilePlacement> = buildPlacements();
+export const LANDING_SURFACE_GRID_PLACEMENTS: Record<string, LandingSurfaceTilePlacement> =
+  buildPlacements();
 
 export function landingSurfaceOrderedIds(ids: string[]): string[] {
   const idSet = new Set(ids);

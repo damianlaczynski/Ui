@@ -7,7 +7,9 @@ import { WeekComponent } from 'ui';
   standalone: true,
   imports: [FormsModule, WeekComponent],
   template: `
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1rem;align-items:start">
+    <div
+      style="display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1rem;align-items:start"
+    >
       <ui-week
         label="Date range"
         placeholder="Select week"

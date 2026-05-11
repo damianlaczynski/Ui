@@ -92,7 +92,8 @@ export class RadioButtonGroupComponent extends FieldComponent implements Control
     const focusable = this.getFocusableIndices();
     if (focusable.length === 0) return -1;
 
-    const isSelectedEnabled = selectedIndex >= 0 && selectedIndex < items.length && !items[selectedIndex].disabled;
+    const isSelectedEnabled =
+      selectedIndex >= 0 && selectedIndex < items.length && !items[selectedIndex].disabled;
 
     const tabIndexZero = isSelectedEnabled ? selectedIndex : focusable[0];
     return index === tabIndexZero ? 0 : -1;

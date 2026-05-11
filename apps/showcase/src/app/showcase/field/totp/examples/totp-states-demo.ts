@@ -19,7 +19,11 @@ import { TotpComponent } from 'ui';
       </div>
 
       <div style="flex:1 1 16rem;min-width:15rem">
-        <ui-totp label="Disabled verification" [disabled]="true" helpText="Disabled removes interaction entirely." />
+        <ui-totp
+          label="Disabled verification"
+          [disabled]="true"
+          helpText="Disabled removes interaction entirely."
+        />
       </div>
 
       <div style="flex:1 1 16rem;min-width:15rem">

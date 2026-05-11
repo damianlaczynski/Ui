@@ -71,7 +71,8 @@ export const I18N_PAGE_CONFIG: GuideDocPageConfig = {
       blocks: [
         {
           type: 'note',
-          content: 'This is the recommended setup when your host app already uses `@ngx-translate/core`.',
+          content:
+            'This is the recommended setup when your host app already uses `@ngx-translate/core`.',
         },
         {
           type: 'code',

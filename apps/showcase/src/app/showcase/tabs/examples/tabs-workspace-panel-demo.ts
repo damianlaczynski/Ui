@@ -18,12 +18,20 @@ type WorkspaceTab = Tab & {
     >
       <div style="display:flex;flex-direction:column;gap:0.375rem">
         <div style="font-size:1rem;font-weight:600">Workspace detail panel</div>
-        <div style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest);line-height:1.45">
-          A realistic tabs surface uses the tablist as local navigation and swaps the panel content underneath it.
+        <div
+          style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest);line-height:1.45"
+        >
+          A realistic tabs surface uses the tablist as local navigation and swaps the panel content
+          underneath it.
         </div>
       </div>
 
-      <ui-tabs [tabs]="tabs" [(selectedTabId)]="selectedTabId" appearance="subtle" variant="primary" />
+      <ui-tabs
+        [tabs]="tabs"
+        [(selectedTabId)]="selectedTabId"
+        appearance="subtle"
+        variant="primary"
+      />
 
       <div
         style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;padding:0.875rem 1rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
@@ -34,7 +42,9 @@ type WorkspaceTab = Tab & {
           >
             {{ activeTab.statLabel }}
           </span>
-          <strong style="font-size:1.125rem;font-weight:600;color:var(--color-neutral-foreground-rest)">
+          <strong
+            style="font-size:1.125rem;font-weight:600;color:var(--color-neutral-foreground-rest)"
+          >
             {{ activeTab.statValue }}
           </strong>
         </div>

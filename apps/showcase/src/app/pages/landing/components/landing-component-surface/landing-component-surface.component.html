@@ -3,8 +3,8 @@
     <div>
       <h2 class="landing-surface__title">Component Surface</h2>
       <p class="landing-surface__description">
-        A broad cross-section of the system in one irregular composition, with every showcase represented directly in
-        the grid.
+        A broad cross-section of the system in one irregular composition, with every showcase
+        represented directly in the grid.
       </p>
     </div>
     <ui-button variant="secondary" appearance="subtle" size="medium" routerLink="/docs">
@@ -13,7 +13,10 @@
   </div>
 
   <div class="landing-surface__canvas">
-    <div class="landing-surface__viewport" [class.landing-surface__viewport--collapsed]="!surfaceExpanded()">
+    <div
+      class="landing-surface__viewport"
+      [class.landing-surface__viewport--collapsed]="!surfaceExpanded()"
+    >
       <div class="landing-surface__grid">
         @for (component of orderedNonFieldShowcase(); track component.id) {
           <section
@@ -23,7 +26,11 @@
           >
             <a class="landing-surface__tile-title" [routerLink]="['/docs', component.id]">
               {{ component.name }}
-              <ui-icon icon="arrow_square_up_right" size="small" class="landing-surface__title-go-icon" />
+              <ui-icon
+                icon="arrow_square_up_right"
+                size="small"
+                class="landing-surface__title-go-icon"
+              />
             </a>
             @if (getCompactPreview(component.id); as previewComponent) {
               <div
@@ -63,12 +70,21 @@
                     [style.grid-column]="inputSlotGridColumnStyle(component.id)"
                     [style.grid-row]="inputSlotGridRowStyle(component.id)"
                   >
-                    <a class="landing-surface__input-slot-title" [routerLink]="['/docs', component.id]">
+                    <a
+                      class="landing-surface__input-slot-title"
+                      [routerLink]="['/docs', component.id]"
+                    >
                       {{ component.name }}
-                      <ui-icon icon="arrow_square_up_right" size="small" class="landing-surface__title-go-icon" />
+                      <ui-icon
+                        icon="arrow_square_up_right"
+                        size="small"
+                        class="landing-surface__title-go-icon"
+                      />
                     </a>
                     @if (getCompactPreview(component.id); as previewComponent) {
-                      <div class="landing-surface__compact-demo landing-surface__compact-demo--field">
+                      <div
+                        class="landing-surface__compact-demo landing-surface__compact-demo--field"
+                      >
                         <div class="landing-surface__field-shell">
                           <ng-container *ngComponentOutlet="previewComponent" />
                         </div>

@@ -17,7 +17,8 @@ import { ButtonComponent, MenuComponent, type MenuItem } from 'ui';
       </div>
 
       <div style="font-size:0.875rem;line-height:1.5;color:var(--color-neutral-foreground2-rest)">
-        The trigger sits inside a clipped shell, but the overlay should still escape and stay usable.
+        The trigger sits inside a clipped shell, but the overlay should still escape and stay
+        usable.
       </div>
 
       <div

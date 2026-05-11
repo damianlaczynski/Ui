@@ -22,7 +22,12 @@ export interface Tab<T = any> {
   selector: 'ui-tabs',
   imports: [NodeComponent],
   template: `
-    <div [class]="tabsClasses()" role="tablist" [attr.aria-orientation]="orientation()" (keydown)="onKeyDown($event)">
+    <div
+      [class]="tabsClasses()"
+      role="tablist"
+      [attr.aria-orientation]="orientation()"
+      (keydown)="onKeyDown($event)"
+    >
       @for (tab of tabs(); track tab.id) {
         <ui-node
           [node]="getNodeWithSelection(tab)"

@@ -34,10 +34,14 @@
       >
         @if (contentTemplate()) {
           <!-- Custom content template -->
-          <ng-container *ngTemplateOutlet="contentTemplate()!; context: { $implicit: node() }"></ng-container>
+          <ng-container
+            *ngTemplateOutlet="contentTemplate()!; context: { $implicit: node() }"
+          ></ng-container>
         } @else {
           @if (beforeTemplate()) {
-            <ng-container *ngTemplateOutlet="beforeTemplate()!; context: { $implicit: node() }"></ng-container>
+            <ng-container
+              *ngTemplateOutlet="beforeTemplate()!; context: { $implicit: node() }"
+            ></ng-container>
           }
 
           <!-- Default content -->
@@ -56,7 +60,11 @@
 
           <!-- Close button -->
           @if (node().closable) {
-            <button class="node__close" (click)="onCloseClick($event)" [attr.aria-label]="getCloseAriaLabel()">
+            <button
+              class="node__close"
+              (click)="onCloseClick($event)"
+              [attr.aria-label]="getCloseAriaLabel()"
+            >
               <ui-icon icon="dismiss" size="small" />
             </button>
           }
@@ -64,13 +72,17 @@
           <!-- Quick Actions -->
           @if (showQuickActions() && quickActionsTemplate()) {
             <div class="node__quick-actions">
-              <ng-container *ngTemplateOutlet="quickActionsTemplate()!; context: { $implicit: node() }"></ng-container>
+              <ng-container
+                *ngTemplateOutlet="quickActionsTemplate()!; context: { $implicit: node() }"
+              ></ng-container>
             </div>
           }
 
           @if (afterTemplate()) {
             <div class="node__after">
-              <ng-container *ngTemplateOutlet="afterTemplate()!; context: { $implicit: node() }"></ng-container>
+              <ng-container
+                *ngTemplateOutlet="afterTemplate()!; context: { $implicit: node() }"
+              ></ng-container>
             </div>
           }
         }
@@ -91,10 +103,14 @@
       >
         @if (contentTemplate()) {
           <!-- Custom content template -->
-          <ng-container *ngTemplateOutlet="contentTemplate()!; context: { $implicit: node() }"></ng-container>
+          <ng-container
+            *ngTemplateOutlet="contentTemplate()!; context: { $implicit: node() }"
+          ></ng-container>
         } @else {
           @if (beforeTemplate()) {
-            <ng-container *ngTemplateOutlet="beforeTemplate()!; context: { $implicit: node() }"></ng-container>
+            <ng-container
+              *ngTemplateOutlet="beforeTemplate()!; context: { $implicit: node() }"
+            ></ng-container>
           }
 
           <!-- Default content -->
@@ -113,7 +129,11 @@
 
           <!-- Close button -->
           @if (node().closable) {
-            <button class="node__close" (click)="onCloseClick($event)" [attr.aria-label]="getCloseAriaLabel()">
+            <button
+              class="node__close"
+              (click)="onCloseClick($event)"
+              [attr.aria-label]="getCloseAriaLabel()"
+            >
               <ui-icon icon="dismiss" size="small" />
             </button>
           }
@@ -121,13 +141,17 @@
           <!-- Quick Actions -->
           @if (showQuickActions() && quickActionsTemplate()) {
             <div class="node__quick-actions">
-              <ng-container *ngTemplateOutlet="quickActionsTemplate()!; context: { $implicit: node() }"></ng-container>
+              <ng-container
+                *ngTemplateOutlet="quickActionsTemplate()!; context: { $implicit: node() }"
+              ></ng-container>
             </div>
           }
 
           @if (afterTemplate()) {
             <div class="node__after">
-              <ng-container *ngTemplateOutlet="afterTemplate()!; context: { $implicit: node() }"></ng-container>
+              <ng-container
+                *ngTemplateOutlet="afterTemplate()!; context: { $implicit: node() }"
+              ></ng-container>
             </div>
           }
         }

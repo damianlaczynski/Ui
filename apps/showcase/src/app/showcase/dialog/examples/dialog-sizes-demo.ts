@@ -36,13 +36,20 @@ import { ButtonComponent, DialogComponent, QuickAction } from 'ui';
       >
         <div style="display:flex;flex-direction:column;gap:1rem;min-height:18rem">
           <div style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest)">
-            Fullscreen is better for complex editing, side-by-side review, or dense operational tasks.
+            Fullscreen is better for complex editing, side-by-side review, or dense operational
+            tasks.
           </div>
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:0.75rem">
-            <div style="padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:0.75rem">
+          <div
+            style="display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:0.75rem"
+          >
+            <div
+              style="padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:0.75rem"
+            >
               Left panel content
             </div>
-            <div style="padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:0.75rem">
+            <div
+              style="padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:0.75rem"
+            >
               Right panel content
             </div>
           </div>

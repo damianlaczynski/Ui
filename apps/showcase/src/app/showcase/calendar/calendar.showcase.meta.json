@@ -82,7 +82,12 @@
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
-            ["currentMonth", "InputSignal<Date>", "required", "Visible month context used by all views."],
+            [
+              "currentMonth",
+              "InputSignal<Date>",
+              "required",
+              "Visible month context used by all views."
+            ],
             [
               "calendarView",
               "InputSignal<CalendarView>",
@@ -127,11 +132,27 @@
           "columnKinds": ["code", "type", "text"],
           "rows": [
             ["dateSelect", "OutputEmitterRef<CalendarDay>", "Emits the chosen day cell."],
-            ["monthSelect", "OutputEmitterRef<number>", "Emits the chosen month index in months view."],
+            [
+              "monthSelect",
+              "OutputEmitterRef<number>",
+              "Emits the chosen month index in months view."
+            ],
             ["yearSelect", "OutputEmitterRef<number>", "Emits the chosen year in years view."],
-            ["previousMonth / nextMonth", "OutputEmitterRef<void>", "Navigation events for days view."],
-            ["previousYear / nextYear", "OutputEmitterRef<void>", "Navigation events for months view."],
-            ["previousYearRange / nextYearRange", "OutputEmitterRef<void>", "Navigation events for years view."],
+            [
+              "previousMonth / nextMonth",
+              "OutputEmitterRef<void>",
+              "Navigation events for days view."
+            ],
+            [
+              "previousYear / nextYear",
+              "OutputEmitterRef<void>",
+              "Navigation events for months view."
+            ],
+            [
+              "previousYearRange / nextYearRange",
+              "OutputEmitterRef<void>",
+              "Navigation events for years view."
+            ],
             [
               "switchToMonthsView / switchToYearsView / switchToDaysView",
               "OutputEmitterRef<void>",

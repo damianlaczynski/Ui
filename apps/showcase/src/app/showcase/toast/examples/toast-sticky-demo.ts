@@ -9,8 +9,12 @@ import { ButtonComponent, ToastService } from 'ui';
     <div
       style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
     >
-      <ui-button type="button" variant="warning" appearance="subtle" (click)="pushSticky()"> Sticky toast </ui-button>
-      <ui-button type="button" variant="secondary" appearance="outline" (click)="clearAll()">Reset</ui-button>
+      <ui-button type="button" variant="warning" appearance="subtle" (click)="pushSticky()">
+        Sticky toast
+      </ui-button>
+      <ui-button type="button" variant="secondary" appearance="outline" (click)="clearAll()"
+        >Reset</ui-button
+      >
     </div>
   `,
 })

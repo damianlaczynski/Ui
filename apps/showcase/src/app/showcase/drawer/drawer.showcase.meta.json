@@ -88,7 +88,12 @@
               "''",
               "Visible heading used as the drawer title and `aria-labelledby` target when present."
             ],
-            ["bodyText", "InputSignal<string>", "''", "Optional plain body copy shown before projected content."],
+            [
+              "bodyText",
+              "InputSignal<string>",
+              "''",
+              "Optional plain body copy shown before projected content."
+            ],
             [
               "position",
               "InputSignal<'left' | 'right' | 'top' | 'bottom'>",
@@ -163,8 +168,16 @@
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
-            ["close", "OutputRef<void>", "Emitted after the drawer is closed by built-in close handling."],
-            ["backdropClick", "OutputRef<void>", "Emitted when a dynamic overlay backdrop click dismisses the drawer."],
+            [
+              "close",
+              "OutputRef<void>",
+              "Emitted after the drawer is closed by built-in close handling."
+            ],
+            [
+              "backdropClick",
+              "OutputRef<void>",
+              "Emitted when a dynamic overlay backdrop click dismisses the drawer."
+            ],
             [
               "openChange",
               "OutputRef<{ open: boolean }>",

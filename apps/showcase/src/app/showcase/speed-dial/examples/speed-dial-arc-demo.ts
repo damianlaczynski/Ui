@@ -12,7 +12,8 @@ import { MenuItem, SpeedDialComponent } from 'ui';
       <div style="display:grid;gap:0.25rem;">
         <h3 style="margin:0;font-size:1rem;">Semi and quarter arcs</h3>
         <p style="margin:0;font-size:0.875rem;color:var(--color-neutral-foreground2-rest);">
-          Arc layouts are useful when the trigger sits on an edge or in a corner and the actions should expand inward.
+          Arc layouts are useful when the trigger sits on an edge or in a corner and the actions
+          should expand inward.
         </p>
       </div>
       <div style="display:grid;gap:1rem;">
@@ -28,8 +29,13 @@ import { MenuItem, SpeedDialComponent } from 'ui';
             >
               Semi
             </div>
-            <div style="grid-area:bottom;display:flex;flex-direction:column;align-items:center;gap:8px;align-self:end;">
-              <span style="font-size:11px;font-weight:600;color:var(--color-neutral-foreground3-rest);">Up</span>
+            <div
+              style="grid-area:bottom;display:flex;flex-direction:column;align-items:center;gap:8px;align-self:end;"
+            >
+              <span
+                style="font-size:11px;font-weight:600;color:var(--color-neutral-foreground3-rest);"
+                >Up</span
+              >
               <ui-speed-dial
                 dialType="semi-circle"
                 direction="up"
@@ -48,7 +54,10 @@ import { MenuItem, SpeedDialComponent } from 'ui';
             <div
               style="grid-area:right;display:flex;flex-direction:column;align-items:center;gap:8px;justify-self:end;"
             >
-              <span style="font-size:11px;font-weight:600;color:var(--color-neutral-foreground3-rest);">Left</span>
+              <span
+                style="font-size:11px;font-weight:600;color:var(--color-neutral-foreground3-rest);"
+                >Left</span
+              >
               <ui-speed-dial
                 dialType="semi-circle"
                 direction="left"
@@ -77,7 +86,8 @@ import { MenuItem, SpeedDialComponent } from 'ui';
             <div
               style="position:absolute;top:32px;left:32px;display:flex;flex-direction:column;align-items:flex-start;gap:8px;"
             >
-              <span style="font-size:11px;font-weight:600;color:var(--color-neutral-foreground3-rest);"
+              <span
+                style="font-size:11px;font-weight:600;color:var(--color-neutral-foreground3-rest);"
                 >Down right</span
               >
               <ui-speed-dial
@@ -98,7 +108,10 @@ import { MenuItem, SpeedDialComponent } from 'ui';
             <div
               style="position:absolute;bottom:32px;right:32px;display:flex;flex-direction:column;align-items:flex-end;gap:8px;"
             >
-              <span style="font-size:11px;font-weight:600;color:var(--color-neutral-foreground3-rest);">Up left</span>
+              <span
+                style="font-size:11px;font-weight:600;color:var(--color-neutral-foreground3-rest);"
+                >Up left</span
+              >
               <ui-speed-dial
                 dialType="quarter-circle"
                 direction="up-left"

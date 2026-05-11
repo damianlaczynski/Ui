@@ -122,7 +122,12 @@ export class ApiService {
    * @param form Optional form to automatically apply validation errors to
    * @returns Observable with the response data
    */
-  public post<T>(endpoint: string, body: any, showErrorToast: boolean = true, form?: FormGroup): Observable<T> {
+  public post<T>(
+    endpoint: string,
+    body: any,
+    showErrorToast: boolean = true,
+    form?: FormGroup,
+  ): Observable<T> {
     return this.http.post<Result<T>>(`${this.baseUrl}${endpoint}`, body).pipe(
       map(response => this.handleResponse(response)),
       catchError(error => this.handleErrorWithForm(error, showErrorToast, form)),
@@ -156,7 +161,12 @@ export class ApiService {
    * @param form Optional form to automatically apply validation errors to
    * @returns Observable with the response data
    */
-  public put<T>(endpoint: string, body: any, showErrorToast: boolean = true, form?: FormGroup): Observable<T> {
+  public put<T>(
+    endpoint: string,
+    body: any,
+    showErrorToast: boolean = true,
+    form?: FormGroup,
+  ): Observable<T> {
     return this.http.put<Result<T>>(`${this.baseUrl}${endpoint}`, body).pipe(
       map(response => this.handleResponse(response)),
       catchError(error => this.handleErrorWithForm(error, showErrorToast, form)),
@@ -253,7 +263,9 @@ export class ApiService {
 
     // Add validation errors
     if (result.validationErrors && result.validationErrors.length > 0) {
-      const validationMessages = result.validationErrors.map(ve => `${ve.identifier}: ${ve.errorMessage}`);
+      const validationMessages = result.validationErrors.map(
+        ve => `${ve.identifier}: ${ve.errorMessage}`,
+      );
       messages.push(...validationMessages);
     }
 
@@ -301,7 +313,11 @@ export class ApiService {
    * @param form Optional form to apply validation errors to
    * @returns Observable that throws error
    */
-  private handleErrorWithForm(error: any, showErrorToast: boolean, form?: FormGroup): Observable<never> {
+  private handleErrorWithForm(
+    error: any,
+    showErrorToast: boolean,
+    form?: FormGroup,
+  ): Observable<never> {
     // If form is provided, try to extract and apply validation errors
     if (form) {
       const validationErrors = this.formValidationService.extractValidationErrors(error);

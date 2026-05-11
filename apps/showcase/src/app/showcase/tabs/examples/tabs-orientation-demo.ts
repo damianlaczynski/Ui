@@ -30,7 +30,9 @@ type VerticalTab = Tab & {
         style="padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest);min-width:0"
       >
         <div style="font-size:0.9375rem;font-weight:600">{{ selectedTab.title }}</div>
-        <div style="margin-top:0.375rem;font-size:0.875rem;line-height:1.5;color:var(--color-neutral-foreground2-rest)">
+        <div
+          style="margin-top:0.375rem;font-size:0.875rem;line-height:1.5;color:var(--color-neutral-foreground2-rest)"
+        >
           {{ selectedTab.body }}
         </div>
       </div>

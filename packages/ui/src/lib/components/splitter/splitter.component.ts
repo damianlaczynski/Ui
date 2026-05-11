@@ -183,7 +183,12 @@ export class SplitterComponent {
     const panel = this.panels()[gutterIndex];
     const nextPanel = this.panels()[gutterIndex + 1];
 
-    return panel?.resizable !== false && nextPanel?.resizable !== false && !panel?.collapsed && !nextPanel?.collapsed;
+    return (
+      panel?.resizable !== false &&
+      nextPanel?.resizable !== false &&
+      !panel?.collapsed &&
+      !nextPanel?.collapsed
+    );
   }
 
   onGutterMouseDown(event: MouseEvent, gutterIndex: number): void {
@@ -336,12 +341,22 @@ export class SplitterComponent {
       case 'ArrowLeft':
       case 'ArrowUp':
         event.preventDefault();
-        delta = isHorizontal && event.key === 'ArrowLeft' ? -10 : !isHorizontal && event.key === 'ArrowUp' ? -10 : 0;
+        delta =
+          isHorizontal && event.key === 'ArrowLeft'
+            ? -10
+            : !isHorizontal && event.key === 'ArrowUp'
+              ? -10
+              : 0;
         break;
       case 'ArrowRight':
       case 'ArrowDown':
         event.preventDefault();
-        delta = isHorizontal && event.key === 'ArrowRight' ? 10 : !isHorizontal && event.key === 'ArrowDown' ? 10 : 0;
+        delta =
+          isHorizontal && event.key === 'ArrowRight'
+            ? 10
+            : !isHorizontal && event.key === 'ArrowDown'
+              ? 10
+              : 0;
         break;
       case 'Home':
         event.preventDefault();

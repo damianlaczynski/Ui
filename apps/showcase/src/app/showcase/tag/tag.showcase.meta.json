@@ -100,10 +100,25 @@
               "false",
               "Makes the tag interactive and toggles `selected` on click or keyboard activation."
             ],
-            ["dismissible", "InputSignal<boolean>", "false", "Shows a remove button inside the tag."],
+            [
+              "dismissible",
+              "InputSignal<boolean>",
+              "false",
+              "Shows a remove button inside the tag."
+            ],
             ["selected", "ModelSignal<boolean>", "false", "Selected state for interactive chips."],
-            ["disabled", "ModelSignal<boolean>", "false", "Disables selection and dismiss interactions."],
-            ["ariaLabel", "InputSignal<string>", "''", "Optional accessible name override for the main tag element."]
+            [
+              "disabled",
+              "ModelSignal<boolean>",
+              "false",
+              "Disables selection and dismiss interactions."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "''",
+              "Optional accessible name override for the main tag element."
+            ]
           ]
         },
         {
@@ -112,7 +127,11 @@
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
-            ["tagClick", "OutputEmitterRef<MouseEvent>", "Emits when a selectable tag is activated."],
+            [
+              "tagClick",
+              "OutputEmitterRef<MouseEvent>",
+              "Emits when a selectable tag is activated."
+            ],
             ["dismiss", "OutputEmitterRef<void>", "Emits when the dismiss button is activated."]
           ]
         },

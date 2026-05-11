@@ -83,7 +83,12 @@
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
             ["state", "InputSignal<State<T>>", "-", "Current async state object."],
-            ["size", "InputSignal<Size>", "'medium'", "Shared size passed to built-in state components."],
+            [
+              "size",
+              "InputSignal<Size>",
+              "'medium'",
+              "Shared size passed to built-in state components."
+            ],
             [
               "showEmptyOnInitial",
               "InputSignal<boolean>",
@@ -110,7 +115,11 @@
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
-            ["loadingTitle / loadingDescription", "InputSignal<string>", "Text passed to the built-in loading branch."],
+            [
+              "loadingTitle / loadingDescription",
+              "InputSignal<string>",
+              "Text passed to the built-in loading branch."
+            ],
             [
               "loadingOverlay / loadingBlurContent / loadingFullScreen",
               "InputSignal<boolean>",

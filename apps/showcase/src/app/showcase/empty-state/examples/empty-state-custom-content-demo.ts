@@ -6,10 +6,16 @@ import { ButtonComponent, CardComponent, EmptyStateComponent } from 'ui';
   standalone: true,
   imports: [ButtonComponent, CardComponent, EmptyStateComponent],
   template: `
-    <ui-card appearance="filled" style="width:100%;max-width:32rem;" ariaLabel="Empty state with custom content">
+    <ui-card
+      appearance="filled"
+      style="width:100%;max-width:32rem;"
+      ariaLabel="Empty state with custom content"
+    >
       <ui-empty-state title="Connect a source" icon="plug_connected">
         <ng-template #content>
-          <div style="display:flex;flex-direction:column;gap:0.875rem;align-items:center;text-align:center">
+          <div
+            style="display:flex;flex-direction:column;gap:0.875rem;align-items:center;text-align:center"
+          >
             <p style="margin:0;max-width:24rem;color:var(--color-neutral-foreground2-rest)">
               Choose a data source to start syncing records into this workspace.
             </p>

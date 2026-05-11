@@ -8,7 +8,9 @@ import { ButtonComponent, CardComponent, EmptyStateComponent, TextComponent } fr
   template: `
     <ui-card style="width:100%;max-width:60rem;" ariaLabel="Project list empty state card">
       <div uiCardBody style="display:grid;gap:1rem;">
-        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0.75rem">
+        <div
+          style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0.75rem"
+        >
           <ui-text placeholder="Search projects..." style="width:16rem" />
           <ui-button variant="secondary" appearance="outline">Filters</ui-button>
         </div>

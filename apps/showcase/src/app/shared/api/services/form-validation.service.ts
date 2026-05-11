@@ -33,7 +33,9 @@ export class FormValidationService {
 
       // Get the form control name (either from mapping or use normalized identifier)
       const controlName =
-        fieldMapping?.[validationError.identifier] || fieldMapping?.[normalizedIdentifier] || normalizedIdentifier;
+        fieldMapping?.[validationError.identifier] ||
+        fieldMapping?.[normalizedIdentifier] ||
+        normalizedIdentifier;
 
       // Try to find the control (supports nested paths like 'address.street')
       const control = this.getControlByPath(form, controlName);

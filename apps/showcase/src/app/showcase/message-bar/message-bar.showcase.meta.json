@@ -125,7 +125,12 @@
               "Spacing and typography density for compact rows versus more prominent panel notices."
             ],
             ["showIcon", "InputSignal<boolean>", "true", "Shows or hides the leading status icon."],
-            ["dismissible", "InputSignal<boolean>", "true", "Adds the dismiss control when users may hide the notice."],
+            [
+              "dismissible",
+              "InputSignal<boolean>",
+              "true",
+              "Adds the dismiss control when users may hide the notice."
+            ],
             [
               "multiline",
               "InputSignal<boolean>",
@@ -140,7 +145,11 @@
           "columns": ["Name", "Type", "Description"],
           "columnKinds": ["code", "type", "text"],
           "rows": [
-            ["dismiss", "OutputRef<void>", "Emitted when the built-in dismiss control is activated."],
+            [
+              "dismiss",
+              "OutputRef<void>",
+              "Emitted when the built-in dismiss control is activated."
+            ],
             [
               "actionSelect",
               "OutputRef<QuickAction>",

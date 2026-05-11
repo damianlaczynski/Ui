@@ -49,14 +49,17 @@ const NAVIGATION_ITEMS: CommandPaletteItem[] = [
       style="display:flex;flex-direction:column;gap:1rem;width:100%;max-width:40rem;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
     >
       <div style="font-size:0.875rem;line-height:1.5;color:var(--color-neutral-foreground2-rest)">
-        Good empty results should explain what happened without turning into another generic empty state screen.
+        Good empty results should explain what happened without turning into another generic empty
+        state screen.
       </div>
 
       <div
         style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background2-rest)"
       >
         <ui-button variant="primary" (click)="visible.set(true)">Open palette</ui-button>
-        <ui-button variant="secondary" appearance="outline" (click)="visible.set(false)">Close</ui-button>
+        <ui-button variant="secondary" appearance="outline" (click)="visible.set(false)"
+          >Close</ui-button
+        >
       </div>
 
       <ui-command-palette

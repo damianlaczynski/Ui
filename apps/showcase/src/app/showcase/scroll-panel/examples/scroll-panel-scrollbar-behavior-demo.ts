@@ -14,7 +14,11 @@ import { ScrollPanelComponent } from 'ui';
           style="display:flex;flex-direction:column;gap:0.75rem;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
         >
           <div style="font-size:0.875rem;font-weight:600">{{ behavior }}</div>
-          <ui-scroll-panel [scrollbarBehavior]="behavior" maxHeight="14rem" ariaLabel="Scrollbar behavior demo">
+          <ui-scroll-panel
+            [scrollbarBehavior]="behavior"
+            maxHeight="14rem"
+            ariaLabel="Scrollbar behavior demo"
+          >
             <div style="display:flex;flex-direction:column;gap:0.625rem">
               @for (item of items; track item.id) {
                 <div

@@ -7,7 +7,10 @@ import { ButtonComponent, SwitchComponent } from 'ui';
   standalone: true,
   imports: [FormsModule, ButtonComponent, SwitchComponent],
   template: `
-    <form style="display:flex;flex-direction:column;gap:1rem;width:100%;max-width:32rem" (ngSubmit)="submit()">
+    <form
+      style="display:flex;flex-direction:column;gap:1rem;width:100%;max-width:32rem"
+      (ngSubmit)="submit()"
+    >
       <ui-switch
         label="Allow production deploy"
         helpText="This enables direct deployment from the release checklist."

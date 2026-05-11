@@ -6,11 +6,15 @@ import { TreeComponent, type TreeNode } from 'ui';
   standalone: true,
   imports: [TreeComponent],
   template: `
-    <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:48rem">
+    <div
+      style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:48rem"
+    >
       <div
         style="flex:1 1 18rem;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >
-        <p style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)">
+        <p
+          style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)"
+        >
           File browser style
         </p>
         <ui-tree
@@ -24,7 +28,9 @@ import { TreeComponent, type TreeNode } from 'ui';
       <div
         style="flex:1 1 18rem;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >
-        <p style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)">
+        <p
+          style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)"
+        >
           Select on click navigation
         </p>
         <ui-tree

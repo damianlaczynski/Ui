@@ -2,7 +2,11 @@
   <!-- Label Above -->
   @if (label() && labelPosition() === 'above') {
     <div class="radio-label-above">
-      <span class="radio-label" [class.radio-label--disabled]="disabled()" [class.radio-label--required]="required()">
+      <span
+        class="radio-label"
+        [class.radio-label--disabled]="disabled()"
+        [class.radio-label--required]="required()"
+      >
         {{ label() }}
       </span>
     </div>
@@ -57,7 +61,11 @@
   <!-- Label Below -->
   @if (label() && labelPosition() === 'below') {
     <div class="radio-label-below">
-      <span class="radio-label" [class.radio-label--disabled]="disabled()" [class.radio-label--required]="required()">
+      <span
+        class="radio-label"
+        [class.radio-label--disabled]="disabled()"
+        [class.radio-label--required]="required()"
+      >
         {{ label() }}
       </span>
     </div>

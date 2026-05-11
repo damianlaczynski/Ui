@@ -24,7 +24,9 @@
             </div>
           } @else if (slideTemplate()) {
             <div class="carousel__custom-content">
-              <ng-container *ngTemplateOutlet="slideTemplate()!; context: { $implicit: item, index: $index }" />
+              <ng-container
+                *ngTemplateOutlet="slideTemplate()!; context: { $implicit: item, index: $index }"
+              />
             </div>
           } @else {
             <div class="carousel__custom-content">
@@ -45,7 +47,9 @@
   </div>
 
   <!-- Navigation (Controls + Indicators) -->
-  @if ((showControls() && (hasPrevious() || hasNext())) || (showIndicators() && items().length > 1)) {
+  @if (
+    (showControls() && (hasPrevious() || hasNext())) || (showIndicators() && items().length > 1)
+  ) {
     <div class="carousel__navigation">
       <!-- Previous Button -->
       @if (showControls() && hasPrevious()) {

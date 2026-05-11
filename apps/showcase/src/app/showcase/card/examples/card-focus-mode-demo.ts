@@ -8,9 +8,12 @@ import { ButtonComponent, CardComponent } from 'ui';
   template: `
     <div style="display:grid;gap:1rem;width:100%;">
       <ui-card appearance="outline" borderStyle="dashed" ariaLabel="Focus mode helper">
-        <div uiCardBody style="font-size:0.8125rem;line-height:1.5;color:var(--color-neutral-foreground2-rest);">
-          Focus the cards below with Tab. On no-tab and tab-exit, press Enter on the card root to move into the inner
-          actions.
+        <div
+          uiCardBody
+          style="font-size:0.8125rem;line-height:1.5;color:var(--color-neutral-foreground2-rest);"
+        >
+          Focus the cards below with Tab. On no-tab and tab-exit, press Enter on the card root to
+          move into the inner actions.
         </div>
       </ui-card>
 
@@ -28,7 +31,11 @@ import { ButtonComponent, CardComponent } from 'ui';
           </div>
         </ui-card>
 
-        <ui-card [interactive]="true" focusMode="tab-only" ariaLabel="Card with focus mode tab only">
+        <ui-card
+          [interactive]="true"
+          focusMode="tab-only"
+          ariaLabel="Card with focus mode tab only"
+        >
           <div uiCardHeader style="display:grid;gap:0.25rem;">
             <strong style="font-size:0.9375rem;">focusMode="tab-only"</strong>
             <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);"
@@ -54,7 +61,11 @@ import { ButtonComponent, CardComponent } from 'ui';
           </div>
         </ui-card>
 
-        <ui-card [interactive]="true" focusMode="tab-exit" ariaLabel="Card with focus mode tab exit">
+        <ui-card
+          [interactive]="true"
+          focusMode="tab-exit"
+          ariaLabel="Card with focus mode tab exit"
+        >
           <div uiCardHeader style="display:grid;gap:0.25rem;">
             <strong style="font-size:0.9375rem;">focusMode="tab-exit"</strong>
             <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);"

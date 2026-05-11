@@ -9,11 +9,14 @@ import { ButtonComponent, MenuComponent, SearchComponent, type MenuItem } from '
     <div
       style="display:flex;flex-direction:column;gap:1rem;width:100%;max-width:56rem;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
     >
-      <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:1rem">
+      <div
+        style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:1rem"
+      >
         <div style="display:flex;flex-direction:column;gap:0.25rem">
           <div style="font-size:1rem;font-weight:600">Q3 launch workspace</div>
           <div style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest)">
-            Menus often live beside search, primary actions, and compact overflow actions in one command header.
+            Menus often live beside search, primary actions, and compact overflow actions in one
+            command header.
           </div>
         </div>
 

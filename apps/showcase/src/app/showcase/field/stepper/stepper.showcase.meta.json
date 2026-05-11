@@ -70,9 +70,24 @@
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
-            ["steps", "InputSignal<Step[]>", "(required)", "Step definitions including labels and state flags."],
-            ["activeStepIndex", "InputSignal<number>", "0", "Syncs the focused step when within range."],
-            ["orientation", "InputSignal<StepOrientation>", "'horizontal'", "`horizontal` or `vertical`."],
+            [
+              "steps",
+              "InputSignal<Step[]>",
+              "(required)",
+              "Step definitions including labels and state flags."
+            ],
+            [
+              "activeStepIndex",
+              "InputSignal<number>",
+              "0",
+              "Syncs the focused step when within range."
+            ],
+            [
+              "orientation",
+              "InputSignal<StepOrientation>",
+              "'horizontal'",
+              "`horizontal` or `vertical`."
+            ],
             [
               "indicatorType",
               "InputSignal<StepIndicatorType>",
@@ -80,9 +95,19 @@
               "`numeric` checkmarks when complete, or `icon` placeholder markup."
             ],
             ["size", "InputSignal<Size>", "'medium'", "Indicator and label density."],
-            ["linear", "InputSignal<boolean>", "false", "Block forward navigation until prior steps are `completed`."],
+            [
+              "linear",
+              "InputSignal<boolean>",
+              "false",
+              "Block forward navigation until prior steps are `completed`."
+            ],
             ["showLabels", "InputSignal<boolean>", "true", "Toggle label column."],
-            ["showDescriptions", "InputSignal<boolean>", "false", "Renders `step.description` when truthy."],
+            [
+              "showDescriptions",
+              "InputSignal<boolean>",
+              "false",
+              "Renders `step.description` when truthy."
+            ],
             ["clickable", "InputSignal<boolean>", "true", "Disables pointer navigation when false."]
           ]
         },
@@ -112,10 +137,18 @@
           "rows": [
             ["id", "string | number", "Stable key for `track`."],
             ["label", "string", "Primary title."],
-            ["description", "string | undefined", "Optional subtitle when `showDescriptions` is on."],
+            [
+              "description",
+              "string | undefined",
+              "Optional subtitle when `showDescriptions` is on."
+            ],
             ["icon", "string | undefined", "Raw indicator slot when `indicatorType` is `icon`."],
             ["disabled", "boolean | undefined", "Non-interactive step."],
-            ["completed", "boolean | undefined", "Finished state; drives checkmark and linear rules."],
+            [
+              "completed",
+              "boolean | undefined",
+              "Finished state; drives checkmark and linear rules."
+            ],
             ["error", "boolean | undefined", "Danger styling."],
             ["warning", "boolean | undefined", "Warning styling."]
           ]

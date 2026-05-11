@@ -4,7 +4,13 @@ import { StateContainerComponent } from './state-container.component';
 import { LoadingStateComponent } from '../loading-state/loading-state.component';
 import { ErrorStateComponent } from '../error-state/error-state.component';
 import { EmptyStateComponent } from '../empty-state/empty-state.component';
-import { State, initialState, loadingState, loadedState, errorState } from '../../state/models/state.model';
+import {
+  State,
+  initialState,
+  loadingState,
+  loadedState,
+  errorState,
+} from '../../state/models/state.model';
 import { QuickAction, Size } from '../utils';
 import { IconName } from '../icon';
 
@@ -14,7 +20,12 @@ describe('StateContainerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [StateContainerComponent, LoadingStateComponent, ErrorStateComponent, EmptyStateComponent],
+      imports: [
+        StateContainerComponent,
+        LoadingStateComponent,
+        ErrorStateComponent,
+        EmptyStateComponent,
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(StateContainerComponent);

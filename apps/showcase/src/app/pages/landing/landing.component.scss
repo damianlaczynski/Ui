@@ -385,7 +385,8 @@
   gap: $spacing-3;
   padding: $spacing-6;
   background: var(--color-neutral-background-rest);
-  border: 1px solid color-mix(in srgb, var(--color-brand-primary) 14%, var(--color-neutral-stroke-rest));
+  border: 1px solid
+    color-mix(in srgb, var(--color-brand-primary) 14%, var(--color-neutral-stroke-rest));
   border-radius: $border-radius-800;
   cursor: pointer;
   box-shadow:
@@ -399,8 +400,16 @@
 
   &:hover {
     transform: translateY(-3px);
-    border-color: color-mix(in srgb, var(--color-brand-primary) 44%, var(--color-neutral-stroke-rest));
-    background: color-mix(in srgb, var(--color-brand-primary) 3%, var(--color-neutral-background-rest));
+    border-color: color-mix(
+      in srgb,
+      var(--color-brand-primary) 44%,
+      var(--color-neutral-stroke-rest)
+    );
+    background: color-mix(
+      in srgb,
+      var(--color-brand-primary) 3%,
+      var(--color-neutral-background-rest)
+    );
     box-shadow:
       0 10px 24px color-mix(in srgb, #000 9%, transparent),
       0 18px 40px color-mix(in srgb, var(--color-brand-primary) 8%, transparent);
@@ -456,7 +465,11 @@
 // CTA Section
 .landing__cta {
   padding: clamp(64px, 12vw, 96px) $spacing-6;
-  background: linear-gradient(135deg, var(--color-brand-primary) 0%, var(--color-brand-primary-pressed) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-brand-primary) 0%,
+    var(--color-brand-primary-pressed) 100%
+  );
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -469,7 +482,11 @@
     transform: translate(-50%, -50%);
     width: 800px;
     height: 800px;
-    background: radial-gradient(circle, color-mix(in srgb, #ffffff 8%, transparent), transparent 70%);
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, #ffffff 8%, transparent),
+      transparent 70%
+    );
     pointer-events: none;
   }
 }

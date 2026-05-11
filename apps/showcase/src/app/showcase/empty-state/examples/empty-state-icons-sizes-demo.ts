@@ -10,7 +10,9 @@ import { CardComponent, EmptyStateComponent } from 'ui';
       style="display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:1rem;width:100%;max-width:54rem"
     >
       <ui-card style="height:100%;" ariaLabel="Small empty state card">
-        <p style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)">
+        <p
+          style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)"
+        >
           Small
         </p>
         <ui-empty-state
@@ -22,7 +24,9 @@ import { CardComponent, EmptyStateComponent } from 'ui';
       </ui-card>
 
       <ui-card style="height:100%;" ariaLabel="Medium empty state card">
-        <p style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)">
+        <p
+          style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)"
+        >
           Medium
         </p>
         <ui-empty-state
@@ -34,7 +38,9 @@ import { CardComponent, EmptyStateComponent } from 'ui';
       </ui-card>
 
       <ui-card style="height:100%;" ariaLabel="Large empty state card">
-        <p style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)">
+        <p
+          style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)"
+        >
           Large
         </p>
         <ui-empty-state

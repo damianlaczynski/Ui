@@ -11,7 +11,12 @@ import { TelComponent } from 'ui';
         style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >
         <div style="flex:1 1 15rem;min-width:14rem">
-          <ui-tel label="Compact extension" size="small" inputVariant="filled-lighter" placeholder="555-0109" />
+          <ui-tel
+            label="Compact extension"
+            size="small"
+            inputVariant="filled-lighter"
+            placeholder="555-0109"
+          />
         </div>
 
         <div style="flex:1 1 15rem;min-width:14rem">

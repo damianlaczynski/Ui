@@ -161,7 +161,10 @@ export class FileComponent extends FieldComponent implements ControlValueAccesso
 
   // Get file metadata for display
   getFileMeta(fileInfo: FileInfo): string {
-    return this.formatFileSize(fileInfo.size) + (fileInfo.type !== 'unknown' ? ' | ' + fileInfo.type : '');
+    return (
+      this.formatFileSize(fileInfo.size) +
+      (fileInfo.type !== 'unknown' ? ' | ' + fileInfo.type : '')
+    );
   }
   getSingleFileHint(): string {
     return this.singleFileHintLabel();
@@ -272,7 +275,9 @@ export class FileComponent extends FieldComponent implements ControlValueAccesso
             return file.name.toLowerCase().endsWith(acceptType.toLowerCase());
           } else {
             // MIME type match
-            const regex = new RegExp('^' + acceptType.replace(/\*/g, '.*').replace(/\./g, '\\.') + '$');
+            const regex = new RegExp(
+              '^' + acceptType.replace(/\*/g, '.*').replace(/\./g, '\\.') + '$',
+            );
             return regex.test(file.type);
           }
         });
@@ -361,7 +366,13 @@ export class FileComponent extends FieldComponent implements ControlValueAccesso
   formatFileSize(bytes: number): string {
     if (bytes === 0) return `0 ${this.bytesLabel()}`;
     const k = 1024;
-    const sizes = [this.bytesLabel(), this.kbLabel(), this.mbLabel(), this.gbLabel(), this.tbLabel()];
+    const sizes = [
+      this.bytesLabel(),
+      this.kbLabel(),
+      this.mbLabel(),
+      this.gbLabel(),
+      this.tbLabel(),
+    ];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i];
   }

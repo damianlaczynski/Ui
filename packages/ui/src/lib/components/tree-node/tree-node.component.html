@@ -56,7 +56,9 @@
           <div class="tree-node__content-main">
             @if (contentTemplate(); as template) {
               <!-- Custom content template (replaces icon and label) -->
-              <ng-container *ngTemplateOutlet="template; context: { $implicit: node }"></ng-container>
+              <ng-container
+                *ngTemplateOutlet="template; context: { $implicit: node }"
+              ></ng-container>
             } @else {
               <!-- Default icon and label -->
               @if (node.icon) {
@@ -77,7 +79,9 @@
           <div class="tree-node__content-end">
             @if (showQuickActions() && quickActionsTemplate()) {
               <div class="node__quick-actions">
-                <ng-container *ngTemplateOutlet="quickActionsTemplate()!; context: { $implicit: node }"></ng-container>
+                <ng-container
+                  *ngTemplateOutlet="quickActionsTemplate()!; context: { $implicit: node }"
+                ></ng-container>
               </div>
             }
             @if (shouldShowChevron() && chevronPosition() === 'after') {
@@ -119,13 +123,21 @@
               class="node__drop-indicator node__drop-indicator--before"
               [class.node__drop-indicator--active]="shouldShowDropIndicator(child.id, 'before')"
               (dragenter)="
-                onBetweenElementsDragOver($event, child, 'before'); $event.preventDefault(); $event.stopPropagation()
+                onBetweenElementsDragOver($event, child, 'before');
+                $event.preventDefault();
+                $event.stopPropagation()
               "
               (dragover)="
-                onBetweenElementsDragOver($event, child, 'before'); $event.preventDefault(); $event.stopPropagation()
+                onBetweenElementsDragOver($event, child, 'before');
+                $event.preventDefault();
+                $event.stopPropagation()
               "
               (dragleave)="onBetweenElementsDragLeave($event); $event.stopPropagation()"
-              (drop)="onBetweenElementsDrop($event, child, 'before'); $event.preventDefault(); $event.stopPropagation()"
+              (drop)="
+                onBetweenElementsDrop($event, child, 'before');
+                $event.preventDefault();
+                $event.stopPropagation()
+              "
             ></div>
           }
 
@@ -163,13 +175,21 @@
               class="node__drop-indicator node__drop-indicator--after"
               [class.node__drop-indicator--active]="shouldShowDropIndicator(child.id, 'after')"
               (dragenter)="
-                onBetweenElementsDragOver($event, child, 'after'); $event.preventDefault(); $event.stopPropagation()
+                onBetweenElementsDragOver($event, child, 'after');
+                $event.preventDefault();
+                $event.stopPropagation()
               "
               (dragover)="
-                onBetweenElementsDragOver($event, child, 'after'); $event.preventDefault(); $event.stopPropagation()
+                onBetweenElementsDragOver($event, child, 'after');
+                $event.preventDefault();
+                $event.stopPropagation()
               "
               (dragleave)="onBetweenElementsDragLeave($event); $event.stopPropagation()"
-              (drop)="onBetweenElementsDrop($event, child, 'after'); $event.preventDefault(); $event.stopPropagation()"
+              (drop)="
+                onBetweenElementsDrop($event, child, 'after');
+                $event.preventDefault();
+                $event.stopPropagation()
+              "
             ></div>
           }
         }

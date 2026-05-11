@@ -7,7 +7,9 @@ import { ButtonComponent } from 'ui';
   imports: [ButtonComponent],
   template: `
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.75rem">
-      <ui-button variant="primary" icon="save" (click)="save()" [loading]="loading()">Save changes</ui-button>
+      <ui-button variant="primary" icon="save" (click)="save()" [loading]="loading()"
+        >Save changes</ui-button
+      >
       <ui-button variant="secondary" [loading]="true">Saving...</ui-button>
       <ui-button variant="secondary" [disabled]="true">Disabled</ui-button>
     </div>

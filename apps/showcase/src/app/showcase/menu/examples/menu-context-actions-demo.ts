@@ -24,7 +24,9 @@ import { ButtonComponent, MenuComponent, type MenuItem } from 'ui';
             style="display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0.75rem 0.875rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
           >
             <div style="display:flex;flex-direction:column;gap:0.1875rem;min-width:0">
-              <div style="font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
+              <div
+                style="font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"
+              >
                 {{ item.label }}
               </div>
               <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">

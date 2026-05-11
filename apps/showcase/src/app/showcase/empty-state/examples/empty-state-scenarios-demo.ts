@@ -10,7 +10,9 @@ import { CardComponent, EmptyStateComponent } from 'ui';
       style="display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem;width:100%;max-width:56rem"
     >
       <ui-card style="height:100%;" ariaLabel="No results empty state">
-        <p style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)">
+        <p
+          style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)"
+        >
           No results
         </p>
         <ui-empty-state
@@ -21,7 +23,9 @@ import { CardComponent, EmptyStateComponent } from 'ui';
       </ui-card>
 
       <ui-card style="height:100%;" ariaLabel="First run empty state">
-        <p style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)">
+        <p
+          style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)"
+        >
           First run
         </p>
         <ui-empty-state
@@ -32,7 +36,9 @@ import { CardComponent, EmptyStateComponent } from 'ui';
       </ui-card>
 
       <ui-card style="height:100%;" ariaLabel="No access empty state">
-        <p style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)">
+        <p
+          style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)"
+        >
           No access
         </p>
         <ui-empty-state

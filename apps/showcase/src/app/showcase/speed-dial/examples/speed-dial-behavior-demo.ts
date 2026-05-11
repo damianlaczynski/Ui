@@ -21,7 +21,9 @@ import { MenuItem, SpeedDialComponent } from 'ui';
         <div
           style="min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:8px;"
         >
-          <span style="font-size:11px;font-weight:600;color:var(--color-neutral-foreground3-rest);">Idle 5s</span>
+          <span style="font-size:11px;font-weight:600;color:var(--color-neutral-foreground3-rest);"
+            >Idle 5s</span
+          >
           <ui-speed-dial
             dialType="linear"
             direction="up"
@@ -37,7 +39,9 @@ import { MenuItem, SpeedDialComponent } from 'ui';
         <div
           style="min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:8px;"
         >
-          <span style="font-size:11px;font-weight:600;color:var(--color-neutral-foreground3-rest);">Mask</span>
+          <span style="font-size:11px;font-weight:600;color:var(--color-neutral-foreground3-rest);"
+            >Mask</span
+          >
           <ui-speed-dial
             dialType="linear"
             direction="up"
@@ -52,7 +56,9 @@ import { MenuItem, SpeedDialComponent } from 'ui';
         <div
           style="min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:8px;"
         >
-          <span style="font-size:11px;font-weight:600;color:var(--color-neutral-foreground3-rest);">Tooltips</span>
+          <span style="font-size:11px;font-weight:600;color:var(--color-neutral-foreground3-rest);"
+            >Tooltips</span
+          >
           <ui-speed-dial
             dialType="linear"
             direction="up"

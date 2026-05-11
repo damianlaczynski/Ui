@@ -12,9 +12,11 @@ import { ButtonComponent, TextareaComponent } from 'ui';
     >
       <div style="display:flex;flex-direction:column;gap:0.375rem">
         <div style="font-size:1rem;font-weight:600">Review feedback panel</div>
-        <div style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest);line-height:1.45">
-          A realistic textarea surface usually combines guidance, enough writing space, and the next action in one
-          focused card.
+        <div
+          style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest);line-height:1.45"
+        >
+          A realistic textarea surface usually combines guidance, enough writing space, and the next
+          action in one focused card.
         </div>
       </div>
 

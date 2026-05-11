@@ -13,7 +13,8 @@ import { NumericRange, RangeComponent, CheckboxComponent, ButtonComponent } from
       <div style="display:grid;gap:0.25rem;">
         <h3 style="margin:0;font-size:1rem;">Analytics filters</h3>
         <p style="margin:0;color:var(--color-neutral-foreground2-rest);font-size:0.875rem;">
-          Combine a numeric band with adjacent settings so the range feels like part of a real filter surface.
+          Combine a numeric band with adjacent settings so the range feels like part of a real
+          filter surface.
         </p>
       </div>
 
@@ -30,8 +31,16 @@ import { NumericRange, RangeComponent, CheckboxComponent, ButtonComponent } from
       />
 
       <div style="display:flex;flex-wrap:wrap;gap:1rem;">
-        <ui-checkbox label="Only active accounts" [(ngModel)]="onlyActive" [ngModelOptions]="{ standalone: true }" />
-        <ui-checkbox label="Include trial users" [(ngModel)]="includeTrials" [ngModelOptions]="{ standalone: true }" />
+        <ui-checkbox
+          label="Only active accounts"
+          [(ngModel)]="onlyActive"
+          [ngModelOptions]="{ standalone: true }"
+        />
+        <ui-checkbox
+          label="Include trial users"
+          [(ngModel)]="includeTrials"
+          [ngModelOptions]="{ standalone: true }"
+        />
       </div>
 
       <div

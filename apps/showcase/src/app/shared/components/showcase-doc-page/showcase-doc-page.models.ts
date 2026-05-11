@@ -25,7 +25,10 @@ export type ShowcaseDocApiListBlock = {
   items: string[];
 };
 
-export type ShowcaseDocApiBlock = ShowcaseDocApiTableBlock | ShowcaseDocApiNotesBlock | ShowcaseDocApiListBlock;
+export type ShowcaseDocApiBlock =
+  | ShowcaseDocApiTableBlock
+  | ShowcaseDocApiNotesBlock
+  | ShowcaseDocApiListBlock;
 
 export type ShowcaseDocApiSection = {
   title: string;

@@ -126,8 +126,20 @@ export class LspNavPreviewComponent {
         [showSelectionIndicator]="true"
         indicatorPosition="horizontal"
       />
-      <ui-node [node]="nodes.disabledDanger" size="large" variant="danger" appearance="filled" shape="rounded" />
-      <ui-node [node]="nodes.closableQuick" [asButton]="true" variant="primary" appearance="tint" shape="circular" />
+      <ui-node
+        [node]="nodes.disabledDanger"
+        size="large"
+        variant="danger"
+        appearance="filled"
+        shape="rounded"
+      />
+      <ui-node
+        [node]="nodes.closableQuick"
+        [asButton]="true"
+        variant="primary"
+        appearance="tint"
+        shape="circular"
+      />
     </div>
   `,
 })
@@ -162,7 +174,9 @@ export class LspNodePreviewComponent {
   selector: 'app-lsp-number',
   standalone: true,
   imports: [FormsModule, NumberComponent],
-  template: ` <ui-number label="Licensed seats" [(ngModel)]="value" [ngModelOptions]="{ standalone: true }" /> `,
+  template: `
+    <ui-number label="Licensed seats" [(ngModel)]="value" [ngModelOptions]="{ standalone: true }" />
+  `,
 })
 export class LspNumberPreviewComponent {
   protected value: number | null = 48;
@@ -172,7 +186,9 @@ export class LspNumberPreviewComponent {
   selector: 'app-lsp-pagination',
   standalone: true,
   imports: [PaginationComponent],
-  template: ` <ui-pagination [config]="paginationConfig()" (pageChange)="currentPage.set($event)" /> `,
+  template: `
+    <ui-pagination [config]="paginationConfig()" (pageChange)="currentPage.set($event)" />
+  `,
 })
 export class LspPaginationPreviewComponent {
   protected readonly currentPage = signal(3);
@@ -199,7 +215,13 @@ export class LspPaginationPreviewComponent {
   selector: 'app-lsp-password',
   standalone: true,
   imports: [FormsModule, PasswordComponent],
-  template: ` <ui-password label="Workspace password" [(ngModel)]="value" [ngModelOptions]="{ standalone: true }" /> `,
+  template: `
+    <ui-password
+      label="Workspace password"
+      [(ngModel)]="value"
+      [ngModelOptions]="{ standalone: true }"
+    />
+  `,
 })
 export class LspPasswordPreviewComponent {
   protected value = '';
@@ -211,8 +233,16 @@ export class LspPasswordPreviewComponent {
   imports: [ProgressBarComponent],
   template: `
     <div style="display:flex;flex-direction:column;gap:0.35rem;width:100%">
-      <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">Uploading token bundle · 64%</span>
-      <ui-progress-bar variant="primary" size="medium" type="determinate" [value]="64" ariaLabel="Upload progress" />
+      <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)"
+        >Uploading token bundle · 64%</span
+      >
+      <ui-progress-bar
+        variant="primary"
+        size="medium"
+        type="determinate"
+        [value]="64"
+        ariaLabel="Upload progress"
+      />
     </div>
   `,
 })
@@ -267,8 +297,15 @@ export class LspRadioButtonGroupPreviewComponent {
   imports: [RatingComponent],
   template: `
     <div style="display:flex;flex-direction:column;gap:0.35rem;width:100%">
-      <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">Pilot customer satisfaction</span>
-      <ui-rating [value]="value()" [max]="5" [showValue]="false" (valueChange)="value.set($event)" />
+      <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)"
+        >Pilot customer satisfaction</span
+      >
+      <ui-rating
+        [value]="value()"
+        [max]="5"
+        [showValue]="false"
+        (valueChange)="value.set($event)"
+      />
     </div>
   `,
 })
@@ -494,16 +531,33 @@ export class LspRangePreviewComponent {
       <div
         style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:0.45rem;min-width:0;width:100%;text-align:center;padding:0.35rem 0"
       >
-        <ui-spinner variant="primary" size="medium" labelPosition="below" label="Syncing ledger rows…" />
+        <ui-spinner
+          variant="primary"
+          size="medium"
+          labelPosition="below"
+          label="Syncing ledger rows…"
+        />
       </div>
       <div
         style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:0.45rem;min-width:0;width:100%;text-align:center;padding:0.35rem 0"
       >
-        <ui-spinner variant="success" size="large" labelPosition="above" label="Healthy pipelines" />
+        <ui-spinner
+          variant="success"
+          size="large"
+          labelPosition="above"
+          label="Healthy pipelines"
+        />
       </div>
-      <div style="display:flex;align-items:center;justify-content:center;min-width:0;width:100%;padding:0.35rem 0">
+      <div
+        style="display:flex;align-items:center;justify-content:center;min-width:0;width:100%;padding:0.35rem 0"
+      >
         <div style="display:flex;justify-content:center;max-width:100%">
-          <ui-spinner variant="secondary" size="extra-small" labelPosition="after" label="Queued export jobs" />
+          <ui-spinner
+            variant="secondary"
+            size="extra-small"
+            labelPosition="after"
+            label="Queued export jobs"
+          />
         </div>
       </div>
     </div>
@@ -516,13 +570,21 @@ export class LspSpinnerPreviewComponent {}
   standalone: true,
   imports: [SplitterComponent, SplitterPanelDirective],
   template: `
-    <div style="height:14rem;border-radius:0.75rem;overflow:hidden;border:1px solid var(--color-neutral-stroke-rest)">
-      <ui-splitter [panels]="panels()" orientation="horizontal" [gutterSize]="8" (panelResize)="onResize($event)">
+    <div
+      style="height:14rem;border-radius:0.75rem;overflow:hidden;border:1px solid var(--color-neutral-stroke-rest)"
+    >
+      <ui-splitter
+        [panels]="panels()"
+        orientation="horizontal"
+        [gutterSize]="8"
+        (panelResize)="onResize($event)"
+      >
         <ng-template uiSplitterPanel="sidebar">
           <div
             style="height:100%;padding:0.75rem;font-size:0.8125rem;line-height:1.45;color:var(--color-neutral-foreground2-rest)"
           >
-            <strong style="color:var(--color-neutral-foreground-rest);display:block;margin-bottom:0.35rem"
+            <strong
+              style="color:var(--color-neutral-foreground-rest);display:block;margin-bottom:0.35rem"
               >Collections</strong
             >
             Saved cohorts, tags, and pinned dashboards surface here for analysts.
@@ -532,7 +594,8 @@ export class LspSpinnerPreviewComponent {}
           <div
             style="height:100%;padding:0.75rem;font-size:0.8125rem;line-height:1.45;color:var(--color-neutral-foreground2-rest)"
           >
-            <strong style="color:var(--color-neutral-foreground-rest);display:block;margin-bottom:0.35rem"
+            <strong
+              style="color:var(--color-neutral-foreground-rest);display:block;margin-bottom:0.35rem"
               >Workspace canvas</strong
             >
             Drag charts, annotate anomalies, and invite reviewers inline.
@@ -542,7 +605,8 @@ export class LspSpinnerPreviewComponent {}
           <div
             style="height:100%;padding:0.75rem;font-size:0.8125rem;line-height:1.45;color:var(--color-neutral-foreground2-rest)"
           >
-            <strong style="color:var(--color-neutral-foreground-rest);display:block;margin-bottom:0.35rem"
+            <strong
+              style="color:var(--color-neutral-foreground-rest);display:block;margin-bottom:0.35rem"
               >Signal inspector</strong
             >
             Contextual metrics, lineage, and ownership details stay docked beside selections.
@@ -567,7 +631,9 @@ export class LspSplitterPreviewComponent {
   standalone: true,
   imports: [StateContainerComponent],
   template: `
-    <div style="display:flex;flex-direction:column;width:100%;min-width:0;min-height:15rem;box-sizing:border-box">
+    <div
+      style="display:flex;flex-direction:column;width:100%;min-width:0;min-height:15rem;box-sizing:border-box"
+    >
       <ui-state-container
         [style.flex]="'1 1 auto'"
         [style.width]="'100%'"
@@ -637,9 +703,10 @@ interface LspStepperWizardStep extends Step {
               style="font-size:0.6875rem;font-weight:600;color:var(--color-brand-primary);text-transform:uppercase;letter-spacing:0.06em"
               >{{ panel.eyebrow }}</span
             >
-            <strong style="font-size:0.875rem;line-height:1.35;color:var(--color-neutral-foreground-rest)">{{
-              panel.label
-            }}</strong>
+            <strong
+              style="font-size:0.875rem;line-height:1.35;color:var(--color-neutral-foreground-rest)"
+              >{{ panel.label }}</strong
+            >
           </div>
           <div
             uiCardBody
@@ -690,7 +757,9 @@ export class LspStepperPreviewComponent {
   standalone: true,
   imports: [FormsModule, SwitchComponent],
   template: `
-    <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0.75rem;width:100%;align-items:start">
+    <div
+      style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0.75rem;width:100%;align-items:start"
+    >
       <ui-switch
         label="Pager shadows ops channels"
         labelPosition="after"
@@ -767,7 +836,8 @@ export class LspSwitchPreviewComponent {
             font-family: inherit;
           "
         >
-          Tokens, theming, and accessibility expectations appear inline without leaving Fluent layouts.
+          Tokens, theming, and accessibility expectations appear inline without leaving Fluent
+          layouts.
         </p>
       </div>
     </div>
@@ -781,7 +851,12 @@ export class LspTableOfContentPreviewComponent {}
   imports: [TabsComponent],
   template: `
     <div style="display:flex;flex-direction:column;gap:1rem;width:100%">
-      <ui-tabs [tabs]="tabsPrimary" [(selectedTabId)]="selectedPrimary" appearance="subtle" variant="primary" />
+      <ui-tabs
+        [tabs]="tabsPrimary"
+        [(selectedTabId)]="selectedPrimary"
+        appearance="subtle"
+        variant="primary"
+      />
       <ui-tabs
         [tabs]="tabsSecondary"
         [(selectedTabId)]="selectedSecondary"
@@ -841,7 +916,13 @@ export class LspTelPreviewComponent {
   selector: 'app-lsp-text',
   standalone: true,
   imports: [FormsModule, TextComponent],
-  template: ` <ui-text label="Workspace display name" [(ngModel)]="value" [ngModelOptions]="{ standalone: true }" /> `,
+  template: `
+    <ui-text
+      label="Workspace display name"
+      [(ngModel)]="value"
+      [ngModelOptions]="{ standalone: true }"
+    />
+  `,
 })
 export class LspTextPreviewComponent {
   protected value = 'Northridge Finance Cloud';
@@ -869,7 +950,13 @@ export class LspTextareaPreviewComponent {
   selector: 'app-lsp-time',
   standalone: true,
   imports: [FormsModule, TimeComponent],
-  template: ` <ui-time label="Maintenance starts" [(ngModel)]="starts" [ngModelOptions]="{ standalone: true }" /> `,
+  template: `
+    <ui-time
+      label="Maintenance starts"
+      [(ngModel)]="starts"
+      [ngModelOptions]="{ standalone: true }"
+    />
+  `,
 })
 export class LspTimePreviewComponent {
   protected starts = '02:30';
@@ -1257,7 +1344,9 @@ export class LspTreePreviewComponent {
   selector: 'app-lsp-tree-node',
   standalone: true,
   imports: [TreeNodeComponent],
-  template: ` <ui-tree-node [node]="node" [expandOnClick]="true" [showSelectionIndicator]="true" /> `,
+  template: `
+    <ui-tree-node [node]="node" [expandOnClick]="true" [showSelectionIndicator]="true" />
+  `,
 })
 export class LspTreeNodePreviewComponent {
   protected readonly node: TreeNode = {
@@ -1299,7 +1388,9 @@ export class LspTreeNodePreviewComponent {
   selector: 'app-lsp-url',
   standalone: true,
   imports: [FormsModule, UrlComponent],
-  template: ` <ui-url label="Public docs URL" [(ngModel)]="value" [ngModelOptions]="{ standalone: true }" /> `,
+  template: `
+    <ui-url label="Public docs URL" [(ngModel)]="value" [ngModelOptions]="{ standalone: true }" />
+  `,
 })
 export class LspUrlPreviewComponent {
   protected value = 'https://northridge.io/docs/billing/webhooks';

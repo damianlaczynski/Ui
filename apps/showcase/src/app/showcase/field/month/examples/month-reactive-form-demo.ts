@@ -13,7 +13,8 @@ import { ButtonComponent, MessageBarComponent, MonthComponent } from 'ui';
       <div style="display:flex;flex-direction:column;gap:0.25rem">
         <div style="font-size:0.9375rem;font-weight:600">Monthly close</div>
         <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          Month selection usually lives in reporting, finance, or scheduling forms rather than as an isolated picker.
+          Month selection usually lives in reporting, finance, or scheduling forms rather than as an
+          isolated picker.
         </div>
       </div>
 
@@ -38,7 +39,9 @@ import { ButtonComponent, MessageBarComponent, MonthComponent } from 'ui';
       <div
         style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
       >
-        <ui-button type="button" variant="primary" [disabled]="monthControl.invalid"> Save close </ui-button>
+        <ui-button type="button" variant="primary" [disabled]="monthControl.invalid">
+          Save close
+        </ui-button>
         <ui-button type="button" appearance="subtle" (click)="reset()">Reset</ui-button>
         <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">
           {{ summary() }}

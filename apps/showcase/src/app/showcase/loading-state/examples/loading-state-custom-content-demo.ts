@@ -9,10 +9,17 @@ import { LoadingStateComponent } from 'ui';
     <div
       style="width:100%;max-width:32rem;padding:1.5rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
     >
-      <ui-loading-state title="Initializing workspace" description="Setting up everything you need.">
+      <ui-loading-state
+        title="Initializing workspace"
+        description="Setting up everything you need."
+      >
         <ng-template #content>
-          <div style="display:flex;flex-direction:column;gap:0.5rem;align-items:center;text-align:center">
-            <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">Step 2 of 3</div>
+          <div
+            style="display:flex;flex-direction:column;gap:0.5rem;align-items:center;text-align:center"
+          >
+            <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
+              Step 2 of 3
+            </div>
             <div
               style="width:100%;max-width:14rem;height:0.375rem;border-radius:999px;background:var(--color-neutral-background3-rest);overflow:hidden"
             >

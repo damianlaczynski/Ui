@@ -7,11 +7,17 @@ import { ButtonComponent, NavComponent, type NavNode } from 'ui';
   standalone: true,
   imports: [CommonModule, ButtonComponent, NavComponent],
   template: `
-    <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:46rem">
+    <div
+      style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:46rem"
+    >
       <div
         style="flex:0 0 19rem;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >
-        <ui-nav [items]="items" [showQuickActions]="true" [quickActionsTemplate]="quickActionsTemplateRef() ?? null" />
+        <ui-nav
+          [items]="items"
+          [showQuickActions]="true"
+          [quickActionsTemplate]="quickActionsTemplateRef() ?? null"
+        />
       </div>
 
       <div

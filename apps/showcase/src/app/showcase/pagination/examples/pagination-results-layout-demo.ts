@@ -21,11 +21,14 @@ const allRows: ResultRow[] = Array.from({ length: 57 }, (_, index) => ({
     <div
       style="display:flex;flex-direction:column;gap:1rem;width:100%;max-width:46rem;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
     >
-      <div style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:flex-end;justify-content:space-between">
+      <div
+        style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:flex-end;justify-content:space-between"
+      >
         <div style="display:flex;flex-direction:column;gap:0.25rem">
           <div style="font-size:0.9375rem;font-weight:600">Reports</div>
           <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-            Pair pagination with a real list so users can see scan rhythm, item count, and page changes in context.
+            Pair pagination with a real list so users can see scan rhythm, item count, and page
+            changes in context.
           </div>
         </div>
         <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">

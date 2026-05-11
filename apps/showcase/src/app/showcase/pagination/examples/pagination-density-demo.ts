@@ -9,8 +9,8 @@ import { PaginationComponent, PaginationConfig } from 'ui';
     <div style="display:flex;flex-direction:column;gap:1rem;width:100%;max-width:42rem">
       <div style="display:flex;flex-direction:column;gap:0.5rem">
         <div style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest)">
-          Small works in dense tables, medium is the default for most views, and large is better when pagination needs
-          more touch room.
+          Small works in dense tables, medium is the default for most views, and large is better
+          when pagination needs more touch room.
         </div>
       </div>
 

@@ -12,7 +12,8 @@ import { MenuItem, SpeedDialComponent } from 'ui';
       <div style="display:grid;gap:0.25rem;">
         <h3 style="margin:0;font-size:1rem;">Linear directions</h3>
         <p style="margin:0;font-size:0.875rem;color:var(--color-neutral-foreground2-rest);">
-          Linear is the safest layout for edge-triggered quick actions because the expansion path stays predictable.
+          Linear is the safest layout for edge-triggered quick actions because the expansion path
+          stays predictable.
         </p>
       </div>
 
@@ -24,8 +25,12 @@ import { MenuItem, SpeedDialComponent } from 'ui';
         >
           Linear
         </div>
-        <div style="grid-area:bottom;display:flex;flex-direction:column;align-items:center;gap:8px;align-self:end;">
-          <span style="font-size:11px;font-weight:600;color:var(--color-neutral-foreground3-rest);">Up</span>
+        <div
+          style="grid-area:bottom;display:flex;flex-direction:column;align-items:center;gap:8px;align-self:end;"
+        >
+          <span style="font-size:11px;font-weight:600;color:var(--color-neutral-foreground3-rest);"
+            >Up</span
+          >
           <ui-speed-dial
             dialType="linear"
             direction="up"
@@ -36,8 +41,12 @@ import { MenuItem, SpeedDialComponent } from 'ui';
             ariaLabel="Linear up actions"
           />
         </div>
-        <div style="grid-area:top;display:flex;flex-direction:column;align-items:center;gap:8px;align-self:start;">
-          <span style="font-size:11px;font-weight:600;color:var(--color-neutral-foreground3-rest);">Down</span>
+        <div
+          style="grid-area:top;display:flex;flex-direction:column;align-items:center;gap:8px;align-self:start;"
+        >
+          <span style="font-size:11px;font-weight:600;color:var(--color-neutral-foreground3-rest);"
+            >Down</span
+          >
           <ui-speed-dial
             dialType="linear"
             direction="down"
@@ -48,8 +57,12 @@ import { MenuItem, SpeedDialComponent } from 'ui';
             ariaLabel="Linear down actions"
           />
         </div>
-        <div style="grid-area:left;display:flex;flex-direction:column;align-items:center;gap:8px;justify-self:start;">
-          <span style="font-size:11px;font-weight:600;color:var(--color-neutral-foreground3-rest);">Right</span>
+        <div
+          style="grid-area:left;display:flex;flex-direction:column;align-items:center;gap:8px;justify-self:start;"
+        >
+          <span style="font-size:11px;font-weight:600;color:var(--color-neutral-foreground3-rest);"
+            >Right</span
+          >
           <ui-speed-dial
             dialType="linear"
             direction="right"
@@ -60,8 +73,12 @@ import { MenuItem, SpeedDialComponent } from 'ui';
             ariaLabel="Linear right actions"
           />
         </div>
-        <div style="grid-area:right;display:flex;flex-direction:column;align-items:center;gap:8px;justify-self:end;">
-          <span style="font-size:11px;font-weight:600;color:var(--color-neutral-foreground3-rest);">Left</span>
+        <div
+          style="grid-area:right;display:flex;flex-direction:column;align-items:center;gap:8px;justify-self:end;"
+        >
+          <span style="font-size:11px;font-weight:600;color:var(--color-neutral-foreground3-rest);"
+            >Left</span
+          >
           <ui-speed-dial
             dialType="linear"
             direction="left"

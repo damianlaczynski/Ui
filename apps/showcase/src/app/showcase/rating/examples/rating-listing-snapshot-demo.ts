@@ -11,7 +11,9 @@ import { ButtonComponent, RatingComponent } from 'ui';
     >
       <div style="display:flex;flex-direction:column;gap:0.2rem;min-width:12rem">
         <span style="font-size:0.9375rem;font-weight:600">Weekly digest template</span>
-        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"> Workflow · 128 ratings </span>
+        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
+          Workflow · 128 ratings
+        </span>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center">
         <ui-rating [value]="4" [max]="5" [readOnly]="true" size="small" />

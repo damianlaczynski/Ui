@@ -18,7 +18,9 @@ import { ButtonComponent, Step, StepperComponent } from 'ui';
       <div
         style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
       >
-        <ui-button type="button" variant="secondary" [disabled]="active() === 0" (click)="prev()"> Back </ui-button>
+        <ui-button type="button" variant="secondary" [disabled]="active() === 0" (click)="prev()">
+          Back
+        </ui-button>
         <ui-button
           type="button"
           variant="primary"
@@ -27,7 +29,9 @@ import { ButtonComponent, Step, StepperComponent } from 'ui';
         >
           Mark done and continue
         </ui-button>
-        <ui-button type="button" variant="secondary" appearance="outline" (click)="reset()"> Reset </ui-button>
+        <ui-button type="button" variant="secondary" appearance="outline" (click)="reset()">
+          Reset
+        </ui-button>
       </div>
     </div>
   `,

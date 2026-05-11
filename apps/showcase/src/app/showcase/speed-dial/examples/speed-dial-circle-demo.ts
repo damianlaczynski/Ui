@@ -12,8 +12,8 @@ import { MenuItem, SpeedDialComponent } from 'ui';
       <div style="display:grid;gap:0.25rem;">
         <h3 style="margin:0;font-size:1rem;">Circle layout</h3>
         <p style="margin:0;font-size:0.875rem;color:var(--color-neutral-foreground2-rest);">
-          Full radial layout works best when the trigger owns enough surrounding space and the dial is itself a focal
-          interaction.
+          Full radial layout works best when the trigger owns enough surrounding space and the dial
+          is itself a focal interaction.
         </p>
       </div>
       <div

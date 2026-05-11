@@ -10,7 +10,9 @@ import { ButtonComponent, ScrollPanelComponent } from 'ui';
       <div
         style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background2-rest)"
       >
-        <ui-button variant="secondary" appearance="outline" (click)="reset()">Reset counters</ui-button>
+        <ui-button variant="secondary" appearance="outline" (click)="reset()"
+          >Reset counters</ui-button
+        >
         <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
           >Top: <strong>{{ scrollTop() }}px</strong></span
         >
@@ -34,7 +36,9 @@ import { ButtonComponent, ScrollPanelComponent } from 'ui';
                 style="padding:0.875rem 1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
               >
                 <div style="font-size:0.875rem;font-weight:600">{{ item.title }}</div>
-                <div style="margin-top:0.25rem;font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
+                <div
+                  style="margin-top:0.25rem;font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
+                >
                   {{ item.body }}
                 </div>
               </div>

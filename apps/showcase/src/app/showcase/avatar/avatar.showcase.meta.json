@@ -104,10 +104,30 @@
               "undefined",
               "Full name for initials derivation and accessible name fallback."
             ],
-            ["icon", "InputSignal<IconName | undefined>", "undefined", "Fluent icon when no image or initials render."],
-            ["disabled", "InputSignal<boolean>", "false", "Muted presentation and `aria-disabled`."],
-            ["loading", "InputSignal<boolean>", "false", "Spinner overlay, suppresses image until finished."],
-            ["ariaLabel", "InputSignal<string | undefined>", "undefined", "Explicit accessible name override."]
+            [
+              "icon",
+              "InputSignal<IconName | undefined>",
+              "undefined",
+              "Fluent icon when no image or initials render."
+            ],
+            [
+              "disabled",
+              "InputSignal<boolean>",
+              "false",
+              "Muted presentation and `aria-disabled`."
+            ],
+            [
+              "loading",
+              "InputSignal<boolean>",
+              "false",
+              "Spinner overlay, suppresses image until finished."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string | undefined>",
+              "undefined",
+              "Explicit accessible name override."
+            ]
           ]
         },
         {

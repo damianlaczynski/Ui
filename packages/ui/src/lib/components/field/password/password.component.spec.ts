@@ -56,6 +56,8 @@ describe('PasswordComponent', () => {
     const actionButtons: HTMLButtonElement[] = Array.from(
       fixture.nativeElement.querySelectorAll('.field__actions .field__action'),
     );
-    expect(actionButtons.some(btn => btn.getAttribute('aria-label') === 'Show password')).toBe(true);
+    expect(actionButtons.some(btn => btn.getAttribute('aria-label') === 'Show password')).toBe(
+      true,
+    );
   });
 });

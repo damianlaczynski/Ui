@@ -96,7 +96,8 @@ export interface CreateFilterConfigOptions {
  * ```
  */
 export function createFilterConfig(options: CreateFilterConfigOptions): DataGridFilterConfig {
-  const { type, placeholder, operators, defaultOperator, defaultValue, debounceMs, parameters } = options;
+  const { type, placeholder, operators, defaultOperator, defaultValue, debounceMs, parameters } =
+    options;
 
   // Get FilterDefinition for validation and defaults
   const definition = FilterFactory.getDefinition(type);

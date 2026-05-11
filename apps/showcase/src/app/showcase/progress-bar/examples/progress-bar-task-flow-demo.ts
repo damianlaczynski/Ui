@@ -10,7 +10,9 @@ import { ButtonComponent, ProgressBarComponent } from 'ui';
       <div
         style="display:flex;flex-direction:column;gap:0.875rem;padding:1rem 1.125rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >
-        <div style="display:flex;justify-content:space-between;gap:1rem;align-items:flex-start;flex-wrap:wrap">
+        <div
+          style="display:flex;justify-content:space-between;gap:1rem;align-items:flex-start;flex-wrap:wrap"
+        >
           <div style="display:flex;flex-direction:column;gap:0.25rem">
             <div style="font-size:0.9375rem;font-weight:600">Workspace migration</div>
             <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
@@ -31,7 +33,9 @@ import { ButtonComponent, ProgressBarComponent } from 'ui';
           [ariaValueText]="currentAriaValueText()"
         />
 
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:0.75rem">
+        <div
+          style="display:grid;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:0.75rem"
+        >
           @for (step of steps; track step.label) {
             <div
               style="display:flex;flex-direction:column;gap:0.2rem;padding:0.75rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:0.75rem"
@@ -47,8 +51,15 @@ import { ButtonComponent, ProgressBarComponent } from 'ui';
         <div
           style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
         >
-          <ui-button type="button" variant="secondary" appearance="outline" (click)="reset()"> Reset </ui-button>
-          <ui-button type="button" variant="primary" (click)="advance()" [disabled]="state() === 'done'">
+          <ui-button type="button" variant="secondary" appearance="outline" (click)="reset()">
+            Reset
+          </ui-button>
+          <ui-button
+            type="button"
+            variant="primary"
+            (click)="advance()"
+            [disabled]="state() === 'done'"
+          >
             Advance
           </ui-button>
           <ui-button
@@ -66,7 +77,9 @@ import { ButtonComponent, ProgressBarComponent } from 'ui';
   `,
 })
 export class ProgressBarTaskFlowExampleComponent {
-  protected readonly state = signal<'queued' | 'running' | 'verifying' | 'done' | 'failed'>('queued');
+  protected readonly state = signal<'queued' | 'running' | 'verifying' | 'done' | 'failed'>(
+    'queued',
+  );
 
   protected readonly steps = [
     { label: 'Content', value: '124 files' },
@@ -104,7 +117,8 @@ export class ProgressBarTaskFlowExampleComponent {
     }
   };
 
-  protected readonly currentType = () => (this.state() === 'queued' ? 'indeterminate' : 'determinate');
+  protected readonly currentType = () =>
+    this.state() === 'queued' ? 'indeterminate' : 'determinate';
 
   protected readonly currentVariant = () => {
     switch (this.state()) {

@@ -86,9 +86,19 @@
               "'medium'",
               "Preset icon size mapped to sprite size fallbacks."
             ],
-            ["sizePx", "InputSignal<number | undefined>", "undefined", "Optional custom pixel override."],
+            [
+              "sizePx",
+              "InputSignal<number | undefined>",
+              "undefined",
+              "Optional custom pixel override."
+            ],
             ["variant", "InputSignal<'regular' | 'filled'>", "'regular'", "Icon style variant."],
-            ["rotate", "InputSignal<number | undefined>", "undefined", "Optional rotation in degrees."],
+            [
+              "rotate",
+              "InputSignal<number | undefined>",
+              "undefined",
+              "Optional rotation in degrees."
+            ],
             [
               "ariaLabel",
               "InputSignal<string | undefined>",

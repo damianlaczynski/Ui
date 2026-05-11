@@ -1,5 +1,10 @@
 import { Component, signal } from '@angular/core';
-import { ButtonComponent, KbdComponent, CommandPaletteComponent, type CommandPaletteItem } from 'ui';
+import {
+  ButtonComponent,
+  KbdComponent,
+  CommandPaletteComponent,
+  type CommandPaletteItem,
+} from 'ui';
 
 const WORKSPACE_ITEMS: Omit<CommandPaletteItem, 'action'>[] = [
   {
@@ -52,11 +57,14 @@ const WORKSPACE_ITEMS: Omit<CommandPaletteItem, 'action'>[] = [
     <div
       style="display:flex;flex-direction:column;gap:1rem;width:100%;max-width:58rem;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
     >
-      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0.75rem">
+      <div
+        style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0.75rem"
+      >
         <div>
           <div style="font-size:0.875rem;font-weight:600">Workspace command center</div>
           <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-            A realistic palette sits behind a global shortcut or shell action, not only a showcase button.
+            A realistic palette sits behind a global shortcut or shell action, not only a showcase
+            button.
           </div>
         </div>
         <div style="display:flex;align-items:center;gap:0.5rem">

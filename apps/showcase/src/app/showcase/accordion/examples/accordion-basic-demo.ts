@@ -13,7 +13,8 @@ import { AccordionComponent } from 'ui';
             Pro includes team workspaces, advanced permissions, export tools, and audit history.
           </p>
           <p style="margin:0;color:var(--color-neutral-foreground2-rest)">
-            Use concise headers so users can scan several collapsed sections quickly before opening one.
+            Use concise headers so users can scan several collapsed sections quickly before opening
+            one.
           </p>
         </div>
       </ui-accordion>
@@ -21,7 +22,8 @@ import { AccordionComponent } from 'ui';
       <ui-accordion label="Can I change billing later?">
         <div style="display:flex;flex-direction:column;gap:0.5rem">
           <p style="margin:0;color:var(--color-neutral-foreground-rest)">
-            Yes. Billing cadence can be changed from the subscription panel without recreating the workspace.
+            Yes. Billing cadence can be changed from the subscription panel without recreating the
+            workspace.
           </p>
         </div>
       </ui-accordion>

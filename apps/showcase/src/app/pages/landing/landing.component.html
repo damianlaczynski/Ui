@@ -1,6 +1,11 @@
 <div class="landing">
   <div class="landing__theme-fabs">
-    <button type="button" class="landing__theme-fab" (click)="toggleTheme()" [attr.aria-label]="themeLabel()">
+    <button
+      type="button"
+      class="landing__theme-fab"
+      (click)="toggleTheme()"
+      [attr.aria-label]="themeLabel()"
+    >
       <ui-icon [icon]="themeIcon()" size="small"></ui-icon>
     </button>
     <button
@@ -25,14 +30,25 @@
 
           <h1 class="landing__hero__title">@laczynski/ui</h1>
           <p class="landing__hero__tagline">
-            Enterprise-grade components built with Fluent 2 Design System for modern Angular applications
+            Enterprise-grade components built with Fluent 2 Design System for modern Angular
+            applications
           </p>
 
           <div class="landing__hero__actions">
-            <ui-button variant="primary" size="large" icon="rocket" (click)="navigateToGettingStarted()">
+            <ui-button
+              variant="primary"
+              size="large"
+              icon="rocket"
+              (click)="navigateToGettingStarted()"
+            >
               Get Started
             </ui-button>
-            <ui-button variant="secondary" size="large" icon="apps" (click)="navigateToComponents()">
+            <ui-button
+              variant="secondary"
+              size="large"
+              icon="apps"
+              (click)="navigateToComponents()"
+            >
               View Components
             </ui-button>
           </div>
@@ -100,7 +116,9 @@
             See what is already shipped, what is being built, and what comes next.
           </p>
         </div>
-        <div class="landing__roadmap__grid showcase-doc__guide-grid showcase-doc__guide-grid--large">
+        <div
+          class="landing__roadmap__grid showcase-doc__guide-grid showcase-doc__guide-grid--large"
+        >
           @for (item of roadmapPreview; track item.id) {
             <article class="showcase-doc__guide-card">
               <div class="showcase-doc__guide-item-head">
@@ -132,9 +150,16 @@
         <div class="landing__cta__content">
           <ui-icon icon="rocket" size="large" [sizePx]="64" class="landing__cta__icon"></ui-icon>
           <h2 class="landing__cta__title">Ready to build?</h2>
-          <p class="landing__cta__description">Start using @laczynski/ui components in your project today</p>
+          <p class="landing__cta__description">
+            Start using @laczynski/ui components in your project today
+          </p>
           <div class="landing__cta__actions">
-            <ui-button variant="secondary" size="large" icon="document" (click)="navigateToGettingStarted()">
+            <ui-button
+              variant="secondary"
+              size="large"
+              icon="document"
+              (click)="navigateToGettingStarted()"
+            >
               Read Documentation
             </ui-button>
           </div>
@@ -148,8 +173,20 @@
             <a routerLink="/docs/getting-started" class="landing__footer__link">Getting Started</a>
             <a routerLink="/docs/roadmap" class="landing__footer__link">Roadmap</a>
             <a routerLink="/docs" class="landing__footer__link">Components</a>
-            <a [href]="githubUrl" target="_blank" rel="noopener noreferrer" class="landing__footer__link">GitHub</a>
-            <a [href]="npmUrl" target="_blank" rel="noopener noreferrer" class="landing__footer__link">npm</a>
+            <a
+              [href]="githubUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="landing__footer__link"
+              >GitHub</a
+            >
+            <a
+              [href]="npmUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="landing__footer__link"
+              >npm</a
+            >
           </div>
           <div class="landing__footer__meta">
             <span class="landing__footer__copyright">&copy; {{ currentYear }} @laczynski/ui</span>
@@ -158,7 +195,10 @@
         </div>
       </footer>
     </div>
-    <div class="landing__theme-drawer-host" [class.landing__theme-drawer-host--overlay]="themeDrawerOverlayLayout()">
+    <div
+      class="landing__theme-drawer-host"
+      [class.landing__theme-drawer-host--overlay]="themeDrawerOverlayLayout()"
+    >
       <app-theme-drawer
         [appearanceInDrawer]="true"
         [drawerType]="themeDrawerOverlayLayout() ? 'overlay' : 'inline'"

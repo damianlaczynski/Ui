@@ -113,7 +113,9 @@ describe('TagComponent', () => {
       fixture.detectChanges();
 
       const textSlot = fixture.debugElement.query(By.css('.tag__text-slot'));
-      expect(textSlot.nativeElement.classList.contains('tag__text-slot--with-secondary')).toBe(true);
+      expect(textSlot.nativeElement.classList.contains('tag__text-slot--with-secondary')).toBe(
+        true,
+      );
     });
   });
 

@@ -294,7 +294,9 @@ export class DatetimeComponent extends FieldComponent implements OnDestroy {
     const now = new Date();
     this.currentMonth.set(now);
     this.selectedDate.set(now);
-    this.selectedTime.set(`${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`);
+    this.selectedTime.set(
+      `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`,
+    );
   }
 
   override writeValue(value: unknown): void {

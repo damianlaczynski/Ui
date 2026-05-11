@@ -39,7 +39,11 @@
     @if (!disabled() && !readonly()) {
       <div class="field__actions">
         <!-- Calendar Icon Button -->
-        <ui-action-button [size]="size()" [icon]="'calendar'" (click)="togglePanel()"></ui-action-button>
+        <ui-action-button
+          [size]="size()"
+          [icon]="'calendar'"
+          (click)="togglePanel()"
+        ></ui-action-button>
         <!-- Clear Button -->
         @if (value && (value.startDate || value.endDate)) {
           <ui-action-button [icon]="'dismiss'" [size]="size()" (click)="clear()"></ui-action-button>

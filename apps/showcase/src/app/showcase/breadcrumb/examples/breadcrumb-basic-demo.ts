@@ -16,7 +16,12 @@ const FULL_PATH: Breadcrumb[] = [
     <div
       style="display:flex;flex-direction:column;gap:0.75rem;width:100%;max-width:34rem;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
     >
-      <ui-breadcrumb [items]="path()" appearance="subtle" [responsiveOverflow]="false" (itemClick)="navigate($event)" />
+      <ui-breadcrumb
+        [items]="path()"
+        appearance="subtle"
+        [responsiveOverflow]="false"
+        (itemClick)="navigate($event)"
+      />
 
       <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
         Click an ancestor item to jump back to that level.

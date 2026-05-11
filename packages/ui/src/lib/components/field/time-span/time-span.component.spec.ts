@@ -65,7 +65,9 @@ describe('TimeSpanComponent', () => {
   it('should display readable text in input while keeping ISO conversion', () => {
     component.writeValue('P1DT2H30M');
     expect(component.displayText()).toBe('1d 2h 30m');
-    expect(component.toTimeSpanString(component.parseTimeSpanString('P1DT2H30M'))).toBe('P1DT2H30M');
+    expect(component.toTimeSpanString(component.parseTimeSpanString('P1DT2H30M'))).toBe(
+      'P1DT2H30M',
+    );
   });
 
   it('should step up by one on click below selected area', () => {

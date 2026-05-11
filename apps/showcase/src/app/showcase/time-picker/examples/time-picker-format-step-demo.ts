@@ -8,7 +8,9 @@ import { TimePickerComponent } from 'ui';
   imports: [FormsModule, TimePickerComponent],
   template: `
     <div style="display:flex;flex-direction:column;gap:1rem;">
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1rem;align-items:start">
+      <div
+        style="display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1rem;align-items:start"
+      >
         <ui-time-picker
           [value]="quarterHourValue"
           [showLabel]="true"

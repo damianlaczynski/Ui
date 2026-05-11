@@ -175,7 +175,8 @@ export class BreadcrumbComponent<T extends Breadcrumb> {
     if (event.key === 'ArrowLeft' || event.key === 'Home') {
       next = event.key === 'Home' ? 0 : Math.max(0, current - 1);
     } else if (event.key === 'ArrowRight' || event.key === 'End') {
-      next = event.key === 'End' ? focusable.length - 1 : Math.min(focusable.length - 1, current + 1);
+      next =
+        event.key === 'End' ? focusable.length - 1 : Math.min(focusable.length - 1, current + 1);
     }
     if (next >= 0 && next < focusable.length) {
       event.preventDefault();

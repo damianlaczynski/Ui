@@ -84,10 +84,20 @@
           "rows": [
             ["title", "InputSignal<string>", "''", "Primary empty-state heading."],
             ["description", "InputSignal<string>", "''", "Supporting explanation text."],
-            ["icon", "InputSignal<IconName | undefined>", "undefined", "Optional icon that adds visual context."],
+            [
+              "icon",
+              "InputSignal<IconName | undefined>",
+              "undefined",
+              "Optional icon that adds visual context."
+            ],
             ["size", "InputSignal<Size>", "'medium'", "Overall scale of the empty state."],
             ["primaryAction", "InputSignal<QuickAction | null>", "null", "Primary call to action."],
-            ["secondaryAction", "InputSignal<QuickAction | null>", "null", "Secondary call to action."]
+            [
+              "secondaryAction",
+              "InputSignal<QuickAction | null>",
+              "null",
+              "Secondary call to action."
+            ]
           ]
         },
         {

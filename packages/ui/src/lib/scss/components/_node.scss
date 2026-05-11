@@ -149,7 +149,13 @@
   }
 }
 
-@mixin node-variant-circular-selected($bg-color, $outline-color, $outline-hover, $outline-pressed, $use-filter: false) {
+@mixin node-variant-circular-selected(
+  $bg-color,
+  $outline-color,
+  $outline-hover,
+  $outline-pressed,
+  $use-filter: false
+) {
   &.node--subtle.node--circular.node--selected .node__content {
     background-color: $bg-color;
     outline: 1px solid $outline-color;
@@ -509,9 +515,16 @@ $node-sizes: (
 // ==========================================================================
 
 .node--primary {
-  @include node-variant-selected(var(--color-brand-primary), var(--color-brand-primary), var(--color-brand-primary));
+  @include node-variant-selected(
+    var(--color-brand-primary),
+    var(--color-brand-primary),
+    var(--color-brand-primary)
+  );
 
-  @include node-variant-tint(var(--color-neutral-background-brand-selected), var(--color-brand-foreground));
+  @include node-variant-tint(
+    var(--color-neutral-background-brand-selected),
+    var(--color-brand-foreground)
+  );
 
   @include node-variant-outline(
     var(--color-neutral-stroke-rest),
@@ -561,7 +574,10 @@ $node-sizes: (
     var(--color-neutral-foreground2-rest)
   );
 
-  @include node-variant-tint(var(--color-neutral-background2-rest), var(--color-neutral-foreground2-rest));
+  @include node-variant-tint(
+    var(--color-neutral-background2-rest),
+    var(--color-neutral-foreground2-rest)
+  );
 
   &.node--tint .node__content {
     &:hover:not(:disabled) {

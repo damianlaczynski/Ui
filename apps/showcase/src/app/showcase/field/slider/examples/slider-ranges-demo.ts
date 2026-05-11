@@ -10,8 +10,12 @@ const dashedCardStyle =
   standalone: true,
   imports: [FormsModule, SliderComponent],
   template: `
-    <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:48rem;">
-      <div style="flex:1 1 18rem;display:flex;min-width:16rem;max-width:30rem;flex-direction:column;gap:1rem">
+    <div
+      style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:48rem;"
+    >
+      <div
+        style="flex:1 1 18rem;display:flex;min-width:16rem;max-width:30rem;flex-direction:column;gap:1rem"
+      >
         <ui-slider
           label="Rating"
           [min]="0"
@@ -47,16 +51,21 @@ const dashedCardStyle =
         >
           Values
         </p>
-        <div style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.875rem;line-height:1.4">
+        <div
+          style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.875rem;line-height:1.4"
+        >
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Rating</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest);font-variant-numeric:tabular-nums"
+            <strong
+              style="font-weight:600;color:var(--color-neutral-foreground-rest);font-variant-numeric:tabular-nums"
               >{{ rating }}/10</strong
             >
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Discount</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{ discount }}%</strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)"
+              >{{ discount }}%</strong
+            >
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Budget</span>

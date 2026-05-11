@@ -19,9 +19,13 @@ interface FileTreeNode extends TreeNode<FileTreeNode> {
     >
       <ui-tree-node [node]="node" [contentTemplate]="contentTemplateRef() ?? null">
         <ng-template #content let-node>
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:0.75rem;width:100%;min-width:0">
+          <div
+            style="display:flex;align-items:center;justify-content:space-between;gap:0.75rem;width:100%;min-width:0"
+          >
             <div style="min-width:0;display:flex;flex-direction:column;gap:0.125rem">
-              <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600">
+              <span
+                style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600"
+              >
                 {{ node.label }}
               </span>
               <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">

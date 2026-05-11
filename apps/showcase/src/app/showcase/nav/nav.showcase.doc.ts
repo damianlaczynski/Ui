@@ -25,7 +25,10 @@ const componentMap = {
 export const NAV_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   markdown: `/docs/components/${navMeta.slug}.md`,
   ...(Object.fromEntries(
-    Object.entries(navMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${navMeta.slug}/${file}`]),
+    Object.entries(navMeta.snippets).map(([key, file]) => [
+      key,
+      `/docs/components/snippets/${navMeta.slug}/${file}`,
+    ]),
   ) as Record<string, string>),
 };
 

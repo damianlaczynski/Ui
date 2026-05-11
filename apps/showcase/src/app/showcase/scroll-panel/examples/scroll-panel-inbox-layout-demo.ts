@@ -11,8 +11,11 @@ import { MessageBarComponent, ScrollPanelComponent, SearchComponent } from 'ui';
     >
       <div>
         <div style="font-size:0.9375rem;font-weight:600">Inbox layout</div>
-        <div style="margin-top:0.25rem;font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          A scroll panel is often just the scroll shell inside a denser composition with search and status.
+        <div
+          style="margin-top:0.25rem;font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
+        >
+          A scroll panel is often just the scroll shell inside a denser composition with search and
+          status.
         </div>
       </div>
 
@@ -35,7 +38,9 @@ import { MessageBarComponent, ScrollPanelComponent, SearchComponent } from 'ui';
                 style="padding:0.875rem 1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
               >
                 <div style="font-size:0.875rem;font-weight:600">{{ item.title }}</div>
-                <div style="margin-top:0.1875rem;font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
+                <div
+                  style="margin-top:0.1875rem;font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
+                >
                   {{ item.body }}
                 </div>
               </div>

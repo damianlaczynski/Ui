@@ -15,7 +15,9 @@ interface ActivityRow {
   selector: 'app-data-grid-virtualization-demo',
   imports: [DataGridComponent],
   template: `
-    <div style="display:flex;flex-direction:column;height:420px;min-height:0;width:100%;box-sizing:border-box;">
+    <div
+      style="display:flex;flex-direction:column;height:420px;min-height:0;width:100%;box-sizing:border-box;"
+    >
       <ui-data-grid [config]="config()" />
     </div>
 

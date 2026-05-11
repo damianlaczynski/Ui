@@ -14,8 +14,15 @@ import { ButtonComponent, Step, StepperComponent } from 'ui';
         (stepChange)="active.set($event.index)"
       />
       <div style="display:flex;flex-wrap:wrap;gap:0.5rem">
-        <ui-button type="button" variant="secondary" [disabled]="active() === 0" (click)="prev()"> Back </ui-button>
-        <ui-button type="button" variant="primary" [disabled]="active() >= steps().length - 1" (click)="next()">
+        <ui-button type="button" variant="secondary" [disabled]="active() === 0" (click)="prev()">
+          Back
+        </ui-button>
+        <ui-button
+          type="button"
+          variant="primary"
+          [disabled]="active() >= steps().length - 1"
+          (click)="next()"
+        >
           Next
         </ui-button>
       </div>

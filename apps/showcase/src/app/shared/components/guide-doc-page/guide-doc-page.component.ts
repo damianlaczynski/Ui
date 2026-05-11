@@ -2,14 +2,24 @@ import { RouterLink } from '@angular/router';
 import { Component, computed, input, signal } from '@angular/core';
 import { BadgeComponent, ButtonComponent, TableOfContentComponent, type Variant } from 'ui';
 import { highlightTypeScript } from '@shared/utils/showcase/code-highlight.util';
-import { GuideDocCardStatusTone, GuideDocCodeBlock, GuideDocPageConfig } from './guide-doc-page.models';
+import {
+  GuideDocCardStatusTone,
+  GuideDocCodeBlock,
+  GuideDocPageConfig,
+} from './guide-doc-page.models';
 import { guideConfigToMarkdown } from './guide-doc-markdown.util';
 import { ShowcaseDocHeaderComponent } from '../showcase-doc-header/showcase-doc-header.component';
 
 @Component({
   selector: 'app-guide-doc-page',
   standalone: true,
-  imports: [RouterLink, BadgeComponent, ButtonComponent, TableOfContentComponent, ShowcaseDocHeaderComponent],
+  imports: [
+    RouterLink,
+    BadgeComponent,
+    ButtonComponent,
+    TableOfContentComponent,
+    ShowcaseDocHeaderComponent,
+  ],
   template: `
     <div class="showcase-doc-layout showcase-doc-layout--with-toc">
       <ui-table-of-content
@@ -36,13 +46,19 @@ import { ShowcaseDocHeaderComponent } from '../showcase-doc-header/showcase-doc-
               <h2 class="showcase-doc__section-title">{{ section.title }}</h2>
 
               @if (section.description) {
-                <p class="showcase-doc__section-description" [innerHTML]="formatRichText(section.description)"></p>
+                <p
+                  class="showcase-doc__section-description"
+                  [innerHTML]="formatRichText(section.description)"
+                ></p>
               }
 
               @for (block of section.blocks; track $index) {
                 @switch (block.type) {
                   @case ('paragraph') {
-                    <p class="showcase-doc__section-description" [innerHTML]="formatRichText(block.content)"></p>
+                    <p
+                      class="showcase-doc__section-description"
+                      [innerHTML]="formatRichText(block.content)"
+                    ></p>
                   }
                   @case ('list') {
                     <ul class="showcase-doc__api-related">
@@ -62,8 +78,16 @@ import { ShowcaseDocHeaderComponent } from '../showcase-doc-header/showcase-doc-
                         <ui-button
                           variant="secondary"
                           appearance="outline"
-                          [icon]="copiedBlockId() === codeBlockId(section.id, $index) ? 'checkmark' : 'copy'"
-                          [ariaLabel]="copiedBlockId() === codeBlockId(section.id, $index) ? 'Copied' : 'Copy code'"
+                          [icon]="
+                            copiedBlockId() === codeBlockId(section.id, $index)
+                              ? 'checkmark'
+                              : 'copy'
+                          "
+                          [ariaLabel]="
+                            copiedBlockId() === codeBlockId(section.id, $index)
+                              ? 'Copied'
+                              : 'Copy code'
+                          "
                           (click)="copyCode(codeBlockId(section.id, $index), block.code)"
                         />
                       </div>
@@ -182,8 +206,13 @@ export class GuideDocPageComponent {
   }
 
   formatRichText(content: string): string {
-    const escaped = content.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+    const escaped = content
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;');
 
-    return escaped.replace(/`([^`]+)`/g, '<code class="showcase-doc__api-code">$1</code>').replaceAll('\n', '<br />');
+    return escaped
+      .replace(/`([^`]+)`/g, '<code class="showcase-doc__api-code">$1</code>')
+      .replaceAll('\n', '<br />');
   }
 }

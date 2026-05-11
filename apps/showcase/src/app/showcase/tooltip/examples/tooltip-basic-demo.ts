@@ -6,8 +6,14 @@ import { ButtonComponent, TooltipDirective } from 'ui';
   standalone: true,
   imports: [ButtonComponent, TooltipDirective],
   template: `
-    <div style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;width:100%;max-width:32rem">
-      <ui-button type="button" variant="primary" uiTooltip="Creates a draft issue and opens it in the editor.">
+    <div
+      style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;width:100%;max-width:32rem"
+    >
+      <ui-button
+        type="button"
+        variant="primary"
+        uiTooltip="Creates a draft issue and opens it in the editor."
+      >
         New issue
       </ui-button>
 

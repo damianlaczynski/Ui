@@ -70,7 +70,12 @@
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
-            ["text", "InputSignal<string>", "required", "Visible keyboard token shown inside the keycap."],
+            [
+              "text",
+              "InputSignal<string>",
+              "required",
+              "Visible keyboard token shown inside the keycap."
+            ],
             ["size", "InputSignal<Size>", "'medium'", "Controls the visual density of the keycap."],
             [
               "appearance",

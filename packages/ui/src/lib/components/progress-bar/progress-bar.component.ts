@@ -35,12 +35,19 @@ export class ProgressBarComponent {
     ].join(' '),
   );
   trackClasses = computed(() =>
-    ['progress-bar__track', this.type() === 'indeterminate' ? 'progress-bar__track--animated' : ''].join(' '),
+    [
+      'progress-bar__track',
+      this.type() === 'indeterminate' ? 'progress-bar__track--animated' : '',
+    ].join(' '),
   );
   progressValue = computed(() => Math.max(0, Math.min(this.value(), 100)));
-  trackStyle = computed(() => (this.type() === 'determinate' ? { width: `${this.progressValue()}%` } : {}));
+  trackStyle = computed(() =>
+    this.type() === 'determinate' ? { width: `${this.progressValue()}%` } : {},
+  );
   ariaValueNow = computed(() => (this.type() === 'determinate' ? this.progressValue() : undefined));
   ariaValueMin = computed(() => (this.type() === 'determinate' ? 0 : undefined));
   ariaValueMax = computed(() => (this.type() === 'determinate' ? 100 : undefined));
-  computedAriaLabel = computed(() => this.ariaLabel().trim() || this.i18n.t('progressBar.ariaLabel', 'Progress'));
+  computedAriaLabel = computed(
+    () => this.ariaLabel().trim() || this.i18n.t('progressBar.ariaLabel', 'Progress'),
+  );
 }

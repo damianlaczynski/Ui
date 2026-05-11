@@ -9,7 +9,11 @@ import { AccordionComponent } from 'ui';
     <div
       style="display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1rem;width:100%;max-width:44rem"
     >
-      <ui-accordion label="Selected section" [showSelectionIndicator]="true" indicatorPosition="vertical">
+      <ui-accordion
+        label="Selected section"
+        [showSelectionIndicator]="true"
+        indicatorPosition="vertical"
+      >
         <p style="margin:0;color:var(--color-neutral-foreground-rest)">
           Vertical indicators work well when the accordion behaves like a list of active sections.
         </p>

@@ -673,7 +673,9 @@
   }
 }
 
-.data-grid__row:has(.data-grid__cell--selection) + .data-grid__row-details .data-grid__row-details-content {
+.data-grid__row:has(.data-grid__cell--selection)
+  + .data-grid__row-details
+  .data-grid__row-details-content {
   padding-left: calc(40px + 48px + $spacing-4);
 
   .data-grid--small & {

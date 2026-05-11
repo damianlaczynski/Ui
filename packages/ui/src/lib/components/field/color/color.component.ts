@@ -510,7 +510,10 @@ export class ColorComponent extends FieldComponent implements OnDestroy {
     if (override !== undefined) {
       return override;
     }
-    return this.t('eyeDropperNotSupportedMessage', 'EyeDropper API is not supported in this browser');
+    return this.t(
+      'eyeDropperNotSupportedMessage',
+      'EyeDropper API is not supported in this browser',
+    );
   }
 
   private t(key: string, fallback: string, params?: Record<string, unknown>): string {

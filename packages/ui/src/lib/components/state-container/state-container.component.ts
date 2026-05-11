@@ -102,9 +102,15 @@ export class StateContainerComponent<T> {
   resolvedLoadingTitle = computed(
     () => this.loadingTitle().trim() || this.i18n.t('stateContainer.loadingTitle', 'Loading'),
   );
-  resolvedErrorTitle = computed(() => this.errorTitle().trim() || this.i18n.t('stateContainer.errorTitle', 'Error'));
-  resolvedEmptyTitle = computed(() => this.emptyTitle().trim() || this.i18n.t('stateContainer.emptyTitle', 'No data'));
-  shouldShowInitial = computed(() => this.state().isInitial && !this.state().isLoading && !this.state().isError);
+  resolvedErrorTitle = computed(
+    () => this.errorTitle().trim() || this.i18n.t('stateContainer.errorTitle', 'Error'),
+  );
+  resolvedEmptyTitle = computed(
+    () => this.emptyTitle().trim() || this.i18n.t('stateContainer.emptyTitle', 'No data'),
+  );
+  shouldShowInitial = computed(
+    () => this.state().isInitial && !this.state().isLoading && !this.state().isError,
+  );
 
   shouldShowEmpty = computed(() => {
     const override = this.emptyOverride();

@@ -100,7 +100,12 @@
               "8",
               "Width of the resize gutter strip in pixels (visual grip stays narrow in the centre)."
             ],
-            ["ariaLabel", "InputSignal<string>", "'Resizable splitter'", "Accessible label for the splitter group."]
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "'Resizable splitter'",
+              "Accessible label for the splitter group."
+            ]
           ]
         },
         {
@@ -124,7 +129,11 @@
               "{ panelIndex, newSize, panelId }",
               "Resize event payload emitted for affected panels."
             ],
-            ["SplitterPanelDirective", "`[uiSplitterPanel]`", "Associates a projected `ng-template` with a panel id."]
+            [
+              "SplitterPanelDirective",
+              "`[uiSplitterPanel]`",
+              "Associates a projected `ng-template` with a panel id."
+            ]
           ]
         },
         {

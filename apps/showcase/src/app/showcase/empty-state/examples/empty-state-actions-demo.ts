@@ -6,7 +6,9 @@ import { CardComponent, EmptyStateComponent, type QuickAction } from 'ui';
   standalone: true,
   imports: [CardComponent, EmptyStateComponent],
   template: `
-    <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:54rem">
+    <div
+      style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:54rem"
+    >
       <ui-card style="flex:0 0 28rem;" ariaLabel="Empty state with actions">
         <ui-empty-state
           title="No team members"

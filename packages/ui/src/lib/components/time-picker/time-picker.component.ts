@@ -162,7 +162,10 @@ export class TimePickerComponent implements AfterViewInit, OnDestroy {
       }
 
       const parsed = this.parseTimeString(timeValue);
-      const normalizedMinute = this.normalizeToOptions(parsed.minute, this.buildMinuteOptions(this.getMinuteStep()));
+      const normalizedMinute = this.normalizeToOptions(
+        parsed.minute,
+        this.buildMinuteOptions(this.getMinuteStep()),
+      );
 
       this.lastHour24.set(parsed.hour);
 
@@ -416,14 +419,19 @@ export class TimePickerComponent implements AfterViewInit, OnDestroy {
     if (this.hourVisualIndex != null) {
       return index === this.hourVisualIndex;
     }
-    return value === this.selectedHour() && this.isIndexInMiddleSegment(index, this.hourOptions.length);
+    return (
+      value === this.selectedHour() && this.isIndexInMiddleSegment(index, this.hourOptions.length)
+    );
   }
 
   isMinuteSelected(index: number, value: number): boolean {
     if (this.minuteVisualIndex != null) {
       return index === this.minuteVisualIndex;
     }
-    return value === this.selectedMinute() && this.isIndexInMiddleSegment(index, this.minuteOptions.length);
+    return (
+      value === this.selectedMinute() &&
+      this.isIndexInMiddleSegment(index, this.minuteOptions.length)
+    );
   }
 
   private isIndexInMiddleSegment(index: number, baseLength: number): boolean {
@@ -491,10 +499,12 @@ export class TimePickerComponent implements AfterViewInit, OnDestroy {
 
     const total = wheelOptions.length;
     const base = baseOptions.length;
-    const currentVisual = (type === 'hour' ? this.hourVisualIndex : this.minuteVisualIndex) ?? base + currentIndex;
+    const currentVisual =
+      (type === 'hour' ? this.hourVisualIndex : this.minuteVisualIndex) ?? base + currentIndex;
     const rawTarget = this.mod(currentVisual + delta, total);
     const nextValue = wheelOptions[rawTarget];
-    const wrapped = (delta > 0 && rawTarget < currentVisual) || (delta < 0 && rawTarget > currentVisual);
+    const wrapped =
+      (delta > 0 && rawTarget < currentVisual) || (delta < 0 && rawTarget > currentVisual);
 
     if (type === 'hour') {
       this.selectedHour.set(nextValue);
@@ -516,7 +526,12 @@ export class TimePickerComponent implements AfterViewInit, OnDestroy {
     return this.sizeToItemHeight[this.size()] ?? this.sizeToItemHeight.medium;
   }
 
-  private setWheelScrollTop(type: WheelType, element: HTMLDivElement, top: number, smooth: boolean): void {
+  private setWheelScrollTop(
+    type: WheelType,
+    element: HTMLDivElement,
+    top: number,
+    smooth: boolean,
+  ): void {
     this.cancelWheelAnimation(type);
     if (!smooth) {
       this.applyScrollTop(element, top);

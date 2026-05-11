@@ -40,7 +40,8 @@ export class CarouselAutoplayDemoComponent {
       id: 'auto-3',
       image: 'https://picsum.photos/seed/ui-carousel-auto-3/1200/640',
       title: 'Always keep manual controls',
-      description: 'Users should still be able to move backward and forward when something matters.',
+      description:
+        'Users should still be able to move backward and forward when something matters.',
     },
   ];
 }

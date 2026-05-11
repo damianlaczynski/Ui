@@ -2,7 +2,16 @@
 // DataGrid Header Component
 // =============================================================================
 
-import { Component, input, output, ChangeDetectionStrategy, inject, computed, signal, DestroyRef } from '@angular/core';
+import {
+  Component,
+  input,
+  output,
+  ChangeDetectionStrategy,
+  inject,
+  computed,
+  signal,
+  DestroyRef,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DataGridColumn } from '../models/data-grid-column.model';
@@ -33,7 +42,10 @@ import { FilterFactory } from '../filters/filter-factory';
       <div class="data-grid__header-row">
         <!-- Expand Column Header -->
         @if (expandable()) {
-          <div [class]="getHeaderCellClasses(null, false)" class="data-grid__header-cell--expand"></div>
+          <div
+            [class]="getHeaderCellClasses(null, false)"
+            class="data-grid__header-cell--expand"
+          ></div>
         }
 
         <!-- Selection Column Header -->
@@ -54,7 +66,9 @@ import { FilterFactory } from '../filters/filter-factory';
             [style.width]="column.width || null"
             [style.min-width]="column.minWidth || (column.width ? null : '0')"
             [style.max-width]="column.maxWidth || null"
-            [style.flex]="column.width ? '0 0 ' + column.width : column.minWidth ? '1 1 auto' : '1 1 0'"
+            [style.flex]="
+              column.width ? '0 0 ' + column.width : column.minWidth ? '1 1 auto' : '1 1 0'
+            "
           >
             <div class="data-grid__header-label-content">
               @if (column.headerTemplate) {
@@ -64,7 +78,11 @@ import { FilterFactory } from '../filters/filter-factory';
               }
               <div class="data-grid__header-actions">
                 <!-- Operator Selector (for filterable columns) -->
-                @if (filteringEnabled() && isColumnFilterable(column) && getFilterOperators(column).length > 0) {
+                @if (
+                  filteringEnabled() &&
+                  isColumnFilterable(column) &&
+                  getFilterOperators(column).length > 0
+                ) {
                   @if (getFilterOperator(column); as operator) {
                     <ui-dropdown
                       [items]="getFilterOperators(column)"
@@ -85,9 +103,16 @@ import { FilterFactory } from '../filters/filter-factory';
                     [size]="size()"
                     [icon]="getSortIconForColumn(column)"
                     [selected]="isColumnSorted(column)"
-                    [ariaLabel]="column.header + (isColumnSorted(column) ? ' sorted ' + sortDirection() : ' sortable')"
+                    [ariaLabel]="
+                      column.header +
+                      (isColumnSorted(column) ? ' sorted ' + sortDirection() : ' sortable')
+                    "
                     [attr.aria-sort]="
-                      isColumnSorted(column) ? (sortDirection() === 'asc' ? 'ascending' : 'descending') : 'none'
+                      isColumnSorted(column)
+                        ? sortDirection() === 'asc'
+                          ? 'ascending'
+                          : 'descending'
+                        : 'none'
                     "
                     (click)="onHeaderClick(column, $event)"
                     (keydown.enter)="onHeaderClick(column, $event)"
@@ -160,7 +185,9 @@ export class DataGridHeaderComponent<T = any> {
 
         if (definition) {
           const defaultOperator = definition.getDefaultOperator();
-          const operator = definition.getOperators().find(op => op.value === filterValue?.operator) ?? defaultOperator;
+          const operator =
+            definition.getOperators().find(op => op.value === filterValue?.operator) ??
+            defaultOperator;
 
           const result = operator
             ? {
@@ -271,7 +298,9 @@ export class DataGridHeaderComponent<T = any> {
     event.preventDefault();
     event.stopPropagation();
 
-    const headerCell = (event.target as HTMLElement).closest('.data-grid__header-cell') as HTMLElement;
+    const headerCell = (event.target as HTMLElement).closest(
+      '.data-grid__header-cell',
+    ) as HTMLElement;
     if (!headerCell) return;
 
     const startX = event.clientX;

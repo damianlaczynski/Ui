@@ -40,7 +40,9 @@ const environmentItems: EnvironmentItem[] = [
   selector: 'app-dropdown-custom-template-example',
   imports: [FormsModule, DropdownComponent, IconComponent],
   template: `
-    <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:46rem">
+    <div
+      style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:46rem"
+    >
       <div style="flex:1 1 20rem;min-width:18rem;max-width:26rem">
         <ui-dropdown
           label="Deployment environment"
@@ -51,14 +53,22 @@ const environmentItems: EnvironmentItem[] = [
           [ngModelOptions]="{ standalone: true }"
         >
           <ng-template #itemTemplate let-item let-selected="selected">
-            <div style="display:flex;gap:0.5rem;width:100%;min-width:0;justify-content:space-between">
+            <div
+              style="display:flex;gap:0.5rem;width:100%;min-width:0;justify-content:space-between"
+            >
               <div style="display:flex;gap:0.75rem;align-items:center;min-width:0">
                 <ui-icon [icon]="item.icon || 'globe'" size="medium" />
-                <div style="display:flex;flex-direction:column;align-items:flex-start;gap:0.125rem;min-width:0">
-                  <span style="font-weight:600;line-height:1.35;color:var(--color-neutral-foreground-rest)">
+                <div
+                  style="display:flex;flex-direction:column;align-items:flex-start;gap:0.125rem;min-width:0"
+                >
+                  <span
+                    style="font-weight:600;line-height:1.35;color:var(--color-neutral-foreground-rest)"
+                  >
                     {{ item.label }}
                   </span>
-                  <span style="font-size:0.75rem;line-height:1.4;color:var(--color-neutral-foreground2-rest)">
+                  <span
+                    style="font-size:0.75rem;line-height:1.4;color:var(--color-neutral-foreground2-rest)"
+                  >
                     {{ item.data.region }} · {{ item.data.note }}
                   </span>
                 </div>
@@ -83,10 +93,14 @@ const environmentItems: EnvironmentItem[] = [
         >
           Summary
         </p>
-        <strong style="display:block;font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)">
+        <strong
+          style="display:block;font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)"
+        >
           {{ selectedEnvironmentItem?.label || 'None' }}
         </strong>
-        <p style="margin:0.35rem 0 0;font-size:0.75rem;line-height:1.4;color:var(--color-neutral-foreground2-rest)">
+        <p
+          style="margin:0.35rem 0 0;font-size:0.75rem;line-height:1.4;color:var(--color-neutral-foreground2-rest)"
+        >
           {{ selectedEnvironmentItem?.data?.region || 'No region selected' }}
         </p>
       </div>

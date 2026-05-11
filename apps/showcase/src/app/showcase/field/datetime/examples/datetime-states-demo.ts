@@ -7,7 +7,9 @@ import { DatetimeComponent } from 'ui';
   standalone: true,
   imports: [FormsModule, DatetimeComponent],
   template: `
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:1rem;align-items:start">
+    <div
+      style="display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:1rem;align-items:start"
+    >
       <ui-datetime
         label="Small"
         placeholder="YYYY-MM-DD HH:mm"

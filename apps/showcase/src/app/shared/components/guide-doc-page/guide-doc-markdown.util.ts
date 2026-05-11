@@ -37,7 +37,10 @@ function renderBlockMarkdown(block: GuideDocBlock): string[] {
     case 'cards':
       return block.cards.flatMap(card => renderCardMarkdown(card));
     case 'links':
-      return ['', ...block.links.map(link => `- ${link.title}: ${link.description} (${link.routerLink})`)];
+      return [
+        '',
+        ...block.links.map(link => `- ${link.title}: ${link.description} (${link.routerLink})`),
+      ];
   }
 }
 

@@ -1,5 +1,9 @@
 <nav class="table-of-content" [class.table-of-content--sticky]="sticky()">
-  <div class="table-of-content__content" role="navigation" [attr.aria-label]="navigationAriaLabel()">
+  <div
+    class="table-of-content__content"
+    role="navigation"
+    [attr.aria-label]="navigationAriaLabel()"
+  >
     @for (item of treeNodes(); track item.id) {
       <ui-tree-node
         [node]="item"

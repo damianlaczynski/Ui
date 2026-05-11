@@ -14,7 +14,13 @@ import { FormsModule } from '@angular/forms';
   },
 })
 export class DsSidebarComponent {
-  private static readonly GETTING_STARTED_IDS = ['getting-started', 'installation', 'i18n', 'roadmap', 'llms'] as const;
+  private static readonly GETTING_STARTED_IDS = [
+    'getting-started',
+    'installation',
+    'i18n',
+    'roadmap',
+    'llms',
+  ] as const;
 
   private readonly router = inject(Router);
   selectedItemId = signal<string | null>(null);

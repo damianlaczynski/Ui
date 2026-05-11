@@ -28,6 +28,8 @@ export class DividerComponent {
   );
   hasText = computed(() => this.text() !== '');
   ariaLabelComputed = computed(
-    () => this.ariaLabel() || (this.hasText() ? this.text() : this.i18n.t('divider.ariaLabel', 'Divider')),
+    () =>
+      this.ariaLabel() ||
+      (this.hasText() ? this.text() : this.i18n.t('divider.ariaLabel', 'Divider')),
   );
 }

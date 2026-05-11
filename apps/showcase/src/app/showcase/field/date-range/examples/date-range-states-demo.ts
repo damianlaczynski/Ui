@@ -7,7 +7,9 @@ import { DateRange, DateRangeComponent } from 'ui';
   standalone: true,
   imports: [FormsModule, DateRangeComponent],
   template: `
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:1rem;align-items:start">
+    <div
+      style="display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:1rem;align-items:start"
+    >
       <ui-date-range
         label="Readonly"
         helpText="The range stays visible but cannot be changed."

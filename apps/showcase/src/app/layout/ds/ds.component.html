@@ -15,10 +15,22 @@
     <div class="ds__header__right">
       <div class="ds__header__meta">
         <span class="ds__header__version">v{{ version }}</span>
-        <a [href]="githubUrl" target="_blank" rel="noopener noreferrer" class="ds__header__link" aria-label="GitHub">
+        <a
+          [href]="githubUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="ds__header__link"
+          aria-label="GitHub"
+        >
           <ui-icon icon="open" size="small"></ui-icon>
         </a>
-        <a [href]="npmUrl" target="_blank" rel="noopener noreferrer" class="ds__header__link" aria-label="npm">
+        <a
+          [href]="npmUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="ds__header__link"
+          aria-label="npm"
+        >
           <ui-icon icon="arrow_download" size="small"></ui-icon>
         </a>
         @if (!isMobile()) {
@@ -28,7 +40,9 @@
             size="medium"
             text="Theme builder"
             (click)="themeBuilder.toggleDrawer()"
-            [attr.aria-label]="themeBuilder.drawerOpen() ? 'Close theme builder' : 'Open theme builder'"
+            [attr.aria-label]="
+              themeBuilder.drawerOpen() ? 'Close theme builder' : 'Open theme builder'
+            "
           />
           <div class="ds__theme-switcher">
             <button

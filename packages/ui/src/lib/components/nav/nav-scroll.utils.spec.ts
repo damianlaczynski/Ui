@@ -1,4 +1,8 @@
-import { findScrollableAncestor, scrollItemIntoContainer, scrollSelectedNavItemIntoView } from './nav-scroll.utils';
+import {
+  findScrollableAncestor,
+  scrollItemIntoContainer,
+  scrollSelectedNavItemIntoView,
+} from './nav-scroll.utils';
 
 describe('nav-scroll utils', () => {
   afterEach(() => {

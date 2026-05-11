@@ -113,8 +113,18 @@
               "Enables `cardClick` behavior and interactive surface styling."
             ],
             ["role", "InputSignal<string>", "'group'", "ARIA role applied to the root element."],
-            ["ariaLabel", "InputSignal<string | null>", "null", "Accessible name override for the card root."],
-            ["ariaLabelledBy", "InputSignal<string | null>", "null", "References external or projected label content."],
+            [
+              "ariaLabel",
+              "InputSignal<string | null>",
+              "null",
+              "Accessible name override for the card root."
+            ],
+            [
+              "ariaLabelledBy",
+              "InputSignal<string | null>",
+              "null",
+              "References external or projected label content."
+            ],
             [
               "ariaDescribedBy",
               "InputSignal<string | null>",
@@ -133,9 +143,24 @@
               "false",
               "Renders the built-in floating checkbox when no projected checkbox slot is provided."
             ],
-            ["checkboxAriaLabel", "InputSignal<string | null>", "null", "Accessible label for the built-in checkbox."],
-            ["defaultSelected", "InputSignal<boolean>", "false", "Initial selected state used on first render."],
-            ["selected", "ModelSignal<boolean>", "false", "Current selected state for controlled selection patterns."],
+            [
+              "checkboxAriaLabel",
+              "InputSignal<string | null>",
+              "null",
+              "Accessible label for the built-in checkbox."
+            ],
+            [
+              "defaultSelected",
+              "InputSignal<boolean>",
+              "false",
+              "Initial selected state used on first render."
+            ],
+            [
+              "selected",
+              "ModelSignal<boolean>",
+              "false",
+              "Current selected state for controlled selection patterns."
+            ],
             [
               "disabled",
               "ModelSignal<boolean>",
@@ -172,11 +197,20 @@
               "[uiCardPreview]",
               "Preview area rendered before content, useful for media, thumbnails, or decorative surfaces."
             ],
-            ["[uiCardHeader]", "Header block, typically title, subtitle, avatar, or top-level metadata."],
+            [
+              "[uiCardHeader]",
+              "Header block, typically title, subtitle, avatar, or top-level metadata."
+            ],
             ["[uiCardBody]", "Primary supporting content."],
             ["[uiCardFooter]", "Actions, secondary metadata, or summary controls."],
-            ["[uiCardFloatingAction]", "Projected floating action area, usually top-right utility actions."],
-            ["[uiCardCheckbox]", "Projected checkbox slot that replaces the built-in checkbox placement."]
+            [
+              "[uiCardFloatingAction]",
+              "Projected floating action area, usually top-right utility actions."
+            ],
+            [
+              "[uiCardCheckbox]",
+              "Projected checkbox slot that replaces the built-in checkbox placement."
+            ]
           ]
         },
         {

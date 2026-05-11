@@ -6,11 +6,15 @@ import { ToolbarComponent, type ToolbarItem } from 'ui';
   standalone: true,
   imports: [ToolbarComponent],
   template: `
-    <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:52rem">
+    <div
+      style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:52rem"
+    >
       <div
         style="flex:1 1 18rem;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >
-        <p style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)">
+        <p
+          style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)"
+        >
           Small horizontal
         </p>
         <ui-toolbar [items]="items" size="small" />
@@ -19,7 +23,9 @@ import { ToolbarComponent, type ToolbarItem } from 'ui';
       <div
         style="flex:0 0 auto;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >
-        <p style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)">
+        <p
+          style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)"
+        >
           Large vertical
         </p>
         <ui-toolbar [items]="items" size="large" orientation="vertical" />

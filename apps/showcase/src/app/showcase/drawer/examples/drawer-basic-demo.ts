@@ -16,10 +16,14 @@ import { ButtonComponent, DrawerComponent, QuickAction } from 'ui';
         [secondaryAction]="secondaryAction()"
       >
         <div style="display:flex;flex-direction:column;gap:0.75rem">
-          <div style="padding:0.875rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:0.75rem">
+          <div
+            style="padding:0.875rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:0.75rem"
+          >
             Renewal risk increased after delayed procurement review.
           </div>
-          <div style="padding:0.875rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:0.75rem">
+          <div
+            style="padding:0.875rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:0.75rem"
+          >
             Next suggested action: schedule finance follow-up before Friday.
           </div>
         </div>

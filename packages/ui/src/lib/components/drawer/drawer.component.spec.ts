@@ -44,7 +44,9 @@ describe('DrawerComponent', () => {
   });
 
   it('should render close button with default aria-label fallback', () => {
-    const closeButton: HTMLButtonElement | null = fixture.nativeElement.querySelector('.drawer__close-button button');
+    const closeButton: HTMLButtonElement | null = fixture.nativeElement.querySelector(
+      '.drawer__close-button button',
+    );
     expect(closeButton?.getAttribute('aria-label')).toBe('Close drawer');
   });
 
@@ -150,13 +152,15 @@ describe('DrawerComponent', () => {
   });
 
   it('should keep drawer mounted during closing and unmount after animation end', () => {
-    const contentBeforeClose: HTMLElement | null = fixture.nativeElement.querySelector('.drawer__content');
+    const contentBeforeClose: HTMLElement | null =
+      fixture.nativeElement.querySelector('.drawer__content');
     expect(contentBeforeClose).toBeTruthy();
 
     component.onCloseClick();
     fixture.detectChanges();
 
-    const contentWhileClosing: HTMLElement | null = fixture.nativeElement.querySelector('.drawer__content');
+    const contentWhileClosing: HTMLElement | null =
+      fixture.nativeElement.querySelector('.drawer__content');
     const drawerWhileClosing: HTMLElement | null = fixture.nativeElement.querySelector('.drawer');
     expect(contentWhileClosing).toBeTruthy();
     expect(drawerWhileClosing?.classList.contains('drawer--closing')).toBe(true);
@@ -169,7 +173,8 @@ describe('DrawerComponent', () => {
     contentWhileClosing?.dispatchEvent(animationEndEvent);
     fixture.detectChanges();
 
-    const contentAfterClose: HTMLElement | null = fixture.nativeElement.querySelector('.drawer__content');
+    const contentAfterClose: HTMLElement | null =
+      fixture.nativeElement.querySelector('.drawer__content');
     expect(contentAfterClose).toBeNull();
   });
 
@@ -184,7 +189,8 @@ describe('DrawerComponent', () => {
     localFixture.detectChanges();
 
     const drawer: HTMLElement | null = localFixture.nativeElement.querySelector('.drawer');
-    const content: HTMLElement | null = localFixture.nativeElement.querySelector('.drawer__content');
+    const content: HTMLElement | null =
+      localFixture.nativeElement.querySelector('.drawer__content');
 
     expect(drawer?.classList.contains('drawer--right')).toBe(true);
     expect(content?.classList.contains('drawer__content--right')).toBe(true);
@@ -201,7 +207,8 @@ describe('DrawerComponent', () => {
     localFixture.detectChanges();
 
     const drawer: HTMLElement | null = localFixture.nativeElement.querySelector('.drawer');
-    const content: HTMLElement | null = localFixture.nativeElement.querySelector('.drawer__content');
+    const content: HTMLElement | null =
+      localFixture.nativeElement.querySelector('.drawer__content');
 
     expect(drawer?.classList.contains('drawer--left')).toBe(true);
     expect(content?.classList.contains('drawer__content--left')).toBe(true);

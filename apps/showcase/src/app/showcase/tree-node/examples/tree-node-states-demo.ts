@@ -12,7 +12,9 @@ import { TreeNodeComponent, type TreeNode } from 'ui';
       <div
         style="padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >
-        <p style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)">
+        <p
+          style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)"
+        >
           Default
         </p>
         <ui-tree-node [node]="defaultNode" />
@@ -21,7 +23,9 @@ import { TreeNodeComponent, type TreeNode } from 'ui';
       <div
         style="padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >
-        <p style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)">
+        <p
+          style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)"
+        >
           Selected
         </p>
         <ui-tree-node [node]="selectedNode" [showSelectionIndicator]="true" />
@@ -30,7 +34,9 @@ import { TreeNodeComponent, type TreeNode } from 'ui';
       <div
         style="padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
       >
-        <p style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)">
+        <p
+          style="margin:0 0 0.75rem;font-size:0.875rem;font-weight:600;color:var(--color-neutral-foreground2-rest)"
+        >
           Disabled
         </p>
         <ui-tree-node [node]="disabledNode" />

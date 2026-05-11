@@ -94,7 +94,9 @@ const DISABLED_ITEMS: CommandPaletteItem[] = [
       <div
         style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background2-rest)"
       >
-        <ui-button variant="primary" (click)="searchVisible.set(true)">Open search-heavy palette</ui-button>
+        <ui-button variant="primary" (click)="searchVisible.set(true)"
+          >Open search-heavy palette</ui-button
+        >
         <ui-button variant="secondary" appearance="outline" (click)="disabledVisible.set(true)">
           Open disabled-items palette
         </ui-button>

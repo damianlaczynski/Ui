@@ -28,11 +28,18 @@ import {
       <div
         style="height:18rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;overflow:hidden;background:var(--color-neutral-background-rest)"
       >
-        <ui-splitter [panels]="panels()" orientation="horizontal" [gutterSize]="8" (panelResize)="onResize($event)">
+        <ui-splitter
+          [panels]="panels()"
+          orientation="horizontal"
+          [gutterSize]="8"
+          (panelResize)="onResize($event)"
+        >
           <ng-template uiSplitterPanel="filters">
             <div style="height:100%;padding:1rem;background:var(--color-neutral-background-rest)">
               <div style="font-size:0.875rem;font-weight:600">Filters</div>
-              <div style="margin-top:0.5rem;font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
+              <div
+                style="margin-top:0.5rem;font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
+              >
                 This panel has a minimum size so checkboxes and fields stay usable.
               </div>
             </div>
@@ -43,8 +50,11 @@ import {
               style="height:100%;padding:1rem;background:linear-gradient(180deg,var(--color-neutral-background-rest),var(--color-neutral-background2-rest))"
             >
               <div style="font-size:0.875rem;font-weight:600">Results</div>
-              <div style="margin-top:0.5rem;font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-                The main area still keeps its own minimum size, so the content view does not collapse into noise.
+              <div
+                style="margin-top:0.5rem;font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
+              >
+                The main area still keeps its own minimum size, so the content view does not
+                collapse into noise.
               </div>
             </div>
           </ng-template>

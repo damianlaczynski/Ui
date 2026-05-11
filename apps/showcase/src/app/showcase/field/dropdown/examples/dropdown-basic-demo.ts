@@ -14,7 +14,9 @@ const statusItems: DropdownItem[] = [
   selector: 'app-dropdown-basic-example',
   imports: [FormsModule, DropdownComponent],
   template: `
-    <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:42rem">
+    <div
+      style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:42rem"
+    >
       <div style="flex:1 1 18rem;min-width:16rem;max-width:22rem">
         <ui-dropdown
           label="Task status"
@@ -34,7 +36,9 @@ const statusItems: DropdownItem[] = [
         >
           Value
         </p>
-        <strong style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)">
+        <strong
+          style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)"
+        >
           {{ selectedStatusLabel }}
         </strong>
       </div>

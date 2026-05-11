@@ -86,7 +86,11 @@
   </div>
 
   <!-- Page Size Selector -->
-  @if (config().showPageSizeSelector && config().pageSizeOptions && config().pageSizeOptions!.length > 0) {
+  @if (
+    config().showPageSizeSelector &&
+    config().pageSizeOptions &&
+    config().pageSizeOptions!.length > 0
+  ) {
     <div class="pagination__page-size">
       <ui-dropdown
         [items]="pageSizeItems()"

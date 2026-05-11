@@ -82,7 +82,12 @@
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
-            ["value", "InputSignal<string>", "''", "Normalized selected time string such as `09:30`."],
+            [
+              "value",
+              "InputSignal<string>",
+              "''",
+              "Normalized selected time string such as `09:30`."
+            ],
             [
               "step",
               "InputSignal<number | string>",
@@ -95,11 +100,36 @@
               "'medium'",
               "Density token for wheel height and option size."
             ],
-            ["use24HourFormat", "InputSignal<boolean>", "true", "Switches between 24 hour and 12 hour presentation."],
-            ["inline", "InputSignal<boolean>", "false", "Reduces surrounding chrome for denser embedded layouts."],
-            ["showLabel", "InputSignal<boolean>", "false", "Shows a visible label above or beside the picker layout."],
-            ["label", "InputSignal<string>", "'Time'", "Visible label text when `showLabel` is enabled."],
-            ["disabled", "InputSignal<boolean>", "false", "Disables wheel and meridiem interaction."]
+            [
+              "use24HourFormat",
+              "InputSignal<boolean>",
+              "true",
+              "Switches between 24 hour and 12 hour presentation."
+            ],
+            [
+              "inline",
+              "InputSignal<boolean>",
+              "false",
+              "Reduces surrounding chrome for denser embedded layouts."
+            ],
+            [
+              "showLabel",
+              "InputSignal<boolean>",
+              "false",
+              "Shows a visible label above or beside the picker layout."
+            ],
+            [
+              "label",
+              "InputSignal<string>",
+              "'Time'",
+              "Visible label text when `showLabel` is enabled."
+            ],
+            [
+              "disabled",
+              "InputSignal<boolean>",
+              "false",
+              "Disables wheel and meridiem interaction."
+            ]
           ]
         },
         {
@@ -121,7 +151,10 @@
           "columns": ["Topic", "Description"],
           "columnKinds": ["code", "text"],
           "rows": [
-            ["minute wheel", "Generated from the resolved step cadence, normalized to the nearest available option."],
+            [
+              "minute wheel",
+              "Generated from the resolved step cadence, normalized to the nearest available option."
+            ],
             [
               "12 hour mode",
               "Keeps stored values normalized as 24 hour `HH:mm` while presenting `AM` or `PM` in the UI."

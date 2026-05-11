@@ -11,7 +11,9 @@ import { NumberComponent } from 'ui';
       style="display:flex;flex-direction:column;gap:1rem;width:100%;max-width:42rem;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
     >
       <div style="font-size:0.9375rem;font-weight:600">Budget setup</div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:1rem;width:100%">
+      <div
+        style="display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:1rem;width:100%"
+      >
         <ui-number
           label="Seats"
           [formControl]="budgetForm.controls.seats"

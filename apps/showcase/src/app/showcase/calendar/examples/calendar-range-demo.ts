@@ -80,7 +80,12 @@ export class CalendarRangeDemoComponent {
   }
 
   protected onDateHover(day: CalendarDay): void {
-    if (!day.isDisabled && this.startDate() && !this.endDate() && this.activeSelection() === 'end') {
+    if (
+      !day.isDisabled &&
+      this.startDate() &&
+      !this.endDate() &&
+      this.activeSelection() === 'end'
+    ) {
       this.hoveredDate.set(day.date);
     }
   }

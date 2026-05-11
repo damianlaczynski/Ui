@@ -75,7 +75,10 @@ describe('PaginationComponent', () => {
     });
 
     it('should disable next/last on last page', () => {
-      fixture.componentRef.setInput('config', createBasicConfig({ currentPage: 10, totalPages: 10 }));
+      fixture.componentRef.setInput(
+        'config',
+        createBasicConfig({ currentPage: 10, totalPages: 10 }),
+      );
       fixture.detectChanges();
 
       expect(component.canGoToFirst()).toBe(true);
@@ -85,7 +88,10 @@ describe('PaginationComponent', () => {
     });
 
     it('should disable all navigation when only one page', () => {
-      fixture.componentRef.setInput('config', createBasicConfig({ currentPage: 1, totalPages: 1, totalItems: 5 }));
+      fixture.componentRef.setInput(
+        'config',
+        createBasicConfig({ currentPage: 1, totalPages: 1, totalItems: 5 }),
+      );
       fixture.detectChanges();
 
       expect(component.canGoToFirst()).toBe(false);
@@ -136,7 +142,10 @@ describe('PaginationComponent', () => {
       let emittedPage: number | undefined;
       component.pageChange.subscribe(page => (emittedPage = page));
 
-      fixture.componentRef.setInput('config', createBasicConfig({ currentPage: 5, totalPages: 10 }));
+      fixture.componentRef.setInput(
+        'config',
+        createBasicConfig({ currentPage: 5, totalPages: 10 }),
+      );
       fixture.detectChanges();
 
       component.onLastClick();
@@ -197,7 +206,10 @@ describe('PaginationComponent', () => {
       let emittedPage: number | undefined;
       component.pageChange.subscribe(page => (emittedPage = page));
 
-      fixture.componentRef.setInput('config', createBasicConfig({ currentPage: 10, totalPages: 10 }));
+      fixture.componentRef.setInput(
+        'config',
+        createBasicConfig({ currentPage: 10, totalPages: 10 }),
+      );
       fixture.detectChanges();
 
       component.onNextClick();
@@ -209,7 +221,10 @@ describe('PaginationComponent', () => {
 
   describe('Visible Pages Calculation', () => {
     it('should show all pages when total is less than maxVisible', () => {
-      fixture.componentRef.setInput('config', createBasicConfig({ currentPage: 1, totalPages: 3, maxVisiblePages: 5 }));
+      fixture.componentRef.setInput(
+        'config',
+        createBasicConfig({ currentPage: 1, totalPages: 3, maxVisiblePages: 5 }),
+      );
       fixture.detectChanges();
 
       const pages = component.visiblePages();
@@ -300,28 +315,40 @@ describe('PaginationComponent', () => {
 
   describe('Info Text', () => {
     it('should display correct range for first page', () => {
-      fixture.componentRef.setInput('config', createBasicConfig({ currentPage: 1, pageSize: 10, totalItems: 100 }));
+      fixture.componentRef.setInput(
+        'config',
+        createBasicConfig({ currentPage: 1, pageSize: 10, totalItems: 100 }),
+      );
       fixture.detectChanges();
 
       expect(component.infoText()).toBe('Showing 1-10 of 100');
     });
 
     it('should display correct range for middle page', () => {
-      fixture.componentRef.setInput('config', createBasicConfig({ currentPage: 5, pageSize: 10, totalItems: 100 }));
+      fixture.componentRef.setInput(
+        'config',
+        createBasicConfig({ currentPage: 5, pageSize: 10, totalItems: 100 }),
+      );
       fixture.detectChanges();
 
       expect(component.infoText()).toBe('Showing 41-50 of 100');
     });
 
     it('should display correct range for last page with partial items', () => {
-      fixture.componentRef.setInput('config', createBasicConfig({ currentPage: 10, pageSize: 10, totalItems: 95 }));
+      fixture.componentRef.setInput(
+        'config',
+        createBasicConfig({ currentPage: 10, pageSize: 10, totalItems: 95 }),
+      );
       fixture.detectChanges();
 
       expect(component.infoText()).toBe('Showing 91-95 of 95');
     });
 
     it('should display "No items" when totalItems is 0', () => {
-      fixture.componentRef.setInput('config', createBasicConfig({ currentPage: 1, totalPages: 0, totalItems: 0 }));
+      fixture.componentRef.setInput(
+        'config',
+        createBasicConfig({ currentPage: 1, totalPages: 0, totalItems: 0 }),
+      );
       fixture.detectChanges();
 
       expect(component.infoText()).toBe('No items');
@@ -338,7 +365,10 @@ describe('PaginationComponent', () => {
     });
 
     it('should handle different page sizes', () => {
-      fixture.componentRef.setInput('config', createBasicConfig({ currentPage: 2, pageSize: 25, totalItems: 100 }));
+      fixture.componentRef.setInput(
+        'config',
+        createBasicConfig({ currentPage: 2, pageSize: 25, totalItems: 100 }),
+      );
       fixture.detectChanges();
 
       expect(component.infoText()).toBe('Showing 26-50 of 100');
@@ -513,7 +543,10 @@ describe('PaginationComponent', () => {
 
   describe('Edge Cases', () => {
     it('should handle zero total pages', () => {
-      fixture.componentRef.setInput('config', createBasicConfig({ currentPage: 1, totalPages: 0, totalItems: 0 }));
+      fixture.componentRef.setInput(
+        'config',
+        createBasicConfig({ currentPage: 1, totalPages: 0, totalItems: 0 }),
+      );
       fixture.detectChanges();
 
       expect(component.canGoToNext()).toBe(false);
@@ -739,7 +772,10 @@ describe('PaginationComponent', () => {
       let emittedPage: number | undefined;
       component.pageChange.subscribe(page => (emittedPage = page));
 
-      fixture.componentRef.setInput('config', createBasicConfig({ currentPage: 9, totalPages: 10 }));
+      fixture.componentRef.setInput(
+        'config',
+        createBasicConfig({ currentPage: 9, totalPages: 10 }),
+      );
       fixture.detectChanges();
 
       expect(component.canGoToNext()).toBe(true);

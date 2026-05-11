@@ -6,13 +6,21 @@
         class="node__drop-indicator node__drop-indicator--before"
         [class.node__drop-indicator--active]="shouldShowDropIndicator(node.id, 'before')"
         (dragenter)="
-          onBetweenElementsDragOver($event, node, 'before'); $event.preventDefault(); $event.stopPropagation()
+          onBetweenElementsDragOver($event, node, 'before');
+          $event.preventDefault();
+          $event.stopPropagation()
         "
         (dragover)="
-          onBetweenElementsDragOver($event, node, 'before'); $event.preventDefault(); $event.stopPropagation()
+          onBetweenElementsDragOver($event, node, 'before');
+          $event.preventDefault();
+          $event.stopPropagation()
         "
         (dragleave)="onBetweenElementsDragLeave($event); $event.stopPropagation()"
-        (drop)="onBetweenElementsDrop($event, node, 'before'); $event.preventDefault(); $event.stopPropagation()"
+        (drop)="
+          onBetweenElementsDrop($event, node, 'before');
+          $event.preventDefault();
+          $event.stopPropagation()
+        "
       ></div>
     }
 
@@ -44,7 +52,9 @@
     >
       @if (contentTemplate()) {
         <ng-template #content let-node>
-          <ng-container *ngTemplateOutlet="contentTemplate()!; context: { $implicit: node }"></ng-container>
+          <ng-container
+            *ngTemplateOutlet="contentTemplate()!; context: { $implicit: node }"
+          ></ng-container>
         </ng-template>
       }
     </ui-tree-node>
@@ -55,11 +65,21 @@
         class="node__drop-indicator node__drop-indicator--after"
         [class.node__drop-indicator--active]="shouldShowDropIndicator(node.id, 'after')"
         (dragenter)="
-          onBetweenElementsDragOver($event, node, 'after'); $event.preventDefault(); $event.stopPropagation()
+          onBetweenElementsDragOver($event, node, 'after');
+          $event.preventDefault();
+          $event.stopPropagation()
         "
-        (dragover)="onBetweenElementsDragOver($event, node, 'after'); $event.preventDefault(); $event.stopPropagation()"
+        (dragover)="
+          onBetweenElementsDragOver($event, node, 'after');
+          $event.preventDefault();
+          $event.stopPropagation()
+        "
         (dragleave)="onBetweenElementsDragLeave($event); $event.stopPropagation()"
-        (drop)="onBetweenElementsDrop($event, node, 'after'); $event.preventDefault(); $event.stopPropagation()"
+        (drop)="
+          onBetweenElementsDrop($event, node, 'after');
+          $event.preventDefault();
+          $event.stopPropagation()
+        "
       ></div>
     }
   }

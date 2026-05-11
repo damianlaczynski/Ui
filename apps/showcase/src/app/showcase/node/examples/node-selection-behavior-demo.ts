@@ -55,8 +55,12 @@ export class NodeSelectionBehaviorDemoComponent {
   protected readonly selectedLabel = signal('');
 
   protected readonly inboxNode = signal<Node>(this.buildNode('inbox', 'Inbox', 'mail'));
-  protected readonly mentionsNode = signal<Node>(this.buildNode('mentions', 'Mentions', 'person_accounts'));
-  protected readonly archiveNode = signal<Node>(this.buildNode('archive', 'Archive only click action', 'archive'));
+  protected readonly mentionsNode = signal<Node>(
+    this.buildNode('mentions', 'Mentions', 'person_accounts'),
+  );
+  protected readonly archiveNode = signal<Node>(
+    this.buildNode('archive', 'Archive only click action', 'archive'),
+  );
 
   protected select(node: Node): void {
     this.selectedId.set(String(node.id));
@@ -76,9 +80,16 @@ export class NodeSelectionBehaviorDemoComponent {
 
   private syncNodes(): void {
     this.inboxNode.set(this.buildNode('inbox', 'Inbox', 'mail', this.selectedId() === 'inbox'));
-    this.mentionsNode.set(this.buildNode('mentions', 'Mentions', 'person_accounts', this.selectedId() === 'mentions'));
+    this.mentionsNode.set(
+      this.buildNode('mentions', 'Mentions', 'person_accounts', this.selectedId() === 'mentions'),
+    );
     this.archiveNode.set(
-      this.buildNode('archive', 'Archive only click action', 'archive', this.selectedId() === 'archive'),
+      this.buildNode(
+        'archive',
+        'Archive only click action',
+        'archive',
+        this.selectedId() === 'archive',
+      ),
     );
   }
 

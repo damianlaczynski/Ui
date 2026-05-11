@@ -38,11 +38,17 @@ import { UiI18nService } from '../../../i18n';
     `,
   ],
 })
-export class TotpComponent extends FieldComponent implements OnInit, OnChanges, ControlValueAccessor {
+export class TotpComponent
+  extends FieldComponent
+  implements OnInit, OnChanges, ControlValueAccessor
+{
   private readonly host = inject(ElementRef<HTMLElement>);
   private readonly document = inject(DOCUMENT);
   private readonly i18n = inject(UiI18nService);
-  private readonly groupAriaLabelI18n = this.i18n.tSignal('field.totp.groupAriaLabel', 'Verification code');
+  private readonly groupAriaLabelI18n = this.i18n.tSignal(
+    'field.totp.groupAriaLabel',
+    'Verification code',
+  );
 
   digitsCount = input<number>(6);
   groupAriaLabel = input<string>('');

@@ -90,8 +90,18 @@
               "'filled'",
               "Visual weight of the badge surface: filled, tint, outline, subtle, or transparent."
             ],
-            ["size", "InputSignal<Size>", "'medium'", "Controls height, padding, text size, and icon sizing."],
-            ["shape", "InputSignal<Shape>", "'rounded'", "Corner treatment including rounded, circular, and square."],
+            [
+              "size",
+              "InputSignal<Size>",
+              "'medium'",
+              "Controls height, padding, text size, and icon sizing."
+            ],
+            [
+              "shape",
+              "InputSignal<Shape>",
+              "'rounded'",
+              "Corner treatment including rounded, circular, and square."
+            ],
             ["text", "InputSignal<string>", "required", "Visible badge label or count."],
             [
               "icon",

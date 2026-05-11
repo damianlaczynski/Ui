@@ -17,8 +17,10 @@ import { BadgeComponent } from 'ui';
             <strong style="font-size:0.9375rem;color:var(--color-neutral-foreground-rest)"
               >Quarterly planning review</strong
             >
-            <span style="font-size:0.875rem;line-height:1.5;color:var(--color-neutral-foreground2-rest)"
-              >Use grouped badges to show ownership, risk, and freshness without building custom metadata chrome.</span
+            <span
+              style="font-size:0.875rem;line-height:1.5;color:var(--color-neutral-foreground2-rest)"
+              >Use grouped badges to show ownership, risk, and freshness without building custom
+              metadata chrome.</span
             >
             <div style="display:flex;flex-wrap:wrap;gap:0.5rem">
               <ui-badge text="Marketing" variant="secondary" appearance="tint" />

@@ -11,7 +11,9 @@ import { DividerComponent } from 'ui';
     >
       <div style="display:flex;flex-direction:column;gap:0.35rem">
         <div style="font-size:0.9375rem;font-weight:600">Customer health summary</div>
-        <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">Last reviewed 12 minutes ago</div>
+        <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
+          Last reviewed 12 minutes ago
+        </div>
       </div>
 
       <ui-divider text="Signals" alignment="start" />

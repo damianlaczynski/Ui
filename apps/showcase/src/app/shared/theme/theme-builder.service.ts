@@ -27,7 +27,9 @@ const DEFAULT_SIMPLE: ThemeBuilderSimpleState = {
   vibrancy: 0,
 };
 
-const BRAND_SHADES = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160] as const;
+const BRAND_SHADES = [
+  10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160,
+] as const;
 
 const CSS_VAR_KEYS = [
   '--color-brand-primary',

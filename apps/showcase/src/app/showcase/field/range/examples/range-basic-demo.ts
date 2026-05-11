@@ -10,7 +10,9 @@ const dashedCardStyle =
   standalone: true,
   imports: [FormsModule, RangeComponent],
   template: `
-    <div style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:48rem;">
+    <div
+      style="display:flex;flex-wrap:wrap;gap:1rem;align-items:flex-start;width:100%;max-width:48rem;"
+    >
       <div style="flex:1 1 18rem;min-width:16rem;max-width:30rem;">
         <ui-range
           label="Quiet hours"

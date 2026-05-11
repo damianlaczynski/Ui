@@ -15,8 +15,8 @@ import { AccordionComponent } from 'ui';
         chevronIconExpanded="subtract"
       >
         <p style="margin:0;color:var(--color-neutral-foreground-rest)">
-          Custom chevrons can make expansion state feel more tailored, but keep the pattern consistent within one
-          surface.
+          Custom chevrons can make expansion state feel more tailored, but keep the pattern
+          consistent within one surface.
         </p>
       </ui-accordion>
 

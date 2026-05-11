@@ -74,7 +74,8 @@ export class DataGridComponent<T = any> {
   config = input.required<DataGridConfig<T>>();
 
   // Template for expandable rows
-  rowDetailsTemplate = contentChild<TemplateRef<{ $implicit: DataGridRow<T> }>>('rowDetailsTemplate');
+  rowDetailsTemplate =
+    contentChild<TemplateRef<{ $implicit: DataGridRow<T> }>>('rowDetailsTemplate');
 
   // Outputs
   rowClick = output<DataGridRow<T>>();
@@ -223,7 +224,9 @@ export class DataGridComponent<T = any> {
   loadingSpinnerSize = computed(() => this.loadingConfig()?.spinnerSize || 'medium');
 
   emptyTitle = computed(() => this.emptyConfig()?.title || 'No data available');
-  emptyDescription = computed(() => this.emptyConfig()?.description || 'There is no data to display.');
+  emptyDescription = computed(
+    () => this.emptyConfig()?.description || 'There is no data to display.',
+  );
   emptyIcon = computed(() => {
     const icon = this.emptyConfig()?.icon;
     return icon ? (icon as IconName) : undefined;
@@ -633,7 +636,12 @@ export class DataGridComponent<T = any> {
     }
   }
 
-  onColumnResize(columnId: string, width: string, nextColumnId?: string, nextColumnWidth?: string): void {
+  onColumnResize(
+    columnId: string,
+    width: string,
+    nextColumnId?: string,
+    nextColumnWidth?: string,
+  ): void {
     const widths = new Map(this.columnWidths());
     widths.set(columnId, width);
 
@@ -675,7 +683,10 @@ export class DataGridComponent<T = any> {
       return true;
     }
     for (let i = 0; i < oldOrders.length; i++) {
-      if (oldOrders[i].columnName !== newOrders[i].columnName || oldOrders[i].order !== newOrders[i].order) {
+      if (
+        oldOrders[i].columnName !== newOrders[i].columnName ||
+        oldOrders[i].order !== newOrders[i].order
+      ) {
         return true;
       }
     }

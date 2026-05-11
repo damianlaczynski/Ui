@@ -82,8 +82,18 @@
           "columns": ["Name", "Type", "Default", "Description"],
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
-            ["label", "InputSignal<string>", "required", "Header label shown in the accordion trigger area."],
-            ["size", "InputSignal<Size>", "'medium'", "Controls header density and projected header icon sizing."],
+            [
+              "label",
+              "InputSignal<string>",
+              "required",
+              "Header label shown in the accordion trigger area."
+            ],
+            [
+              "size",
+              "InputSignal<Size>",
+              "'medium'",
+              "Controls header density and projected header icon sizing."
+            ],
             [
               "chevronPosition",
               "InputSignal<ChevronPosition>",
@@ -96,7 +106,12 @@
               "false",
               "Prevents toggle interaction and marks the accordion as disabled."
             ],
-            ["icon", "InputSignal<IconName | undefined>", "undefined", "Optional leading header icon."],
+            [
+              "icon",
+              "InputSignal<IconName | undefined>",
+              "undefined",
+              "Optional leading header icon."
+            ],
             [
               "showSelectionIndicator",
               "InputSignal<boolean>",

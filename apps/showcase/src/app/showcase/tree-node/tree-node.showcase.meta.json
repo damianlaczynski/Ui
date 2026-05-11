@@ -95,7 +95,12 @@
             ["variant", "InputSignal<Variant>", "'primary'", "Semantic styling variant."],
             ["appearance", "InputSignal<Appearance>", "'subtle'", "Visual emphasis of the row."],
             ["shape", "InputSignal<Shape>", "'rounded'", "Corner treatment of the row container."],
-            ["showSelectionIndicator", "InputSignal<boolean>", "false", "Shows a selected-row indicator."],
+            [
+              "showSelectionIndicator",
+              "InputSignal<boolean>",
+              "false",
+              "Shows a selected-row indicator."
+            ],
             [
               "indicatorPosition",
               "InputSignal<'horizontal' | 'vertical'>",
@@ -108,17 +113,42 @@
               "'before'",
               "Placement of the expand/collapse chevron."
             ],
-            ["chevronIconCollapsed", "InputSignal<IconName>", "'chevron_right'", "Chevron icon used while collapsed."],
-            ["chevronIconExpanded", "InputSignal<IconName>", "'chevron_down'", "Chevron icon used while expanded."],
+            [
+              "chevronIconCollapsed",
+              "InputSignal<IconName>",
+              "'chevron_right'",
+              "Chevron icon used while collapsed."
+            ],
+            [
+              "chevronIconExpanded",
+              "InputSignal<IconName>",
+              "'chevron_down'",
+              "Chevron icon used while expanded."
+            ],
             [
               "asButton",
               "InputSignal<boolean>",
               "false",
               "Renders the node with a more button-like interaction style."
             ],
-            ["expandOnClick", "InputSignal<boolean>", "false", "Expands parent nodes when the row itself is clicked."],
-            ["selectOnClick", "InputSignal<boolean>", "true", "Marks the row as selected on click."],
-            ["showQuickActions", "InputSignal<boolean>", "false", "Enables an actions region in the row."],
+            [
+              "expandOnClick",
+              "InputSignal<boolean>",
+              "false",
+              "Expands parent nodes when the row itself is clicked."
+            ],
+            [
+              "selectOnClick",
+              "InputSignal<boolean>",
+              "true",
+              "Marks the row as selected on click."
+            ],
+            [
+              "showQuickActions",
+              "InputSignal<boolean>",
+              "false",
+              "Enables an actions region in the row."
+            ],
             [
               "quickActionsTemplate",
               "InputSignal<TemplateRef<any> | null>",
@@ -132,7 +162,12 @@
               "Template that replaces the default icon and label content."
             ],
             ["draggable", "InputSignal<boolean>", "false", "Makes the row draggable."],
-            ["dropZone", "InputSignal<boolean>", "false", "Shows child drop targets and accepts drops."]
+            [
+              "dropZone",
+              "InputSignal<boolean>",
+              "false",
+              "Shows child drop targets and accepts drops."
+            ]
           ]
         },
         {
@@ -142,9 +177,17 @@
           "columnKinds": ["code", "type", "text"],
           "rows": [
             ["nodeClick", "OutputEmitterRef<TreeNode>", "Emits when the row is activated."],
-            ["nodeToggle", "OutputEmitterRef<TreeNode>", "Emits when a parent node expands or collapses."],
+            [
+              "nodeToggle",
+              "OutputEmitterRef<TreeNode>",
+              "Emits when a parent node expands or collapses."
+            ],
             ["nodeSelect", "OutputEmitterRef<TreeNode>", "Emits when the row selection changes."],
-            ["dragStart / dragEnd", "OutputEmitterRef<{ node, event }>", "Emit during row drag operations."],
+            [
+              "dragStart / dragEnd",
+              "OutputEmitterRef<{ node, event }>",
+              "Emit during row drag operations."
+            ],
             [
               "drop / dragOver",
               "OutputEmitterRef<{ node, event, position }>",

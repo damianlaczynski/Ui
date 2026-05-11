@@ -97,14 +97,24 @@
               "[]",
               "Grouped item collection. Groups are flattened with dividers between them."
             ],
-            ["size", "InputSignal<'small' | 'medium' | 'large'>", "'medium'", "Toolbar density and button sizing."],
+            [
+              "size",
+              "InputSignal<'small' | 'medium' | 'large'>",
+              "'medium'",
+              "Toolbar density and button sizing."
+            ],
             [
               "orientation",
               "InputSignal<'horizontal' | 'vertical'>",
               "'horizontal'",
               "Direction of the command surface."
             ],
-            ["overflow", "InputSignal<boolean>", "false", "Applies overflow styling for constrained layouts."]
+            [
+              "overflow",
+              "InputSignal<boolean>",
+              "false",
+              "Applies overflow styling for constrained layouts."
+            ]
           ]
         },
         {

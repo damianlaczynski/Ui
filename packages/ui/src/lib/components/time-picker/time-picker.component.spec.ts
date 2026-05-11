@@ -17,7 +17,9 @@ describe('TimePickerComponent', () => {
   });
 
   function getWheels(): { hourWheel: HTMLDivElement; minuteWheel: HTMLDivElement } {
-    const wheels = fixture.nativeElement.querySelectorAll('.time-picker__wheel') as NodeListOf<HTMLDivElement>;
+    const wheels = fixture.nativeElement.querySelectorAll(
+      '.time-picker__wheel',
+    ) as NodeListOf<HTMLDivElement>;
     return {
       hourWheel: wheels[0],
       minuteWheel: wheels[1],
@@ -128,7 +130,9 @@ describe('TimePickerComponent', () => {
     component.onOptionClick('hour', new MouseEvent('click', { clientY: 40 }));
 
     expect(component.selectedHour()).toBe(
-      component.hourOptions[(prevIndex - 1 + component.hourOptions.length) % component.hourOptions.length],
+      component.hourOptions[
+        (prevIndex - 1 + component.hourOptions.length) % component.hourOptions.length
+      ],
     );
   });
 
@@ -141,7 +145,9 @@ describe('TimePickerComponent', () => {
 
     component.onOptionClick('minute', new MouseEvent('click', { clientY: 160 }));
 
-    expect(component.selectedMinute()).toBe(component.minuteOptions[(prevIndex + 1) % component.minuteOptions.length]);
+    expect(component.selectedMinute()).toBe(
+      component.minuteOptions[(prevIndex + 1) % component.minuteOptions.length],
+    );
   });
 
   it('should not change on click exactly at center', () => {
@@ -176,7 +182,9 @@ describe('TimePickerComponent', () => {
     component.onWheel('minute', event);
 
     expect(preventDefaultSpy).toHaveBeenCalled();
-    expect(component.selectedMinute()).toBe(component.minuteOptions[(prevIndex + 1) % component.minuteOptions.length]);
+    expect(component.selectedMinute()).toBe(
+      component.minuteOptions[(prevIndex + 1) % component.minuteOptions.length],
+    );
   });
 
   it('should wrap infinitely on ArrowDown from last option', () => {
@@ -236,8 +244,14 @@ describe('TimePickerComponent', () => {
   it('should not activate drag on pointer down/up without movement', () => {
     const prev = component.selectedHour();
 
-    component.onWheelPointerDown('hour', new PointerEvent('pointerdown', { pointerId: 1, clientY: 100 }));
-    component.onWheelPointerUp('hour', new PointerEvent('pointerup', { pointerId: 1, clientY: 100 }));
+    component.onWheelPointerDown(
+      'hour',
+      new PointerEvent('pointerdown', { pointerId: 1, clientY: 100 }),
+    );
+    component.onWheelPointerUp(
+      'hour',
+      new PointerEvent('pointerup', { pointerId: 1, clientY: 100 }),
+    );
 
     expect(component.isHourDragging()).toBe(false);
     expect(component.selectedHour()).toBe(prev);
@@ -249,22 +263,40 @@ describe('TimePickerComponent', () => {
 
     const prev = component.selectedHour();
 
-    component.onWheelPointerDown('hour', new PointerEvent('pointerdown', { pointerId: 7, clientY: 100 }));
-    component.onWheelPointerMove('hour', new PointerEvent('pointermove', { pointerId: 7, clientY: 80 }));
+    component.onWheelPointerDown(
+      'hour',
+      new PointerEvent('pointerdown', { pointerId: 7, clientY: 100 }),
+    );
+    component.onWheelPointerMove(
+      'hour',
+      new PointerEvent('pointermove', { pointerId: 7, clientY: 80 }),
+    );
 
     expect(component.isHourDragging()).toBe(true);
     expect(component.selectedHour()).not.toBe(prev);
 
-    component.onWheelPointerUp('hour', new PointerEvent('pointerup', { pointerId: 7, clientY: 80 }));
+    component.onWheelPointerUp(
+      'hour',
+      new PointerEvent('pointerup', { pointerId: 7, clientY: 80 }),
+    );
     expect(component.isHourDragging()).toBe(false);
   });
 
   it('should ignore interactions with unmatched pointer id', () => {
     const prev = component.selectedMinute();
 
-    component.onWheelPointerDown('minute', new PointerEvent('pointerdown', { pointerId: 10, clientY: 100 }));
-    component.onWheelPointerMove('minute', new PointerEvent('pointermove', { pointerId: 11, clientY: 20 }));
-    component.onWheelPointerUp('minute', new PointerEvent('pointerup', { pointerId: 11, clientY: 20 }));
+    component.onWheelPointerDown(
+      'minute',
+      new PointerEvent('pointerdown', { pointerId: 10, clientY: 100 }),
+    );
+    component.onWheelPointerMove(
+      'minute',
+      new PointerEvent('pointermove', { pointerId: 11, clientY: 20 }),
+    );
+    component.onWheelPointerUp(
+      'minute',
+      new PointerEvent('pointerup', { pointerId: 11, clientY: 20 }),
+    );
 
     expect(component.selectedMinute()).toBe(prev);
   });
@@ -275,7 +307,9 @@ describe('TimePickerComponent', () => {
     fixture.detectChanges();
 
     const label = fixture.nativeElement.querySelector('.time-picker__label') as HTMLLabelElement;
-    const hourWheel = fixture.nativeElement.querySelector('#time-picker-hour-wheel') as HTMLDivElement;
+    const hourWheel = fixture.nativeElement.querySelector(
+      '#time-picker-hour-wheel',
+    ) as HTMLDivElement;
 
     expect(label).toBeTruthy();
     expect(hourWheel).toBeTruthy();

@@ -11,7 +11,12 @@ import { NodeComponent, type Node } from 'ui';
     >
       <ui-node [node]="folderNode" appearance="subtle" />
       <ui-node [node]="fileNode" appearance="subtle" />
-      <ui-node [node]="selectedNode" appearance="filled" variant="secondary" [showSelectionIndicator]="true" />
+      <ui-node
+        [node]="selectedNode"
+        appearance="filled"
+        variant="secondary"
+        [showSelectionIndicator]="true"
+      />
     </div>
   `,
 })

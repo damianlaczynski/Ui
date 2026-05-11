@@ -19,7 +19,10 @@ import { highlightTypeScript } from '@shared/utils/showcase/code-highlight.util'
         <ng-content />
       </div>
 
-      <div class="showcase-doc__example-code" [class.showcase-doc__example-code--expanded]="expanded()">
+      <div
+        class="showcase-doc__example-code"
+        [class.showcase-doc__example-code--expanded]="expanded()"
+      >
         <div class="showcase-doc__example-code-actions">
           <ui-button
             variant="secondary"

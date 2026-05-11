@@ -5,7 +5,10 @@
     </label>
   }
 
-  <div class="input-main" [class.input-main--inline]="labelPosition() === 'before' || labelPosition() === 'after'">
+  <div
+    class="input-main"
+    [class.input-main--inline]="labelPosition() === 'before' || labelPosition() === 'after'"
+  >
     @if (label() && labelPosition() === 'before') {
       <label
         [for]="id()"
@@ -34,7 +37,12 @@
   </div>
 
   @if (label() && labelPosition() === 'below') {
-    <label [for]="id()" [id]="getLabelElementId()" class="input-label input-label--below" [ngClass]="labelClasses">
+    <label
+      [for]="id()"
+      [id]="getLabelElementId()"
+      class="input-label input-label--below"
+      [ngClass]="labelClasses"
+    >
       {{ label() }}
     </label>
   }

@@ -1,4 +1,13 @@
-import { Component, input, output, signal, ChangeDetectionStrategy, HostListener, inject, OnInit } from '@angular/core';
+import {
+  Component,
+  input,
+  output,
+  signal,
+  ChangeDetectionStrategy,
+  HostListener,
+  inject,
+  OnInit,
+} from '@angular/core';
 
 import { IconComponent } from '../icon/icon.component';
 import { UiI18nService } from '../../i18n';
@@ -35,7 +44,12 @@ export interface PanelPosition {
             </button>
           }
           @if (closable()) {
-            <button type="button" class="draggable-panel__action" (click)="close.emit()" [title]="getCloseTitle()">
+            <button
+              type="button"
+              class="draggable-panel__action"
+              (click)="close.emit()"
+              [title]="getCloseTitle()"
+            >
               <ui-icon icon="dismiss" size="small" />
             </button>
           }
@@ -135,7 +149,10 @@ export class DraggablePanelComponent implements OnInit {
   private readonly i18n = inject(UiI18nService);
   private readonly titleI18n = this.i18n.tSignal('draggablePanel.title', 'Panel');
   private readonly expandTitleI18n = this.i18n.tSignal('draggablePanel.expandTitle', 'Expand');
-  private readonly collapseTitleI18n = this.i18n.tSignal('draggablePanel.collapseTitle', 'Collapse');
+  private readonly collapseTitleI18n = this.i18n.tSignal(
+    'draggablePanel.collapseTitle',
+    'Collapse',
+  );
   private readonly closeTitleI18n = this.i18n.tSignal('draggablePanel.closeTitle', 'Close');
 
   title = input<string>('');

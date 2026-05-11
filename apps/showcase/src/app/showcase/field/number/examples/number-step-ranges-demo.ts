@@ -23,7 +23,9 @@ import { ButtonComponent, NumberComponent } from 'ui';
         >
       </div>
 
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:1rem;width:100%">
+      <div
+        style="display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:1rem;width:100%"
+      >
         <ui-number
           label="Quantity"
           placeholder="0"

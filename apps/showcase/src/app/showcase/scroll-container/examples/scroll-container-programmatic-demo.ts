@@ -1,6 +1,11 @@
 import { Component, signal, viewChild } from '@angular/core';
 import { delay, of } from 'rxjs';
-import { ButtonComponent, ScrollContainerComponent, type Node, type ScrollContainerDataSource } from 'ui';
+import {
+  ButtonComponent,
+  ScrollContainerComponent,
+  type Node,
+  type ScrollContainerDataSource,
+} from 'ui';
 
 interface ProgrammaticItem {
   id: number;
@@ -23,7 +28,9 @@ interface ProgrammaticItem {
         <ui-button variant="secondary" appearance="outline" size="small" (click)="scrollToBottom()"
           >Scroll to bottom</ui-button
         >
-        <ui-button variant="secondary" appearance="outline" size="small" (click)="refresh()">Refresh</ui-button>
+        <ui-button variant="secondary" appearance="outline" size="small" (click)="refresh()"
+          >Refresh</ui-button
+        >
         <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
           >Status: <strong>{{ status() }}</strong></span
         >

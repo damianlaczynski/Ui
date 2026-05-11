@@ -12,8 +12,11 @@ import { ButtonComponent, FileComponent } from 'ui';
     >
       <div style="display:flex;flex-direction:column;gap:0.375rem">
         <div style="font-size:1rem;font-weight:600">Client handoff package</div>
-        <div style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest);line-height:1.45">
-          Collect the signed deck, export archive, and any screenshots before publishing the final delivery package.
+        <div
+          style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest);line-height:1.45"
+        >
+          Collect the signed deck, export archive, and any screenshots before publishing the final
+          delivery package.
         </div>
       </div>
 

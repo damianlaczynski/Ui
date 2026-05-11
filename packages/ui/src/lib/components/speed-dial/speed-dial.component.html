@@ -12,7 +12,10 @@
     @for (item of items(); track trackById($index, item); let i = $index) {
       <li role="none" class="speed-dial__item">
         <div class="speed-dial__item-offset" [style.transform]="itemTransforms()[i]">
-          <div class="speed-dial__item-surface" [style.transition-delay.ms]="itemTransitionDelayMs(i)">
+          <div
+            class="speed-dial__item-surface"
+            [style.transition-delay.ms]="itemTransitionDelayMs(i)"
+          >
             <ui-button
               type="button"
               role="menuitem"

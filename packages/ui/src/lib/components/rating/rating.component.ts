@@ -12,7 +12,8 @@ import { UiI18nService } from '../../i18n';
 export class RatingComponent {
   private readonly host = inject(ElementRef<HTMLElement>);
   private readonly i18n = inject(UiI18nService);
-  private readonly defaultStarAriaLabelFormatter = (star: number, max: number) => `Rate ${star} out of ${max}`;
+  private readonly defaultStarAriaLabelFormatter = (star: number, max: number) =>
+    `Rate ${star} out of ${max}`;
   private readonly defaultCurrentValueAriaLabelFormatter = (value: number, max: number) =>
     `Rating: ${value} out of ${max} stars`;
 
@@ -26,7 +27,9 @@ export class RatingComponent {
   disabled = input<boolean>(false);
   showValue = input<boolean>(false);
   ariaLabel = input<string>('');
-  starAriaLabelFormatter = input<(star: number, max: number) => string>(this.defaultStarAriaLabelFormatter);
+  starAriaLabelFormatter = input<(star: number, max: number) => string>(
+    this.defaultStarAriaLabelFormatter,
+  );
   currentValueAriaLabelFormatter = input<(value: number, max: number) => string>(
     this.defaultCurrentValueAriaLabelFormatter,
   );
@@ -202,7 +205,9 @@ export class RatingComponent {
 
   private focusStar(starIndex: number): void {
     const hostElement = this.host.nativeElement as HTMLElement;
-    const starButton = hostElement.querySelector(`.rating__star[data-star="${starIndex}"]`) as HTMLButtonElement | null;
+    const starButton = hostElement.querySelector(
+      `.rating__star[data-star="${starIndex}"]`,
+    ) as HTMLButtonElement | null;
     starButton?.focus();
   }
 }

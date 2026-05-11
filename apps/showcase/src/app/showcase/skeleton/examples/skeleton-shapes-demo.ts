@@ -6,7 +6,9 @@ import { SkeletonComponent } from 'ui';
   standalone: true,
   imports: [SkeletonComponent],
   template: `
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));gap:1rem;width:100%">
+    <div
+      style="display:grid;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));gap:1rem;width:100%"
+    >
       <div style="display:flex;flex-direction:column;gap:0.5rem">
         <div style="font-size:0.8125rem;font-weight:600">Rounded text block</div>
         <ui-skeleton width="100%" height="4.5rem" />

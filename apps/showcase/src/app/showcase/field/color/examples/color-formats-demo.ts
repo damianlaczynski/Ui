@@ -8,11 +8,26 @@ import { ColorComponent } from 'ui';
   imports: [FormsModule, ColorComponent],
   template: `
     <div style="display:flex;flex-direction:column;gap:1rem;width:100%;max-width:44rem">
-      <ui-color label="HEX token" format="hex" [(ngModel)]="hexValue" [ngModelOptions]="{ standalone: true }" />
+      <ui-color
+        label="HEX token"
+        format="hex"
+        [(ngModel)]="hexValue"
+        [ngModelOptions]="{ standalone: true }"
+      />
 
-      <ui-color label="RGB output" format="rgb" [(ngModel)]="rgbValue" [ngModelOptions]="{ standalone: true }" />
+      <ui-color
+        label="RGB output"
+        format="rgb"
+        [(ngModel)]="rgbValue"
+        [ngModelOptions]="{ standalone: true }"
+      />
 
-      <ui-color label="HSL output" format="hsl" [(ngModel)]="hslValue" [ngModelOptions]="{ standalone: true }" />
+      <ui-color
+        label="HSL output"
+        format="hsl"
+        [(ngModel)]="hslValue"
+        [ngModelOptions]="{ standalone: true }"
+      />
     </div>
   `,
 })

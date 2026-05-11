@@ -83,8 +83,18 @@
           "columnKinds": ["code", "type", "default", "text"],
           "rows": [
             ["items", "InputSignal<NavNode[]>", "-", "Navigation data set to render."],
-            ["variant", "InputSignal<Variant>", "'primary'", "Semantic styling variant for interactive rows."],
-            ["appearance", "InputSignal<Appearance>", "'subtle'", "Visual emphasis of navigation rows."],
+            [
+              "variant",
+              "InputSignal<Variant>",
+              "'primary'",
+              "Semantic styling variant for interactive rows."
+            ],
+            [
+              "appearance",
+              "InputSignal<Appearance>",
+              "'subtle'",
+              "Visual emphasis of navigation rows."
+            ],
             ["size", "InputSignal<Size>", "'medium'", "Row density token."],
             ["shape", "InputSignal<Shape>", "'rounded'", "Corner treatment for rows."],
             [
@@ -93,14 +103,24 @@
               "'after'",
               "Placement of the expand or collapse chevron for items with children."
             ],
-            ["showSelectionIndicator", "InputSignal<boolean>", "true", "Shows or hides the selected-row indicator."],
+            [
+              "showSelectionIndicator",
+              "InputSignal<boolean>",
+              "true",
+              "Shows or hides the selected-row indicator."
+            ],
             [
               "indicatorPosition",
               "InputSignal<'horizontal' | 'vertical'>",
               "'vertical'",
               "Placement of the selection indicator."
             ],
-            ["showQuickActions", "InputSignal<boolean>", "false", "Enables a quick-actions region on each row."],
+            [
+              "showQuickActions",
+              "InputSignal<boolean>",
+              "false",
+              "Enables a quick-actions region on each row."
+            ],
             [
               "quickActionsTemplate",
               "InputSignal<TemplateRef<any> | null>",

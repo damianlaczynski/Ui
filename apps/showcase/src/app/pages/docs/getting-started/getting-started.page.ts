@@ -38,7 +38,8 @@ export const GETTING_STARTED_PAGE_CONFIG: GuideDocPageConfig = {
               id: 'styles',
               eyebrow: 'Step 2',
               title: 'Register base styles',
-              description: 'Include library styles once in angular.json so every component gets consistent tokens.',
+              description:
+                'Include library styles once in angular.json so every component gets consistent tokens.',
               code: `"styles": [
   "node_modules/@laczynski/ui/src/lib/scss/main.scss",
   "src/styles.scss"
@@ -48,7 +49,8 @@ export const GETTING_STARTED_PAGE_CONFIG: GuideDocPageConfig = {
               id: 'import',
               eyebrow: 'Step 3',
               title: 'Import only what you use',
-              description: 'Use standalone imports in your feature component to keep bundles lean and code explicit.',
+              description:
+                'Use standalone imports in your feature component to keep bundles lean and code explicit.',
               code: `import { ButtonComponent } from 'ui';
 
 @Component({
@@ -62,7 +64,8 @@ export class ExampleComponent {}`,
               id: 'theme',
               eyebrow: 'Step 4',
               title: 'Set up theming',
-              description: 'Start with default light/dark support, then override CSS variables in your app styles.',
+              description:
+                'Start with default light/dark support, then override CSS variables in your app styles.',
             },
           ],
         },

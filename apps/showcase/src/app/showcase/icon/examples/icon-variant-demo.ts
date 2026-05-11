@@ -6,7 +6,9 @@ import { IconComponent } from 'ui';
   standalone: true,
   imports: [IconComponent],
   template: `
-    <div style="display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));max-width:40rem;">
+    <div
+      style="display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));max-width:40rem;"
+    >
       <div
         style="display:grid;gap:0.75rem;justify-items:center;padding:1rem;border:1px solid color-mix(in srgb,var(--color-neutral-stroke-rest) 60%,transparent);border-radius:12px;background:var(--color-neutral-background-rest);"
       >

@@ -93,9 +93,19 @@
               "false",
               "Automatically advances slides when more than one item exists."
             ],
-            ["autoPlayInterval", "InputSignal<number>", "3000", "Delay in milliseconds between auto-play transitions."],
+            [
+              "autoPlayInterval",
+              "InputSignal<number>",
+              "3000",
+              "Delay in milliseconds between auto-play transitions."
+            ],
             ["showIndicators", "InputSignal<boolean>", "true", "Shows slide indicator buttons."],
-            ["showControls", "InputSignal<boolean>", "true", "Shows previous and next navigation buttons."],
+            [
+              "showControls",
+              "InputSignal<boolean>",
+              "true",
+              "Shows previous and next navigation buttons."
+            ],
             [
               "loop",
               "InputSignal<boolean>",

@@ -6,7 +6,9 @@ import { DividerComponent } from 'ui';
   standalone: true,
   imports: [DividerComponent],
   template: `
-    <div style="display:flex;flex-direction:column;gap:1rem;width:100%;max-width:36rem;min-width:16rem;">
+    <div
+      style="display:flex;flex-direction:column;gap:1rem;width:100%;max-width:36rem;min-width:16rem;"
+    >
       <ui-divider alignment="start" text="Start aligned" />
       <ui-divider alignment="center" text="Center aligned" />
       <ui-divider alignment="end" text="End aligned" />

@@ -115,7 +115,11 @@
     >
       <div class="color-picker__overlay color-picker__overlay--white"></div>
       <div class="color-picker__overlay color-picker__overlay--black"></div>
-      <div class="color-picker__handle" [style.left.px]="pickerX()" [style.top.px]="pickerY()"></div>
+      <div
+        class="color-picker__handle"
+        [style.left.px]="pickerX()"
+        [style.top.px]="pickerY()"
+      ></div>
     </div>
 
     <!-- Hue Slider -->
@@ -135,7 +139,9 @@
     <!-- Alpha Slider -->
     @if (showAlpha()) {
       <div class="color-slider">
-        <label class="color-slider__label" [attr.for]="id() + '-alpha'">{{ getOpacityLabel() }}</label>
+        <label class="color-slider__label" [attr.for]="id() + '-alpha'">{{
+          getOpacityLabel()
+        }}</label>
         <div class="color-slider__alpha-wrapper">
           <div class="color-slider__alpha-checkered"></div>
           <input
@@ -146,7 +152,9 @@
             max="1"
             step="0.01"
             [value]="alphaValue()"
-            [style.background]="'linear-gradient(to right, transparent, ' + currentColor().hex + ')'"
+            [style.background]="
+              'linear-gradient(to right, transparent, ' + currentColor().hex + ')'
+            "
             (input)="onAlphaChange($event)"
           />
         </div>

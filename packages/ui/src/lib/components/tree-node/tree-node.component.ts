@@ -1,4 +1,13 @@
-import { Component, input, output, signal, effect, TemplateRef, ChangeDetectionStrategy, inject } from '@angular/core';
+import {
+  Component,
+  input,
+  output,
+  signal,
+  effect,
+  TemplateRef,
+  ChangeDetectionStrategy,
+  inject,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NodeComponent } from '../node/node.component';
 import { IconComponent } from '../icon/icon.component';
@@ -342,6 +351,8 @@ export class TreeNodeComponent<T extends TreeNode<T>> {
       return false;
     }
 
-    return this.dropZone() && this.dragOverNodeId() === nodeId && this.dragOverPosition() === position;
+    return (
+      this.dropZone() && this.dragOverNodeId() === nodeId && this.dragOverPosition() === position
+    );
   }
 }

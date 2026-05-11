@@ -116,7 +116,14 @@
   }
 }
 
-@mixin button-variant-subtle($fg-color, $bg-hover, $fg-hover, $fg-pressed, $bg-pressed, $bg-selected) {
+@mixin button-variant-subtle(
+  $fg-color,
+  $bg-hover,
+  $fg-hover,
+  $fg-pressed,
+  $bg-pressed,
+  $bg-selected
+) {
   color: $fg-color;
   background-color: transparent;
   border-color: transparent;

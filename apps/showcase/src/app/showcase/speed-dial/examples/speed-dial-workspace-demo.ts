@@ -12,17 +12,23 @@ import { ButtonComponent, MenuItem, SpeedDialComponent } from 'ui';
       <div style="display:grid;gap:0.25rem;">
         <h3 style="margin:0;font-size:1rem;">Workspace composition</h3>
         <p style="margin:0;font-size:0.875rem;color:var(--color-neutral-foreground2-rest);">
-          A realistic speed dial usually complements an existing panel rather than floating alone on a blank canvas.
+          A realistic speed dial usually complements an existing panel rather than floating alone on
+          a blank canvas.
         </p>
       </div>
       <article
         style="position:relative;display:grid;gap:1rem;min-height:320px;padding:1.25rem 1.25rem 5rem;border-radius:14px;background:linear-gradient(180deg,color-mix(in srgb,var(--color-brand-background-2) 52%,white),var(--color-neutral-background-rest));border:1px solid color-mix(in srgb,var(--color-neutral-stroke-rest) 72%,transparent);"
       >
-        <header style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:flex-start;">
+        <header
+          style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;align-items:flex-start;"
+        >
           <div style="display:grid;gap:0.35rem;">
             <strong style="font-size:1rem;">Campaign workspace</strong>
-            <span style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest);max-width:34rem;">
-              Draft assets, schedule updates, and launch collaborative actions from one persistent floating trigger.
+            <span
+              style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest);max-width:34rem;"
+            >
+              Draft assets, schedule updates, and launch collaborative actions from one persistent
+              floating trigger.
             </span>
           </div>
           <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
@@ -30,7 +36,9 @@ import { ButtonComponent, MenuItem, SpeedDialComponent } from 'ui';
             <ui-button text="Publish" />
           </div>
         </header>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:0.875rem;">
+        <div
+          style="display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:0.875rem;"
+        >
           <div
             style="padding:1rem;border-radius:12px;background:rgb(255 255 255 / 65%);border:1px solid color-mix(in srgb,var(--color-neutral-stroke-rest) 55%,transparent);"
           >

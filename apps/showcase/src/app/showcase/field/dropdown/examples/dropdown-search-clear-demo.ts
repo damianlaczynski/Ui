@@ -60,7 +60,9 @@ const reviewerItems: DropdownItem[] = [
           >
             Country
           </span>
-          <strong style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)">
+          <strong
+            style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)"
+          >
             {{ selectedCountryLabel }}
           </strong>
         </div>
@@ -70,7 +72,9 @@ const reviewerItems: DropdownItem[] = [
           >
             Reviewers
           </span>
-          <strong style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)">
+          <strong
+            style="font-size:0.9375rem;font-weight:600;color:var(--color-neutral-foreground-rest)"
+          >
             {{ selectedReviewerLabels }}
           </strong>
         </div>

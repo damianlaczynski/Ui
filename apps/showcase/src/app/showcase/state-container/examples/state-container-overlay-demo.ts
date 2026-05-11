@@ -33,7 +33,9 @@ interface SummaryCard {
           loadingTitle="Refreshing summary"
           loadingDescription="Updating the latest metrics and activity."
         >
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));gap:0.75rem">
+          <div
+            style="display:grid;grid-template-columns:repeat(auto-fit,minmax(10rem,1fr));gap:0.75rem"
+          >
             @for (item of data; track item.id) {
               <div
                 style="padding:0.875rem 1rem;border-radius:0.875rem;background:var(--color-neutral-background2-rest)"
@@ -62,6 +64,8 @@ export class StateContainerOverlayDemoComponent {
 
   protected toggleRefresh(): void {
     this.refreshing.update(value => !value);
-    this.state.set(this.refreshing() ? loadingState(loadedState(this.data)) : loadedState(this.data));
+    this.state.set(
+      this.refreshing() ? loadingState(loadedState(this.data)) : loadedState(this.data),
+    );
   }
 }
