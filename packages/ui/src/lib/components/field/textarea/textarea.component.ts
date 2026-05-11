@@ -10,11 +10,11 @@ import { FieldComponent } from '../field/field.component';
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => TextareaComponent),
-      multi: true,
-    },
+      multi: true
+    }
   ],
   host: {
-    class: 'ui-textarea',
+    class: 'ui-textarea'
   },
   styles: [
     `
@@ -26,8 +26,8 @@ import { FieldComponent } from '../field/field.component';
         min-height: unset;
         align-items: stretch;
       }
-    `,
-  ],
+    `
+  ]
 })
 export class TextareaComponent extends FieldComponent {
   rows = input<number>(4);

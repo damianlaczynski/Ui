@@ -25,7 +25,7 @@ import { ColorComponent } from 'ui';
         [showAlpha]="true"
       />
     </div>
-  `,
+  `
 })
 export class ColorBasicExampleComponent {
   protected primary = '#0F6CBD';

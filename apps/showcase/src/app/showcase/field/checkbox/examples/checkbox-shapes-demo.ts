@@ -34,7 +34,7 @@ import { CheckboxComponent } from 'ui';
         />
       </div>
     </div>
-  `,
+  `
 })
 export class CheckboxShapesExampleComponent {
   protected roundedValue = true;

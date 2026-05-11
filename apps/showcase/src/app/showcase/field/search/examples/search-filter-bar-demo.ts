@@ -46,7 +46,7 @@ import { ButtonComponent, SearchComponent } from 'ui';
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class SearchFilterBarDemoComponent {
   protected searchQuery = 'drawer animation';

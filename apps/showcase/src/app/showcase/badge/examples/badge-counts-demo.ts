@@ -24,14 +24,14 @@ import { BadgeComponent } from 'ui';
         >
           <div style="display:flex;flex-direction:column;gap:0.25rem">
             <strong style="font-size:0.875rem">Inbox</strong>
-            <span style="font-size:0.8125rem;color:var(--color-neutral-foreground3-rest)"
-              >Compact count badges fit best when the number is the only thing that matters.</span
-            >
+            <span style="font-size:0.8125rem;color:var(--color-neutral-foreground3-rest)">
+              Compact count badges fit best when the number is the only thing that matters.
+            </span>
           </div>
           <ui-badge text="24" shape="circular" variant="danger" ariaLabel="24 unread messages" />
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class BadgeCountsDemoComponent {}

@@ -11,7 +11,7 @@ const countryItems: DropdownItem[] = [
   { value: 'pt', label: 'Portugal' },
   { value: 'nl', label: 'Netherlands' },
   { value: 'se', label: 'Sweden' },
-  { value: 'uk', label: 'United Kingdom', disabled: true },
+  { value: 'uk', label: 'United Kingdom', disabled: true }
 ];
 
 const reviewerItems: DropdownItem[] = [
@@ -19,7 +19,7 @@ const reviewerItems: DropdownItem[] = [
   { value: 'miles', label: 'Miles Carter' },
   { value: 'zoe', label: 'Zoe Patel' },
   { value: 'nina', label: 'Nina Woods' },
-  { value: 'liam', label: 'Liam Scott', disabled: true },
+  { value: 'liam', label: 'Liam Scott', disabled: true }
 ];
 
 @Component({
@@ -76,7 +76,7 @@ const reviewerItems: DropdownItem[] = [
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class DropdownSearchClearExampleComponent {
   protected readonly countryItems = countryItems;
@@ -85,13 +85,13 @@ export class DropdownSearchClearExampleComponent {
   protected selectedReviewers: Array<string | number> = ['ava', 'zoe'];
 
   protected get selectedCountryLabel(): string {
-    return this.countryItems.find(item => item.value === this.selectedCountry)?.label ?? 'None';
+    return this.countryItems.find((item) => item.value === this.selectedCountry)?.label ?? 'None';
   }
 
   protected get selectedReviewerLabels(): string {
     const labels = this.reviewerItems
-      .filter(item => this.selectedReviewers.includes(item.value))
-      .map(item => item.label);
+      .filter((item) => this.selectedReviewers.includes(item.value))
+      .map((item) => item.label);
 
     return labels.length > 0 ? labels.join(', ') : 'None';
   }

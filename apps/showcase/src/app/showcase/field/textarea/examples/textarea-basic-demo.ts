@@ -46,7 +46,7 @@ import { TextareaComponent } from 'ui';
         />
       </div>
     </div>
-  `,
+  `
 })
 export class TextareaBasicDemoComponent {
   protected summary =

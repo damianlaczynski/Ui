@@ -30,7 +30,7 @@ interface FileRow {
         }
       </div>
     }
-  `,
+  `
 })
 export class DataGridFilteringDemoComponent {
   activeFilters = signal<DataGridActiveFilter[]>([]);
@@ -41,18 +41,36 @@ export class DataGridFilteringDemoComponent {
       name: 'Roadmap.docx',
       type: 'Word Document',
       status: 'Active',
-      modified: '2026-04-12',
+      modified: '2026-04-12'
     },
-    { id: '2', name: 'Budget.xlsx', type: 'Excel', status: 'Draft', modified: '2026-04-10' },
-    { id: '3', name: 'Deck.pptx', type: 'PowerPoint', status: 'Published', modified: '2026-04-08' },
+    {
+      id: '2',
+      name: 'Budget.xlsx',
+      type: 'Excel',
+      status: 'Draft',
+      modified: '2026-04-10'
+    },
+    {
+      id: '3',
+      name: 'Deck.pptx',
+      type: 'PowerPoint',
+      status: 'Published',
+      modified: '2026-04-08'
+    },
     {
       id: '4',
       name: 'Notes.pdf',
       type: 'PDF Document',
       status: 'Archived',
-      modified: '2026-04-04',
+      modified: '2026-04-04'
     },
-    { id: '5', name: 'Metrics.xlsx', type: 'Excel', status: 'Active', modified: '2026-04-01' },
+    {
+      id: '5',
+      name: 'Metrics.xlsx',
+      type: 'Excel',
+      status: 'Active',
+      modified: '2026-04-01'
+    }
   ];
 
   config = computed(() =>
@@ -63,36 +81,36 @@ export class DataGridFilteringDemoComponent {
           { label: 'Word Document', value: 'Word Document' },
           { label: 'Excel', value: 'Excel' },
           { label: 'PowerPoint', value: 'PowerPoint' },
-          { label: 'PDF Document', value: 'PDF Document' },
+          { label: 'PDF Document', value: 'PDF Document' }
         ]),
         DataGridColumnFactory.multiSelect('status', 'Status', 'status', [
           { label: 'Active', value: 'Active' },
           { label: 'Draft', value: 'Draft' },
           { label: 'Published', value: 'Published' },
-          { label: 'Archived', value: 'Archived' },
+          { label: 'Archived', value: 'Archived' }
         ]),
-        DataGridColumnFactory.date('modified', 'Modified', 'modified'),
+        DataGridColumnFactory.date('modified', 'Modified', 'modified')
       ],
       dataSource: this.createStaticDataSource(this.rows),
       filtering: { enabled: true, debounceMs: 300 },
       styling: {
-        striped: true,
+        striped: true
       },
       callbacks: {
-        onFilterChange: filters => this.activeFilters.set(filters),
-      },
-    }),
+        onFilterChange: (filters) => this.activeFilters.set(filters)
+      }
+    })
   );
 
   private createStaticDataSource<T extends { id?: string }>(
-    data: T[],
+    data: T[]
   ): (params: QueryParams<T>) => Observable<QueryResult<T>> {
     return () =>
       of({
         items: [...data],
         totalCount: data.length,
         hasNextPage: false,
-        hasPreviousPage: false,
+        hasPreviousPage: false
       });
   }
 }

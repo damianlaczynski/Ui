@@ -9,7 +9,7 @@ describe('SliderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SliderComponent, FormsModule],
+      imports: [SliderComponent, FormsModule]
     }).compileComponents();
 
     fixture = TestBed.createComponent(SliderComponent);
@@ -188,7 +188,7 @@ describe('SliderComponent', () => {
     const event = new KeyboardEvent('keydown', {
       key: 'ArrowRight',
       bubbles: true,
-      cancelable: true,
+      cancelable: true
     });
     input.dispatchEvent(event);
     fixture.detectChanges();
@@ -204,7 +204,7 @@ describe('SliderComponent', () => {
     const event = new KeyboardEvent('keydown', {
       key: 'ArrowLeft',
       bubbles: true,
-      cancelable: true,
+      cancelable: true
     });
     input.dispatchEvent(event);
     fixture.detectChanges();
@@ -219,7 +219,11 @@ describe('SliderComponent', () => {
     fixture.detectChanges();
 
     const input = fixture.nativeElement.querySelector('input');
-    const event = new KeyboardEvent('keydown', { key: 'Home', bubbles: true, cancelable: true });
+    const event = new KeyboardEvent('keydown', {
+      key: 'Home',
+      bubbles: true,
+      cancelable: true
+    });
     input.dispatchEvent(event);
     fixture.detectChanges();
 
@@ -233,7 +237,11 @@ describe('SliderComponent', () => {
     fixture.detectChanges();
 
     const input = fixture.nativeElement.querySelector('input');
-    const event = new KeyboardEvent('keydown', { key: 'End', bubbles: true, cancelable: true });
+    const event = new KeyboardEvent('keydown', {
+      key: 'End',
+      bubbles: true,
+      cancelable: true
+    });
     input.dispatchEvent(event);
     fixture.detectChanges();
 

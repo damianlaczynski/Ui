@@ -7,7 +7,7 @@ const channelItems: DropdownItem[] = [
   { value: 'teams', label: 'Teams', icon: 'chat' },
   { value: 'sms', label: 'SMS', icon: 'phone' },
   { value: 'push', label: 'Push', icon: 'alert' },
-  { value: 'slack', label: 'Slack', icon: 'send' },
+  { value: 'slack', label: 'Slack', icon: 'send' }
 ];
 
 @Component({
@@ -41,10 +41,10 @@ const channelItems: DropdownItem[] = [
           </strong>
         </div>
 
-        <ui-button type="button" variant="secondary" appearance="outline" (click)="resetSelection()"> Reset </ui-button>
+        <ui-button type="button" variant="secondary" appearance="outline" (click)="resetSelection()">Reset</ui-button>
       </div>
     </div>
-  `,
+  `
 })
 export class DropdownMultiTagsExampleComponent {
   protected readonly channelItems = channelItems;
@@ -52,8 +52,8 @@ export class DropdownMultiTagsExampleComponent {
 
   protected get selectedChannelLabels(): string {
     const selected = this.channelItems
-      .filter(item => this.selectedChannels.includes(item.value))
-      .map(item => item.label);
+      .filter((item) => this.selectedChannels.includes(item.value))
+      .map((item) => item.label);
 
     return selected.length > 0 ? selected.join(', ') : 'None';
   }

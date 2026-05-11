@@ -8,7 +8,7 @@ const overviewIcons: IconName[] = ['home', 'search', 'settings', 'info', 'checkm
 const sizes: IconSize[] = ['small', 'medium', 'large'];
 const variants: { label: string; value: IconVariant }[] = [
   { label: 'Regular', value: 'regular' },
-  { label: 'Filled', value: 'filled' },
+  { label: 'Filled', value: 'filled' }
 ];
 
 @Component({
@@ -25,7 +25,9 @@ const variants: { label: string; value: IconVariant }[] = [
               <div
                 style="display:flex;flex-wrap:wrap;align-items:center;gap:0.875rem 1rem;padding:0.875rem 1rem;border:1px solid color-mix(in srgb,var(--color-neutral-stroke-rest) 60%,transparent);border-radius:12px;background:var(--color-neutral-background-rest);"
               >
-                <strong style="min-width:6rem;font-size:0.875rem;">{{ iconName }}</strong>
+                <strong style="min-width:6rem;font-size:0.875rem;">
+                  {{ iconName }}
+                </strong>
                 @for (size of sizes; track size) {
                   <div
                     style="display:grid;justify-items:center;gap:0.375rem;min-width:4.5rem;padding:0.5rem 0.625rem;border-radius:10px;background:var(--color-neutral-background2-rest);"
@@ -44,7 +46,7 @@ const variants: { label: string; value: IconVariant }[] = [
         </section>
       }
     </div>
-  `,
+  `
 })
 export class IconOverviewDemoComponent {
   protected readonly icons = overviewIcons;

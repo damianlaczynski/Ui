@@ -11,7 +11,7 @@ import { ButtonComponent } from 'ui';
       <ui-button variant="secondary" [loading]="true">Saving...</ui-button>
       <ui-button variant="secondary" [disabled]="true">Disabled</ui-button>
     </div>
-  `,
+  `
 })
 export class ButtonStatesExampleComponent {
   loading = signal(false);

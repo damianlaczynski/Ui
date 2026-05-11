@@ -50,6 +50,6 @@ import { ButtonComponent } from 'ui';
         <ui-button variant="info" appearance="transparent" [fullWidth]="true">Info transparent</ui-button>
       </div>
     </div>
-  `,
+  `
 })
 export class ButtonAppearanceVariantExampleComponent {}

@@ -25,14 +25,14 @@ import { BadgeComponent } from 'ui';
         >
           <div style="display:flex;flex-direction:column;gap:0.25rem;min-width:0">
             <strong style="font-size:0.875rem;color:var(--color-neutral-foreground-rest)">Release checklist</strong>
-            <span style="font-size:0.8125rem;color:var(--color-neutral-foreground3-rest)"
-              >Badge should summarize state without needing a sentence.</span
-            >
+            <span style="font-size:0.8125rem;color:var(--color-neutral-foreground3-rest)">
+              Badge should summarize state without needing a sentence.
+            </span>
           </div>
           <ui-badge text="QA passed" variant="success" appearance="tint" />
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class BadgeBasicDemoComponent {}

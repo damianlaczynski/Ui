@@ -25,7 +25,7 @@ import { ToolbarComponent, type ToolbarItem } from 'ui';
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class ToolbarOverflowDemoComponent {
   protected readonly items: ToolbarItem[] = [
@@ -35,6 +35,6 @@ export class ToolbarOverflowDemoComponent {
     { id: 'print', label: 'Print', icon: 'print', tooltip: 'Print' },
     { id: 'share', label: 'Share', icon: 'share', tooltip: 'Share' },
     { id: 'comment', label: 'Comment', icon: 'comment', tooltip: 'Comment' },
-    { id: 'history', label: 'History', icon: 'history', tooltip: 'History' },
+    { id: 'history', label: 'History', icon: 'history', tooltip: 'History' }
   ];
 }

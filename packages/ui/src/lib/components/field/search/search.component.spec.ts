@@ -8,7 +8,7 @@ describe('SearchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SearchComponent],
+      imports: [SearchComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(SearchComponent);
@@ -56,8 +56,8 @@ describe('SearchComponent', () => {
 
   it('should render search action button with aria-label', () => {
     const actionButtons: HTMLButtonElement[] = Array.from(
-      fixture.nativeElement.querySelectorAll('.field__actions .field__action'),
+      fixture.nativeElement.querySelectorAll('.field__actions .field__action')
     );
-    expect(actionButtons.some(btn => btn.getAttribute('aria-label') === 'Search')).toBe(true);
+    expect(actionButtons.some((btn) => btn.getAttribute('aria-label') === 'Search')).toBe(true);
   });
 });

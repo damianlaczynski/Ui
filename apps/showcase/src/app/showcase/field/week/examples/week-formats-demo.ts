@@ -32,7 +32,7 @@ import { WeekComponent } from 'ui';
         [ngModelOptions]="{ standalone: true }"
       />
     </div>
-  `,
+  `
 })
 export class WeekFormatsDemoComponent {
   protected rangeValue = '2026-W20';

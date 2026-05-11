@@ -19,7 +19,7 @@ import { ButtonComponent, ToastComponent } from 'ui';
       <ui-toast variant="warning" title="Warning" message="Review before continuing." [(visible)]="vWarning" />
       <ui-toast variant="danger" title="Error" message="Something went wrong." [(visible)]="vDanger" />
     </div>
-  `,
+  `
 })
 export class ToastVariantsExampleComponent {
   vPrimary = true;

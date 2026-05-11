@@ -31,13 +31,13 @@ import { BreadcrumbComponent, ButtonComponent, type Breadcrumb } from 'ui';
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class BreadcrumbProjectHeaderExampleComponent {
   protected readonly items: Breadcrumb[] = [
     { id: 'home', label: 'Home', icon: 'home' },
     { id: 'programs', label: 'Programs', icon: 'briefcase' },
     { id: 'migration', label: 'Migration', icon: 'arrow_swap' },
-    { id: 'review', label: 'Review', icon: 'clipboard_task', selected: true },
+    { id: 'review', label: 'Review', icon: 'clipboard_task', selected: true }
   ];
 }

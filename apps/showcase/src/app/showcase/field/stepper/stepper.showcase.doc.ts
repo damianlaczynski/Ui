@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig,
+  ShowcaseDocPageConfig
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { StepperBasicExampleComponent } from './examples/stepper-basic-demo';
 import { StepperLinearProgressExampleComponent } from './examples/stepper-linear-progress-demo';
@@ -17,7 +17,7 @@ const componentMap = {
   linear: StepperLinearProgressExampleComponent,
   vertical: StepperVerticalExampleComponent,
   states: StepperStepStatesExampleComponent,
-  wizard: StepperOnboardingWizardExampleComponent,
+  wizard: StepperOnboardingWizardExampleComponent
 } as const;
 
 export const STEPPER_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -25,9 +25,9 @@ export const STEPPER_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(stepperMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${stepperMeta.slug}/${file}`,
-    ]),
-  ) as Record<string, string>),
+      `/docs/components/snippets/${stepperMeta.slug}/${file}`
+    ])
+  ) as Record<string, string>)
 };
 
 export const STEPPER_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -36,12 +36,12 @@ export const STEPPER_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: stepperMeta.importCode,
   containerClass: stepperMeta.containerClass,
   accessibility: stepperMeta.accessibility,
-  featureSections: stepperMeta.featureSections.map(section => ({
+  featureSections: stepperMeta.featureSections.map((section) => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap],
+    component: componentMap[section.componentKey as keyof typeof componentMap]
   })),
-  apiSections: stepperMeta.apiSections,
+  apiSections: stepperMeta.apiSections
 };

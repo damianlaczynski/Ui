@@ -19,12 +19,12 @@ describe('DrawerComponent', () => {
     originalDir = document.documentElement.dir;
     directionalityMock = {
       value: 'ltr',
-      change: new Subject<Direction>(),
+      change: new Subject<Direction>()
     };
 
     await TestBed.configureTestingModule({
       imports: [DrawerComponent],
-      providers: [{ provide: Directionality, useValue: directionalityMock }],
+      providers: [{ provide: Directionality, useValue: directionalityMock }]
     }).compileComponents();
 
     fixture = TestBed.createComponent(DrawerComponent);
@@ -161,10 +161,12 @@ describe('DrawerComponent', () => {
     expect(contentWhileClosing).toBeTruthy();
     expect(drawerWhileClosing?.classList.contains('drawer--closing')).toBe(true);
 
-    const animationEndEvent = new Event('animationend', { bubbles: true }) as AnimationEvent;
+    const animationEndEvent = new Event('animationend', {
+      bubbles: true
+    }) as AnimationEvent;
     Object.defineProperty(animationEndEvent, 'animationName', {
       value: 'slideOutRight',
-      configurable: true,
+      configurable: true
     });
     contentWhileClosing?.dispatchEvent(animationEndEvent);
     fixture.detectChanges();

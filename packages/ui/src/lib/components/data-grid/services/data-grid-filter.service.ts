@@ -22,7 +22,7 @@ export class DataGridFilterService<T = any> {
   constructor() {
     // Cleanup timers on service destruction
     this.destroyRef.onDestroy(() => {
-      this.filterDebounceTimers.forEach(timer => clearTimeout(timer));
+      this.filterDebounceTimers.forEach((timer) => clearTimeout(timer));
       this.filterDebounceTimers.clear();
     });
   }
@@ -78,7 +78,7 @@ export class DataGridFilterService<T = any> {
   handleFilterChange(
     column: DataGridColumn<T>,
     value: any,
-    debounceCallback?: (filter: DataGridFilterValue) => void,
+    debounceCallback?: (filter: DataGridFilterValue) => void
   ): void {
     const columnId = column.id;
     const config = this.getFilterConfig(column);
@@ -93,7 +93,7 @@ export class DataGridFilterService<T = any> {
     const newFilter: DataGridFilterValue = {
       ...currentFilter,
       operator: operator,
-      value: parsedValue,
+      value: parsedValue
     };
 
     // Handle debouncing for text filters
@@ -126,7 +126,7 @@ export class DataGridFilterService<T = any> {
 
     const newFilter: DataGridFilterValue = {
       ...currentFilter,
-      operator: operator,
+      operator: operator
     };
     this.updateFilter(columnId, column, newFilter);
   }
@@ -169,7 +169,7 @@ export class DataGridFilterService<T = any> {
     const activeFiltersArray: DataGridActiveFilter[] = [];
 
     this.activeFilters().forEach((filter, columnId) => {
-      const column = columns.find(col => col.id === columnId);
+      const column = columns.find((col) => col.id === columnId);
       if (!column) return;
 
       const config = this.getFilterConfig(column);
@@ -180,7 +180,7 @@ export class DataGridFilterService<T = any> {
         field: column.field?.toString(), // Add field for proper data access
         type: config.type,
         filter,
-        displayText: this.getFilterDisplayText(column, filter),
+        displayText: this.getFilterDisplayText(column, filter)
       });
     });
 

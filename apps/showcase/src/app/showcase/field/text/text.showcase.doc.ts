@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig,
+  ShowcaseDocPageConfig
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { TextBasicExampleComponent } from './examples/text-basic-demo';
 import { TextLabelClearExampleComponent } from './examples/text-label-clear-demo';
@@ -17,14 +17,14 @@ const componentMap = {
   variants: TextVariantsExampleComponent,
   labelClear: TextLabelClearExampleComponent,
   statesValidation: TextStatesValidationExampleComponent,
-  profileForm: TextProfileFormExampleComponent,
+  profileForm: TextProfileFormExampleComponent
 } as const;
 
 export const TEXT_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   markdown: `/docs/components/${textMeta.slug}.md`,
   ...(Object.fromEntries(
-    Object.entries(textMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${textMeta.slug}/${file}`]),
-  ) as Record<string, string>),
+    Object.entries(textMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${textMeta.slug}/${file}`])
+  ) as Record<string, string>)
 };
 
 export const TEXT_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -33,12 +33,12 @@ export const TEXT_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: textMeta.importCode,
   containerClass: textMeta.containerClass,
   accessibility: textMeta.accessibility,
-  featureSections: textMeta.featureSections.map(section => ({
+  featureSections: textMeta.featureSections.map((section) => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap],
+    component: componentMap[section.componentKey as keyof typeof componentMap]
   })),
-  apiSections: textMeta.apiSections,
+  apiSections: textMeta.apiSections
 };

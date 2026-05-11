@@ -24,7 +24,7 @@ import { RatingComponent } from 'ui';
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class RatingScaleExampleComponent {
   protected readonly shortScale = signal(4);

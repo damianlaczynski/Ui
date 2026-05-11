@@ -6,7 +6,7 @@ import { Size, ContentPosition } from '../../utils';
 @Component({
   selector: 'ui-radio',
   imports: [NgClass, IconComponent],
-  templateUrl: './radio.component.html',
+  templateUrl: './radio.component.html'
 })
 export class RadioComponent {
   id = input.required<string | number>();

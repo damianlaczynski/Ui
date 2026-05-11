@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig,
+  ShowcaseDocPageConfig
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { TotpAppearanceDemoComponent } from './examples/totp-appearance-demo';
 import { TotpBasicDemoComponent } from './examples/totp-basic-demo';
@@ -19,14 +19,14 @@ const componentMap = {
   appearance: TotpAppearanceDemoComponent,
   states: TotpStatesDemoComponent,
   validation: TotpValidationDemoComponent,
-  verificationPanel: TotpVerificationPanelDemoComponent,
+  verificationPanel: TotpVerificationPanelDemoComponent
 } as const;
 
 export const TOTP_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   markdown: `/docs/components/${totpMeta.slug}.md`,
   ...(Object.fromEntries(
-    Object.entries(totpMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${totpMeta.slug}/${file}`]),
-  ) as Record<string, string>),
+    Object.entries(totpMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${totpMeta.slug}/${file}`])
+  ) as Record<string, string>)
 };
 
 export const TOTP_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -35,12 +35,12 @@ export const TOTP_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: totpMeta.importCode,
   containerClass: totpMeta.containerClass,
   accessibility: totpMeta.accessibility,
-  featureSections: totpMeta.featureSections.map(section => ({
+  featureSections: totpMeta.featureSections.map((section) => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap],
+    component: componentMap[section.componentKey as keyof typeof componentMap]
   })),
-  apiSections: totpMeta.apiSections,
+  apiSections: totpMeta.apiSections
 };

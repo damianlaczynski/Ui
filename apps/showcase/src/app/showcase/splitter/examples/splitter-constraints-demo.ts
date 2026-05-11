@@ -4,7 +4,7 @@ import {
   SplitterComponent,
   SplitterPanelDirective,
   type SplitterPanel,
-  type SplitterResizeEvent,
+  type SplitterResizeEvent
 } from 'ui';
 
 @Component({
@@ -17,12 +17,14 @@ import {
         style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background2-rest)"
       >
         <ui-button variant="secondary" appearance="outline" (click)="reset()">Reset</ui-button>
-        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
-          >Left: <strong>{{ sizes()[0].toFixed(0) }}%</strong></span
-        >
-        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
-          >Right: <strong>{{ sizes()[1].toFixed(0) }}%</strong></span
-        >
+        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
+          Left:
+          <strong>{{ sizes()[0].toFixed(0) }}%</strong>
+        </span>
+        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
+          Right:
+          <strong>{{ sizes()[1].toFixed(0) }}%</strong>
+        </span>
       </div>
 
       <div
@@ -51,12 +53,12 @@ import {
         </ui-splitter>
       </div>
     </div>
-  `,
+  `
 })
 export class SplitterConstraintsDemoComponent {
   protected readonly initialPanels: SplitterPanel[] = [
     { id: 'filters', size: 32, minSize: 220, maxSize: 360 },
-    { id: 'results', size: 68, minSize: 360 },
+    { id: 'results', size: 68, minSize: 360 }
   ];
 
   protected readonly panels = signal<SplitterPanel[]>(this.initialPanels);

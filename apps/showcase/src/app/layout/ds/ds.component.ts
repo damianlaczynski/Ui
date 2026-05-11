@@ -7,7 +7,7 @@ import {
   ViewChild,
   ElementRef,
   AfterViewInit,
-  computed,
+  computed
 } from '@angular/core';
 
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
@@ -27,7 +27,7 @@ import { environment } from '@environments/environment';
 @Component({
   selector: 'app-ds',
   imports: [RouterOutlet, DsSidebarComponent, ThemeDrawerComponent, ButtonComponent, DrawerComponent, IconComponent],
-  templateUrl: './ds.component.html',
+  templateUrl: './ds.component.html'
 })
 export class DsComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('mainContent') mainContent?: ElementRef<HTMLElement>;
@@ -50,7 +50,7 @@ export class DsComponent implements OnInit, OnDestroy, AfterViewInit {
   readonly themeVariants = this.themeService.themeVariants;
   currentThemeVariant = computed(() => this.themeService.$themeVariant());
   currentThemeVariantLabel = computed(
-    () => this.themeVariants.find(variant => variant.id === this.currentThemeVariant())?.label ?? 'Theme',
+    () => this.themeVariants.find((variant) => variant.id === this.currentThemeVariant())?.label ?? 'Theme'
   );
   private breakpointSubscription?: Subscription;
 
@@ -78,7 +78,7 @@ export class DsComponent implements OnInit, OnDestroy, AfterViewInit {
   private readonly mobileBreakpoint = '(max-width: 1279.98px)';
 
   ngOnInit(): void {
-    this.breakpointSubscription = this.breakpointObserver.observe(this.mobileBreakpoint).subscribe(result => {
+    this.breakpointSubscription = this.breakpointObserver.observe(this.mobileBreakpoint).subscribe((result) => {
       this.isMobile.set(result.matches);
       if (result.matches) {
         this.isSidebarOpen.set(false);
@@ -105,7 +105,7 @@ export class DsComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   toggleSidebar(): void {
-    this.isSidebarOpen.update(value => !value);
+    this.isSidebarOpen.update((value) => !value);
   }
 
   closeSidebar(): void {

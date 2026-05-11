@@ -6,7 +6,7 @@ import {
   input,
   output,
   ChangeDetectionStrategy,
-  inject,
+  inject
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoadingStateComponent } from '../loading-state/loading-state.component';
@@ -23,7 +23,7 @@ import { UiI18nService } from '../../i18n';
   imports: [CommonModule, LoadingStateComponent, ErrorStateComponent, EmptyStateComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[class.ui-state-container--delegate-scroll]': 'delegateScrollToParent()',
+    '[class.ui-state-container--delegate-scroll]': 'delegateScrollToParent()'
   },
   styles: [
     `
@@ -41,8 +41,8 @@ import { UiI18nService } from '../../i18n';
         max-height: none;
         overflow: visible;
       }
-    `,
-  ],
+    `
+  ]
 })
 export class StateContainerComponent<T> {
   //Services
@@ -51,7 +51,7 @@ export class StateContainerComponent<T> {
   //Inputs
   state = input.required<State<T>>();
   size = input<Size, Size | undefined>('medium', {
-    transform: (value: Size | undefined) => value ?? 'medium',
+    transform: (value: Size | undefined) => value ?? 'medium'
   });
 
   showEmptyOnInitial = input<boolean>(false);
@@ -95,12 +95,12 @@ export class StateContainerComponent<T> {
     const currentState = this.state();
     return {
       $implicit: currentState.data,
-      state: currentState,
+      state: currentState
     };
   });
 
   resolvedLoadingTitle = computed(
-    () => this.loadingTitle().trim() || this.i18n.t('stateContainer.loadingTitle', 'Loading'),
+    () => this.loadingTitle().trim() || this.i18n.t('stateContainer.loadingTitle', 'Loading')
   );
   resolvedErrorTitle = computed(() => this.errorTitle().trim() || this.i18n.t('stateContainer.errorTitle', 'Error'));
   resolvedEmptyTitle = computed(() => this.emptyTitle().trim() || this.i18n.t('stateContainer.emptyTitle', 'No data'));

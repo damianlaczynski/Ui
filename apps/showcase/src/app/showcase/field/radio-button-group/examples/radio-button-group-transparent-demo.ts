@@ -19,7 +19,7 @@ import { RadioButtonGroupComponent, type RadioButtonItem, type Variant } from 'u
         />
       }
     </div>
-  `,
+  `
 })
 export class RadioButtonGroupTransparentDemoComponent {
   protected readonly variants: Variant[] = ['primary', 'secondary', 'success', 'warning', 'danger', 'info'];
@@ -30,13 +30,13 @@ export class RadioButtonGroupTransparentDemoComponent {
     success: 'comfortable',
     warning: 'comfortable',
     danger: 'comfortable',
-    info: 'comfortable',
+    info: 'comfortable'
   };
 
   protected readonly items: RadioButtonItem[] = [
     { id: 'compact', label: 'Compact', value: 'compact' },
     { id: 'comfortable', label: 'Comfortable', value: 'comfortable' },
-    { id: 'spacious', label: 'Spacious', value: 'spacious' },
+    { id: 'spacious', label: 'Spacious', value: 'spacious' }
   ];
 
   protected getLabel(variant: Variant): string {

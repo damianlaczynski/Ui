@@ -8,7 +8,7 @@ describe('DateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DateComponent],
+      imports: [DateComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(DateComponent);

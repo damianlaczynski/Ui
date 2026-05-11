@@ -8,7 +8,7 @@ import { UiI18nService } from '../../i18n';
 @Component({
   selector: 'ui-carousel',
   templateUrl: './carousel.component.html',
-  imports: [ButtonComponent, NgTemplateOutlet],
+  imports: [ButtonComponent, NgTemplateOutlet]
 })
 export class CarouselComponent {
   private readonly i18n = inject(UiI18nService);
@@ -195,6 +195,8 @@ export class CarouselComponent {
 
   getGoToSlideAriaLabel(index: number): string {
     const slide = index + 1;
-    return this.i18n.t('carousel.goToSlideAriaLabel', `Go to slide ${slide}`, { slide });
+    return this.i18n.t('carousel.goToSlideAriaLabel', `Go to slide ${slide}`, {
+      slide
+    });
   }
 }

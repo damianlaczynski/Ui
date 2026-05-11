@@ -38,8 +38,8 @@ export interface CalendarYear {
         display: block;
         width: 100%;
       }
-    `,
-  ],
+    `
+  ]
 })
 export class CalendarComponent {
   private readonly document = inject(DOCUMENT);
@@ -83,7 +83,7 @@ export class CalendarComponent {
     const month = this.currentMonth();
     return month.toLocaleDateString(this.documentLang(), {
       year: 'numeric',
-      month: 'long',
+      month: 'long'
     });
   });
 
@@ -143,7 +143,7 @@ export class CalendarComponent {
     for (let i = firstDayWeekday - 1; i >= 0; i--) {
       const date = new Date(year, monthIndex, -i);
       days.push(
-        this.createCalendarDay(date, false, today, selectedDateOnly, startDateOnly, endDateOnly, hoveredDateOnly),
+        this.createCalendarDay(date, false, today, selectedDateOnly, startDateOnly, endDateOnly, hoveredDateOnly)
       );
     }
 
@@ -151,7 +151,7 @@ export class CalendarComponent {
     for (let day = 1; day <= lastDayOfMonth.getDate(); day++) {
       const date = new Date(year, monthIndex, day);
       days.push(
-        this.createCalendarDay(date, true, today, selectedDateOnly, startDateOnly, endDateOnly, hoveredDateOnly),
+        this.createCalendarDay(date, true, today, selectedDateOnly, startDateOnly, endDateOnly, hoveredDateOnly)
       );
     }
 
@@ -160,7 +160,7 @@ export class CalendarComponent {
     for (let day = 1; day <= remainingDays; day++) {
       const date = new Date(year, monthIndex + 1, day);
       days.push(
-        this.createCalendarDay(date, false, today, selectedDateOnly, startDateOnly, endDateOnly, hoveredDateOnly),
+        this.createCalendarDay(date, false, today, selectedDateOnly, startDateOnly, endDateOnly, hoveredDateOnly)
       );
     }
 
@@ -174,7 +174,7 @@ export class CalendarComponent {
     selected: Date | null,
     start: Date | null,
     end: Date | null,
-    hovered: Date | null,
+    hovered: Date | null
   ): CalendarDay {
     const dateOnly = new Date(date.getFullYear(), date.getMonth(), date.getDate());
 
@@ -214,7 +214,7 @@ export class CalendarComponent {
       isInRange,
       isRangeStart,
       isRangeEnd,
-      isDisabled,
+      isDisabled
     };
   }
 
@@ -243,7 +243,7 @@ export class CalendarComponent {
       return {
         name: month,
         index,
-        isSelected,
+        isSelected
       };
     });
   }
@@ -275,7 +275,7 @@ export class CalendarComponent {
 
       years.push({
         year,
-        isSelected,
+        isSelected
       });
     }
 
@@ -471,7 +471,9 @@ export class CalendarComponent {
   }
 
   private getLocalizedWeekDays(): string[] {
-    const formatter = new Intl.DateTimeFormat(this.documentLang(), { weekday: 'short' });
+    const formatter = new Intl.DateTimeFormat(this.documentLang(), {
+      weekday: 'short'
+    });
     const monday = new Date(Date.UTC(2024, 0, 1)); // Monday
 
     return Array.from({ length: 7 }, (_, index) => {
@@ -504,7 +506,7 @@ export class CalendarComponent {
     const observer = new MutationObserver(() => this.syncDocumentLanguage());
     observer.observe(htmlElement, {
       attributes: true,
-      attributeFilter: ['lang'],
+      attributeFilter: ['lang']
     });
 
     this.destroyRef.onDestroy(() => observer.disconnect());

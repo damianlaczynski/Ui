@@ -41,7 +41,7 @@ import { TagComponent } from 'ui';
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class TagSelectableFiltersDemoComponent {
   protected assignedToMe = true;
@@ -54,7 +54,7 @@ export class TagSelectableFiltersDemoComponent {
       this.assignedToMe ? 'Assigned to me' : null,
       this.openOnly ? 'Open' : null,
       this.blockedOnly ? 'Blocked' : null,
-      this.needsReview ? 'Needs review' : null,
+      this.needsReview ? 'Needs review' : null
     ].filter((value): value is string => !!value);
 
     return filters.length ? filters.join(', ') : 'No filters selected.';

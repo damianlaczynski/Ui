@@ -19,12 +19,13 @@ export type SliderRangeValue = NumericRange;
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => RangeComponent),
-      multi: true,
-    },
-  ],
+      multi: true
+    }
+  ]
 })
 export class RangeComponent extends FieldComponent implements ControlValueAccessor {
-  @ViewChild('trackWrapper', { read: ElementRef }) trackWrapper!: ElementRef<HTMLElement>;
+  @ViewChild('trackWrapper', { read: ElementRef })
+  trackWrapper!: ElementRef<HTMLElement>;
   @ViewChild('lowerInput') lowerInputEl!: ElementRef<HTMLInputElement>;
   @ViewChild('upperInput') upperInputEl!: ElementRef<HTMLInputElement>;
 
@@ -33,7 +34,7 @@ export class RangeComponent extends FieldComponent implements ControlValueAccess
   min = input<number>(0);
   max = input<number>(100);
   step = input<number>(1);
-  formatValue = input<(value: number) => string>(value => value.toString());
+  formatValue = input<(value: number) => string>((value) => value.toString());
   ariaValueText = input<string | ((value: NumericRange) => string) | null>(null);
   showStepMarkers = input<boolean>(false);
   showMinMax = input<boolean>(false);
@@ -132,7 +133,7 @@ export class RangeComponent extends FieldComponent implements ControlValueAccess
     const stepsPercent = this.stepsPercent();
     const style: Record<string, string> = {
       '--range-low': `${fillStart}%`,
-      '--range-high': `${fillEnd}%`,
+      '--range-high': `${fillEnd}%`
     };
     if (stepsPercent) {
       style['--slider-steps-percent'] = stepsPercent;
@@ -145,7 +146,7 @@ export class RangeComponent extends FieldComponent implements ControlValueAccess
     const position = `clamp(var(--slider-thumb-radius), ${progress}, calc(100% - var(--slider-thumb-radius)))`;
     return {
       insetInlineStart: position,
-      transform: 'translate(var(--slider-thumb-translate-x), -50%)',
+      transform: 'translate(var(--slider-thumb-translate-x), -50%)'
     };
   });
 
@@ -154,7 +155,7 @@ export class RangeComponent extends FieldComponent implements ControlValueAccess
     const position = `clamp(var(--slider-thumb-radius), ${progress}, calc(100% - var(--slider-thumb-radius)))`;
     return {
       insetInlineStart: position,
-      transform: 'translate(var(--slider-thumb-translate-x), -50%)',
+      transform: 'translate(var(--slider-thumb-translate-x), -50%)'
     };
   });
 

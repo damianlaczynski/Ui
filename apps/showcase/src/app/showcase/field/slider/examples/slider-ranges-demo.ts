@@ -50,9 +50,11 @@ const dashedCardStyle =
         <div style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.875rem;line-height:1.4">
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Rating</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest);font-variant-numeric:tabular-nums"
-              >{{ rating }}/10</strong
+            <strong
+              style="font-weight:600;color:var(--color-neutral-foreground-rest);font-variant-numeric:tabular-nums"
             >
+              {{ rating }}/10
+            </strong>
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Discount</span>
@@ -62,8 +64,9 @@ const dashedCardStyle =
             <span style="color:var(--color-neutral-foreground2-rest)">Budget</span>
             <strong
               style="font-weight:600;color:var(--color-neutral-foreground-rest);font-variant-numeric:tabular-nums"
-              >{{ formatCurrency(budget) }}</strong
             >
+              {{ formatCurrency(budget) }}
+            </strong>
           </div>
           <div
             style="margin-top:0.25rem;padding-top:0.5rem;font-size:0.75rem;color:var(--color-neutral-foreground2-rest);border-top:1px solid color-mix(in srgb,var(--color-neutral-stroke-rest) 65%,transparent)"
@@ -73,7 +76,7 @@ const dashedCardStyle =
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class SliderRangesExampleComponent {
   readonly dashedCardStyle = dashedCardStyle;

@@ -11,6 +11,6 @@ import { LoadingStateComponent } from 'ui';
     >
       <ui-loading-state />
     </div>
-  `,
+  `
 })
 export class LoadingStateBasicDemoComponent {}

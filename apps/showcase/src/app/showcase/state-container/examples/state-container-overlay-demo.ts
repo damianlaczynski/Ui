@@ -48,20 +48,20 @@ interface SummaryCard {
         </ui-state-container>
       </div>
     </div>
-  `,
+  `
 })
 export class StateContainerOverlayDemoComponent {
   protected readonly data: SummaryCard[] = [
     { id: 1, label: 'Active projects', value: '12' },
     { id: 2, label: 'Pending reviews', value: '4' },
-    { id: 3, label: 'Failed jobs', value: '1' },
+    { id: 3, label: 'Failed jobs', value: '1' }
   ];
 
   protected readonly refreshing = signal(true);
   protected readonly state = signal<State<SummaryCard[]>>(loadingState(loadedState(this.data)));
 
   protected toggleRefresh(): void {
-    this.refreshing.update(value => !value);
+    this.refreshing.update((value) => !value);
     this.state.set(this.refreshing() ? loadingState(loadedState(this.data)) : loadedState(this.data));
   }
 }

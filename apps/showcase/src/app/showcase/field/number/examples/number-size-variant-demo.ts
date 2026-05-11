@@ -28,6 +28,6 @@ import { NumberComponent } from 'ui';
         <ui-number label="Underlined" inputVariant="underlined" placeholder="0" />
       </div>
     </div>
-  `,
+  `
 })
 export class NumberSizeVariantDemoComponent {}

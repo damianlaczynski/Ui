@@ -6,7 +6,7 @@ import { ValidationError } from '../models/api-response.model';
  * Service for automatically mapping API validation errors to ReactiveForms
  */
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class FormValidationService {
   /**
@@ -19,7 +19,7 @@ export class FormValidationService {
   applyValidationErrors(
     form: FormGroup,
     validationErrors: ValidationError[],
-    fieldMapping?: Record<string, string>,
+    fieldMapping?: Record<string, string>
   ): Record<string, string> {
     const appliedErrors: Record<string, string> = {};
 
@@ -44,8 +44,8 @@ export class FormValidationService {
           serverError: {
             message: validationError.errorMessage,
             code: validationError.errorCode,
-            severity: validationError.severity,
-          },
+            severity: validationError.severity
+          }
         };
 
         // Merge with existing errors
@@ -84,7 +84,7 @@ export class FormValidationService {
    * @param form FormGroup to clear errors from
    */
   clearValidationErrors(form: FormGroup): void {
-    Object.keys(form.controls).forEach(key => {
+    Object.keys(form.controls).forEach((key) => {
       const control = form.get(key);
       if (control) {
         const errors = control.errors;

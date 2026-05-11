@@ -12,7 +12,7 @@ import { RatingComponent } from 'ui';
         Current value {{ value() }} of 5
       </span>
     </div>
-  `,
+  `
 })
 export class RatingBasicExampleComponent {
   protected readonly value = signal(3);

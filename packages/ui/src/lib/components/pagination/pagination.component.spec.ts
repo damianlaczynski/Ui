@@ -17,12 +17,12 @@ describe('PaginationComponent', () => {
     showInfo: true,
     showPageSizeSelector: false,
     maxVisiblePages: 5,
-    ...overrides,
+    ...overrides
   });
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PaginationComponent, NoopAnimationsModule, FormsModule],
+      imports: [PaginationComponent, NoopAnimationsModule, FormsModule]
     }).compileComponents();
 
     fixture = TestBed.createComponent(PaginationComponent);
@@ -98,7 +98,7 @@ describe('PaginationComponent', () => {
   describe('Page Navigation', () => {
     it('should emit pageChange when clicking first', () => {
       let emittedPage: number | undefined;
-      component.pageChange.subscribe(page => (emittedPage = page));
+      component.pageChange.subscribe((page) => (emittedPage = page));
 
       fixture.componentRef.setInput('config', createBasicConfig({ currentPage: 5 }));
       fixture.detectChanges();
@@ -110,7 +110,7 @@ describe('PaginationComponent', () => {
 
     it('should emit pageChange when clicking previous', () => {
       let emittedPage: number | undefined;
-      component.pageChange.subscribe(page => (emittedPage = page));
+      component.pageChange.subscribe((page) => (emittedPage = page));
 
       fixture.componentRef.setInput('config', createBasicConfig({ currentPage: 5 }));
       fixture.detectChanges();
@@ -122,7 +122,7 @@ describe('PaginationComponent', () => {
 
     it('should emit pageChange when clicking next', () => {
       let emittedPage: number | undefined;
-      component.pageChange.subscribe(page => (emittedPage = page));
+      component.pageChange.subscribe((page) => (emittedPage = page));
 
       fixture.componentRef.setInput('config', createBasicConfig({ currentPage: 5 }));
       fixture.detectChanges();
@@ -134,7 +134,7 @@ describe('PaginationComponent', () => {
 
     it('should emit pageChange when clicking last', () => {
       let emittedPage: number | undefined;
-      component.pageChange.subscribe(page => (emittedPage = page));
+      component.pageChange.subscribe((page) => (emittedPage = page));
 
       fixture.componentRef.setInput('config', createBasicConfig({ currentPage: 5, totalPages: 10 }));
       fixture.detectChanges();
@@ -146,7 +146,7 @@ describe('PaginationComponent', () => {
 
     it('should emit pageChange when clicking page number', () => {
       let emittedPage: number | undefined;
-      component.pageChange.subscribe(page => (emittedPage = page));
+      component.pageChange.subscribe((page) => (emittedPage = page));
 
       fixture.componentRef.setInput('config', createBasicConfig({ currentPage: 1 }));
       fixture.detectChanges();
@@ -158,7 +158,7 @@ describe('PaginationComponent', () => {
 
     it('should not emit when clicking current page', () => {
       let emittedPage: number | undefined;
-      component.pageChange.subscribe(page => (emittedPage = page));
+      component.pageChange.subscribe((page) => (emittedPage = page));
 
       fixture.componentRef.setInput('config', createBasicConfig({ currentPage: 5 }));
       fixture.detectChanges();
@@ -170,7 +170,7 @@ describe('PaginationComponent', () => {
 
     it('should not emit when clicking ellipsis', () => {
       let emittedPage: number | undefined;
-      component.pageChange.subscribe(page => (emittedPage = page));
+      component.pageChange.subscribe((page) => (emittedPage = page));
 
       fixture.componentRef.setInput('config', createBasicConfig());
       fixture.detectChanges();
@@ -182,7 +182,7 @@ describe('PaginationComponent', () => {
 
     it('should not navigate when already on first page', () => {
       let emittedPage: number | undefined;
-      component.pageChange.subscribe(page => (emittedPage = page));
+      component.pageChange.subscribe((page) => (emittedPage = page));
 
       fixture.componentRef.setInput('config', createBasicConfig({ currentPage: 1 }));
       fixture.detectChanges();
@@ -195,7 +195,7 @@ describe('PaginationComponent', () => {
 
     it('should not navigate when already on last page', () => {
       let emittedPage: number | undefined;
-      component.pageChange.subscribe(page => (emittedPage = page));
+      component.pageChange.subscribe((page) => (emittedPage = page));
 
       fixture.componentRef.setInput('config', createBasicConfig({ currentPage: 10, totalPages: 10 }));
       fixture.detectChanges();
@@ -219,7 +219,7 @@ describe('PaginationComponent', () => {
     it('should show pages with ellipsis when total exceeds maxVisible', () => {
       fixture.componentRef.setInput(
         'config',
-        createBasicConfig({ currentPage: 1, totalPages: 20, maxVisiblePages: 5 }),
+        createBasicConfig({ currentPage: 1, totalPages: 20, maxVisiblePages: 5 })
       );
       fixture.detectChanges();
 
@@ -232,7 +232,7 @@ describe('PaginationComponent', () => {
     it('should center current page in visible range', () => {
       fixture.componentRef.setInput(
         'config',
-        createBasicConfig({ currentPage: 10, totalPages: 20, maxVisiblePages: 5 }),
+        createBasicConfig({ currentPage: 10, totalPages: 20, maxVisiblePages: 5 })
       );
       fixture.detectChanges();
 
@@ -247,7 +247,7 @@ describe('PaginationComponent', () => {
     it('should adjust range when near the end', () => {
       fixture.componentRef.setInput(
         'config',
-        createBasicConfig({ currentPage: 19, totalPages: 20, maxVisiblePages: 5 }),
+        createBasicConfig({ currentPage: 19, totalPages: 20, maxVisiblePages: 5 })
       );
       fixture.detectChanges();
 
@@ -260,7 +260,7 @@ describe('PaginationComponent', () => {
     it('should show first page and ellipsis when not at start', () => {
       fixture.componentRef.setInput(
         'config',
-        createBasicConfig({ currentPage: 10, totalPages: 20, maxVisiblePages: 3 }),
+        createBasicConfig({ currentPage: 10, totalPages: 20, maxVisiblePages: 3 })
       );
       fixture.detectChanges();
 
@@ -272,7 +272,7 @@ describe('PaginationComponent', () => {
     it('should show last page and ellipsis when not at end', () => {
       fixture.componentRef.setInput(
         'config',
-        createBasicConfig({ currentPage: 5, totalPages: 20, maxVisiblePages: 3 }),
+        createBasicConfig({ currentPage: 5, totalPages: 20, maxVisiblePages: 3 })
       );
       fixture.detectChanges();
 
@@ -330,7 +330,12 @@ describe('PaginationComponent', () => {
     it('should handle single item correctly', () => {
       fixture.componentRef.setInput(
         'config',
-        createBasicConfig({ currentPage: 1, pageSize: 10, totalItems: 1, totalPages: 1 }),
+        createBasicConfig({
+          currentPage: 1,
+          pageSize: 10,
+          totalItems: 1,
+          totalPages: 1
+        })
       );
       fixture.detectChanges();
 
@@ -348,14 +353,14 @@ describe('PaginationComponent', () => {
   describe('Page Size Selection', () => {
     it('should emit pageSizeChange when selecting new size', () => {
       let emittedSize: number | undefined;
-      component.pageSizeChange.subscribe(size => (emittedSize = size));
+      component.pageSizeChange.subscribe((size) => (emittedSize = size));
 
       fixture.componentRef.setInput(
         'config',
         createBasicConfig({
           showPageSizeSelector: true,
-          pageSizeOptions: [10, 25, 50, 100],
-        }),
+          pageSizeOptions: [10, 25, 50, 100]
+        })
       );
       fixture.detectChanges();
 
@@ -366,14 +371,14 @@ describe('PaginationComponent', () => {
 
     it('should handle string page size values', () => {
       let emittedSize: number | undefined;
-      component.pageSizeChange.subscribe(size => (emittedSize = size));
+      component.pageSizeChange.subscribe((size) => (emittedSize = size));
 
       fixture.componentRef.setInput(
         'config',
         createBasicConfig({
           showPageSizeSelector: true,
-          pageSizeOptions: [10, 25, 50],
-        }),
+          pageSizeOptions: [10, 25, 50]
+        })
       );
       fixture.detectChanges();
 
@@ -384,14 +389,14 @@ describe('PaginationComponent', () => {
 
     it('should handle dropdown item page size values', () => {
       let emittedSize: number | undefined;
-      component.pageSizeChange.subscribe(size => (emittedSize = size));
+      component.pageSizeChange.subscribe((size) => (emittedSize = size));
 
       fixture.componentRef.setInput(
         'config',
         createBasicConfig({
           showPageSizeSelector: true,
-          pageSizeOptions: [10, 25, 50],
-        }),
+          pageSizeOptions: [10, 25, 50]
+        })
       );
       fixture.detectChanges();
 
@@ -405,8 +410,8 @@ describe('PaginationComponent', () => {
         'config',
         createBasicConfig({
           showPageSizeSelector: true,
-          pageSizeOptions: [10, 25, 50, 100],
-        }),
+          pageSizeOptions: [10, 25, 50, 100]
+        })
       );
       fixture.detectChanges();
 
@@ -423,8 +428,8 @@ describe('PaginationComponent', () => {
         'config',
         createBasicConfig({
           showPageSizeSelector: true,
-          pageSizeOptions: [],
-        }),
+          pageSizeOptions: []
+        })
       );
       fixture.detectChanges();
 
@@ -524,7 +529,7 @@ describe('PaginationComponent', () => {
     it('should handle very large page numbers', () => {
       fixture.componentRef.setInput(
         'config',
-        createBasicConfig({ currentPage: 500, totalPages: 1000, totalItems: 10000 }),
+        createBasicConfig({ currentPage: 500, totalPages: 1000, totalItems: 10000 })
       );
       fixture.detectChanges();
 
@@ -537,7 +542,12 @@ describe('PaginationComponent', () => {
     it('should handle page size larger than total items', () => {
       fixture.componentRef.setInput(
         'config',
-        createBasicConfig({ currentPage: 1, pageSize: 100, totalItems: 50, totalPages: 1 }),
+        createBasicConfig({
+          currentPage: 1,
+          pageSize: 100,
+          totalItems: 50,
+          totalPages: 1
+        })
       );
       fixture.detectChanges();
 
@@ -548,7 +558,7 @@ describe('PaginationComponent', () => {
     it('should handle maxVisiblePages of 1', () => {
       fixture.componentRef.setInput(
         'config',
-        createBasicConfig({ currentPage: 5, totalPages: 10, maxVisiblePages: 1 }),
+        createBasicConfig({ currentPage: 5, totalPages: 10, maxVisiblePages: 1 })
       );
       fixture.detectChanges();
 
@@ -581,8 +591,8 @@ describe('PaginationComponent', () => {
           pageSize: 10,
           showPageNumbers: true,
           showFirstLast: true,
-          showInfo: true,
-        }),
+          showInfo: true
+        })
       );
       fixture.detectChanges();
 
@@ -599,8 +609,8 @@ describe('PaginationComponent', () => {
           totalPages: 200,
           totalItems: 10000,
           pageSize: 50,
-          maxVisiblePages: 5,
-        }),
+          maxVisiblePages: 5
+        })
       );
       fixture.detectChanges();
 
@@ -618,8 +628,8 @@ describe('PaginationComponent', () => {
           currentPage: 1,
           totalPages: 1,
           totalItems: 3,
-          pageSize: 10,
-        }),
+          pageSize: 10
+        })
       );
       fixture.detectChanges();
 
@@ -630,7 +640,7 @@ describe('PaginationComponent', () => {
 
     it('should handle page size change scenario', () => {
       let emittedSize: number | undefined;
-      component.pageSizeChange.subscribe(size => (emittedSize = size));
+      component.pageSizeChange.subscribe((size) => (emittedSize = size));
 
       fixture.componentRef.setInput(
         'config',
@@ -640,8 +650,8 @@ describe('PaginationComponent', () => {
           totalItems: 100,
           pageSize: 10,
           showPageSizeSelector: true,
-          pageSizeOptions: [10, 25, 50],
-        }),
+          pageSizeOptions: [10, 25, 50]
+        })
       );
       fixture.detectChanges();
 
@@ -654,7 +664,7 @@ describe('PaginationComponent', () => {
 
     it('should handle navigation through all pages', () => {
       const emittedPages: number[] = [];
-      component.pageChange.subscribe(page => emittedPages.push(page));
+      component.pageChange.subscribe((page) => emittedPages.push(page));
 
       fixture.componentRef.setInput('config', createBasicConfig({ currentPage: 1, totalPages: 5 }));
       fixture.detectChanges();
@@ -684,8 +694,8 @@ describe('PaginationComponent', () => {
           showPageNumbers: false,
           showFirstLast: false,
           showInfo: false,
-          showPageSizeSelector: false,
-        }),
+          showPageSizeSelector: false
+        })
       );
       fixture.detectChanges();
 
@@ -707,8 +717,8 @@ describe('PaginationComponent', () => {
           showInfo: true,
           showPageSizeSelector: true,
           pageSizeOptions: [10, 25, 50, 100],
-          maxVisiblePages: 7,
-        }),
+          maxVisiblePages: 7
+        })
       );
       fixture.detectChanges();
 
@@ -723,7 +733,7 @@ describe('PaginationComponent', () => {
   describe('Boundary Conditions', () => {
     it('should handle transition from page 1 to page 2', () => {
       let emittedPage: number | undefined;
-      component.pageChange.subscribe(page => (emittedPage = page));
+      component.pageChange.subscribe((page) => (emittedPage = page));
 
       fixture.componentRef.setInput('config', createBasicConfig({ currentPage: 1 }));
       fixture.detectChanges();
@@ -737,7 +747,7 @@ describe('PaginationComponent', () => {
 
     it('should handle transition from second-to-last to last page', () => {
       let emittedPage: number | undefined;
-      component.pageChange.subscribe(page => (emittedPage = page));
+      component.pageChange.subscribe((page) => (emittedPage = page));
 
       fixture.componentRef.setInput('config', createBasicConfig({ currentPage: 9, totalPages: 10 }));
       fixture.detectChanges();
@@ -751,7 +761,7 @@ describe('PaginationComponent', () => {
 
     it('should handle clicking on first page when already there', () => {
       let emittedPage: number | undefined;
-      component.pageChange.subscribe(page => (emittedPage = page));
+      component.pageChange.subscribe((page) => (emittedPage = page));
 
       fixture.componentRef.setInput('config', createBasicConfig({ currentPage: 1 }));
       fixture.detectChanges();
@@ -763,7 +773,7 @@ describe('PaginationComponent', () => {
 
     it('should handle rapid page changes', () => {
       const emittedPages: number[] = [];
-      component.pageChange.subscribe(page => emittedPages.push(page));
+      component.pageChange.subscribe((page) => emittedPages.push(page));
 
       fixture.componentRef.setInput('config', createBasicConfig({ currentPage: 5 }));
       fixture.detectChanges();

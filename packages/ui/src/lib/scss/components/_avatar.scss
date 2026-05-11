@@ -111,20 +111,20 @@ $avatar-sizes: (
     width: 32px,
     height: 32px,
     font-size: $font-size-200,
-    border-radius: $border-radius-400,
+    border-radius: $border-radius-400
   ),
   'medium': (
     width: 40px,
     height: 40px,
     font-size: $font-size-300,
-    border-radius: $border-radius-600,
+    border-radius: $border-radius-600
   ),
   'large': (
     width: 56px,
     height: 56px,
     font-size: $font-size-400,
-    border-radius: $border-radius-600,
-  ),
+    border-radius: $border-radius-600
+  )
 );
 
 @each $size, $props in $avatar-sizes {

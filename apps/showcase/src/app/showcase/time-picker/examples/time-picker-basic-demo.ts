@@ -22,14 +22,18 @@ import { TimePickerComponent } from 'ui';
       >
         <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest);">
           Selected value:
-          <strong style="color:var(--color-neutral-foreground1-rest)">{{ selectedTime || 'Not set' }}</strong>
+          <strong style="color:var(--color-neutral-foreground1-rest)">
+            {{ selectedTime || 'Not set' }}
+          </strong>
         </span>
         <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest);">
-          Wheel interactions emit normalized <strong>HH:mm</strong> strings.
+          Wheel interactions emit normalized
+          <strong>HH:mm</strong>
+          strings.
         </span>
       </div>
     </div>
-  `,
+  `
 })
 export class TimePickerBasicDemoComponent {
   protected selectedTime = '09:30';

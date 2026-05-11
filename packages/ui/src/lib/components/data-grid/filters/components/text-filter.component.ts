@@ -21,7 +21,7 @@ import { DataGridFilterTemplateContext } from '../../models/data-grid-config.mod
       [ngModel]="context().filterValue"
       (ngModelChange)="context().onValueChange($event)"
     />
-  `,
+  `
 })
 export class TextFilterComponent {
   context = input.required<DataGridFilterTemplateContext>();

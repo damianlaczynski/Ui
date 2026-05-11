@@ -51,18 +51,18 @@ import { ScrollPanelComponent } from 'ui';
         </ui-scroll-panel>
       </div>
     </div>
-  `,
+  `
 })
 export class ScrollPanelOrientationDemoComponent {
   protected readonly horizontalItems = Array.from({ length: 8 }, (_, index) => ({
     id: index + 1,
     title: `Preview ${index + 1}`,
-    body: 'Useful for media strips, cards, or dense option galleries.',
+    body: 'Useful for media strips, cards, or dense option galleries.'
   }));
 
   protected readonly canvasItems = Array.from({ length: 12 }, (_, index) => ({
     id: index + 1,
     title: `Widget ${index + 1}`,
-    body: 'Bidirectional scroll is useful only when the content truly needs two axes.',
+    body: 'Bidirectional scroll is useful only when the content truly needs two axes.'
   }));
 }

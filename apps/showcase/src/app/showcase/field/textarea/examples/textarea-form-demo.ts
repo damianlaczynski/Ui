@@ -42,7 +42,7 @@ import { ButtonComponent, TextareaComponent } from 'ui';
           style="display:flex;gap:0.75rem;flex-wrap:wrap;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
         >
           <ui-button type="button" variant="primary">Save brief</ui-button>
-          <ui-button type="button" variant="secondary" appearance="outline" (click)="reset()"> Reset </ui-button>
+          <ui-button type="button" variant="secondary" appearance="outline" (click)="reset()">Reset</ui-button>
         </div>
       </div>
 
@@ -57,39 +57,39 @@ import { ButtonComponent, TextareaComponent } from 'ui';
         <div style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.875rem;line-height:1.4">
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Summary</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
-              draftForm.controls.summary.value.length
-            }}</strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">
+              {{ draftForm.controls.summary.value.length }}
+            </strong>
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Context</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
-              draftForm.controls.context.value.length
-            }}</strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">
+              {{ draftForm.controls.context.value.length }}
+            </strong>
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Handoff</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
-              draftForm.controls.handoff.value.length
-            }}</strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">
+              {{ draftForm.controls.handoff.value.length }}
+            </strong>
           </div>
         </div>
       </div>
     </form>
-  `,
+  `
 })
 export class TextareaFormDemoComponent {
   protected readonly defaults = {
     summary: 'Refresh the project detail view and reduce visual noise around the activity panel.',
     context:
       'Users struggle to scan the current panel because metadata, comments, and actions sit at the same visual weight.',
-    handoff: 'Keep the layout compatible with existing drawer and tabs patterns.',
+    handoff: 'Keep the layout compatible with existing drawer and tabs patterns.'
   };
 
   protected readonly draftForm = new FormGroup({
     summary: new FormControl(this.defaults.summary, { nonNullable: true }),
     context: new FormControl(this.defaults.context, { nonNullable: true }),
-    handoff: new FormControl(this.defaults.handoff, { nonNullable: true }),
+    handoff: new FormControl(this.defaults.handoff, { nonNullable: true })
   });
 
   protected reset(): void {

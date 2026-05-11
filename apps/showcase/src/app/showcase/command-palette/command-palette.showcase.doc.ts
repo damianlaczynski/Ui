@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig,
+  ShowcaseDocPageConfig
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { CommandPaletteBasicDemoComponent } from './examples/command-palette-basic-demo';
 import { CommandPaletteEmptyResultsDemoComponent } from './examples/command-palette-empty-results-demo';
@@ -17,7 +17,7 @@ const componentMap = {
   grouping: CommandPaletteGroupingDemoComponent,
   options: CommandPaletteOptionsDemoComponent,
   emptyResults: CommandPaletteEmptyResultsDemoComponent,
-  workspace: CommandPaletteWorkspaceDemoComponent,
+  workspace: CommandPaletteWorkspaceDemoComponent
 } as const;
 
 export const COMMAND_PALETTE_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -25,9 +25,9 @@ export const COMMAND_PALETTE_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(commandPaletteMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${commandPaletteMeta.slug}/${file}`,
-    ]),
-  ) as Record<string, string>),
+      `/docs/components/snippets/${commandPaletteMeta.slug}/${file}`
+    ])
+  ) as Record<string, string>)
 };
 
 export const COMMAND_PALETTE_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -36,12 +36,12 @@ export const COMMAND_PALETTE_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: commandPaletteMeta.importCode,
   containerClass: commandPaletteMeta.containerClass,
   accessibility: commandPaletteMeta.accessibility,
-  featureSections: commandPaletteMeta.featureSections.map(section => ({
+  featureSections: commandPaletteMeta.featureSections.map((section) => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap],
+    component: componentMap[section.componentKey as keyof typeof componentMap]
   })),
-  apiSections: commandPaletteMeta.apiSections,
+  apiSections: commandPaletteMeta.apiSections
 };

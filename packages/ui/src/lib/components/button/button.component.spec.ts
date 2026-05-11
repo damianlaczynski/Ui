@@ -10,7 +10,7 @@ import { IconName } from '../icon';
 @Component({
   standalone: true,
   imports: [ButtonComponent],
-  template: '<ui-button icon="star">Label</ui-button>',
+  template: '<ui-button icon="star">Label</ui-button>'
 })
 class ButtonWithProjectedContentHost {}
 
@@ -22,7 +22,7 @@ describe('ButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ButtonComponent, IconComponent],
+      imports: [ButtonComponent, IconComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ButtonComponent);
@@ -66,7 +66,7 @@ describe('ButtonComponent', () => {
   describe('Variant Input', () => {
     const variants: Variant[] = ['primary', 'secondary', 'success', 'warning', 'danger', 'info'];
 
-    variants.forEach(variant => {
+    variants.forEach((variant) => {
       it(`should apply ${variant} variant class`, () => {
         fixture.componentRef.setInput('variant', variant);
         fixture.detectChanges();
@@ -90,7 +90,7 @@ describe('ButtonComponent', () => {
   describe('Appearance Input', () => {
     const appearances: Appearance[] = ['filled', 'tint', 'outline', 'subtle', 'transparent'];
 
-    appearances.forEach(appearance => {
+    appearances.forEach((appearance) => {
       it(`should apply ${appearance} appearance class`, () => {
         fixture.componentRef.setInput('appearance', appearance);
         fixture.detectChanges();
@@ -114,7 +114,7 @@ describe('ButtonComponent', () => {
   describe('Size Input', () => {
     const sizes: Size[] = ['small', 'medium', 'large'];
 
-    sizes.forEach(size => {
+    sizes.forEach((size) => {
       it(`should apply ${size} size class`, () => {
         fixture.componentRef.setInput('size', size);
         fixture.detectChanges();
@@ -137,7 +137,7 @@ describe('ButtonComponent', () => {
   describe('Shape Input', () => {
     const shapes: Shape[] = ['rounded', 'circular', 'square'];
 
-    shapes.forEach(shape => {
+    shapes.forEach((shape) => {
       it(`should apply ${shape} shape class`, () => {
         fixture.componentRef.setInput('shape', shape);
         fixture.detectChanges();
@@ -318,7 +318,7 @@ describe('ButtonComponent', () => {
   describe('Type Input', () => {
     const types: ButtonType[] = ['button', 'submit', 'reset'];
 
-    types.forEach(type => {
+    types.forEach((type) => {
       it(`should set button type to ${type}`, () => {
         fixture.componentRef.setInput('type', type);
         fixture.detectChanges();

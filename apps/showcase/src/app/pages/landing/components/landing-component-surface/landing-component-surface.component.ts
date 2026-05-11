@@ -10,7 +10,7 @@ import {
   landingSurfaceNonFieldExplicitCell,
   landingSurfaceOrderedInputIds,
   landingSurfaceOrderedNonFieldIds,
-  landingSurfacePlacement,
+  landingSurfacePlacement
 } from './landing-surface-layout';
 import { LANDING_SURFACE_PREVIEW_COMPONENTS } from './landing-surface-previews.registry';
 
@@ -19,7 +19,7 @@ import { LANDING_SURFACE_PREVIEW_COMPONENTS } from './landing-surface-previews.r
   standalone: true,
   imports: [CommonModule, RouterLink, ButtonComponent, IconComponent],
   templateUrl: './landing-component-surface.component.html',
-  styleUrl: './landing-component-surface.component.scss',
+  styleUrl: './landing-component-surface.component.scss'
 })
 export class LandingComponentSurfaceComponent {
   readonly showcaseComponents = input.required<ShowcaseComponent[]>();
@@ -27,22 +27,22 @@ export class LandingComponentSurfaceComponent {
   protected readonly surfaceExpanded = signal(false);
 
   protected toggleSurfaceExpanded(): void {
-    this.surfaceExpanded.update(v => !v);
+    this.surfaceExpanded.update((v) => !v);
   }
 
   readonly orderedNonFieldShowcase = computed(() => {
     const list = this.showcaseComponents();
-    const map = new Map(list.map(c => [c.id, c]));
-    return landingSurfaceOrderedNonFieldIds(list.map(c => c.id))
-      .map(id => map.get(id))
+    const map = new Map(list.map((c) => [c.id, c]));
+    return landingSurfaceOrderedNonFieldIds(list.map((c) => c.id))
+      .map((id) => map.get(id))
       .filter((c): c is ShowcaseComponent => !!c);
   });
 
   readonly orderedFieldShowcase = computed(() => {
     const list = this.showcaseComponents();
-    const map = new Map(list.map(c => [c.id, c]));
-    return landingSurfaceOrderedInputIds(list.map(c => c.id))
-      .map(id => map.get(id))
+    const map = new Map(list.map((c) => [c.id, c]));
+    return landingSurfaceOrderedInputIds(list.map((c) => c.id))
+      .map((id) => map.get(id))
       .filter((c): c is ShowcaseComponent => !!c);
   });
 

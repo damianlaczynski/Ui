@@ -56,7 +56,7 @@ import { CalendarComponent, CalendarDay, CalendarView } from 'ui';
         />
       </div>
     </div>
-  `,
+  `
 })
 export class CalendarViewsDemoComponent {
   protected readonly selectedDate = signal(new Date(2026, 4, 14));

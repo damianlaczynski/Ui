@@ -71,13 +71,13 @@ export const I18N_PAGE_CONFIG: GuideDocPageConfig = {
       blocks: [
         {
           type: 'note',
-          content: 'This is the recommended setup when your host app already uses `@ngx-translate/core`.',
+          content: 'This is the recommended setup when your host app already uses `@ngx-translate/core`.'
         },
         {
           type: 'code',
-          code: appConfigCode,
-        },
-      ],
+          code: appConfigCode
+        }
+      ]
     },
     {
       id: 'translation-keys-structure',
@@ -86,13 +86,13 @@ export const I18N_PAGE_CONFIG: GuideDocPageConfig = {
         {
           type: 'note',
           content:
-            'Keep keys under `ui.*` (or your configured prefix), so components can resolve defaults consistently.',
+            'Keep keys under `ui.*` (or your configured prefix), so components can resolve defaults consistently.'
         },
         {
           type: 'code',
-          code: translationJsonCode,
-        },
-      ],
+          code: translationJsonCode
+        }
+      ]
     },
     {
       id: 'use-without-ngx-translate',
@@ -101,13 +101,13 @@ export const I18N_PAGE_CONFIG: GuideDocPageConfig = {
         {
           type: 'note',
           content:
-            'The library core is translation-runtime agnostic. You can plug your own service via `UI_TRANSLATE_FN`.',
+            'The library core is translation-runtime agnostic. You can plug your own service via `UI_TRANSLATE_FN`.'
         },
         {
           type: 'code',
-          code: customAdapterCode,
-        },
-      ],
+          code: customAdapterCode
+        }
+      ]
     },
     {
       id: 'production-checklist',
@@ -120,10 +120,10 @@ export const I18N_PAGE_CONFIG: GuideDocPageConfig = {
             "Keep your keys under the configured prefix (default: 'ui').",
             'Provide explicit label/ariaLabel for business-specific wording.',
             'Use component inputs like uploadText/uploadHint when you want local override.',
-            'Verify language switch in runtime (EN <-> PL) on at least one form page.',
-          ],
-        },
-      ],
+            'Verify language switch in runtime (EN <-> PL) on at least one form page.'
+          ]
+        }
+      ]
     },
     {
       id: 'related-pages',
@@ -136,17 +136,17 @@ export const I18N_PAGE_CONFIG: GuideDocPageConfig = {
               id: 'getting-started',
               title: 'Getting Started',
               description: 'Project bootstrap and first component setup.',
-              routerLink: '/docs/getting-started',
+              routerLink: '/docs/getting-started'
             },
             {
               id: 'installation',
               title: 'Installation',
               description: 'Environment requirements and package setup.',
-              routerLink: '/docs/installation',
-            },
-          ],
-        },
-      ],
-    },
-  ],
+              routerLink: '/docs/installation'
+            }
+          ]
+        }
+      ]
+    }
+  ]
 };

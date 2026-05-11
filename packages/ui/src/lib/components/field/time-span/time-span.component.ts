@@ -11,7 +11,7 @@ import {
   TemplateRef,
   OnDestroy,
   inject,
-  NgZone,
+  NgZone
 } from '@angular/core';
 import { A11yModule } from '@angular/cdk/a11y';
 import { Overlay, OverlayModule } from '@angular/cdk/overlay';
@@ -23,7 +23,7 @@ import {
   openConnectedOverlay,
   OverlayHandle,
   DEFAULT_CONNECTED_POSITIONS,
-  DEFAULT_VIEWPORT_MARGIN,
+  DEFAULT_VIEWPORT_MARGIN
 } from '../../overlay/open-connected-overlay';
 
 export interface TimeSpanValue {
@@ -61,7 +61,7 @@ const TIME_SPAN_UNITS: Record<keyof TimeSpanValue, Omit<TimeSpanUnit, 'enabled'>
   days: { key: 'days', label: 'Days', shortLabel: 'D' },
   hours: { key: 'hours', label: 'Hours', shortLabel: 'H' },
   minutes: { key: 'minutes', label: 'Minutes', shortLabel: 'M' },
-  seconds: { key: 'seconds', label: 'Seconds', shortLabel: 'S' },
+  seconds: { key: 'seconds', label: 'Seconds', shortLabel: 'S' }
 };
 
 const ISO8601_DURATION_PREFIX = 'P';
@@ -81,15 +81,15 @@ const MONTHS_PER_YEAR = 12;
   imports: [A11yModule, OverlayModule, FieldComponent, ActionButtonComponent],
   templateUrl: './time-span.component.html',
   host: {
-    '[style.display]': '"block"',
+    '[style.display]': '"block"'
   },
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => TimeSpanComponent),
-      multi: true,
-    },
-  ],
+      multi: true
+    }
+  ]
 })
 export class TimeSpanComponent extends FieldComponent implements OnDestroy {
   private overlay = inject(Overlay);
@@ -125,7 +125,7 @@ export class TimeSpanComponent extends FieldComponent implements OnDestroy {
   private readonly sizeToItemHeight: Record<'small' | 'medium' | 'large', number> = {
     small: 32,
     medium: 40,
-    large: 48,
+    large: 48
   };
   private readonly dragActivationPx = 4;
 
@@ -138,7 +138,7 @@ export class TimeSpanComponent extends FieldComponent implements OnDestroy {
       { key: 'days', show: this.showDays() },
       { key: 'hours', show: this.showHours() },
       { key: 'minutes', show: this.showMinutes() },
-      { key: 'seconds', show: this.showSeconds() },
+      { key: 'seconds', show: this.showSeconds() }
     ];
 
     for (const { key, show } of unitConfigs) {
@@ -193,9 +193,9 @@ export class TimeSpanComponent extends FieldComponent implements OnDestroy {
       viewContainerRef: this.viewContainerRef,
       config: {
         positions: DEFAULT_CONNECTED_POSITIONS,
-        viewportMargin: DEFAULT_VIEWPORT_MARGIN,
+        viewportMargin: DEFAULT_VIEWPORT_MARGIN
       },
-      onClose: focusTrigger => this.closePanel(focusTrigger),
+      onClose: (focusTrigger) => this.closePanel(focusTrigger)
     });
 
     this.isOpen.set(true);
@@ -232,7 +232,7 @@ export class TimeSpanComponent extends FieldComponent implements OnDestroy {
       const candidate = current + offset;
       options.push({
         value: candidate >= 0 ? candidate : null,
-        isSelected: offset === 0,
+        isSelected: offset === 0
       });
     }
 
@@ -340,7 +340,7 @@ export class TimeSpanComponent extends FieldComponent implements OnDestroy {
       startY: event.clientY,
       lastY: event.clientY,
       pixelRemainder: 0,
-      dragging: false,
+      dragging: false
     };
   }
 
@@ -528,7 +528,7 @@ export class TimeSpanComponent extends FieldComponent implements OnDestroy {
   }
 
   private setUnitDragging(unit: keyof TimeSpanValue, dragging: boolean): void {
-    this.draggingState.update(current => {
+    this.draggingState.update((current) => {
       const next = { ...current };
       if (dragging) {
         next[unit] = true;
@@ -657,7 +657,7 @@ export class TimeSpanComponent extends FieldComponent implements OnDestroy {
 
     const result = {
       ...this.parseDatePart(datePart),
-      ...this.parseTimePart(timePart),
+      ...this.parseTimePart(timePart)
     };
 
     // Validate that at least one unit was parsed
@@ -792,11 +792,11 @@ export class TimeSpanComponent extends FieldComponent implements OnDestroy {
       days: value.days || undefined,
       hours: value.hours || undefined,
       minutes: value.minutes || undefined,
-      seconds: value.seconds || undefined,
+      seconds: value.seconds || undefined
     };
 
     // Remove undefined values
-    Object.keys(timeSpanValue).forEach(key => {
+    Object.keys(timeSpanValue).forEach((key) => {
       if (timeSpanValue[key as keyof TimeSpanValue] === undefined) {
         delete timeSpanValue[key as keyof TimeSpanValue];
       }

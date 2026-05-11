@@ -39,38 +39,38 @@ import { SwitchComponent } from 'ui';
         <div style="display:flex;flex-direction:column;gap:0.45rem;font-size:0.875rem;line-height:1.4">
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Summary email</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
-              preferencesForm.controls.summaryEmail.getRawValue() ? 'On' : 'Off'
-            }}</strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">
+              {{ preferencesForm.controls.summaryEmail.getRawValue() ? 'On' : 'Off' }}
+            </strong>
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Mentions</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
-              preferencesForm.controls.mentions.getRawValue() ? 'On' : 'Off'
-            }}</strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">
+              {{ preferencesForm.controls.mentions.getRawValue() ? 'On' : 'Off' }}
+            </strong>
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Calendar reminders</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
-              preferencesForm.controls.calendarReminders.getRawValue() ? 'On' : 'Off'
-            }}</strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">
+              {{ preferencesForm.controls.calendarReminders.getRawValue() ? 'On' : 'Off' }}
+            </strong>
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Marketing</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
-              preferencesForm.controls.marketing.getRawValue() ? 'On' : 'Off'
-            }}</strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">
+              {{ preferencesForm.controls.marketing.getRawValue() ? 'On' : 'Off' }}
+            </strong>
           </div>
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class SwitchPreferencesFormExampleComponent {
   protected readonly preferencesForm = new FormGroup({
     summaryEmail: new FormControl(true, { nonNullable: true }),
     mentions: new FormControl(true, { nonNullable: true }),
     calendarReminders: new FormControl(false, { nonNullable: true }),
-    marketing: new FormControl(false, { nonNullable: true }),
+    marketing: new FormControl(false, { nonNullable: true })
   });
 }

@@ -26,14 +26,14 @@ import { ButtonComponent, TextareaComponent } from 'ui';
         <ui-button type="button" appearance="outline" (click)="fillExample()">Use example</ui-button>
       </div>
     </form>
-  `,
+  `
 })
 export class TextareaValidationDemoComponent {
   protected readonly feedbackForm = new FormGroup({
     reason: new FormControl('', {
       nonNullable: true,
-      validators: [Validators.required, Validators.minLength(20)],
-    }),
+      validators: [Validators.required, Validators.minLength(20)]
+    })
   });
 
   protected get reasonError(): string {
@@ -56,7 +56,7 @@ export class TextareaValidationDemoComponent {
 
   protected fillExample(): void {
     this.feedbackForm.controls.reason.setValue(
-      'Escalating because the incident affects multiple enterprise customers and blocks checkout.',
+      'Escalating because the incident affects multiple enterprise customers and blocks checkout.'
     );
     this.feedbackForm.controls.reason.markAsTouched();
   }

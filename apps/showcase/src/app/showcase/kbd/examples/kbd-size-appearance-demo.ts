@@ -29,6 +29,6 @@ import { KbdComponent } from 'ui';
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class KbdSizeAppearanceDemoComponent {}

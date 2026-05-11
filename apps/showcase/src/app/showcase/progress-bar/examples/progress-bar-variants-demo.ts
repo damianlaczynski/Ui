@@ -36,6 +36,6 @@ import { ProgressBarComponent } from 'ui';
         <ui-progress-bar variant="danger" [value]="47" ariaLabel="Import failed" />
       </div>
     </div>
-  `,
+  `
 })
 export class ProgressBarVariantsExampleComponent {}

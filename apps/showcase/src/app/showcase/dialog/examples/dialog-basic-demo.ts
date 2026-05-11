@@ -16,7 +16,7 @@ import { ButtonComponent, DialogComponent, QuickAction } from 'ui';
         [secondaryAction]="secondaryAction()"
       />
     </div>
-  `,
+  `
 })
 export class DialogBasicExampleComponent {
   protected readonly visible = model(false);
@@ -24,12 +24,12 @@ export class DialogBasicExampleComponent {
   protected readonly primaryAction = signal<QuickAction>({
     label: 'Delete project',
     variant: 'danger',
-    action: () => this.visible.set(false),
+    action: () => this.visible.set(false)
   });
 
   protected readonly secondaryAction = signal<QuickAction>({
     label: 'Cancel',
     variant: 'secondary',
-    action: () => this.visible.set(false),
+    action: () => this.visible.set(false)
   });
 }

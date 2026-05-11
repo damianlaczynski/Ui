@@ -40,7 +40,7 @@ import { MenuItem, SpeedDialComponent } from 'ui';
                 [triggerButtonProps]="{
                   variant: 'primary',
                   appearance: 'filled',
-                  shape: 'circular',
+                  shape: 'circular'
                 }"
                 ariaLabel="Semi circle up actions"
               />
@@ -59,7 +59,7 @@ import { MenuItem, SpeedDialComponent } from 'ui';
                 [triggerButtonProps]="{
                   variant: 'primary',
                   appearance: 'filled',
-                  shape: 'circular',
+                  shape: 'circular'
                 }"
                 ariaLabel="Semi circle left actions"
               />
@@ -77,9 +77,9 @@ import { MenuItem, SpeedDialComponent } from 'ui';
             <div
               style="position:absolute;top:32px;left:32px;display:flex;flex-direction:column;align-items:flex-start;gap:8px;"
             >
-              <span style="font-size:11px;font-weight:600;color:var(--color-neutral-foreground3-rest);"
-                >Down right</span
-              >
+              <span style="font-size:11px;font-weight:600;color:var(--color-neutral-foreground3-rest);">
+                Down right
+              </span>
               <ui-speed-dial
                 dialType="quarter-circle"
                 direction="down-right"
@@ -90,7 +90,7 @@ import { MenuItem, SpeedDialComponent } from 'ui';
                 [triggerButtonProps]="{
                   variant: 'primary',
                   appearance: 'filled',
-                  shape: 'circular',
+                  shape: 'circular'
                 }"
                 ariaLabel="Quarter circle down right actions"
               />
@@ -109,7 +109,7 @@ import { MenuItem, SpeedDialComponent } from 'ui';
                 [triggerButtonProps]="{
                   variant: 'primary',
                   appearance: 'filled',
-                  shape: 'circular',
+                  shape: 'circular'
                 }"
                 ariaLabel="Quarter circle up left actions"
               />
@@ -118,13 +118,13 @@ import { MenuItem, SpeedDialComponent } from 'ui';
         </div>
       </div>
     </section>
-  `,
+  `
 })
 export class SpeedDialArcDemoComponent {
   protected readonly items = signal<MenuItem[]>([
     { id: 'add', label: '', icon: 'add' },
     { id: 'duplicate', label: '', icon: 'copy' },
     { id: 'move', label: '', icon: 'arrow_move' },
-    { id: 'remove', label: '', icon: 'delete' },
+    { id: 'remove', label: '', icon: 'delete' }
   ]);
 }

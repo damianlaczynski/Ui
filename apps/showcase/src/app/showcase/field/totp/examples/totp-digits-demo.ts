@@ -34,6 +34,6 @@ import { TotpComponent } from 'ui';
         />
       </div>
     </div>
-  `,
+  `
 })
 export class TotpDigitsDemoComponent {}

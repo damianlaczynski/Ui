@@ -24,12 +24,12 @@ import { ButtonComponent, DateRange, DateRangeComponent } from 'ui';
         </span>
       </div>
     </div>
-  `,
+  `
 })
 export class DateRangeBasicDemoComponent {
   protected value: DateRange | null = {
     startDate: '2026-05-12',
-    endDate: '2026-05-18',
+    endDate: '2026-05-18'
   };
 
   protected clear(): void {

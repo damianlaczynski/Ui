@@ -7,7 +7,7 @@ import { ButtonComponent, DialogComponent, QuickAction } from 'ui';
   imports: [ButtonComponent, DialogComponent],
   template: `
     <div style="display:flex;flex-wrap:wrap;gap:0.75rem">
-      <ui-button variant="secondary" appearance="outline" (click)="visible.set(true)"> Review summary </ui-button>
+      <ui-button variant="secondary" appearance="outline" (click)="visible.set(true)">Review summary</ui-button>
       <ui-dialog
         title="Migration summary"
         [(visible)]="visible"
@@ -43,7 +43,7 @@ import { ButtonComponent, DialogComponent, QuickAction } from 'ui';
         </div>
       </ui-dialog>
     </div>
-  `,
+  `
 })
 export class DialogCustomContentExampleComponent {
   protected readonly visible = model(false);
@@ -51,12 +51,12 @@ export class DialogCustomContentExampleComponent {
   protected readonly primaryAction = signal<QuickAction>({
     label: 'Continue',
     variant: 'primary',
-    action: () => this.visible.set(false),
+    action: () => this.visible.set(false)
   });
 
   protected readonly secondaryAction = signal<QuickAction>({
     label: 'Back',
     variant: 'secondary',
-    action: () => this.visible.set(false),
+    action: () => this.visible.set(false)
   });
 }

@@ -10,6 +10,6 @@ import { ButtonComponent } from 'ui';
       <ui-button variant="primary">Submit</ui-button>
       <ui-button variant="secondary" appearance="outline">Cancel</ui-button>
     </div>
-  `,
+  `
 })
 export class ButtonBasicExampleComponent {}

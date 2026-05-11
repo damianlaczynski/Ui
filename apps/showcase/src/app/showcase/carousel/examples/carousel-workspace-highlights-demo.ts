@@ -16,7 +16,7 @@ import { BadgeComponent, CarouselComponent, CarouselItem } from 'ui';
 
       <ui-carousel [items]="workspaceSlides" [autoPlay]="true" [autoPlayInterval]="4500" />
     </div>
-  `,
+  `
 })
 export class CarouselWorkspaceHighlightsDemoComponent {
   protected readonly workspaceSlides: CarouselItem[] = [
@@ -25,21 +25,21 @@ export class CarouselWorkspaceHighlightsDemoComponent {
       image: 'https://picsum.photos/seed/ui-carousel-workspace-1/1200/640',
       title: 'Workspace highlights',
       description:
-        'A carousel can anchor a landing page or team hub when each slide represents one clear destination or story.',
+        'A carousel can anchor a landing page or team hub when each slide represents one clear destination or story.'
     },
     {
       id: 'workspace-2',
       image: 'https://picsum.photos/seed/ui-carousel-workspace-2/1200/640',
       title: 'Keep the count of slides low',
       description:
-        'Three to five slides is usually enough. Beyond that, users stop comparing and start ignoring the surface.',
+        'Three to five slides is usually enough. Beyond that, users stop comparing and start ignoring the surface.'
     },
     {
       id: 'workspace-3',
       image: 'https://picsum.photos/seed/ui-carousel-workspace-3/1200/640',
       title: 'Pair motion with readable pacing',
       description:
-        'If auto-play is enabled, keep timing slow and preserve manual navigation so the surface still feels user-controlled.',
-    },
+        'If auto-play is enabled, keep timing slow and preserve manual navigation so the surface still feels user-controlled.'
+    }
   ];
 }

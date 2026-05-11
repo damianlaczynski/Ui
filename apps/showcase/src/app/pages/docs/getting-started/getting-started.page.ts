@@ -15,10 +15,10 @@ export const GETTING_STARTED_PAGE_CONFIG: GuideDocPageConfig = {
           items: [
             'Teams building an internal design system on top of Angular components',
             'Projects that need consistent Fluent 2 styling and accessibility defaults',
-            'Developers who want fast setup without giving up TypeScript safety',
-          ],
-        },
-      ],
+            'Developers who want fast setup without giving up TypeScript safety'
+          ]
+        }
+      ]
     },
     {
       id: '30-minute-setup-path',
@@ -32,7 +32,7 @@ export const GETTING_STARTED_PAGE_CONFIG: GuideDocPageConfig = {
               eyebrow: 'Step 1',
               title: 'Install the package',
               description: 'Add ui to your workspace with your package manager of choice.',
-              code: 'npm install ui',
+              code: 'npm install ui'
             },
             {
               id: 'styles',
@@ -42,7 +42,7 @@ export const GETTING_STARTED_PAGE_CONFIG: GuideDocPageConfig = {
               code: `"styles": [
   "node_modules/@laczynski/ui/src/lib/scss/main.scss",
   "src/styles.scss"
-]`,
+]`
             },
             {
               id: 'import',
@@ -56,17 +56,17 @@ export const GETTING_STARTED_PAGE_CONFIG: GuideDocPageConfig = {
   imports: [ButtonComponent],
   template: '<ui-button variant="primary">Save changes</ui-button>'
 })
-export class ExampleComponent {}`,
+export class ExampleComponent {}`
             },
             {
               id: 'theme',
               eyebrow: 'Step 4',
               title: 'Set up theming',
-              description: 'Start with default light/dark support, then override CSS variables in your app styles.',
-            },
-          ],
-        },
-      ],
+              description: 'Start with default light/dark support, then override CSS variables in your app styles.'
+            }
+          ]
+        }
+      ]
     },
     {
       id: 'first-production-feature-checklist',
@@ -74,7 +74,7 @@ export class ExampleComponent {}`,
       blocks: [
         {
           type: 'note',
-          content: 'Use this as a minimum quality gate before merging your first screen to main.',
+          content: 'Use this as a minimum quality gate before merging your first screen to main.'
         },
         {
           type: 'list',
@@ -82,10 +82,10 @@ export class ExampleComponent {}`,
             'Define one source of truth for colors and spacing tokens.',
             'Add form validation states (default, error, disabled, loading).',
             'Test keyboard navigation and focus states before release.',
-            'Document your internal usage pattern in one page for the team.',
-          ],
-        },
-      ],
+            'Document your internal usage pattern in one page for the team.'
+          ]
+        }
+      ]
     },
     {
       id: 'related-pages',
@@ -98,23 +98,23 @@ export class ExampleComponent {}`,
               id: 'llms-docs',
               title: 'LLMs & Markdown endpoints',
               description: '`/llms.txt`, `/llms-full.txt`, and Markdown variants of docs pages.',
-              routerLink: '/docs/llms',
+              routerLink: '/docs/llms'
             },
             {
               id: 'installation',
               title: 'Installation',
               description: 'Environment requirements and setup checklist for your project.',
-              routerLink: '/docs/installation',
+              routerLink: '/docs/installation'
             },
             {
               id: 'roadmap',
               title: 'Roadmap',
               description: 'Current priorities and upcoming milestones for @laczynski/ui.',
-              routerLink: '/docs/roadmap',
-            },
-          ],
-        },
-      ],
-    },
-  ],
+              routerLink: '/docs/roadmap'
+            }
+          ]
+        }
+      ]
+    }
+  ]
 };

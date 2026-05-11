@@ -10,7 +10,7 @@ import {
   input,
   OnInit,
   OnChanges,
-  SimpleChanges,
+  SimpleChanges
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
@@ -27,16 +27,16 @@ import { UiI18nService } from '../../../i18n';
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => TotpComponent),
-      multi: true,
-    },
+      multi: true
+    }
   ],
   styles: [
     `
       :host {
         width: 100%;
       }
-    `,
-  ],
+    `
+  ]
 })
 export class TotpComponent extends FieldComponent implements OnInit, OnChanges, ControlValueAccessor {
   private readonly host = inject(ElementRef<HTMLElement>);
@@ -66,7 +66,7 @@ export class TotpComponent extends FieldComponent implements OnInit, OnChanges, 
       'input-wrapper',
       'totp-input-wrapper',
       `input-wrapper--${this.size()}`,
-      `input-wrapper--${this.inputVariant()}`,
+      `input-wrapper--${this.inputVariant()}`
     ];
 
     if (this.disabled()) {
@@ -221,7 +221,7 @@ export class TotpComponent extends FieldComponent implements OnInit, OnChanges, 
   getDigitAriaLabel(index: number): string {
     return this.i18n.t('field.totp.digitAriaLabel', `Digit ${index + 1} of ${this.digitsCount()}`, {
       index: index + 1,
-      count: this.digitsCount(),
+      count: this.digitsCount()
     });
   }
 

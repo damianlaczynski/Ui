@@ -34,7 +34,7 @@ import { EmailComponent } from 'ui';
         <ui-email label="Large" size="large" placeholder="large@contoso.com" />
       </div>
     </div>
-  `,
+  `
 })
 export class EmailLayoutDemoComponent {
   protected beforeValue = '';

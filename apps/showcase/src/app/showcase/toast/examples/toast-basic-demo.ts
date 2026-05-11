@@ -20,7 +20,7 @@ import { ButtonComponent, ToastComponent } from 'ui';
         [(visible)]="visible"
       />
     </div>
-  `,
+  `
 })
 export class ToastBasicExampleComponent {
   visible = true;

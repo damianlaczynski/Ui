@@ -35,18 +35,18 @@ import { ButtonComponent, PasswordComponent } from 'ui';
         <ui-button type="button" appearance="outline" (click)="fillExample()">Use example</ui-button>
       </div>
     </form>
-  `,
+  `
 })
 export class PasswordConfirmationDemoComponent {
   protected readonly passwordForm = new FormGroup({
     password: new FormControl('', {
       nonNullable: true,
-      validators: [Validators.required, Validators.minLength(8)],
+      validators: [Validators.required, Validators.minLength(8)]
     }),
     confirmPassword: new FormControl('', {
       nonNullable: true,
-      validators: [Validators.required],
-    }),
+      validators: [Validators.required]
+    })
   });
 
   protected get passwordError(): string {
@@ -94,7 +94,7 @@ export class PasswordConfirmationDemoComponent {
   protected fillExample(): void {
     this.passwordForm.setValue({
       password: 'TeamPortal2026!',
-      confirmPassword: 'TeamPortal2026!',
+      confirmPassword: 'TeamPortal2026!'
     });
     this.passwordForm.markAllAsTouched();
   }

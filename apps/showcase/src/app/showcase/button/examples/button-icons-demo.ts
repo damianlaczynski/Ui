@@ -13,6 +13,6 @@ import { ButtonComponent } from 'ui';
       <ui-button variant="success" icon="checkmark">Done</ui-button>
       <ui-button variant="danger" appearance="outline" icon="delete">Delete</ui-button>
     </div>
-  `,
+  `
 })
 export class ButtonIconsExampleComponent {}

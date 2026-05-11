@@ -24,7 +24,7 @@ import { ButtonComponent, MonthComponent } from 'ui';
         </span>
       </div>
     </div>
-  `,
+  `
 })
 export class MonthBasicDemoComponent {
   protected value = '2026-05';

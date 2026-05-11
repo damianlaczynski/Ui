@@ -23,6 +23,6 @@ import { BadgeComponent } from 'ui';
         <ui-badge text="Escalated" icon="warning" iconPosition="after" variant="danger" appearance="tint" />
       </div>
     </div>
-  `,
+  `
 })
 export class BadgeIconsDemoComponent {}

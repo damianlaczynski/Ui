@@ -11,9 +11,9 @@ import { ActionButtonComponent } from '../action-button.component';
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => NumberComponent),
-      multi: true,
-    },
-  ],
+      multi: true
+    }
+  ]
 })
 export class NumberComponent extends FieldComponent {
   @ViewChild('inputElement') inputElement?: ElementRef<HTMLInputElement>;

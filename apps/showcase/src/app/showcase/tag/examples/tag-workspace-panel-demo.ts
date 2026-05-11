@@ -32,6 +32,6 @@ import { TagComponent } from 'ui';
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class TagWorkspacePanelDemoComponent {}

@@ -24,7 +24,7 @@ import { WeekComponent } from 'ui';
         <span>Selected: {{ value || 'None' }}</span>
       </div>
     </div>
-  `,
+  `
 })
 export class WeekConstraintsDemoComponent {
   protected value = '2026-W20';

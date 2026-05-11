@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig,
+  ShowcaseDocPageConfig
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { ScrollContainerBasicDemoComponent } from './examples/scroll-container-basic-demo';
 import { ScrollContainerCustomTemplateDemoComponent } from './examples/scroll-container-custom-template-demo';
@@ -19,7 +19,7 @@ const componentMap = {
   customTemplate: ScrollContainerCustomTemplateDemoComponent,
   programmatic: ScrollContainerProgrammaticDemoComponent,
   events: ScrollContainerEventsDemoComponent,
-  inboxPanel: ScrollContainerInboxPanelDemoComponent,
+  inboxPanel: ScrollContainerInboxPanelDemoComponent
 } as const;
 
 export const SCROLL_CONTAINER_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -27,9 +27,9 @@ export const SCROLL_CONTAINER_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(scrollContainerMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${scrollContainerMeta.slug}/${file}`,
-    ]),
-  ) as Record<string, string>),
+      `/docs/components/snippets/${scrollContainerMeta.slug}/${file}`
+    ])
+  ) as Record<string, string>)
 };
 
 export const SCROLL_CONTAINER_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -38,12 +38,12 @@ export const SCROLL_CONTAINER_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: scrollContainerMeta.importCode,
   containerClass: scrollContainerMeta.containerClass,
   accessibility: scrollContainerMeta.accessibility,
-  featureSections: scrollContainerMeta.featureSections.map(section => ({
+  featureSections: scrollContainerMeta.featureSections.map((section) => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap],
+    component: componentMap[section.componentKey as keyof typeof componentMap]
   })),
-  apiSections: scrollContainerMeta.apiSections,
+  apiSections: scrollContainerMeta.apiSections
 };

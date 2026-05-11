@@ -33,12 +33,12 @@ describe('nav-scroll utils', () => {
       ({
         top: 20,
         bottom: 60,
-        height: 40,
+        height: 40
       }) as DOMRect;
     container.getBoundingClientRect = () =>
       ({
         top: 0,
-        bottom: 100,
+        bottom: 100
       }) as DOMRect;
 
     scrollItemIntoContainer(item, container);
@@ -64,24 +64,30 @@ describe('nav-scroll utils', () => {
     document.body.appendChild(host);
 
     scrollContainer.style.overflowY = 'auto';
-    Object.defineProperty(scrollContainer, 'scrollHeight', { value: 900, configurable: true });
-    Object.defineProperty(scrollContainer, 'clientHeight', { value: 200, configurable: true });
+    Object.defineProperty(scrollContainer, 'scrollHeight', {
+      value: 900,
+      configurable: true
+    });
+    Object.defineProperty(scrollContainer, 'clientHeight', {
+      value: 200,
+      configurable: true
+    });
     Object.defineProperty(scrollContainer, 'scrollTop', {
       value: 0,
       writable: true,
-      configurable: true,
+      configurable: true
     });
 
     selected.getBoundingClientRect = () =>
       ({
         top: 500,
         bottom: 540,
-        height: 40,
+        height: 40
       }) as DOMRect;
     scrollContainer.getBoundingClientRect = () =>
       ({
         top: 0,
-        bottom: 200,
+        bottom: 200
       }) as DOMRect;
 
     let didScroll = false;

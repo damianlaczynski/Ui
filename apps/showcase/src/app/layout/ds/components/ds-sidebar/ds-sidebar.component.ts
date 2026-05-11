@@ -10,8 +10,8 @@ import { FormsModule } from '@angular/forms';
   imports: [NavComponent, SearchComponent, FormsModule],
   templateUrl: './ds-sidebar.component.html',
   host: {
-    class: 'ds-sidebar-host',
-  },
+    class: 'ds-sidebar-host'
+  }
 })
 export class DsSidebarComponent {
   private static readonly GETTING_STARTED_IDS = ['getting-started', 'installation', 'i18n', 'roadmap', 'llms'] as const;
@@ -59,8 +59,8 @@ export class DsSidebarComponent {
         { id: 'time-picker', label: 'Time Picker', icon: 'clock' },
         { id: 'date-range', label: 'Date Range', icon: 'calendar_month' },
         { id: 'time-span', label: 'Time Span', icon: 'timer' },
-        { id: 'calendar', label: 'Calendar', icon: 'calendar_month' },
-      ],
+        { id: 'calendar', label: 'Calendar', icon: 'calendar_month' }
+      ]
     },
     { id: 'dialog', label: 'Dialog', icon: 'window' },
     { id: 'divider', label: 'Divider', icon: 'divider_tall' },
@@ -80,7 +80,11 @@ export class DsSidebarComponent {
     { id: 'progress-bar', label: 'Progress Bar', icon: 'spacebar' },
     { id: 'radio-button-group', label: 'Radio Button Group', icon: 'checkmark_circle' },
     { id: 'rating', label: 'Rating', icon: 'star' },
-    { id: 'scroll-container', label: 'Scroll Container', icon: 'dual_screen_vertical_scroll' },
+    {
+      id: 'scroll-container',
+      label: 'Scroll Container',
+      icon: 'dual_screen_vertical_scroll'
+    },
     { id: 'scroll-panel', label: 'Scroll Panel', icon: 'dual_screen_vertical_scroll' },
     { id: 'search', label: 'Search', icon: 'search' },
     { id: 'skeleton', label: 'Skeleton', icon: 'checkbox_indeterminate' },
@@ -98,8 +102,8 @@ export class DsSidebarComponent {
         { id: 'empty-state', label: 'Empty State', icon: 'document_dismiss' },
         { id: 'error-state', label: 'Error State', icon: 'error_circle' },
         { id: 'loading-state', label: 'Loading State', icon: 'arrow_sync' },
-        { id: 'state-container', label: 'State Container', icon: 'database' },
-      ],
+        { id: 'state-container', label: 'State Container', icon: 'database' }
+      ]
     },
     { id: 'stepper', label: 'Stepper', icon: 'timeline' },
     { id: 'switch', label: 'Switch', icon: 'tap_single' },
@@ -115,7 +119,7 @@ export class DsSidebarComponent {
     { id: 'tree', label: 'Tree', icon: 'text_bullet_list_tree' },
     { id: 'tree-node', label: 'Tree Node', icon: 'rectangle_landscape' },
     { id: 'tooltip', label: 'Tooltip', icon: 'info' },
-    { id: 'url', label: 'URL', icon: 'link' },
+    { id: 'url', label: 'URL', icon: 'link' }
   ];
 
   private readonly groupedNavSource = this.buildGroupedNav();
@@ -162,42 +166,46 @@ export class DsSidebarComponent {
   });
 
   navItems = computed<NavNode[]>(() => {
-    return this.filteredNavItems().map(item => this.buildNavNode(item));
+    return this.filteredNavItems().map((item) => this.buildNavNode(item));
   });
 
   constructor() {
     this.syncSelectedItemFromUrl(this.router.url);
 
-    this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(event => {
+    this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe((event) => {
       this.syncSelectedItemFromUrl(event.urlAfterRedirects);
     });
   }
 
   private buildGroupedNav(): NavNode[] {
-    const byId = new Map(this.componentsCatalog.map(entry => [String(entry.id), entry]));
+    const byId = new Map(this.componentsCatalog.map((entry) => [String(entry.id), entry]));
 
-    const gettingStartedItems = DsSidebarComponent.GETTING_STARTED_IDS.map(id => byId.get(id))
+    const gettingStartedItems = DsSidebarComponent.GETTING_STARTED_IDS.map((id) => byId.get(id))
       .filter((entry): entry is NavNode => !!entry)
-      .map(entry => this.cloneNode(entry));
+      .map((entry) => this.cloneNode(entry));
 
-    const docIds = new Set<string>(DsSidebarComponent.GETTING_STARTED_IDS.map(id => String(id)));
+    const docIds = new Set<string>(DsSidebarComponent.GETTING_STARTED_IDS.map((id) => String(id)));
     const componentItems = this.componentsCatalog
-      .filter(entry => !docIds.has(String(entry.id)))
-      .map(entry => this.cloneNode(entry))
+      .filter((entry) => !docIds.has(String(entry.id)))
+      .map((entry) => this.cloneNode(entry))
       .sort((a, b) => a.label.localeCompare(b.label));
 
     return [
-      { id: 'section-getting-started', isSectionHeader: true, label: 'Getting Started' },
+      {
+        id: 'section-getting-started',
+        isSectionHeader: true,
+        label: 'Getting Started'
+      },
       ...gettingStartedItems,
       { id: 'section-components', isSectionHeader: true, label: 'Components' },
-      ...componentItems,
+      ...componentItems
     ];
   }
 
   private cloneNode(node: NavNode): NavNode {
     return {
       ...node,
-      children: node.children?.map(child => this.cloneNode(child)),
+      children: node.children?.map((child) => this.cloneNode(child))
     };
   }
 
@@ -209,13 +217,13 @@ export class DsSidebarComponent {
     }
 
     const matchedChildren = item.children
-      .map(child => this.filterNodeByQuery(child, query))
+      .map((child) => this.filterNodeByQuery(child, query))
       .filter((child): child is NavNode => !!child);
 
     if (labelMatch || matchedChildren.length > 0) {
       return {
         ...this.cloneNode(item),
-        children: matchedChildren.length > 0 ? matchedChildren : item.children,
+        children: matchedChildren.length > 0 ? matchedChildren : item.children
       };
     }
 
@@ -277,7 +285,7 @@ export class DsSidebarComponent {
       ...item,
       selected: this.selectedItemId() === itemId,
       onClick: hasChildren ? undefined : () => this.navigateToItem(itemId),
-      children: item.children?.map(child => this.buildNavNode(child)),
+      children: item.children?.map((child) => this.buildNavNode(child))
     };
   }
 

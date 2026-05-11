@@ -27,6 +27,6 @@ import { ButtonComponent, CardComponent, EmptyStateComponent, TextComponent } fr
         </ui-card>
       </div>
     </ui-card>
-  `,
+  `
 })
 export class EmptyStateListLayoutDemoComponent {}

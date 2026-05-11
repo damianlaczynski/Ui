@@ -12,7 +12,8 @@ import { ButtonComponent, MenuComponent, type MenuItem } from 'ui';
       >
         <ui-button variant="secondary" appearance="outline" (click)="reset()">Reset</ui-button>
         <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          Last action: <strong>{{ lastAction() || 'none' }}</strong>
+          Last action:
+          <strong>{{ lastAction() || 'none' }}</strong>
         </span>
       </div>
 
@@ -41,7 +42,7 @@ import { ButtonComponent, MenuComponent, type MenuItem } from 'ui';
         />
       </div>
     </div>
-  `,
+  `
 })
 export class MenuSubmenuDemoComponent {
   protected readonly lastAction = signal('');
@@ -54,8 +55,8 @@ export class MenuSubmenuDemoComponent {
       submenuItems: [
         { id: 'h1', label: 'Heading 1', icon: 'text_font' },
         { id: 'h2', label: 'Heading 2', icon: 'text_font' },
-        { id: 'h3', label: 'Heading 3', icon: 'text_font' },
-      ],
+        { id: 'h3', label: 'Heading 3', icon: 'text_font' }
+      ]
     },
     {
       id: 'media',
@@ -63,10 +64,10 @@ export class MenuSubmenuDemoComponent {
       icon: 'image',
       submenuItems: [
         { id: 'image', label: 'Image', icon: 'image' },
-        { id: 'carousel', label: 'Carousel', icon: 'arrow_circle_right' },
-      ],
+        { id: 'carousel', label: 'Carousel', icon: 'arrow_circle_right' }
+      ]
     },
-    { id: 'divider', label: 'Divider', icon: 'divider_tall' },
+    { id: 'divider', label: 'Divider', icon: 'divider_tall' }
   ];
 
   protected readonly exportItems: MenuItem[] = [
@@ -76,11 +77,11 @@ export class MenuSubmenuDemoComponent {
       icon: 'share',
       submenuItems: [
         { id: 'copy-link', label: 'Copy link', icon: 'link' },
-        { id: 'invite-reviewers', label: 'Invite reviewers', icon: 'person_add' },
-      ],
+        { id: 'invite-reviewers', label: 'Invite reviewers', icon: 'person_add' }
+      ]
     },
     { id: 'pdf', label: 'PDF', icon: 'document' },
-    { id: 'markdown', label: 'Markdown', icon: 'document' },
+    { id: 'markdown', label: 'Markdown', icon: 'document' }
   ];
 
   protected onItemClick(item: MenuItem): void {

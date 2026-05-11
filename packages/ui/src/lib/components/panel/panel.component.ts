@@ -26,7 +26,7 @@ import { Node } from '../node/node.component';
       </div>
     </div>
   `,
-  styleUrls: ['./panel.component.scss'],
+  styleUrls: ['./panel.component.scss']
 })
 export class PanelComponent {
   tabs = input<Node[]>([]);

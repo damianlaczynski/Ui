@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig,
+  ShowcaseDocPageConfig
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { UrlBasicDemoComponent } from './examples/url-basic-demo';
 import { UrlLayoutDemoComponent } from './examples/url-layout-demo';
@@ -19,14 +19,14 @@ const componentMap = {
   states: UrlStatesDemoComponent,
   validation: UrlValidationDemoComponent,
   profileForm: UrlProfileFormDemoComponent,
-  linkPanel: UrlLinkPanelDemoComponent,
+  linkPanel: UrlLinkPanelDemoComponent
 } as const;
 
 export const URL_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   markdown: `/docs/components/${urlMeta.slug}.md`,
   ...(Object.fromEntries(
-    Object.entries(urlMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${urlMeta.slug}/${file}`]),
-  ) as Record<string, string>),
+    Object.entries(urlMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${urlMeta.slug}/${file}`])
+  ) as Record<string, string>)
 };
 
 export const URL_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -35,12 +35,12 @@ export const URL_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: urlMeta.importCode,
   containerClass: urlMeta.containerClass,
   accessibility: urlMeta.accessibility,
-  featureSections: urlMeta.featureSections.map(section => ({
+  featureSections: urlMeta.featureSections.map((section) => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap],
+    component: componentMap[section.componentKey as keyof typeof componentMap]
   })),
-  apiSections: urlMeta.apiSections,
+  apiSections: urlMeta.apiSections
 };

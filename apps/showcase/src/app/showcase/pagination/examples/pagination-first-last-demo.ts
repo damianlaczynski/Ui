@@ -33,7 +33,7 @@ import { PaginationComponent, PaginationConfig } from 'ui';
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class PaginationFirstLastExampleComponent {
   protected readonly currentPage = signal(27);
@@ -47,11 +47,11 @@ export class PaginationFirstLastExampleComponent {
     maxVisiblePages: 7,
     showFirstLast: true,
     showInfo: true,
-    showPageSizeSelector: false,
+    showPageSizeSelector: false
   };
 
   protected readonly withJumpConfig = computed<PaginationConfig>(() => ({
     ...this.config,
-    currentPage: this.currentPage(),
+    currentPage: this.currentPage()
   }));
 }

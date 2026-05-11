@@ -28,12 +28,12 @@ import { ScrollPanelComponent } from 'ui';
         </div>
       }
     </div>
-  `,
+  `
 })
 export class ScrollPanelScrollbarBehaviorDemoComponent {
   protected readonly behaviors = ['auto', 'always', 'never'] as const;
   protected readonly items = Array.from({ length: 10 }, (_, index) => ({
     id: index + 1,
-    label: `Scrollable row ${index + 1}`,
+    label: `Scrollable row ${index + 1}`
   }));
 }

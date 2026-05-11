@@ -20,13 +20,13 @@ import { KbdComponent } from 'ui';
         </div>
       }
     </div>
-  `,
+  `
 })
 export class KbdCommonShortcutsDemoComponent {
   protected readonly shortcuts = [
     { label: 'Copy selection', keys: ['Ctrl', 'C'] },
     { label: 'Paste clipboard', keys: ['Ctrl', 'V'] },
     { label: 'Undo last action', keys: ['Ctrl', 'Z'] },
-    { label: 'Search in page', keys: ['Ctrl', 'F'] },
+    { label: 'Search in page', keys: ['Ctrl', 'F'] }
   ];
 }

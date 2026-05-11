@@ -21,8 +21,8 @@ export type DrawerModalType = 'modal' | 'non-modal' | 'alert';
   host: {
     '[style.display]': '"block"',
     '[style.height]': 'type() === "inline" ? "100%" : null',
-    '[style.minWidth]': '"0"',
-  },
+    '[style.minWidth]': '"0"'
+  }
 })
 export class DrawerComponent {
   private static readonly CLOSE_ANIMATION_FALLBACK_MS = 340;
@@ -31,14 +31,14 @@ export class DrawerComponent {
     'slideOutRight',
     'slideOutTop',
     'slideOutBottom',
-    'panelInlineWidthCollapse',
+    'panelInlineWidthCollapse'
   ]);
 
   //Service
   private readonly i18n = inject(UiI18nService);
   private readonly directionality = inject(Directionality);
   private readonly direction = toSignal(this.directionality.change.pipe(startWith(this.directionality.value)), {
-    initialValue: this.directionality.value,
+    initialValue: this.directionality.value
   });
   private readonly rendered = signal(false);
   readonly isClosing = signal(false);
@@ -78,7 +78,7 @@ export class DrawerComponent {
   isInline = computed(() => this.type() === 'inline');
 
   hasActions = computed(
-    () => !!(this.primaryAction() || this.secondaryAction() || this.additionalActions().length > 0),
+    () => !!(this.primaryAction() || this.secondaryAction() || this.additionalActions().length > 0)
   );
 
   canCloseByBackdrop = computed(() => {
@@ -95,7 +95,7 @@ export class DrawerComponent {
   shouldTrapFocus = computed(() => this.visible() && this.isOverlay() && this.isModal());
   shouldRender = computed(() => this.rendered());
   effectivePosition = computed<DrawerPosition>(() =>
-    this.resolvePositionForDirection(this.position(), this.direction()),
+    this.resolvePositionForDirection(this.position(), this.direction())
   );
 
   drawerClasses = computed(() => {
@@ -104,7 +104,7 @@ export class DrawerComponent {
       `drawer--${this.effectivePosition()}`,
       `drawer--${this.type()}`,
       `drawer--size-${this.size()}`,
-      this.isClosing() ? 'drawer--closing' : '',
+      this.isClosing() ? 'drawer--closing' : ''
     ].join(' ');
   });
 
@@ -114,7 +114,7 @@ export class DrawerComponent {
 
   contentClasses = computed(() => {
     return ['drawer__content', `drawer__content--${this.effectivePosition()}`, `drawer__content--${this.size()}`].join(
-      ' ',
+      ' '
     );
   });
 
@@ -250,7 +250,7 @@ export class DrawerComponent {
 
   private resolvePositionForDirection(
     position: DrawerPosition,
-    direction: Direction | null | undefined,
+    direction: Direction | null | undefined
   ): DrawerPosition {
     if (direction !== 'rtl') {
       return position;

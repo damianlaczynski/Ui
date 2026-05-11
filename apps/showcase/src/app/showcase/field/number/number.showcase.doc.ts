@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig,
+  ShowcaseDocPageConfig
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { NumberBasicDemoComponent } from './examples/number-basic-demo';
 import { NumberBudgetFormDemoComponent } from './examples/number-budget-form-demo';
@@ -17,7 +17,7 @@ const componentMap = {
   stepRanges: NumberStepRangesDemoComponent,
   sizeVariant: NumberSizeVariantDemoComponent,
   statesValidation: NumberStatesValidationDemoComponent,
-  budgetForm: NumberBudgetFormDemoComponent,
+  budgetForm: NumberBudgetFormDemoComponent
 } as const;
 
 export const NUMBER_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -25,9 +25,9 @@ export const NUMBER_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(numberMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${numberMeta.slug}/${file}`,
-    ]),
-  ) as Record<string, string>),
+      `/docs/components/snippets/${numberMeta.slug}/${file}`
+    ])
+  ) as Record<string, string>)
 };
 
 export const NUMBER_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -36,12 +36,12 @@ export const NUMBER_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: numberMeta.importCode,
   containerClass: numberMeta.containerClass,
   accessibility: numberMeta.accessibility,
-  featureSections: numberMeta.featureSections.map(section => ({
+  featureSections: numberMeta.featureSections.map((section) => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap],
+    component: componentMap[section.componentKey as keyof typeof componentMap]
   })),
-  apiSections: numberMeta.apiSections,
+  apiSections: numberMeta.apiSections
 };

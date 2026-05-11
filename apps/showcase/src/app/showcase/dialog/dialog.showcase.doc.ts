@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig,
+  ShowcaseDocPageConfig
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { DialogActionsExampleComponent } from './examples/dialog-actions-demo';
 import { DialogBasicExampleComponent } from './examples/dialog-basic-demo';
@@ -19,7 +19,7 @@ const componentMap = {
   sizes: DialogSizesExampleComponent,
   static: DialogStaticExampleComponent,
   actions: DialogActionsExampleComponent,
-  renameFlow: DialogRenameFlowExampleComponent,
+  renameFlow: DialogRenameFlowExampleComponent
 } as const;
 
 export const DIALOG_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -27,9 +27,9 @@ export const DIALOG_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(dialogMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${dialogMeta.slug}/${file}`,
-    ]),
-  ) as Record<string, string>),
+      `/docs/components/snippets/${dialogMeta.slug}/${file}`
+    ])
+  ) as Record<string, string>)
 };
 
 export const DIALOG_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -38,12 +38,12 @@ export const DIALOG_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: dialogMeta.importCode,
   containerClass: dialogMeta.containerClass,
   accessibility: dialogMeta.accessibility,
-  featureSections: dialogMeta.featureSections.map(section => ({
+  featureSections: dialogMeta.featureSections.map((section) => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap],
+    component: componentMap[section.componentKey as keyof typeof componentMap]
   })),
-  apiSections: dialogMeta.apiSections,
+  apiSections: dialogMeta.apiSections
 };

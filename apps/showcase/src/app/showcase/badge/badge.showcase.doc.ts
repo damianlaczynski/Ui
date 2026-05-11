@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig,
+  ShowcaseDocPageConfig
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { BadgeAppearanceVariantDemoComponent } from './examples/badge-appearance-variant-demo';
 import { BadgeBasicDemoComponent } from './examples/badge-basic-demo';
@@ -19,7 +19,7 @@ const componentMap = {
   sizeShape: BadgeSizeShapeDemoComponent,
   icons: BadgeIconsDemoComponent,
   counts: BadgeCountsDemoComponent,
-  composition: BadgeCompositionDemoComponent,
+  composition: BadgeCompositionDemoComponent
 } as const;
 
 export const BADGE_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -27,9 +27,9 @@ export const BADGE_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(badgeMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${badgeMeta.slug}/${file}`,
-    ]),
-  ) as Record<string, string>),
+      `/docs/components/snippets/${badgeMeta.slug}/${file}`
+    ])
+  ) as Record<string, string>)
 };
 
 export const BADGE_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -38,12 +38,12 @@ export const BADGE_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: badgeMeta.importCode,
   containerClass: badgeMeta.containerClass,
   accessibility: badgeMeta.accessibility,
-  featureSections: badgeMeta.featureSections.map(section => ({
+  featureSections: badgeMeta.featureSections.map((section) => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap],
+    component: componentMap[section.componentKey as keyof typeof componentMap]
   })),
-  apiSections: badgeMeta.apiSections,
+  apiSections: badgeMeta.apiSections
 };

@@ -9,7 +9,7 @@ describe('ColorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ColorComponent, NoopAnimationsModule],
+      imports: [ColorComponent, NoopAnimationsModule]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ColorComponent);

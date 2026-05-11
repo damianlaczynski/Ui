@@ -36,7 +36,7 @@ import { NumericRange, RangeComponent } from 'ui';
         [ngModelOptions]="{ standalone: true }"
       />
     </div>
-  `,
+  `
 })
 export class RangeStatesDemoComponent {
   protected readonlyRange: NumericRange = { min: 9, max: 17 };

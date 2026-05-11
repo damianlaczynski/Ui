@@ -39,7 +39,7 @@ import { TimeSpanComponent } from 'ui';
         [ngModelOptions]="{ standalone: true }"
       />
     </div>
-  `,
+  `
 })
 export class TimeSpanStatesDemoComponent {
   protected readonlyValue = 'PT8H';

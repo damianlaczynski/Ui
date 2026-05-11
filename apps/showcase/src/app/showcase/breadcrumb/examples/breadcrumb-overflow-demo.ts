@@ -42,7 +42,7 @@ import { BreadcrumbComponent, type Breadcrumb } from 'ui';
         />
       </div>
     </div>
-  `,
+  `
 })
 export class BreadcrumbOverflowExampleComponent {
   protected readonly longPath: Breadcrumb[] = [
@@ -50,6 +50,11 @@ export class BreadcrumbOverflowExampleComponent {
     { id: 'clients', label: 'Enterprise clients', icon: 'people' },
     { id: 'europe', label: 'Europe region accounts', icon: 'globe' },
     { id: 'contracts', label: 'Long-running renewal contracts', icon: 'document' },
-    { id: 'current', label: 'Final approval checklist', icon: 'checkmark_circle', selected: true },
+    {
+      id: 'current',
+      label: 'Final approval checklist',
+      icon: 'checkmark_circle',
+      selected: true
+    }
   ];
 }

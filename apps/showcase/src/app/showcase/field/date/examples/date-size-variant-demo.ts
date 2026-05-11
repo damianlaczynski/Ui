@@ -35,7 +35,7 @@ import { DateComponent } from 'ui';
         [ngModelOptions]="{ standalone: true }"
       />
     </div>
-  `,
+  `
 })
 export class DateSizeVariantDemoComponent {
   protected smallValue = '2026-05-08';

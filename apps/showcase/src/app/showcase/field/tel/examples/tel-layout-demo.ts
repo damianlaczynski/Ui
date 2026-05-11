@@ -38,6 +38,6 @@ import { TelComponent } from 'ui';
         />
       </div>
     </div>
-  `,
+  `
 })
 export class TelLayoutDemoComponent {}

@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig,
+  ShowcaseDocPageConfig
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { IconBrowserDemoComponent } from './examples/icon-browser-demo';
 import { IconOverviewDemoComponent } from './examples/icon-overview-demo';
@@ -17,14 +17,14 @@ const componentMap = {
   size: IconSizeDemoComponent,
   variant: IconVariantDemoComponent,
   semantic: IconSemanticDemoComponent,
-  browser: IconBrowserDemoComponent,
+  browser: IconBrowserDemoComponent
 } as const;
 
 export const ICON_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   markdown: `/docs/components/${iconMeta.slug}.md`,
   ...(Object.fromEntries(
-    Object.entries(iconMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${iconMeta.slug}/${file}`]),
-  ) as Record<string, string>),
+    Object.entries(iconMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${iconMeta.slug}/${file}`])
+  ) as Record<string, string>)
 };
 
 export const ICON_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -33,12 +33,12 @@ export const ICON_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: iconMeta.importCode,
   containerClass: iconMeta.containerClass,
   accessibility: iconMeta.accessibility,
-  featureSections: iconMeta.featureSections.map(section => ({
+  featureSections: iconMeta.featureSections.map((section) => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap],
+    component: componentMap[section.componentKey as keyof typeof componentMap]
   })),
-  apiSections: iconMeta.apiSections,
+  apiSections: iconMeta.apiSections
 };

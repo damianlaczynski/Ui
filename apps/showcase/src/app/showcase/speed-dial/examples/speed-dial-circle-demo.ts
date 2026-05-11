@@ -25,12 +25,16 @@ import { MenuItem, SpeedDialComponent } from 'ui';
           [itemSizePx]="40"
           [gap]="6"
           [items]="items()"
-          [triggerButtonProps]="{ variant: 'primary', appearance: 'filled', shape: 'circular' }"
+          [triggerButtonProps]="{
+            variant: 'primary',
+            appearance: 'filled',
+            shape: 'circular'
+          }"
           ariaLabel="Circle speed dial"
         />
       </div>
     </section>
-  `,
+  `
 })
 export class SpeedDialCircleDemoComponent {
   protected readonly items = signal<MenuItem[]>([
@@ -39,6 +43,6 @@ export class SpeedDialCircleDemoComponent {
     { id: 'archive', label: '', icon: 'archive' },
     { id: 'pin', label: '', icon: 'pin' },
     { id: 'copy', label: '', icon: 'copy' },
-    { id: 'star', label: '', icon: 'star' },
+    { id: 'star', label: '', icon: 'star' }
   ]);
 }

@@ -40,21 +40,21 @@ type Token = {
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class TagDismissibleDemoComponent {
   protected tokens: Token[] = [
     { id: 'design', text: 'Design', variant: 'primary' },
     { id: 'frontend', text: 'Frontend', variant: 'info' },
     { id: 'urgent', text: 'Urgent', variant: 'danger' },
-    { id: 'approved', text: 'Approved', variant: 'success' },
+    { id: 'approved', text: 'Approved', variant: 'success' }
   ];
 
   protected get tokenLabels(): string {
-    return this.tokens.map(token => token.text).join(', ');
+    return this.tokens.map((token) => token.text).join(', ');
   }
 
   protected removeToken(id: string): void {
-    this.tokens = this.tokens.filter(token => token.id !== id);
+    this.tokens = this.tokens.filter((token) => token.id !== id);
   }
 }

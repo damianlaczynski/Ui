@@ -83,7 +83,9 @@ import { ShowcaseDocHeaderComponent } from '../showcase-doc-header/showcase-doc-
                           @if (card.eyebrow || card.statusLabel) {
                             <div class="showcase-doc__guide-item-head">
                               @if (card.eyebrow) {
-                                <p class="showcase-doc__guide-meta">{{ card.eyebrow }}</p>
+                                <p class="showcase-doc__guide-meta">
+                                  {{ card.eyebrow }}
+                                </p>
                               }
                               @if (card.statusLabel) {
                                 <span class="showcase-doc__guide-status-wrap">
@@ -137,7 +139,7 @@ import { ShowcaseDocHeaderComponent } from '../showcase-doc-header/showcase-doc-
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class GuideDocPageComponent {
   readonly config = input.required<GuideDocPageConfig>();

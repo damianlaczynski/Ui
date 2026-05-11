@@ -26,7 +26,7 @@ import { PaginationComponent, PaginationConfig } from 'ui';
         <ui-pagination [config]="wideWindowConfig()" (pageChange)="currentPage.set($event)" />
       </div>
     </div>
-  `,
+  `
 })
 export class PaginationWindowingExampleComponent {
   protected readonly currentPage = signal(18);
@@ -40,18 +40,18 @@ export class PaginationWindowingExampleComponent {
     maxVisiblePages: 5,
     showFirstLast: false,
     showInfo: true,
-    showPageSizeSelector: false,
+    showPageSizeSelector: false
   };
 
   protected readonly compactWindowConfig = computed<PaginationConfig>(() => ({
     ...this.baseConfig,
     currentPage: this.currentPage(),
-    maxVisiblePages: 5,
+    maxVisiblePages: 5
   }));
 
   protected readonly wideWindowConfig = computed<PaginationConfig>(() => ({
     ...this.baseConfig,
     currentPage: this.currentPage(),
-    maxVisiblePages: 6,
+    maxVisiblePages: 6
   }));
 }

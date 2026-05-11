@@ -68,7 +68,7 @@ const bodyStackStyle =
         </div>
       </ui-drawer>
     </div>
-  `,
+  `
 })
 export class DrawerPositionsExampleComponent {
   readonly bodyStackStyle = bodyStackStyle;
@@ -85,7 +85,7 @@ export class DrawerPositionsExampleComponent {
     'Draft templates remain private until co-authors explicitly publish a stable revision.',
     'Full API manuals live next to onboarding guides — link banners stay pinned in workspace footers.',
     'When performance regresses capture the tracing id from network responses before filing support.',
-    'Permission deltas propagate globally within seconds once the optimistic save completes.',
+    'Permission deltas propagate globally within seconds once the optimistic save completes.'
   ];
 
   protected readonly leftVisible = model(false);
@@ -95,18 +95,18 @@ export class DrawerPositionsExampleComponent {
   protected readonly closeLeftAction = signal<QuickAction>({
     label: 'Close',
     variant: 'primary',
-    action: () => this.leftVisible.set(false),
+    action: () => this.leftVisible.set(false)
   });
 
   protected readonly closeRightAction = signal<QuickAction>({
     label: 'Close',
     variant: 'primary',
-    action: () => this.rightVisible.set(false),
+    action: () => this.rightVisible.set(false)
   });
 
   protected readonly closeBottomAction = signal<QuickAction>({
     label: 'Close',
     variant: 'primary',
-    action: () => this.bottomVisible.set(false),
+    action: () => this.bottomVisible.set(false)
   });
 }

@@ -34,10 +34,10 @@ import { map, catchError } from 'rxjs/operators';
 export function enrichColumnsWithSortTypes<T = any>(
   columns: DataGridColumn<T>[],
   queryName: string,
-  graphQLService: GraphQLService,
+  graphQLService: GraphQLService
 ): Observable<DataGridColumn<T>[]> {
   // Filter columns that are sortable and have a field
-  const sortableColumns = columns.filter(col => col.sortable && col.field !== undefined);
+  const sortableColumns = columns.filter((col) => col.sortable && col.field !== undefined);
 
   if (sortableColumns.length === 0) {
     // No sortable columns, return as-is
@@ -46,14 +46,14 @@ export function enrichColumnsWithSortTypes<T = any>(
 
   // Extract field names
   const fieldNames = sortableColumns
-    .map(col => String(col.field))
+    .map((col) => String(col.field))
     .filter((field, index, self) => self.indexOf(field) === index); // Remove duplicates
 
   // Get sort types for all fields at once (batch introspection)
   return graphQLService.getFieldsSortTypes(queryName, fieldNames).pipe(
-    map(sortTypesMap => {
+    map((sortTypesMap) => {
       // Create enriched columns
-      return columns.map(column => {
+      return columns.map((column) => {
         // Only enrich sortable columns with fields
         if (!column.sortable || !column.field) {
           return column;
@@ -70,15 +70,15 @@ export function enrichColumnsWithSortTypes<T = any>(
         // Add sortType from introspection
         return {
           ...column,
-          sortType: sortType || 'alphanumeric', // Default to alphanumeric if not found
+          sortType: sortType || 'alphanumeric' // Default to alphanumeric if not found
         };
       });
     }),
-    catchError(error => {
+    catchError((error) => {
       // On error, return columns as-is (without sortType enrichment)
       console.warn('Failed to enrich columns with sort types:', error);
       return of(columns);
-    }),
+    })
   );
 }
 
@@ -93,7 +93,7 @@ export function enrichColumnsWithSortTypes<T = any>(
 export function enrichColumnWithSortType<T = any>(
   column: DataGridColumn<T>,
   queryName: string,
-  graphQLService: GraphQLService,
+  graphQLService: GraphQLService
 ): Observable<DataGridColumn<T>> {
   if (!column.sortable || !column.field) {
     return of(column);
@@ -102,7 +102,7 @@ export function enrichColumnWithSortType<T = any>(
   const fieldName = String(column.field);
 
   return graphQLService.getFieldSortType(queryName, fieldName).pipe(
-    map(sortType => {
+    map((sortType) => {
       // If sortType is already set, don't override it
       if (column.sortType) {
         return column;
@@ -110,12 +110,12 @@ export function enrichColumnWithSortType<T = any>(
 
       return {
         ...column,
-        sortType,
+        sortType
       };
     }),
-    catchError(error => {
+    catchError((error) => {
       console.warn(`Failed to enrich column ${fieldName} with sort type:`, error);
       return of(column);
-    }),
+    })
   );
 }

@@ -26,7 +26,7 @@ export class SelectFilterDefinition extends BaseFilterDefinition {
       { value: 'contains', label: 'Contains', icon: 'search' },
       { value: 'doesNotContain', label: 'Does not contain', icon: 'prohibited' },
       { value: 'isNull', label: 'Is null', icon: 'dismiss_circle' },
-      { value: 'isNotNull', label: 'Is not null', icon: 'checkmark_circle' },
+      { value: 'isNotNull', label: 'Is not null', icon: 'checkmark_circle' }
     ];
   }
 
@@ -57,7 +57,7 @@ export class SelectFilterDefinition extends BaseFilterDefinition {
   override getDisplayText(
     column: DataGridColumn<any>,
     filter: DataGridFilterValue,
-    config: DataGridFilterConfig,
+    config: DataGridFilterConfig
   ): string {
     const operator = filter.operator || this.getDefaultOperator().value;
     const operatorText = this.getOperatorText(operator);

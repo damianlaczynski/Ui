@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig,
+  ShowcaseDocPageConfig
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { TabsAppearanceLayoutDemoComponent } from './examples/tabs-appearance-layout-demo';
 import { TabsBasicDemoComponent } from './examples/tabs-basic-demo';
@@ -19,14 +19,14 @@ const componentMap = {
   orientation: TabsOrientationDemoComponent,
   options: TabsOptionsDemoComponent,
   overflow: TabsOverflowDemoComponent,
-  workspacePanel: TabsWorkspacePanelDemoComponent,
+  workspacePanel: TabsWorkspacePanelDemoComponent
 } as const;
 
 export const TABS_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   markdown: `/docs/components/${tabsMeta.slug}.md`,
   ...(Object.fromEntries(
-    Object.entries(tabsMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${tabsMeta.slug}/${file}`]),
-  ) as Record<string, string>),
+    Object.entries(tabsMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${tabsMeta.slug}/${file}`])
+  ) as Record<string, string>)
 };
 
 export const TABS_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -35,12 +35,12 @@ export const TABS_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: tabsMeta.importCode,
   containerClass: tabsMeta.containerClass,
   accessibility: tabsMeta.accessibility,
-  featureSections: tabsMeta.featureSections.map(section => ({
+  featureSections: tabsMeta.featureSections.map((section) => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap],
+    component: componentMap[section.componentKey as keyof typeof componentMap]
   })),
-  apiSections: tabsMeta.apiSections,
+  apiSections: tabsMeta.apiSections
 };

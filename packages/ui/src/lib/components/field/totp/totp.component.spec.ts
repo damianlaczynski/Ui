@@ -11,7 +11,7 @@ describe('TotpComponent', () => {
     originalDir = document.documentElement.dir;
 
     await TestBed.configureTestingModule({
-      imports: [TotpComponent],
+      imports: [TotpComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(TotpComponent);
@@ -60,7 +60,7 @@ describe('TotpComponent', () => {
 
   it('should emit combined code when digits are entered', () => {
     let emitted: string | null = null;
-    component.change.subscribe(value => (emitted = value));
+    component.change.subscribe((value) => (emitted = value));
 
     const inputs: HTMLInputElement[] = Array.from(fixture.nativeElement.querySelectorAll('.totp-digit'));
     inputs[0].value = '1';

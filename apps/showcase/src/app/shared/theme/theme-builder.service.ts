@@ -24,7 +24,7 @@ export interface ThemeBuilderState {
 const DEFAULT_SIMPLE: ThemeBuilderSimpleState = {
   baseColor: '#0078d4',
   hueTorsion: 0,
-  vibrancy: 0,
+  vibrancy: 0
 };
 
 const BRAND_SHADES = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160] as const;
@@ -150,11 +150,11 @@ const CSS_VAR_KEYS = [
   '--spacing-vertical-s',
   '--spacing-vertical-m',
   '--spacing-vertical-l',
-  '--color-focus-border',
+  '--color-focus-border'
 ];
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class ThemeBuilderService {
   private themeService = inject(ThemeService);
@@ -180,7 +180,7 @@ export class ThemeBuilderService {
   }
 
   toggleDrawer(): void {
-    this._drawerOpen.update(v => !v);
+    this._drawerOpen.update((v) => !v);
     this.persistDrawerOpen();
     this.applyLivePreview();
   }
@@ -202,7 +202,7 @@ export class ThemeBuilderService {
   }
 
   setSimpleState(state: Partial<ThemeBuilderSimpleState>): void {
-    this._simpleState.update(prev => ({ ...prev, ...state }));
+    this._simpleState.update((prev) => ({ ...prev, ...state }));
     this.persistSimpleState();
     if (this._mode() === 'simple') {
       this.applyLivePreview();
@@ -218,7 +218,7 @@ export class ThemeBuilderService {
   }
 
   updateAdvancedVar(key: string, value: string): void {
-    this._advancedState.update(prev => ({ ...prev, [key]: value }));
+    this._advancedState.update((prev) => ({ ...prev, [key]: value }));
     this.persistAdvancedState();
     if (this._mode() === 'advanced') {
       this.applyLivePreview();
@@ -251,7 +251,7 @@ export class ThemeBuilderService {
 
   clearLivePreview(): void {
     const root = document.documentElement;
-    CSS_VAR_KEYS.forEach(key => root.style.removeProperty(key));
+    CSS_VAR_KEYS.forEach((key) => root.style.removeProperty(key));
   }
 
   exportScss(): string {
@@ -299,11 +299,11 @@ export class ThemeBuilderService {
     const hex = baseColor ? (baseColor.startsWith('#') ? baseColor : `#${baseColor}`) : null;
     if (hex) {
       this._mode.set('simple');
-      this._simpleState.update(prev => ({
+      this._simpleState.update((prev) => ({
         ...prev,
         baseColor: hex,
         hueTorsion: 0,
-        vibrancy: 0,
+        vibrancy: 0
       }));
       this.persistSimpleState();
       localStorage.setItem(DRAWER_MODE_KEY, 'simple');
@@ -368,7 +368,7 @@ export class ThemeBuilderService {
       '--color-brand-stroke-pressed': pressed,
       '--color-brand-stroke-selected': selected,
       '--color-neutral-stroke-accessible-selected': primary,
-      '--color-focus-border': primary,
+      '--color-focus-border': primary
     };
   }
 
@@ -427,7 +427,7 @@ export class ThemeBuilderService {
       '--color-brand-stroke-pressed': strokePressed,
       '--color-brand-stroke-selected': stroke,
       '--color-neutral-stroke-accessible-selected': compound,
-      '--color-focus-border': '#ffffff',
+      '--color-focus-border': '#ffffff'
     };
   }
 
@@ -509,10 +509,10 @@ export class ThemeBuilderService {
     return (
       '#' +
       [r, g, b]
-        .map(x =>
+        .map((x) =>
           Math.round(x * 255)
             .toString(16)
-            .padStart(2, '0'),
+            .padStart(2, '0')
         )
         .join('')
     );
@@ -566,7 +566,7 @@ export class ThemeBuilderService {
   private getDefaultAdvancedState(): ThemeBuilderAdvancedState {
     const state: ThemeBuilderAdvancedState = {};
     if (typeof document === 'undefined') return state;
-    CSS_VAR_KEYS.forEach(key => {
+    CSS_VAR_KEYS.forEach((key) => {
       const value = getComputedStyle(document.documentElement).getPropertyValue(key).trim();
       if (value) state[key] = value;
     });

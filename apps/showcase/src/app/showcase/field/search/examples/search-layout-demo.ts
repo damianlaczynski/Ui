@@ -43,6 +43,6 @@ import { SearchComponent } from 'ui';
         />
       </div>
     </div>
-  `,
+  `
 })
 export class SearchLayoutDemoComponent {}

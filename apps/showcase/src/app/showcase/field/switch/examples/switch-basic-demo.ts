@@ -28,7 +28,7 @@ import { SwitchComponent } from 'ui';
         [ngModelOptions]="{ standalone: true }"
       />
     </div>
-  `,
+  `
 })
 export class SwitchBasicExampleComponent {
   protected desktopNotifications = true;

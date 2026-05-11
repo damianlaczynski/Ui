@@ -18,8 +18,8 @@ export class DataGridSelectionService<T = any> {
    */
   allRowsSelected(rows: DataGridRow<T>[]): boolean {
     if (rows.length === 0) return false;
-    const selectableRows = rows.filter(row => !row.disabled);
-    return selectableRows.every(row => this.selectedRows().has(row.id));
+    const selectableRows = rows.filter((row) => !row.disabled);
+    return selectableRows.every((row) => this.selectedRows().has(row.id));
   }
 
   /**
@@ -36,7 +36,7 @@ export class DataGridSelectionService<T = any> {
     if (this.allRowsSelected(rows)) {
       this.selectedRows.set(new Set());
     } else {
-      const selectableRowIds = rows.filter(row => !row.disabled).map(row => row.id);
+      const selectableRowIds = rows.filter((row) => !row.disabled).map((row) => row.id);
       this.selectedRows.set(new Set(selectableRowIds));
     }
   }
@@ -72,7 +72,7 @@ export class DataGridSelectionService<T = any> {
    * Get selected rows
    */
   getSelectedRows(rows: DataGridRow<T>[]): DataGridRow<T>[] {
-    return rows.filter(row => this.selectedRows().has(row.id));
+    return rows.filter((row) => this.selectedRows().has(row.id));
   }
 
   /**

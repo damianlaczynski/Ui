@@ -21,7 +21,7 @@ import { CarouselComponent, CarouselItem } from 'ui';
         <ui-carousel [items]="slides" [showControls]="false" [loop]="false" />
       </div>
     </div>
-  `,
+  `
 })
 export class CarouselNavigationDemoComponent {
   protected readonly slides: CarouselItem[] = [
@@ -29,19 +29,19 @@ export class CarouselNavigationDemoComponent {
       id: 'nav-1',
       image: 'https://picsum.photos/seed/ui-carousel-nav-1/960/480',
       title: 'Plan',
-      description: 'First slide in a bounded sequence.',
+      description: 'First slide in a bounded sequence.'
     },
     {
       id: 'nav-2',
       image: 'https://picsum.photos/seed/ui-carousel-nav-2/960/480',
       title: 'Build',
-      description: 'Second slide keeps the same surface and controls.',
+      description: 'Second slide keeps the same surface and controls.'
     },
     {
       id: 'nav-3',
       image: 'https://picsum.photos/seed/ui-carousel-nav-3/960/480',
       title: 'Review',
-      description: 'Last slide stops when loop is disabled.',
-    },
+      description: 'Last slide stops when loop is disabled.'
+    }
   ];
 }

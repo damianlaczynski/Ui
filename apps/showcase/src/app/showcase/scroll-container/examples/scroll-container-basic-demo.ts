@@ -17,12 +17,14 @@ interface BasicItem {
       <div
         style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background2-rest)"
       >
-        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
-          >Loaded pages: <strong>{{ loadedPages() }}</strong></span
-        >
-        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
-          >Last page size: <strong>{{ lastPageSize() }}</strong></span
-        >
+        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
+          Loaded pages:
+          <strong>{{ loadedPages() }}</strong>
+        </span>
+        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
+          Last page size:
+          <strong>{{ lastPageSize() }}</strong>
+        </span>
       </div>
 
       <div
@@ -39,7 +41,7 @@ interface BasicItem {
         />
       </div>
     </div>
-  `,
+  `
 })
 export class ScrollContainerBasicDemoComponent {
   protected readonly loadedPages = signal(1);
@@ -50,14 +52,14 @@ export class ScrollContainerBasicDemoComponent {
     const items = Array.from({ length: pageSize }, (_, index) => ({
       id: start + index,
       label: `Activity row ${start + index}`,
-      icon: (index % 2 === 0 ? 'document' : 'clock') as Node['icon'],
+      icon: (index % 2 === 0 ? 'document' : 'clock') as Node['icon']
     }));
 
     return of({
       items,
       hasNextPage: page < 5,
       hasPreviousPage: page > 1,
-      totalCount: 50,
+      totalCount: 50
     }).pipe(delay(250));
   };
 

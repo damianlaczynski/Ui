@@ -20,6 +20,6 @@ import { ButtonComponent, TooltipDirective } from 'ui';
         Export filtered
       </ui-button>
     </div>
-  `,
+  `
 })
 export class TooltipBasicExampleComponent {}

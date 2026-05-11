@@ -11,7 +11,7 @@ import {
   inject,
   ViewContainerRef,
   TemplateRef,
-  NgZone,
+  NgZone
 } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -25,7 +25,7 @@ import {
   openConnectedOverlay,
   OverlayHandle,
   DEFAULT_CONNECTED_POSITIONS,
-  DEFAULT_VIEWPORT_MARGIN,
+  DEFAULT_VIEWPORT_MARGIN
 } from '../../overlay/open-connected-overlay';
 import { UiI18nService } from '../../../i18n';
 
@@ -46,22 +46,22 @@ interface ColorValue {
   imports: [A11yModule, OverlayModule, FieldComponent, ActionButtonComponent, IconComponent],
   templateUrl: './color.component.html',
   host: {
-    '[style.display]': '"block"',
+    '[style.display]': '"block"'
   },
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => ColorComponent),
-      multi: true,
-    },
+      multi: true
+    }
   ],
   styles: [
     `
       :host {
         width: 100%;
       }
-    `,
-  ],
+    `
+  ]
 })
 export class ColorComponent extends FieldComponent implements OnDestroy {
   private readonly i18n = inject(UiI18nService);
@@ -86,7 +86,7 @@ export class ColorComponent extends FieldComponent implements OnDestroy {
     hex: '#000000',
     rgb: { r: 0, g: 0, b: 0 },
     hsl: { h: 0, s: 0, l: 0 },
-    alpha: 1,
+    alpha: 1
   });
 
   // Saturation/Lightness picker position
@@ -134,12 +134,12 @@ export class ColorComponent extends FieldComponent implements OnDestroy {
   constructor() {
     super();
 
-    effect(onCleanup => {
+    effect((onCleanup) => {
       if (!this.useNativeOnMobile()) {
         this.isMobile.set(false);
         return;
       }
-      const sub = this.breakpointObserver.observe(MOBILE_BREAKPOINT).subscribe(result => {
+      const sub = this.breakpointObserver.observe(MOBILE_BREAKPOINT).subscribe((result) => {
         this.isMobile.set(result.matches);
       });
       onCleanup(() => sub.unsubscribe());
@@ -190,15 +190,15 @@ export class ColorComponent extends FieldComponent implements OnDestroy {
         positions: DEFAULT_CONNECTED_POSITIONS,
         viewportMargin: DEFAULT_VIEWPORT_MARGIN,
         width: this.panelWidth(),
-        hasBackdrop: false,
+        hasBackdrop: false
       },
-      onClose: focusTrigger => {
+      onClose: (focusTrigger) => {
         if (focusTrigger) {
           this.closePanel(true);
         } else {
           setTimeout(() => this.closePanel(false), 0);
         }
-      },
+      }
     });
 
     this.isExpanded.set(true);
@@ -290,7 +290,7 @@ export class ColorComponent extends FieldComponent implements OnDestroy {
       hex,
       rgb,
       hsl: { h, s, l },
-      alpha: this.alphaValue(),
+      alpha: this.alphaValue()
     });
   }
 
@@ -380,13 +380,13 @@ export class ColorComponent extends FieldComponent implements OnDestroy {
       ? {
           r: parseInt(result[1], 16),
           g: parseInt(result[2], 16),
-          b: parseInt(result[3], 16),
+          b: parseInt(result[3], 16)
         }
       : null;
   }
 
   private rgbToHex(r: number, g: number, b: number): string {
-    return '#' + [r, g, b].map(x => x.toString(16).padStart(2, '0')).join('');
+    return '#' + [r, g, b].map((x) => x.toString(16).padStart(2, '0')).join('');
   }
 
   private rgbToHsl(r: number, g: number, b: number): { h: number; s: number; l: number } {
@@ -420,7 +420,7 @@ export class ColorComponent extends FieldComponent implements OnDestroy {
     return {
       h: Math.round(h * 360),
       s: Math.round(s * 100),
-      l: Math.round(l * 100),
+      l: Math.round(l * 100)
     };
   }
 
@@ -454,7 +454,7 @@ export class ColorComponent extends FieldComponent implements OnDestroy {
     return {
       r: Math.round(r * 255),
       g: Math.round(g * 255),
-      b: Math.round(b * 255),
+      b: Math.round(b * 255)
     };
   }
 
@@ -524,7 +524,7 @@ export class ColorComponent extends FieldComponent implements OnDestroy {
         hex: '#000000',
         rgb: { r: 0, g: 0, b: 0 },
         hsl: { h: 0, s: 0, l: 0 },
-        alpha: 1,
+        alpha: 1
       });
       super.writeValue('');
       return;
@@ -540,7 +540,7 @@ export class ColorComponent extends FieldComponent implements OnDestroy {
       hex: '#000000',
       rgb: { r: 0, g: 0, b: 0 },
       hsl: { h: 0, s: 0, l: 0 },
-      alpha: 1,
+      alpha: 1
     });
     this.hueValue.set(0);
     this.alphaValue.set(1);

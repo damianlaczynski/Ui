@@ -12,7 +12,7 @@
   <div class="checkbox-wrapper" [ngClass]="checkboxClasses()">
     @if (label() && labelPosition() === 'above') {
       <div class="checkbox-label-above">
-        <span [ngClass]="checkboxLabelClasses()"> {{ label() }} </span>
+        <span [ngClass]="checkboxLabelClasses()">{{ label() }}</span>
       </div>
     }
 
@@ -47,13 +47,15 @@
       </div>
 
       @if (label() && labelPosition() === 'after') {
-        <span [ngClass]="checkboxLabelClasses()" class="checkbox-label-after"> {{ label() }} </span>
+        <span [ngClass]="checkboxLabelClasses()" class="checkbox-label-after">
+          {{ label() }}
+        </span>
       }
     </label>
 
     @if (label() && labelPosition() === 'below') {
       <div class="checkbox-label-below">
-        <span [ngClass]="checkboxLabelClasses()"> {{ label() }} </span>
+        <span [ngClass]="checkboxLabelClasses()">{{ label() }}</span>
       </div>
     }
   </div>

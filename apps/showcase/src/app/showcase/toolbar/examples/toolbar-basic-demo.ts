@@ -11,13 +11,13 @@ import { ToolbarComponent, type ToolbarItem } from 'ui';
     >
       <ui-toolbar [items]="items" />
     </div>
-  `,
+  `
 })
 export class ToolbarBasicDemoComponent {
   protected readonly items: ToolbarItem[] = [
     { id: 'new', label: 'New', icon: 'document_add', tooltip: 'New' },
     { id: 'open', label: 'Open', icon: 'folder_open', tooltip: 'Open' },
     { id: 'save', label: 'Save', icon: 'save', tooltip: 'Save' },
-    { id: 'share', label: 'Share', icon: 'share', tooltip: 'Share' },
+    { id: 'share', label: 'Share', icon: 'share', tooltip: 'Share' }
   ];
 }

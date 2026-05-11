@@ -19,9 +19,9 @@ import { ButtonComponent, DrawerComponent, QuickAction } from 'ui';
           style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0.75rem;padding:0.75rem 0.875rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
         >
           <div style="display:flex;flex-direction:column;gap:0.25rem;min-width:0">
-            <strong style="font-size:0.875rem;color:var(--color-neutral-foreground-rest)"
-              >Inline drawer reflows the workspace</strong
-            >
+            <strong style="font-size:0.875rem;color:var(--color-neutral-foreground-rest)">
+              Inline drawer reflows the workspace
+            </strong>
             <span style="font-size:0.8125rem;line-height:1.45;color:var(--color-neutral-foreground3-rest)">
               Open the panel to see the content column shrink smoothly instead of jumping.
             </span>
@@ -45,16 +45,19 @@ import { ButtonComponent, DrawerComponent, QuickAction } from 'ui';
             <div style="display:flex;flex-wrap:wrap;gap:0.5rem">
               <span
                 style="padding:0.25rem 0.625rem;border-radius:999px;background:var(--color-neutral-background2-rest);color:var(--color-neutral-foreground3-rest);font-size:0.75rem"
-                >Filters</span
               >
+                Filters
+              </span>
               <span
                 style="padding:0.25rem 0.625rem;border-radius:999px;background:var(--color-neutral-background2-rest);color:var(--color-neutral-foreground3-rest);font-size:0.75rem"
-                >Review</span
               >
+                Review
+              </span>
               <span
                 style="padding:0.25rem 0.625rem;border-radius:999px;background:var(--color-neutral-background2-rest);color:var(--color-neutral-foreground3-rest);font-size:0.75rem"
-                >Side tools</span
               >
+                Side tools
+              </span>
             </div>
           </div>
 
@@ -89,25 +92,25 @@ import { ButtonComponent, DrawerComponent, QuickAction } from 'ui';
             style="flex:1 1 12rem;min-width:0;padding:0.75rem;border-radius:0.75rem;background:var(--color-neutral-background2-rest)"
           >
             <strong style="display:block;margin-bottom:0.375rem;font-size:0.8125rem">Main list</strong>
-            <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest)"
-              >Stays visible while the inline panel opens.</span
-            >
+            <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest)">
+              Stays visible while the inline panel opens.
+            </span>
           </div>
           <div
             style="flex:1 1 12rem;min-width:0;padding:0.75rem;border-radius:0.75rem;background:var(--color-neutral-background2-rest)"
           >
             <strong style="display:block;margin-bottom:0.375rem;font-size:0.8125rem">Inspector area</strong>
-            <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest)"
-              >Good fit for contextual tools and side editing.</span
-            >
+            <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest)">
+              Good fit for contextual tools and side editing.
+            </span>
           </div>
           <div
             style="flex:1 1 12rem;min-width:0;padding:0.75rem;border-radius:0.75rem;background:var(--color-neutral-background2-rest)"
           >
             <strong style="display:block;margin-bottom:0.375rem;font-size:0.8125rem">Viewport context</strong>
-            <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest)"
-              >Helps users keep spatial awareness during edits.</span
-            >
+            <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest)">
+              Helps users keep spatial awareness during edits.
+            </span>
           </div>
         </div>
       </div>
@@ -120,7 +123,7 @@ import { ButtonComponent, DrawerComponent, QuickAction } from 'ui';
         [primaryAction]="closeOverlayAction()"
       />
     </div>
-  `,
+  `
 })
 export class DrawerTypesExampleComponent {
   protected readonly overlayVisible = model(false);
@@ -129,12 +132,12 @@ export class DrawerTypesExampleComponent {
   protected readonly closeInlineAction = signal<QuickAction>({
     label: 'Done',
     variant: 'primary',
-    action: () => this.inlineVisible.set(false),
+    action: () => this.inlineVisible.set(false)
   });
 
   protected readonly closeOverlayAction = signal<QuickAction>({
     label: 'Done',
     variant: 'primary',
-    action: () => this.overlayVisible.set(false),
+    action: () => this.overlayVisible.set(false)
   });
 }

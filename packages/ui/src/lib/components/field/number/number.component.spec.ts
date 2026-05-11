@@ -8,7 +8,7 @@ describe('NumberComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NumberComponent],
+      imports: [NumberComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(NumberComponent);
@@ -56,8 +56,8 @@ describe('NumberComponent', () => {
 
   it('should render number action button with aria-label', () => {
     const actionButtons: HTMLButtonElement[] = Array.from(
-      fixture.nativeElement.querySelectorAll('.field__actions .field__action'),
+      fixture.nativeElement.querySelectorAll('.field__actions .field__action')
     );
-    expect(actionButtons.some(btn => btn.getAttribute('aria-label') === 'Number input')).toBe(true);
+    expect(actionButtons.some((btn) => btn.getAttribute('aria-label') === 'Number input')).toBe(true);
   });
 });

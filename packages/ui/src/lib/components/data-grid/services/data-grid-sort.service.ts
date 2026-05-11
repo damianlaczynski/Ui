@@ -25,7 +25,7 @@ export class DataGridSortService<T = any> {
   getSortState(): SortState {
     return {
       field: this.sortField(),
-      direction: this.sortDirection(),
+      direction: this.sortDirection()
     };
   }
 
@@ -70,7 +70,7 @@ export class DataGridSortService<T = any> {
    * - alphanumeric: text_sort_ascending (asc) / text_sort_descending (desc) / arrow_sort (neutral)
    */
   getSortIcon(
-    column: DataGridColumn<T>,
+    column: DataGridColumn<T>
   ):
     | 'arrow_sort'
     | 'text_sort_ascending'

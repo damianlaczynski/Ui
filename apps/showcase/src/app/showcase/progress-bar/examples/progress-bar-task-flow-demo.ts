@@ -47,7 +47,7 @@ import { ButtonComponent, ProgressBarComponent } from 'ui';
         <div
           style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
         >
-          <ui-button type="button" variant="secondary" appearance="outline" (click)="reset()"> Reset </ui-button>
+          <ui-button type="button" variant="secondary" appearance="outline" (click)="reset()">Reset</ui-button>
           <ui-button type="button" variant="primary" (click)="advance()" [disabled]="state() === 'done'">
             Advance
           </ui-button>
@@ -63,7 +63,7 @@ import { ButtonComponent, ProgressBarComponent } from 'ui';
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class ProgressBarTaskFlowExampleComponent {
   protected readonly state = signal<'queued' | 'running' | 'verifying' | 'done' | 'failed'>('queued');
@@ -71,7 +71,7 @@ export class ProgressBarTaskFlowExampleComponent {
   protected readonly steps = [
     { label: 'Content', value: '124 files' },
     { label: 'Permissions', value: '18 groups' },
-    { label: 'Verification', value: 'Pending' },
+    { label: 'Verification', value: 'Pending' }
   ];
 
   protected readonly statusText = () => {

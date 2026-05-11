@@ -7,7 +7,7 @@ import {
   effect,
   input,
   output,
-  signal,
+  signal
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import type { RadioButtonItem } from '../field/radio-button-group/radio-button-group.component';
@@ -56,8 +56,8 @@ interface DragState {
         display: block;
         width: 100%;
       }
-    `,
-  ],
+    `
+  ]
 })
 export class TimePickerComponent implements AfterViewInit, OnDestroy {
   value = input<string>('');
@@ -73,7 +73,7 @@ export class TimePickerComponent implements AfterViewInit, OnDestroy {
 
   readonly meridiemItems: RadioButtonItem[] = [
     { id: 'am', label: 'AM', value: 'am' as Meridiem },
-    { id: 'pm', label: 'PM', value: 'pm' as Meridiem },
+    { id: 'pm', label: 'PM', value: 'pm' as Meridiem }
   ];
 
   private static nextMeridiemId = 0;
@@ -99,7 +99,7 @@ export class TimePickerComponent implements AfterViewInit, OnDestroy {
   private readonly sizeToItemHeight: Record<'small' | 'medium' | 'large', number> = {
     small: 32,
     medium: 40,
-    large: 48,
+    large: 48
   };
 
   private isViewReady = false;
@@ -320,7 +320,7 @@ export class TimePickerComponent implements AfterViewInit, OnDestroy {
       startY: event.clientY,
       lastY: event.clientY,
       pixelRemainder: 0,
-      dragging: false,
+      dragging: false
     };
 
     if (type === 'hour') {
@@ -730,7 +730,7 @@ export class TimePickerComponent implements AfterViewInit, OnDestroy {
     const [hourStr, minuteStr] = timeStr.split(':');
     return {
       hour: parseInt(hourStr, 10) || 0,
-      minute: parseInt(minuteStr, 10) || 0,
+      minute: parseInt(minuteStr, 10) || 0
     };
   }
 }

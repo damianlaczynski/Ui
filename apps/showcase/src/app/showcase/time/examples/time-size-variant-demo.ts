@@ -35,7 +35,7 @@ import { TimeComponent } from 'ui';
         [ngModelOptions]="{ standalone: true }"
       />
     </div>
-  `,
+  `
 })
 export class TimeSizeVariantDemoComponent {
   protected smallValue = '08:30';

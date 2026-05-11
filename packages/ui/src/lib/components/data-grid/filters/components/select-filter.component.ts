@@ -24,7 +24,7 @@ import { DataGridFilterTemplateContext } from '../../models/data-grid-config.mod
       [clearable]="true"
       [placeholder]="context().placeholder"
     />
-  `,
+  `
 })
 export class SelectFilterComponent {
   context = input.required<DataGridFilterTemplateContext>();

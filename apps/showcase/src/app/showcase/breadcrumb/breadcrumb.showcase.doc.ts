@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig,
+  ShowcaseDocPageConfig
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { BreadcrumbBasicExampleComponent } from './examples/breadcrumb-basic-demo';
 import { BreadcrumbOverflowExampleComponent } from './examples/breadcrumb-overflow-demo';
@@ -19,7 +19,7 @@ const componentMap = {
   states: BreadcrumbStatesExampleComponent,
   overflow: BreadcrumbOverflowExampleComponent,
   workspace: BreadcrumbWorkspaceExampleComponent,
-  header: BreadcrumbProjectHeaderExampleComponent,
+  header: BreadcrumbProjectHeaderExampleComponent
 } as const;
 
 export const BREADCRUMB_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -27,9 +27,9 @@ export const BREADCRUMB_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(breadcrumbMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${breadcrumbMeta.slug}/${file}`,
-    ]),
-  ) as Record<string, string>),
+      `/docs/components/snippets/${breadcrumbMeta.slug}/${file}`
+    ])
+  ) as Record<string, string>)
 };
 
 export const BREADCRUMB_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -38,12 +38,12 @@ export const BREADCRUMB_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: breadcrumbMeta.importCode,
   containerClass: breadcrumbMeta.containerClass,
   accessibility: breadcrumbMeta.accessibility,
-  featureSections: breadcrumbMeta.featureSections.map(section => ({
+  featureSections: breadcrumbMeta.featureSections.map((section) => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap],
+    component: componentMap[section.componentKey as keyof typeof componentMap]
   })),
-  apiSections: breadcrumbMeta.apiSections,
+  apiSections: breadcrumbMeta.apiSections
 };

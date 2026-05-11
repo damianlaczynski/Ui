@@ -11,7 +11,7 @@ import { NavComponent, type NavNode } from 'ui';
     >
       <ui-nav [items]="items" [showSelectionIndicator]="true" indicatorPosition="vertical" />
     </div>
-  `,
+  `
 })
 export class NavDeepTreeDemoComponent {
   protected readonly items: NavNode[] = [
@@ -38,8 +38,8 @@ export class NavDeepTreeDemoComponent {
               children: [
                 { id: 'overview', label: 'Overview', selected: true },
                 { id: 'tasks', label: 'Tasks' },
-                { id: 'releases', label: 'Releases' },
-              ],
+                { id: 'releases', label: 'Releases' }
+              ]
             },
             {
               id: 'beta',
@@ -48,10 +48,10 @@ export class NavDeepTreeDemoComponent {
               hasChildren: true,
               children: [
                 { id: 'overview-beta', label: 'Overview' },
-                { id: 'files-beta', label: 'Files' },
-              ],
-            },
-          ],
+                { id: 'files-beta', label: 'Files' }
+              ]
+            }
+          ]
         },
         {
           id: 'operations',
@@ -60,10 +60,10 @@ export class NavDeepTreeDemoComponent {
           hasChildren: true,
           children: [
             { id: 'incidents', label: 'Incidents' },
-            { id: 'runbooks', label: 'Runbooks' },
-          ],
-        },
-      ],
-    },
+            { id: 'runbooks', label: 'Runbooks' }
+          ]
+        }
+      ]
+    }
   ];
 }

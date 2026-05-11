@@ -44,7 +44,7 @@ import { TelComponent } from 'ui';
         />
       </div>
     </div>
-  `,
+  `
 })
 export class TelBasicDemoComponent {
   protected supportLine = '+48 600 700 800';

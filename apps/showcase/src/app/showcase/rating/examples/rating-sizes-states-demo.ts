@@ -10,7 +10,9 @@ import { RatingComponent, Size } from 'ui';
       <div style="display:flex;flex-wrap:wrap;gap:1.25rem;align-items:flex-end">
         @for (size of sizes; track size) {
           <div style="display:flex;flex-direction:column;gap:0.35rem;min-width:7rem">
-            <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">{{ size }}</span>
+            <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">
+              {{ size }}
+            </span>
             <ui-rating [value]="3" [size]="size" [readOnly]="true" [showValue]="false" />
           </div>
         }
@@ -33,7 +35,7 @@ import { RatingComponent, Size } from 'ui';
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class RatingSizesStatesExampleComponent {
   protected readonly sizes: Size[] = ['small', 'medium', 'large'];

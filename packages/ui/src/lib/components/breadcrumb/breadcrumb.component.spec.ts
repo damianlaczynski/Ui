@@ -9,7 +9,7 @@ import { Size } from '../utils';
 const TEST_ITEMS: Breadcrumb[] = [
   { id: '1', label: 'Home', icon: 'home' },
   { id: '2', label: 'Products', icon: 'folder' },
-  { id: '3', label: 'Electronics', icon: 'device_eq', selected: true },
+  { id: '3', label: 'Electronics', icon: 'device_eq', selected: true }
 ];
 
 describe('BreadcrumbComponent', () => {
@@ -18,7 +18,7 @@ describe('BreadcrumbComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BreadcrumbComponent, IconComponent, NoopAnimationsModule],
+      imports: [BreadcrumbComponent, IconComponent, NoopAnimationsModule]
     }).compileComponents();
 
     fixture = TestBed.createComponent(BreadcrumbComponent<Breadcrumb>);
@@ -89,7 +89,7 @@ describe('BreadcrumbComponent', () => {
 
     it('should add aria-hidden to dividers', () => {
       const dividers = fixture.debugElement.queryAll(By.css('.breadcrumb__divider'));
-      dividers.forEach(d => {
+      dividers.forEach((d) => {
         expect(d.nativeElement.getAttribute('aria-hidden')).toBe('true');
       });
     });
@@ -104,7 +104,7 @@ describe('BreadcrumbComponent', () => {
   describe('Size Input', () => {
     const sizes: Size[] = ['small', 'medium', 'large'];
 
-    sizes.forEach(size => {
+    sizes.forEach((size) => {
       it(`should apply ${size} size class`, () => {
         fixture.componentRef.setInput('size', size);
         fixture.detectChanges();
@@ -117,7 +117,7 @@ describe('BreadcrumbComponent', () => {
   describe('itemClick Event', () => {
     it('should emit itemClick when item is clicked', () => {
       let emitted: Breadcrumb | undefined;
-      component.itemClick.subscribe(item => (emitted = item));
+      component.itemClick.subscribe((item) => (emitted = item));
 
       const button = fixture.debugElement.query(By.css('button.breadcrumb__focusable'));
       button?.nativeElement.click();
@@ -133,7 +133,7 @@ describe('BreadcrumbComponent', () => {
       component.itemClick.subscribe(() => (emitted = true));
 
       const spans = fixture.debugElement.queryAll(By.css('span.breadcrumb__focusable'));
-      const selectedSpan = spans.find(s => s.nativeElement.textContent?.includes('Electronics'));
+      const selectedSpan = spans.find((s) => s.nativeElement.textContent?.includes('Electronics'));
       selectedSpan?.nativeElement.click();
       fixture.detectChanges();
 

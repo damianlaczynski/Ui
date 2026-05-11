@@ -49,12 +49,12 @@ interface UserCard {
         </div>
       }
     </div>
-  `,
+  `
 })
 export class StateContainerBasicCycleDemoComponent {
   private readonly users: UserCard[] = [
     { id: 1, name: 'Anna Kowalska', role: 'Administrator' },
-    { id: 2, name: 'Piotr Nowak', role: 'Project Manager' },
+    { id: 2, name: 'Piotr Nowak', role: 'Project Manager' }
   ];
 
   protected readonly presets: Array<{ label: string; state: State<UserCard[]> }> = [
@@ -62,6 +62,6 @@ export class StateContainerBasicCycleDemoComponent {
     { label: 'Loading', state: loadingState(initialState<UserCard[]>()) },
     { label: 'Empty', state: loadedState<UserCard[]>([]) },
     { label: 'Loaded', state: loadedState(this.users) },
-    { label: 'Error', state: errorState<UserCard[]>('Unable to load people data.') },
+    { label: 'Error', state: errorState<UserCard[]>('Unable to load people data.') }
   ];
 }

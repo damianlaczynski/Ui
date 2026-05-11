@@ -26,7 +26,7 @@ import { RadioButtonGroupComponent, type RadioButtonItem } from 'ui';
         [ngModelOptions]="{ standalone: true }"
       />
     </div>
-  `,
+  `
 })
 export class RadioButtonGroupBasicDemoComponent {
   protected viewMode = 'board';
@@ -35,12 +35,12 @@ export class RadioButtonGroupBasicDemoComponent {
   protected readonly viewItems: RadioButtonItem[] = [
     { id: 'board', label: 'Board', value: 'board' },
     { id: 'list', label: 'List', value: 'list' },
-    { id: 'timeline', label: 'Timeline', value: 'timeline' },
+    { id: 'timeline', label: 'Timeline', value: 'timeline' }
   ];
 
   protected readonly deliveryItems: RadioButtonItem[] = [
     { id: 'standard', label: 'Standard', value: 'standard' },
     { id: 'express', label: 'Express', value: 'express' },
-    { id: 'overnight', label: 'Overnight', value: 'overnight' },
+    { id: 'overnight', label: 'Overnight', value: 'overnight' }
   ];
 }

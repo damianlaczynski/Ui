@@ -48,6 +48,6 @@ import { ButtonComponent, CardComponent, BadgeComponent } from 'ui';
         </div>
       </ui-card>
     </div>
-  `,
+  `
 })
 export class CardBasicDemoComponent {}

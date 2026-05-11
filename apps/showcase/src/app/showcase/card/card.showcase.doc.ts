@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig,
+  ShowcaseDocPageConfig
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { CardBasicDemoComponent } from './examples/card-basic-demo';
 import { CardCompositionDemoComponent } from './examples/card-composition-demo';
@@ -19,14 +19,14 @@ const componentMap = {
   focusMode: CardFocusModeDemoComponent,
   selection: CardSelectionDemoComponent,
   floatingActions: CardFloatingActionsDemoComponent,
-  composition: CardCompositionDemoComponent,
+  composition: CardCompositionDemoComponent
 } as const;
 
 export const CARD_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   markdown: `/docs/components/${cardMeta.slug}.md`,
   ...(Object.fromEntries(
-    Object.entries(cardMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${cardMeta.slug}/${file}`]),
-  ) as Record<string, string>),
+    Object.entries(cardMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${cardMeta.slug}/${file}`])
+  ) as Record<string, string>)
 };
 
 export const CARD_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -35,12 +35,12 @@ export const CARD_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: cardMeta.importCode,
   containerClass: cardMeta.containerClass,
   accessibility: cardMeta.accessibility,
-  featureSections: cardMeta.featureSections.map(section => ({
+  featureSections: cardMeta.featureSections.map((section) => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap],
+    component: componentMap[section.componentKey as keyof typeof componentMap]
   })),
-  apiSections: cardMeta.apiSections,
+  apiSections: cardMeta.apiSections
 };

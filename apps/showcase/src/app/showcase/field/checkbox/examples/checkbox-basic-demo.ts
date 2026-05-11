@@ -27,7 +27,7 @@ import { CheckboxComponent } from 'ui';
         [ngModelOptions]="{ standalone: true }"
       />
     </div>
-  `,
+  `
 })
 export class CheckboxBasicExampleComponent {
   protected acceptTerms = false;

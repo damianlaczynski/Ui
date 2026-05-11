@@ -77,7 +77,7 @@ interface FilterConversionOptions {
  * GraphQL Service for executing GraphQL queries and mutations
  */
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class GraphQLService {
   // ============================================================================
@@ -110,23 +110,23 @@ export class GraphQLService {
     query: string,
     variables?: Record<string, any>,
     operationName?: string,
-    showErrorToast: boolean = true,
+    showErrorToast: boolean = true
   ): Observable<T> {
     const request: GraphQLRequest = {
       query,
       variables,
-      operationName,
+      operationName
     };
 
     return this.http
       .post<GraphQLResponse<T>>(this.graphqlUrl, request, {
         headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-        }),
+          'Content-Type': 'application/json'
+        })
       })
       .pipe(
-        map(response => this.handleResponse<T>(response, showErrorToast)),
-        catchError(error => this.apiErrorService.handleError(error, showErrorToast)),
+        map((response) => this.handleResponse<T>(response, showErrorToast)),
+        catchError((error) => this.apiErrorService.handleError(error, showErrorToast))
       );
   }
 
@@ -143,7 +143,7 @@ export class GraphQLService {
     mutation: string,
     variables?: Record<string, any>,
     operationName?: string,
-    showErrorToast: boolean = true,
+    showErrorToast: boolean = true
   ): Observable<T> {
     return this.query<T>(mutation, variables, operationName, showErrorToast);
   }
@@ -165,11 +165,11 @@ export class GraphQLService {
     variables?: Record<string, any>,
     operationName?: string,
     showErrorToast: boolean = true,
-    dataPath?: string,
+    dataPath?: string
   ): Observable<T> {
     const observable = dataPath
       ? this.query<any>(query, variables, operationName, showErrorToast).pipe(
-          map(response => {
+          map((response) => {
             // Extract data from nested path if specified
             const keys = dataPath.split('.');
             let data = response;
@@ -177,7 +177,7 @@ export class GraphQLService {
               data = data?.[key];
             }
             return data as T;
-          }),
+          })
         )
       : this.query<T>(query, variables, operationName, showErrorToast);
 
@@ -201,11 +201,11 @@ export class GraphQLService {
     variables?: Record<string, any>,
     operationName?: string,
     showErrorToast: boolean = true,
-    dataPath?: string,
+    dataPath?: string
   ): Observable<T> {
     const observable = dataPath
       ? this.mutate<any>(mutation, variables, operationName, showErrorToast).pipe(
-          map(response => {
+          map((response) => {
             // Extract data from nested path if specified
             const keys = dataPath.split('.');
             let data = response;
@@ -213,7 +213,7 @@ export class GraphQLService {
               data = data?.[key];
             }
             return data as T;
-          }),
+          })
         )
       : this.mutate<T>(mutation, variables, operationName, showErrorToast);
 
@@ -235,7 +235,7 @@ export class GraphQLService {
     queryName: string,
     params: QueryParams<T>,
     options?: GraphQLQueryOptions,
-    showErrorToast: boolean = true,
+    showErrorToast: boolean = true
   ): Observable<QueryResult<T>> {
     if (!options?.fieldsFragment) {
       const fieldsFragment = this.getFieldsFragmentFromCache(queryName);
@@ -256,13 +256,13 @@ export class GraphQLService {
     queryName: string,
     params: QueryParams<T>,
     options: GraphQLQueryOptions | undefined,
-    showErrorToast: boolean,
+    showErrorToast: boolean
   ): Observable<QueryResult<T>> {
     const query = this.buildPaginatedQuery(queryName, params, options);
     const variables = this.buildPaginatedVariables(queryName, params, options);
 
     return this.query<any>(query, variables, undefined, showErrorToast).pipe(
-      map((response: any) => this.mapPaginatedResponse<T>(response, queryName, params, options)),
+      map((response: any) => this.mapPaginatedResponse<T>(response, queryName, params, options))
     );
   }
 
@@ -273,22 +273,22 @@ export class GraphQLService {
     queryName: string,
     params: QueryParams<T>,
     options: GraphQLQueryOptions | undefined,
-    showErrorToast: boolean,
+    showErrorToast: boolean
   ): Observable<QueryResult<T>> {
     const typeName = this.getSingularName(queryName);
     const introspectionQuery = this.buildFieldsIntrospectionQuery(typeName);
 
     return this.query<any>(introspectionQuery, undefined, undefined, false).pipe(
-      switchMap(response => {
+      switchMap((response) => {
         const fieldsFragment = this.extractFieldsFragment(response, queryName);
         const optionsWithFields = { ...options, fieldsFragment };
         return this.executePaginatedQuery<T>(queryName, params, optionsWithFields, showErrorToast);
       }),
-      catchError(error => {
+      catchError((error) => {
         console.warn(`Failed to fetch fields fragment for ${queryName}, using default:`, error);
         const optionsWithDefaultFields = { ...options, fieldsFragment: 'id' };
         return this.executePaginatedQuery<T>(queryName, params, optionsWithDefaultFields, showErrorToast);
-      }),
+      })
     );
   }
 
@@ -314,12 +314,12 @@ export class GraphQLService {
     const introspectionQuery = this.buildFieldTypeIntrospectionQuery(typeName);
 
     return this.query<any>(introspectionQuery, undefined, undefined, false).pipe(
-      map(response => this.extractFieldSortType(response, cacheKey, fieldName)),
-      catchError(error => {
+      map((response) => this.extractFieldSortType(response, cacheKey, fieldName)),
+      catchError((error) => {
         console.warn(`Failed to introspect field type for ${cacheKey}:`, error);
         this.fieldTypeCache.set(cacheKey, 'alphanumeric');
         return of('alphanumeric' as const);
-      }),
+      })
     );
   }
 
@@ -332,17 +332,17 @@ export class GraphQLService {
    */
   public getFieldsSortTypes(
     queryName: string,
-    fieldNames: string[],
+    fieldNames: string[]
   ): Observable<Map<string, 'numeric' | 'alphanumeric'>> {
     const typeName = this.getSingularName(queryName);
     const introspectionQuery = this.buildFieldTypeIntrospectionQuery(typeName);
 
     return this.query<any>(introspectionQuery, undefined, undefined, false).pipe(
-      map(response => this.extractFieldsSortTypes(response, queryName, fieldNames)),
-      catchError(error => {
+      map((response) => this.extractFieldsSortTypes(response, queryName, fieldNames)),
+      catchError((error) => {
         console.warn(`Failed to introspect field types for ${queryName}:`, error);
         return of(this.createDefaultSortTypesMap(queryName, fieldNames));
-      }),
+      })
     );
   }
 
@@ -377,7 +377,7 @@ export class GraphQLService {
    */
   private handleResponse<T>(response: GraphQLResponse<T>, showErrorToast: boolean): T {
     if (response.errors && response.errors.length > 0) {
-      const errorMessages = response.errors.map(e => e.message).join(', ');
+      const errorMessages = response.errors.map((e) => e.message).join(', ');
       const error: any = new Error(errorMessages);
       error.graphqlErrors = response.errors;
       throw error;
@@ -397,7 +397,7 @@ export class GraphQLService {
     response: any,
     queryName: string,
     params: QueryParams<T>,
-    options?: GraphQLQueryOptions,
+    options?: GraphQLQueryOptions
   ): QueryResult<T> {
     const queryResult = response[queryName];
 
@@ -416,7 +416,7 @@ export class GraphQLService {
       items: items as T[],
       totalCount,
       hasNextPage: pageInfo.hasNextPage ?? false,
-      hasPreviousPage: params.page ? params.page > 1 : false,
+      hasPreviousPage: params.page ? params.page > 1 : false
     };
   }
 
@@ -426,7 +426,7 @@ export class GraphQLService {
   private calculateTotalCount<T = any>(
     items: any[],
     pageInfo: { hasNextPage?: boolean },
-    params: QueryParams<T>,
+    params: QueryParams<T>
   ): number {
     if (pageInfo.hasNextPage && params.page && params.pageSize) {
       return params.page * params.pageSize + 1;
@@ -447,7 +447,7 @@ export class GraphQLService {
   private buildPaginatedQuery<T = any>(
     queryName: string,
     params: QueryParams<T>,
-    options?: GraphQLQueryOptions,
+    options?: GraphQLQueryOptions
   ): string {
     const hasFilters = !!(params.filters && params.filters.length > 0);
     const hasSort = !!(params.orders && params.orders.length > 0);
@@ -482,7 +482,7 @@ export class GraphQLService {
     hasFilters: boolean,
     hasSort: boolean,
     queryName: string,
-    options?: GraphQLQueryOptions,
+    options?: GraphQLQueryOptions
   ): string[] {
     const variables: string[] = ['$skip: Int', '$take: Int'];
 
@@ -520,7 +520,7 @@ export class GraphQLService {
     }
 
     if (options?.additionalArguments) {
-      Object.keys(options.additionalArguments).forEach(name => {
+      Object.keys(options.additionalArguments).forEach((name) => {
         args.push(`${name}: $${name}`);
       });
     }
@@ -534,7 +534,7 @@ export class GraphQLService {
   private buildPaginatedVariables<T = any>(
     queryName: string,
     params: QueryParams<T>,
-    options?: GraphQLQueryOptions,
+    options?: GraphQLQueryOptions
   ): Record<string, any> {
     const variables: Record<string, any> = {};
     const page = params.page ?? 1;
@@ -544,12 +544,15 @@ export class GraphQLService {
     variables['take'] = pageSize;
 
     if (params.filters && params.filters.length > 0) {
-      variables['where'] = this.buildWhereInput(params.filters, { ...options, queryName });
+      variables['where'] = this.buildWhereInput(params.filters, {
+        ...options,
+        queryName
+      });
     }
 
     if (params.orders && params.orders.length > 0) {
-      variables['order'] = params.orders.map(order => ({
-        [order.columnName]: order.order.toUpperCase(),
+      variables['order'] = params.orders.map((order) => ({
+        [order.columnName]: order.order.toUpperCase()
       }));
     }
 
@@ -571,14 +574,14 @@ export class GraphQLService {
    */
   private buildWhereInput<T = any>(
     filters: QueryParams<T>['filters'],
-    options?: FilterConversionOptions,
+    options?: FilterConversionOptions
   ): Record<string, any> {
     if (!filters || filters.length === 0) {
       return {};
     }
 
     const validFilters = filters
-      .map(filter => this.convertFilterToGraphQL(filter, options))
+      .map((filter) => this.convertFilterToGraphQL(filter, options))
       .filter((filter): filter is Record<string, any> => filter !== null);
 
     if (validFilters.length === 0) {
@@ -597,7 +600,7 @@ export class GraphQLService {
    */
   private convertFilterToGraphQL<T = any>(
     filter: NonNullable<QueryParams<T>['filters']>[0],
-    options?: FilterConversionOptions,
+    options?: FilterConversionOptions
   ): Record<string, any> | null {
     if (!filter || filter.value === null || filter.value === undefined) {
       return null;
@@ -666,7 +669,7 @@ export class GraphQLService {
     value: any,
     field: string,
     convertEnum: (field: string, value: any) => any,
-    operator: string | undefined,
+    operator: string | undefined
   ): any {
     if (operator === 'between' && typeof value === 'object' && value !== null && !Array.isArray(value)) {
       const range = value as { start?: any; end?: any };
@@ -680,7 +683,7 @@ export class GraphQLService {
     }
 
     const converted = convertEnum(field, value);
-    return Array.isArray(converted) ? converted.map(v => convertEnum(field, v)) : converted;
+    return Array.isArray(converted) ? converted.map((v) => convertEnum(field, v)) : converted;
   }
 
   /**
@@ -826,7 +829,7 @@ export class GraphQLService {
         const range = value as { startDate?: any; endDate?: any };
         if (range.startDate && range.endDate) {
           return {
-            and: [{ [field]: { gte: range.startDate } }, { [field]: { lte: range.endDate } }],
+            and: [{ [field]: { gte: range.startDate } }, { [field]: { lte: range.endDate } }]
           };
         }
         if (range.startDate) {
@@ -841,7 +844,7 @@ export class GraphQLService {
         const range = value as { start?: any; end?: any };
         if (range.start != null && range.end != null) {
           return {
-            and: [{ [field]: { gte: range.start } }, { [field]: { lte: range.end } }],
+            and: [{ [field]: { gte: range.start } }, { [field]: { lte: range.end } }]
           };
         }
         if (range.start != null) {
@@ -1053,7 +1056,7 @@ export class GraphQLService {
   private extractFieldsSortTypes(
     response: any,
     queryName: string,
-    fieldNames: string[],
+    fieldNames: string[]
   ): Map<string, 'numeric' | 'alphanumeric'> {
     const result = new Map<string, 'numeric' | 'alphanumeric'>();
     const type = response?.__type;
@@ -1062,7 +1065,7 @@ export class GraphQLService {
       return this.createDefaultSortTypesMap(queryName, fieldNames);
     }
 
-    fieldNames.forEach(fieldName => {
+    fieldNames.forEach((fieldName) => {
       const cacheKey = `${queryName}.${fieldName}`;
 
       if (this.fieldTypeCache.has(cacheKey)) {
@@ -1109,7 +1112,7 @@ export class GraphQLService {
    */
   private createDefaultSortTypesMap(queryName: string, fieldNames: string[]): Map<string, 'numeric' | 'alphanumeric'> {
     const result = new Map<string, 'numeric' | 'alphanumeric'>();
-    fieldNames.forEach(fieldName => {
+    fieldNames.forEach((fieldName) => {
       const cacheKey = `${queryName}.${fieldName}`;
       this.fieldTypeCache.set(cacheKey, 'alphanumeric');
       result.set(fieldName, 'alphanumeric');

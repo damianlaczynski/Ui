@@ -50,7 +50,9 @@ import { ButtonComponent, MessageBarComponent, TagComponent, TimeSpanComponent }
 
         <div style="display:flex;flex-direction:column;gap:0.375rem">
           <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">Selected duration</div>
-          <div style="font-size:0.9375rem;font-weight:600">{{ value || 'Not selected' }}</div>
+          <div style="font-size:0.9375rem;font-weight:600">
+            {{ value || 'Not selected' }}
+          </div>
         </div>
 
         <div
@@ -61,7 +63,7 @@ import { ButtonComponent, MessageBarComponent, TagComponent, TimeSpanComponent }
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class TimeSpanPolicyPanelDemoComponent {
   protected value = 'PT8H30M';

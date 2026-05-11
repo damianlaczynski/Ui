@@ -18,19 +18,19 @@ import { ButtonComponent, TreeNodeComponent, type TreeNode } from 'ui';
         style="flex:1 1 18rem;display:flex;flex-direction:column;gap:0.75rem;padding:0.875rem 1rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background2-rest)"
       >
         <div style="font-size:0.875rem;line-height:1.5">
-          Reorder child items inside one branch to preview drop zones on <code>ui-tree-node</code>.
+          Reorder child items inside one branch to preview drop zones on
+          <code>ui-tree-node</code>
+          .
         </div>
 
-        <ui-button variant="secondary" appearance="outline" size="small" (click)="resetNode()">
-          Reset branch
-        </ui-button>
+        <ui-button variant="secondary" appearance="outline" size="small" (click)="resetNode()">Reset branch</ui-button>
 
         <div style="font-size:0.875rem;line-height:1.5;color:var(--color-neutral-foreground-rest)">
           {{ lastAction() || 'No move yet.' }}
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class TreeNodeDragDropDemoComponent {
   protected readonly node = signal<TreeNode>(this.createNode());
@@ -55,8 +55,8 @@ export class TreeNodeDragDropDemoComponent {
       children: [
         { id: 'cover', label: 'Cover.png', icon: 'image', hasChildren: false },
         { id: 'icons', label: 'Icons.svg', icon: 'image', hasChildren: false },
-        { id: 'copy', label: 'Copy.txt', icon: 'document', hasChildren: false },
-      ],
+        { id: 'copy', label: 'Copy.txt', icon: 'document', hasChildren: false }
+      ]
     };
   }
 }

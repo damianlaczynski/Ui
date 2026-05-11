@@ -4,7 +4,7 @@ import { NavComponent, type NavNode } from 'ui';
 const items: NavNode[] = [
   { id: 'overview', label: 'Overview', icon: 'book', selected: true },
   { id: 'reports', label: 'Reports', icon: 'document' },
-  { id: 'automation', label: 'Automation', icon: 'design_ideas' },
+  { id: 'automation', label: 'Automation', icon: 'design_ideas' }
 ];
 
 @Component({
@@ -27,7 +27,7 @@ const items: NavNode[] = [
         <ui-nav [items]="items" appearance="filled" variant="secondary" shape="circular" />
       </div>
     </div>
-  `,
+  `
 })
 export class NavAppearanceDemoComponent {
   protected readonly items = items;

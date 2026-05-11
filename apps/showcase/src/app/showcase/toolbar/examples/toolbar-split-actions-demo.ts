@@ -26,7 +26,7 @@ import { ToolbarComponent, type MenuItem, type ToolbarItem } from 'ui';
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class ToolbarSplitActionsDemoComponent {
   protected readonly lastAction = signal('');
@@ -38,7 +38,7 @@ export class ToolbarSplitActionsDemoComponent {
       label: 'Save',
       icon: 'save',
       variant: 'primary',
-      menuItems: this.createMenuItems('Save'),
+      menuItems: this.createMenuItems('Save')
     },
     {
       id: 'publish',
@@ -46,16 +46,16 @@ export class ToolbarSplitActionsDemoComponent {
       label: 'Publish',
       icon: 'rocket',
       appearance: 'outline',
-      menuItems: this.createMenuItems('Publish'),
+      menuItems: this.createMenuItems('Publish')
     },
-    { id: 'preview', label: 'Preview', icon: 'eye', tooltip: 'Preview' },
+    { id: 'preview', label: 'Preview', icon: 'eye', tooltip: 'Preview' }
   ];
 
   private createMenuItems(label: string): MenuItem[] {
     return [
       { id: `${label}-as`, label: `${label} as copy` },
       { id: `${label}-all`, label: `${label} all` },
-      { id: `${label}-draft`, label: `${label} draft only` },
+      { id: `${label}-draft`, label: `${label} draft only` }
     ];
   }
 }

@@ -50,7 +50,7 @@ export function formatHhmmForDisplay(hhmm: string, use24HourFormat: boolean): st
   return date.toLocaleTimeString(undefined, {
     hour: 'numeric',
     minute: '2-digit',
-    hour12: true,
+    hour12: true
   });
 }
 

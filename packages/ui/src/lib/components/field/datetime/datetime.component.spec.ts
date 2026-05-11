@@ -8,7 +8,7 @@ describe('DatetimeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DatetimeComponent],
+      imports: [DatetimeComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(DatetimeComponent);
@@ -47,7 +47,7 @@ describe('DatetimeComponent', () => {
     expect(component.selectedDate()?.getMonth()).toBe(expected.getMonth());
     expect(component.selectedDate()?.getDate()).toBe(expected.getDate());
     expect(component.selectedTime()).toBe(
-      `${String(expected.getHours()).padStart(2, '0')}:${String(expected.getMinutes()).padStart(2, '0')}`,
+      `${String(expected.getHours()).padStart(2, '0')}:${String(expected.getMinutes()).padStart(2, '0')}`
     );
   });
 

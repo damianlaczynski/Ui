@@ -5,7 +5,7 @@ import { ButtonComponent, DropdownComponent, type DropdownItem } from 'ui';
 const assigneeItems: DropdownItem[] = [
   { value: 'nina', label: 'Nina Woods', icon: 'person' },
   { value: 'liam', label: 'Liam Scott', icon: 'person' },
-  { value: 'zoe', label: 'Zoe Patel', icon: 'person' },
+  { value: 'zoe', label: 'Zoe Patel', icon: 'person' }
 ];
 
 const labelItems: DropdownItem[] = [
@@ -13,7 +13,7 @@ const labelItems: DropdownItem[] = [
   { value: 'frontend', label: 'Frontend', icon: 'code' },
   { value: 'ops', label: 'Ops', icon: 'settings' },
   { value: 'urgent', label: 'Urgent', icon: 'alert' },
-  { value: 'release', label: 'Release', icon: 'rocket' },
+  { value: 'release', label: 'Release', icon: 'rocket' }
 ];
 
 @Component({
@@ -58,7 +58,7 @@ const labelItems: DropdownItem[] = [
           ariaLabel="Label filter"
         />
 
-        <ui-button type="button" variant="secondary" appearance="outline" (click)="resetFilters()"> Reset </ui-button>
+        <ui-button type="button" variant="secondary" appearance="outline" (click)="resetFilters()">Reset</ui-button>
       </div>
 
       <div
@@ -86,7 +86,7 @@ const labelItems: DropdownItem[] = [
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class DropdownCompactPanelExampleComponent {
   protected readonly assigneeItems = assigneeItems;
@@ -95,11 +95,11 @@ export class DropdownCompactPanelExampleComponent {
   protected selectedLabels: Array<string | number> = ['frontend', 'urgent'];
 
   protected get selectedAssigneeLabel(): string {
-    return this.assigneeItems.find(item => item.value === this.selectedAssignee)?.label ?? 'None';
+    return this.assigneeItems.find((item) => item.value === this.selectedAssignee)?.label ?? 'None';
   }
 
   protected get selectedLabelText(): string {
-    const labels = this.labelItems.filter(item => this.selectedLabels.includes(item.value)).map(item => item.label);
+    const labels = this.labelItems.filter((item) => this.selectedLabels.includes(item.value)).map((item) => item.label);
 
     return labels.length > 0 ? labels.join(', ') : 'None';
   }

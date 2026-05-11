@@ -12,7 +12,7 @@ import {
   computed,
   afterNextRender,
   inject,
-  DestroyRef,
+  DestroyRef
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
@@ -21,7 +21,7 @@ import { QueryResult } from '../../api';
 import {
   ScrollPanelComponent,
   ScrollPanelOrientation,
-  ScrollPanelBehavior,
+  ScrollPanelBehavior
 } from '../scroll-panel/scroll-panel.component';
 import { NodeComponent, Node } from '../node/node.component';
 import { LoadingStateComponent } from '../loading-state/loading-state.component';
@@ -34,7 +34,7 @@ export type ScrollContainerDataSource<T = any> = (page: number, pageSize: number
   selector: 'ui-scroll-container',
   templateUrl: './scroll-container.component.html',
   imports: [CommonModule, ScrollPanelComponent, NodeComponent, LoadingStateComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ScrollContainerComponent<T = any> {
   //Service
@@ -124,7 +124,7 @@ export class ScrollContainerComponent<T = any> {
     this.dataSource()(this.initialPage(), this.pageSize())
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
-        next: result => {
+        next: (result) => {
           this.items.set(result.items);
           this.hasNextPage.set(result.hasNextPage ?? false);
           this.hasPreviousPage.set(result.hasPreviousPage ?? false);
@@ -132,11 +132,11 @@ export class ScrollContainerComponent<T = any> {
           this.isLoading.set(false);
           this.loadMore.emit({ page: this.initialPage(), items: result.items });
         },
-        error: err => {
+        error: (err) => {
           this.error.set(err instanceof Error ? err.message : this.loadDataErrorText());
           this.items.set([]);
           this.isLoading.set(false);
-        },
+        }
       });
   }
 
@@ -151,7 +151,7 @@ export class ScrollContainerComponent<T = any> {
     this.dataSource()(nextPage, this.pageSize())
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
-        next: result => {
+        next: (result) => {
           const currentItems = this.items();
           this.items.set([...currentItems, ...result.items]);
           this.hasNextPage.set(result.hasNextPage ?? false);
@@ -166,10 +166,10 @@ export class ScrollContainerComponent<T = any> {
             this.loadComplete.emit();
           }
         },
-        error: err => {
+        error: (err) => {
           this.error.set(err instanceof Error ? err.message : this.loadMoreErrorText());
           this.isLoading.set(false);
-        },
+        }
       });
   }
 
@@ -247,14 +247,14 @@ export class ScrollContainerComponent<T = any> {
         icon: itemObj.icon,
         disabled: itemObj.disabled,
         selected: this.selectedItemId() === (itemObj.id ?? index),
-        data: item,
+        data: item
       };
     }
 
     return {
       id: index,
       label: String(item),
-      data: item,
+      data: item
     };
   }
 

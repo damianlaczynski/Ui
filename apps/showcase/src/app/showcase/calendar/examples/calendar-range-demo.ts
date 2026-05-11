@@ -38,7 +38,7 @@ import { ButtonComponent, CalendarComponent, CalendarDay } from 'ui';
         </span>
       </div>
     </div>
-  `,
+  `
 })
 export class CalendarRangeDemoComponent {
   protected readonly currentMonth = signal(new Date(2026, 6, 1));

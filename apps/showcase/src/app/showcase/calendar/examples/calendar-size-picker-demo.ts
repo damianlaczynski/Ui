@@ -31,7 +31,7 @@ import { CalendarComponent, CalendarDay } from 'ui';
         </div>
       }
     </div>
-  `,
+  `
 })
 export class CalendarSizePickerDemoComponent {
   protected readonly currentMonth = signal(new Date(2026, 4, 1));
@@ -42,20 +42,20 @@ export class CalendarSizePickerDemoComponent {
       title: 'Small with picker',
       note: 'Compact date selection inside denser forms or filters.',
       size: 'small' as const,
-      showMonthYearPicker: true,
+      showMonthYearPicker: true
     },
     {
       title: 'Medium without picker',
       note: 'Keeps the header quieter when month switching should stay button driven.',
       size: 'medium' as const,
-      showMonthYearPicker: false,
+      showMonthYearPicker: false
     },
     {
       title: 'Large with picker',
       note: 'Useful for touch-friendly or emphasized scheduling surfaces.',
       size: 'large' as const,
-      showMonthYearPicker: true,
-    },
+      showMonthYearPicker: true
+    }
   ];
 
   protected onDateSelect(day: CalendarDay): void {

@@ -18,7 +18,7 @@ import { ButtonComponent, DialogComponent, QuickAction } from 'ui';
         [secondaryAction]="cancelImportAction()"
       />
     </div>
-  `,
+  `
 })
 export class DialogStaticExampleComponent {
   protected readonly visible = model(false);
@@ -26,12 +26,12 @@ export class DialogStaticExampleComponent {
   protected readonly mergeAction = signal<QuickAction>({
     label: 'Review duplicates',
     variant: 'primary',
-    action: () => this.visible.set(false),
+    action: () => this.visible.set(false)
   });
 
   protected readonly cancelImportAction = signal<QuickAction>({
     label: 'Cancel import',
     variant: 'secondary',
-    action: () => this.visible.set(false),
+    action: () => this.visible.set(false)
   });
 }

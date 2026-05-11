@@ -13,7 +13,7 @@ import {
   ShowcaseDocApiBlock,
   ShowcaseDocApiColumnKind,
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig,
+  ShowcaseDocPageConfig
 } from './showcase-doc-page.models';
 
 @Component({
@@ -24,7 +24,7 @@ import {
     TabsComponent,
     TableOfContentComponent,
     ShowcaseDocHeaderComponent,
-    ShowcaseFeatureSectionComponent,
+    ShowcaseFeatureSectionComponent
   ],
   template: `
     <div class="showcase-doc-layout showcase-doc-layout--with-toc">
@@ -106,7 +106,9 @@ import {
                                   @for (cell of row; track $index; let cellIndex = $index) {
                                     <td>
                                       @if (cellIndex === 0) {
-                                        <code class="showcase-doc__api-code">{{ cell }}</code>
+                                        <code class="showcase-doc__api-code">
+                                          {{ cell }}
+                                        </code>
                                       } @else {
                                         <span>{{ cell }}</span>
                                       }
@@ -162,18 +164,24 @@ import {
                                   <td [class.showcase-doc__api-desc-cell]="isDescCell(block, cellIndex)">
                                     @switch (columnKind(block, cellIndex)) {
                                       @case ('code') {
-                                        <code class="showcase-doc__api-code">{{ cell }}</code>
+                                        <code class="showcase-doc__api-code">
+                                          {{ cell }}
+                                        </code>
                                       }
                                       @case ('type') {
-                                        <span class="showcase-doc__api-type">{{ cell }}</span>
+                                        <span class="showcase-doc__api-type">
+                                          {{ cell }}
+                                        </span>
                                       }
                                       @case ('default') {
                                         @if (cell !== null) {
-                                          <code class="showcase-doc__api-default">{{ cell }}</code>
+                                          <code class="showcase-doc__api-default">
+                                            {{ cell }}
+                                          </code>
                                         } @else {
-                                          <span class="showcase-doc__api-default showcase-doc__api-default--empty"
-                                            >-</span
-                                          >
+                                          <span class="showcase-doc__api-default showcase-doc__api-default--empty">
+                                            -
+                                          </span>
                                         }
                                       }
                                       @default {
@@ -213,7 +221,7 @@ import {
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class ShowcaseDocPageComponent {
   private readonly docAssets = inject(ShowcaseDocAssetService);
@@ -222,15 +230,15 @@ export class ShowcaseDocPageComponent {
   readonly assetPaths = input.required<ShowcaseDocAssetPaths>();
 
   private readonly docs = toSignal(
-    toObservable(this.assetPaths).pipe(switchMap(assetPaths => this.docAssets.loadMany(assetPaths))),
+    toObservable(this.assetPaths).pipe(switchMap((assetPaths) => this.docAssets.loadMany(assetPaths))),
     {
-      initialValue: { markdown: '' },
-    },
+      initialValue: { markdown: '' }
+    }
   );
 
   readonly pageTabs: Tab[] = [
     { id: 'features', label: 'FEATURES' },
-    { id: 'api', label: 'API' },
+    { id: 'api', label: 'API' }
   ];
 
   readonly activeTabId = signal<string | number>('features');
@@ -251,21 +259,21 @@ export class ShowcaseDocPageComponent {
   }
 
   accessibilityParts(
-    block: ShowcaseDocAccessibilityBlock,
+    block: ShowcaseDocAccessibilityBlock
   ): Array<{ type: 'html'; content: string } | { type: 'table'; headers: string[]; rows: string[][] }> {
     const segments = block.body.split('\n\n');
-    return segments.map(segment => {
+    return segments.map((segment) => {
       const lines = segment.trim().split('\n');
       if (lines.length >= 2 && lines[0].includes('|') && lines[1].includes('---')) {
         const headers = lines[0]
           .split('|')
-          .map(part => part.trim())
+          .map((part) => part.trim())
           .filter(Boolean);
-        const rows = lines.slice(2).map(line =>
+        const rows = lines.slice(2).map((line) =>
           line
             .split('|')
-            .map(part => part.trim())
-            .filter(Boolean),
+            .map((part) => part.trim())
+            .filter(Boolean)
         );
         return { type: 'table' as const, headers, rows };
       }

@@ -21,7 +21,7 @@ export interface Step {
   selector: 'ui-stepper',
 
   imports: [CommonModule, IconComponent],
-  templateUrl: './stepper.component.html',
+  templateUrl: './stepper.component.html'
 })
 export class StepperComponent {
   // Inputs

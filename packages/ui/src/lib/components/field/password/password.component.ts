@@ -11,16 +11,16 @@ import { ActionButtonComponent } from '../action-button.component';
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => PasswordComponent),
-      multi: true,
-    },
+      multi: true
+    }
   ],
   styles: [
     `
       :host {
         width: 100%;
       }
-    `,
-  ],
+    `
+  ]
 })
 export class PasswordComponent extends FieldComponent {
   protected showPassword = signal<boolean>(false);

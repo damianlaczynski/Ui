@@ -38,6 +38,6 @@ import { UrlComponent } from 'ui';
         />
       </div>
     </div>
-  `,
+  `
 })
 export class UrlLayoutDemoComponent {}

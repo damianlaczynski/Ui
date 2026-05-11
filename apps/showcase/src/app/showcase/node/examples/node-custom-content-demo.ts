@@ -37,18 +37,18 @@ import { BadgeComponent, NodeComponent, type Node } from 'ui';
         </ng-template>
       </ui-node>
     </div>
-  `,
+  `
 })
 export class NodeCustomContentDemoComponent {
   protected readonly syncNode: Node = {
     id: 'sync',
     label: 'Homepage.fig',
-    icon: 'document',
+    icon: 'document'
   };
 
   protected readonly reviewNode: Node = {
     id: 'review',
     label: 'Q2 launch copy',
-    icon: 'document_text',
+    icon: 'document_text'
   };
 }

@@ -46,7 +46,7 @@ export abstract class BaseFilterDefinition implements FilterDefinition {
    */
   getOperatorIcon(operator: string): IconName {
     const operators = this.getOperators();
-    const operatorDef = operators.find(op => op.value === operator);
+    const operatorDef = operators.find((op) => op.value === operator);
     return operatorDef?.icon || 'filter';
   }
 
@@ -55,7 +55,7 @@ export abstract class BaseFilterDefinition implements FilterDefinition {
    */
   getOperatorText(operator: string): string {
     const operators = this.getOperators();
-    const operatorDef = operators.find(op => op.value === operator);
+    const operatorDef = operators.find((op) => op.value === operator);
     return operatorDef?.label || operator;
   }
 
@@ -67,12 +67,12 @@ export abstract class BaseFilterDefinition implements FilterDefinition {
 
     return {
       type: this.type as any,
-      operators: operators.map(op => op.value) as any,
+      operators: operators.map((op) => op.value) as any,
       defaultOperator: this.getDefaultOperator() as any,
       placeholder: options?.placeholder,
       debounceMs: options?.debounceMs ?? 300,
       parameters: options?.parameters,
-      ...options,
+      ...options
     };
   }
 
@@ -111,7 +111,7 @@ export abstract class BaseFilterDefinition implements FilterDefinition {
         return false;
       }
       // For range objects (between operator), check if any value exists
-      const hasAnyValue = keys.some(key => {
+      const hasAnyValue = keys.some((key) => {
         const val = filter.value[key];
         return val != null && val !== '';
       });

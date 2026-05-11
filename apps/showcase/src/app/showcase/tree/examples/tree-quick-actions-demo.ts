@@ -44,7 +44,7 @@ import { ButtonComponent, TreeComponent, type TreeNode } from 'ui';
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class TreeQuickActionsDemoComponent {
   protected readonly nodes: TreeNode[] = [
@@ -56,10 +56,10 @@ export class TreeQuickActionsDemoComponent {
       expanded: true,
       children: [
         { id: 'mocks', label: 'Mockups.fig', icon: 'document' },
-        { id: 'tokens', label: 'Tokens.json', icon: 'document' },
-      ],
+        { id: 'tokens', label: 'Tokens.json', icon: 'document' }
+      ]
     },
-    { id: 'handoff', label: 'Handoff notes', icon: 'document' },
+    { id: 'handoff', label: 'Handoff notes', icon: 'document' }
   ];
 
   protected readonly lastAction = signal('');

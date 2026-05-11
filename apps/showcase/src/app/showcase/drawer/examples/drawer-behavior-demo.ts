@@ -9,7 +9,7 @@ import { ButtonComponent, DrawerComponent, QuickAction } from 'ui';
     <div style="display:flex;flex-wrap:wrap;gap:0.75rem">
       <ui-button appearance="outline" (click)="dynamicVisible.set(true)">Dynamic backdrop</ui-button>
       <ui-button appearance="outline" (click)="staticVisible.set(true)">Static backdrop</ui-button>
-      <ui-button variant="danger" appearance="outline" (click)="alertVisible.set(true)"> Alert drawer </ui-button>
+      <ui-button variant="danger" appearance="outline" (click)="alertVisible.set(true)">Alert drawer</ui-button>
 
       <ui-drawer
         title="Standard behavior"
@@ -38,7 +38,7 @@ import { ButtonComponent, DrawerComponent, QuickAction } from 'ui';
         [secondaryAction]="dismissAlertAction()"
       />
     </div>
-  `,
+  `
 })
 export class DrawerBehaviorExampleComponent {
   protected readonly dynamicVisible = model(false);
@@ -48,24 +48,24 @@ export class DrawerBehaviorExampleComponent {
   protected readonly closeDynamicAction = signal<QuickAction>({
     label: 'Done',
     variant: 'primary',
-    action: () => this.dynamicVisible.set(false),
+    action: () => this.dynamicVisible.set(false)
   });
 
   protected readonly closeStaticAction = signal<QuickAction>({
     label: 'Done',
     variant: 'primary',
-    action: () => this.staticVisible.set(false),
+    action: () => this.staticVisible.set(false)
   });
 
   protected readonly resolveAlertAction = signal<QuickAction>({
     label: 'Review now',
     variant: 'primary',
-    action: () => this.alertVisible.set(false),
+    action: () => this.alertVisible.set(false)
   });
 
   protected readonly dismissAlertAction = signal<QuickAction>({
     label: 'Defer',
     variant: 'secondary',
-    action: () => this.alertVisible.set(false),
+    action: () => this.alertVisible.set(false)
   });
 }

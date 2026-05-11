@@ -13,8 +13,8 @@ import { UiI18nService } from '../../i18n';
     role: 'img',
     '[attr.aria-label]': 'computedAriaLabel()',
     '[attr.aria-busy]': 'loading() ? "true" : null',
-    '[attr.aria-disabled]': 'disabled() ? "true" : null',
-  },
+    '[attr.aria-disabled]': 'disabled() ? "true" : null'
+  }
 })
 export class AvatarComponent {
   private readonly i18n = inject(UiI18nService);
@@ -37,7 +37,7 @@ export class AvatarComponent {
     const sizeMap: Record<Size, ExtendedSize> = {
       small: 'extra-small',
       medium: 'small',
-      large: 'medium',
+      large: 'medium'
     };
     return sizeMap[this.size()] ?? 'small';
   });

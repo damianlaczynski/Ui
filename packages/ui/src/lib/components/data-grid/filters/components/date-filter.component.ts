@@ -33,7 +33,7 @@ import { DataGridFilterTemplateContext } from '../../models/data-grid-config.mod
         (ngModelChange)="context().onValueChange($event)"
       />
     }
-  `,
+  `
 })
 export class DateFilterComponent {
   context = input.required<DataGridFilterTemplateContext>();

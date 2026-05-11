@@ -32,7 +32,7 @@ import { TotpComponent } from 'ui';
         />
       </div>
     </div>
-  `,
+  `
 })
 export class TotpStatesDemoComponent {
   protected readonlyCode = '654321';

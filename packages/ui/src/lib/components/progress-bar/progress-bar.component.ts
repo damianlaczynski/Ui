@@ -9,7 +9,7 @@ export type ProgressBarType = 'determinate' | 'indeterminate';
   selector: 'ui-progress-bar',
   templateUrl: './progress-bar.component.html',
   imports: [CommonModule],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProgressBarComponent {
   //Services
@@ -20,7 +20,7 @@ export class ProgressBarComponent {
   size = input<Size>('medium');
   type = input<ProgressBarType>('determinate');
   value = input(0, {
-    transform: (value: number | undefined) => (value ? Math.max(0, Math.min(value, 100)) : 0),
+    transform: (value: number | undefined) => (value ? Math.max(0, Math.min(value, 100)) : 0)
   });
   ariaLabel = input<string>('');
   ariaValueText = input<string>();
@@ -31,11 +31,11 @@ export class ProgressBarComponent {
       'progress-bar',
       `progress-bar--${this.type()}`,
       `progress-bar--${this.size()}`,
-      `progress-bar--${this.variant()}`,
-    ].join(' '),
+      `progress-bar--${this.variant()}`
+    ].join(' ')
   );
   trackClasses = computed(() =>
-    ['progress-bar__track', this.type() === 'indeterminate' ? 'progress-bar__track--animated' : ''].join(' '),
+    ['progress-bar__track', this.type() === 'indeterminate' ? 'progress-bar__track--animated' : ''].join(' ')
   );
   progressValue = computed(() => Math.max(0, Math.min(this.value(), 100)));
   trackStyle = computed(() => (this.type() === 'determinate' ? { width: `${this.progressValue()}%` } : {}));

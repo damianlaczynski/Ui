@@ -35,7 +35,7 @@ import { ButtonComponent, UrlComponent } from 'ui';
         </ui-button>
       </div>
     </div>
-  `,
+  `
 })
 export class UrlLinkPanelDemoComponent {
   protected destinationUrl = 'https://launch.example.com/2026/spring';

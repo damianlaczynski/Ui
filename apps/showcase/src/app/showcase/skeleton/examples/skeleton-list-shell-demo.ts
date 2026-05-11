@@ -23,6 +23,6 @@ import { SkeletonComponent } from 'ui';
         </div>
       }
     </div>
-  `,
+  `
 })
 export class SkeletonListShellExampleComponent {}

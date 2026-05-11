@@ -24,7 +24,7 @@ import { MonthComponent } from 'ui';
         <span>Selected: {{ value || 'None' }}</span>
       </div>
     </div>
-  `,
+  `
 })
 export class MonthConstraintsDemoComponent {
   protected value = '2026-06';

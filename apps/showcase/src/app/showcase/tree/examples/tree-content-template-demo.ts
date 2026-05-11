@@ -13,7 +13,9 @@ import { TreeComponent, type TreeNode } from 'ui';
       <ui-tree [nodes]="nodes">
         <ng-template #content let-node>
           <div style="display:flex;align-items:center;justify-content:space-between;gap:0.75rem;width:100%;min-width:0">
-            <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ node.label }}</span>
+            <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">
+              {{ node.label }}
+            </span>
             <span
               style="flex:none;min-width:2rem;padding:0.125rem 0.45rem;border-radius:999px;background:var(--color-neutral-background3-rest);font-size:0.75rem;text-align:center;color:var(--color-neutral-foreground2-rest)"
             >
@@ -23,7 +25,7 @@ import { TreeComponent, type TreeNode } from 'ui';
         </ng-template>
       </ui-tree>
     </div>
-  `,
+  `
 })
 export class TreeContentTemplateDemoComponent {
   protected readonly nodes: TreeNode[] = [
@@ -35,11 +37,11 @@ export class TreeContentTemplateDemoComponent {
       expanded: true,
       children: [
         { id: 'triage', label: 'Triage', icon: 'document' },
-        { id: 'ready', label: 'Ready for build', icon: 'rocket' },
-      ],
+        { id: 'ready', label: 'Ready for build', icon: 'rocket' }
+      ]
     },
     { id: 'review', label: 'Review queue', icon: 'edit' },
-    { id: 'done', label: 'Done this sprint', icon: 'checkmark' },
+    { id: 'done', label: 'Done this sprint', icon: 'checkmark' }
   ];
 
   protected getMeta(id: string): string {
@@ -48,7 +50,7 @@ export class TreeContentTemplateDemoComponent {
       triage: '4',
       ready: '8',
       review: '3',
-      done: '24',
+      done: '24'
     };
     return values[id] ?? '';
   }

@@ -46,6 +46,6 @@ import { TableOfContentComponent } from 'ui';
         <p style="margin:0">Deep topic for nested content.</p>
       </div>
     </div>
-  `,
+  `
 })
 export class TableOfContentLevelsDemoComponent {}

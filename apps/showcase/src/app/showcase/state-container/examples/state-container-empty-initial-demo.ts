@@ -36,7 +36,7 @@ import { StateContainerComponent, initialState } from 'ui';
         />
       </div>
     </div>
-  `,
+  `
 })
 export class StateContainerEmptyInitialDemoComponent {
   protected readonly state = initialState<any[]>();

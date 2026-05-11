@@ -48,6 +48,6 @@ import { FileComponent } from 'ui';
         />
       </div>
     </div>
-  `,
+  `
 })
 export class FileLayoutDemoComponent {}

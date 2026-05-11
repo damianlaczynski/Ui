@@ -36,6 +36,6 @@ import { BadgeComponent, ButtonComponent, IconComponent } from 'ui';
         </div>
       </div>
     </section>
-  `,
+  `
 })
 export class IconSemanticDemoComponent {}

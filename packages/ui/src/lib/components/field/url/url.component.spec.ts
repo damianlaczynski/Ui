@@ -8,7 +8,7 @@ describe('UrlComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UrlComponent],
+      imports: [UrlComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(UrlComponent);
@@ -56,8 +56,8 @@ describe('UrlComponent', () => {
 
   it('should render link action button with aria-label', () => {
     const actionButtons: HTMLButtonElement[] = Array.from(
-      fixture.nativeElement.querySelectorAll('.field__actions .field__action'),
+      fixture.nativeElement.querySelectorAll('.field__actions .field__action')
     );
-    expect(actionButtons.some(btn => btn.getAttribute('aria-label') === 'Open link actions')).toBe(true);
+    expect(actionButtons.some((btn) => btn.getAttribute('aria-label') === 'Open link actions')).toBe(true);
   });
 });

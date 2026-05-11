@@ -40,11 +40,11 @@ import { SplitterComponent, SplitterPanelDirective, type SplitterPanel } from 'u
         </ui-splitter>
       </div>
     </div>
-  `,
+  `
 })
 export class SplitterFixedPanelDemoComponent {
   protected readonly panels: SplitterPanel[] = [
     { id: 'rail', size: 18, minSize: 160, maxSize: 200, resizable: false },
-    { id: 'content', size: 82, minSize: 420 },
+    { id: 'content', size: 82, minSize: 420 }
   ];
 }

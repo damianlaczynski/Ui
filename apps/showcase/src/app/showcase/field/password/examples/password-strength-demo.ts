@@ -39,7 +39,9 @@ import { ButtonComponent, PasswordComponent } from 'ui';
           style="display:flex;justify-content:space-between;gap:1rem;font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
         >
           <span>Strength</span>
-          <strong [style.color]="strengthColor" style="font-weight:600">{{ strengthLabel }}</strong>
+          <strong [style.color]="strengthColor" style="font-weight:600">
+            {{ strengthLabel }}
+          </strong>
         </div>
       </div>
 
@@ -55,10 +57,12 @@ import { ButtonComponent, PasswordComponent } from 'ui';
         <div style="display:flex;flex-direction:column;gap:0.45rem;font-size:0.875rem;line-height:1.4">
           @for (check of checks; track check.label) {
             <div style="display:flex;justify-content:space-between;gap:1rem">
-              <span style="color:var(--color-neutral-foreground2-rest)">{{ check.label }}</span>
-              <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
-                check.passed ? 'Yes' : 'No'
-              }}</strong>
+              <span style="color:var(--color-neutral-foreground2-rest)">
+                {{ check.label }}
+              </span>
+              <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">
+                {{ check.passed ? 'Yes' : 'No' }}
+              </strong>
             </div>
           }
         </div>
@@ -72,7 +76,7 @@ import { ButtonComponent, PasswordComponent } from 'ui';
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class PasswordStrengthDemoComponent {
   protected password = '';
@@ -82,12 +86,12 @@ export class PasswordStrengthDemoComponent {
       { label: '8+ characters', passed: this.password.length >= 8 },
       { label: 'Uppercase', passed: /[A-Z]/.test(this.password) },
       { label: 'Number', passed: /\d/.test(this.password) },
-      { label: 'Special character', passed: /[^A-Za-z0-9]/.test(this.password) },
+      { label: 'Special character', passed: /[^A-Za-z0-9]/.test(this.password) }
     ];
   }
 
   protected get strengthSegments(): number {
-    return this.checks.filter(check => check.passed).length;
+    return this.checks.filter((check) => check.passed).length;
   }
 
   protected get strengthColor(): string {

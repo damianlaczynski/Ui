@@ -4,7 +4,7 @@ import { IconComponent, Size } from 'ui';
 const sizes: Array<{ size: Size; label: string }> = [
   { size: 'small', label: 'Small' },
   { size: 'medium', label: 'Medium' },
-  { size: 'large', label: 'Large' },
+  { size: 'large', label: 'Large' }
 ];
 
 @Component({
@@ -19,7 +19,7 @@ const sizes: Array<{ size: Size; label: string }> = [
         >
           <ui-icon icon="calendar_clock" [size]="item.size" />
           <strong style="font-size:0.875rem;">{{ item.label }}</strong>
-          <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest);"> preset {{ item.size }} </span>
+          <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest);">preset {{ item.size }}</span>
         </div>
       }
 
@@ -28,10 +28,10 @@ const sizes: Array<{ size: Size; label: string }> = [
       >
         <ui-icon icon="calendar_clock" [sizePx]="32" />
         <strong style="font-size:0.875rem;">Custom</strong>
-        <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest);"> sizePx="32" </span>
+        <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest);">sizePx="32"</span>
       </div>
     </div>
-  `,
+  `
 })
 export class IconSizeDemoComponent {
   protected readonly sizes = sizes;

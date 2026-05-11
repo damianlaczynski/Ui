@@ -9,7 +9,7 @@ import { MenuItem } from '../menu/models/menu-item.model';
 @Component({
   selector: 'ui-toolbar',
   templateUrl: './toolbar.component.html',
-  imports: [ButtonComponent, DividerComponent, MenuComponent],
+  imports: [ButtonComponent, DividerComponent, MenuComponent]
 })
 export class ToolbarComponent {
   items = input<ToolbarItem[]>([]);
@@ -28,7 +28,7 @@ export class ToolbarComponent {
         if (groupIndex > 0) {
           items.push({
             id: `divider-${groupIndex}`,
-            type: 'divider',
+            type: 'divider'
           });
         }
         items.push(...group.items);

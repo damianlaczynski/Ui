@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig,
+  ShowcaseDocPageConfig
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { WeekBasicDemoComponent } from './examples/week-basic-demo';
 import { WeekConstraintsDemoComponent } from './examples/week-constraints-demo';
@@ -19,14 +19,14 @@ const componentMap = {
   constraints: WeekConstraintsDemoComponent,
   states: WeekStatesDemoComponent,
   reactiveForm: WeekReactiveFormDemoComponent,
-  planningPanel: WeekPlanningPanelDemoComponent,
+  planningPanel: WeekPlanningPanelDemoComponent
 } as const;
 
 export const WEEK_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   markdown: `/docs/components/${weekMeta.slug}.md`,
   ...(Object.fromEntries(
-    Object.entries(weekMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${weekMeta.slug}/${file}`]),
-  ) as Record<string, string>),
+    Object.entries(weekMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${weekMeta.slug}/${file}`])
+  ) as Record<string, string>)
 };
 
 export const WEEK_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -35,12 +35,12 @@ export const WEEK_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: weekMeta.importCode,
   containerClass: weekMeta.containerClass,
   accessibility: weekMeta.accessibility,
-  featureSections: weekMeta.featureSections.map(section => ({
+  featureSections: weekMeta.featureSections.map((section) => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap],
+    component: componentMap[section.componentKey as keyof typeof componentMap]
   })),
-  apiSections: weekMeta.apiSections,
+  apiSections: weekMeta.apiSections
 };

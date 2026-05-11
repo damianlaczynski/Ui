@@ -17,7 +17,7 @@ import { ButtonComponent, TabsComponent, type Tab } from 'ui';
           appearance="subtle"
           variant="primary"
         >
-          <ui-button moreButton type="button" variant="secondary" appearance="subtle" size="small"> More </ui-button>
+          <ui-button moreButton type="button" variant="secondary" appearance="subtle" size="small">More</ui-button>
         </ui-tabs>
       </div>
 
@@ -34,24 +34,24 @@ import { ButtonComponent, TabsComponent, type Tab } from 'ui';
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class TabsOverflowDemoComponent {
   protected readonly visibleTabs: Tab[] = [
     { id: 'overview', label: 'Overview' },
     { id: 'timeline', label: 'Timeline' },
-    { id: 'files', label: 'Files' },
+    { id: 'files', label: 'Files' }
   ];
 
   private readonly hiddenTabs: Tab[] = [
     { id: 'approvals', label: 'Approvals' },
     { id: 'audit', label: 'Audit log' },
-    { id: 'history', label: 'History' },
+    { id: 'history', label: 'History' }
   ];
 
   protected selectedTabId: string | number = this.visibleTabs[0].id;
 
   protected get hiddenLabels(): string {
-    return this.hiddenTabs.map(tab => tab.label).join(', ');
+    return this.hiddenTabs.map((tab) => tab.label).join(', ');
   }
 }

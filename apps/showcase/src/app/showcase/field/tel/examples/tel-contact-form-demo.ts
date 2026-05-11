@@ -47,7 +47,7 @@ import { ButtonComponent, TelComponent } from 'ui';
           style="display:flex;gap:0.75rem;flex-wrap:wrap;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
         >
           <ui-button type="button" variant="primary">Save contacts</ui-button>
-          <ui-button type="button" variant="secondary" appearance="outline" (click)="reset()"> Reset </ui-button>
+          <ui-button type="button" variant="secondary" appearance="outline" (click)="reset()">Reset</ui-button>
         </div>
       </div>
 
@@ -62,38 +62,38 @@ import { ButtonComponent, TelComponent } from 'ui';
         <div style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.875rem;line-height:1.4">
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Primary</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
-              contactForm.controls.primary.value || 'None'
-            }}</strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">
+              {{ contactForm.controls.primary.value || 'None' }}
+            </strong>
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Escalation</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
-              contactForm.controls.escalation.value || 'None'
-            }}</strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">
+              {{ contactForm.controls.escalation.value || 'None' }}
+            </strong>
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">After-hours</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
-              contactForm.controls.afterHours.value || 'None'
-            }}</strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">
+              {{ contactForm.controls.afterHours.value || 'None' }}
+            </strong>
           </div>
         </div>
       </div>
     </form>
-  `,
+  `
 })
 export class TelContactFormDemoComponent {
   protected readonly defaults = {
     primary: '+48 600 700 800',
     escalation: '+48 500 400 300',
-    afterHours: '',
+    afterHours: ''
   };
 
   protected readonly contactForm = new FormGroup({
     primary: new FormControl(this.defaults.primary, { nonNullable: true }),
     escalation: new FormControl(this.defaults.escalation, { nonNullable: true }),
-    afterHours: new FormControl(this.defaults.afterHours, { nonNullable: true }),
+    afterHours: new FormControl(this.defaults.afterHours, { nonNullable: true })
   });
 
   protected reset(): void {

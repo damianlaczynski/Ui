@@ -34,7 +34,7 @@ import { ColorComponent } from 'ui';
         [ngModelOptions]="{ standalone: true }"
       />
     </div>
-  `,
+  `
 })
 export class ColorToolsExampleComponent {
   protected alphaValue = '#0F6CBDCC';

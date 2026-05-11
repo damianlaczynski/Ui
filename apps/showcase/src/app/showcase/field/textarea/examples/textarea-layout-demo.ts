@@ -45,6 +45,6 @@ import { TextareaComponent } from 'ui';
         />
       </div>
     </div>
-  `,
+  `
 })
 export class TextareaLayoutDemoComponent {}

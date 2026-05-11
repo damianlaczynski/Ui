@@ -10,12 +10,14 @@ import { SplitterComponent, SplitterPanelDirective, type SplitterPanel, type Spl
       <div
         style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background2-rest)"
       >
-        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
-          >Summary: <strong>{{ sizes()[0].toFixed(0) }}%</strong></span
-        >
-        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
-          >Feed: <strong>{{ sizes()[1].toFixed(0) }}%</strong></span
-        >
+        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
+          Summary:
+          <strong>{{ sizes()[0].toFixed(0) }}%</strong>
+        </span>
+        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
+          Feed:
+          <strong>{{ sizes()[1].toFixed(0) }}%</strong>
+        </span>
       </div>
 
       <div
@@ -44,12 +46,12 @@ import { SplitterComponent, SplitterPanelDirective, type SplitterPanel, type Spl
         </ui-splitter>
       </div>
     </div>
-  `,
+  `
 })
 export class SplitterVerticalDemoComponent {
   protected readonly panels = signal<SplitterPanel[]>([
     { id: 'summary', size: 34, minSize: 120, maxSize: 220 },
-    { id: 'feed', size: 66, minSize: 220 },
+    { id: 'feed', size: 66, minSize: 220 }
   ]);
 
   protected readonly sizes = signal([34, 66]);

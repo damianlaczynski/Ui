@@ -37,7 +37,7 @@ import { SearchComponent } from 'ui';
         />
       </div>
     </div>
-  `,
+  `
 })
 export class SearchStatesDemoComponent {
   protected readonlyValue = 'Archived incidents';

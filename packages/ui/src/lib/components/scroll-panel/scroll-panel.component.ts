@@ -7,7 +7,7 @@ export type ScrollPanelBehavior = 'auto' | 'always' | 'never';
 @Component({
   selector: 'ui-scroll-panel',
   templateUrl: './scroll-panel.component.html',
-  imports: [CommonModule],
+  imports: [CommonModule]
 })
 export class ScrollPanelComponent {
   orientation = input<ScrollPanelOrientation>('vertical');

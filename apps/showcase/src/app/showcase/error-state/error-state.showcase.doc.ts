@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig,
+  ShowcaseDocPageConfig
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { ErrorStateActionsDemoComponent } from './examples/error-state-actions-demo';
 import { ErrorStateBasicDemoComponent } from './examples/error-state-basic-demo';
@@ -19,7 +19,7 @@ const componentMap = {
   actions: ErrorStateActionsDemoComponent,
   customContent: ErrorStateCustomContentDemoComponent,
   scenarios: ErrorStateScenariosDemoComponent,
-  panelLayout: ErrorStatePanelLayoutDemoComponent,
+  panelLayout: ErrorStatePanelLayoutDemoComponent
 } as const;
 
 export const ERROR_STATE_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -27,9 +27,9 @@ export const ERROR_STATE_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(errorStateMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${errorStateMeta.slug}/${file}`,
-    ]),
-  ) as Record<string, string>),
+      `/docs/components/snippets/${errorStateMeta.slug}/${file}`
+    ])
+  ) as Record<string, string>)
 };
 
 export const ERROR_STATE_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -38,12 +38,12 @@ export const ERROR_STATE_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: errorStateMeta.importCode,
   containerClass: errorStateMeta.containerClass,
   accessibility: errorStateMeta.accessibility,
-  featureSections: errorStateMeta.featureSections.map(section => ({
+  featureSections: errorStateMeta.featureSections.map((section) => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap],
+    component: componentMap[section.componentKey as keyof typeof componentMap]
   })),
-  apiSections: errorStateMeta.apiSections,
+  apiSections: errorStateMeta.apiSections
 };

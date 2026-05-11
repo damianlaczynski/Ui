@@ -41,20 +41,20 @@ import { NumberComponent } from 'ui';
         [errorText]="'Value exceeds available budget'"
       />
     </div>
-  `,
+  `
 })
 export class NumberStatesValidationDemoComponent {
   protected readonly quantity = new FormControl<number | null>(null, {
-    validators: [Validators.required, Validators.min(1)],
+    validators: [Validators.required, Validators.min(1)]
   });
 
   protected readonly readonlyPrice = new FormControl<number | null>(249, {
-    nonNullable: false,
+    nonNullable: false
   });
 
   protected readonly disabledValue = new FormControl<number | null>({
     value: 1200,
-    disabled: true,
+    disabled: true
   });
 
   protected readonly manualError = new FormControl<number | null>(3200);

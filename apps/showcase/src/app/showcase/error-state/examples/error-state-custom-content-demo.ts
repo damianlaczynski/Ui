@@ -27,6 +27,6 @@ import { ButtonComponent, ErrorStateComponent } from 'ui';
         </ng-template>
       </ui-error-state>
     </div>
-  `,
+  `
 })
 export class ErrorStateCustomContentDemoComponent {}

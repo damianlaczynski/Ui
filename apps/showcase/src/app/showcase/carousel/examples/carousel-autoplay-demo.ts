@@ -20,7 +20,7 @@ import { CarouselComponent, CarouselItem } from 'ui';
         <span>Use it for passive highlights, not for critical reading or forms.</span>
       </div>
     </div>
-  `,
+  `
 })
 export class CarouselAutoplayDemoComponent {
   protected readonly slides: CarouselItem[] = [
@@ -28,19 +28,19 @@ export class CarouselAutoplayDemoComponent {
       id: 'auto-1',
       image: 'https://picsum.photos/seed/ui-carousel-auto-1/1200/640',
       title: 'Passive campaign highlights',
-      description: 'Useful for hero banners or dashboards where content can rotate on its own.',
+      description: 'Useful for hero banners or dashboards where content can rotate on its own.'
     },
     {
       id: 'auto-2',
       image: 'https://picsum.photos/seed/ui-carousel-auto-2/1200/640',
       title: 'Do not rush the reader',
-      description: 'Keep interval generous enough for users to parse text before the next slide.',
+      description: 'Keep interval generous enough for users to parse text before the next slide.'
     },
     {
       id: 'auto-3',
       image: 'https://picsum.photos/seed/ui-carousel-auto-3/1200/640',
       title: 'Always keep manual controls',
-      description: 'Users should still be able to move backward and forward when something matters.',
-    },
+      description: 'Users should still be able to move backward and forward when something matters.'
+    }
   ];
 }

@@ -35,7 +35,7 @@ type VerticalTab = Tab & {
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class TabsOrientationDemoComponent {
   protected readonly tabs: VerticalTab[] = [
@@ -43,25 +43,25 @@ export class TabsOrientationDemoComponent {
       id: 'general',
       label: 'General',
       title: 'General workspace settings',
-      body: 'Vertical tabs work well when labels are longer or when the content area beside them is the main focus.',
+      body: 'Vertical tabs work well when labels are longer or when the content area beside them is the main focus.'
     },
     {
       id: 'access',
       label: 'Access and roles',
       title: 'Access and roles',
-      body: 'This pattern fits settings pages, onboarding surfaces, and detail panels with a few sibling groups.',
+      body: 'This pattern fits settings pages, onboarding surfaces, and detail panels with a few sibling groups.'
     },
     {
       id: 'retention',
       label: 'Retention policy',
       title: 'Retention policy',
-      body: 'The tablist stays local to the panel, so users can move between related sections without a route change.',
-    },
+      body: 'The tablist stays local to the panel, so users can move between related sections without a route change.'
+    }
   ];
 
   protected selectedTabId: string | number = this.tabs[0].id;
 
   protected get selectedTab(): VerticalTab {
-    return this.tabs.find(tab => tab.id === this.selectedTabId) ?? this.tabs[0];
+    return this.tabs.find((tab) => tab.id === this.selectedTabId) ?? this.tabs[0];
   }
 }

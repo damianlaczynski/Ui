@@ -11,7 +11,7 @@ import {
   inject,
   input,
   signal,
-  NgZone,
+  NgZone
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -26,13 +26,13 @@ import {
   extractDateAndFlexibleTimeSegments,
   formatHhmmForDisplay,
   parseFlexibleTimeToHhmm,
-  TimePickerComponent,
+  TimePickerComponent
 } from '../../time-picker';
 import {
   DEFAULT_CONNECTED_POSITIONS,
   DEFAULT_VIEWPORT_MARGIN,
   OverlayHandle,
-  openConnectedOverlay,
+  openConnectedOverlay
 } from '../../overlay/open-connected-overlay';
 import { ButtonComponent } from '../../button';
 import { IconName } from '../../icon';
@@ -51,26 +51,26 @@ const MOBILE_BREAKPOINT = '(max-width: 768px)';
     ActionButtonComponent,
     CalendarComponent,
     TimePickerComponent,
-    ButtonComponent,
+    ButtonComponent
   ],
   templateUrl: './datetime.component.html',
   host: {
-    '[style.display]': '"block"',
+    '[style.display]': '"block"'
   },
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => DatetimeComponent),
-      multi: true,
-    },
+      multi: true
+    }
   ],
   styles: [
     `
       :host {
         width: 100%;
       }
-    `,
-  ],
+    `
+  ]
 })
 export class DatetimeComponent extends FieldComponent implements OnDestroy {
   private overlay = inject(Overlay);
@@ -114,7 +114,7 @@ export class DatetimeComponent extends FieldComponent implements OnDestroy {
   constructor() {
     super();
 
-    this.breakpointSub = this.breakpointObserver.observe(MOBILE_BREAKPOINT).subscribe(result => {
+    this.breakpointSub = this.breakpointObserver.observe(MOBILE_BREAKPOINT).subscribe((result) => {
       this.isMobile.set(result.matches);
     });
 
@@ -338,15 +338,15 @@ export class DatetimeComponent extends FieldComponent implements OnDestroy {
         positions: DEFAULT_CONNECTED_POSITIONS,
         viewportMargin: DEFAULT_VIEWPORT_MARGIN,
         width: this.panelWidth() ? this.panelWidth() : undefined,
-        hasBackdrop: false,
+        hasBackdrop: false
       },
-      onClose: focusTrigger => {
+      onClose: (focusTrigger) => {
         if (focusTrigger) {
           this.closePanel(true);
         } else {
           setTimeout(() => this.closePanel(false), 0);
         }
-      },
+      }
     });
 
     this.isOpen.set(true);
@@ -383,7 +383,7 @@ export class DatetimeComponent extends FieldComponent implements OnDestroy {
     const datePatterns = [
       /(\d{1,2})\/(\d{1,2})\/(\d{4})/,
       /(\d{4})-(\d{1,2})-(\d{1,2})/,
-      /(\d{1,2})-(\d{1,2})-(\d{4})/,
+      /(\d{1,2})-(\d{1,2})-(\d{4})/
     ];
 
     for (const pattern of datePatterns) {
@@ -412,7 +412,7 @@ export class DatetimeComponent extends FieldComponent implements OnDestroy {
     return date.toLocaleDateString(undefined, {
       year: 'numeric',
       month: '2-digit',
-      day: '2-digit',
+      day: '2-digit'
     });
   }
 
@@ -434,7 +434,7 @@ export class DatetimeComponent extends FieldComponent implements OnDestroy {
       const minute = parseInt(localMatch[5], 10);
       return {
         date: new Date(year, month, day),
-        time: `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`,
+        time: `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`
       };
     }
 
@@ -442,7 +442,7 @@ export class DatetimeComponent extends FieldComponent implements OnDestroy {
     if (!isNaN(parsed.getTime())) {
       return {
         date: new Date(parsed.getFullYear(), parsed.getMonth(), parsed.getDate()),
-        time: `${String(parsed.getHours()).padStart(2, '0')}:${String(parsed.getMinutes()).padStart(2, '0')}`,
+        time: `${String(parsed.getHours()).padStart(2, '0')}:${String(parsed.getMinutes()).padStart(2, '0')}`
       };
     }
 
@@ -453,7 +453,7 @@ export class DatetimeComponent extends FieldComponent implements OnDestroy {
 
     return {
       date: this.parseDateFromInput(datePart),
-      time: (timePart || '').slice(0, 5),
+      time: (timePart || '').slice(0, 5)
     };
   }
 }

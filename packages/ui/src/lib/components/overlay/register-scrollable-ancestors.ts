@@ -28,7 +28,7 @@ interface ScrollAdapter {
 export function registerScrollableAncestors(
   origin: HTMLElement,
   scrollDispatcher: ScrollDispatcher,
-  ngZone: NgZone,
+  ngZone: NgZone
 ): () => void {
   const elements = getScrollableAncestors(origin);
   const entries: { adapter: ScrollAdapter; removeListener: () => void }[] = [];
@@ -38,7 +38,7 @@ export function registerScrollableAncestors(
     const subject = new Subject<unknown>();
     const adapter: ScrollAdapter = {
       getElementRef: () => elementRef,
-      elementScrolled: () => subject,
+      elementScrolled: () => subject
     };
     const listener = (): void => subject.next(null);
     ngZone.runOutsideAngular(() => el.addEventListener('scroll', listener));
@@ -49,11 +49,11 @@ export function registerScrollableAncestors(
         el.removeEventListener('scroll', listener);
         subject.complete();
         scrollDispatcher.deregister(adapter as unknown as Parameters<ScrollDispatcher['deregister']>[0]);
-      },
+      }
     });
   }
 
   return () => {
-    entries.forEach(e => e.removeListener());
+    entries.forEach((e) => e.removeListener());
   };
 }

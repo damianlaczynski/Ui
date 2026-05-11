@@ -25,14 +25,14 @@ import { ButtonComponent, TelComponent } from 'ui';
         <ui-button type="button" appearance="outline" (click)="fillExample()">Use example</ui-button>
       </div>
     </form>
-  `,
+  `
 })
 export class TelValidationDemoComponent {
   protected readonly phoneForm = new FormGroup({
     phone: new FormControl('', {
       nonNullable: true,
-      validators: [Validators.required, Validators.minLength(7)],
-    }),
+      validators: [Validators.required, Validators.minLength(7)]
+    })
   });
 
   protected get phoneError(): string {

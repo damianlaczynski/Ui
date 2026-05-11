@@ -7,7 +7,7 @@ import { UiI18nService } from '../../i18n';
   selector: 'ui-skeleton',
   templateUrl: './skeleton.component.html',
   imports: [CommonModule],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SkeletonComponent {
   //Service
@@ -34,7 +34,7 @@ export class SkeletonComponent {
   skeletonStyles = computed(() => {
     const styles: Record<string, string> = {
       width: this.width(),
-      height: this.height(),
+      height: this.height()
     };
 
     if (this.borderRadius()) {

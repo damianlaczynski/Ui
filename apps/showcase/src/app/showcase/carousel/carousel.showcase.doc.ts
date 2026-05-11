@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig,
+  ShowcaseDocPageConfig
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { CarouselAutoplayDemoComponent } from './examples/carousel-autoplay-demo';
 import { CarouselBasicDemoComponent } from './examples/carousel-basic-demo';
@@ -17,7 +17,7 @@ const componentMap = {
   navigation: CarouselNavigationDemoComponent,
   autoplay: CarouselAutoplayDemoComponent,
   customTemplate: CarouselCustomTemplateDemoComponent,
-  workspaceHighlights: CarouselWorkspaceHighlightsDemoComponent,
+  workspaceHighlights: CarouselWorkspaceHighlightsDemoComponent
 } as const;
 
 export const CAROUSEL_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -25,9 +25,9 @@ export const CAROUSEL_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(carouselMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${carouselMeta.slug}/${file}`,
-    ]),
-  ) as Record<string, string>),
+      `/docs/components/snippets/${carouselMeta.slug}/${file}`
+    ])
+  ) as Record<string, string>)
 };
 
 export const CAROUSEL_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -36,12 +36,12 @@ export const CAROUSEL_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: carouselMeta.importCode,
   containerClass: carouselMeta.containerClass,
   accessibility: carouselMeta.accessibility,
-  featureSections: carouselMeta.featureSections.map(section => ({
+  featureSections: carouselMeta.featureSections.map((section) => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap],
+    component: componentMap[section.componentKey as keyof typeof componentMap]
   })),
-  apiSections: carouselMeta.apiSections,
+  apiSections: carouselMeta.apiSections
 };

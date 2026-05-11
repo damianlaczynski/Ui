@@ -32,7 +32,11 @@ import { MenuItem, SpeedDialComponent } from 'ui';
             [itemSizePx]="40"
             [gap]="6"
             [items]="items()"
-            [triggerButtonProps]="{ variant: 'primary', appearance: 'filled', shape: 'circular' }"
+            [triggerButtonProps]="{
+              variant: 'primary',
+              appearance: 'filled',
+              shape: 'circular'
+            }"
             ariaLabel="Linear up actions"
           />
         </div>
@@ -44,7 +48,11 @@ import { MenuItem, SpeedDialComponent } from 'ui';
             [itemSizePx]="40"
             [gap]="6"
             [items]="items()"
-            [triggerButtonProps]="{ variant: 'primary', appearance: 'filled', shape: 'circular' }"
+            [triggerButtonProps]="{
+              variant: 'primary',
+              appearance: 'filled',
+              shape: 'circular'
+            }"
             ariaLabel="Linear down actions"
           />
         </div>
@@ -56,7 +64,11 @@ import { MenuItem, SpeedDialComponent } from 'ui';
             [itemSizePx]="40"
             [gap]="6"
             [items]="items()"
-            [triggerButtonProps]="{ variant: 'primary', appearance: 'filled', shape: 'circular' }"
+            [triggerButtonProps]="{
+              variant: 'primary',
+              appearance: 'filled',
+              shape: 'circular'
+            }"
             ariaLabel="Linear right actions"
           />
         </div>
@@ -68,19 +80,23 @@ import { MenuItem, SpeedDialComponent } from 'ui';
             [itemSizePx]="40"
             [gap]="6"
             [items]="items()"
-            [triggerButtonProps]="{ variant: 'primary', appearance: 'filled', shape: 'circular' }"
+            [triggerButtonProps]="{
+              variant: 'primary',
+              appearance: 'filled',
+              shape: 'circular'
+            }"
             ariaLabel="Linear left actions"
           />
         </div>
       </div>
     </section>
-  `,
+  `
 })
 export class SpeedDialLinearDemoComponent {
   protected readonly items = signal<MenuItem[]>([
     { id: 'edit', label: '', icon: 'edit' },
     { id: 'refresh', label: '', icon: 'arrow_sync' },
     { id: 'delete', label: '', icon: 'delete' },
-    { id: 'open', label: '', icon: 'open' },
+    { id: 'open', label: '', icon: 'open' }
   ]);
 }

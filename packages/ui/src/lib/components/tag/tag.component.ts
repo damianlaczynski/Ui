@@ -9,7 +9,7 @@ import { UiI18nService } from '../../i18n';
   selector: 'ui-tag',
   templateUrl: './tag.component.html',
   imports: [IconComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TagComponent {
   private readonly i18n = inject(UiI18nService);
@@ -40,7 +40,7 @@ export class TagComponent {
       `button--${this.variant()}`,
       `button--${this.appearance()}`,
       `button--${this.size()}`,
-      `button--${this.shape()}`,
+      `button--${this.shape()}`
     ];
     if (this.disabled()) c.push('button--disabled');
     if (this.selected()) c.push('button--selected');
@@ -75,7 +75,7 @@ export class TagComponent {
 
   effectiveTabIndex = computed(() => this.tabIndex() ?? this.defaultTabIndex());
   dismissAriaLabel = computed(() =>
-    this.i18n.t('tag.dismissAriaLabel', `Remove ${this.text()}`, { text: this.text() }),
+    this.i18n.t('tag.dismissAriaLabel', `Remove ${this.text()}`, { text: this.text() })
   );
 
   onTagClick(event: MouseEvent): void {

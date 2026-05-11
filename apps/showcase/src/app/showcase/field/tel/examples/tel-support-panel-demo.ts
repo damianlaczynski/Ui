@@ -33,7 +33,7 @@ import { ButtonComponent, TelComponent } from 'ui';
         <ui-button type="button" variant="secondary" appearance="outline">Use account number</ui-button>
       </div>
     </div>
-  `,
+  `
 })
 export class TelSupportPanelDemoComponent {
   protected callbackNumber = '+44 20 7946 0958';

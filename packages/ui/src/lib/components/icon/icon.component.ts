@@ -9,7 +9,7 @@ import {
   ICON_SPRITE_ICON_NAMES,
   ICON_SPRITE_LOCALE_FOLDERS,
   ICON_SPRITE_SYMBOLS,
-  ICON_SPRITE_URL,
+  ICON_SPRITE_URL
 } from './generated/icon-sprite-manifest';
 
 @Component({
@@ -46,18 +46,18 @@ import {
         align-items: center;
         justify-content: center;
       }
-    `,
+    `
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconComponent {
   private readonly rtlLanguageCodes = new Set(['ar', 'dv', 'fa', 'ha', 'he', 'iw', 'ji', 'ps', 'sd', 'ug', 'ur', 'yi']);
 
   icon = input<IconName, IconName | undefined>('' as IconName, {
-    transform: (value: IconName | undefined) => value ?? ('' as IconName),
+    transform: (value: IconName | undefined) => value ?? ('' as IconName)
   });
   size = input<Size, Size | undefined>('medium', {
-    transform: (value: Size | undefined) => value ?? 'medium',
+    transform: (value: Size | undefined) => value ?? 'medium'
   });
   sizePx = input<number | undefined>(undefined);
   variant = input<'regular' | 'filled'>('regular');
@@ -120,11 +120,11 @@ export class IconComponent {
     const candidates = [
       normalized,
       rawParts.length >= 2 ? `${rawParts[0]}-${rawParts[1]}` : '',
-      rawParts[0] ?? '',
+      rawParts[0] ?? ''
     ].filter(Boolean);
 
     const uniqueCandidates = Array.from(new Set(candidates));
-    return uniqueCandidates.filter(locale => ICON_SPRITE_LOCALE_FOLDERS[locale]);
+    return uniqueCandidates.filter((locale) => ICON_SPRITE_LOCALE_FOLDERS[locale]);
   });
 
   private directionalIconName = computed(() => {
@@ -221,9 +221,9 @@ export class IconComponent {
             sizePx: this.sizePx() ?? '',
             variant: this.variant(),
             direction: this.direction() ?? 'auto',
-            locale: this.locale() ?? 'auto',
-          },
-        ),
+            locale: this.locale() ?? 'auto'
+          }
+        )
       );
     });
   }

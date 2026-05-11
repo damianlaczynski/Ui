@@ -14,6 +14,6 @@ import { SkeletonComponent } from 'ui';
         <ui-skeleton width="74%" height="0.875rem" ariaLabel="Loading paragraph line 3" />
       </div>
     </div>
-  `,
+  `
 })
 export class SkeletonBasicExampleComponent {}

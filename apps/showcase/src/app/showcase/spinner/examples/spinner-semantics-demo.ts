@@ -18,12 +18,14 @@ import { ExtendedSize, SpinnerComponent, Variant } from 'ui';
         @for (size of sizes; track size) {
           <div style="display:flex;flex-direction:column;gap:0.35rem;align-items:center">
             <ui-spinner variant="primary" [size]="size" ariaLabel="Loading" />
-            <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">{{ size }}</span>
+            <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">
+              {{ size }}
+            </span>
           </div>
         }
       </div>
     </div>
-  `,
+  `
 })
 export class SpinnerSemanticsExampleComponent {
   protected readonly variants: Variant[] = ['primary', 'secondary', 'success', 'warning', 'danger', 'info'];

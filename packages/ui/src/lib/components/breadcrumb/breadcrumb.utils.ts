@@ -18,7 +18,7 @@ export function partitionBreadcrumbItems<T>(items: T[], maxDisplayedItems: numbe
     return {
       startDisplayedItems: [...items],
       overflowItems: [],
-      endDisplayedItems: [],
+      endDisplayedItems: []
     };
   }
   const overflowSlotCount = 1;
@@ -28,6 +28,6 @@ export function partitionBreadcrumbItems<T>(items: T[], maxDisplayedItems: numbe
   return {
     startDisplayedItems: items.slice(0, startCount),
     overflowItems: items.slice(startCount, items.length - endCount),
-    endDisplayedItems: items.slice(-endCount),
+    endDisplayedItems: items.slice(-endCount)
   };
 }

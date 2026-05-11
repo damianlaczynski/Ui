@@ -35,25 +35,25 @@ import { ButtonComponent, MenuItem, SpeedDialComponent } from 'ui';
             style="padding:1rem;border-radius:12px;background:rgb(255 255 255 / 65%);border:1px solid color-mix(in srgb,var(--color-neutral-stroke-rest) 55%,transparent);"
           >
             <strong style="display:block;margin-bottom:0.5rem;">Assets</strong>
-            <span style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest);"
-              >12 visuals, 3 pending approvals</span
-            >
+            <span style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest);">
+              12 visuals, 3 pending approvals
+            </span>
           </div>
           <div
             style="padding:1rem;border-radius:12px;background:rgb(255 255 255 / 65%);border:1px solid color-mix(in srgb,var(--color-neutral-stroke-rest) 55%,transparent);"
           >
             <strong style="display:block;margin-bottom:0.5rem;">Audience</strong>
-            <span style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest);"
-              >EMEA, trial cohort, active customers</span
-            >
+            <span style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest);">
+              EMEA, trial cohort, active customers
+            </span>
           </div>
           <div
             style="padding:1rem;border-radius:12px;background:rgb(255 255 255 / 65%);border:1px solid color-mix(in srgb,var(--color-neutral-stroke-rest) 55%,transparent);"
           >
             <strong style="display:block;margin-bottom:0.5rem;">Timing</strong>
-            <span style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest);"
-              >Launch window: next Tuesday at 10:00</span
-            >
+            <span style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest);">
+              Launch window: next Tuesday at 10:00
+            </span>
           </div>
         </div>
         <div style="position:absolute;right:20px;bottom:20px;">
@@ -66,19 +66,23 @@ import { ButtonComponent, MenuItem, SpeedDialComponent } from 'ui';
             [showTooltips]="true"
             [tooltipOptions]="{ tooltipPosition: 'left' }"
             [items]="items()"
-            [triggerButtonProps]="{ variant: 'primary', appearance: 'filled', shape: 'circular' }"
+            [triggerButtonProps]="{
+              variant: 'primary',
+              appearance: 'filled',
+              shape: 'circular'
+            }"
             ariaLabel="Workspace speed dial"
           />
         </div>
       </article>
     </section>
-  `,
+  `
 })
 export class SpeedDialWorkspaceDemoComponent {
   protected readonly items = signal<MenuItem[]>([
     { id: 'New draft', label: '', icon: 'edit' },
     { id: 'Assign review', label: '', icon: 'person_add' },
     { id: 'Schedule send', label: '', icon: 'calendar_clock' },
-    { id: 'Duplicate', label: '', icon: 'copy' },
+    { id: 'Duplicate', label: '', icon: 'copy' }
   ]);
 }

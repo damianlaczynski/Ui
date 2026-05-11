@@ -20,7 +20,7 @@ import { PaginationComponent, PaginationConfig } from 'ui';
         <ui-pagination [config]="config()" size="large" (pageChange)="currentPage.set($event)" />
       </div>
     </div>
-  `,
+  `
 })
 export class PaginationDensityExampleComponent {
   protected readonly currentPage = signal(4);
@@ -34,6 +34,6 @@ export class PaginationDensityExampleComponent {
     maxVisiblePages: 5,
     showFirstLast: false,
     showInfo: false,
-    showPageSizeSelector: false,
+    showPageSizeSelector: false
   }));
 }

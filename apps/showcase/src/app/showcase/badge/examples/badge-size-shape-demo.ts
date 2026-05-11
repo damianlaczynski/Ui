@@ -23,6 +23,6 @@ import { BadgeComponent } from 'ui';
         <ui-badge text="Tile" shape="square" variant="info" appearance="outline" />
       </div>
     </div>
-  `,
+  `
 })
 export class BadgeSizeShapeDemoComponent {}

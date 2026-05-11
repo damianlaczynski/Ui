@@ -33,7 +33,7 @@ import { TimeComponent } from 'ui';
         [ngModelOptions]="{ standalone: true }"
       />
     </div>
-  `,
+  `
 })
 export class TimeStatesDemoComponent {
   protected readonlyValue = '10:15';

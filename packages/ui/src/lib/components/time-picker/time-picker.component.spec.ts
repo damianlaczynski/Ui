@@ -8,7 +8,7 @@ describe('TimePickerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TimePickerComponent],
+      imports: [TimePickerComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(TimePickerComponent);
@@ -20,7 +20,7 @@ describe('TimePickerComponent', () => {
     const wheels = fixture.nativeElement.querySelectorAll('.time-picker__wheel') as NodeListOf<HTMLDivElement>;
     return {
       hourWheel: wheels[0],
-      minuteWheel: wheels[1],
+      minuteWheel: wheels[1]
     };
   }
 
@@ -34,22 +34,22 @@ describe('TimePickerComponent', () => {
       bottom: height,
       width: 84,
       height,
-      toJSON: () => ({}),
+      toJSON: () => ({})
     } as DOMRect);
   }
 
   function mockPointerCapture(wheel: HTMLDivElement): void {
     Object.defineProperty(wheel, 'setPointerCapture', {
       value: vi.fn(),
-      writable: true,
+      writable: true
     });
     Object.defineProperty(wheel, 'releasePointerCapture', {
       value: vi.fn(),
-      writable: true,
+      writable: true
     });
     Object.defineProperty(wheel, 'hasPointerCapture', {
       value: vi.fn(() => true),
-      writable: true,
+      writable: true
     });
   }
 
@@ -103,7 +103,7 @@ describe('TimePickerComponent', () => {
     fixture.detectChanges();
 
     const emitted: string[] = [];
-    component.timeChange.subscribe(value => emitted.push(value));
+    component.timeChange.subscribe((value) => emitted.push(value));
 
     component.onMeridiemSelect('pm');
 
@@ -128,7 +128,7 @@ describe('TimePickerComponent', () => {
     component.onOptionClick('hour', new MouseEvent('click', { clientY: 40 }));
 
     expect(component.selectedHour()).toBe(
-      component.hourOptions[(prevIndex - 1 + component.hourOptions.length) % component.hourOptions.length],
+      component.hourOptions[(prevIndex - 1 + component.hourOptions.length) % component.hourOptions.length]
     );
   });
 
@@ -225,7 +225,7 @@ describe('TimePickerComponent', () => {
     mockWheelGeometry(hourWheel, 200);
 
     const emitted: string[] = [];
-    component.timeChange.subscribe(value => emitted.push(value));
+    component.timeChange.subscribe((value) => emitted.push(value));
 
     component.onOptionClick('hour', new MouseEvent('click', { clientY: 160 }));
 

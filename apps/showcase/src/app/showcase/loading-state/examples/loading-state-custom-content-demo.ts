@@ -24,6 +24,6 @@ import { LoadingStateComponent } from 'ui';
         </ng-template>
       </ui-loading-state>
     </div>
-  `,
+  `
 })
 export class LoadingStateCustomContentDemoComponent {}

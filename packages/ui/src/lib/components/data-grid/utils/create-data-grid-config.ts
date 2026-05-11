@@ -35,7 +35,7 @@ export function createDataGridConfig<T>(input: DataGridConfigInput<T>): DataGrid
   }
 
   // Validate column IDs are unique
-  const columnIds = input.columns.map(col => col.id);
+  const columnIds = input.columns.map((col) => col.id);
   const uniqueIds = new Set(columnIds);
   if (columnIds.length !== uniqueIds.size) {
     throw new Error('DataGridConfig: column IDs must be unique');
@@ -53,49 +53,49 @@ export function createDataGridConfig<T>(input: DataGridConfigInput<T>): DataGrid
       showPageSizeSelector: input.pagination?.showPageSizeSelector ?? true,
       showPageNumbers: input.pagination?.showPageNumbers ?? true,
       showFirstLast: input.pagination?.showFirstLast ?? false,
-      showInfo: input.pagination?.showInfo ?? false,
+      showInfo: input.pagination?.showInfo ?? false
     },
     sorting: {
       enabled: input.sorting?.enabled ?? true,
-      defaultSort: input.sorting?.defaultSort,
+      defaultSort: input.sorting?.defaultSort
     },
     filtering: {
       enabled: input.filtering?.enabled ?? true,
-      debounceMs: input.filtering?.debounceMs ?? 300,
+      debounceMs: input.filtering?.debounceMs ?? 300
     },
     styling: {
       size: input.styling?.size ?? 'medium',
       striped: input.styling?.striped ?? false,
       bordered: input.styling?.bordered ?? false,
       hoverable: input.styling?.hoverable ?? true,
-      stickyHeaders: input.styling?.stickyHeaders ?? false,
+      stickyHeaders: input.styling?.stickyHeaders ?? false
     },
     virtualization: {
       enabled: input.virtualization?.enabled ?? false,
       itemHeight: input.virtualization?.itemHeight ?? 48,
-      bufferSize: input.virtualization?.bufferSize ?? 3,
+      bufferSize: input.virtualization?.bufferSize ?? 3
     },
     callbacks: input.callbacks ?? {},
     loading: {
       title: input.loading?.title ?? 'Loading...',
       description: input.loading?.description ?? '',
-      spinnerSize: input.loading?.spinnerSize ?? 'medium',
+      spinnerSize: input.loading?.spinnerSize ?? 'medium'
     },
     empty: {
       title: input.empty?.title ?? 'No data available',
       description: input.empty?.description ?? 'There is no data to display.',
       icon: input.empty?.icon,
       primaryAction: input.empty?.primaryAction,
-      secondaryAction: input.empty?.secondaryAction,
+      secondaryAction: input.empty?.secondaryAction
     },
     error: {
       title: input.error?.title ?? 'Error',
       description: input.error?.description ?? 'An error occurred',
       icon: input.error?.icon ?? 'error_circle',
       primaryAction: input.error?.primaryAction,
-      secondaryAction: input.error?.secondaryAction,
+      secondaryAction: input.error?.secondaryAction
     },
-    expandable: input.expandable ?? false,
+    expandable: input.expandable ?? false
   };
 }
 
@@ -141,11 +141,11 @@ export function createDataGridConfig<T>(input: DataGridConfigInput<T>): DataGrid
  */
 export function createColumnWithFilter<T>(
   column: DataGridColumn<T>,
-  filterOptions: CreateFilterConfigOptions,
+  filterOptions: CreateFilterConfigOptions
 ): DataGridColumn<T> {
   const filterConfig = createFilterConfig(filterOptions);
   return {
     ...column,
-    filterable: filterConfig,
+    filterable: filterConfig
   };
 }

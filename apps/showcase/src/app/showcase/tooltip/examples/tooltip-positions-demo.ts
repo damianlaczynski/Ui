@@ -35,6 +35,6 @@ import { ButtonComponent, TooltipDirective } from 'ui';
         Right
       </ui-button>
     </div>
-  `,
+  `
 })
 export class TooltipPositionsExampleComponent {}

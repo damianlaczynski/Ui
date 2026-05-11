@@ -12,9 +12,7 @@ import { IconComponent } from 'ui';
       >
         <ui-icon icon="star" size="large" variant="regular" />
         <strong style="font-size:0.875rem;">Regular</strong>
-        <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest);">
-          Best for lower visual weight
-        </span>
+        <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest);">Best for lower visual weight</span>
       </div>
 
       <div
@@ -37,6 +35,6 @@ import { IconComponent } from 'ui';
         </span>
       </div>
     </div>
-  `,
+  `
 })
 export class IconVariantDemoComponent {}

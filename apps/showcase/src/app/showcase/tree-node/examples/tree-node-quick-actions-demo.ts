@@ -48,7 +48,7 @@ import { ButtonComponent, TreeNodeComponent, type TreeNode } from 'ui';
         />
       </div>
     </ng-template>
-  `,
+  `
 })
 export class TreeNodeQuickActionsDemoComponent {
   protected readonly node: TreeNode = {
@@ -59,8 +59,8 @@ export class TreeNodeQuickActionsDemoComponent {
     expanded: true,
     children: [
       { id: 'timeline', label: 'Timeline.xlsx', icon: 'document', hasChildren: false },
-      { id: 'risks', label: 'Risks.md', icon: 'document', hasChildren: false },
-    ],
+      { id: 'risks', label: 'Risks.md', icon: 'document', hasChildren: false }
+    ]
   };
 
   protected readonly lastAction = signal('');

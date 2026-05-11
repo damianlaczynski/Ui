@@ -21,14 +21,14 @@ import { ButtonComponent, EmailComponent } from 'ui';
         <ui-button type="button" appearance="outline" (click)="fillExample()">Use example</ui-button>
       </div>
     </form>
-  `,
+  `
 })
 export class EmailValidationDemoComponent {
   protected readonly inviteForm = new FormGroup({
     inviteEmail: new FormControl('', {
       nonNullable: true,
-      validators: [Validators.required, Validators.email],
-    }),
+      validators: [Validators.required, Validators.email]
+    })
   });
 
   protected get emailError(): string {

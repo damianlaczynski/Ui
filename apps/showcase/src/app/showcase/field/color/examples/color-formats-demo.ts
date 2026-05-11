@@ -14,7 +14,7 @@ import { ColorComponent } from 'ui';
 
       <ui-color label="HSL output" format="hsl" [(ngModel)]="hslValue" [ngModelOptions]="{ standalone: true }" />
     </div>
-  `,
+  `
 })
 export class ColorFormatsExampleComponent {
   protected hexValue = '#4F6BED';

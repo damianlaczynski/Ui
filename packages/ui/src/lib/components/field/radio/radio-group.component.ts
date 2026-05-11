@@ -23,9 +23,9 @@ export interface RadioItem {
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => RadioGroupComponent),
-      multi: true,
-    },
-  ],
+      multi: true
+    }
+  ]
 })
 export class RadioGroupComponent extends FieldComponent implements ControlValueAccessor, OnInit {
   items = input<RadioItem[]>([]);

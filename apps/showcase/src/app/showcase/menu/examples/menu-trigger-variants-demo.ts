@@ -12,7 +12,8 @@ import { ButtonComponent, MenuComponent, type MenuItem } from 'ui';
       >
         <ui-button variant="secondary" appearance="outline" (click)="reset()">Reset</ui-button>
         <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          Last action: <strong>{{ lastAction() || 'none' }}</strong>
+          Last action:
+          <strong>{{ lastAction() || 'none' }}</strong>
         </span>
       </div>
 
@@ -69,7 +70,7 @@ import { ButtonComponent, MenuComponent, type MenuItem } from 'ui';
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class MenuTriggerVariantsDemoComponent {
   protected readonly lastAction = signal('');
@@ -77,13 +78,13 @@ export class MenuTriggerVariantsDemoComponent {
   protected readonly shareItems: MenuItem[] = [
     { id: 'copy-link', label: 'Copy link', icon: 'link' },
     { id: 'invite', label: 'Invite people', icon: 'person_add' },
-    { id: 'export', label: 'Export PDF', icon: 'arrow_download' },
+    { id: 'export', label: 'Export PDF', icon: 'arrow_download' }
   ];
 
   protected readonly saveItems: MenuItem[] = [
     { id: 'save', label: 'Save', icon: 'save' },
     { id: 'save-as', label: 'Save as copy', icon: 'document_copy' },
-    { id: 'save-template', label: 'Save as template', icon: 'document_add' },
+    { id: 'save-template', label: 'Save as template', icon: 'document_add' }
   ];
 
   protected onItemClick(item: MenuItem): void {

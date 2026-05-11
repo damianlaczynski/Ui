@@ -23,9 +23,9 @@ import { MenuItem, SpeedDialComponent } from 'ui';
         >
           <div style="display:grid;gap:0.25rem;">
             <strong>Primary actions</strong>
-            <span style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest);"
-              >Create, assign, and start work.</span
-            >
+            <span style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest);">
+              Create, assign, and start work.
+            </span>
           </div>
           <div style="position:absolute;right:16px;bottom:16px;">
             <ui-speed-dial
@@ -34,7 +34,11 @@ import { MenuItem, SpeedDialComponent } from 'ui';
               [items]="primaryItems()"
               [itemSizePx]="40"
               [gap]="6"
-              [triggerButtonProps]="{ variant: 'primary', appearance: 'filled', shape: 'circular' }"
+              [triggerButtonProps]="{
+                variant: 'primary',
+                appearance: 'filled',
+                shape: 'circular'
+              }"
               ariaLabel="Primary speed dial"
             />
           </div>
@@ -44,9 +48,9 @@ import { MenuItem, SpeedDialComponent } from 'ui';
         >
           <div style="display:grid;gap:0.25rem;">
             <strong>Secondary actions</strong>
-            <span style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest);"
-              >Share, archive, or open related records.</span
-            >
+            <span style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest);">
+              Share, archive, or open related records.
+            </span>
           </div>
           <div style="position:absolute;right:16px;bottom:16px;">
             <ui-speed-dial
@@ -58,7 +62,7 @@ import { MenuItem, SpeedDialComponent } from 'ui';
               [triggerButtonProps]="{
                 variant: 'secondary',
                 appearance: 'filled',
-                shape: 'circular',
+                shape: 'circular'
               }"
               ariaLabel="Secondary speed dial"
             />
@@ -66,17 +70,17 @@ import { MenuItem, SpeedDialComponent } from 'ui';
         </article>
       </div>
     </section>
-  `,
+  `
 })
 export class SpeedDialCoordinationDemoComponent {
   protected readonly primaryItems = signal<MenuItem[]>([
     { id: 'create', label: '', icon: 'add' },
     { id: 'assign', label: '', icon: 'person_add' },
-    { id: 'start', label: '', icon: 'play' },
+    { id: 'start', label: '', icon: 'play' }
   ]);
   protected readonly secondaryItems = signal<MenuItem[]>([
     { id: 'share', label: '', icon: 'share' },
     { id: 'archive', label: '', icon: 'archive' },
-    { id: 'open', label: '', icon: 'open' },
+    { id: 'open', label: '', icon: 'open' }
   ]);
 }

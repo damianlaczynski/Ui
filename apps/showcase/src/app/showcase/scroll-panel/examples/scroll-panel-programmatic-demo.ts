@@ -13,9 +13,10 @@ import { ButtonComponent, ScrollPanelComponent } from 'ui';
         <ui-button variant="secondary" appearance="outline" size="small" (click)="scrollToTop()">Top</ui-button>
         <ui-button variant="secondary" appearance="outline" size="small" (click)="scrollToBottom()">Bottom</ui-button>
         <ui-button variant="secondary" appearance="outline" size="small" (click)="scrollToRight()">Right</ui-button>
-        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
-          >Last action: <strong>{{ lastAction() || 'none' }}</strong></span
-        >
+        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
+          Last action:
+          <strong>{{ lastAction() || 'none' }}</strong>
+        </span>
       </div>
 
       <div
@@ -37,7 +38,7 @@ import { ButtonComponent, ScrollPanelComponent } from 'ui';
         </ui-scroll-panel>
       </div>
     </div>
-  `,
+  `
 })
 export class ScrollPanelProgrammaticDemoComponent {
   protected readonly panel = viewChild<ScrollPanelComponent>('panel');
@@ -46,7 +47,7 @@ export class ScrollPanelProgrammaticDemoComponent {
   protected readonly items = Array.from({ length: 10 }, (_, index) => ({
     id: index + 1,
     title: `Card ${index + 1}`,
-    body: 'Programmatic scrolling is useful when the shell needs to jump to a region after an external action.',
+    body: 'Programmatic scrolling is useful when the shell needs to jump to a region after an external action.'
   }));
 
   protected scrollToTop(): void {

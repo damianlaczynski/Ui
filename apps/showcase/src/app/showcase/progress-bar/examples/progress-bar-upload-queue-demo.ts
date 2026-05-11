@@ -60,6 +60,6 @@ import { ProgressBarComponent } from 'ui';
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class ProgressBarUploadQueueExampleComponent {}

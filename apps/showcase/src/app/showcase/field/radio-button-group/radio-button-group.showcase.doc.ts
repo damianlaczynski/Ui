@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig,
+  ShowcaseDocPageConfig
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { RadioButtonGroupBasicDemoComponent } from './examples/radio-button-group-basic-demo';
 import { RadioButtonGroupFilledDemoComponent } from './examples/radio-button-group-filled-demo';
@@ -27,7 +27,7 @@ const componentMap = {
   icons: RadioButtonGroupIconsDemoComponent,
   shapes: RadioButtonGroupShapesDemoComponent,
   states: RadioButtonGroupStatesDemoComponent,
-  settingsPanel: RadioButtonGroupSettingsPanelDemoComponent,
+  settingsPanel: RadioButtonGroupSettingsPanelDemoComponent
 } as const;
 
 export const RADIO_BUTTON_GROUP_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -35,9 +35,9 @@ export const RADIO_BUTTON_GROUP_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(radioButtonGroupMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${radioButtonGroupMeta.slug}/${file}`,
-    ]),
-  ) as Record<string, string>),
+      `/docs/components/snippets/${radioButtonGroupMeta.slug}/${file}`
+    ])
+  ) as Record<string, string>)
 };
 
 export const RADIO_BUTTON_GROUP_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -46,12 +46,12 @@ export const RADIO_BUTTON_GROUP_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: radioButtonGroupMeta.importCode,
   containerClass: radioButtonGroupMeta.containerClass,
   accessibility: radioButtonGroupMeta.accessibility,
-  featureSections: radioButtonGroupMeta.featureSections.map(section => ({
+  featureSections: radioButtonGroupMeta.featureSections.map((section) => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap],
+    component: componentMap[section.componentKey as keyof typeof componentMap]
   })),
-  apiSections: radioButtonGroupMeta.apiSections,
+  apiSections: radioButtonGroupMeta.apiSections
 };

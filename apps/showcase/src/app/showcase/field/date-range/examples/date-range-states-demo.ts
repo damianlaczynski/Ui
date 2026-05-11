@@ -32,17 +32,17 @@ import { DateRange, DateRangeComponent } from 'ui';
         [ngModelOptions]="{ standalone: true }"
       />
     </div>
-  `,
+  `
 })
 export class DateRangeStatesDemoComponent {
   protected readonlyValue: DateRange | null = {
     startDate: '2026-05-05',
-    endDate: '2026-05-09',
+    endDate: '2026-05-09'
   };
 
   protected disabledValue: DateRange | null = {
     startDate: '2026-05-19',
-    endDate: '2026-05-22',
+    endDate: '2026-05-22'
   };
 
   protected requiredValue: DateRange | null = null;

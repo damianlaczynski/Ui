@@ -39,7 +39,7 @@ import { TotpComponent } from 'ui';
         />
       </div>
     </div>
-  `,
+  `
 })
 export class TotpBasicDemoComponent {
   protected code = '123456';

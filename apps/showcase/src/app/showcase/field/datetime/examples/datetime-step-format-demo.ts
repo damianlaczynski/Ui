@@ -44,7 +44,8 @@ import { DatetimeComponent } from 'ui';
         style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
       >
         <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">
-          24h example: <strong style="color:var(--color-neutral-foreground1-rest)">16:30</strong>
+          24h example:
+          <strong style="color:var(--color-neutral-foreground1-rest)">16:30</strong>
         </span>
         <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">
           12h picker shows the same slot as
@@ -52,7 +53,7 @@ import { DatetimeComponent } from 'ui';
         </span>
       </div>
     </div>
-  `,
+  `
 })
 export class DatetimeStepFormatDemoComponent {
   protected halfHourValue = '2026-05-12T09:30';

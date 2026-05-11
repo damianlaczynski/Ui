@@ -23,6 +23,6 @@ import { MessageBarComponent } from 'ui';
         [multiline]="true"
       />
     </div>
-  `,
+  `
 })
 export class MessageBarLayoutExampleComponent {}

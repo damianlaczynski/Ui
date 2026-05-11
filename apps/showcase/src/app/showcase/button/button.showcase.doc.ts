@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig,
+  ShowcaseDocPageConfig
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { ButtonAppearanceVariantExampleComponent } from './examples/button-appearance-variant-demo';
 import { ButtonBasicExampleComponent } from './examples/button-basic-demo';
@@ -23,7 +23,7 @@ const componentMap = {
   iconOnly: ButtonIconOnlyExampleComponent,
   sizes: ButtonSizesExampleComponent,
   states: ButtonStatesExampleComponent,
-  other: ButtonOtherExampleComponent,
+  other: ButtonOtherExampleComponent
 } as const;
 
 export const BUTTON_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -31,9 +31,9 @@ export const BUTTON_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(buttonMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${buttonMeta.slug}/${file}`,
-    ]),
-  ) as Record<string, string>),
+      `/docs/components/snippets/${buttonMeta.slug}/${file}`
+    ])
+  ) as Record<string, string>)
 };
 
 export const BUTTON_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -42,12 +42,12 @@ export const BUTTON_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: buttonMeta.importCode,
   containerClass: buttonMeta.containerClass,
   accessibility: buttonMeta.accessibility,
-  featureSections: buttonMeta.featureSections.map(section => ({
+  featureSections: buttonMeta.featureSections.map((section) => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap],
+    component: componentMap[section.componentKey as keyof typeof componentMap]
   })),
-  apiSections: buttonMeta.apiSections,
+  apiSections: buttonMeta.apiSections
 };

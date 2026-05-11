@@ -46,31 +46,31 @@ import { ColorComponent } from 'ui';
         <div style="display:flex;flex-direction:column;gap:0.45rem;font-size:0.875rem;line-height:1.4">
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Primary</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
-              form.controls.primary.getRawValue()
-            }}</strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">
+              {{ form.controls.primary.getRawValue() }}
+            </strong>
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Secondary</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
-              form.controls.secondary.getRawValue()
-            }}</strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">
+              {{ form.controls.secondary.getRawValue() }}
+            </strong>
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Accent</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
-              form.controls.accent.getRawValue()
-            }}</strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">
+              {{ form.controls.accent.getRawValue() }}
+            </strong>
           </div>
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class ColorBrandFormExampleComponent {
   protected readonly form = new FormGroup({
     primary: new FormControl('#0F6CBD', { nonNullable: true }),
     secondary: new FormControl('#107C10', { nonNullable: true }),
-    accent: new FormControl('#C239B31F', { nonNullable: true }),
+    accent: new FormControl('#C239B31F', { nonNullable: true })
   });
 }

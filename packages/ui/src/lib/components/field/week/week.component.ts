@@ -9,7 +9,7 @@ import {
   TemplateRef,
   ViewChild,
   OnDestroy,
-  inject,
+  inject
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -44,9 +44,9 @@ interface CalendarWeek {
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => WeekComponent),
-      multi: true,
+      multi: true
     },
-    DateFieldOverlayService,
+    DateFieldOverlayService
   ],
   styles: [
     `
@@ -54,8 +54,8 @@ interface CalendarWeek {
         width: 100%;
         display: block;
       }
-    `,
-  ],
+    `
+  ]
 })
 export class WeekComponent extends FieldComponent implements OnDestroy {
   private overlayService = inject(DateFieldOverlayService);
@@ -96,7 +96,7 @@ export class WeekComponent extends FieldComponent implements OnDestroy {
   constructor() {
     super();
 
-    this.breakpointSub = this.breakpointObserver.observe(MOBILE_BREAKPOINT).subscribe(result => {
+    this.breakpointSub = this.breakpointObserver.observe(MOBILE_BREAKPOINT).subscribe((result) => {
       this.isMobile.set(result.matches);
     });
 
@@ -127,7 +127,7 @@ export class WeekComponent extends FieldComponent implements OnDestroy {
           this.currentMonth.set(new Date(this.selectedDate()!));
         }
       },
-      ref => this.scrollSelectedWeekIntoView(ref),
+      (ref) => this.scrollSelectedWeekIntoView(ref)
     );
   }
 
@@ -206,7 +206,7 @@ export class WeekComponent extends FieldComponent implements OnDestroy {
           this.currentMonth.set(new Date(this.selectedDate()!));
         }
       },
-      ref => this.scrollSelectedWeekIntoView(ref),
+      (ref) => this.scrollSelectedWeekIntoView(ref)
     );
   }
 
@@ -272,7 +272,7 @@ export class WeekComponent extends FieldComponent implements OnDestroy {
     return {
       date: result,
       weekNumber: week,
-      weekYear: year,
+      weekYear: year
     };
   }
 
@@ -313,7 +313,7 @@ export class WeekComponent extends FieldComponent implements OnDestroy {
             startDate: weekStart,
             endDate: weekEnd,
             year: weekYear,
-            isSelected,
+            isSelected
           });
         }
       }

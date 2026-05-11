@@ -9,7 +9,7 @@ import {
   ViewChild,
   input,
   OnDestroy,
-  inject,
+  inject
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -36,16 +36,16 @@ const MOBILE_BREAKPOINT = '(max-width: 768px)';
     FieldComponent,
     ActionButtonComponent,
     CalendarComponent,
-    ButtonComponent,
+    ButtonComponent
   ],
   templateUrl: './month.component.html',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => MonthComponent),
-      multi: true,
+      multi: true
     },
-    DateFieldOverlayService,
+    DateFieldOverlayService
   ],
   styles: [
     `
@@ -53,8 +53,8 @@ const MOBILE_BREAKPOINT = '(max-width: 768px)';
         width: 100%;
         display: block;
       }
-    `,
-  ],
+    `
+  ]
 })
 export class MonthComponent extends FieldComponent implements OnDestroy {
   private overlayService = inject(DateFieldOverlayService);
@@ -87,7 +87,7 @@ export class MonthComponent extends FieldComponent implements OnDestroy {
   constructor() {
     super();
 
-    this.breakpointSub = this.breakpointObserver.observe(MOBILE_BREAKPOINT).subscribe(result => {
+    this.breakpointSub = this.breakpointObserver.observe(MOBILE_BREAKPOINT).subscribe((result) => {
       this.isMobile.set(result.matches);
     });
 
@@ -250,7 +250,7 @@ export class MonthComponent extends FieldComponent implements OnDestroy {
   private formatMonth(date: Date): string {
     return date.toLocaleDateString('en-US', {
       year: 'numeric',
-      month: 'long',
+      month: 'long'
     });
   }
 

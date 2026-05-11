@@ -16,14 +16,16 @@
     <!-- Label Above -->
     @if (label() && labelPosition() === 'above') {
       <div class="switch-label-above">
-        <span [ngClass]="switchLabelClasses()"> {{ label() }} </span>
+        <span [ngClass]="switchLabelClasses()">{{ label() }}</span>
       </div>
     }
 
     <label class="switch-container">
       <!-- Label Before -->
       @if (label() && labelPosition() === 'before') {
-        <span [ngClass]="switchLabelClasses()" class="switch-label-before"> {{ label() }} </span>
+        <span [ngClass]="switchLabelClasses()" class="switch-label-before">
+          {{ label() }}
+        </span>
       }
 
       <!-- Hidden native checkbox for accessibility and form integration -->
@@ -60,14 +62,16 @@
 
       <!-- Label After -->
       @if (label() && labelPosition() === 'after') {
-        <span [ngClass]="switchLabelClasses()" class="switch-label-after"> {{ label() }} </span>
+        <span [ngClass]="switchLabelClasses()" class="switch-label-after">
+          {{ label() }}
+        </span>
       }
     </label>
 
     <!-- Label Below -->
     @if (label() && labelPosition() === 'below') {
       <div class="switch-label-below">
-        <span [ngClass]="switchLabelClasses()"> {{ label() }} </span>
+        <span [ngClass]="switchLabelClasses()">{{ label() }}</span>
       </div>
     }
   </div>

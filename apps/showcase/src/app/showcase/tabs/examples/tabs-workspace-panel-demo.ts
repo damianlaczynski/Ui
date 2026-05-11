@@ -39,7 +39,9 @@ type WorkspaceTab = Tab & {
           </strong>
         </div>
         <div style="flex:2 1 20rem;min-width:16rem">
-          <div style="font-size:0.9375rem;font-weight:600">{{ activeTab.headline }}</div>
+          <div style="font-size:0.9375rem;font-weight:600">
+            {{ activeTab.headline }}
+          </div>
           <div
             style="margin-top:0.375rem;font-size:0.875rem;line-height:1.5;color:var(--color-neutral-foreground2-rest)"
           >
@@ -48,7 +50,7 @@ type WorkspaceTab = Tab & {
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class TabsWorkspacePanelDemoComponent {
   protected readonly tabs: WorkspaceTab[] = [
@@ -60,7 +62,7 @@ export class TabsWorkspacePanelDemoComponent {
       summary:
         'Use a short overview tab for current status, owners, and top-level signals before the user dives into lower-level sections.',
       statLabel: 'Active projects',
-      statValue: '12',
+      statValue: '12'
     },
     {
       id: 'members',
@@ -70,7 +72,7 @@ export class TabsWorkspacePanelDemoComponent {
       summary:
         'Tabs help separate role management and access details from the main summary without moving the user to a different route.',
       statLabel: 'Contributors',
-      statValue: '38',
+      statValue: '38'
     },
     {
       id: 'automation',
@@ -80,13 +82,13 @@ export class TabsWorkspacePanelDemoComponent {
       summary:
         'Automation settings, rules, and notifications often belong in neighboring tabs because they are related but not needed all at once.',
       statLabel: 'Active rules',
-      statValue: '7',
-    },
+      statValue: '7'
+    }
   ];
 
   protected selectedTabId: string | number = this.tabs[0].id;
 
   protected get activeTab(): WorkspaceTab {
-    return this.tabs.find(tab => tab.id === this.selectedTabId) ?? this.tabs[0];
+    return this.tabs.find((tab) => tab.id === this.selectedTabId) ?? this.tabs[0];
   }
 }

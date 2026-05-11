@@ -25,14 +25,14 @@ import { TreeNodeComponent, type TreeNode } from 'ui';
         <ui-tree-node [node]="parentNode" />
       </div>
     </div>
-  `,
+  `
 })
 export class TreeNodeBasicDemoComponent {
   protected readonly leafNode: TreeNode = {
     id: 'leaf',
     label: 'Readme.md',
     icon: 'document',
-    hasChildren: false,
+    hasChildren: false
   };
 
   protected readonly parentNode: TreeNode = {
@@ -43,7 +43,7 @@ export class TreeNodeBasicDemoComponent {
     expanded: true,
     children: [
       { id: 'brief', label: 'Brief.docx', icon: 'document', hasChildren: false },
-      { id: 'notes', label: 'Notes.md', icon: 'document', hasChildren: false },
-    ],
+      { id: 'notes', label: 'Notes.md', icon: 'document', hasChildren: false }
+    ]
   };
 }

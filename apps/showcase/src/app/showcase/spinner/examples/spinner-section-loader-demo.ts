@@ -17,6 +17,6 @@ import { SpinnerComponent } from 'ui';
         ariaLabel="Fetching board"
       />
     </div>
-  `,
+  `
 })
 export class SpinnerSectionLoaderExampleComponent {}

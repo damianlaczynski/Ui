@@ -11,6 +11,6 @@ import { ButtonComponent } from 'ui';
       <ui-button size="medium" variant="primary">Medium</ui-button>
       <ui-button size="large" variant="primary">Large</ui-button>
     </div>
-  `,
+  `
 })
 export class ButtonSizesExampleComponent {}

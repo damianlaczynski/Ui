@@ -14,7 +14,7 @@ describe('BadgeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BadgeComponent, IconComponent],
+      imports: [BadgeComponent, IconComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(BadgeComponent);
@@ -82,7 +82,7 @@ describe('BadgeComponent', () => {
   describe('Variant Input', () => {
     const variants: Variant[] = ['primary', 'secondary', 'success', 'warning', 'danger', 'info'];
 
-    variants.forEach(variant => {
+    variants.forEach((variant) => {
       it(`should apply ${variant} variant class`, () => {
         fixture.componentRef.setInput('text', 'Badge');
         fixture.componentRef.setInput('variant', variant);
@@ -97,7 +97,7 @@ describe('BadgeComponent', () => {
   describe('Appearance Input', () => {
     const appearances: Appearance[] = ['filled', 'tint', 'outline', 'subtle', 'transparent'];
 
-    appearances.forEach(appearance => {
+    appearances.forEach((appearance) => {
       it(`should apply ${appearance} appearance class`, () => {
         fixture.componentRef.setInput('text', 'Badge');
         fixture.componentRef.setInput('appearance', appearance);
@@ -112,7 +112,7 @@ describe('BadgeComponent', () => {
   describe('Size Input', () => {
     const sizes: Size[] = ['small', 'medium', 'large'];
 
-    sizes.forEach(size => {
+    sizes.forEach((size) => {
       it(`should apply ${size} size class`, () => {
         fixture.componentRef.setInput('text', 'Badge');
         fixture.componentRef.setInput('size', size);
@@ -138,7 +138,7 @@ describe('BadgeComponent', () => {
   describe('Shape Input', () => {
     const shapes: Shape[] = ['rounded', 'circular', 'square'];
 
-    shapes.forEach(shape => {
+    shapes.forEach((shape) => {
       it(`should apply ${shape} shape class`, () => {
         fixture.componentRef.setInput('text', 'Badge');
         fixture.componentRef.setInput('shape', shape);
@@ -201,7 +201,7 @@ describe('BadgeComponent', () => {
   describe('IconPosition Input', () => {
     const positions: ContentPosition[] = ['before', 'after'];
 
-    positions.forEach(position => {
+    positions.forEach((position) => {
       it(`should apply icon-${position} class when icon is present`, () => {
         fixture.componentRef.setInput('text', 'Badge');
         fixture.componentRef.setInput('icon', 'star' as IconName);

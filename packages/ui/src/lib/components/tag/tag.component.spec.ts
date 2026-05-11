@@ -14,7 +14,7 @@ describe('TagComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TagComponent, IconComponent],
+      imports: [TagComponent, IconComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(TagComponent);
@@ -120,7 +120,7 @@ describe('TagComponent', () => {
   describe('Variant Input', () => {
     const variants: Variant[] = ['primary', 'secondary', 'success', 'warning', 'danger', 'info'];
 
-    variants.forEach(variant => {
+    variants.forEach((variant) => {
       it(`should apply ${variant} variant class`, () => {
         fixture.componentRef.setInput('text', 'Tag');
         fixture.componentRef.setInput('variant', variant);
@@ -135,7 +135,7 @@ describe('TagComponent', () => {
   describe('Appearance Input', () => {
     const appearances: Appearance[] = ['filled', 'tint', 'outline', 'subtle', 'transparent'];
 
-    appearances.forEach(appearance => {
+    appearances.forEach((appearance) => {
       it(`should apply ${appearance} appearance class`, () => {
         fixture.componentRef.setInput('text', 'Tag');
         fixture.componentRef.setInput('appearance', appearance);
@@ -150,7 +150,7 @@ describe('TagComponent', () => {
   describe('Size Input', () => {
     const sizes: Size[] = ['small', 'medium', 'large'];
 
-    sizes.forEach(size => {
+    sizes.forEach((size) => {
       it(`should apply button size class for ${size}`, () => {
         fixture.componentRef.setInput('text', 'Tag');
         fixture.componentRef.setInput('size', size);
@@ -165,7 +165,7 @@ describe('TagComponent', () => {
   describe('Shape Input', () => {
     const shapes: Shape[] = ['rounded', 'circular', 'square'];
 
-    shapes.forEach(shape => {
+    shapes.forEach((shape) => {
       it(`should apply ${shape} shape class`, () => {
         fixture.componentRef.setInput('text', 'Tag');
         fixture.componentRef.setInput('shape', shape);
@@ -183,7 +183,7 @@ describe('TagComponent', () => {
       fixture.detectChanges();
 
       const icons = fixture.debugElement.queryAll(By.directive(IconComponent));
-      const tagIcon = icons.find(icon => icon.nativeElement.classList.contains('tag__icon'));
+      const tagIcon = icons.find((icon) => icon.nativeElement.classList.contains('tag__icon'));
       expect(tagIcon).toBeFalsy();
     });
 
@@ -193,7 +193,7 @@ describe('TagComponent', () => {
       fixture.detectChanges();
 
       const icons = fixture.debugElement.queryAll(By.directive(IconComponent));
-      const tagIcon = icons.find(icon => icon.nativeElement.classList.contains('tag__icon'));
+      const tagIcon = icons.find((icon) => icon.nativeElement.classList.contains('tag__icon'));
       expect(tagIcon).toBeTruthy();
     });
 
@@ -204,7 +204,7 @@ describe('TagComponent', () => {
       fixture.detectChanges();
 
       const icons = fixture.debugElement.queryAll(By.directive(IconComponent));
-      const tagIcon = icons.find(icon => icon.nativeElement.classList.contains('tag__icon'));
+      const tagIcon = icons.find((icon) => icon.nativeElement.classList.contains('tag__icon'));
       expect(tagIcon?.componentInstance.icon()).toBe(iconName);
     });
   });
@@ -990,7 +990,7 @@ describe('TagComponent', () => {
     it('should handle secondary text with different sizes', () => {
       const sizes: Size[] = ['small', 'medium', 'large'];
 
-      sizes.forEach(size => {
+      sizes.forEach((size) => {
         fixture.componentRef.setInput('text', 'Primary');
         fixture.componentRef.setInput('secondaryText', 'Secondary');
         fixture.componentRef.setInput('size', size);

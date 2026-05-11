@@ -54,20 +54,18 @@ import { KbdComponent, MessageBarComponent, TagComponent } from 'ui';
         <div
           style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
         >
-          <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-            Open command palette with
-          </span>
+          <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">Open command palette with</span>
           <ui-kbd text="Ctrl" appearance="filled" />
           <ui-kbd text="K" appearance="filled" />
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class KbdCommandHelpDemoComponent {
   protected readonly shortcuts = [
     { label: 'Save draft', keys: ['Ctrl', 'S'] },
     { label: 'Open search', keys: ['Ctrl', 'F'] },
-    { label: 'Duplicate line', keys: ['Shift', 'Alt', '↓'] },
+    { label: 'Duplicate line', keys: ['Shift', 'Alt', '↓'] }
   ];
 }

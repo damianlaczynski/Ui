@@ -33,7 +33,7 @@ import { NumericRange, RangeComponent } from 'ui';
         [ngModelOptions]="{ standalone: true }"
       />
     </div>
-  `,
+  `
 })
 export class RangeBoundsStepsDemoComponent {
   protected scoreBand: NumericRange = { min: 3, max: 7 };

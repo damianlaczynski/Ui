@@ -18,12 +18,14 @@ interface EventItem {
         style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background2-rest)"
       >
         <ui-button variant="secondary" appearance="outline" (click)="reset()">Reset counters</ui-button>
-        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
-          >Load events: <strong>{{ loadMoreCount() }}</strong></span
-        >
-        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
-          >Complete: <strong>{{ completed() ? 'yes' : 'no' }}</strong></span
-        >
+        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
+          Load events:
+          <strong>{{ loadMoreCount() }}</strong>
+        </span>
+        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
+          Complete:
+          <strong>{{ completed() ? 'yes' : 'no' }}</strong>
+        </span>
       </div>
 
       <div
@@ -40,7 +42,7 @@ interface EventItem {
         />
       </div>
     </div>
-  `,
+  `
 })
 export class ScrollContainerEventsDemoComponent {
   protected readonly loadMoreCount = signal(0);
@@ -51,14 +53,14 @@ export class ScrollContainerEventsDemoComponent {
     const items = Array.from({ length: pageSize }, (_, index) => ({
       id: start + index,
       label: `Background job ${start + index}`,
-      icon: (index % 2 === 0 ? 'arrow_sync' : 'checkmark_circle') as Node['icon'],
+      icon: (index % 2 === 0 ? 'arrow_sync' : 'checkmark_circle') as Node['icon']
     }));
 
     return of({
       items,
       hasNextPage: page < 3,
       hasPreviousPage: page > 1,
-      totalCount: 18,
+      totalCount: 18
     }).pipe(delay(180));
   };
 
@@ -68,6 +70,6 @@ export class ScrollContainerEventsDemoComponent {
   }
 
   protected onLoadMore(): void {
-    this.loadMoreCount.update(count => count + 1);
+    this.loadMoreCount.update((count) => count + 1);
   }
 }

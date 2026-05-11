@@ -58,7 +58,7 @@ import {
   errorState,
   loadedState,
   loadingState,
-  State,
+  State
 } from 'ui';
 import { LSP_SPEED_DIAL_ITEMS } from './landing-surface-previews.shared';
 
@@ -75,21 +75,23 @@ interface LspSegmentRow {
 
 const LSP_SEGMENT_ROWS: LspSegmentRow[] = [
   { id: 1, name: 'Enterprise · EU regulated' },
-  { id: 2, name: 'Self-serve startups' },
+  { id: 2, name: 'Self-serve startups' }
 ];
 
 const LSP_STATE_CYCLE: State<LspSegmentRow[]>[] = [
   loadingState(loadedState(LSP_SEGMENT_ROWS)),
   loadedState(LSP_SEGMENT_ROWS),
   loadedState([]),
-  errorState('Upstream reconciliation stalled.'),
+  errorState('Upstream reconciliation stalled.')
 ];
 
 @Component({
   selector: 'app-lsp-nav',
   standalone: true,
   imports: [NavComponent],
-  template: ` <ui-nav [items]="items" [autoScrollToSelected]="false" /> `,
+  template: `
+    <ui-nav [items]="items" [autoScrollToSelected]="false" />
+  `
 })
 export class LspNavPreviewComponent {
   protected readonly items: NavNode[] = [
@@ -106,7 +108,7 @@ export class LspNavPreviewComponent {
     { id: 'divider-2', label: 'divider', isDivider: true },
     { id: 'admin-header', label: 'Administration', isSectionHeader: true },
     { id: 'billing', label: 'Billing', icon: 'wallet' },
-    { id: 'security', label: 'Security', icon: 'shield', disabled: true },
+    { id: 'security', label: 'Security', icon: 'shield', disabled: true }
   ];
 }
 
@@ -129,32 +131,32 @@ export class LspNavPreviewComponent {
       <ui-node [node]="nodes.disabledDanger" size="large" variant="danger" appearance="filled" shape="rounded" />
       <ui-node [node]="nodes.closableQuick" [asButton]="true" variant="primary" appearance="tint" shape="circular" />
     </div>
-  `,
+  `
 })
 export class LspNodePreviewComponent {
   protected readonly nodes = {
     basic: {
       id: 'n-basic',
       label: 'Quarterly revenue workbook.xlsx',
-      icon: 'document' as const,
+      icon: 'document' as const
     },
     selectedOutline: {
       id: 'n-outline',
       label: 'Pinned inspector route',
       icon: 'pin' as const,
-      selected: true,
+      selected: true
     },
     disabledDanger: {
       id: 'n-dis',
       label: 'Revoked signing key',
       icon: 'shield_error' as const,
-      disabled: true,
+      disabled: true
     },
     closableQuick: {
       id: 'n-qa',
       label: 'EU rollout',
-      icon: 'rocket' as const,
-    },
+      icon: 'rocket' as const
+    }
   };
 }
 
@@ -162,7 +164,9 @@ export class LspNodePreviewComponent {
   selector: 'app-lsp-number',
   standalone: true,
   imports: [FormsModule, NumberComponent],
-  template: ` <ui-number label="Licensed seats" [(ngModel)]="value" [ngModelOptions]="{ standalone: true }" /> `,
+  template: `
+    <ui-number label="Licensed seats" [(ngModel)]="value" [ngModelOptions]="{ standalone: true }" />
+  `
 })
 export class LspNumberPreviewComponent {
   protected value: number | null = 48;
@@ -172,7 +176,9 @@ export class LspNumberPreviewComponent {
   selector: 'app-lsp-pagination',
   standalone: true,
   imports: [PaginationComponent],
-  template: ` <ui-pagination [config]="paginationConfig()" (pageChange)="currentPage.set($event)" /> `,
+  template: `
+    <ui-pagination [config]="paginationConfig()" (pageChange)="currentPage.set($event)" />
+  `
 })
 export class LspPaginationPreviewComponent {
   protected readonly currentPage = signal(3);
@@ -186,12 +192,12 @@ export class LspPaginationPreviewComponent {
     maxVisiblePages: 7,
     showFirstLast: false,
     showInfo: true,
-    showPageSizeSelector: false,
+    showPageSizeSelector: false
   };
 
   protected readonly paginationConfig = computed<PaginationConfig>(() => ({
     ...this.base,
-    currentPage: this.currentPage(),
+    currentPage: this.currentPage()
   }));
 }
 
@@ -199,7 +205,9 @@ export class LspPaginationPreviewComponent {
   selector: 'app-lsp-password',
   standalone: true,
   imports: [FormsModule, PasswordComponent],
-  template: ` <ui-password label="Workspace password" [(ngModel)]="value" [ngModelOptions]="{ standalone: true }" /> `,
+  template: `
+    <ui-password label="Workspace password" [(ngModel)]="value" [ngModelOptions]="{ standalone: true }" />
+  `
 })
 export class LspPasswordPreviewComponent {
   protected value = '';
@@ -214,7 +222,7 @@ export class LspPasswordPreviewComponent {
       <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">Uploading token bundle · 64%</span>
       <ui-progress-bar variant="primary" size="medium" type="determinate" [value]="64" ariaLabel="Upload progress" />
     </div>
-  `,
+  `
 })
 export class LspProgressBarPreviewComponent {}
 
@@ -241,7 +249,7 @@ export class LspProgressBarPreviewComponent {}
         appearance="filled"
       />
     </div>
-  `,
+  `
 })
 export class LspRadioButtonGroupPreviewComponent {
   protected outlineValue = 'annual';
@@ -251,13 +259,13 @@ export class LspRadioButtonGroupPreviewComponent {
   protected readonly outlineItems: RadioButtonItem[] = [
     { id: 'monthly', label: 'Monthly', value: 'monthly' },
     { id: 'annual', label: 'Annual · save 18%', value: 'annual' },
-    { id: 'enterprise', label: 'Enterprise invoicing', value: 'enterprise' },
+    { id: 'enterprise', label: 'Enterprise invoicing', value: 'enterprise' }
   ];
 
   protected readonly filledItems: RadioButtonItem[] = [
     { id: 'sms', label: 'SMS + voice bridge', value: 'sms' },
     { id: 'email', label: 'Ops distribution list', value: 'email' },
-    { id: 'slack', label: '#platform-incidents', value: 'slack' },
+    { id: 'slack', label: '#platform-incidents', value: 'slack' }
   ];
 }
 
@@ -270,7 +278,7 @@ export class LspRadioButtonGroupPreviewComponent {
       <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">Pilot customer satisfaction</span>
       <ui-rating [value]="value()" [max]="5" [showValue]="false" (valueChange)="value.set($event)" />
     </div>
-  `,
+  `
 })
 export class LspRatingPreviewComponent {
   protected readonly value = signal(3);
@@ -289,7 +297,7 @@ export class LspRatingPreviewComponent {
       appearance="subtle"
       shape="rounded"
     />
-  `,
+  `
 })
 export class LspScrollContainerPreviewComponent {
   protected readonly dataSource: ScrollContainerDataSource<LspScrollRow> = (page, pageSize) => {
@@ -301,21 +309,21 @@ export class LspScrollContainerPreviewComponent {
         { label: `Partner sandbox invoice #${4200 + id}`, icon: 'receipt' as const },
         {
           label: `Webhook replay job ${id.toString().padStart(4, '0')}`,
-          icon: 'arrow_sync' as const,
-        },
+          icon: 'arrow_sync' as const
+        }
       ];
       const pick = descriptors[id % descriptors.length];
       return {
         id,
         label: pick.label,
-        icon: pick.icon as UiNode['icon'],
+        icon: pick.icon as UiNode['icon']
       };
     });
     return of({
       items,
       hasNextPage: page < 3,
       hasPreviousPage: page > 1,
-      totalCount: 30,
+      totalCount: 30
     }).pipe(delay(150));
   };
 }
@@ -336,7 +344,7 @@ export class LspScrollContainerPreviewComponent {
         }
       </div>
     </ui-scroll-panel>
-  `,
+  `
 })
 export class LspScrollPanelPreviewComponent {
   protected readonly items = [
@@ -351,7 +359,7 @@ export class LspScrollPanelPreviewComponent {
     { id: 9, text: 'Policy bundle v2026.05 published to staging · draft review' },
     { id: 10, text: 'Calendar sync repaired for 14 affected tenants · rollout 40%' },
     { id: 11, text: 'Backup verification job completed · all regions green' },
-    { id: 12, text: 'Rate limit tuning deployed to edge POPs · Asia-Pacific' },
+    { id: 12, text: 'Rate limit tuning deployed to edge POPs · Asia-Pacific' }
   ];
 }
 
@@ -365,7 +373,7 @@ export class LspScrollPanelPreviewComponent {
       [ngModelOptions]="{ standalone: true }"
       placeholder="Search components, APIs, or guidance…"
     />
-  `,
+  `
 })
 export class LspSearchPreviewComponent {
   protected query = '';
@@ -393,7 +401,7 @@ export class LspSearchPreviewComponent {
         <ui-skeleton width="5rem" height="1.85rem" shape="rounded" />
       </div>
     </div>
-  `,
+  `
 })
 export class LspSkeletonPreviewComponent {}
 
@@ -409,7 +417,7 @@ export class LspSkeletonPreviewComponent {}
       [(ngModel)]="value"
       [ngModelOptions]="{ standalone: true }"
     />
-  `,
+  `
 })
 export class LspSliderPreviewComponent {
   protected value = 35;
@@ -426,11 +434,15 @@ export class LspSliderPreviewComponent {
         [itemSizePx]="40"
         [gap]="6"
         [items]="items"
-        [triggerButtonProps]="{ variant: 'primary', appearance: 'filled', shape: 'circular' }"
+        [triggerButtonProps]="{
+          variant: 'primary',
+          appearance: 'filled',
+          shape: 'circular'
+        }"
         ariaLabel="Capture task or refresh metrics"
       />
     </div>
-  `,
+  `
 })
 export class LspSpeedDialPreviewComponent {
   protected readonly items = LSP_SPEED_DIAL_ITEMS;
@@ -466,7 +478,7 @@ export class LspSpeedDialPreviewComponent {
         [ariaValueText]="getAriaLatencyText"
       />
     </div>
-  `,
+  `
 })
 export class LspRangePreviewComponent {
   protected quietHours: NumericRange = { min: 8, max: 18 };
@@ -507,7 +519,7 @@ export class LspRangePreviewComponent {
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class LspSpinnerPreviewComponent {}
 
@@ -522,9 +534,9 @@ export class LspSpinnerPreviewComponent {}
           <div
             style="height:100%;padding:0.75rem;font-size:0.8125rem;line-height:1.45;color:var(--color-neutral-foreground2-rest)"
           >
-            <strong style="color:var(--color-neutral-foreground-rest);display:block;margin-bottom:0.35rem"
-              >Collections</strong
-            >
+            <strong style="color:var(--color-neutral-foreground-rest);display:block;margin-bottom:0.35rem">
+              Collections
+            </strong>
             Saved cohorts, tags, and pinned dashboards surface here for analysts.
           </div>
         </ng-template>
@@ -532,9 +544,9 @@ export class LspSpinnerPreviewComponent {}
           <div
             style="height:100%;padding:0.75rem;font-size:0.8125rem;line-height:1.45;color:var(--color-neutral-foreground2-rest)"
           >
-            <strong style="color:var(--color-neutral-foreground-rest);display:block;margin-bottom:0.35rem"
-              >Workspace canvas</strong
-            >
+            <strong style="color:var(--color-neutral-foreground-rest);display:block;margin-bottom:0.35rem">
+              Workspace canvas
+            </strong>
             Drag charts, annotate anomalies, and invite reviewers inline.
           </div>
         </ng-template>
@@ -542,21 +554,21 @@ export class LspSpinnerPreviewComponent {}
           <div
             style="height:100%;padding:0.75rem;font-size:0.8125rem;line-height:1.45;color:var(--color-neutral-foreground2-rest)"
           >
-            <strong style="color:var(--color-neutral-foreground-rest);display:block;margin-bottom:0.35rem"
-              >Signal inspector</strong
-            >
+            <strong style="color:var(--color-neutral-foreground-rest);display:block;margin-bottom:0.35rem">
+              Signal inspector
+            </strong>
             Contextual metrics, lineage, and ownership details stay docked beside selections.
           </div>
         </ng-template>
       </ui-splitter>
     </div>
-  `,
+  `
 })
 export class LspSplitterPreviewComponent {
   protected readonly panels = signal<SplitterPanel[]>([
     { id: 'sidebar', size: 28, minSize: 96, maxSize: 280 },
     { id: 'canvas', size: 50, minSize: 160 },
-    { id: 'inspector', size: 22, minSize: 96, maxSize: 320 },
+    { id: 'inspector', size: 22, minSize: 96, maxSize: 320 }
   ]);
 
   protected onResize(_event: SplitterResizeEvent): void {}
@@ -592,7 +604,7 @@ export class LspSplitterPreviewComponent {
         </div>
       </ui-state-container>
     </div>
-  `,
+  `
 })
 export class LspStateContainerPreviewComponent {
   private readonly destroyRef = inject(DestroyRef);
@@ -635,11 +647,12 @@ interface LspStepperWizardStep extends Step {
           <div uiCardHeader style="display:flex;flex-direction:column;gap:0.35rem">
             <span
               style="font-size:0.6875rem;font-weight:600;color:var(--color-brand-primary);text-transform:uppercase;letter-spacing:0.06em"
-              >{{ panel.eyebrow }}</span
             >
-            <strong style="font-size:0.875rem;line-height:1.35;color:var(--color-neutral-foreground-rest)">{{
-              panel.label
-            }}</strong>
+              {{ panel.eyebrow }}
+            </span>
+            <strong style="font-size:0.875rem;line-height:1.35;color:var(--color-neutral-foreground-rest)">
+              {{ panel.label }}
+            </strong>
           </div>
           <div
             uiCardBody
@@ -650,7 +663,7 @@ interface LspStepperWizardStep extends Step {
         </ui-card>
       }
     </div>
-  `,
+  `
 })
 export class LspStepperPreviewComponent {
   protected readonly wizardSteps: readonly LspStepperWizardStep[] = [
@@ -658,29 +671,32 @@ export class LspStepperPreviewComponent {
       id: 'repo',
       label: 'Connect repository',
       eyebrow: 'Source control',
-      body: 'OAuth to GitHub Enterprise, pick northridge-platform, and authorize the webhook worker app with Contents + Metadata read-only scopes.',
+      body: 'OAuth to GitHub Enterprise, pick northridge-platform, and authorize the webhook worker app with Contents + Metadata read-only scopes.'
     },
     {
       id: 'build',
       label: 'Configure build',
       eyebrow: 'CI pipeline',
-      body: 'Select Node 22, enable deterministic installs, attach the preview URL artifact, and keep source maps scoped to staging symbols only.',
+      body: 'Select Node 22, enable deterministic installs, attach the preview URL artifact, and keep source maps scoped to staging symbols only.'
     },
     {
       id: 'deploy',
       label: 'Deploy to staging',
       eyebrow: 'PCI cluster',
-      body: 'Blue/green on the audited pool: keep canary traffic at ten percent until six hours of soak without failed health probes.',
+      body: 'Blue/green on the audited pool: keep canary traffic at ten percent until six hours of soak without failed health probes.'
     },
     {
       id: 'verify',
       label: 'Run smoke checks',
       eyebrow: 'Quality gates',
-      body: 'Replay saved fixtures—sign-in flows, Stripe invoice PDF snapshots, and NACHA callback receipts—against the staged origin.',
-    },
+      body: 'Replay saved fixtures—sign-in flows, Stripe invoice PDF snapshots, and NACHA callback receipts—against the staged origin.'
+    }
   ];
 
-  protected readonly steps: Step[] = this.wizardSteps.map(({ id, label }) => ({ id, label }));
+  protected readonly steps: Step[] = this.wizardSteps.map(({ id, label }) => ({
+    id,
+    label
+  }));
 
   protected readonly active = signal(0);
 }
@@ -704,7 +720,7 @@ export class LspStepperPreviewComponent {
         [ngModelOptions]="{ standalone: true }"
       />
     </div>
-  `,
+  `
 })
 export class LspSwitchPreviewComponent {
   protected pagerEcho = true;
@@ -771,7 +787,7 @@ export class LspSwitchPreviewComponent {
         </p>
       </div>
     </div>
-  `,
+  `
 })
 export class LspTableOfContentPreviewComponent {}
 
@@ -789,18 +805,18 @@ export class LspTableOfContentPreviewComponent {}
         variant="secondary"
       />
     </div>
-  `,
+  `
 })
 export class LspTabsPreviewComponent {
   protected readonly tabsPrimary: Tab[] = [
     { id: 'a', label: 'Mission control', icon: 'home' },
     { id: 'b', label: 'Automations', icon: 'bot' },
-    { id: 'c', label: 'Guardrails', icon: 'shield_task' },
+    { id: 'c', label: 'Guardrails', icon: 'shield_task' }
   ];
   protected readonly tabsSecondary: Tab[] = [
     { id: 'x', label: 'Compose API', icon: 'code' },
     { id: 'y', label: 'Webhooks', icon: 'link' },
-    { id: 'z', label: 'Analytics', icon: 'data_trending' },
+    { id: 'z', label: 'Analytics', icon: 'data_trending' }
   ];
   protected selectedPrimary: string | number = 'a';
   protected selectedSecondary: string | number = 'x';
@@ -816,7 +832,7 @@ export class LspTabsPreviewComponent {
       <ui-tag text="Fluent 2" variant="primary" />
       <ui-tag text="WCAG 2.2 AA" variant="success" />
     </div>
-  `,
+  `
 })
 export class LspTagPreviewComponent {}
 
@@ -831,7 +847,7 @@ export class LspTagPreviewComponent {}
       [(ngModel)]="value"
       [ngModelOptions]="{ standalone: true }"
     />
-  `,
+  `
 })
 export class LspTelPreviewComponent {
   protected value = '+14155550199';
@@ -841,7 +857,9 @@ export class LspTelPreviewComponent {
   selector: 'app-lsp-text',
   standalone: true,
   imports: [FormsModule, TextComponent],
-  template: ` <ui-text label="Workspace display name" [(ngModel)]="value" [ngModelOptions]="{ standalone: true }" /> `,
+  template: `
+    <ui-text label="Workspace display name" [(ngModel)]="value" [ngModelOptions]="{ standalone: true }" />
+  `
 })
 export class LspTextPreviewComponent {
   protected value = 'Northridge Finance Cloud';
@@ -858,7 +876,7 @@ export class LspTextPreviewComponent {
       [ngModelOptions]="{ standalone: true }"
       [rows]="4"
     />
-  `,
+  `
 })
 export class LspTextareaPreviewComponent {
   protected value =
@@ -869,7 +887,9 @@ export class LspTextareaPreviewComponent {
   selector: 'app-lsp-time',
   standalone: true,
   imports: [FormsModule, TimeComponent],
-  template: ` <ui-time label="Maintenance starts" [(ngModel)]="starts" [ngModelOptions]="{ standalone: true }" /> `,
+  template: `
+    <ui-time label="Maintenance starts" [(ngModel)]="starts" [ngModelOptions]="{ standalone: true }" />
+  `
 })
 export class LspTimePreviewComponent {
   protected starts = '02:30';
@@ -888,7 +908,7 @@ export class LspTimePreviewComponent {
       [use24HourFormat]="true"
       (timeChange)="selectedTime = $event"
     />
-  `,
+  `
 })
 export class LspTimePickerPreviewComponent {
   protected selectedTime = '09:30';
@@ -906,7 +926,7 @@ export class LspTimePickerPreviewComponent {
       [(ngModel)]="rollback"
       [ngModelOptions]="{ standalone: true }"
     />
-  `,
+  `
 })
 export class LspTimeSpanPreviewComponent {
   protected rollback = '';
@@ -924,7 +944,7 @@ export class LspTimeSpanPreviewComponent {
       message="INF-41882 moved to cold storage per your 7-year retention policy."
       [(visible)]="visible"
     />
-  `,
+  `
 })
 export class LspToastPreviewComponent {
   visible = true;
@@ -959,7 +979,7 @@ export class LspToastPreviewComponent {
         />
       </div>
     </ui-toolbar>
-  `,
+  `
 })
 export class LspToolbarPreviewComponent {
   protected readonly fontMenuItems: MenuItem[] = [
@@ -968,23 +988,23 @@ export class LspToolbarPreviewComponent {
       label: 'Calibri',
       icon: 'text_font',
       selected: true,
-      action: (): void => undefined,
+      action: (): void => undefined
     },
     {
       id: 'segoe',
       label: 'Segoe UI',
-      action: (): void => undefined,
+      action: (): void => undefined
     },
     {
       id: 'mono',
       label: 'Cascadia Mono',
-      action: (): void => undefined,
+      action: (): void => undefined
     },
     {
       id: 'georgia',
       label: 'Georgia',
-      action: (): void => undefined,
-    },
+      action: (): void => undefined
+    }
   ];
 
   protected readonly sizeMenuItems: MenuItem[] = [
@@ -995,11 +1015,11 @@ export class LspToolbarPreviewComponent {
       id: 's11',
       label: '11 pt',
       selected: true,
-      action: (): void => undefined,
+      action: (): void => undefined
     },
     { id: 's12', label: '12 pt', action: (): void => undefined },
     { id: 's14', label: '14 pt', action: (): void => undefined },
-    { id: 's18', label: '18 pt', action: (): void => undefined },
+    { id: 's18', label: '18 pt', action: (): void => undefined }
   ];
 
   protected readonly toolbarItems: ToolbarItem[] = [
@@ -1008,14 +1028,14 @@ export class LspToolbarPreviewComponent {
       icon: 'arrow_undo',
       tooltip: 'Undo',
       ariaLabel: 'Undo',
-      action: (): void => undefined,
+      action: (): void => undefined
     },
     {
       id: 'redo',
       icon: 'arrow_redo',
       tooltip: 'Redo',
       ariaLabel: 'Redo',
-      action: (): void => undefined,
+      action: (): void => undefined
     },
     { id: 'div-history', type: 'divider' },
     {
@@ -1023,21 +1043,21 @@ export class LspToolbarPreviewComponent {
       icon: 'cut',
       tooltip: 'Cut',
       ariaLabel: 'Cut',
-      action: (): void => undefined,
+      action: (): void => undefined
     },
     {
       id: 'copy',
       icon: 'copy',
       tooltip: 'Copy',
       ariaLabel: 'Copy',
-      action: (): void => undefined,
+      action: (): void => undefined
     },
     {
       id: 'paste',
       icon: 'clipboard_paste',
       tooltip: 'Paste',
       ariaLabel: 'Paste',
-      action: (): void => undefined,
+      action: (): void => undefined
     },
     { id: 'div-font', type: 'divider' },
     { id: 'custom-font-row', type: 'custom' },
@@ -1049,7 +1069,7 @@ export class LspToolbarPreviewComponent {
       tooltip: 'Bold',
       ariaLabel: 'Bold',
       selected: true,
-      action: (): void => undefined,
+      action: (): void => undefined
     },
     {
       id: 'italic',
@@ -1057,7 +1077,7 @@ export class LspToolbarPreviewComponent {
       icon: 'text_italic',
       tooltip: 'Italic',
       ariaLabel: 'Italic',
-      action: (): void => undefined,
+      action: (): void => undefined
     },
     {
       id: 'underline',
@@ -1065,7 +1085,7 @@ export class LspToolbarPreviewComponent {
       icon: 'text_underline',
       tooltip: 'Underline',
       ariaLabel: 'Underline',
-      action: (): void => undefined,
+      action: (): void => undefined
     },
     { id: 'div-align', type: 'divider' },
     {
@@ -1075,7 +1095,7 @@ export class LspToolbarPreviewComponent {
       tooltip: 'Align left',
       ariaLabel: 'Align left',
       selected: true,
-      action: (): void => undefined,
+      action: (): void => undefined
     },
     {
       id: 'align-center',
@@ -1083,7 +1103,7 @@ export class LspToolbarPreviewComponent {
       icon: 'text_align_center',
       tooltip: 'Align center',
       ariaLabel: 'Align center',
-      action: (): void => undefined,
+      action: (): void => undefined
     },
     {
       id: 'align-right',
@@ -1091,7 +1111,7 @@ export class LspToolbarPreviewComponent {
       icon: 'text_align_right',
       tooltip: 'Align right',
       ariaLabel: 'Align right',
-      action: (): void => undefined,
+      action: (): void => undefined
     },
     { id: 'div-lists', type: 'divider' },
     {
@@ -1100,7 +1120,7 @@ export class LspToolbarPreviewComponent {
       icon: 'text_bullet_list',
       tooltip: 'Bulleted list',
       ariaLabel: 'Bulleted list',
-      action: (): void => undefined,
+      action: (): void => undefined
     },
     {
       id: 'numbered',
@@ -1108,7 +1128,7 @@ export class LspToolbarPreviewComponent {
       icon: 'text_number_list',
       tooltip: 'Numbered list',
       ariaLabel: 'Numbered list',
-      action: (): void => undefined,
+      action: (): void => undefined
     },
     { id: 'div-insert', type: 'divider' },
     {
@@ -1116,21 +1136,21 @@ export class LspToolbarPreviewComponent {
       icon: 'link',
       tooltip: 'Insert link',
       ariaLabel: 'Insert link',
-      action: (): void => undefined,
+      action: (): void => undefined
     },
     {
       id: 'image',
       icon: 'image_add',
       tooltip: 'Insert image',
       ariaLabel: 'Insert image',
-      action: (): void => undefined,
+      action: (): void => undefined
     },
     {
       id: 'color',
       icon: 'text_color',
       tooltip: 'Font color',
       ariaLabel: 'Font color',
-      action: (): void => undefined,
+      action: (): void => undefined
     },
     { id: 'div-clear', type: 'divider' },
     {
@@ -1138,8 +1158,8 @@ export class LspToolbarPreviewComponent {
       icon: 'text_clear_formatting',
       tooltip: 'Clear formatting',
       ariaLabel: 'Clear formatting',
-      action: (): void => undefined,
-    },
+      action: (): void => undefined
+    }
   ];
 }
 
@@ -1156,8 +1176,9 @@ export class LspToolbarPreviewComponent {
         uiTooltip="Opens invite modal — reviewers inherit edit scopes."
         uiTooltipPosition="top"
         uiTooltipSize="medium"
-        >Top · medium</ui-button
       >
+        Top · medium
+      </ui-button>
       <ui-button
         type="button"
         variant="secondary"
@@ -1166,8 +1187,9 @@ export class LspToolbarPreviewComponent {
         uiTooltipPosition="left"
         uiTooltipSize="small"
         [uiTooltipDelay]="450"
-        >Left · small · slower</ui-button
       >
+        Left · small · slower
+      </ui-button>
       <ui-button
         type="button"
         variant="primary"
@@ -1176,10 +1198,11 @@ export class LspToolbarPreviewComponent {
         uiTooltipPosition="bottom"
         uiTooltipSize="large"
         [uiTooltipWithArrow]="false"
-        >Bottom · large · flat</ui-button
       >
+        Bottom · large · flat
+      </ui-button>
     </div>
-  `,
+  `
 })
 export class LspTooltipPreviewComponent {}
 
@@ -1187,7 +1210,9 @@ export class LspTooltipPreviewComponent {}
   selector: 'app-lsp-totp',
   standalone: true,
   imports: [TotpComponent],
-  template: ` <ui-totp label="Authenticator code" /> `,
+  template: `
+    <ui-totp label="Authenticator code" />
+  `
 })
 export class LspTotpPreviewComponent {}
 
@@ -1195,7 +1220,9 @@ export class LspTotpPreviewComponent {}
   selector: 'app-lsp-tree',
   standalone: true,
   imports: [TreeComponent],
-  template: ` <ui-tree [nodes]="nodes" [showSelectionIndicator]="true" /> `,
+  template: `
+    <ui-tree [nodes]="nodes" [showSelectionIndicator]="true" />
+  `
 })
 export class LspTreePreviewComponent {
   protected readonly nodes: TreeNode[] = [
@@ -1211,15 +1238,15 @@ export class LspTreePreviewComponent {
           label: 'PRD · Billing exports parity.md',
           icon: 'document',
           hasChildren: false,
-          selected: true,
+          selected: true
         },
         {
           id: 'deck',
           label: 'Board narrative · Q2 deck',
           icon: 'slide_layout',
-          hasChildren: false,
-        },
-      ],
+          hasChildren: false
+        }
+      ]
     },
     {
       id: 'docs',
@@ -1237,19 +1264,19 @@ export class LspTreePreviewComponent {
           children: [
             { id: 'billing-1', label: 'Billing 1', icon: 'wallet' },
             { id: 'billing-2', label: 'Billing 2', icon: 'wallet' },
-            { id: 'billing-3', label: 'Billing 3', icon: 'wallet' },
-          ],
+            { id: 'billing-3', label: 'Billing 3', icon: 'wallet' }
+          ]
         },
         {
           id: 'assets',
           label: 'Assets',
           icon: 'image',
           hasChildren: true,
-          children: [{ id: 'hero', label: 'Hero banner.png', icon: 'image' }],
+          children: [{ id: 'hero', label: 'Hero banner.png', icon: 'image' }]
         },
-        { id: 'archive', label: 'Archive', icon: 'archive' },
-      ],
-    },
+        { id: 'archive', label: 'Archive', icon: 'archive' }
+      ]
+    }
   ];
 }
 
@@ -1257,7 +1284,9 @@ export class LspTreePreviewComponent {
   selector: 'app-lsp-tree-node',
   standalone: true,
   imports: [TreeNodeComponent],
-  template: ` <ui-tree-node [node]="node" [expandOnClick]="true" [showSelectionIndicator]="true" /> `,
+  template: `
+    <ui-tree-node [node]="node" [expandOnClick]="true" [showSelectionIndicator]="true" />
+  `
 })
 export class LspTreeNodePreviewComponent {
   protected readonly node: TreeNode = {
@@ -1271,7 +1300,7 @@ export class LspTreeNodePreviewComponent {
         id: 'adr-webhooks',
         label: 'ADR-014 · webhook retries.md',
         icon: 'document',
-        hasChildren: false,
+        hasChildren: false
       },
       {
         id: 'svc-ingress',
@@ -1286,12 +1315,12 @@ export class LspTreeNodePreviewComponent {
             label: 'auth-service',
             icon: 'lock_closed',
             hasChildren: false,
-            selected: true,
-          },
-        ],
+            selected: true
+          }
+        ]
       },
-      { id: 'runbooks', label: 'Runbooks · outages', icon: 'book', hasChildren: false },
-    ],
+      { id: 'runbooks', label: 'Runbooks · outages', icon: 'book', hasChildren: false }
+    ]
   };
 }
 
@@ -1299,7 +1328,9 @@ export class LspTreeNodePreviewComponent {
   selector: 'app-lsp-url',
   standalone: true,
   imports: [FormsModule, UrlComponent],
-  template: ` <ui-url label="Public docs URL" [(ngModel)]="value" [ngModelOptions]="{ standalone: true }" /> `,
+  template: `
+    <ui-url label="Public docs URL" [(ngModel)]="value" [ngModelOptions]="{ standalone: true }" />
+  `
 })
 export class LspUrlPreviewComponent {
   protected value = 'https://northridge.io/docs/billing/webhooks';

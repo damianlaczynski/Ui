@@ -49,7 +49,7 @@ import { ButtonComponent, CardComponent, TimePickerComponent } from 'ui';
         </div>
       </div>
     </ui-card>
-  `,
+  `
 })
 export class TimePickerInlineScheduleDemoComponent {
   protected startValue = '09:00';

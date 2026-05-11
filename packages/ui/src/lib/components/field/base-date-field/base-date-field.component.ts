@@ -6,7 +6,7 @@ import {
   inject,
   signal,
   NgZone,
-  Injectable,
+  Injectable
 } from '@angular/core';
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ScrollDispatcher } from '@angular/cdk/scrolling';
@@ -14,7 +14,7 @@ import {
   DEFAULT_CONNECTED_POSITIONS,
   DEFAULT_VIEWPORT_MARGIN,
   OverlayHandle,
-  openConnectedOverlay,
+  openConnectedOverlay
 } from '../../overlay/open-connected-overlay';
 
 /**
@@ -40,7 +40,7 @@ export class DateFieldOverlayService implements OnDestroy {
     panelTemplate: TemplateRef<unknown>,
     panelWidth: number,
     onOpen?: () => void,
-    afterOpen?: (overlayRef: OverlayRef) => void,
+    afterOpen?: (overlayRef: OverlayRef) => void
   ): void {
     if (this.isOpen()) {
       this.close(false);
@@ -54,7 +54,7 @@ export class DateFieldOverlayService implements OnDestroy {
     panelTemplate: TemplateRef<unknown>,
     panelWidth: number,
     beforeOpen?: () => void,
-    afterOpen?: (overlayRef: OverlayRef) => void,
+    afterOpen?: (overlayRef: OverlayRef) => void
   ): void {
     if (this.isOpen()) {
       return;
@@ -73,15 +73,15 @@ export class DateFieldOverlayService implements OnDestroy {
         positions: DEFAULT_CONNECTED_POSITIONS,
         viewportMargin: DEFAULT_VIEWPORT_MARGIN,
         width: panelWidth,
-        hasBackdrop: false,
+        hasBackdrop: false
       },
-      onClose: focusTrigger => {
+      onClose: (focusTrigger) => {
         if (focusTrigger) {
           this.close(true);
         } else {
           setTimeout(() => this.close(false), 0);
         }
-      },
+      }
     });
 
     this.isOpen.set(true);

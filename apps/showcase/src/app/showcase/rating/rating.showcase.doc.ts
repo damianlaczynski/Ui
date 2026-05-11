@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig,
+  ShowcaseDocPageConfig
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { RatingBasicExampleComponent } from './examples/rating-basic-demo';
 import { RatingLabelsExampleComponent } from './examples/rating-labels-demo';
@@ -19,7 +19,7 @@ const componentMap = {
   scale: RatingScaleExampleComponent,
   labels: RatingLabelsExampleComponent,
   listing: RatingListingSnapshotExampleComponent,
-  review: RatingReviewFeedbackExampleComponent,
+  review: RatingReviewFeedbackExampleComponent
 } as const;
 
 export const RATING_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -27,9 +27,9 @@ export const RATING_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(ratingMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${ratingMeta.slug}/${file}`,
-    ]),
-  ) as Record<string, string>),
+      `/docs/components/snippets/${ratingMeta.slug}/${file}`
+    ])
+  ) as Record<string, string>)
 };
 
 export const RATING_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -38,12 +38,12 @@ export const RATING_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: ratingMeta.importCode,
   containerClass: ratingMeta.containerClass,
   accessibility: ratingMeta.accessibility,
-  featureSections: ratingMeta.featureSections.map(section => ({
+  featureSections: ratingMeta.featureSections.map((section) => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap],
+    component: componentMap[section.componentKey as keyof typeof componentMap]
   })),
-  apiSections: ratingMeta.apiSections,
+  apiSections: ratingMeta.apiSections
 };

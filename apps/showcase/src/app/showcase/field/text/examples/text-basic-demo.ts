@@ -16,7 +16,7 @@ import { TextComponent } from 'ui';
         [ngModelOptions]="{ standalone: true }"
       />
     </div>
-  `,
+  `
 })
 export class TextBasicExampleComponent {
   protected value = 'Product Ops Europe';

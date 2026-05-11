@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig,
+  ShowcaseDocPageConfig
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { RangeBasicDemoComponent } from './examples/range-basic-demo';
 import { RangeBoundsStepsDemoComponent } from './examples/range-bounds-steps-demo';
@@ -19,7 +19,7 @@ const componentMap = {
   formatting: RangeFormattingDemoComponent,
   states: RangeStatesDemoComponent,
   reactiveForm: RangeReactiveFormDemoComponent,
-  filterPanel: RangeFilterPanelDemoComponent,
+  filterPanel: RangeFilterPanelDemoComponent
 } as const;
 
 export const RANGE_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -27,9 +27,9 @@ export const RANGE_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(rangeMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${rangeMeta.slug}/${file}`,
-    ]),
-  ) as Record<string, string>),
+      `/docs/components/snippets/${rangeMeta.slug}/${file}`
+    ])
+  ) as Record<string, string>)
 };
 
 export const RANGE_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -38,12 +38,12 @@ export const RANGE_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: rangeMeta.importCode,
   containerClass: rangeMeta.containerClass,
   accessibility: rangeMeta.accessibility,
-  featureSections: rangeMeta.featureSections.map(section => ({
+  featureSections: rangeMeta.featureSections.map((section) => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap],
+    component: componentMap[section.componentKey as keyof typeof componentMap]
   })),
-  apiSections: rangeMeta.apiSections,
+  apiSections: rangeMeta.apiSections
 };

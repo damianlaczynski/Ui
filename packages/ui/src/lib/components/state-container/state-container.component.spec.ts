@@ -14,7 +14,7 @@ describe('StateContainerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [StateContainerComponent, LoadingStateComponent, ErrorStateComponent, EmptyStateComponent],
+      imports: [StateContainerComponent, LoadingStateComponent, ErrorStateComponent, EmptyStateComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(StateContainerComponent);
@@ -199,11 +199,11 @@ describe('StateContainerComponent', () => {
     it('should pass error actions to error component', () => {
       const primaryAction: QuickAction = {
         label: 'Retry',
-        action: () => {},
+        action: () => {}
       };
       const secondaryAction: QuickAction = {
         label: 'Cancel',
-        action: () => {},
+        action: () => {}
       };
 
       const testState: State<string> = errorState('Error');
@@ -363,11 +363,11 @@ describe('StateContainerComponent', () => {
     it('should pass empty actions to empty component', () => {
       const primaryAction: QuickAction = {
         label: 'Add Item',
-        action: () => {},
+        action: () => {}
       };
       const secondaryAction: QuickAction = {
         label: 'Import',
-        action: () => {},
+        action: () => {}
       };
 
       const testState: State<string> = loadedState(null as any);
@@ -414,7 +414,7 @@ describe('StateContainerComponent', () => {
   describe('Size Input', () => {
     const sizes: Size[] = ['small', 'medium', 'large'];
 
-    sizes.forEach(size => {
+    sizes.forEach((size) => {
       it(`should pass ${size} size to child components`, () => {
         const testState: State<string> = loadingState(initialState());
         fixture.componentRef.setInput('state', testState);
@@ -474,7 +474,7 @@ describe('StateContainerComponent', () => {
         label: 'Retry',
         action: () => {
           actionCalled = true;
-        },
+        }
       };
 
       component.onErrorActionClick(action);
@@ -489,7 +489,7 @@ describe('StateContainerComponent', () => {
         disabled: true,
         action: () => {
           actionCalled = true;
-        },
+        }
       };
 
       component.onErrorActionClick(action);
@@ -503,7 +503,7 @@ describe('StateContainerComponent', () => {
         label: 'Add',
         action: () => {
           actionCalled = true;
-        },
+        }
       };
 
       component.onEmptyActionClick(action);
@@ -518,7 +518,7 @@ describe('StateContainerComponent', () => {
         disabled: true,
         action: () => {
           actionCalled = true;
-        },
+        }
       };
 
       component.onEmptyActionClick(action);
@@ -529,7 +529,7 @@ describe('StateContainerComponent', () => {
     it('should handle action without action function', () => {
       const action: QuickAction = {
         label: 'Test',
-        action: undefined as any,
+        action: undefined as any
       };
 
       expect(() => component.onErrorActionClick(action)).not.toThrow();
@@ -616,10 +616,10 @@ describe('StateContainerComponent', () => {
         loadingState(initialState()),
         loadedState('data'),
         loadingState(loadedState('data')),
-        errorState('error'),
+        errorState('error')
       ];
 
-      states.forEach(state => {
+      states.forEach((state) => {
         fixture.componentRef.setInput('state', state);
         fixture.detectChanges();
         expect(() => fixture.detectChanges()).not.toThrow();
@@ -654,10 +654,10 @@ describe('StateContainerComponent', () => {
         ['array'],
         { key: 'object' },
         new Map([['key', 'value']]),
-        new Set(['item']),
+        new Set(['item'])
       ];
 
-      dataTypes.forEach(data => {
+      dataTypes.forEach((data) => {
         const testState: State<any> = loadedState(data);
         fixture.componentRef.setInput('state', testState);
         fixture.detectChanges();

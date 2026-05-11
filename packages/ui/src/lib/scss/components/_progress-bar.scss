@@ -37,7 +37,7 @@
 $progress-bar-sizes: (
   'small': 2px,
   'medium': 4px,
-  'large': 6px,
+  'large': 6px
 );
 
 @each $size, $height in $progress-bar-sizes {
@@ -78,7 +78,7 @@ $progress-bar-variants: (
   'danger': var(--color-shared-red-foreground),
   'info': var(--color-shared-blue-foreground),
   'default': var(--color-brand-primary),
-  'error': var(--color-shared-red-foreground),
+  'error': var(--color-shared-red-foreground)
 );
 
 @each $variant, $color in $progress-bar-variants {

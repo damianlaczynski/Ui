@@ -50,7 +50,7 @@ import { CheckboxComponent } from 'ui';
         />
       </div>
     </div>
-  `,
+  `
 })
 export class CheckboxLabelPositionsExampleComponent {
   protected afterValue = true;

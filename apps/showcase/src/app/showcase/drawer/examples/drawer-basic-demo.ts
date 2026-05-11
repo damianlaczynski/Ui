@@ -25,7 +25,7 @@ import { ButtonComponent, DrawerComponent, QuickAction } from 'ui';
         </div>
       </ui-drawer>
     </div>
-  `,
+  `
 })
 export class DrawerBasicExampleComponent {
   protected readonly visible = model(false);
@@ -33,12 +33,12 @@ export class DrawerBasicExampleComponent {
   protected readonly primaryAction = signal<QuickAction>({
     label: 'Add note',
     variant: 'primary',
-    action: () => this.visible.set(false),
+    action: () => this.visible.set(false)
   });
 
   protected readonly secondaryAction = signal<QuickAction>({
     label: 'Close',
     variant: 'secondary',
-    action: () => this.visible.set(false),
+    action: () => this.visible.set(false)
   });
 }

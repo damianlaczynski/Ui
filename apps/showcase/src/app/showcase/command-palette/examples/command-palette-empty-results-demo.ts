@@ -9,7 +9,7 @@ const NAVIGATION_ITEMS: CommandPaletteItem[] = [
     icon: 'mail',
     group: 'Navigation',
     keywords: ['mail', 'mentions', 'notifications'],
-    action: () => {},
+    action: () => {}
   },
   {
     id: 'nav-roadmap',
@@ -18,7 +18,7 @@ const NAVIGATION_ITEMS: CommandPaletteItem[] = [
     icon: 'rocket',
     group: 'Navigation',
     keywords: ['roadmap', 'planning'],
-    action: () => {},
+    action: () => {}
   },
   {
     id: 'nav-settings',
@@ -27,7 +27,7 @@ const NAVIGATION_ITEMS: CommandPaletteItem[] = [
     icon: 'settings',
     group: 'Navigation',
     keywords: ['settings', 'preferences'],
-    action: () => {},
+    action: () => {}
   },
   {
     id: 'nav-help',
@@ -36,8 +36,8 @@ const NAVIGATION_ITEMS: CommandPaletteItem[] = [
     icon: 'question_circle',
     group: 'Support',
     keywords: ['docs', 'support', 'help'],
-    action: () => {},
-  },
+    action: () => {}
+  }
 ];
 
 @Component({
@@ -68,7 +68,7 @@ const NAVIGATION_ITEMS: CommandPaletteItem[] = [
         [maxResults]="6"
       />
     </div>
-  `,
+  `
 })
 export class CommandPaletteEmptyResultsDemoComponent {
   protected readonly visible = signal(false);

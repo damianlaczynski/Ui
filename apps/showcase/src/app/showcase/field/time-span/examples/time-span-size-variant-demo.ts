@@ -42,7 +42,7 @@ import { TimeSpanComponent } from 'ui';
         [ngModelOptions]="{ standalone: true }"
       />
     </div>
-  `,
+  `
 })
 export class TimeSpanSizeVariantDemoComponent {
   protected smallValue = 'PT45M';

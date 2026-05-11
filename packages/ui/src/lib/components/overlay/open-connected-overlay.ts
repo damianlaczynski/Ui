@@ -7,10 +7,22 @@ import { filter } from 'rxjs/operators';
 import { registerScrollableAncestors } from './register-scrollable-ancestors';
 
 export const DEFAULT_CONNECTED_POSITIONS: ConnectedPosition[] = [
-  { originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top', offsetY: 4 },
-  { originX: 'start', originY: 'top', overlayX: 'start', overlayY: 'bottom', offsetY: -4 },
+  {
+    originX: 'start',
+    originY: 'bottom',
+    overlayX: 'start',
+    overlayY: 'top',
+    offsetY: 4
+  },
+  {
+    originX: 'start',
+    originY: 'top',
+    overlayX: 'start',
+    overlayY: 'bottom',
+    offsetY: -4
+  },
   { originX: 'end', originY: 'bottom', overlayX: 'end', overlayY: 'top', offsetY: 4 },
-  { originX: 'end', originY: 'top', overlayX: 'end', overlayY: 'bottom', offsetY: -4 },
+  { originX: 'end', originY: 'top', overlayX: 'end', overlayY: 'bottom', offsetY: -4 }
 ];
 
 export const DEFAULT_VIEWPORT_MARGIN = 8;
@@ -72,7 +84,7 @@ export function openConnectedOverlay(params: {
     maxWidth: config.maxWidth,
     width: config.width,
     maxHeight: config.maxHeight,
-    hasBackdrop: config.hasBackdrop,
+    hasBackdrop: config.hasBackdrop
   });
 
   overlayRef.attach(new TemplatePortal(template, viewContainerRef));
@@ -80,18 +92,18 @@ export function openConnectedOverlay(params: {
   scrollCleanup = registerScrollableAncestors(trigger.nativeElement, scrollDispatcher, ngZone);
 
   sub.add(
-    overlayRef.outsidePointerEvents().subscribe(event => {
+    overlayRef.outsidePointerEvents().subscribe((event) => {
       const target = event.target as HTMLElement;
       if (!trigger.nativeElement.contains(target)) {
         onClose(false);
       }
-    }),
+    })
   );
   sub.add(
     overlayRef
       .keydownEvents()
-      .pipe(filter(e => e.key === 'Escape'))
-      .subscribe(() => onClose(true)),
+      .pipe(filter((e) => e.key === 'Escape'))
+      .subscribe(() => onClose(true))
   );
   if (onDetach) {
     sub.add(overlayRef.detachments().subscribe(() => onDetach()));

@@ -20,6 +20,6 @@ import { ProgressBarComponent } from 'ui';
         <ui-progress-bar size="large" [value]="84" ariaLabel="Prominent completion status" />
       </div>
     </div>
-  `,
+  `
 })
 export class ProgressBarSizesExampleComponent {}

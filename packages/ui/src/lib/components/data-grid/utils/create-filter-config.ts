@@ -102,22 +102,22 @@ export function createFilterConfig(options: CreateFilterConfigOptions): DataGrid
   const definition = FilterFactory.getDefinition(type);
   if (!definition) {
     throw new Error(
-      `Filter type '${type}' is not registered. Available types: ${filterRegistry.getTypes().join(', ')}`,
+      `Filter type '${type}' is not registered. Available types: ${filterRegistry.getTypes().join(', ')}`
     );
   }
 
   // Get available operators from FilterDefinition
   const availableOperators = definition.getOperators();
-  const availableOperatorValues = availableOperators.map(op => op.value);
+  const availableOperatorValues = availableOperators.map((op) => op.value);
 
   // Validate and set operators
   let finalOperators: string[];
   if (operators) {
     // Validate that all provided operators exist in FilterDefinition
-    const invalidOperators = operators.filter(op => !availableOperatorValues.includes(op));
+    const invalidOperators = operators.filter((op) => !availableOperatorValues.includes(op));
     if (invalidOperators.length > 0) {
       throw new Error(
-        `Invalid operators for filter type '${type}': ${invalidOperators.join(', ')}. Available operators: ${availableOperatorValues.join(', ')}`,
+        `Invalid operators for filter type '${type}': ${invalidOperators.join(', ')}. Available operators: ${availableOperatorValues.join(', ')}`
       );
     }
     finalOperators = operators;
@@ -132,13 +132,13 @@ export function createFilterConfig(options: CreateFilterConfigOptions): DataGrid
     // Validate that defaultOperator exists in FilterDefinition
     if (!availableOperatorValues.includes(defaultOperator)) {
       throw new Error(
-        `Invalid default operator '${defaultOperator}' for filter type '${type}'. Available operators: ${availableOperatorValues.join(', ')}`,
+        `Invalid default operator '${defaultOperator}' for filter type '${type}'. Available operators: ${availableOperatorValues.join(', ')}`
       );
     }
     // Validate that defaultOperator is in the selected operators
     if (!finalOperators.includes(defaultOperator)) {
       throw new Error(
-        `Default operator '${defaultOperator}' must be included in the selected operators: ${finalOperators.join(', ')}`,
+        `Default operator '${defaultOperator}' must be included in the selected operators: ${finalOperators.join(', ')}`
       );
     }
     finalDefaultOperator = defaultOperator;
@@ -156,7 +156,7 @@ export function createFilterConfig(options: CreateFilterConfigOptions): DataGrid
   const baseConfig = FilterFactory.create(type, {
     placeholder,
     debounceMs,
-    parameters,
+    parameters
   });
 
   // Override with validated values
@@ -164,6 +164,6 @@ export function createFilterConfig(options: CreateFilterConfigOptions): DataGrid
     ...baseConfig,
     operators: finalOperators,
     defaultOperator: finalDefaultOperator,
-    defaultValue,
+    defaultValue
   };
 }

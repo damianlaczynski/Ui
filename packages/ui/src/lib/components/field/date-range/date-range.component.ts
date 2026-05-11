@@ -12,7 +12,7 @@ import {
   output,
   OnDestroy,
   inject,
-  NgZone,
+  NgZone
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { A11yModule } from '@angular/cdk/a11y';
@@ -25,7 +25,7 @@ import {
   openConnectedOverlay,
   OverlayHandle,
   DEFAULT_CONNECTED_POSITIONS,
-  DEFAULT_VIEWPORT_MARGIN,
+  DEFAULT_VIEWPORT_MARGIN
 } from '../../overlay/open-connected-overlay';
 
 export interface DateRange {
@@ -40,22 +40,22 @@ type RangeSelection = 'start' | 'end' | null;
   imports: [A11yModule, OverlayModule, FieldComponent, ActionButtonComponent, CalendarComponent],
   templateUrl: './date-range.component.html',
   host: {
-    '[style.display]': '"block"',
+    '[style.display]': '"block"'
   },
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => DateRangeComponent),
-      multi: true,
-    },
+      multi: true
+    }
   ],
   styles: [
     `
       :host {
         width: 100%;
       }
-    `,
-  ],
+    `
+  ]
 })
 export class DateRangeComponent extends FieldComponent implements OnDestroy {
   private overlay = inject(Overlay);
@@ -127,7 +127,7 @@ export class DateRangeComponent extends FieldComponent implements OnDestroy {
 
       const rangeValue: DateRange = {
         startDate: start ? this.toISODate(start) : null,
-        endDate: end ? this.toISODate(end) : null,
+        endDate: end ? this.toISODate(end) : null
       };
 
       const currentValue = this.value as DateRange;
@@ -185,9 +185,9 @@ export class DateRangeComponent extends FieldComponent implements OnDestroy {
         positions: DEFAULT_CONNECTED_POSITIONS,
         viewportMargin: DEFAULT_VIEWPORT_MARGIN,
         minWidth: 280,
-        maxWidth: 320,
+        maxWidth: 320
       },
-      onClose: focusTrigger => this.closePanel(focusTrigger),
+      onClose: (focusTrigger) => this.closePanel(focusTrigger)
     });
 
     this.isOpen.set(true);
@@ -262,7 +262,7 @@ export class DateRangeComponent extends FieldComponent implements OnDestroy {
     const datePatterns = [
       /(\d{1,2})\/(\d{1,2})\/(\d{4})/, // MM/DD/YYYY
       /(\d{4})-(\d{1,2})-(\d{1,2})/, // YYYY-MM-DD
-      /(\d{1,2})-(\d{1,2})-(\d{4})/, // MM-DD-YYYY
+      /(\d{1,2})-(\d{1,2})-(\d{4})/ // MM-DD-YYYY
     ];
 
     for (const pattern of datePatterns) {
@@ -438,14 +438,14 @@ export class DateRangeComponent extends FieldComponent implements OnDestroy {
     return date.toLocaleDateString('en-US', {
       year: 'numeric',
       month: '2-digit',
-      day: '2-digit',
+      day: '2-digit'
     });
   }
 
   private formatMonthYear(date: Date): string {
     return date.toLocaleDateString('en-US', {
       year: 'numeric',
-      month: 'long',
+      month: 'long'
     });
   }
 

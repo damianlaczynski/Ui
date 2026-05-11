@@ -4,7 +4,7 @@ import {
   SplitterComponent,
   SplitterPanelDirective,
   type SplitterPanel,
-  type SplitterResizeEvent,
+  type SplitterResizeEvent
 } from 'ui';
 
 @Component({
@@ -17,14 +17,18 @@ import {
         style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background2-rest)"
       >
         <ui-button variant="secondary" appearance="outline" (click)="reset()">Reset</ui-button>
-        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
-          >Last resize: <strong>{{ lastResize() || 'none' }}</strong></span
-        >
+        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
+          Last resize:
+          <strong>{{ lastResize() || 'none' }}</strong>
+        </span>
       </div>
 
       <div style="font-size:0.875rem;line-height:1.5;color:var(--color-neutral-foreground2-rest)">
-        Tab to the gutter, then use arrow keys for small adjustments or <code>Home</code> / <code>End</code> to move
-        toward the panel limits.
+        Tab to the gutter, then use arrow keys for small adjustments or
+        <code>Home</code>
+        /
+        <code>End</code>
+        to move toward the panel limits.
       </div>
 
       <div
@@ -47,12 +51,12 @@ import {
         </ui-splitter>
       </div>
     </div>
-  `,
+  `
 })
 export class SplitterKeyboardDemoComponent {
   protected readonly panels: SplitterPanel[] = [
     { id: 'details', size: 35, minSize: 220, maxSize: 420 },
-    { id: 'preview', size: 65, minSize: 320 },
+    { id: 'preview', size: 65, minSize: 320 }
   ];
 
   protected readonly lastResize = signal('');

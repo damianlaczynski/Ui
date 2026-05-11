@@ -11,15 +11,15 @@ import { ActionButtonComponent } from '../action-button.component';
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => UrlComponent),
-      multi: true,
-    },
+      multi: true
+    }
   ],
   styles: [
     `
       :host {
         width: 100%;
       }
-    `,
-  ],
+    `
+  ]
 })
 export class UrlComponent extends FieldComponent {}

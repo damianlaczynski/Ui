@@ -41,7 +41,7 @@ interface FileTreeNode extends TreeNode<FileTreeNode> {
         </ng-template>
       </ui-tree-node>
     </div>
-  `,
+  `
 })
 export class TreeNodeContentTemplateDemoComponent {
   protected readonly node: FileTreeNode = {
@@ -52,7 +52,7 @@ export class TreeNodeContentTemplateDemoComponent {
     expanded: true,
     data: {
       meta: 'Updated 2 hours ago',
-      status: 'Synced',
+      status: 'Synced'
     },
     children: [
       {
@@ -62,10 +62,10 @@ export class TreeNodeContentTemplateDemoComponent {
         hasChildren: false,
         data: {
           meta: '3 collaborators',
-          status: 'Draft',
-        },
-      },
-    ],
+          status: 'Draft'
+        }
+      }
+    ]
   };
 
   protected contentTemplateRef = viewChild<TemplateRef<any>>('content');

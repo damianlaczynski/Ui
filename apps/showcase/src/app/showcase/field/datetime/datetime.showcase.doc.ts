@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig,
+  ShowcaseDocPageConfig
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { DatetimeBasicDemoComponent } from './examples/datetime-basic-demo';
 import { DatetimeConstraintsDemoComponent } from './examples/datetime-constraints-demo';
@@ -19,7 +19,7 @@ const componentMap = {
   constraints: DatetimeConstraintsDemoComponent,
   states: DatetimeStatesDemoComponent,
   reactiveForm: DatetimeReactiveFormDemoComponent,
-  schedulingPanel: DatetimeSchedulingPanelDemoComponent,
+  schedulingPanel: DatetimeSchedulingPanelDemoComponent
 } as const;
 
 export const DATETIME_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -27,9 +27,9 @@ export const DATETIME_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(datetimeMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${datetimeMeta.slug}/${file}`,
-    ]),
-  ) as Record<string, string>),
+      `/docs/components/snippets/${datetimeMeta.slug}/${file}`
+    ])
+  ) as Record<string, string>)
 };
 
 export const DATETIME_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -38,12 +38,12 @@ export const DATETIME_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: datetimeMeta.importCode,
   containerClass: datetimeMeta.containerClass,
   accessibility: datetimeMeta.accessibility,
-  featureSections: datetimeMeta.featureSections.map(section => ({
+  featureSections: datetimeMeta.featureSections.map((section) => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap],
+    component: componentMap[section.componentKey as keyof typeof componentMap]
   })),
-  apiSections: datetimeMeta.apiSections,
+  apiSections: datetimeMeta.apiSections
 };

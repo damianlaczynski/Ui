@@ -12,7 +12,7 @@ import { CardAppearance, CardBorderStyle, CardComponent } from './card.component
     <ui-card focusMode="no-tab" ariaLabel="Focusable no-tab card">
       <button type="button" uiCardFooter id="no-tab-focus-target">Inner action</button>
     </ui-card>
-  `,
+  `
 })
 class CardNoTabHostComponent {}
 
@@ -23,7 +23,7 @@ class CardNoTabHostComponent {}
     <ui-card focusMode="tab-only" ariaLabel="Focusable tab-only card">
       <button type="button" uiCardFooter id="tab-only-focus-target">Inner action</button>
     </ui-card>
-  `,
+  `
 })
 class CardTabOnlyHostComponent {}
 
@@ -35,7 +35,7 @@ class CardTabOnlyHostComponent {}
       <button type="button" uiCardFooter id="no-tab-first">First action</button>
       <button type="button" uiCardFooter id="no-tab-second">Second action</button>
     </ui-card>
-  `,
+  `
 })
 class CardNoTabManyActionsHostComponent {}
 
@@ -47,7 +47,7 @@ class CardNoTabManyActionsHostComponent {}
       <button type="button" uiCardFooter id="tab-exit-first">First action</button>
       <button type="button" uiCardFooter id="tab-exit-second">Second action</button>
     </ui-card>
-  `,
+  `
 })
 class CardTabExitHostComponent {}
 
@@ -57,7 +57,7 @@ describe('CardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CardComponent],
+      imports: [CardComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(CardComponent);
@@ -93,7 +93,7 @@ describe('CardComponent', () => {
   describe('appearance', () => {
     const appearances: CardAppearance[] = ['filled', 'filled-alternative', 'outline', 'subtle'];
 
-    appearances.forEach(appearance => {
+    appearances.forEach((appearance) => {
       it(`should apply ${appearance} appearance class`, () => {
         fixture.componentRef.setInput('appearance', appearance);
         fixture.detectChanges();
@@ -118,7 +118,7 @@ describe('CardComponent', () => {
   describe('interactive behavior', () => {
     it('should emit cardClick on click when interactive', () => {
       let emittedEvent: MouseEvent | KeyboardEvent | null = null;
-      component.cardClick.subscribe(event => {
+      component.cardClick.subscribe((event) => {
         emittedEvent = event;
       });
 
@@ -143,7 +143,7 @@ describe('CardComponent', () => {
 
     it('should toggle selected and emit selection event when selectable', () => {
       let emittedEvent: { data: { selected: boolean } } | null = null;
-      component.selectionChange.subscribe(event => {
+      component.selectionChange.subscribe((event) => {
         emittedEvent = event as unknown as { data: { selected: boolean } };
       });
 
@@ -158,7 +158,9 @@ describe('CardComponent', () => {
       if (!emittedEvent) {
         throw new Error('Expected selection event to be emitted');
       }
-      const selectionPayload = emittedEvent as unknown as { data: { selected: boolean } };
+      const selectionPayload = emittedEvent as unknown as {
+        data: { selected: boolean };
+      };
       expect(selectionPayload.data.selected).toBe(true);
       expect(cardElement.getAttribute('aria-selected')).toBe('true');
     });
@@ -173,7 +175,7 @@ describe('CardComponent', () => {
 
     it('should sync selection from internal checkbox', () => {
       let emittedEvent: { data: { selected: boolean } } | null = null;
-      component.selectionChange.subscribe(event => {
+      component.selectionChange.subscribe((event) => {
         emittedEvent = event as unknown as { data: { selected: boolean } };
       });
 
@@ -192,7 +194,9 @@ describe('CardComponent', () => {
       if (!emittedEvent) {
         throw new Error('Expected selection event to be emitted');
       }
-      const selectionPayload = emittedEvent as unknown as { data: { selected: boolean } };
+      const selectionPayload = emittedEvent as unknown as {
+        data: { selected: boolean };
+      };
       expect(selectionPayload.data.selected).toBe(true);
     });
 

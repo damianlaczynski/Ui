@@ -19,12 +19,12 @@ describe('TreeNodeComponent', () => {
     hasChildren: false,
     children: [],
     expanded: false,
-    ...overrides,
+    ...overrides
   });
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TreeNodeComponent, NodeComponent, IconComponent],
+      imports: [TreeNodeComponent, NodeComponent, IconComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(TreeNodeComponent<any>);
@@ -122,7 +122,7 @@ describe('TreeNodeComponent', () => {
   describe('Size Input', () => {
     const sizes: Size[] = ['small', 'medium', 'large'];
 
-    sizes.forEach(size => {
+    sizes.forEach((size) => {
       it(`should apply ${size} size class`, () => {
         fixture.componentRef.setInput('node', createMockNode());
         fixture.componentRef.setInput('size', size);
@@ -426,7 +426,11 @@ describe('TreeNodeComponent', () => {
     });
 
     it('should not toggle when disabled', () => {
-      const mockNode = createMockNode({ hasChildren: true, disabled: true, expanded: false });
+      const mockNode = createMockNode({
+        hasChildren: true,
+        disabled: true,
+        expanded: false
+      });
       fixture.componentRef.setInput('node', mockNode);
       fixture.detectChanges();
 
@@ -437,7 +441,11 @@ describe('TreeNodeComponent', () => {
     });
 
     it('should set chevron aria-label using expand text when collapsed', () => {
-      const mockNode = createMockNode({ hasChildren: true, label: 'Node A', expanded: false });
+      const mockNode = createMockNode({
+        hasChildren: true,
+        label: 'Node A',
+        expanded: false
+      });
       fixture.componentRef.setInput('node', mockNode);
       fixture.detectChanges();
 
@@ -447,7 +455,11 @@ describe('TreeNodeComponent', () => {
     });
 
     it('should set chevron aria-label using collapse text when expanded', () => {
-      const mockNode = createMockNode({ hasChildren: true, label: 'Node A', expanded: true });
+      const mockNode = createMockNode({
+        hasChildren: true,
+        label: 'Node A',
+        expanded: true
+      });
       fixture.componentRef.setInput('node', mockNode);
       fixture.detectChanges();
 
@@ -543,7 +555,11 @@ describe('TreeNodeComponent', () => {
   describe('Children Rendering', () => {
     it('should keep children mounted and hidden when collapsed for animation', () => {
       const child = createMockNode({ id: 'child-1', label: 'Child' });
-      const mockNode = createMockNode({ hasChildren: true, children: [child], expanded: false });
+      const mockNode = createMockNode({
+        hasChildren: true,
+        children: [child],
+        expanded: false
+      });
       fixture.componentRef.setInput('node', mockNode);
       fixture.detectChanges();
 
@@ -554,7 +570,11 @@ describe('TreeNodeComponent', () => {
 
     it('should render children when expanded', () => {
       const child = createMockNode({ id: 'child-1', label: 'Child' });
-      const mockNode = createMockNode({ hasChildren: true, children: [child], expanded: true });
+      const mockNode = createMockNode({
+        hasChildren: true,
+        children: [child],
+        expanded: true
+      });
       fixture.componentRef.setInput('node', mockNode);
       fixture.detectChanges();
 
@@ -567,7 +587,7 @@ describe('TreeNodeComponent', () => {
       const children = [
         createMockNode({ id: 'child-1', label: 'Child 1' }),
         createMockNode({ id: 'child-2', label: 'Child 2' }),
-        createMockNode({ id: 'child-3', label: 'Child 3' }),
+        createMockNode({ id: 'child-3', label: 'Child 3' })
       ];
       const mockNode = createMockNode({ hasChildren: true, children, expanded: true });
       fixture.componentRef.setInput('node', mockNode);
@@ -579,7 +599,11 @@ describe('TreeNodeComponent', () => {
 
     it('should pass properties to child nodes', () => {
       const child = createMockNode({ id: 'child-1' });
-      const mockNode = createMockNode({ hasChildren: true, children: [child], expanded: true });
+      const mockNode = createMockNode({
+        hasChildren: true,
+        children: [child],
+        expanded: true
+      });
       fixture.componentRef.setInput('node', mockNode);
       fixture.componentRef.setInput('size', 'large');
       fixture.componentRef.setInput('variant', 'secondary');
@@ -597,7 +621,11 @@ describe('TreeNodeComponent', () => {
       });
 
       const child = createMockNode({ id: 'child-1' });
-      const mockNode = createMockNode({ hasChildren: true, children: [child], expanded: true });
+      const mockNode = createMockNode({
+        hasChildren: true,
+        children: [child],
+        expanded: true
+      });
       fixture.componentRef.setInput('node', mockNode);
       fixture.detectChanges();
 
@@ -722,8 +750,16 @@ describe('TreeNodeComponent', () => {
     });
 
     it('should handle asterisk key to expand siblings', () => {
-      const sibling1 = createMockNode({ id: 'sibling-1', hasChildren: true, expanded: false });
-      const sibling2 = createMockNode({ id: 'sibling-2', hasChildren: true, expanded: false });
+      const sibling1 = createMockNode({
+        id: 'sibling-1',
+        hasChildren: true,
+        expanded: false
+      });
+      const sibling2 = createMockNode({
+        id: 'sibling-2',
+        hasChildren: true,
+        expanded: false
+      });
       const parent = createMockNode({ id: 'parent', children: [sibling1, sibling2] });
       sibling1.parent = parent;
 
@@ -883,7 +919,7 @@ describe('TreeNodeComponent', () => {
       const dragEvent = new DragEvent('dragover', { bubbles: true, cancelable: true });
       Object.defineProperty(dragEvent, 'dataTransfer', {
         value: { dropEffect: '' },
-        writable: true,
+        writable: true
       });
       vi.spyOn(dragEvent, 'preventDefault');
       vi.spyOn(dragEvent, 'stopPropagation');
@@ -935,7 +971,9 @@ describe('TreeNodeComponent', () => {
 
       const dragEvent = new DragEvent('dragleave');
       Object.defineProperty(dragEvent, 'relatedTarget', { value: null });
-      Object.defineProperty(dragEvent, 'currentTarget', { value: document.createElement('div') });
+      Object.defineProperty(dragEvent, 'currentTarget', {
+        value: document.createElement('div')
+      });
 
       component.onBetweenElementsDragLeave(dragEvent);
 
@@ -1027,7 +1065,7 @@ describe('TreeNodeComponent', () => {
       const children = [
         createMockNode({ id: 'node-1' }),
         createMockNode({ id: 'node-2' }),
-        createMockNode({ id: 'node-3' }),
+        createMockNode({ id: 'node-3' })
       ];
       const mockNode = createMockNode({ hasChildren: true, children });
       fixture.componentRef.setInput('node', mockNode);
@@ -1042,7 +1080,7 @@ describe('TreeNodeComponent', () => {
       const children = [
         createMockNode({ id: 'node-1' }),
         createMockNode({ id: 'node-2' }),
-        createMockNode({ id: 'node-3' }),
+        createMockNode({ id: 'node-3' })
       ];
       const mockNode = createMockNode({ hasChildren: true, children });
       fixture.componentRef.setInput('node', mockNode);
@@ -1229,14 +1267,14 @@ describe('TreeNodeComponent', () => {
         label: 'Child',
         hasChildren: true,
         children: [grandchild],
-        expanded: true,
+        expanded: true
       });
       const mockNode = createMockNode({
         id: 'parent',
         label: 'Parent',
         hasChildren: true,
         children: [child],
-        expanded: true,
+        expanded: true
       });
 
       fixture.componentRef.setInput('node', mockNode);
@@ -1319,7 +1357,11 @@ describe('TreeNodeComponent', () => {
 
     it('should handle children array changes', () => {
       const child1 = createMockNode({ id: 'child-1' });
-      const mockNode = createMockNode({ hasChildren: true, children: [child1], expanded: true });
+      const mockNode = createMockNode({
+        hasChildren: true,
+        children: [child1],
+        expanded: true
+      });
       fixture.componentRef.setInput('node', mockNode);
       fixture.detectChanges();
 

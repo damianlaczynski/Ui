@@ -44,6 +44,6 @@ import { ButtonComponent, LoadingStateComponent, MessageBarComponent, TextCompon
         </div>
       </ui-loading-state>
     </div>
-  `,
+  `
 })
 export class LoadingStatePanelLayoutDemoComponent {}

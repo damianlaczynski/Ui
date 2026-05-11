@@ -40,7 +40,7 @@ import { TimeSpanComponent } from 'ui';
         [ngModelOptions]="{ standalone: true }"
       />
     </div>
-  `,
+  `
 })
 export class TimeSpanUnitPresetsDemoComponent {
   protected hoursMinutes = 'PT2H15M';

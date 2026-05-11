@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig,
+  ShowcaseDocPageConfig
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { TimePickerBasicDemoComponent } from './examples/time-picker-basic-demo';
 import { TimePickerFormatStepDemoComponent } from './examples/time-picker-format-step-demo';
@@ -19,7 +19,7 @@ const componentMap = {
   sizeLayout: TimePickerSizeLayoutDemoComponent,
   states: TimePickerStatesDemoComponent,
   inlineSchedule: TimePickerInlineScheduleDemoComponent,
-  schedulingPanel: TimePickerSchedulingPanelDemoComponent,
+  schedulingPanel: TimePickerSchedulingPanelDemoComponent
 } as const;
 
 export const TIME_PICKER_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -27,9 +27,9 @@ export const TIME_PICKER_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(timePickerMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${timePickerMeta.slug}/${file}`,
-    ]),
-  ) as Record<string, string>),
+      `/docs/components/snippets/${timePickerMeta.slug}/${file}`
+    ])
+  ) as Record<string, string>)
 };
 
 export const TIME_PICKER_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -38,12 +38,12 @@ export const TIME_PICKER_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: timePickerMeta.importCode,
   containerClass: timePickerMeta.containerClass,
   accessibility: timePickerMeta.accessibility,
-  featureSections: timePickerMeta.featureSections.map(section => ({
+  featureSections: timePickerMeta.featureSections.map((section) => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap],
+    component: componentMap[section.componentKey as keyof typeof componentMap]
   })),
-  apiSections: timePickerMeta.apiSections,
+  apiSections: timePickerMeta.apiSections
 };

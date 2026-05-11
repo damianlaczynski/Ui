@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig,
+  ShowcaseDocPageConfig
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { SliderBasicExampleComponent } from './examples/slider-basic-demo';
 import { SliderRangesExampleComponent } from './examples/slider-ranges-demo';
@@ -19,7 +19,7 @@ const componentMap = {
   ranges: SliderRangesExampleComponent,
   steps: SliderStepsExampleComponent,
   vertical: SliderVerticalExampleComponent,
-  settingsPanel: SliderSettingsPanelExampleComponent,
+  settingsPanel: SliderSettingsPanelExampleComponent
 } as const;
 
 export const SLIDER_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -27,9 +27,9 @@ export const SLIDER_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(sliderMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${sliderMeta.slug}/${file}`,
-    ]),
-  ) as Record<string, string>),
+      `/docs/components/snippets/${sliderMeta.slug}/${file}`
+    ])
+  ) as Record<string, string>)
 };
 
 export const SLIDER_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -38,12 +38,12 @@ export const SLIDER_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: sliderMeta.importCode,
   containerClass: sliderMeta.containerClass,
   accessibility: sliderMeta.accessibility,
-  featureSections: sliderMeta.featureSections.map(section => ({
+  featureSections: sliderMeta.featureSections.map((section) => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap],
+    component: componentMap[section.componentKey as keyof typeof componentMap]
   })),
-  apiSections: sliderMeta.apiSections,
+  apiSections: sliderMeta.apiSections
 };

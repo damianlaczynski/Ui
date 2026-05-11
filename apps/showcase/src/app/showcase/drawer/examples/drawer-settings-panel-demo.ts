@@ -10,7 +10,8 @@ import { ButtonComponent, DrawerComponent, QuickAction, SwitchComponent, TextCom
     <div style="display:flex;flex-direction:column;gap:0.75rem;width:100%;max-width:26rem">
       <ui-button variant="primary" (click)="visible.set(true)">Open settings panel</ui-button>
       <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-        Current label: <strong>{{ currentLabel() }}</strong>
+        Current label:
+        <strong>{{ currentLabel() }}</strong>
       </div>
 
       <ui-drawer
@@ -48,7 +49,7 @@ import { ButtonComponent, DrawerComponent, QuickAction, SwitchComponent, TextCom
         </div>
       </ui-drawer>
     </div>
-  `,
+  `
 })
 export class DrawerSettingsPanelExampleComponent {
   protected readonly visible = model(false);
@@ -64,7 +65,7 @@ export class DrawerSettingsPanelExampleComponent {
       const next = this.draftLabel.trim();
       this.currentLabel.set(next || this.currentLabel());
       this.visible.set(false);
-    },
+    }
   });
 
   protected readonly cancelAction = signal<QuickAction>({
@@ -73,6 +74,6 @@ export class DrawerSettingsPanelExampleComponent {
     action: () => {
       this.draftLabel = this.currentLabel();
       this.visible.set(false);
-    },
+    }
   });
 }

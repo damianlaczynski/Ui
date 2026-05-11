@@ -43,11 +43,12 @@ import { ButtonComponent, MenuComponent, SearchComponent, type MenuItem } from '
       >
         <ui-button variant="secondary" appearance="outline" (click)="reset()">Reset</ui-button>
         <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          Last action: <strong>{{ lastAction() || 'none' }}</strong>
+          Last action:
+          <strong>{{ lastAction() || 'none' }}</strong>
         </span>
       </div>
     </div>
-  `,
+  `
 })
 export class MenuWorkspaceHeaderDemoComponent {
   protected readonly lastAction = signal('');
@@ -55,13 +56,13 @@ export class MenuWorkspaceHeaderDemoComponent {
   protected readonly publishItems: MenuItem[] = [
     { id: 'publish-now', label: 'Publish now', icon: 'arrow_upload' },
     { id: 'schedule', label: 'Schedule publish', icon: 'calendar' },
-    { id: 'save-draft', label: 'Save as draft', icon: 'save' },
+    { id: 'save-draft', label: 'Save as draft', icon: 'save' }
   ];
 
   protected readonly overflowItems: MenuItem[] = [
     { id: 'rename', label: 'Rename workspace', icon: 'rename' },
     { id: 'permissions', label: 'Permissions', icon: 'shield' },
-    { id: 'archive', label: 'Archive workspace', icon: 'archive' },
+    { id: 'archive', label: 'Archive workspace', icon: 'archive' }
   ];
 
   protected onItemClick(item: MenuItem): void {

@@ -20,6 +20,6 @@ import { SkeletonComponent } from 'ui';
         <ui-skeleton width="5.5rem" height="2rem" borderRadius="9999px" ariaLabel="Loading secondary action" />
       </div>
     </div>
-  `,
+  `
 })
 export class SkeletonCardShellExampleComponent {}

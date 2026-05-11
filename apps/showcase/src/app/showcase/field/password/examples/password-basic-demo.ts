@@ -45,7 +45,7 @@ import { PasswordComponent } from 'ui';
         />
       </div>
     </div>
-  `,
+  `
 })
 export class PasswordBasicDemoComponent {
   protected savedPassword = 'P@ssword-2026';

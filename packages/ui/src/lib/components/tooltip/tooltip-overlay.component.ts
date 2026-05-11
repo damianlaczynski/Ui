@@ -33,8 +33,8 @@ export interface TooltipData {
       :host {
         display: block;
       }
-    `,
-  ],
+    `
+  ]
 })
 export class TooltipOverlayComponent {
   data = inject(TOOLTIP_DATA);

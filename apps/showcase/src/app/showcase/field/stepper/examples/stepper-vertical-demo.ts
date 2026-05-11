@@ -24,13 +24,13 @@ import { BadgeComponent, Step, StepperComponent } from 'ui';
         </p>
       </div>
     </div>
-  `,
+  `
 })
 export class StepperVerticalExampleComponent {
   protected readonly steps = signal<Step[]>([
     { id: '1', label: 'Intake', description: 'Collect request' },
     { id: '2', label: 'Legal', description: 'Review wording' },
-    { id: '3', label: 'Sign-off', description: 'Approver' },
+    { id: '3', label: 'Sign-off', description: 'Approver' }
   ]);
 
   protected readonly active = signal(0);

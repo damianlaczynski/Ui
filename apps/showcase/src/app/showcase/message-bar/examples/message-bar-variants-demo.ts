@@ -32,6 +32,6 @@ import { MessageBarComponent } from 'ui';
         [dismissible]="false"
       />
     </div>
-  `,
+  `
 })
 export class MessageBarVariantsExampleComponent {}

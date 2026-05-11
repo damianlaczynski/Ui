@@ -41,7 +41,7 @@ import { highlightTypeScript } from '@shared/utils/showcase/code-highlight.util'
         </div>
       </div>
     </section>
-  `,
+  `
 })
 export class ShowcaseFeatureSectionComponent {
   id = input.required<string>();
@@ -54,7 +54,7 @@ export class ShowcaseFeatureSectionComponent {
   highlightedCode = computed(() => highlightTypeScript(this.code()));
 
   toggleExpanded(): void {
-    this.expanded.update(value => !value);
+    this.expanded.update((value) => !value);
   }
 
   async copyCode(): Promise<void> {

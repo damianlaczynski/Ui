@@ -120,7 +120,9 @@
 
     <!-- Hue Slider -->
     <div class="color-slider">
-      <label class="color-slider__label" [attr.for]="id() + '-hue'">{{ getHueLabel() }}</label>
+      <label class="color-slider__label" [attr.for]="id() + '-hue'">
+        {{ getHueLabel() }}
+      </label>
       <input
         type="range"
         class="color-slider__input color-slider__input--hue"
@@ -135,7 +137,9 @@
     <!-- Alpha Slider -->
     @if (showAlpha()) {
       <div class="color-slider">
-        <label class="color-slider__label" [attr.for]="id() + '-alpha'">{{ getOpacityLabel() }}</label>
+        <label class="color-slider__label" [attr.for]="id() + '-alpha'">
+          {{ getOpacityLabel() }}
+        </label>
         <div class="color-slider__alpha-wrapper">
           <div class="color-slider__alpha-checkered"></div>
           <input

@@ -50,7 +50,7 @@ import { TimePickerComponent } from 'ui';
         </span>
       </div>
     </div>
-  `,
+  `
 })
 export class TimePickerFormatStepDemoComponent {
   protected quarterHourValue = '09:15';

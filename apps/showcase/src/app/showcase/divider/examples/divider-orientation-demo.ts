@@ -23,6 +23,6 @@ import { DividerComponent } from 'ui';
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class DividerOrientationExampleComponent {}

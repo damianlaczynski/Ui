@@ -48,7 +48,7 @@ const dashedCardStyle =
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class RangeFormattingDemoComponent {
   readonly dashedCardStyle = dashedCardStyle;

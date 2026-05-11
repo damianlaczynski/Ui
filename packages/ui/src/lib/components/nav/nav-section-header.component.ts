@@ -8,7 +8,7 @@ import { Component, input } from '@angular/core';
         <div class="nav-section-header__text">{{ label() }}</div>
       </div>
     </div>
-  `,
+  `
 })
 export class NavSectionHeaderComponent {
   label = input.required<string>();

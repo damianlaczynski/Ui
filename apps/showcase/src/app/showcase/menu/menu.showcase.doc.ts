@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig,
+  ShowcaseDocPageConfig
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { MenuBasicDemoComponent } from './examples/menu-basic-demo';
 import { MenuContextActionsDemoComponent } from './examples/menu-context-actions-demo';
@@ -21,14 +21,14 @@ const componentMap = {
   submenu: MenuSubmenuDemoComponent,
   contextActions: MenuContextActionsDemoComponent,
   overflow: MenuOverflowDemoComponent,
-  workspaceHeader: MenuWorkspaceHeaderDemoComponent,
+  workspaceHeader: MenuWorkspaceHeaderDemoComponent
 } as const;
 
 export const MENU_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   markdown: `/docs/components/${menuMeta.slug}.md`,
   ...(Object.fromEntries(
-    Object.entries(menuMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${menuMeta.slug}/${file}`]),
-  ) as Record<string, string>),
+    Object.entries(menuMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${menuMeta.slug}/${file}`])
+  ) as Record<string, string>)
 };
 
 export const MENU_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -37,12 +37,12 @@ export const MENU_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: menuMeta.importCode,
   containerClass: menuMeta.containerClass,
   accessibility: menuMeta.accessibility,
-  featureSections: menuMeta.featureSections.map(section => ({
+  featureSections: menuMeta.featureSections.map((section) => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap],
+    component: componentMap[section.componentKey as keyof typeof componentMap]
   })),
-  apiSections: menuMeta.apiSections,
+  apiSections: menuMeta.apiSections
 };

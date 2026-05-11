@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig,
+  ShowcaseDocPageConfig
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { AvatarAppearanceExampleComponent } from './examples/avatar-appearance-demo';
 import { AvatarBasicExampleComponent } from './examples/avatar-basic-demo';
@@ -19,7 +19,7 @@ const componentMap = {
   layout: AvatarLayoutExampleComponent,
   states: AvatarStatesExampleComponent,
   strip: AvatarWorkspaceStripExampleComponent,
-  profile: AvatarProfileHeaderExampleComponent,
+  profile: AvatarProfileHeaderExampleComponent
 } as const;
 
 export const AVATAR_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -27,9 +27,9 @@ export const AVATAR_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(avatarMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${avatarMeta.slug}/${file}`,
-    ]),
-  ) as Record<string, string>),
+      `/docs/components/snippets/${avatarMeta.slug}/${file}`
+    ])
+  ) as Record<string, string>)
 };
 
 export const AVATAR_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -38,12 +38,12 @@ export const AVATAR_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: avatarMeta.importCode,
   containerClass: avatarMeta.containerClass,
   accessibility: avatarMeta.accessibility,
-  featureSections: avatarMeta.featureSections.map(section => ({
+  featureSections: avatarMeta.featureSections.map((section) => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap],
+    component: componentMap[section.componentKey as keyof typeof componentMap]
   })),
-  apiSections: avatarMeta.apiSections,
+  apiSections: avatarMeta.apiSections
 };

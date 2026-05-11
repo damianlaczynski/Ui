@@ -5,13 +5,13 @@ import { ALL_ICON_NAMES, DropdownComponent, DropdownItem, IconComponent, IconNam
 const ICON_BROWSER_BATCH_SIZE = 120;
 const variants = ['regular', 'filled'] as const;
 const sizes: Size[] = ['small', 'medium', 'large'];
-const sizeItems: DropdownItem[] = sizes.map(size => ({
+const sizeItems: DropdownItem[] = sizes.map((size) => ({
   value: size,
-  label: size[0].toUpperCase() + size.slice(1),
+  label: size[0].toUpperCase() + size.slice(1)
 }));
-const variantItems: DropdownItem[] = variants.map(variant => ({
+const variantItems: DropdownItem[] = variants.map((variant) => ({
   value: variant,
-  label: variant[0].toUpperCase() + variant.slice(1),
+  label: variant[0].toUpperCase() + variant.slice(1)
 }));
 
 @Component({
@@ -19,7 +19,7 @@ const variantItems: DropdownItem[] = variants.map(variant => ({
   standalone: true,
   imports: [FormsModule, DropdownComponent, IconComponent, SearchComponent],
   host: {
-    style: 'display:block;width:100%;',
+    style: 'display:block;width:100%;'
   },
   template: `
     <section style="display:grid;gap:1rem;width:100%;max-width:56rem;margin-inline:auto;">
@@ -62,10 +62,12 @@ const variantItems: DropdownItem[] = variants.map(variant => ({
       </div>
 
       <div style="font-size:0.875rem;color:var(--color-neutral-foreground2-rest);">
-        Showing <strong>{{ visibleIcons().length }}</strong> of {{ filteredIcons().length }}
+        Showing
+        <strong>{{ visibleIcons().length }}</strong>
+        of {{ filteredIcons().length }}
         matching icons
         @if (filteredIcons().length < iconNames.length) {
-          <span> from {{ iconNames.length }} available icons</span>
+          <span>from {{ iconNames.length }} available icons</span>
         }
       </div>
 
@@ -73,7 +75,8 @@ const variantItems: DropdownItem[] = variants.map(variant => ({
         <div
           style="padding:0.875rem 1rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:12px;background:var(--color-neutral-background2-rest);font-size:0.875rem;"
         >
-          Copied icon name: <strong>{{ copiedIcon() }}</strong>
+          Copied icon name:
+          <strong>{{ copiedIcon() }}</strong>
         </div>
       }
 
@@ -107,7 +110,7 @@ const variantItems: DropdownItem[] = variants.map(variant => ({
         </div>
       }
     </section>
-  `,
+  `
 })
 export class IconBrowserDemoComponent {
   protected readonly iconNames = ALL_ICON_NAMES as IconName[];
@@ -137,13 +140,13 @@ export class IconBrowserDemoComponent {
     if (!query) {
       return this.iconNames;
     }
-    return this.iconNames.filter(iconName => iconName.toLowerCase().includes(query)) as IconName[];
+    return this.iconNames.filter((iconName) => iconName.toLowerCase().includes(query)) as IconName[];
   });
 
   protected readonly visibleIcons = computed<IconName[]>(() => this.filteredIcons().slice(0, this.visibleIconsCount()));
 
   private readonly hasMoreVisibleIcons = computed<boolean>(
-    () => this.visibleIcons().length < this.filteredIcons().length,
+    () => this.visibleIcons().length < this.filteredIcons().length
   );
 
   constructor() {
@@ -168,7 +171,7 @@ export class IconBrowserDemoComponent {
 
     const distanceToBottom = container.scrollHeight - container.scrollTop - container.clientHeight;
     if (distanceToBottom <= 320) {
-      this.visibleIconsCount.update(count => count + ICON_BROWSER_BATCH_SIZE);
+      this.visibleIconsCount.update((count) => count + ICON_BROWSER_BATCH_SIZE);
     }
   }
 

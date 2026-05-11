@@ -58,7 +58,7 @@ import { ButtonComponent, CalendarComponent, CalendarDay, MessageBarComponent, T
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class CalendarBookingPanelDemoComponent {
   protected readonly minDate = '2026-05-12';
@@ -71,9 +71,9 @@ export class CalendarBookingPanelDemoComponent {
       ? this.selectedDate()!.toLocaleDateString('en-US', {
           weekday: 'long',
           month: 'long',
-          day: 'numeric',
+          day: 'numeric'
         })
-      : 'Choose a review slot.',
+      : 'Choose a review slot.'
   );
 
   protected onDateSelect(day: CalendarDay): void {

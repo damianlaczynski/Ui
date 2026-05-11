@@ -42,7 +42,7 @@ import { BadgeComponent, ButtonComponent, CarouselComponent, CarouselItem } from
         </div>
       </div>
     </ng-template>
-  `,
+  `
 })
 export class CarouselCustomTemplateDemoComponent {
   protected readonly workspaceSlides: CarouselItem[] = [
@@ -54,7 +54,7 @@ export class CarouselCustomTemplateDemoComponent {
       description:
         'Custom slide templates work well when carousel needs richer layouts than an image with caption. Keep each slide structured like a card, not a full page.',
       metricA: '18',
-      metricB: '6',
+      metricB: '6'
     },
     {
       id: 'template-2',
@@ -64,7 +64,7 @@ export class CarouselCustomTemplateDemoComponent {
       description:
         'You can embed badges, actions, or metric summaries and still reuse the same carousel navigation behavior.',
       metricA: '9',
-      metricB: '4',
+      metricB: '4'
     },
     {
       id: 'template-3',
@@ -74,7 +74,7 @@ export class CarouselCustomTemplateDemoComponent {
       description:
         'This pattern is useful for workspace overviews, roadmap highlights, onboarding callouts, or release spotlight sections.',
       metricA: '5',
-      metricB: '8',
-    },
+      metricB: '8'
+    }
   ];
 }

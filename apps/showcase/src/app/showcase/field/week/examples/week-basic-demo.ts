@@ -24,7 +24,7 @@ import { ButtonComponent, WeekComponent } from 'ui';
         </span>
       </div>
     </div>
-  `,
+  `
 })
 export class WeekBasicDemoComponent {
   protected value = '2026-W20';

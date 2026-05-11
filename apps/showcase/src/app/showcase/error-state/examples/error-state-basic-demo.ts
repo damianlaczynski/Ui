@@ -14,6 +14,6 @@ import { ErrorStateComponent } from 'ui';
         description="An unexpected problem occurred. Please try again in a moment."
       />
     </div>
-  `,
+  `
 })
 export class ErrorStateBasicDemoComponent {}

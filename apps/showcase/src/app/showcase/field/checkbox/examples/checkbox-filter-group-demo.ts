@@ -26,7 +26,7 @@ import { CheckboxComponent } from 'ui';
       />
       <ui-checkbox label="Has customer impact" [(ngModel)]="customerImpact" [ngModelOptions]="{ standalone: true }" />
     </div>
-  `,
+  `
 })
 export class CheckboxFilterGroupExampleComponent {
   protected assignedToMe = true;

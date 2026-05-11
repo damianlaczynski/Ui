@@ -11,13 +11,13 @@ import { NavComponent, type NavNode } from 'ui';
     >
       <ui-nav [items]="items" />
     </div>
-  `,
+  `
 })
 export class NavBasicDemoComponent {
   protected readonly items: NavNode[] = [
     { id: 'home', label: 'Home', icon: 'home' },
     { id: 'activity', label: 'Activity', icon: 'history', selected: true },
     { id: 'files', label: 'Files', icon: 'folder' },
-    { id: 'settings', label: 'Settings', icon: 'settings' },
+    { id: 'settings', label: 'Settings', icon: 'settings' }
   ];
 }

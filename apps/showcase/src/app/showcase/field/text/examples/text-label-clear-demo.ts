@@ -37,7 +37,7 @@ import { TextComponent } from 'ui';
         [ngModelOptions]="{ standalone: true }"
       />
     </div>
-  `,
+  `
 })
 export class TextLabelClearExampleComponent {
   protected above = 'Budget FY27';

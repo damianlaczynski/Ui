@@ -25,13 +25,13 @@ import { ToolbarComponent, type ToolbarItem } from 'ui';
         <ui-toolbar [items]="items" size="large" orientation="vertical" />
       </div>
     </div>
-  `,
+  `
 })
 export class ToolbarSizesOrientationDemoComponent {
   protected readonly items: ToolbarItem[] = [
     { id: 'undo', icon: 'arrow_undo', tooltip: 'Undo' },
     { id: 'redo', icon: 'arrow_redo', tooltip: 'Redo' },
     { id: 'comments', icon: 'comment', tooltip: 'Comments' },
-    { id: 'history', icon: 'history', tooltip: 'History' },
+    { id: 'history', icon: 'history', tooltip: 'History' }
   ];
 }

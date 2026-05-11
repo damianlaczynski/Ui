@@ -36,7 +36,7 @@ import { ButtonComponent, ToastComponent } from 'ui';
         [(visible)]="vNoDismiss"
       />
     </div>
-  `,
+  `
 })
 export class ToastOptionsExampleComponent {
   vProgress = true;

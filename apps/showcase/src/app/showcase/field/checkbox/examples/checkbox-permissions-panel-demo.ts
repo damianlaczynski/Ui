@@ -66,32 +66,32 @@ import { ButtonComponent, CheckboxComponent } from 'ui';
         <div style="display:flex;flex-direction:column;gap:0.45rem;font-size:0.875rem;line-height:1.4">
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Management access</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
-              managementIndeterminate ? 'Mixed' : managementAccess ? 'On' : 'Off'
-            }}</strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">
+              {{ managementIndeterminate ? 'Mixed' : managementAccess ? 'On' : 'Off' }}
+            </strong>
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Projects</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
-              permissionsForm.controls.projects.getRawValue() ? 'On' : 'Off'
-            }}</strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">
+              {{ permissionsForm.controls.projects.getRawValue() ? 'On' : 'Off' }}
+            </strong>
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Members</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
-              permissionsForm.controls.members.getRawValue() ? 'On' : 'Off'
-            }}</strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">
+              {{ permissionsForm.controls.members.getRawValue() ? 'On' : 'Off' }}
+            </strong>
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Billing</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
-              permissionsForm.controls.billing.getRawValue() ? 'On' : 'Off'
-            }}</strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">
+              {{ permissionsForm.controls.billing.getRawValue() ? 'On' : 'Off' }}
+            </strong>
           </div>
         </div>
       </div>
     </div>
-  `,
+  `
 })
 export class CheckboxPermissionsPanelExampleComponent {
   protected managementAccess = false;
@@ -100,7 +100,7 @@ export class CheckboxPermissionsPanelExampleComponent {
   protected readonly permissionsForm = new FormGroup({
     projects: new FormControl(true, { nonNullable: true }),
     members: new FormControl(false, { nonNullable: true }),
-    billing: new FormControl(true, { nonNullable: true }),
+    billing: new FormControl(true, { nonNullable: true })
   });
 
   protected toggleManagementGroup(): void {
@@ -109,7 +109,7 @@ export class CheckboxPermissionsPanelExampleComponent {
     this.permissionsForm.setValue({
       projects: nextValue,
       members: nextValue,
-      billing: nextValue,
+      billing: nextValue
     });
   }
 

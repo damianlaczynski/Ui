@@ -21,14 +21,14 @@ export const appConfig: ApplicationConfig = {
       fallbackLang: 'en',
       loader: provideTranslateHttpLoader({
         prefix: '/i18n/',
-        suffix: '.json',
-      }),
+        suffix: '.json'
+      })
     }),
     provideUiI18nWithNgxTranslate({ prefix: 'ui' }),
     provideAppInitializer(() => {
       const translate = inject(TranslateService);
       return firstValueFrom(translate.use('en'));
     }),
-    { provide: LOCALE_ID, useValue: 'en' },
-  ],
+    { provide: LOCALE_ID, useValue: 'en' }
+  ]
 };
