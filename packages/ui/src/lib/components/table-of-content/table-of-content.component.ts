@@ -37,6 +37,7 @@ export class TableOfContentComponent implements OnDestroy {
   //Inputs
   containerSelector = input<string>('.showcase');
   headingSelector = input<string>('h2, h3, h4, h5, h6');
+  ignoreWithinSelector = input<string>('');
   minLevel = input<number>(1);
   maxLevel = input<number>(6);
   size = input<Size>('medium');
@@ -98,8 +99,14 @@ export class TableOfContentComponent implements OnDestroy {
   }
 
   private findHeadings(container: Element): HTMLElement[] {
+    const ignoreWithinSelector = this.ignoreWithinSelector().trim();
+
     return Array.from(container.querySelectorAll<HTMLElement>(this.headingSelector())).filter(
       heading => {
+        if (ignoreWithinSelector && heading.closest(ignoreWithinSelector)) {
+          return false;
+        }
+
         const level = parseInt(heading.tagName.charAt(1));
         return level >= this.minLevel() && level <= this.maxLevel();
       },
