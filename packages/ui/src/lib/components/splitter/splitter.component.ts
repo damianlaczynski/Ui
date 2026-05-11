@@ -10,13 +10,13 @@ import {
   afterNextRender,
   TemplateRef,
   Directive,
-  inject
+  inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Orientation } from '../utils';
 
 @Directive({
-  selector: '[uiSplitterPanel]'
+  selector: '[uiSplitterPanel]',
 })
 export class SplitterPanelDirective {
   id = input.required<string>({ alias: 'uiSplitterPanel' });
@@ -43,7 +43,7 @@ export interface SplitterResizeEvent {
   selector: 'ui-splitter',
 
   imports: [CommonModule],
-  templateUrl: './splitter.component.html'
+  templateUrl: './splitter.component.html',
 })
 export class SplitterComponent {
   orientation = input<Orientation>('horizontal');
@@ -64,7 +64,7 @@ export class SplitterComponent {
   private panelElements = viewChildren<ElementRef>('panel');
 
   getPanelTemplate(panelId: string): TemplateRef<any> | null {
-    const template = this.panelTemplates().find((t) => t.id() === panelId);
+    const template = this.panelTemplates().find(t => t.id() === panelId);
     return template?.templateRef || null;
   }
 
@@ -91,10 +91,10 @@ export class SplitterComponent {
     const sizes: number[] = [];
 
     // If panels have defined sizes, use them
-    const hasDefinedSizes = panels.some((p) => p.size !== undefined);
+    const hasDefinedSizes = panels.some(p => p.size !== undefined);
 
     if (hasDefinedSizes) {
-      panels.forEach((panel) => {
+      panels.forEach(panel => {
         sizes.push(panel.collapsed ? 0 : panel.size || 100);
       });
     } else {
@@ -165,7 +165,7 @@ export class SplitterComponent {
 
     return {
       [isHorizontal ? 'width' : 'height']: `calc(${size}% - ${gutterAdjustment}px)`,
-      [isHorizontal ? 'height' : 'width']: '100%'
+      [isHorizontal ? 'height' : 'width']: '100%',
     };
   }
 
@@ -175,7 +175,7 @@ export class SplitterComponent {
 
     return {
       [isHorizontal ? 'width' : 'height']: `${gutterSize}px`,
-      [isHorizontal ? 'min-height' : 'min-width']: '100%'
+      [isHorizontal ? 'min-height' : 'min-width']: '100%',
     };
   }
 
@@ -307,13 +307,13 @@ export class SplitterComponent {
     this.panelResize.emit({
       panelIndex: gutterIndex,
       newSize: newSize,
-      panelId: this.panels()[gutterIndex].id
+      panelId: this.panels()[gutterIndex].id,
     });
 
     this.panelResize.emit({
       panelIndex: gutterIndex + 1,
       newSize: this.panelSizes()[gutterIndex + 1],
-      panelId: this.panels()[gutterIndex + 1].id
+      panelId: this.panels()[gutterIndex + 1].id,
     });
 
     this.isDragging.set(false);
@@ -440,13 +440,13 @@ export class SplitterComponent {
     this.panelResize.emit({
       panelIndex: gutterIndex,
       newSize: newSizes[gutterIndex],
-      panelId: this.panels()[gutterIndex].id
+      panelId: this.panels()[gutterIndex].id,
     });
 
     this.panelResize.emit({
       panelIndex: gutterIndex + 1,
       newSize: newSizes[gutterIndex + 1],
-      panelId: this.panels()[gutterIndex + 1].id
+      panelId: this.panels()[gutterIndex + 1].id,
     });
   }
 

@@ -40,7 +40,7 @@ import { DataGridFilterTemplateContext } from '../../models/data-grid-config.mod
         (ngModelChange)="context().onValueChange($event)"
       />
     }
-  `
+  `,
 })
 export class NumberFilterComponent {
   context = input.required<DataGridFilterTemplateContext>();
@@ -55,7 +55,7 @@ export class NumberFilterComponent {
     if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
       return {
         start: value.start ?? null,
-        end: value.end ?? null
+        end: value.end ?? null,
       };
     }
     return { start: null, end: null };

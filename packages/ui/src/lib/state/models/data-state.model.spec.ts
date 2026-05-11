@@ -8,7 +8,7 @@ describe('State Models', () => {
 
   const testData: TestData = {
     id: 1,
-    name: 'Test'
+    name: 'Test',
   };
 
   describe('initialState', () => {
@@ -40,7 +40,7 @@ describe('State Models', () => {
         isInitial: false,
         isLoading: false,
         isError: false,
-        data: testData
+        data: testData,
       };
 
       const loading = loadingState(existingState);

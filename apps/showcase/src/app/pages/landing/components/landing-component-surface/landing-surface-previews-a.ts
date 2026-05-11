@@ -36,13 +36,13 @@ import {
   MonthComponent,
   QuickAction,
   WeekComponent,
-  type Breadcrumb
+  type Breadcrumb,
 } from 'ui';
 import {
   LSP_BREADCRUMB_FULL,
   LSP_COMMAND_ITEMS_BASE,
   LSP_DROPDOWN_ITEMS,
-  LSP_MENU_ITEMS
+  LSP_MENU_ITEMS,
 } from './landing-surface-previews.shared';
 
 @Component({
@@ -59,7 +59,7 @@ import {
         Tip: pair this with webhook signing so finance teams trust every alert payload.
       </p>
     </ui-accordion>
-  `
+  `,
 })
 export class LspAccordionPreviewComponent {}
 
@@ -75,7 +75,7 @@ export class LspAccordionPreviewComponent {}
       <ui-avatar icon="building" ariaLabel="Northwind workspace" />
       <ui-avatar [loading]="true" variant="primary" appearance="filled" />
     </div>
-  `
+  `,
 })
 export class LspAvatarPreviewComponent {}
 
@@ -96,7 +96,7 @@ export class LspAvatarPreviewComponent {}
         <ui-badge text="Featured launch" variant="primary" icon="rocket" appearance="filled" />
       </div>
     </div>
-  `
+  `,
 })
 export class LspBadgePreviewComponent {}
 
@@ -106,18 +106,18 @@ export class LspBadgePreviewComponent {}
   imports: [BreadcrumbComponent],
   template: `
     <ui-breadcrumb [items]="path()" appearance="subtle" [responsiveOverflow]="false" (itemClick)="navigate($event)" />
-  `
+  `,
 })
 export class LspBreadcrumbPreviewComponent {
   protected readonly path = signal<Breadcrumb[]>(LSP_BREADCRUMB_FULL);
 
   protected navigate(item: Breadcrumb): void {
-    const index = LSP_BREADCRUMB_FULL.findIndex((entry) => entry.id === item.id);
+    const index = LSP_BREADCRUMB_FULL.findIndex(entry => entry.id === item.id);
     this.path.set(
       LSP_BREADCRUMB_FULL.slice(0, index + 1).map((entry, currentIndex, arr) => ({
         ...entry,
-        selected: currentIndex === arr.length - 1
-      }))
+        selected: currentIndex === arr.length - 1,
+      })),
     );
   }
 }
@@ -137,7 +137,7 @@ export class LspBreadcrumbPreviewComponent {
       <ui-button variant="primary" appearance="filled" shape="circular" icon="add" ariaLabel="Create item" />
       <ui-button variant="secondary" appearance="outline" [disabled]="true">Coming soon</ui-button>
     </div>
-  `
+  `,
 })
 export class LspButtonPreviewComponent {}
 
@@ -156,7 +156,7 @@ export class LspButtonPreviewComponent {}
       (previousMonth)="shiftMonth(-1)"
       (nextMonth)="shiftMonth(1)"
     />
-  `
+  `,
 })
 export class LspCalendarPreviewComponent {
   protected readonly currentMonth = signal(new Date(2026, 4, 1));
@@ -182,12 +182,11 @@ export class LspCalendarPreviewComponent {
       <div uiCardHeader style="display:grid;gap:0.35rem">
         <span
           style="font-size:0.6875rem;font-weight:600;color:var(--color-brand-primary);text-transform:uppercase;letter-spacing:0.06em"
+          >Ship window</span
         >
-          Ship window
-        </span>
-        <strong style="font-size:1rem;line-height:1.3;color:var(--color-neutral-foreground-rest)">
-          Billing API · May 16 GA
-        </strong>
+        <strong style="font-size:1rem;line-height:1.3;color:var(--color-neutral-foreground-rest)"
+          >Billing API · May 16 GA</strong
+        >
       </div>
       <div uiCardBody style="margin:0;font-size:0.875rem;line-height:1.55;color:var(--color-neutral-foreground2-rest)">
         Thirty-eight automated checks passed. Two security approvals outstanding before traffic shifts to the blue
@@ -198,7 +197,7 @@ export class LspCalendarPreviewComponent {
         <ui-button variant="secondary" appearance="outline">Share briefing</ui-button>
       </div>
     </ui-card>
-  `
+  `,
 })
 export class LspCardPreviewComponent {}
 
@@ -206,9 +205,7 @@ export class LspCardPreviewComponent {}
   selector: 'app-lsp-carousel',
   standalone: true,
   imports: [CarouselComponent],
-  template: `
-    <ui-carousel [items]="slides" />
-  `
+  template: ` <ui-carousel [items]="slides" /> `,
 })
 export class LspCarouselPreviewComponent {
   protected readonly slides: CarouselItem[] = [
@@ -217,20 +214,21 @@ export class LspCarouselPreviewComponent {
       image: 'https://picsum.photos/seed/northridge-dashboard/900/480',
       title: 'Operational clarity by default',
       description:
-        'Executive-ready dashboards highlight revenue leakage, webhook health, and customer churn without exporting spreadsheets.'
+        'Executive-ready dashboards highlight revenue leakage, webhook health, and customer churn without exporting spreadsheets.',
     },
     {
       id: '2',
       image: 'https://picsum.photos/seed/northridge-collab/900/480',
       title: 'Collaborate where finance meets engineering',
-      description: 'Annotate payout runs, attach evidence, and keep auditors in the loop with granular workspace roles.'
+      description:
+        'Annotate payout runs, attach evidence, and keep auditors in the loop with granular workspace roles.',
     },
     {
       id: '3',
       image: 'https://picsum.photos/seed/northridge-mobile/900/480',
       title: 'Approvals that travel with you',
-      description: 'Resolve exceptions from mobile with biometric re-auth and tamper-evident audit trails baked in.'
-    }
+      description: 'Resolve exceptions from mobile with biometric re-auth and tamper-evident audit trails baked in.',
+    },
   ];
 }
 
@@ -257,7 +255,7 @@ export class LspCarouselPreviewComponent {
       [(ngModel)]="value3"
       [ngModelOptions]="{ standalone: true }"
     />
-  `
+  `,
 })
 export class LspCheckboxPreviewComponent {
   protected value = false;
@@ -271,7 +269,7 @@ export class LspCheckboxPreviewComponent {
   imports: [FormsModule, ColorComponent],
   template: `
     <ui-color label="Brand accent" [(ngModel)]="primary" [ngModelOptions]="{ standalone: true }" format="hex" />
-  `
+  `,
 })
 export class LspColorPreviewComponent {
   protected primary = '#0F6CBD';
@@ -282,9 +280,9 @@ export class LspColorPreviewComponent {
   standalone: true,
   imports: [ButtonComponent, CommandPaletteComponent],
   template: `
-    <ui-button type="button" variant="secondary" appearance="outline" (click)="visible.set(true)">
-      Command palette
-    </ui-button>
+    <ui-button type="button" variant="secondary" appearance="outline" (click)="visible.set(true)"
+      >Command palette</ui-button
+    >
     <ui-command-palette
       [(visible)]="visible"
       [items]="items"
@@ -292,13 +290,13 @@ export class LspColorPreviewComponent {
       emptyText="No matches — try another keyword"
       [maxResults]="8"
     />
-  `
+  `,
 })
 export class LspCommandPalettePreviewComponent {
   protected readonly visible = model(false);
-  protected readonly items = LSP_COMMAND_ITEMS_BASE.map((item) => ({
+  protected readonly items = LSP_COMMAND_ITEMS_BASE.map(item => ({
     ...item,
-    action: (): void => undefined
+    action: (): void => undefined,
   }));
 }
 
@@ -306,9 +304,7 @@ export class LspCommandPalettePreviewComponent {
   selector: 'app-lsp-date',
   standalone: true,
   imports: [FormsModule, DateComponent],
-  template: `
-    <ui-date label="Go-live date" [(ngModel)]="goLive" [ngModelOptions]="{ standalone: true }" />
-  `
+  template: ` <ui-date label="Go-live date" [(ngModel)]="goLive" [ngModelOptions]="{ standalone: true }" /> `,
 })
 export class LspDatePreviewComponent {
   protected goLive = '2026-05-12';
@@ -318,9 +314,7 @@ export class LspDatePreviewComponent {
   selector: 'app-lsp-datetime',
   standalone: true,
   imports: [FormsModule, DatetimeComponent],
-  template: `
-    <ui-datetime label="Incident start" [(ngModel)]="value" [ngModelOptions]="{ standalone: true }" />
-  `
+  template: ` <ui-datetime label="Incident start" [(ngModel)]="value" [ngModelOptions]="{ standalone: true }" /> `,
 })
 export class LspDatetimePreviewComponent {
   protected value = '2026-05-12 14:30';
@@ -330,9 +324,7 @@ export class LspDatetimePreviewComponent {
   selector: 'app-lsp-month',
   standalone: true,
   imports: [FormsModule, MonthComponent],
-  template: `
-    <ui-month label="Fiscal period" [(ngModel)]="fiscal" [ngModelOptions]="{ standalone: true }" />
-  `
+  template: ` <ui-month label="Fiscal period" [(ngModel)]="fiscal" [ngModelOptions]="{ standalone: true }" /> `,
 })
 export class LspMonthPreviewComponent {
   protected fiscal = '2026-05';
@@ -342,9 +334,7 @@ export class LspMonthPreviewComponent {
   selector: 'app-lsp-week',
   standalone: true,
   imports: [FormsModule, WeekComponent],
-  template: `
-    <ui-week label="Reporting week" [(ngModel)]="weekLive" [ngModelOptions]="{ standalone: true }" />
-  `
+  template: ` <ui-week label="Reporting week" [(ngModel)]="weekLive" [ngModelOptions]="{ standalone: true }" /> `,
 })
 export class LspWeekPreviewComponent {
   protected weekLive = '2026-W19';
@@ -356,13 +346,10 @@ export class LspWeekPreviewComponent {
   imports: [FormsModule, DateRangeComponent],
   template: `
     <ui-date-range label="Invoice export window" [(ngModel)]="value" [ngModelOptions]="{ standalone: true }" />
-  `
+  `,
 })
 export class LspDateRangePreviewComponent {
-  protected value: DateRange | null = {
-    startDate: '2026-05-12',
-    endDate: '2026-05-18'
-  };
+  protected value: DateRange | null = { startDate: '2026-05-12', endDate: '2026-05-18' };
 }
 
 @Component({
@@ -378,7 +365,7 @@ export class LspDateRangePreviewComponent {
       [primaryAction]="primaryAction()"
       [secondaryAction]="secondaryAction()"
     />
-  `
+  `,
 })
 export class LspDialogPreviewComponent {
   protected readonly visible = model(false);
@@ -386,13 +373,13 @@ export class LspDialogPreviewComponent {
   protected readonly primaryAction = signal<QuickAction>({
     label: 'Rename key',
     variant: 'primary',
-    action: () => this.visible.set(false)
+    action: () => this.visible.set(false),
   });
 
   protected readonly secondaryAction = signal<QuickAction>({
     label: 'Keep editing',
     variant: 'secondary',
-    action: () => this.visible.set(false)
+    action: () => this.visible.set(false),
   });
 }
 
@@ -415,7 +402,7 @@ export class LspDialogPreviewComponent {
         }
       </div>
     </div>
-  `
+  `,
 })
 export class LspDividerPreviewComponent {
   protected readonly verticalDemo: ReadonlyArray<{
@@ -424,7 +411,7 @@ export class LspDividerPreviewComponent {
   }> = [
     { label: 'Left rail', alignment: 'start' },
     { label: 'Canvas', alignment: 'center' },
-    { label: 'Inspector', alignment: 'end' }
+    { label: 'Inspector', alignment: 'end' },
   ];
 }
 
@@ -441,7 +428,7 @@ export class LspDividerPreviewComponent {
       [(ngModel)]="selected"
       [ngModelOptions]="{ standalone: true }"
     />
-  `
+  `,
 })
 export class LspDropdownPreviewComponent {
   protected readonly items = LSP_DROPDOWN_ITEMS;
@@ -468,9 +455,9 @@ export class LspDropdownPreviewComponent {
         <div
           style="flex:1;min-width:0;padding:0.5rem 0.75rem;font-size:0.8125rem;line-height:1.5;color:var(--color-neutral-foreground2-rest)"
         >
-          <strong style="color:var(--color-neutral-foreground-rest);display:block;margin-bottom:0.35rem">
-            Alert routing workspace
-          </strong>
+          <strong style="color:var(--color-neutral-foreground-rest);display:block;margin-bottom:0.35rem"
+            >Alert routing workspace</strong
+          >
           Inline drawers excel at inspectors beside editors — tweak webhook retries without covering your timeline
           graph.
         </div>
@@ -495,7 +482,7 @@ export class LspDropdownPreviewComponent {
       [(visible)]="overlayVisible"
       [primaryAction]="overlayDone()"
     />
-  `
+  `,
 })
 export class LspDrawerPreviewComponent {
   protected readonly overlayVisible = model(false);
@@ -504,13 +491,13 @@ export class LspDrawerPreviewComponent {
   protected readonly inlineDone = signal<QuickAction>({
     label: 'Save routing',
     variant: 'primary',
-    action: () => this.inlineVisible.set(false)
+    action: () => this.inlineVisible.set(false),
   });
 
   protected readonly overlayDone = signal<QuickAction>({
     label: 'Keep editing',
     variant: 'primary',
-    action: () => this.overlayVisible.set(false)
+    action: () => this.overlayVisible.set(false),
   });
 }
 
@@ -525,7 +512,7 @@ export class LspDrawerPreviewComponent {
       [(ngModel)]="value"
       [ngModelOptions]="{ standalone: true }"
     />
-  `
+  `,
 })
 export class LspEmailPreviewComponent {
   protected value = 'finance-alerts@northridge.io';
@@ -542,13 +529,13 @@ export class LspEmailPreviewComponent {
       icon="rocket"
       [primaryAction]="primaryAction"
     />
-  `
+  `,
 })
 export class LspEmptyStatePreviewComponent {
   protected readonly primaryAction: QuickAction = {
     label: 'Create sandbox deploy',
     variant: 'primary',
-    action: (): void => undefined
+    action: (): void => undefined,
   };
 }
 
@@ -564,13 +551,13 @@ export class LspEmptyStatePreviewComponent {
       size="small"
       [primaryAction]="retryAction"
     />
-  `
+  `,
 })
 export class LspErrorStatePreviewComponent {
   protected readonly retryAction: QuickAction = {
     label: 'Retry sync',
     variant: 'primary',
-    action: (): void => undefined
+    action: (): void => undefined,
   };
 }
 
@@ -578,9 +565,7 @@ export class LspErrorStatePreviewComponent {
   selector: 'app-lsp-file',
   standalone: true,
   imports: [FileComponent],
-  template: `
-    <ui-file label="Attach signed invoice (PDF)" accept=".pdf" />
-  `
+  template: ` <ui-file label="Attach signed invoice (PDF)" accept=".pdf" /> `,
 })
 export class LspFilePreviewComponent {}
 
@@ -590,9 +575,9 @@ export class LspFilePreviewComponent {}
   imports: [IconComponent],
   template: `
     <div style="display:flex;flex-direction:column;gap:0.5rem;width:100%;min-width:0">
-      <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);align-self:flex-end">
-        {{ icons.length }} / {{ iconsInSprite }} icons
-      </span>
+      <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);align-self:flex-end"
+        >{{ icons.length }} / {{ iconsInSprite }} icons</span
+      >
       <div
         style="display:grid;grid-template-columns:repeat(auto-fill,minmax(1.875rem,1fr));gap:0.55rem 0.65rem;align-items:center;justify-items:center;color:var(--color-brand-primary);width:100%;min-width:0"
       >
@@ -601,7 +586,7 @@ export class LspFilePreviewComponent {}
         }
       </div>
     </div>
-  `
+  `,
 })
 export class LspIconPreviewComponent {
   protected readonly iconsInSprite = ALL_ICON_NAMES.length;
@@ -747,7 +732,7 @@ export class LspIconPreviewComponent {
     { icon: 'umbrella', variant: 'regular' },
     { icon: 'usb_plug', variant: 'filled' },
     { icon: 'wand', variant: 'regular' },
-    { icon: 'weather_sunny_high', variant: 'filled' }
+    { icon: 'weather_sunny_high', variant: 'filled' },
   ];
 }
 
@@ -782,7 +767,7 @@ export class LspIconPreviewComponent {
         <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">Close · focus search</span>
       </div>
     </div>
-  `
+  `,
 })
 export class LspKbdPreviewComponent {}
 
@@ -795,7 +780,7 @@ export class LspKbdPreviewComponent {}
       title="Normalizing ledger entries"
       description="Applying payouts captured since midnight UTC — safe to keep navigating."
     />
-  `
+  `,
 })
 export class LspLoadingStatePreviewComponent {}
 
@@ -810,7 +795,7 @@ export class LspLoadingStatePreviewComponent {}
       variant="info"
       appearance="tint"
     />
-  `
+  `,
 })
 export class LspMessageBarPreviewComponent {}
 
@@ -838,18 +823,18 @@ export class LspMessageBarPreviewComponent {}
         variant="secondary"
       />
     </div>
-  `
+  `,
 })
 export class LspMenuPreviewComponent {
   protected readonly items = LSP_MENU_ITEMS;
   protected readonly exportItems = [
     { id: 'export-csv', label: 'Export CSV' },
     { id: 'export-pdf', label: 'Export PDF' },
-    { id: 'export-xlsx', label: 'Export XLSX' }
+    { id: 'export-xlsx', label: 'Export XLSX' },
   ];
   protected readonly shareItems = [
     { id: 'share-link', label: 'Share link' },
     { id: 'share-email', label: 'Share email' },
-    { id: 'share-sms', label: 'Share SMS' }
+    { id: 'share-sms', label: 'Share SMS' },
   ];
 }

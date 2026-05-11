@@ -44,6 +44,6 @@ import { PasswordComponent } from 'ui';
         />
       </div>
     </div>
-  `
+  `,
 })
 export class PasswordLayoutDemoComponent {}

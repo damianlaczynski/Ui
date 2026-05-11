@@ -39,7 +39,7 @@ import { TreeComponent, type TreeNode } from 'ui';
         />
       </div>
     </div>
-  `
+  `,
 })
 export class TreeInteractionDemoComponent {
   protected readonly browserNodes: TreeNode[] = [
@@ -51,10 +51,10 @@ export class TreeInteractionDemoComponent {
       expanded: true,
       children: [
         { id: 'app', label: 'app', icon: 'folder' },
-        { id: 'styles', label: 'styles.scss', icon: 'document', selected: true }
-      ]
+        { id: 'styles', label: 'styles.scss', icon: 'document', selected: true },
+      ],
     },
-    { id: 'package', label: 'package.json', icon: 'document' }
+    { id: 'package', label: 'package.json', icon: 'document' },
   ];
 
   protected readonly navigationNodes: TreeNode[] = [
@@ -66,9 +66,9 @@ export class TreeInteractionDemoComponent {
       expanded: true,
       children: [
         { id: 'overview', label: 'Overview', icon: 'home' },
-        { id: 'activity', label: 'Activity', icon: 'pulse', selected: true }
-      ]
+        { id: 'activity', label: 'Activity', icon: 'pulse', selected: true },
+      ],
     },
-    { id: 'settings', label: 'Settings', icon: 'settings' }
+    { id: 'settings', label: 'Settings', icon: 'settings' },
   ];
 }

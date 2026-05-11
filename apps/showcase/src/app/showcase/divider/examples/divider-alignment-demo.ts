@@ -11,6 +11,6 @@ import { DividerComponent } from 'ui';
       <ui-divider alignment="center" text="Center aligned" />
       <ui-divider alignment="end" text="End aligned" />
     </div>
-  `
+  `,
 })
 export class DividerAlignmentExampleComponent {}

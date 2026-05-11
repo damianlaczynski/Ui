@@ -42,7 +42,7 @@ const dashedCardStyle =
         </div>
       </div>
     </div>
-  `
+  `,
 })
 export class RangeBasicDemoComponent {
   readonly dashedCardStyle = dashedCardStyle;

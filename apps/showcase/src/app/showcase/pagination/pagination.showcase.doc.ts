@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig
+  ShowcaseDocPageConfig,
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { PaginationBasicExampleComponent } from './examples/pagination-basic-demo';
 import { PaginationDensityExampleComponent } from './examples/pagination-density-demo';
@@ -19,7 +19,7 @@ const componentMap = {
   firstLast: PaginationFirstLastExampleComponent,
   pageSize: PaginationPageSizeExampleComponent,
   density: PaginationDensityExampleComponent,
-  resultsLayout: PaginationResultsLayoutExampleComponent
+  resultsLayout: PaginationResultsLayoutExampleComponent,
 } as const;
 
 export const PAGINATION_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -27,9 +27,9 @@ export const PAGINATION_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(paginationMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${paginationMeta.slug}/${file}`
-    ])
-  ) as Record<string, string>)
+      `/docs/components/snippets/${paginationMeta.slug}/${file}`,
+    ]),
+  ) as Record<string, string>),
 };
 
 export const PAGINATION_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -38,12 +38,12 @@ export const PAGINATION_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: paginationMeta.importCode,
   containerClass: paginationMeta.containerClass,
   accessibility: paginationMeta.accessibility,
-  featureSections: paginationMeta.featureSections.map((section) => ({
+  featureSections: paginationMeta.featureSections.map(section => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap]
+    component: componentMap[section.componentKey as keyof typeof componentMap],
   })),
-  apiSections: paginationMeta.apiSections
+  apiSections: paginationMeta.apiSections,
 };

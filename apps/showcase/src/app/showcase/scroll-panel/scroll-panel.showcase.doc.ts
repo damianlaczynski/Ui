@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig
+  ShowcaseDocPageConfig,
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { ScrollPanelBasicDemoComponent } from './examples/scroll-panel-basic-demo';
 import { ScrollPanelEventsDemoComponent } from './examples/scroll-panel-events-demo';
@@ -19,7 +19,7 @@ const componentMap = {
   scrollbarBehavior: ScrollPanelScrollbarBehaviorDemoComponent,
   programmatic: ScrollPanelProgrammaticDemoComponent,
   events: ScrollPanelEventsDemoComponent,
-  inboxLayout: ScrollPanelInboxLayoutDemoComponent
+  inboxLayout: ScrollPanelInboxLayoutDemoComponent,
 } as const;
 
 export const SCROLL_PANEL_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -27,9 +27,9 @@ export const SCROLL_PANEL_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(scrollPanelMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${scrollPanelMeta.slug}/${file}`
-    ])
-  ) as Record<string, string>)
+      `/docs/components/snippets/${scrollPanelMeta.slug}/${file}`,
+    ]),
+  ) as Record<string, string>),
 };
 
 export const SCROLL_PANEL_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -38,12 +38,12 @@ export const SCROLL_PANEL_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: scrollPanelMeta.importCode,
   containerClass: scrollPanelMeta.containerClass,
   accessibility: scrollPanelMeta.accessibility,
-  featureSections: scrollPanelMeta.featureSections.map((section) => ({
+  featureSections: scrollPanelMeta.featureSections.map(section => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap]
+    component: componentMap[section.componentKey as keyof typeof componentMap],
   })),
-  apiSections: scrollPanelMeta.apiSections
+  apiSections: scrollPanelMeta.apiSections,
 };

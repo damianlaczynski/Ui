@@ -11,16 +11,16 @@ import { ActionButtonComponent } from '../action-button.component';
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => EmailComponent),
-      multi: true
-    }
+      multi: true,
+    },
   ],
   styles: [
     `
       :host {
         width: 100%;
       }
-    `
-  ]
+    `,
+  ],
 })
 export class EmailComponent extends FieldComponent {
   override onFocus(event: FocusEvent): void {

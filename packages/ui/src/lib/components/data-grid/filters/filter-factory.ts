@@ -103,7 +103,7 @@ export class FilterFactory {
     const definition = filterRegistry.get(type);
     if (!definition) {
       throw new Error(
-        `Filter type '${type}' is not registered. Available types: ${filterRegistry.getTypes().join(', ')}`
+        `Filter type '${type}' is not registered. Available types: ${filterRegistry.getTypes().join(', ')}`,
       );
     }
 
@@ -133,10 +133,10 @@ export class FilterFactory {
     const definition = filterRegistry.get(type);
     if (!definition) return [];
 
-    return definition.getOperators().map((op) => ({
+    return definition.getOperators().map(op => ({
       value: op.value,
       label: op.label,
-      icon: op.icon
+      icon: op.icon,
     }));
   }
 
@@ -160,7 +160,7 @@ export class FilterFactory {
     const definition = filterRegistry.get(type);
     if (!definition) {
       throw new Error(
-        `Filter type '${type}' is not registered. Available types: ${filterRegistry.getTypes().join(', ')}`
+        `Filter type '${type}' is not registered. Available types: ${filterRegistry.getTypes().join(', ')}`,
       );
     }
 

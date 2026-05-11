@@ -7,7 +7,7 @@ export interface LandingSurfaceTilePlacement {
 
 export const LANDING_SURFACE_INPUTS_PLACEMENT: LandingSurfaceTilePlacement = {
   colSpan: 6,
-  rowSpan: 13
+  rowSpan: 13,
 };
 
 const INPUT_SLOT_PLACEMENT: Record<string, LandingSurfaceTilePlacement> = {
@@ -35,7 +35,7 @@ const INPUT_SLOT_PLACEMENT: Record<string, LandingSurfaceTilePlacement> = {
   totp: { colSpan: 2, rowSpan: 1 },
   slider: { colSpan: 2, rowSpan: 1 },
   range: { colSpan: 6, rowSpan: 1 },
-  file: { colSpan: 6, rowSpan: 1 }
+  file: { colSpan: 6, rowSpan: 1 },
 };
 
 export function landingSurfaceInputSlotPlacement(id: string): LandingSurfaceTilePlacement {
@@ -54,7 +54,7 @@ export interface LandingSurfaceNonFieldExplicitCell {
 
 const NONFIELD_EXPLICIT_GRID: Record<string, LandingSurfaceNonFieldExplicitCell> = {
   dialog: { gridColumn: '5 / 7', gridRow: 'auto' },
-  'command-palette': { gridColumn: '5 / 7', gridRow: 'auto' }
+  'command-palette': { gridColumn: '5 / 7', gridRow: 'auto' },
 };
 
 export function landingSurfaceNonFieldExplicitCell(id: string): LandingSurfaceNonFieldExplicitCell | undefined {
@@ -86,7 +86,7 @@ export const LANDING_SURFACE_INPUT_RENDER_ORDER: readonly string[] = [
   'totp',
   'slider',
   'range',
-  'file'
+  'file',
 ];
 
 export const LANDING_SURFACE_INPUTS_DISPLAY_ORDER = LANDING_SURFACE_INPUT_RENDER_ORDER;
@@ -116,7 +116,7 @@ const INPUT_EXPLICIT_GRID: Record<string, LandingSurfaceInputExplicitCell> = {
   totp: { gridColumn: '1 / 5', gridRow: '11 / 12' },
   slider: { gridColumn: '5 / 7', gridRow: '11 / 12' },
   range: { gridColumn: '1 / 7', gridRow: '12 / 13' },
-  file: { gridColumn: '1 / 7', gridRow: '13 / 14' }
+  file: { gridColumn: '1 / 7', gridRow: '13 / 14' },
 };
 
 const INPUT_RENDER_ORDER_SET = new Set(LANDING_SURFACE_INPUT_RENDER_ORDER);
@@ -150,13 +150,13 @@ export const LANDING_SURFACE_FIELD_IDS = new Set([
   'time-picker',
   'time-span',
   'totp',
-  'url'
+  'url',
 ]);
 
 export function landingSurfaceOrderedInputIds(ids: string[]): string[] {
-  const idSet = new Set(ids.filter((id) => LANDING_SURFACE_FIELD_IDS.has(id)));
-  const ordered = LANDING_SURFACE_INPUT_RENDER_ORDER.filter((id) => idSet.has(id));
-  const rest = [...idSet].filter((id) => !INPUT_RENDER_ORDER_SET.has(id)).sort((a, b) => a.localeCompare(b));
+  const idSet = new Set(ids.filter(id => LANDING_SURFACE_FIELD_IDS.has(id)));
+  const ordered = LANDING_SURFACE_INPUT_RENDER_ORDER.filter(id => idSet.has(id));
+  const rest = [...idSet].filter(id => !INPUT_RENDER_ORDER_SET.has(id)).sort((a, b) => a.localeCompare(b));
   return [...ordered, ...rest];
 }
 
@@ -194,7 +194,7 @@ const PRIMARY_ORDER: readonly string[] = [
   'tooltip',
   'toast',
   'tree-node',
-  'divider'
+  'divider',
 ];
 
 const PRIMARY_ORDER_SET = new Set(PRIMARY_ORDER);
@@ -233,31 +233,31 @@ const PRIMARY_PLACEMENTS: Record<string, LandingSurfaceTilePlacement> = {
   tooltip: { colSpan: 3, rowSpan: 1 },
   toast: { colSpan: 3, rowSpan: 1 },
   'tree-node': { colSpan: 2, rowSpan: 1 },
-  divider: { colSpan: 4, rowSpan: 1 }
+  divider: { colSpan: 4, rowSpan: 1 },
 };
 
 const REMAINDER_PATTERNS: LandingSurfaceTilePlacement[][] = [
   [
     { colSpan: 3, rowSpan: 1 },
-    { colSpan: 3, rowSpan: 1 }
+    { colSpan: 3, rowSpan: 1 },
   ],
   [
     { colSpan: 4, rowSpan: 1 },
-    { colSpan: 2, rowSpan: 1 }
+    { colSpan: 2, rowSpan: 1 },
   ],
   [
     { colSpan: 2, rowSpan: 1 },
     { colSpan: 2, rowSpan: 1 },
-    { colSpan: 2, rowSpan: 1 }
+    { colSpan: 2, rowSpan: 1 },
   ],
-  [{ colSpan: 6, rowSpan: 1 }]
+  [{ colSpan: 6, rowSpan: 1 }],
 ];
 
 function buildPlacements(): Record<string, LandingSurfaceTilePlacement> {
   const out: Record<string, LandingSurfaceTilePlacement> = { ...PRIMARY_PLACEMENTS };
-  const remainder = ALL_SHOWCASE_COMPONENTS.map((c) => c.id)
-    .filter((id) => !PRIMARY_ORDER_SET.has(id))
-    .filter((id) => !LANDING_SURFACE_FIELD_IDS.has(id))
+  const remainder = ALL_SHOWCASE_COMPONENTS.map(c => c.id)
+    .filter(id => !PRIMARY_ORDER_SET.has(id))
+    .filter(id => !LANDING_SURFACE_FIELD_IDS.has(id))
     .sort((a, b) => a.localeCompare(b));
   let pi = 0;
   let pj = 0;
@@ -277,16 +277,16 @@ export const LANDING_SURFACE_GRID_PLACEMENTS: Record<string, LandingSurfaceTileP
 
 export function landingSurfaceOrderedIds(ids: string[]): string[] {
   const idSet = new Set(ids);
-  const primary = PRIMARY_ORDER.filter((id) => idSet.has(id));
-  const rest = ids.filter((id) => !PRIMARY_ORDER_SET.has(id)).sort((a, b) => a.localeCompare(b));
+  const primary = PRIMARY_ORDER.filter(id => idSet.has(id));
+  const rest = ids.filter(id => !PRIMARY_ORDER_SET.has(id)).sort((a, b) => a.localeCompare(b));
   return [...primary, ...rest];
 }
 
 export function landingSurfaceOrderedNonFieldIds(ids: string[]): string[] {
   const idSet = new Set(ids);
-  const primary = PRIMARY_ORDER.filter((id) => idSet.has(id) && !LANDING_SURFACE_FIELD_IDS.has(id));
+  const primary = PRIMARY_ORDER.filter(id => idSet.has(id) && !LANDING_SURFACE_FIELD_IDS.has(id));
   const rest = ids
-    .filter((id) => !PRIMARY_ORDER_SET.has(id) && !LANDING_SURFACE_FIELD_IDS.has(id))
+    .filter(id => !PRIMARY_ORDER_SET.has(id) && !LANDING_SURFACE_FIELD_IDS.has(id))
     .sort((a, b) => a.localeCompare(b));
   return [...primary, ...rest];
 }

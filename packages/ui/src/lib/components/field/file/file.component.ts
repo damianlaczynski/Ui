@@ -8,7 +8,7 @@ import {
   ElementRef,
   ViewChild,
   HostListener,
-  inject
+  inject,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
@@ -38,22 +38,22 @@ export type FileComponentMode = 'inline' | 'area';
   templateUrl: './file.component.html',
   host: {
     '[style.position]': '"relative"',
-    '[style.display]': '"block"'
+    '[style.display]': '"block"',
   },
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => FileComponent),
-      multi: true
-    }
+      multi: true,
+    },
   ],
   styles: [
     `
       :host {
         width: 100%;
       }
-    `
-  ]
+    `,
+  ],
 })
 export class FileComponent extends FieldComponent implements ControlValueAccessor {
   private readonly i18n = inject(UiI18nService);
@@ -69,7 +69,7 @@ export class FileComponent extends FieldComponent implements ControlValueAccesso
   private readonly filesSelectedLabel = this.ts(
     'filesSelected',
     () => `${this.selectedFiles().length} files selected`,
-    () => ({ count: this.selectedFiles().length })
+    () => ({ count: this.selectedFiles().length }),
   );
   private readonly inlineTriggerAriaLabel = this.ts('inlineTriggerAriaLabel', 'Browse files');
   private readonly areaTriggerAriaLabel = this.ts('areaTriggerAriaLabel', 'Upload files');
@@ -130,7 +130,7 @@ export class FileComponent extends FieldComponent implements ControlValueAccesso
     const classes = [
       mode === 'inline' ? 'file-input-wrapper' : 'file',
       mode === 'inline' ? `file-input-wrapper--${size}` : `file--${size}`,
-      mode === 'inline' ? `file-input-wrapper--${variant}` : `file--${variant}`
+      mode === 'inline' ? `file-input-wrapper--${variant}` : `file--${variant}`,
     ];
 
     if (this.disabled()) {
@@ -155,7 +155,7 @@ export class FileComponent extends FieldComponent implements ControlValueAccesso
       label: fileInfo.name,
       icon: this.getFileIcon(fileInfo.type),
       disabled: this.disabled() || this.readonly(),
-      data: fileInfo
+      data: fileInfo,
     };
   }
 
@@ -264,9 +264,9 @@ export class FileComponent extends FieldComponent implements ControlValueAccesso
     if (this.accept()) {
       const acceptTypes = this.accept()
         .split(',')
-        .map((t) => t.trim());
-      filesToAdd = filesToAdd.filter((file) => {
-        return acceptTypes.some((acceptType) => {
+        .map(t => t.trim());
+      filesToAdd = filesToAdd.filter(file => {
+        return acceptTypes.some(acceptType => {
           if (acceptType.startsWith('.')) {
             // Extension match
             return file.name.toLowerCase().endsWith(acceptType.toLowerCase());
@@ -281,11 +281,11 @@ export class FileComponent extends FieldComponent implements ControlValueAccesso
 
     // Check file size
     if (this.maxSize() !== null && this.maxSize()! > 0) {
-      filesToAdd = filesToAdd.filter((file) => file.size <= this.maxSize()!);
+      filesToAdd = filesToAdd.filter(file => file.size <= this.maxSize()!);
     }
 
     // Convert to FileInfo
-    const fileInfos: FileInfo[] = filesToAdd.map((file) => {
+    const fileInfos: FileInfo[] = filesToAdd.map(file => {
       const id = `file-${++this.fileIdCounter}-${file.name}-${file.size}-${file.lastModified}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
       const fileInfo: FileInfo = {
         file,
@@ -293,7 +293,7 @@ export class FileComponent extends FieldComponent implements ControlValueAccesso
         size: file.size,
         type: file.type || 'unknown',
         lastModified: file.lastModified,
-        id
+        id,
       };
 
       return fileInfo;
@@ -308,7 +308,7 @@ export class FileComponent extends FieldComponent implements ControlValueAccesso
 
     // Update value and emit
     this.updateValue();
-    this.fileSelect.emit(fileInfos.map((fi) => fi.file));
+    this.fileSelect.emit(fileInfos.map(fi => fi.file));
   }
 
   removeFile(index: number): void {
@@ -332,7 +332,7 @@ export class FileComponent extends FieldComponent implements ControlValueAccesso
       return;
     }
     const files = this.selectedFiles();
-    const index = files.findIndex((f) => f.file === file);
+    const index = files.findIndex(f => f.file === file);
     if (index !== -1) {
       this.removeFile(index);
     }
@@ -350,7 +350,7 @@ export class FileComponent extends FieldComponent implements ControlValueAccesso
     if (files.length === 0) {
       this.value = null;
     } else if (this.multiple()) {
-      this.value = files.map((fi) => fi.file);
+      this.value = files.map(fi => fi.file);
     } else {
       this.value = files[0].file;
     }
@@ -392,7 +392,7 @@ export class FileComponent extends FieldComponent implements ControlValueAccesso
     }
 
     const files = Array.isArray(value) ? value : [value];
-    const fileInfos: FileInfo[] = files.map((file) => {
+    const fileInfos: FileInfo[] = files.map(file => {
       const id = `file-${++this.fileIdCounter}-${file.name}-${file.size}-${file.lastModified}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
       const fileInfo: FileInfo = {
         file,
@@ -400,7 +400,7 @@ export class FileComponent extends FieldComponent implements ControlValueAccesso
         size: file.size,
         type: file.type || 'unknown',
         lastModified: file.lastModified,
-        id
+        id,
       };
 
       return fileInfo;
@@ -413,7 +413,7 @@ export class FileComponent extends FieldComponent implements ControlValueAccesso
   override clear(): void {
     const files = this.selectedFiles();
     // Emit fileRemove for all files before clearing
-    files.forEach((fileInfo) => {
+    files.forEach(fileInfo => {
       this.fileRemove.emit(fileInfo.file);
     });
 
@@ -442,7 +442,7 @@ export class FileComponent extends FieldComponent implements ControlValueAccesso
   private ts(
     key: string,
     fallback: string | (() => string),
-    params?: Record<string, unknown> | (() => Record<string, unknown> | undefined)
+    params?: Record<string, unknown> | (() => Record<string, unknown> | undefined),
   ) {
     return this.i18n.tSignal(`field.file.${key}`, fallback, params);
   }

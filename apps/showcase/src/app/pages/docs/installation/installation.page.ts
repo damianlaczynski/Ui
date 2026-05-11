@@ -20,10 +20,10 @@ export const INSTALLATION_PAGE_CONFIG: GuideDocPageConfig = {
           items: [
             'Node.js 18+ (LTS recommended)',
             'Angular 17+ project (standalone or module-based)',
-            'Package manager: npm, yarn or pnpm'
-          ]
-        }
-      ]
+            'Package manager: npm, yarn or pnpm',
+          ],
+        },
+      ],
     },
     {
       id: 'install-package',
@@ -37,11 +37,11 @@ export const INSTALLATION_PAGE_CONFIG: GuideDocPageConfig = {
               id: 'npm',
               eyebrow: 'npm',
               title: 'Package install',
-              code: 'npm install @laczynski/ui'
-            }
-          ]
-        }
-      ]
+              code: 'npm install @laczynski/ui',
+            },
+          ],
+        },
+      ],
     },
     {
       id: 'register-styles',
@@ -53,9 +53,9 @@ export const INSTALLATION_PAGE_CONFIG: GuideDocPageConfig = {
           code: `"styles": [
   "node_modules/@laczynski/ui/src/lib/scss/main.scss",
   "src/styles.scss"
-]`
-        }
-      ]
+]`,
+        },
+      ],
     },
     {
       id: 'icon-sprite-npm-consumers',
@@ -66,18 +66,18 @@ export const INSTALLATION_PAGE_CONFIG: GuideDocPageConfig = {
         {
           type: 'paragraph',
           content:
-            'In `angular.json`, under `projects.<your-app>.architect.build.options`, merge this entry into the existing `assets` array (do not replace your other asset rules):'
+            'In `angular.json`, under `projects.<your-app>.architect.build.options`, merge this entry into the existing `assets` array (do not replace your other asset rules):',
         },
         {
           type: 'code',
-          code: iconSpriteAssetJson
+          code: iconSpriteAssetJson,
         },
         {
           type: 'note',
           content:
-            'After a production build, you should see `sprite.svg` under your output folder at `assets/icons/sprite.svg`. Without this step, icons render empty because the sprite file is not on the server.'
-        }
-      ]
+            'After a production build, you should see `sprite.svg` under your output folder at `assets/icons/sprite.svg`. Without this step, icons render empty because the sprite file is not on the server.',
+        },
+      ],
     },
     {
       id: 'verify-setup',
@@ -89,15 +89,15 @@ export const INSTALLATION_PAGE_CONFIG: GuideDocPageConfig = {
             'The app compiles without unknown element errors in templates.',
             'Base component styles are visible (buttons, inputs, typography).',
             'Dark and light mode tokens switch correctly if your app supports themes.',
-            'Icons using `ui-icon` load: `/assets/icons/sprite.svg` is present in the built output when you install from npm.'
-          ]
+            'Icons using `ui-icon` load: `/assets/icons/sprite.svg` is present in the built output when you install from npm.',
+          ],
         },
         {
           type: 'note',
           content:
-            'If something is missing, start by checking style order and then ensure components are imported in the consuming standalone component.'
-        }
-      ]
+            'If something is missing, start by checking style order and then ensure components are imported in the consuming standalone component.',
+        },
+      ],
     },
     {
       id: 'related-pages',
@@ -110,23 +110,23 @@ export const INSTALLATION_PAGE_CONFIG: GuideDocPageConfig = {
               id: 'llms-docs',
               title: 'LLMs & Markdown endpoints',
               description: '`/llms.txt`, `/llms-full.txt`, and Markdown variants of docs pages.',
-              routerLink: '/docs/llms'
+              routerLink: '/docs/llms',
             },
             {
               id: 'getting-started',
               title: 'Getting Started',
               description: 'Fast path from install to first production-ready feature.',
-              routerLink: '/docs/getting-started'
+              routerLink: '/docs/getting-started',
             },
             {
               id: 'roadmap',
               title: 'Roadmap',
               description: 'Current priorities and upcoming milestones for @laczynski/ui.',
-              routerLink: '/docs/roadmap'
-            }
-          ]
-        }
-      ]
-    }
-  ]
+              routerLink: '/docs/roadmap',
+            },
+          ],
+        },
+      ],
+    },
+  ],
 };

@@ -36,16 +36,16 @@ import { ButtonComponent, RatingComponent, TextareaComponent } from 'ui';
 
       <div style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center">
         <ui-button type="submit" variant="primary" [disabled]="stars() === 0">Send feedback</ui-button>
-        <ui-button type="button" variant="secondary" appearance="outline" (click)="clear()">Clear</ui-button>
+        <ui-button type="button" variant="secondary" appearance="outline" (click)="clear()"> Clear </ui-button>
       </div>
     </form>
-  `
+  `,
 })
 export class RatingReviewFeedbackExampleComponent {
   protected readonly stars = signal(0);
 
   protected readonly form = new FormGroup({
-    comment: new FormControl('', { nonNullable: true })
+    comment: new FormControl('', { nonNullable: true }),
   });
 
   protected submit(): void {

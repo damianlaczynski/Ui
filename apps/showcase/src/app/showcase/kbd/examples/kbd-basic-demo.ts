@@ -13,6 +13,6 @@ import { KbdComponent } from 'ui';
       <ui-kbd text="Shift" />
       <ui-kbd text="Space" />
     </div>
-  `
+  `,
 })
 export class KbdBasicDemoComponent {}

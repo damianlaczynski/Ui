@@ -48,7 +48,7 @@ import { ButtonComponent, ToastComponent } from 'ui';
         [(visible)]="vTransparent"
       />
     </div>
-  `
+  `,
 })
 export class ToastAppearanceExampleComponent {
   vFilled = true;

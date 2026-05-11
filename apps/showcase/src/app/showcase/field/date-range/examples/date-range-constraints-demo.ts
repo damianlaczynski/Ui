@@ -24,11 +24,11 @@ import { DateRange, DateRangeComponent } from 'ui';
         <span>Selected: {{ value?.startDate || '...' }} - {{ value?.endDate || '...' }}</span>
       </div>
     </div>
-  `
+  `,
 })
 export class DateRangeConstraintsDemoComponent {
   protected value: DateRange | null = {
     startDate: '2026-05-14',
-    endDate: '2026-05-18'
+    endDate: '2026-05-18',
   };
 }

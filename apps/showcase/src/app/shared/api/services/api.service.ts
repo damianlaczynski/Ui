@@ -11,7 +11,7 @@ import { State, loadData, appendData } from 'ui';
 import { QueryParams, QueryResult } from '@shared/api/models/query-params.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService {
   private readonly baseUrl = environment.apiUrl + '/api/';
@@ -31,8 +31,8 @@ export class ApiService {
     const httpParams = this.buildHttpParams(params);
 
     return this.http.get<Result<T>>(`${this.baseUrl}${endpoint}`, { params: httpParams }).pipe(
-      map((response) => this.handleResponse(response)),
-      catchError((error) => this.apiErrorService.handleError(error, showErrorToast))
+      map(response => this.handleResponse(response)),
+      catchError(error => this.apiErrorService.handleError(error, showErrorToast)),
     );
   }
 
@@ -48,7 +48,7 @@ export class ApiService {
     endpoint: string,
     state: WritableSignal<State<T>>,
     params?: any,
-    showErrorToast: boolean = true
+    showErrorToast: boolean = true,
   ): Observable<T> {
     return loadData(state, this.get<T>(endpoint, params, showErrorToast));
   }
@@ -63,29 +63,29 @@ export class ApiService {
   public getPaginated<T>(
     endpoint: string,
     params: QueryParams<T>,
-    showErrorToast: boolean = true
+    showErrorToast: boolean = true,
   ): Observable<QueryResult<T>> {
     const httpParams = this.buildHttpParams(params);
 
     return this.http.get<Result<any>>(`${this.baseUrl}${endpoint}`, { params: httpParams }).pipe(
-      map((response) => {
+      map(response => {
         const data = this.handleResponse(response);
         if (data && typeof data === 'object' && 'items' in data) {
           return {
             items: data.items || [],
             totalCount: data.totalCount || 0,
             hasNextPage: data.hasNext ?? false,
-            hasPreviousPage: data.hasPrevious ?? false
+            hasPreviousPage: data.hasPrevious ?? false,
           } as QueryResult<T>;
         }
         return {
           items: Array.isArray(data) ? data : [],
           totalCount: Array.isArray(data) ? data.length : 0,
           hasNextPage: false,
-          hasPreviousPage: false
+          hasPreviousPage: false,
         } as QueryResult<T>;
       }),
-      catchError((error) => this.apiErrorService.handleError(error, showErrorToast))
+      catchError(error => this.apiErrorService.handleError(error, showErrorToast)),
     );
   }
 
@@ -101,7 +101,7 @@ export class ApiService {
     endpoint: string,
     state: WritableSignal<State<QueryResult<T>>>,
     params: any,
-    showErrorToast: boolean = true
+    showErrorToast: boolean = true,
   ): Observable<QueryResult<T>> {
     return loadData(state, this.getPaginated<T>(endpoint, params, showErrorToast));
   }
@@ -109,7 +109,7 @@ export class ApiService {
     endpoint: string,
     state: WritableSignal<State<QueryResult<T>>>,
     params: any,
-    showErrorToast: boolean = true
+    showErrorToast: boolean = true,
   ): Observable<QueryResult<T>> {
     return appendData(state, this.getPaginated<T>(endpoint, params, showErrorToast));
   }
@@ -124,8 +124,8 @@ export class ApiService {
    */
   public post<T>(endpoint: string, body: any, showErrorToast: boolean = true, form?: FormGroup): Observable<T> {
     return this.http.post<Result<T>>(`${this.baseUrl}${endpoint}`, body).pipe(
-      map((response) => this.handleResponse(response)),
-      catchError((error) => this.handleErrorWithForm(error, showErrorToast, form))
+      map(response => this.handleResponse(response)),
+      catchError(error => this.handleErrorWithForm(error, showErrorToast, form)),
     );
   }
 
@@ -143,7 +143,7 @@ export class ApiService {
     state: WritableSignal<State<T>>,
     body: any,
     showErrorToast: boolean = true,
-    form?: FormGroup
+    form?: FormGroup,
   ): Observable<T> {
     return loadData(state, this.post<T>(endpoint, body, showErrorToast, form));
   }
@@ -158,8 +158,8 @@ export class ApiService {
    */
   public put<T>(endpoint: string, body: any, showErrorToast: boolean = true, form?: FormGroup): Observable<T> {
     return this.http.put<Result<T>>(`${this.baseUrl}${endpoint}`, body).pipe(
-      map((response) => this.handleResponse(response)),
-      catchError((error) => this.handleErrorWithForm(error, showErrorToast, form))
+      map(response => this.handleResponse(response)),
+      catchError(error => this.handleErrorWithForm(error, showErrorToast, form)),
     );
   }
 
@@ -177,7 +177,7 @@ export class ApiService {
     state: WritableSignal<State<T>>,
     body: any,
     showErrorToast: boolean = true,
-    form?: FormGroup
+    form?: FormGroup,
   ): Observable<T> {
     return loadData(state, this.put<T>(endpoint, body, showErrorToast, form));
   }
@@ -190,8 +190,8 @@ export class ApiService {
    */
   public delete<T>(endpoint: string, showErrorToast: boolean = true): Observable<T> {
     return this.http.delete<Result<T>>(`${this.baseUrl}${endpoint}`).pipe(
-      map((response) => this.handleResponse(response)),
-      catchError((error) => this.apiErrorService.handleError(error, showErrorToast))
+      map(response => this.handleResponse(response)),
+      catchError(error => this.apiErrorService.handleError(error, showErrorToast)),
     );
   }
 
@@ -205,7 +205,7 @@ export class ApiService {
   public deleteWithState<T>(
     endpoint: string,
     state: WritableSignal<State<T>>,
-    showErrorToast: boolean = true
+    showErrorToast: boolean = true,
   ): Observable<T> {
     return loadData(state, this.delete<T>(endpoint, showErrorToast));
   }
@@ -253,7 +253,7 @@ export class ApiService {
 
     // Add validation errors
     if (result.validationErrors && result.validationErrors.length > 0) {
-      const validationMessages = result.validationErrors.map((ve) => `${ve.identifier}: ${ve.errorMessage}`);
+      const validationMessages = result.validationErrors.map(ve => `${ve.identifier}: ${ve.errorMessage}`);
       messages.push(...validationMessages);
     }
 
@@ -326,7 +326,7 @@ export class ApiService {
     let httpParams = new HttpParams();
 
     if (params) {
-      Object.keys(params).forEach((key) => {
+      Object.keys(params).forEach(key => {
         if (params[key] !== null && params[key] !== undefined) {
           httpParams = httpParams.set(key, params[key].toString());
         }

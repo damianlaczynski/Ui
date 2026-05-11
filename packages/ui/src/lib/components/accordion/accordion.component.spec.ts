@@ -13,7 +13,7 @@ describe('AccordionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AccordionComponent, TreeNodeComponent, IconComponent]
+      imports: [AccordionComponent, TreeNodeComponent, IconComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AccordionComponent);
@@ -84,7 +84,7 @@ describe('AccordionComponent', () => {
   describe('Size Input', () => {
     const sizes: Size[] = ['small', 'medium', 'large'];
 
-    sizes.forEach((size) => {
+    sizes.forEach(size => {
       it(`should apply ${size} size class`, () => {
         fixture.componentRef.setInput('label', 'Accordion');
         fixture.componentRef.setInput('size', size);
@@ -108,7 +108,7 @@ describe('AccordionComponent', () => {
   describe('ChevronPosition Input', () => {
     const positions: ChevronPosition[] = ['before', 'after'];
 
-    positions.forEach((position) => {
+    positions.forEach(position => {
       it(`should pass ${position} chevron position to tree node`, () => {
         fixture.componentRef.setInput('label', 'Accordion');
         fixture.componentRef.setInput('chevronPosition', position);

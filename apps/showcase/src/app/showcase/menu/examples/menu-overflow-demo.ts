@@ -12,8 +12,7 @@ import { ButtonComponent, MenuComponent, type MenuItem } from 'ui';
       >
         <ui-button variant="secondary" appearance="outline" (click)="reset()">Reset</ui-button>
         <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          Last action:
-          <strong>{{ lastAction() || 'none' }}</strong>
+          Last action: <strong>{{ lastAction() || 'none' }}</strong>
         </span>
       </div>
 
@@ -35,7 +34,7 @@ import { ButtonComponent, MenuComponent, type MenuItem } from 'ui';
         </div>
       </div>
     </div>
-  `
+  `,
 })
 export class MenuOverflowDemoComponent {
   protected readonly lastAction = signal('');
@@ -43,7 +42,7 @@ export class MenuOverflowDemoComponent {
   protected readonly items: MenuItem[] = [
     { id: 'duplicate', label: 'Duplicate', icon: 'document_copy' },
     { id: 'move', label: 'Move to folder', icon: 'folder' },
-    { id: 'delete', label: 'Delete', icon: 'delete' }
+    { id: 'delete', label: 'Delete', icon: 'delete' },
   ];
 
   protected onItemClick(item: MenuItem): void {

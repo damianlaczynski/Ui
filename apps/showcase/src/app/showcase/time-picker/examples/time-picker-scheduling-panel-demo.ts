@@ -50,15 +50,11 @@ import { ButtonComponent, CardComponent, MessageBarComponent, TimePickerComponen
         >
           <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest);">
             Candidate review:
-            <strong style="color:var(--color-neutral-foreground1-rest)">
-              {{ reviewTime }}
-            </strong>
+            <strong style="color:var(--color-neutral-foreground1-rest)">{{ reviewTime }}</strong>
           </span>
           <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest);">
             Debrief:
-            <strong style="color:var(--color-neutral-foreground1-rest)">
-              {{ debriefTime }}
-            </strong>
+            <strong style="color:var(--color-neutral-foreground1-rest)">{{ debriefTime }}</strong>
           </span>
         </div>
       </div>
@@ -68,7 +64,7 @@ import { ButtonComponent, CardComponent, MessageBarComponent, TimePickerComponen
         <ui-button variant="secondary" appearance="outline" (click)="reset()">Reset</ui-button>
       </div>
     </ui-card>
-  `
+  `,
 })
 export class TimePickerSchedulingPanelDemoComponent {
   protected reviewTime = '14:00';

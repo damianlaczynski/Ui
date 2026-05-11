@@ -24,6 +24,6 @@ import { ButtonComponent, ErrorStateComponent, TextComponent } from 'ui';
         />
       </div>
     </div>
-  `
+  `,
 })
 export class ErrorStatePanelLayoutDemoComponent {}

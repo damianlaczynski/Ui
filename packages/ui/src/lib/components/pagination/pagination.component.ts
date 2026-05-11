@@ -24,7 +24,7 @@ export interface PaginationConfig {
   selector: 'ui-pagination',
   templateUrl: './pagination.component.html',
   imports: [FormsModule, ButtonComponent, IconComponent, DropdownComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaginationComponent {
   private readonly i18n = inject(UiI18nService);
@@ -126,7 +126,7 @@ export class PaginationComponent {
     return this.i18n.t('pagination.info.range', `Showing ${start}-${end} of ${cfg.totalItems}`, {
       start,
       end,
-      total: cfg.totalItems
+      total: cfg.totalItems,
     });
   });
 
@@ -188,9 +188,9 @@ export class PaginationComponent {
 
   pageSizeItems = computed<DropdownItem[]>(() => {
     const options = this.config().pageSizeOptions || [];
-    return options.map((option) => ({
+    return options.map(option => ({
       value: option,
-      label: option.toString()
+      label: option.toString(),
     }));
   });
 

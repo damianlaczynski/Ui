@@ -41,9 +41,9 @@ export type FieldType =
       :host {
         display: flex;
       }
-    `
+    `,
   ],
-  imports: [CommonModule]
+  imports: [CommonModule],
 })
 export class FieldComponent implements ControlValueAccessor, OnInit, OnDestroy {
   protected ngControl = inject(NgControl, { optional: true, skipSelf: true });
@@ -253,7 +253,7 @@ export class FieldComponent implements ControlValueAccessor, OnInit, OnDestroy {
     const ids = [
       this.ariaDescribedBy()?.trim() || null,
       this.getHelpTextElementId(),
-      this.getErrorTextElementId()
+      this.getErrorTextElementId(),
     ].filter((v): v is string => !!v);
 
     if (!ids.length) {

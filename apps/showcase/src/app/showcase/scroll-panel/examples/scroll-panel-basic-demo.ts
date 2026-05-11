@@ -26,12 +26,12 @@ import { ScrollPanelComponent } from 'ui';
         </ui-scroll-panel>
       </div>
     </div>
-  `
+  `,
 })
 export class ScrollPanelBasicDemoComponent {
   protected readonly items = Array.from({ length: 14 }, (_, index) => ({
     id: index + 1,
     title: `Update ${index + 1}`,
-    body: 'A basic vertical scroll region is useful for feeds, drawers, and side panels with constrained height.'
+    body: 'A basic vertical scroll region is useful for feeds, drawers, and side panels with constrained height.',
   }));
 }

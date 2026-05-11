@@ -9,7 +9,7 @@ import { IconName } from '../icon';
   selector: 'ui-empty-state',
   templateUrl: './empty-state.component.html',
   imports: [CommonModule, ButtonComponent, IconComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EmptyStateComponent {
   // Inputs
@@ -17,7 +17,7 @@ export class EmptyStateComponent {
   description = input<string>('');
   icon = input<IconName | undefined>(undefined);
   size = input<Size, Size | undefined>('medium', {
-    transform: (value: Size | undefined) => value ?? 'medium'
+    transform: (value: Size | undefined) => value ?? 'medium',
   });
 
   // Actions

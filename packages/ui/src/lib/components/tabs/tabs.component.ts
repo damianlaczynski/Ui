@@ -47,7 +47,7 @@ export interface Tab<T = any> {
         </div>
       }
     </div>
-  `
+  `,
 })
 export class TabsComponent<T extends Tab> {
   tabs = input.required<T[]>();
@@ -111,7 +111,7 @@ export class TabsComponent<T extends Tab> {
   getNodeWithSelection(tab: T): T {
     return {
       ...tab,
-      selected: this.isSelected(tab)
+      selected: this.isSelected(tab),
     };
   }
 
@@ -123,9 +123,9 @@ export class TabsComponent<T extends Tab> {
       return null;
     }
 
-    const tabs = this.tabs().filter((t) => !t.disabled);
-    const previousIndex = tabs.findIndex((t) => t.id === this._previousTabId());
-    const currentIndex = tabs.findIndex((t) => t.id === tab.id);
+    const tabs = this.tabs().filter(t => !t.disabled);
+    const previousIndex = tabs.findIndex(t => t.id === this._previousTabId());
+    const currentIndex = tabs.findIndex(t => t.id === tab.id);
 
     if (previousIndex === -1 || currentIndex === -1) {
       return null;
@@ -165,9 +165,9 @@ export class TabsComponent<T extends Tab> {
     this._previousTabId.set(this._selectedTabId());
 
     // Determine slide direction
-    const tabs = this.tabs().filter((t) => !t.disabled);
-    const previousIndex = tabs.findIndex((t) => t.id === this._previousTabId());
-    const currentIndex = tabs.findIndex((t) => t.id === tab.id);
+    const tabs = this.tabs().filter(t => !t.disabled);
+    const previousIndex = tabs.findIndex(t => t.id === this._previousTabId());
+    const currentIndex = tabs.findIndex(t => t.id === tab.id);
 
     if (previousIndex !== -1 && currentIndex !== -1) {
       this._slideDirection.set(currentIndex > previousIndex ? 'right' : 'left');
@@ -193,9 +193,9 @@ export class TabsComponent<T extends Tab> {
    * Handle keyboard navigation
    */
   onKeyDown(event: KeyboardEvent): void {
-    const tabs = this.tabs().filter((t) => !t.disabled);
+    const tabs = this.tabs().filter(t => !t.disabled);
     const currentSelectedId = this._selectedTabId();
-    const currentIndex = tabs.findIndex((t) => t.id === currentSelectedId);
+    const currentIndex = tabs.findIndex(t => t.id === currentSelectedId);
     const isVertical = this.orientation() === 'vertical';
 
     // Only handle if there's a selected tab

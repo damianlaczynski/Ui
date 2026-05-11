@@ -47,12 +47,12 @@ import { ButtonComponent, FileComponent } from 'ui';
         </div>
       </div>
     </div>
-  `
+  `,
 })
 export class FileRequestPanelDemoComponent {
   protected handoffFiles: File[] = [
     new File(['summary'], 'release-summary.pdf', { type: 'application/pdf' }),
-    new File(['archive'], 'workspace-export.zip', { type: 'application/zip' })
+    new File(['archive'], 'workspace-export.zip', { type: 'application/zip' }),
   ];
 
   protected releaseNote: File | null = null;

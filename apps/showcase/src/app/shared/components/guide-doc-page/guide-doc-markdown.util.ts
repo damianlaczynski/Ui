@@ -5,8 +5,8 @@ export function guideConfigToMarkdown(config: GuideDocPageConfig): string {
     `# ${config.title}`,
     '',
     config.description,
-    ...config.sections.flatMap((section) => renderSectionMarkdown(section)),
-    ''
+    ...config.sections.flatMap(section => renderSectionMarkdown(section)),
+    '',
   ].join('\n');
 }
 
@@ -29,15 +29,15 @@ function renderBlockMarkdown(block: GuideDocBlock): string[] {
     case 'paragraph':
       return ['', toPlainText(block.content)];
     case 'list':
-      return ['', ...block.items.map((item) => `- ${toPlainText(item)}`)];
+      return ['', ...block.items.map(item => `- ${toPlainText(item)}`)];
     case 'note':
       return ['', toPlainText(block.content)];
     case 'code':
       return ['', '```ts', block.code.trim(), '```'];
     case 'cards':
-      return block.cards.flatMap((card) => renderCardMarkdown(card));
+      return block.cards.flatMap(card => renderCardMarkdown(card));
     case 'links':
-      return ['', ...block.links.map((link) => `- ${link.title}: ${link.description} (${link.routerLink})`)];
+      return ['', ...block.links.map(link => `- ${link.title}: ${link.description} (${link.routerLink})`)];
   }
 }
 
@@ -61,7 +61,7 @@ function renderCardMarkdown(card: GuideDocCard): string[] {
   }
 
   if (card.items?.length) {
-    parts.push('', ...card.items.map((item) => `- ${toPlainText(item)}`));
+    parts.push('', ...card.items.map(item => `- ${toPlainText(item)}`));
   }
 
   return parts;

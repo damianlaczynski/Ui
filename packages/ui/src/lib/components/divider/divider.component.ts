@@ -5,7 +5,7 @@ import { UiI18nService } from '../../i18n';
 @Component({
   selector: 'ui-divider',
   templateUrl: './divider.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DividerComponent {
   //Services
@@ -23,11 +23,11 @@ export class DividerComponent {
       'divider',
       `divider--${this.orientation()}`,
       `divider--${this.alignment()}`,
-      this.hasText() ? 'divider--with-text' : ''
-    ].join(' ')
+      this.hasText() ? 'divider--with-text' : '',
+    ].join(' '),
   );
   hasText = computed(() => this.text() !== '');
   ariaLabelComputed = computed(
-    () => this.ariaLabel() || (this.hasText() ? this.text() : this.i18n.t('divider.ariaLabel', 'Divider'))
+    () => this.ariaLabel() || (this.hasText() ? this.text() : this.i18n.t('divider.ariaLabel', 'Divider')),
   );
 }

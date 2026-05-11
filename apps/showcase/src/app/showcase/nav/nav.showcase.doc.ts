@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig
+  ShowcaseDocPageConfig,
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { NavAppearanceDemoComponent } from './examples/nav-appearance-demo';
 import { NavBasicDemoComponent } from './examples/nav-basic-demo';
@@ -19,14 +19,14 @@ const componentMap = {
   deepTree: NavDeepTreeDemoComponent,
   sections: NavSectionsDemoComponent,
   contentTemplate: NavContentTemplateDemoComponent,
-  quickActions: NavQuickActionsDemoComponent
+  quickActions: NavQuickActionsDemoComponent,
 } as const;
 
 export const NAV_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   markdown: `/docs/components/${navMeta.slug}.md`,
   ...(Object.fromEntries(
-    Object.entries(navMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${navMeta.slug}/${file}`])
-  ) as Record<string, string>)
+    Object.entries(navMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${navMeta.slug}/${file}`]),
+  ) as Record<string, string>),
 };
 
 export const NAV_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -35,12 +35,12 @@ export const NAV_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: navMeta.importCode,
   containerClass: navMeta.containerClass,
   accessibility: navMeta.accessibility,
-  featureSections: navMeta.featureSections.map((section) => ({
+  featureSections: navMeta.featureSections.map(section => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap]
+    component: componentMap[section.componentKey as keyof typeof componentMap],
   })),
-  apiSections: navMeta.apiSections
+  apiSections: navMeta.apiSections,
 };

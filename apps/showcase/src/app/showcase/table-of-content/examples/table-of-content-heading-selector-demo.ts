@@ -34,6 +34,6 @@ import { TableOfContentComponent } from 'ui';
         <p style="margin:0">Use this selectively. Normal semantic headings are still the cleaner default.</p>
       </div>
     </div>
-  `
+  `,
 })
 export class TableOfContentHeadingSelectorDemoComponent {}

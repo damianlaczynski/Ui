@@ -34,7 +34,7 @@ interface WorkspaceRow {
         </div>
       </ng-template>
     </ui-data-grid>
-  `
+  `,
 })
 export class DataGridFullFeaturedDemoComponent {
   private rows: WorkspaceRow[] = [
@@ -44,7 +44,7 @@ export class DataGridFullFeaturedDemoComponent {
       area: 'Finance',
       owner: 'Ava Patel',
       status: 'Active',
-      modified: '2026-04-12'
+      modified: '2026-04-12',
     },
     {
       id: '2',
@@ -52,7 +52,7 @@ export class DataGridFullFeaturedDemoComponent {
       area: 'Security',
       owner: 'Owen Baker',
       status: 'Draft',
-      modified: '2026-04-10'
+      modified: '2026-04-10',
     },
     {
       id: '3',
@@ -60,7 +60,7 @@ export class DataGridFullFeaturedDemoComponent {
       area: 'Research',
       owner: 'Mia Chen',
       status: 'Published',
-      modified: '2026-04-08'
+      modified: '2026-04-08',
     },
     {
       id: '4',
@@ -68,8 +68,8 @@ export class DataGridFullFeaturedDemoComponent {
       area: 'Operations',
       owner: 'Noah Kim',
       status: 'Active',
-      modified: '2026-04-05'
-    }
+      modified: '2026-04-05',
+    },
   ];
 
   config = computed(() =>
@@ -78,9 +78,7 @@ export class DataGridFullFeaturedDemoComponent {
         DataGridColumnFactory.text('title', 'Title', 'title', { sortable: true }),
         DataGridColumnFactory.text('area', 'Area', 'area', { sortable: true }),
         DataGridColumnFactory.text('owner', 'Owner', 'owner'),
-        DataGridColumnFactory.text('modified', 'Modified', 'modified', {
-          sortable: true
-        })
+        DataGridColumnFactory.text('modified', 'Modified', 'modified', { sortable: true }),
       ],
       dataSource: this.createStaticDataSource(this.rows),
       selection: 'multi',
@@ -89,7 +87,7 @@ export class DataGridFullFeaturedDemoComponent {
         pageSize: 5,
         pageSizeOptions: [5, 10, 20],
         showPageNumbers: true,
-        showPageSizeSelector: true
+        showPageSizeSelector: true,
       },
       sorting: { enabled: true },
       filtering: { enabled: true, debounceMs: 250 },
@@ -98,20 +96,20 @@ export class DataGridFullFeaturedDemoComponent {
         striped: true,
         bordered: true,
         stickyHeaders: true,
-        hoverable: true
-      }
-    })
+        hoverable: true,
+      },
+    }),
   );
 
   private createStaticDataSource<T extends { id?: string }>(
-    data: T[]
+    data: T[],
   ): (params: QueryParams<T>) => Observable<QueryResult<T>> {
     return () =>
       of({
         items: [...data],
         totalCount: data.length,
         hasNextPage: false,
-        hasPreviousPage: false
+        hasPreviousPage: false,
       });
   }
 }

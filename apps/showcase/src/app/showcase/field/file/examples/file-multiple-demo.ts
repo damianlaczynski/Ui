@@ -33,21 +33,19 @@ import { ButtonComponent, FileComponent } from 'ui';
         <div style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.875rem;line-height:1.4">
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Files</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">
-              {{ files.length }}
-            </strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{ files.length }}</strong>
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Total size</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">
-              {{ formatBytes(totalBytes) }}
-            </strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
+              formatBytes(totalBytes)
+            }}</strong>
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Last file</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">
-              {{ files.at(-1)?.name ?? 'None' }}
-            </strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
+              files.at(-1)?.name ?? 'None'
+            }}</strong>
           </div>
         </div>
 
@@ -61,12 +59,12 @@ import { ButtonComponent, FileComponent } from 'ui';
         </div>
       </div>
     </div>
-  `
+  `,
 })
 export class FileMultipleDemoComponent {
   protected files: File[] = [
     new File(['roadmap'], 'roadmap.pdf', { type: 'application/pdf' }),
-    new File(['image'], 'hero-banner.png', { type: 'image/png' })
+    new File(['image'], 'hero-banner.png', { type: 'image/png' }),
   ];
 
   protected get totalBytes(): number {
@@ -77,7 +75,7 @@ export class FileMultipleDemoComponent {
     this.files = [
       new File(['brief'], 'brief-v3.pdf', { type: 'application/pdf' }),
       new File(['archive'], 'source-files.zip', { type: 'application/zip' }),
-      new File(['preview'], 'mobile-preview.jpg', { type: 'image/jpeg' })
+      new File(['preview'], 'mobile-preview.jpg', { type: 'image/jpeg' }),
     ];
   }
 

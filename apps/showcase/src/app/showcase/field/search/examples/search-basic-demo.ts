@@ -44,7 +44,7 @@ import { SearchComponent } from 'ui';
         />
       </div>
     </div>
-  `
+  `,
 })
 export class SearchBasicDemoComponent {
   protected query = 'Quarterly planning';

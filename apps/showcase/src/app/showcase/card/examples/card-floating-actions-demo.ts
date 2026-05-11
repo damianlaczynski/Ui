@@ -29,9 +29,9 @@ import { ButtonComponent, CardComponent } from 'ui';
         <div uiCardBody>
           <p style="margin:0;font-size:0.875rem;line-height:1.5;color:var(--color-neutral-foreground2-rest);">
             Pinned state:
-            <strong style="color:var(--color-neutral-foreground-rest);">
-              {{ pinned() ? 'pinned' : 'not pinned' }}
-            </strong>
+            <strong style="color:var(--color-neutral-foreground-rest);">{{
+              pinned() ? 'pinned' : 'not pinned'
+            }}</strong>
           </p>
         </div>
       </ui-card>
@@ -54,18 +54,18 @@ import { ButtonComponent, CardComponent } from 'ui';
 
         <div uiCardHeader style="display:grid;gap:0.25rem;">
           <strong style="font-size:0.9375rem;">Projected slots</strong>
-          <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);">
-            uiCardPreview and uiCardFloatingAction adapt the same primitive to richer record layouts
-          </span>
+          <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);"
+            >uiCardPreview and uiCardFloatingAction adapt the same primitive to richer record layouts</span
+          >
         </div>
       </ui-card>
     </div>
-  `
+  `,
 })
 export class CardFloatingActionsDemoComponent {
   protected readonly pinned = signal(true);
 
   protected togglePinned(): void {
-    this.pinned.update((value) => !value);
+    this.pinned.update(value => !value);
   }
 }

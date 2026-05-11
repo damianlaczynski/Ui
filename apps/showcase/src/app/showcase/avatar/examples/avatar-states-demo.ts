@@ -20,6 +20,6 @@ import { AvatarComponent } from 'ui';
         <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">loading</span>
       </div>
     </div>
-  `
+  `,
 })
 export class AvatarStatesExampleComponent {}

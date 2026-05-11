@@ -27,19 +27,15 @@ export class NumberFilterDefinition extends BaseFilterDefinition {
       { value: 'notEquals', label: 'Does not equal', icon: 'equal_off' },
       { value: 'lessThan', label: 'Less than', icon: 'chevron_left' },
       { value: 'greaterThan', label: 'Greater than', icon: 'chevron_right' },
-      {
-        value: 'lessOrEqual',
-        label: 'Less than or equal to',
-        icon: 'arrow_sort_down_lines'
-      },
+      { value: 'lessOrEqual', label: 'Less than or equal to', icon: 'arrow_sort_down_lines' },
       {
         value: 'greaterOrEqual',
         label: 'Greater than or equal to',
-        icon: 'arrow_sort_up_lines'
+        icon: 'arrow_sort_up_lines',
       },
       { value: 'between', label: 'Between', icon: 'arrow_swap' },
       { value: 'isNull', label: 'Is null', icon: 'dismiss_circle' },
-      { value: 'isNotNull', label: 'Is not null', icon: 'checkmark_circle' }
+      { value: 'isNotNull', label: 'Is not null', icon: 'checkmark_circle' },
     ];
   }
 
@@ -50,7 +46,7 @@ export class NumberFilterDefinition extends BaseFilterDefinition {
   override getDisplayText(
     column: DataGridColumn<any>,
     filter: DataGridFilterValue,
-    config: DataGridFilterConfig
+    config: DataGridFilterConfig,
   ): string {
     const operator = filter.operator || this.getDefaultOperator().value;
     const operatorText = this.getOperatorText(operator);
@@ -101,7 +97,7 @@ export class NumberFilterDefinition extends BaseFilterDefinition {
       const range = value as { start?: any; end?: any };
       return {
         start: range.start != null ? parseFloat(String(range.start)) : undefined,
-        end: range.end != null ? parseFloat(String(range.end)) : undefined
+        end: range.end != null ? parseFloat(String(range.end)) : undefined,
       };
     }
 

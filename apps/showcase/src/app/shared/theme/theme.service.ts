@@ -2,7 +2,7 @@ import { Injectable, signal } from '@angular/core';
 
 export enum ThemeMode {
   Light = 'light',
-  Dark = 'dark'
+  Dark = 'dark',
 }
 
 export enum ThemeVariant {
@@ -15,7 +15,7 @@ export enum ThemeVariant {
   Graphite = 'graphite',
   Bootstrap = 'bootstrap',
   Material = 'material',
-  Ant = 'ant'
+  Ant = 'ant',
 }
 
 export interface ThemeVariantOption {
@@ -32,66 +32,66 @@ const THEME_VARIANTS: ThemeVariantOption[] = [
     id: ThemeVariant.Fluent,
     label: 'Fluent',
     previewPrimary: '#0078d4',
-    previewSecondary: '#106ebe'
+    previewSecondary: '#106ebe',
   },
   {
     id: ThemeVariant.Ocean,
     label: 'Ocean',
     previewPrimary: '#0a84ff',
-    previewSecondary: '#18b4c7'
+    previewSecondary: '#18b4c7',
   },
   {
     id: ThemeVariant.Forest,
     label: 'Forest',
     previewPrimary: '#2f855a',
-    previewSecondary: '#86efac'
+    previewSecondary: '#86efac',
   },
   {
     id: ThemeVariant.Sunset,
     label: 'Sunset',
     previewPrimary: '#f97316',
-    previewSecondary: '#ef4444'
+    previewSecondary: '#ef4444',
   },
   {
     id: ThemeVariant.Aurora,
     label: 'Aurora',
     previewPrimary: '#0ea5e9',
-    previewSecondary: '#ec4899'
+    previewSecondary: '#ec4899',
   },
   {
     id: ThemeVariant.Royal,
     label: 'Royal',
     previewPrimary: '#4f46e5',
-    previewSecondary: '#38bdf8'
+    previewSecondary: '#38bdf8',
   },
   {
     id: ThemeVariant.Graphite,
     label: 'Graphite',
     previewPrimary: '#525252',
-    previewSecondary: '#a3e635'
+    previewSecondary: '#a3e635',
   },
   {
     id: ThemeVariant.Bootstrap,
     label: 'Bootstrap',
     previewPrimary: '#0d6efd',
-    previewSecondary: '#6f42c1'
+    previewSecondary: '#6f42c1',
   },
   {
     id: ThemeVariant.Material,
     label: 'Material',
     previewPrimary: '#6750a4',
-    previewSecondary: '#03dac6'
+    previewSecondary: '#03dac6',
   },
   {
     id: ThemeVariant.Ant,
     label: 'Ant Design',
     previewPrimary: '#1677ff',
-    previewSecondary: '#13c2c2'
-  }
+    previewSecondary: '#13c2c2',
+  },
 ];
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ThemeService {
   /**
@@ -157,7 +157,7 @@ export class ThemeService {
 
   private getInitialThemeVariant(): ThemeVariant {
     const savedVariant = localStorage.getItem(THEME_VARIANT_KEY) as ThemeVariant | null;
-    const isSavedVariantSupported = THEME_VARIANTS.some((variant) => variant.id === savedVariant);
+    const isSavedVariantSupported = THEME_VARIANTS.some(variant => variant.id === savedVariant);
 
     if (savedVariant && isSavedVariantSupported) {
       return savedVariant;

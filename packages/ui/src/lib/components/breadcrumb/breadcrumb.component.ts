@@ -8,7 +8,7 @@ import {
   ChangeDetectionStrategy,
   ElementRef,
   inject,
-  effect
+  effect,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Size, Shape, Appearance, Orientation, Variant } from '../utils';
@@ -18,7 +18,7 @@ import {
   isTruncatableBreadcrumbContent,
   truncateBreadcrumbLongName,
   partitionBreadcrumbItems,
-  type PartitionBreadcrumbItemsResult
+  type PartitionBreadcrumbItemsResult,
 } from './breadcrumb.utils';
 import { MenuComponent } from '../menu/menu.component';
 import { MenuItem } from '../menu/models/menu-item.model';
@@ -37,11 +37,7 @@ export interface Breadcrumb<T = any> {
   data?: T;
 }
 
-const ITEM_WIDTH_ESTIMATE: Record<string, number> = {
-  small: 70,
-  medium: 90,
-  large: 110
-};
+const ITEM_WIDTH_ESTIMATE: Record<string, number> = { small: 70, medium: 90, large: 110 };
 const DIVIDER_WIDTH = 24;
 const OVERFLOW_BUTTON_WIDTH = 48;
 
@@ -53,8 +49,8 @@ const OVERFLOW_BUTTON_WIDTH = 48;
   host: {
     '[style.width]': 'responsiveOverflow() ? "100%" : null',
     '[style.minWidth]': 'responsiveOverflow() ? "0" : null',
-    '[style.overflow]': 'responsiveOverflow() ? "hidden" : null'
-  }
+    '[style.overflow]': 'responsiveOverflow() ? "hidden" : null',
+  },
 })
 export class BreadcrumbComponent<T extends Breadcrumb> {
   private readonly i18n = inject(UiI18nService);
@@ -106,11 +102,11 @@ export class BreadcrumbComponent<T extends Breadcrumb> {
   });
 
   constructor() {
-    effect((onCleanup) => {
+    effect(onCleanup => {
       if (!this.responsiveOverflow()) return;
       const el = this.elementRef.nativeElement as HTMLElement;
       if (typeof ResizeObserver === 'undefined') return;
-      const ro = new ResizeObserver((entries) => {
+      const ro = new ResizeObserver(entries => {
         const entry = entries[0];
         if (entry) {
           this.containerWidth.set(entry.contentRect.width);
@@ -165,7 +161,7 @@ export class BreadcrumbComponent<T extends Breadcrumb> {
     if (this.focusMode() !== 'arrow') return;
     const host = this.elementRef.nativeElement as HTMLElement;
     const all = host.querySelectorAll(
-      'a.breadcrumb__focusable, button.breadcrumb__focusable, span.breadcrumb__focusable'
+      'a.breadcrumb__focusable, button.breadcrumb__focusable, span.breadcrumb__focusable',
     );
     const focusable: HTMLElement[] = [];
     for (let i = 0; i < all.length; i++) {
@@ -210,18 +206,18 @@ export class BreadcrumbComponent<T extends Breadcrumb> {
   }
 
   overflowMenuItems(overflowItems: T[]): MenuItem[] {
-    return overflowItems.map((item) => ({
+    return overflowItems.map(item => ({
       id: String(item.id),
       label: item.label,
       icon: item.icon,
       disabled: item.disabled ?? false,
       selected: item.selected ?? false,
-      action: () => this.itemClick.emit(item)
+      action: () => this.itemClick.emit(item),
     }));
   }
 
   onOverflowItemClick(menuItem: MenuItem): void {
-    const item = this.items().find((i) => String(i.id) === menuItem.id);
+    const item = this.items().find(i => String(i.id) === menuItem.id);
     if (item) this.itemClick.emit(item);
   }
 
@@ -235,7 +231,7 @@ export class BreadcrumbComponent<T extends Breadcrumb> {
 
   getOverflowAriaLabel(overflowCount: number): string {
     return this.i18n.t('breadcrumb.overflowAriaLabel', `${overflowCount} more items`, {
-      count: overflowCount
+      count: overflowCount,
     });
   }
 }

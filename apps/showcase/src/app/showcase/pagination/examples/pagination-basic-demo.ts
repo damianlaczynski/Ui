@@ -35,7 +35,7 @@ import { PaginationComponent, PaginationConfig } from 'ui';
         </div>
       </div>
     </div>
-  `
+  `,
 })
 export class PaginationBasicExampleComponent {
   protected readonly currentPage = signal(3);
@@ -49,11 +49,11 @@ export class PaginationBasicExampleComponent {
     maxVisiblePages: 7,
     showFirstLast: false,
     showInfo: true,
-    showPageSizeSelector: false
+    showPageSizeSelector: false,
   };
 
   protected readonly paginationConfig = computed<PaginationConfig>(() => ({
     ...this.config,
-    currentPage: this.currentPage()
+    currentPage: this.currentPage(),
   }));
 }

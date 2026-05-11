@@ -12,8 +12,7 @@ import { ButtonComponent, NodeComponent, type Node } from 'ui';
       >
         <ui-button variant="secondary" appearance="outline" (click)="reset()">Reset</ui-button>
         <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          Status:
-          <strong>{{ status() }}</strong>
+          Status: <strong>{{ status() }}</strong>
         </span>
       </div>
 
@@ -38,7 +37,7 @@ import { ButtonComponent, NodeComponent, type Node } from 'ui';
         />
       </div>
     </div>
-  `
+  `,
 })
 export class NodeDragDropDemoComponent {
   protected readonly status = signal('Drag the source row into the target row');
@@ -46,13 +45,13 @@ export class NodeDragDropDemoComponent {
   protected readonly sourceNode: Node = {
     id: 'source',
     label: 'Release tasks',
-    icon: 're_order_dots_vertical'
+    icon: 're_order_dots_vertical',
   };
 
   protected readonly targetNode: Node = {
     id: 'target',
     label: 'Sprint planning board',
-    icon: 'board'
+    icon: 'board',
   };
 
   protected reset(): void {

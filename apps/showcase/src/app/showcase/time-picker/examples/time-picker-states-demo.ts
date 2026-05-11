@@ -47,13 +47,11 @@ import { ButtonComponent, TimePickerComponent } from 'ui';
         <ui-button variant="secondary" appearance="outline" (click)="reset()">Reset</ui-button>
         <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest);">
           Active value:
-          <strong style="color:var(--color-neutral-foreground1-rest)">
-            {{ activeValue }}
-          </strong>
+          <strong style="color:var(--color-neutral-foreground1-rest)">{{ activeValue }}</strong>
         </span>
       </div>
     </div>
-  `
+  `,
 })
 export class TimePickerStatesDemoComponent {
   protected activeValue = '13:15';

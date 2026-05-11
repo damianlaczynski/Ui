@@ -15,9 +15,7 @@ interface AssetRow {
 @Component({
   selector: 'app-data-grid-column-factory-demo',
   imports: [DataGridComponent],
-  template: `
-    <ui-data-grid [config]="config()" />
-  `
+  template: ` <ui-data-grid [config]="config()" /> `,
 })
 export class DataGridColumnFactoryDemoComponent {
   private rows: AssetRow[] = [
@@ -27,7 +25,7 @@ export class DataGridColumnFactoryDemoComponent {
       owner: 'Ava Patel',
       modified: '2026-04-14',
       status: 'Approved',
-      views: 182
+      views: 182,
     },
     {
       id: '2',
@@ -35,7 +33,7 @@ export class DataGridColumnFactoryDemoComponent {
       owner: 'Noah Kim',
       modified: '2026-04-12',
       status: 'Review',
-      views: 73
+      views: 73,
     },
     {
       id: '3',
@@ -43,8 +41,8 @@ export class DataGridColumnFactoryDemoComponent {
       owner: 'Mila Brooks',
       modified: '2026-04-09',
       status: 'Draft',
-      views: 29
-    }
+      views: 29,
+    },
   ];
 
   config = computed(() =>
@@ -53,9 +51,7 @@ export class DataGridColumnFactoryDemoComponent {
         DataGridColumnFactory.text('name', 'Name', 'name', { width: '220px' }),
         DataGridColumnFactory.text('owner', 'Owner', 'owner', { width: '180px' }),
         DataGridColumnFactory.number('views', 'Views', 'views', { width: '100px' }),
-        DataGridColumnFactory.date('modified', 'Modified', 'modified', {
-          width: '160px'
-        }),
+        DataGridColumnFactory.date('modified', 'Modified', 'modified', { width: '160px' }),
         DataGridColumnFactory.select(
           'status',
           'Status',
@@ -63,28 +59,28 @@ export class DataGridColumnFactoryDemoComponent {
           [
             { label: 'Approved', value: 'Approved' },
             { label: 'Review', value: 'Review' },
-            { label: 'Draft', value: 'Draft' }
+            { label: 'Draft', value: 'Draft' },
           ],
-          { width: '140px' }
-        )
+          { width: '140px' },
+        ),
       ],
       dataSource: this.createStaticDataSource(this.rows),
       styling: {
         size: 'medium',
-        hoverable: true
-      }
-    })
+        hoverable: true,
+      },
+    }),
   );
 
   private createStaticDataSource<T extends { id?: string }>(
-    data: T[]
+    data: T[],
   ): (params: QueryParams<T>) => Observable<QueryResult<T>> {
     return () =>
       of({
         items: [...data],
         totalCount: data.length,
         hasNextPage: false,
-        hasPreviousPage: false
+        hasPreviousPage: false,
       });
   }
 }

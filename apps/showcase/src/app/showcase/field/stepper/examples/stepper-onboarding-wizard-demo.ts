@@ -7,7 +7,7 @@ import {
   MessageBarComponent,
   Step,
   StepperComponent,
-  TextComponent
+  TextComponent,
 } from 'ui';
 
 @Component({
@@ -20,7 +20,7 @@ import {
     CheckboxComponent,
     MessageBarComponent,
     StepperComponent,
-    TextComponent
+    TextComponent,
   ],
   template: `
     <div
@@ -89,18 +89,18 @@ import {
             >
               <div style="display:flex;flex-direction:column;gap:0.2rem">
                 <span style="font-size:0.9375rem;font-weight:600;line-height:1.3">Review before creating</span>
-                <span style="font-size:0.8125rem;line-height:1.45;color:var(--color-neutral-foreground2-rest)">
-                  These values will be applied to the new workspace.
-                </span>
+                <span style="font-size:0.8125rem;line-height:1.45;color:var(--color-neutral-foreground2-rest)"
+                  >These values will be applied to the new workspace.</span
+                >
               </div>
               <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(11.25rem,1fr));gap:0.75rem">
                 <div
                   style="display:flex;flex-direction:column;gap:0.25rem;padding:0.875rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:0.75rem;background:var(--color-neutral-background-rest);min-width:0"
                 >
                   <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">Workspace name</span>
-                  <span style="font-size:0.9375rem;font-weight:600;line-height:1.35;word-break:break-word">
-                    {{ workspaceName || '—' }}
-                  </span>
+                  <span style="font-size:0.9375rem;font-weight:600;line-height:1.35;word-break:break-word">{{
+                    workspaceName || '—'
+                  }}</span>
                 </div>
                 <div
                   style="display:flex;flex-direction:column;gap:0.25rem;padding:0.875rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:0.75rem;background:var(--color-neutral-background-rest);min-width:0"
@@ -108,17 +108,16 @@ import {
                   <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">URL slug</span>
                   <span
                     style="font-weight:600;line-height:1.35;word-break:break-all;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:0.875rem"
+                    >{{ slug || '—' }}</span
                   >
-                    {{ slug || '—' }}
-                  </span>
                 </div>
                 <div
                   style="display:flex;flex-direction:column;gap:0.25rem;padding:0.875rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:0.75rem;background:var(--color-neutral-background-rest);min-width:0"
                 >
                   <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">Billing contact</span>
-                  <span style="font-size:0.875rem;font-weight:600;line-height:1.35;word-break:break-word">
-                    {{ billingEmail || '—' }}
-                  </span>
+                  <span style="font-size:0.875rem;font-weight:600;line-height:1.35;word-break:break-word">{{
+                    billingEmail || '—'
+                  }}</span>
                 </div>
                 <div
                   style="display:flex;flex-direction:column;gap:0.4rem;padding:0.875rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:0.75rem;background:var(--color-neutral-background-rest);min-width:0"
@@ -137,7 +136,7 @@ import {
         }
 
         <div style="display:flex;flex-wrap:wrap;gap:0.5rem;padding-top:0.25rem">
-          <ui-button type="button" variant="secondary" [disabled]="active() === 0" (click)="back()">Back</ui-button>
+          <ui-button type="button" variant="secondary" [disabled]="active() === 0" (click)="back()"> Back </ui-button>
           @if (active() < 2) {
             <ui-button type="button" variant="primary" (click)="forward()">Continue</ui-button>
           } @else {
@@ -146,7 +145,7 @@ import {
         </div>
       </div>
     </div>
-  `
+  `,
 })
 export class StepperOnboardingWizardExampleComponent {
   protected workspaceName = '';
@@ -162,14 +161,14 @@ export class StepperOnboardingWizardExampleComponent {
   protected readonly steps = signal<Step[]>([
     { id: 'w', label: 'Workspace', description: 'Identity' },
     { id: 'p', label: 'People', description: 'Access' },
-    { id: 'r', label: 'Review', description: 'Confirm' }
+    { id: 'r', label: 'Review', description: 'Confirm' },
   ]);
 
   protected readonly active = signal(0);
 
   protected back(): void {
     this.showError.set(false);
-    this.active.update((i) => Math.max(0, i - 1));
+    this.active.update(i => Math.max(0, i - 1));
   }
 
   protected forward(): void {
@@ -179,7 +178,7 @@ export class StepperOnboardingWizardExampleComponent {
       return;
     }
     this.showError.set(false);
-    this.steps.update((prev) => prev.map((s, idx) => (idx === i ? { ...s, completed: true } : s)));
+    this.steps.update(prev => prev.map((s, idx) => (idx === i ? { ...s, completed: true } : s)));
     if (i < this.steps().length - 1) {
       this.active.set(i + 1);
     }
@@ -195,7 +194,7 @@ export class StepperOnboardingWizardExampleComponent {
     this.steps.set([
       { id: 'w', label: 'Workspace', description: 'Identity' },
       { id: 'p', label: 'People', description: 'Access' },
-      { id: 'r', label: 'Review', description: 'Confirm' }
+      { id: 'r', label: 'Review', description: 'Confirm' },
     ]);
   }
 }

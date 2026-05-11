@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig
+  ShowcaseDocPageConfig,
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { TableOfContentAppearanceDemoComponent } from './examples/table-of-content-appearance-demo';
 import { TableOfContentBasicDemoComponent } from './examples/table-of-content-basic-demo';
@@ -19,7 +19,7 @@ const componentMap = {
   sticky: TableOfContentStickyDemoComponent,
   appearance: TableOfContentAppearanceDemoComponent,
   headingSelector: TableOfContentHeadingSelectorDemoComponent,
-  docLayout: TableOfContentDocLayoutDemoComponent
+  docLayout: TableOfContentDocLayoutDemoComponent,
 } as const;
 
 export const TABLE_OF_CONTENT_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -27,9 +27,9 @@ export const TABLE_OF_CONTENT_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(tableOfContentMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${tableOfContentMeta.slug}/${file}`
-    ])
-  ) as Record<string, string>)
+      `/docs/components/snippets/${tableOfContentMeta.slug}/${file}`,
+    ]),
+  ) as Record<string, string>),
 };
 
 export const TABLE_OF_CONTENT_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -38,12 +38,12 @@ export const TABLE_OF_CONTENT_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: tableOfContentMeta.importCode,
   containerClass: tableOfContentMeta.containerClass,
   accessibility: tableOfContentMeta.accessibility,
-  featureSections: tableOfContentMeta.featureSections.map((section) => ({
+  featureSections: tableOfContentMeta.featureSections.map(section => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap]
+    component: componentMap[section.componentKey as keyof typeof componentMap],
   })),
-  apiSections: tableOfContentMeta.apiSections
+  apiSections: tableOfContentMeta.apiSections,
 };

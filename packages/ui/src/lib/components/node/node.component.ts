@@ -8,7 +8,7 @@ import {
   viewChild,
   contentChild,
   ChangeDetectionStrategy,
-  inject
+  inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IconComponent } from '../icon/icon.component';
@@ -35,10 +35,10 @@ export interface Node<T = any> {
       :host {
         width: 100%;
       }
-    `
+    `,
   ],
   imports: [CommonModule, IconComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NodeComponent<T extends Node> {
   private readonly i18n = inject(UiI18nService);
@@ -76,16 +76,8 @@ export class NodeComponent<T extends Node> {
   dragStart = output<{ node: T; event: DragEvent; data?: any }>();
   dragEnd = output<{ node: T; event: DragEvent }>();
   drag = output<{ node: T; event: DragEvent }>();
-  drop = output<{
-    node: T;
-    event: DragEvent;
-    position: 'before' | 'after' | 'inside';
-  }>();
-  dragOver = output<{
-    node: T;
-    event: DragEvent;
-    position: 'before' | 'after' | 'inside';
-  }>();
+  drop = output<{ node: T; event: DragEvent; position: 'before' | 'after' | 'inside' }>();
+  dragOver = output<{ node: T; event: DragEvent; position: 'before' | 'after' | 'inside' }>();
   dragLeave = output<{ node: T; event: DragEvent }>();
 
   contentTemplate = contentChild<TemplateRef<any>>('content');
@@ -278,7 +270,7 @@ export class NodeComponent<T extends Node> {
     visited.add(obj);
 
     if (Array.isArray(obj)) {
-      return obj.map((item) => this.removeCircularReferences(item, visited));
+      return obj.map(item => this.removeCircularReferences(item, visited));
     }
 
     const result: any = {};
@@ -399,7 +391,7 @@ export class NodeComponent<T extends Node> {
 
   getCloseAriaLabel(): string {
     return this.i18n.t('node.closeAriaLabelPrefix', `Close ${this.node().label}`, {
-      label: this.node().label
+      label: this.node().label,
     });
   }
 }

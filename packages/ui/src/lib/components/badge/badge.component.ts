@@ -12,8 +12,8 @@ import { IconComponent, IconName } from '../icon';
       :host {
         height: min-content;
       }
-    `
-  ]
+    `,
+  ],
 })
 export class BadgeComponent {
   variant = input<Variant>('primary');

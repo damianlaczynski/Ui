@@ -34,6 +34,6 @@ import { ProgressBarComponent } from 'ui';
         />
       </div>
     </div>
-  `
+  `,
 })
 export class ProgressBarStatesExampleComponent {}

@@ -7,7 +7,7 @@ import { UiI18nService } from '../../i18n';
 @Component({
   selector: 'ui-rating',
   templateUrl: './rating.component.html',
-  imports: [IconComponent]
+  imports: [IconComponent],
 })
 export class RatingComponent {
   private readonly host = inject(ElementRef<HTMLElement>);
@@ -20,7 +20,7 @@ export class RatingComponent {
   value = input<number>(0);
   max = input<number>(5);
   size = input<Size, Size | undefined>('medium', {
-    transform: (value: Size | undefined) => value ?? 'medium'
+    transform: (value: Size | undefined) => value ?? 'medium',
   });
   readOnly = input<boolean>(false);
   disabled = input<boolean>(false);
@@ -28,7 +28,7 @@ export class RatingComponent {
   ariaLabel = input<string>('');
   starAriaLabelFormatter = input<(star: number, max: number) => string>(this.defaultStarAriaLabelFormatter);
   currentValueAriaLabelFormatter = input<(value: number, max: number) => string>(
-    this.defaultCurrentValueAriaLabelFormatter
+    this.defaultCurrentValueAriaLabelFormatter,
   );
 
   // Outputs
@@ -156,7 +156,7 @@ export class RatingComponent {
     }
     return this.i18n.t('rating.currentValueAriaLabel', `Rating: ${value} out of ${max} stars`, {
       value,
-      max
+      max,
     });
   }
 
@@ -168,7 +168,7 @@ export class RatingComponent {
     }
     return this.i18n.t('rating.starAriaLabel', `Rate ${starIndex} out of ${max}`, {
       star: starIndex,
-      max
+      max,
     });
   }
 

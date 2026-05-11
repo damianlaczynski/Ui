@@ -10,7 +10,7 @@ type ResultRow = {
 const allRows: ResultRow[] = Array.from({ length: 57 }, (_, index) => ({
   title: `Quarterly report ${index + 1}`,
   owner: ['Ava Lopez', 'Nina Woods', 'Theo Murphy'][index % 3],
-  status: ['Ready', 'Needs review', 'Draft'][index % 3]
+  status: ['Ready', 'Needs review', 'Draft'][index % 3],
 }));
 
 @Component({
@@ -61,7 +61,7 @@ const allRows: ResultRow[] = Array.from({ length: 57 }, (_, index) => ({
         (pageSizeChange)="onPageSizeChange($event)"
       />
     </div>
-  `
+  `,
 })
 export class PaginationResultsLayoutExampleComponent {
   protected readonly currentPage = signal(2);
@@ -85,7 +85,7 @@ export class PaginationResultsLayoutExampleComponent {
     showFirstLast: true,
     showInfo: true,
     showPageSizeSelector: true,
-    pageSizeOptions: [10, 20, 50]
+    pageSizeOptions: [10, 20, 50],
   }));
 
   protected onPageSizeChange(size: number): void {

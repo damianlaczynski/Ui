@@ -11,13 +11,13 @@ export const UI_I18N_CONFIG = new InjectionToken<UiI18nConfig>('UI_I18N_CONFIG',
   providedIn: 'root',
   factory: () => ({
     enabled: false,
-    prefix: 'ui'
-  })
+    prefix: 'ui',
+  }),
 });
 
 export const UI_TRANSLATE_FN = new InjectionToken<UiTranslateFn | null>('UI_TRANSLATE_FN', {
   providedIn: 'root',
-  factory: () => null
+  factory: () => null,
 });
 
 export function provideUiI18n(config: Partial<UiI18nConfig> = {}): EnvironmentProviders {
@@ -27,8 +27,8 @@ export function provideUiI18n(config: Partial<UiI18nConfig> = {}): EnvironmentPr
       useValue: {
         enabled: true,
         prefix: 'ui',
-        ...config
-      } satisfies UiI18nConfig
-    }
+        ...config,
+      } satisfies UiI18nConfig,
+    },
   ]);
 }

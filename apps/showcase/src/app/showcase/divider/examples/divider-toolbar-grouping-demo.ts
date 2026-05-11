@@ -21,6 +21,6 @@ import { ButtonComponent, DividerComponent } from 'ui';
       </div>
       <ui-button variant="primary">Publish</ui-button>
     </div>
-  `
+  `,
 })
 export class DividerToolbarGroupingExampleComponent {}

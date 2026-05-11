@@ -44,12 +44,12 @@ import { MessageBarComponent, ScrollPanelComponent, SearchComponent } from 'ui';
         </ui-scroll-panel>
       </div>
     </div>
-  `
+  `,
 })
 export class ScrollPanelInboxLayoutDemoComponent {
   protected readonly items = Array.from({ length: 12 }, (_, index) => ({
     id: index + 1,
     title: index % 2 === 0 ? `Review request ${index + 1}` : `Mention from design ${index + 1}`,
-    body: 'This kind of panel usually needs one clearly bounded scroll area inside a bigger shell.'
+    body: 'This kind of panel usually needs one clearly bounded scroll area inside a bigger shell.',
   }));
 }

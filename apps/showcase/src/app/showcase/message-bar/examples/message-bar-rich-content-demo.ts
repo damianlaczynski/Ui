@@ -35,6 +35,6 @@ import { ButtonComponent, MessageBarComponent } from 'ui';
         </div>
       </ui-message-bar>
     </div>
-  `
+  `,
 })
 export class MessageBarRichContentExampleComponent {}

@@ -59,6 +59,6 @@ import { ButtonComponent, TooltipDirective } from 'ui';
         </ui-button>
       </div>
     </div>
-  `
+  `,
 })
 export class TooltipDataTableExampleComponent {}

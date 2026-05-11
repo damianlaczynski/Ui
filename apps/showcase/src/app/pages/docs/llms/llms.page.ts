@@ -13,9 +13,9 @@ export const LLMS_PAGE_CONFIG: GuideDocPageConfig = {
         {
           type: 'paragraph',
           content:
-            'These endpoints follow common patterns (similar to `[llms.txt](https://llmstxt.org/)`) so tools and assistants can fetch plain text instead of scraping HTML.'
-        }
-      ]
+            'These endpoints follow common patterns (similar to `[llms.txt](https://llmstxt.org/)`) so tools and assistants can fetch plain text instead of scraping HTML.',
+        },
+      ],
     },
     {
       id: 'discovery-files',
@@ -25,10 +25,10 @@ export const LLMS_PAGE_CONFIG: GuideDocPageConfig = {
           type: 'list',
           items: [
             '`/llms.txt` - short index of guides, the LLMs overview Markdown URL, and a pointer to the full component list.',
-            '`/llms-full.txt` - complete list of `/docs/*.md` guide URLs plus every `/docs/components/{slug}.md` component file.'
-          ]
-        }
-      ]
+            '`/llms-full.txt` - complete list of `/docs/*.md` guide URLs plus every `/docs/components/{slug}.md` component file.',
+          ],
+        },
+      ],
     },
     {
       id: 'guide-markdown',
@@ -37,7 +37,7 @@ export const LLMS_PAGE_CONFIG: GuideDocPageConfig = {
         {
           type: 'paragraph',
           content:
-            'Append **`.md`** to the slug under `/docs/` to retrieve a Markdown rendition of each guide-style page:'
+            'Append **`.md`** to the slug under `/docs/` to retrieve a Markdown rendition of each guide-style page:',
         },
         {
           type: 'list',
@@ -46,15 +46,15 @@ export const LLMS_PAGE_CONFIG: GuideDocPageConfig = {
             '`/docs/installation.md`',
             '`/docs/i18n.md`',
             '`/docs/roadmap.md`',
-            '`/docs/llms.md` - this overview in Markdown form'
-          ]
+            '`/docs/llms.md` - this overview in Markdown form',
+          ],
         },
         {
           type: 'paragraph',
           content:
-            'Files are emitted into `public/docs/` during `npm run docs:build` and copied to the deployed site root.'
-        }
-      ]
+            'Files are emitted into `public/docs/` during `npm run docs:build` and copied to the deployed site root.',
+        },
+      ],
     },
     {
       id: 'component-markdown',
@@ -63,16 +63,16 @@ export const LLMS_PAGE_CONFIG: GuideDocPageConfig = {
         {
           type: 'paragraph',
           content:
-            'Each showcase publishes an AI-oriented Markdown bundle (title, intro, imports, snippet sources) built from showcase metadata:'
+            'Each showcase publishes an AI-oriented Markdown bundle (title, intro, imports, snippet sources) built from showcase metadata:',
         },
         {
           type: 'list',
           items: [
             '`/docs/components/{component}.md` - e.g. `/docs/components/button.md`, `/docs/components/data-grid.md`',
-            '`/docs/components/snippets/{slug}/...` - raw TypeScript example files copied alongside the Markdown'
-          ]
-        }
-      ]
+            '`/docs/components/snippets/{slug}/...` - raw TypeScript example files copied alongside the Markdown',
+          ],
+        },
+      ],
     },
     {
       id: 'related',
@@ -85,17 +85,17 @@ export const LLMS_PAGE_CONFIG: GuideDocPageConfig = {
               id: 'getting-started',
               title: 'Getting Started',
               description: 'Fast path through install, styles and first composition.',
-              routerLink: '/docs/getting-started'
+              routerLink: '/docs/getting-started',
             },
             {
               id: 'installation',
               title: 'Installation',
               description: 'Package, styles, icons and Angular configuration.',
-              routerLink: '/docs/installation'
-            }
-          ]
-        }
-      ]
-    }
-  ]
+              routerLink: '/docs/installation',
+            },
+          ],
+        },
+      ],
+    },
+  ],
 };

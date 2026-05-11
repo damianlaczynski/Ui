@@ -21,8 +21,8 @@ export const ROADMAP_PAGE_CONFIG: GuideDocPageConfig = {
               items: [
                 'Unified token system for light and dark mode.',
                 'Baseline accessibility pass for core form and navigation components.',
-                'Initial docs foundation with showcase and getting-started flows.'
-              ]
+                'Initial docs foundation with showcase and getting-started flows.',
+              ],
             },
             {
               id: 'q2-2026',
@@ -33,8 +33,8 @@ export const ROADMAP_PAGE_CONFIG: GuideDocPageConfig = {
               items: [
                 'More complete API docs with usage patterns and anti-patterns.',
                 'Theming guide with real enterprise examples.',
-                'Improved test coverage for interactive components.'
-              ]
+                'Improved test coverage for interactive components.',
+              ],
             },
             {
               id: 'q3-2026',
@@ -45,8 +45,8 @@ export const ROADMAP_PAGE_CONFIG: GuideDocPageConfig = {
               items: [
                 'Data-heavy patterns: richer tables, filtering and state containers.',
                 'Animation and motion presets aligned with Fluent guidance.',
-                'Stronger layout primitives for dashboards and enterprise forms.'
-              ]
+                'Stronger layout primitives for dashboards and enterprise forms.',
+              ],
             },
             {
               id: 'q4-2026',
@@ -57,12 +57,12 @@ export const ROADMAP_PAGE_CONFIG: GuideDocPageConfig = {
               items: [
                 'Versioned migration guides and changelog quality improvements.',
                 'Starter templates and schematic support for onboarding speed.',
-                'Performance benchmarks and bundle-size tracking in CI.'
-              ]
-            }
-          ]
-        }
-      ]
+                'Performance benchmarks and bundle-size tracking in CI.',
+              ],
+            },
+          ],
+        },
+      ],
     },
     {
       id: 'how-we-prioritize',
@@ -73,10 +73,10 @@ export const ROADMAP_PAGE_CONFIG: GuideDocPageConfig = {
           items: [
             'Accessibility, performance and API consistency are release gates.',
             'Breaking changes are grouped and documented with migration paths.',
-            'Roadmap can shift based on user feedback and production priorities.'
-          ]
-        }
-      ]
+            'Roadmap can shift based on user feedback and production priorities.',
+          ],
+        },
+      ],
     },
     {
       id: 'related-pages',
@@ -89,17 +89,17 @@ export const ROADMAP_PAGE_CONFIG: GuideDocPageConfig = {
               id: 'getting-started',
               title: 'Getting Started',
               description: 'Fast path from install to first production-ready feature.',
-              routerLink: '/docs/getting-started'
+              routerLink: '/docs/getting-started',
             },
             {
               id: 'installation',
               title: 'Installation',
               description: 'Environment requirements and setup checklist for your project.',
-              routerLink: '/docs/installation'
-            }
-          ]
-        }
-      ]
-    }
-  ]
+              routerLink: '/docs/installation',
+            },
+          ],
+        },
+      ],
+    },
+  ],
 };

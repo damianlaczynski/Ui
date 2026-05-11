@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig
+  ShowcaseDocPageConfig,
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { CheckboxBasicExampleComponent } from './examples/checkbox-basic-demo';
 import { CheckboxFilterGroupExampleComponent } from './examples/checkbox-filter-group-demo';
@@ -19,7 +19,7 @@ const componentMap = {
   shapes: CheckboxShapesExampleComponent,
   states: CheckboxStatesExampleComponent,
   filters: CheckboxFilterGroupExampleComponent,
-  permissions: CheckboxPermissionsPanelExampleComponent
+  permissions: CheckboxPermissionsPanelExampleComponent,
 } as const;
 
 export const CHECKBOX_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -27,9 +27,9 @@ export const CHECKBOX_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(checkboxMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${checkboxMeta.slug}/${file}`
-    ])
-  ) as Record<string, string>)
+      `/docs/components/snippets/${checkboxMeta.slug}/${file}`,
+    ]),
+  ) as Record<string, string>),
 };
 
 export const CHECKBOX_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -38,12 +38,12 @@ export const CHECKBOX_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: checkboxMeta.importCode,
   containerClass: checkboxMeta.containerClass,
   accessibility: checkboxMeta.accessibility,
-  featureSections: checkboxMeta.featureSections.map((section) => ({
+  featureSections: checkboxMeta.featureSections.map(section => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap]
+    component: componentMap[section.componentKey as keyof typeof componentMap],
   })),
-  apiSections: checkboxMeta.apiSections
+  apiSections: checkboxMeta.apiSections,
 };

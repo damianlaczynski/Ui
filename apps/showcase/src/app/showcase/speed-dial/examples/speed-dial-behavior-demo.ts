@@ -29,11 +29,7 @@ import { MenuItem, SpeedDialComponent } from 'ui';
             [itemSizePx]="40"
             [gap]="6"
             [items]="items()"
-            [triggerButtonProps]="{
-              variant: 'primary',
-              appearance: 'filled',
-              shape: 'circular'
-            }"
+            [triggerButtonProps]="{ variant: 'primary', appearance: 'filled', shape: 'circular' }"
             ariaLabel="Idle close speed dial"
             (hide)="log('idle: ' + $event.type)"
           />
@@ -49,11 +45,7 @@ import { MenuItem, SpeedDialComponent } from 'ui';
             [itemSizePx]="40"
             [gap]="6"
             [items]="items()"
-            [triggerButtonProps]="{
-              variant: 'primary',
-              appearance: 'filled',
-              shape: 'circular'
-            }"
+            [triggerButtonProps]="{ variant: 'primary', appearance: 'filled', shape: 'circular' }"
             ariaLabel="Masked speed dial"
           />
         </div>
@@ -69,11 +61,7 @@ import { MenuItem, SpeedDialComponent } from 'ui';
             [itemSizePx]="40"
             [gap]="6"
             [items]="tooltipItems()"
-            [triggerButtonProps]="{
-              variant: 'secondary',
-              appearance: 'filled',
-              shape: 'circular'
-            }"
+            [triggerButtonProps]="{ variant: 'secondary', appearance: 'filled', shape: 'circular' }"
             ariaLabel="Tooltip speed dial"
           />
         </div>
@@ -85,42 +73,22 @@ import { MenuItem, SpeedDialComponent } from 'ui';
         <div>{{ eventLog().length > 0 ? eventLog()[0] : 'No events yet.' }}</div>
       </div>
     </section>
-  `
+  `,
 })
 export class SpeedDialBehaviorDemoComponent {
   protected readonly eventLog = signal<string[]>([]);
   protected readonly items = signal<MenuItem[]>([
     { id: 'edit', label: '', icon: 'edit', action: () => this.log('action: edit') },
-    {
-      id: 'refresh',
-      label: '',
-      icon: 'arrow_sync',
-      action: () => this.log('action: refresh')
-    },
-    {
-      id: 'delete',
-      label: '',
-      icon: 'delete',
-      action: () => this.log('action: delete')
-    }
+    { id: 'refresh', label: '', icon: 'arrow_sync', action: () => this.log('action: refresh') },
+    { id: 'delete', label: '', icon: 'delete', action: () => this.log('action: delete') },
   ]);
   protected readonly tooltipItems = signal<MenuItem[]>([
     { id: 'Add', label: '', icon: 'add', action: () => this.log('action: add') },
-    {
-      id: 'Update',
-      label: '',
-      icon: 'arrow_sync',
-      action: () => this.log('action: update')
-    },
-    {
-      id: 'Remove',
-      label: '',
-      icon: 'delete',
-      action: () => this.log('action: remove')
-    }
+    { id: 'Update', label: '', icon: 'arrow_sync', action: () => this.log('action: update') },
+    { id: 'Remove', label: '', icon: 'delete', action: () => this.log('action: remove') },
   ]);
 
   protected log(message: string): void {
-    this.eventLog.update((entries) => [message, ...entries].slice(0, 12));
+    this.eventLog.update(entries => [message, ...entries].slice(0, 12));
   }
 }

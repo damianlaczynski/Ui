@@ -14,28 +14,28 @@ import { ButtonComponent, Step, StepperComponent } from 'ui';
         (stepChange)="active.set($event.index)"
       />
       <div style="display:flex;flex-wrap:wrap;gap:0.5rem">
-        <ui-button type="button" variant="secondary" [disabled]="active() === 0" (click)="prev()">Back</ui-button>
+        <ui-button type="button" variant="secondary" [disabled]="active() === 0" (click)="prev()"> Back </ui-button>
         <ui-button type="button" variant="primary" [disabled]="active() >= steps().length - 1" (click)="next()">
           Next
         </ui-button>
       </div>
     </div>
-  `
+  `,
 })
 export class StepperBasicExampleComponent {
   protected readonly steps = signal<Step[]>([
     { id: 'scope', label: 'Scope' },
     { id: 'details', label: 'Details' },
-    { id: 'publish', label: 'Publish' }
+    { id: 'publish', label: 'Publish' },
   ]);
 
   protected readonly active = signal(0);
 
   protected prev(): void {
-    this.active.update((i) => Math.max(0, i - 1));
+    this.active.update(i => Math.max(0, i - 1));
   }
 
   protected next(): void {
-    this.active.update((i) => Math.min(this.steps().length - 1, i + 1));
+    this.active.update(i => Math.min(this.steps().length - 1, i + 1));
   }
 }

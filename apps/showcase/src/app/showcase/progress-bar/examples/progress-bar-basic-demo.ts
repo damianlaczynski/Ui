@@ -20,6 +20,6 @@ import { ProgressBarComponent } from 'ui';
         ariaValueText="64 percent uploaded"
       />
     </div>
-  `
+  `,
 })
 export class ProgressBarBasicExampleComponent {}

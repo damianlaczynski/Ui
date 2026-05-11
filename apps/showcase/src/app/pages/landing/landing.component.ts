@@ -27,10 +27,10 @@ interface RoadmapPreviewItem {
     IconComponent,
     RouterLink,
     LandingComponentSurfaceComponent,
-    ThemeDrawerComponent
+    ThemeDrawerComponent,
   ],
   templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.scss']
+  styleUrls: ['./landing.component.scss'],
 })
 export class LandingComponent {
   private readonly themeService = inject(ThemeService);
@@ -39,8 +39,8 @@ export class LandingComponent {
   readonly themeDrawerOverlayLayout = toSignal(
     inject(BreakpointObserver)
       .observe('(max-width: 768px)')
-      .pipe(map((r) => r.matches)),
-    { initialValue: false }
+      .pipe(map(r => r.matches)),
+    { initialValue: false },
   );
 
   readonly version = environment.libraryVersion;
@@ -53,22 +53,22 @@ export class LandingComponent {
       title: 'Core stability',
       timeframe: 'Q1 2026',
       summary: 'Foundation for Fluent tokens, docs structure and baseline accessibility.',
-      status: 'done'
+      status: 'done',
     },
     {
       id: 'dx',
       title: 'Developer experience',
       timeframe: 'Q2 2026',
       summary: 'Better guides, richer API examples and stronger test coverage.',
-      status: 'active'
+      status: 'active',
     },
     {
       id: 'advanced',
       title: 'Advanced components',
       timeframe: 'Q3 2026',
       summary: 'Data-heavy patterns and layout primitives for enterprise applications.',
-      status: 'next'
-    }
+      status: 'next',
+    },
   ];
 
   readonly showcaseComponents = signal<ShowcaseComponent[]>(ALL_SHOWCASE_COMPONENTS);
@@ -81,7 +81,7 @@ export class LandingComponent {
   themeLabel = computed(() => (this.isDarkMode() ? 'Light mode' : 'Dark mode'));
   themeIcon = computed(() => (this.isDarkMode() ? 'weather_sunny' : 'weather_moon'));
   themeBuilderAriaLabel = computed(() =>
-    this.themeBuilder.drawerOpen() ? 'Close theme builder' : 'Open theme builder'
+    this.themeBuilder.drawerOpen() ? 'Close theme builder' : 'Open theme builder',
   );
 
   toggleTheme(): void {
@@ -108,7 +108,7 @@ export class LandingComponent {
     const labels: Record<RoadmapPreviewItem['status'], string> = {
       done: 'Shipped',
       active: 'In Progress',
-      next: 'Planned'
+      next: 'Planned',
     };
     return labels[status];
   }
@@ -117,7 +117,7 @@ export class LandingComponent {
     const variants: Record<RoadmapPreviewItem['status'], Variant> = {
       done: 'success',
       active: 'warning',
-      next: 'primary'
+      next: 'primary',
     };
     return variants[status];
   }

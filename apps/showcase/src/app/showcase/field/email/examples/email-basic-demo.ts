@@ -26,7 +26,7 @@ import { EmailComponent } from 'ui';
         </div>
       </div>
     </div>
-  `
+  `,
 })
 export class EmailBasicDemoComponent {
   protected workEmail = 'alex.taylor@contoso.com';

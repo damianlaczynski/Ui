@@ -44,6 +44,6 @@ import { LoadingStateComponent } from 'ui';
         />
       </div>
     </div>
-  `
+  `,
 })
 export class LoadingStateMessagingDemoComponent {}

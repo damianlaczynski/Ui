@@ -48,31 +48,31 @@ import { ButtonComponent, TextComponent } from 'ui';
         </ui-button>
       </div>
     </form>
-  `
+  `,
 })
 export class TextProfileFormExampleComponent {
   protected readonly defaults = {
     firstName: 'Alicia',
     lastName: 'Carter',
     jobTitle: 'Enterprise Customer Success Lead',
-    nickname: 'AC'
+    nickname: 'AC',
   };
 
   protected readonly form = new FormGroup({
     firstName: new FormControl(this.defaults.firstName, {
       nonNullable: true,
-      validators: [Validators.required]
+      validators: [Validators.required],
     }),
     lastName: new FormControl(this.defaults.lastName, {
       nonNullable: true,
-      validators: [Validators.required]
+      validators: [Validators.required],
     }),
     jobTitle: new FormControl(this.defaults.jobTitle, {
       nonNullable: true,
-      validators: [Validators.required, Validators.minLength(3)]
+      validators: [Validators.required, Validators.minLength(3)],
     }),
     nickname: new FormControl(this.defaults.nickname, {
-      nonNullable: true
-    })
+      nonNullable: true,
+    }),
   });
 }

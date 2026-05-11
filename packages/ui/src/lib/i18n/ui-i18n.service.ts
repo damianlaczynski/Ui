@@ -25,7 +25,7 @@ export class UiI18nService {
   tSignal(
     key: string,
     fallback: string | (() => string),
-    params?: Record<string, unknown> | (() => Record<string, unknown> | undefined)
+    params?: Record<string, unknown> | (() => Record<string, unknown> | undefined),
   ): Signal<string> {
     return computed(() => {
       this.translationVersion();
@@ -36,7 +36,7 @@ export class UiI18nService {
   }
 
   notifyLanguageChanged(): void {
-    this.translationVersion.update((value) => value + 1);
+    this.translationVersion.update(value => value + 1);
   }
 
   languageVersion(): Signal<number> {

@@ -11,9 +11,9 @@ import { FieldComponent } from '../field/field.component';
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => SliderComponent),
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class SliderComponent extends FieldComponent implements ControlValueAccessor, OnInit {
   @ViewChild('sliderInput') sliderInput!: ElementRef<HTMLInputElement>;
@@ -26,7 +26,7 @@ export class SliderComponent extends FieldComponent implements ControlValueAcces
   max = input<number>(100);
   step = input<number>(1);
   unit = input<string>('');
-  formatValue = input<(value: number) => string>((value) => value.toString());
+  formatValue = input<(value: number) => string>(value => value.toString());
   vertical = input<boolean>(false);
   ariaValueText = input<string | ((value: number) => string) | null>(null);
   showStepMarkers = input<boolean>(false);
@@ -112,7 +112,7 @@ export class SliderComponent extends FieldComponent implements ControlValueAcces
     const progress = `${this.fillPercentage()}%`;
     const stepsPercent = this.stepsPercent();
     const style: Record<string, string> = {
-      '--slider-progress': progress
+      '--slider-progress': progress,
     };
     if (stepsPercent) {
       style['--slider-steps-percent'] = stepsPercent;
@@ -124,7 +124,7 @@ export class SliderComponent extends FieldComponent implements ControlValueAcces
     const progress = `${this.fillPercentage()}%`;
     const position = `clamp(var(--slider-thumb-radius), ${progress}, calc(100% - var(--slider-thumb-radius)))`;
     const style: Record<string, string> = {
-      transform: this.vertical() ? 'translate(-50%, 50%)' : 'translate(-50%, -50%)'
+      transform: this.vertical() ? 'translate(-50%, 50%)' : 'translate(-50%, -50%)',
     };
 
     if (this.vertical()) {

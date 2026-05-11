@@ -8,7 +8,7 @@ describe('PasswordComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PasswordComponent]
+      imports: [PasswordComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(PasswordComponent);
@@ -54,8 +54,8 @@ describe('PasswordComponent', () => {
 
   it('should render show password action button with aria-label', () => {
     const actionButtons: HTMLButtonElement[] = Array.from(
-      fixture.nativeElement.querySelectorAll('.field__actions .field__action')
+      fixture.nativeElement.querySelectorAll('.field__actions .field__action'),
     );
-    expect(actionButtons.some((btn) => btn.getAttribute('aria-label') === 'Show password')).toBe(true);
+    expect(actionButtons.some(btn => btn.getAttribute('aria-label') === 'Show password')).toBe(true);
   });
 });

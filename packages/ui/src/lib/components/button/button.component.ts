@@ -10,8 +10,8 @@ import { SpinnerComponent } from '../spinner';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     '[attr.tabindex]': '"-1"',
-    '[style.width]': 'fullWidth() ? "100%" : "fit-content"'
-  }
+    '[style.width]': 'fullWidth() ? "100%" : "fit-content"',
+  },
 })
 export class ButtonComponent {
   private readonly elementRef = inject(ElementRef);
@@ -42,7 +42,7 @@ export class ButtonComponent {
     const sizeMap: Record<Size, ExtendedSize> = {
       small: 'extra-small',
       medium: 'small',
-      large: 'medium'
+      large: 'medium',
     };
     return sizeMap[this.size()] ?? 'small';
   });

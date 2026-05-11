@@ -33,7 +33,7 @@ import { MonthComponent } from 'ui';
         [ngModelOptions]="{ standalone: true }"
       />
     </div>
-  `
+  `,
 })
 export class MonthStatesDemoComponent {
   protected readonlyValue = '2026-07';

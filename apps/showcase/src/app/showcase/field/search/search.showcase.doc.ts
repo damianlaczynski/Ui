@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig
+  ShowcaseDocPageConfig,
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { SearchBasicDemoComponent } from './examples/search-basic-demo';
 import { SearchFilterBarDemoComponent } from './examples/search-filter-bar-demo';
@@ -19,7 +19,7 @@ const componentMap = {
   states: SearchStatesDemoComponent,
   validation: SearchValidationDemoComponent,
   filterBar: SearchFilterBarDemoComponent,
-  resultsPanel: SearchResultsPanelDemoComponent
+  resultsPanel: SearchResultsPanelDemoComponent,
 } as const;
 
 export const SEARCH_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -27,9 +27,9 @@ export const SEARCH_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(searchMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${searchMeta.slug}/${file}`
-    ])
-  ) as Record<string, string>)
+      `/docs/components/snippets/${searchMeta.slug}/${file}`,
+    ]),
+  ) as Record<string, string>),
 };
 
 export const SEARCH_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -38,12 +38,12 @@ export const SEARCH_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: searchMeta.importCode,
   containerClass: searchMeta.containerClass,
   accessibility: searchMeta.accessibility,
-  featureSections: searchMeta.featureSections.map((section) => ({
+  featureSections: searchMeta.featureSections.map(section => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap]
+    component: componentMap[section.componentKey as keyof typeof componentMap],
   })),
-  apiSections: searchMeta.apiSections
+  apiSections: searchMeta.apiSections,
 };

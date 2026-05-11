@@ -41,7 +41,7 @@ import { WeekComponent } from 'ui';
         [ngModelOptions]="{ standalone: true }"
       />
     </div>
-  `
+  `,
 })
 export class WeekStatesDemoComponent {
   protected smallValue = '2026-W19';

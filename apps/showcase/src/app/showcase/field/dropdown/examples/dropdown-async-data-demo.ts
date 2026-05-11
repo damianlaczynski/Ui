@@ -23,7 +23,7 @@ const directoryItems: DropdownItem[] = [
   { value: 17, label: 'Quinn Ross' },
   { value: 18, label: 'Ruby Perry' },
   { value: 19, label: 'Sam Foster' },
-  { value: 20, label: 'Theo Murphy' }
+  { value: 20, label: 'Theo Murphy' },
 ];
 
 @Component({
@@ -63,7 +63,7 @@ const directoryItems: DropdownItem[] = [
         </p>
       </div>
     </div>
-  `
+  `,
 })
 export class DropdownAsyncDataExampleComponent {
   protected readonly directoryItems = directoryItems;
@@ -71,7 +71,7 @@ export class DropdownAsyncDataExampleComponent {
 
   protected readonly directoryDataSource = (params: { page?: number; pageSize?: number; searchTerm?: string }) => {
     const query = params.searchTerm?.trim().toLowerCase() ?? '';
-    const filtered = query ? directoryItems.filter((item) => item.label.toLowerCase().includes(query)) : directoryItems;
+    const filtered = query ? directoryItems.filter(item => item.label.toLowerCase().includes(query)) : directoryItems;
 
     const page = params.page ?? 1;
     const pageSize = params.pageSize ?? 6;
@@ -82,11 +82,11 @@ export class DropdownAsyncDataExampleComponent {
       items,
       hasNextPage: start + pageSize < filtered.length,
       hasPreviousPage: page > 1,
-      totalCount: filtered.length
+      totalCount: filtered.length,
     }).pipe(delay(250));
   };
 
   protected get selectedAssigneeLabel(): string {
-    return this.directoryItems.find((item) => item.value === this.selectedAssignee)?.label ?? 'None';
+    return this.directoryItems.find(item => item.value === this.selectedAssignee)?.label ?? 'None';
   }
 }

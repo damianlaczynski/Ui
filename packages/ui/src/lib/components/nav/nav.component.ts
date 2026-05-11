@@ -24,7 +24,7 @@ export interface NavNode<T extends NavNode<T> = NavNode<any>> extends TreeNode<T
       overflow-x: hidden;
     }
   `,
-  imports: [CommonModule, TreeNodeComponent, NavSectionHeaderComponent, DividerComponent]
+  imports: [CommonModule, TreeNodeComponent, NavSectionHeaderComponent, DividerComponent],
 })
 export class NavComponent implements OnDestroy {
   private readonly elementRef = inject(ElementRef<HTMLElement>);

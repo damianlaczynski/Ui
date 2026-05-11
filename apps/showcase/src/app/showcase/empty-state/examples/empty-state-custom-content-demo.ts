@@ -21,6 +21,6 @@ import { ButtonComponent, CardComponent, EmptyStateComponent } from 'ui';
         </ng-template>
       </ui-empty-state>
     </ui-card>
-  `
+  `,
 })
 export class EmptyStateCustomContentDemoComponent {}

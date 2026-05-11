@@ -1,8 +1,6 @@
 <div class="time-picker" [class.time-picker--inline]="inline()">
   @if (showLabel()) {
-    <label [attr.for]="'time-picker-hour-wheel'" class="time-picker__label">
-      {{ label() }}
-    </label>
+    <label [attr.for]="'time-picker-hour-wheel'" class="time-picker__label">{{ label() }}</label>
   }
 
   @if (!use24HourFormat()) {

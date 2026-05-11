@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig
+  ShowcaseDocPageConfig,
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { SwitchBasicExampleComponent } from './examples/switch-basic-demo';
 import { SwitchHelperValidationExampleComponent } from './examples/switch-helper-validation-demo';
@@ -19,7 +19,7 @@ const componentMap = {
   sizesStates: SwitchSizesStatesExampleComponent,
   validation: SwitchHelperValidationExampleComponent,
   preferences: SwitchPreferencesFormExampleComponent,
-  notificationPanel: SwitchNotificationPanelExampleComponent
+  notificationPanel: SwitchNotificationPanelExampleComponent,
 } as const;
 
 export const SWITCH_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -27,9 +27,9 @@ export const SWITCH_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(switchMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${switchMeta.slug}/${file}`
-    ])
-  ) as Record<string, string>)
+      `/docs/components/snippets/${switchMeta.slug}/${file}`,
+    ]),
+  ) as Record<string, string>),
 };
 
 export const SWITCH_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -38,12 +38,12 @@ export const SWITCH_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: switchMeta.importCode,
   containerClass: switchMeta.containerClass,
   accessibility: switchMeta.accessibility,
-  featureSections: switchMeta.featureSections.map((section) => ({
+  featureSections: switchMeta.featureSections.map(section => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap]
+    component: componentMap[section.componentKey as keyof typeof componentMap],
   })),
-  apiSections: switchMeta.apiSections
+  apiSections: switchMeta.apiSections,
 };

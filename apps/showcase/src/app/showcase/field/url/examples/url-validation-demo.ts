@@ -25,14 +25,14 @@ import { ButtonComponent, UrlComponent } from 'ui';
         <ui-button type="button" appearance="outline" (click)="fillExample()">Use example</ui-button>
       </div>
     </form>
-  `
+  `,
 })
 export class UrlValidationDemoComponent {
   protected readonly linkForm = new FormGroup({
     sourceUrl: new FormControl('', {
       nonNullable: true,
-      validators: [Validators.required]
-    })
+      validators: [Validators.required],
+    }),
   });
 
   protected get sourceError(): string {

@@ -1,12 +1,13 @@
 {
+  "singleQuote": true,
   "printWidth": 120,
+  "semi": true,
   "tabWidth": 2,
   "useTabs": false,
-  "semi": true,
-  "singleQuote": true,
-  "trailingComma": "none",
+  "trailingComma": "all",
   "bracketSpacing": true,
-  "htmlWhitespaceSensitivity": "ignore",
+  "arrowParens": "avoid",
+  "endOfLine": "lf",
   "overrides": [
     {
       "files": "*.html",

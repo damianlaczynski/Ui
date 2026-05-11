@@ -3,7 +3,7 @@ import { ToastService } from 'ui';
 import { Observable, throwError } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiErrorService {
   private readonly toastService = inject(ToastService);

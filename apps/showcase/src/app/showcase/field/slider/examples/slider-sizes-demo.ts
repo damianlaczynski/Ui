@@ -38,7 +38,7 @@ const dashedCardStyle =
         </div>
       </div>
     </div>
-  `
+  `,
 })
 export class SliderSizesExampleComponent {
   readonly dashedCardStyle = dashedCardStyle;

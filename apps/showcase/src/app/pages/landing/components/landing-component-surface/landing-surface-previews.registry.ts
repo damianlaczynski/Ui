@@ -29,7 +29,7 @@ import {
   LspKbdPreviewComponent,
   LspLoadingStatePreviewComponent,
   LspMessageBarPreviewComponent,
-  LspMenuPreviewComponent
+  LspMenuPreviewComponent,
 } from './landing-surface-previews-a';
 import {
   LspNavPreviewComponent,
@@ -67,7 +67,7 @@ import {
   LspTotpPreviewComponent,
   LspTreePreviewComponent,
   LspTreeNodePreviewComponent,
-  LspUrlPreviewComponent
+  LspUrlPreviewComponent,
 } from './landing-surface-previews-b';
 
 export const LANDING_SURFACE_PREVIEW_COMPONENTS: Record<string, Type<unknown>> = {
@@ -136,5 +136,5 @@ export const LANDING_SURFACE_PREVIEW_COMPONENTS: Record<string, Type<unknown>> =
   totp: LspTotpPreviewComponent,
   tree: LspTreePreviewComponent,
   'tree-node': LspTreeNodePreviewComponent,
-  url: LspUrlPreviewComponent
+  url: LspUrlPreviewComponent,
 };

@@ -45,9 +45,9 @@ import { TimePickerComponent } from 'ui';
 
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1rem;">
         <div style="display:grid;gap:0.75rem;">
-          <span style="font-size:0.8125rem;font-weight:600;color:var(--color-neutral-foreground2-rest);">
-            Inline without label
-          </span>
+          <span style="font-size:0.8125rem;font-weight:600;color:var(--color-neutral-foreground2-rest);"
+            >Inline without label</span
+          >
           <ui-time-picker
             [value]="inlineValue"
             [inline]="true"
@@ -58,9 +58,9 @@ import { TimePickerComponent } from 'ui';
         </div>
 
         <div style="display:grid;gap:0.75rem;">
-          <span style="font-size:0.8125rem;font-weight:600;color:var(--color-neutral-foreground2-rest);">
-            Inline with visible label
-          </span>
+          <span style="font-size:0.8125rem;font-weight:600;color:var(--color-neutral-foreground2-rest);"
+            >Inline with visible label</span
+          >
           <ui-time-picker
             [value]="inlineLabelValue"
             [inline]="true"
@@ -73,7 +73,7 @@ import { TimePickerComponent } from 'ui';
         </div>
       </div>
     </div>
-  `
+  `,
 })
 export class TimePickerSizeLayoutDemoComponent {
   protected smallValue = '08:30';

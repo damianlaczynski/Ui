@@ -2,7 +2,7 @@
 import {
   isTruncatableBreadcrumbContent,
   truncateBreadcrumbLongName,
-  partitionBreadcrumbItems
+  partitionBreadcrumbItems,
 } from './breadcrumb.utils';
 
 describe('breadcrumb.utils', () => {

@@ -23,6 +23,6 @@ import { TagComponent } from 'ui';
         <ui-tag text="Owner" secondaryText="Ava Lopez" icon="person" appearance="tint" variant="secondary" />
       </div>
     </div>
-  `
+  `,
 })
 export class TagBasicDemoComponent {}

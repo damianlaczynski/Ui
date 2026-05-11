@@ -9,7 +9,7 @@ import {
   ViewChild,
   input,
   OnDestroy,
-  inject
+  inject,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -36,27 +36,27 @@ const MOBILE_BREAKPOINT = '(max-width: 768px)';
     FieldComponent,
     ActionButtonComponent,
     CalendarComponent,
-    ButtonComponent
+    ButtonComponent,
   ],
   templateUrl: './date.component.html',
   host: {
-    '[style.display]': '"block"'
+    '[style.display]': '"block"',
   },
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => DateComponent),
-      multi: true
+      multi: true,
     },
-    DateFieldOverlayService
+    DateFieldOverlayService,
   ],
   styles: [
     `
       :host {
         width: 100%;
       }
-    `
-  ]
+    `,
+  ],
 })
 export class DateComponent extends FieldComponent implements OnDestroy {
   private overlayService = inject(DateFieldOverlayService);
@@ -89,7 +89,7 @@ export class DateComponent extends FieldComponent implements OnDestroy {
   constructor() {
     super();
 
-    this.breakpointSub = this.breakpointObserver.observe(MOBILE_BREAKPOINT).subscribe((result) => {
+    this.breakpointSub = this.breakpointObserver.observe(MOBILE_BREAKPOINT).subscribe(result => {
       this.isMobile.set(result.matches);
     });
 
@@ -285,7 +285,7 @@ export class DateComponent extends FieldComponent implements OnDestroy {
     const datePatterns = [
       /(\d{1,2})\/(\d{1,2})\/(\d{4})/,
       /(\d{4})-(\d{1,2})-(\d{1,2})/,
-      /(\d{1,2})-(\d{1,2})-(\d{4})/
+      /(\d{1,2})-(\d{1,2})-(\d{4})/,
     ];
 
     for (const pattern of datePatterns) {
@@ -335,7 +335,7 @@ export class DateComponent extends FieldComponent implements OnDestroy {
     return date.toLocaleDateString('en-US', {
       year: 'numeric',
       month: '2-digit',
-      day: '2-digit'
+      day: '2-digit',
     });
   }
 

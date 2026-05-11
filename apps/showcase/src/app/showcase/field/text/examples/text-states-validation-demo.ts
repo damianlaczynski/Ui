@@ -5,7 +5,7 @@ import {
   FormGroup,
   ReactiveFormsModule,
   ValidationErrors,
-  Validators
+  Validators,
 } from '@angular/forms';
 import { ButtonComponent, TextComponent } from 'ui';
 
@@ -24,7 +24,7 @@ import { ButtonComponent, TextComponent } from 'ui';
           <span style="font-size:0.9375rem;font-weight:600">Workspace onboarding draft</span>
           <p style="margin:0;font-size:0.8125rem;line-height:1.5;color:var(--color-neutral-foreground2-rest)">
             Blurring a field surfaces its error when it stays invalid.
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">Save draft</strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)"> Save draft </strong>
             marks every control touched so min length, pattern and required appear together (like production forms).
           </p>
         </div>
@@ -120,7 +120,7 @@ import { ButtonComponent, TextComponent } from 'ui';
         helpText="Disabled fields stay out of the draft group."
       />
     </div>
-  `
+  `,
 })
 export class TextStatesValidationExampleComponent {
   protected manualError = '';
@@ -129,12 +129,12 @@ export class TextStatesValidationExampleComponent {
     'Save draft submits only when fields pass validators and no mocked API conflict is active.';
 
   protected readonly workspaceId = new FormControl('ws_29M4LX8', {
-    nonNullable: true
+    nonNullable: true,
   });
 
   protected readonly archivedName = new FormControl(
     { value: 'Legacy intake form', disabled: true },
-    { nonNullable: true }
+    { nonNullable: true },
   );
 
   private readonly couponPrefixSuffix = /^[A-Z0-9]+-[A-Z0-9]+$/i;
@@ -144,13 +144,13 @@ export class TextStatesValidationExampleComponent {
     coupon: 'notvalidcoupon',
     projectCode: 'ab',
     slotName: 'x',
-    subdomain: 'finance-apac'
+    subdomain: 'finance-apac',
   } as const;
 
   protected readonly draftForm = new FormGroup({
     inviteEmail: new FormControl(this.starter.inviteEmail, {
       nonNullable: true,
-      validators: [Validators.required, Validators.email]
+      validators: [Validators.required, Validators.email],
     }),
     coupon: new FormControl(this.starter.coupon, {
       nonNullable: true,
@@ -159,20 +159,20 @@ export class TextStatesValidationExampleComponent {
           const raw = (c.value ?? '').trim();
           if (!raw.length) return null;
           return this.couponPrefixSuffix.test(raw) ? null : { pattern: true };
-        }
-      ]
+        },
+      ],
     }),
     projectCode: new FormControl(this.starter.projectCode, {
       nonNullable: true,
-      validators: [Validators.minLength(4)]
+      validators: [Validators.minLength(4)],
     }),
     slotName: new FormControl(this.starter.slotName, {
       nonNullable: true,
-      validators: [Validators.required, Validators.minLength(2)]
+      validators: [Validators.required, Validators.minLength(2)],
     }),
     subdomain: new FormControl(this.starter.subdomain, {
-      nonNullable: true
-    })
+      nonNullable: true,
+    }),
   });
 
   protected toggleManualError(): void {

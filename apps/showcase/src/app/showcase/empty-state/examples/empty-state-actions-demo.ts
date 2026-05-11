@@ -28,7 +28,7 @@ import { CardComponent, EmptyStateComponent, type QuickAction } from 'ui';
         </div>
       </ui-card>
     </div>
-  `
+  `,
 })
 export class EmptyStateActionsDemoComponent {
   protected readonly lastAction = signal('');
@@ -37,13 +37,13 @@ export class EmptyStateActionsDemoComponent {
     label: 'Invite people',
     variant: 'primary',
     icon: 'person_add',
-    action: () => this.lastAction.set('Invite people')
+    action: () => this.lastAction.set('Invite people'),
   };
 
   protected readonly importAction: QuickAction = {
     label: 'Import users',
     variant: 'secondary',
     icon: 'send',
-    action: () => this.lastAction.set('Import users')
+    action: () => this.lastAction.set('Import users'),
   };
 }

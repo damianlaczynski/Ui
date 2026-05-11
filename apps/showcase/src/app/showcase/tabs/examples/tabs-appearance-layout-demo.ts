@@ -4,7 +4,7 @@ import { TabsComponent, type Tab } from 'ui';
 const tabs: Tab[] = [
   { id: 'files', label: 'Files' },
   { id: 'people', label: 'People' },
-  { id: 'notes', label: 'Notes' }
+  { id: 'notes', label: 'Notes' },
 ];
 
 @Component({
@@ -34,7 +34,7 @@ const tabs: Tab[] = [
         />
       </div>
     </div>
-  `
+  `,
 })
 export class TabsAppearanceLayoutDemoComponent {
   protected readonly tabs = tabs;

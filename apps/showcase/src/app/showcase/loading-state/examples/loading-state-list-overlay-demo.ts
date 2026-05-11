@@ -45,12 +45,12 @@ import { ButtonComponent, LoadingStateComponent } from 'ui';
         </div>
       </ui-loading-state>
     </div>
-  `
+  `,
 })
 export class LoadingStateListOverlayDemoComponent {
   protected readonly isLoading = signal(true);
 
   protected toggleLoading(): void {
-    this.isLoading.update((value) => !value);
+    this.isLoading.update(value => !value);
   }
 }

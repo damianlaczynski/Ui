@@ -190,6 +190,6 @@ import { ButtonComponent } from 'ui';
         ></ui-button>
       </div>
     </div>
-  `
+  `,
 })
 export class ButtonIconOnlyExampleComponent {}

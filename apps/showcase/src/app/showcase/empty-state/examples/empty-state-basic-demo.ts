@@ -9,6 +9,6 @@ import { CardComponent, EmptyStateComponent } from 'ui';
     <ui-card style="width:100%;max-width:28rem;" ariaLabel="Basic empty state card">
       <ui-empty-state title="No items yet" description="There is nothing to show in this section right now." />
     </ui-card>
-  `
+  `,
 })
 export class EmptyStateBasicDemoComponent {}

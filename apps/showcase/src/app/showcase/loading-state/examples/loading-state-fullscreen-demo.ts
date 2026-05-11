@@ -37,7 +37,7 @@ import { ButtonComponent, LoadingStateComponent } from 'ui';
         spinnerSize="large"
       />
     }
-  `
+  `,
 })
 export class LoadingStateFullscreenDemoComponent {
   protected readonly showOverlay = signal(false);

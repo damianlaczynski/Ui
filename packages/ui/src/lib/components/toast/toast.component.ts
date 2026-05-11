@@ -8,7 +8,7 @@ import { ButtonComponent } from '../button/button.component';
 @Component({
   selector: 'ui-toast',
   templateUrl: './toast.component.html',
-  imports: [IconComponent, ButtonComponent]
+  imports: [IconComponent, ButtonComponent],
 })
 export class ToastComponent {
   title = input<string>('');
@@ -36,7 +36,7 @@ export class ToastComponent {
   actionClick = output<void>();
 
   constructor() {
-    effect((onCleanup) => {
+    effect(onCleanup => {
       if (!this.isExiting() || !this.toastId()) {
         return;
       }

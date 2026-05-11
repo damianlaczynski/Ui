@@ -26,7 +26,7 @@ import { ButtonComponent, TimeSpanComponent } from 'ui';
         </span>
       </div>
     </div>
-  `
+  `,
 })
 export class TimeSpanBasicDemoComponent {
   protected value = 'PT1H30M';

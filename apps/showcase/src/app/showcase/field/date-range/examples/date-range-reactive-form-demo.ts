@@ -37,22 +37,22 @@ import { ButtonComponent, DateRange, DateRangeComponent, MessageBarComponent } f
       <div
         style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
       >
-        <ui-button type="button" variant="primary" [disabled]="rangeControl.invalid">Save period</ui-button>
+        <ui-button type="button" variant="primary" [disabled]="rangeControl.invalid"> Save period </ui-button>
         <ui-button type="button" appearance="subtle" (click)="reset()">Reset</ui-button>
         <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">
           {{ summary() }}
         </span>
       </div>
     </div>
-  `
+  `,
 })
 export class DateRangeReactiveFormDemoComponent {
   protected readonly rangeControl = new FormControl<DateRange | null>(
     {
       startDate: '2026-06-01',
-      endDate: '2026-06-15'
+      endDate: '2026-06-15',
     },
-    { validators: [this.rangeValidator] }
+    { validators: [this.rangeValidator] },
   );
 
   protected readonly summary = computed(() => {
@@ -67,7 +67,7 @@ export class DateRangeReactiveFormDemoComponent {
   protected reset(): void {
     this.rangeControl.reset({
       startDate: '2026-06-01',
-      endDate: '2026-06-15'
+      endDate: '2026-06-15',
     });
   }
 

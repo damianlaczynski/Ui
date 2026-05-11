@@ -32,7 +32,7 @@ import { ButtonComponent, SwitchComponent } from 'ui';
         </span>
       </div>
     </form>
-  `
+  `,
 })
 export class SwitchHelperValidationExampleComponent {
   protected allowDeploy = true;

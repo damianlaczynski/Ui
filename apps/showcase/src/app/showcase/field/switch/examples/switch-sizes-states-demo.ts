@@ -40,7 +40,7 @@ import { SwitchComponent } from 'ui';
         <ui-switch label="Readonly off" [readonly]="true" [ngModel]="false" />
       </div>
     </div>
-  `
+  `,
 })
 export class SwitchSizesStatesExampleComponent {
   protected compactValue = false;

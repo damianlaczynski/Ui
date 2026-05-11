@@ -41,9 +41,7 @@
               <span>{{ themeLabel() }}</span>
             </button>
 
-            <span class="ds__theme-switcher__label">
-              {{ currentThemeVariantLabel() }}
-            </span>
+            <span class="ds__theme-switcher__label">{{ currentThemeVariantLabel() }}</span>
 
             <div class="ds__theme-switcher__variants" role="radiogroup" aria-label="Theme variants">
               @for (variant of themeVariants; track variant.id) {

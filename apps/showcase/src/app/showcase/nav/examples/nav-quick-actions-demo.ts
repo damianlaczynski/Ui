@@ -44,13 +44,13 @@ import { ButtonComponent, NavComponent, type NavNode } from 'ui';
         />
       </div>
     </ng-template>
-  `
+  `,
 })
 export class NavQuickActionsDemoComponent {
   protected readonly items: NavNode[] = [
     { id: 'backlog', label: 'Backlog', icon: 'list' },
     { id: 'active-sprint', label: 'Active sprint', icon: 'rocket', selected: true },
-    { id: 'review-queue', label: 'Review queue', icon: 'edit' }
+    { id: 'review-queue', label: 'Review queue', icon: 'edit' },
   ];
 
   protected readonly lastAction = signal('');

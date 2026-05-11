@@ -30,38 +30,36 @@ import { RadioButtonGroupComponent } from 'ui';
       <div
         style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;padding:0.875rem 1rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background2-rest)"
       >
-        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          Audience:
-          <strong>{{ summary().audience }}</strong>
-        </span>
-        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          Review:
-          <strong>{{ summary().reviewMode }}</strong>
-        </span>
+        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
+          >Audience: <strong>{{ summary().audience }}</strong></span
+        >
+        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
+          >Review: <strong>{{ summary().reviewMode }}</strong></span
+        >
       </div>
     </div>
-  `
+  `,
 })
 export class RadioButtonGroupSettingsPanelDemoComponent {
   protected readonly audienceItems = [
     { id: 'team', label: 'Team', value: 'team' },
     { id: 'clients', label: 'Clients', value: 'clients' },
-    { id: 'public', label: 'Public', value: 'public' }
+    { id: 'public', label: 'Public', value: 'public' },
   ];
 
   protected readonly reviewModeItems = [
     { id: 'summary', label: 'Summary only', value: 'summary' },
     { id: 'inline', label: 'Inline comments', value: 'inline' },
-    { id: 'strict', label: 'Strict approval', value: 'strict' }
+    { id: 'strict', label: 'Strict approval', value: 'strict' },
   ];
 
   protected readonly settingsForm = new FormGroup({
     audience: new FormControl('team', { nonNullable: true }),
-    reviewMode: new FormControl('inline', { nonNullable: true })
+    reviewMode: new FormControl('inline', { nonNullable: true }),
   });
 
   protected readonly summary = computed(() => ({
     audience: this.settingsForm.controls.audience.getRawValue(),
-    reviewMode: this.settingsForm.controls.reviewMode.getRawValue()
+    reviewMode: this.settingsForm.controls.reviewMode.getRawValue(),
   }));
 }

@@ -30,7 +30,7 @@ import { EmailComponent } from 'ui';
         [(ngModel)]="recoveryValue"
       />
     </div>
-  `
+  `,
 })
 export class EmailStatesDemoComponent {
   protected readonlyValue = 'ops@contoso.com';

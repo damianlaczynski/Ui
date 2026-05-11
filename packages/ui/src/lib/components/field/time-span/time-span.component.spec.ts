@@ -8,7 +8,7 @@ describe('TimeSpanComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TimeSpanComponent]
+      imports: [TimeSpanComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TimeSpanComponent);
@@ -27,21 +27,12 @@ describe('TimeSpanComponent', () => {
       bottom: 200,
       width: 84,
       height: 200,
-      toJSON: () => ({})
+      toJSON: () => ({}),
     } as DOMRect);
 
-    Object.defineProperty(wheel, 'setPointerCapture', {
-      value: vi.fn(),
-      writable: true
-    });
-    Object.defineProperty(wheel, 'releasePointerCapture', {
-      value: vi.fn(),
-      writable: true
-    });
-    Object.defineProperty(wheel, 'hasPointerCapture', {
-      value: vi.fn(() => true),
-      writable: true
-    });
+    Object.defineProperty(wheel, 'setPointerCapture', { value: vi.fn(), writable: true });
+    Object.defineProperty(wheel, 'releasePointerCapture', { value: vi.fn(), writable: true });
+    Object.defineProperty(wheel, 'hasPointerCapture', { value: vi.fn(() => true), writable: true });
     return wheel;
   }
 
@@ -56,7 +47,7 @@ describe('TimeSpanComponent', () => {
       bottom: top + 40,
       width: 84,
       height: 40,
-      toJSON: () => ({})
+      toJSON: () => ({}),
     } as DOMRect);
     return button;
   }
@@ -84,7 +75,7 @@ describe('TimeSpanComponent', () => {
     component.updateUnit('hours', 2);
     component.onOptionClick('hours', wheel, {
       currentTarget: option,
-      clientY: 170
+      clientY: 170,
     } as unknown as MouseEvent);
 
     expect(component.getUnitValue('hours')).toBe(3);
@@ -97,7 +88,7 @@ describe('TimeSpanComponent', () => {
     component.updateUnit('hours', 2);
     component.onOptionClick('hours', wheel, {
       currentTarget: option,
-      clientY: 40
+      clientY: 40,
     } as unknown as MouseEvent);
 
     expect(component.getUnitValue('hours')).toBe(1);
@@ -126,7 +117,7 @@ describe('TimeSpanComponent', () => {
 
   it('should emit ISO value when unit changes', () => {
     const emitted: string[] = [];
-    component.valueChange.subscribe((value) => emitted.push(value));
+    component.valueChange.subscribe(value => emitted.push(value));
 
     component.updateUnit('hours', 1);
     component.updateUnit('minutes', 30);
@@ -136,10 +127,10 @@ describe('TimeSpanComponent', () => {
 
   it('should parse readable input and emit ISO value', () => {
     const emitted: string[] = [];
-    component.valueChange.subscribe((value) => emitted.push(value));
+    component.valueChange.subscribe(value => emitted.push(value));
 
     const event = {
-      target: { value: '2d 4h 15m' }
+      target: { value: '2d 4h 15m' },
     } as unknown as Event;
 
     component.onTimeSpanInputChange(event);
@@ -154,25 +145,17 @@ describe('TimeSpanComponent', () => {
 
     component.onWheelPointerDown(
       'minutes',
-      new PointerEvent('pointerdown', {
-        pointerId: 1,
-        clientY: 100,
-        pointerType: 'mouse'
-      })
+      new PointerEvent('pointerdown', { pointerId: 1, clientY: 100, pointerType: 'mouse' }),
     );
     component.onWheelPointerMove(
       'minutes',
       wheel,
-      new PointerEvent('pointermove', {
-        pointerId: 1,
-        clientY: 70,
-        pointerType: 'mouse'
-      })
+      new PointerEvent('pointermove', { pointerId: 1, clientY: 70, pointerType: 'mouse' }),
     );
     component.onWheelPointerUp(
       'minutes',
       wheel,
-      new PointerEvent('pointerup', { pointerId: 1, clientY: 70, pointerType: 'mouse' })
+      new PointerEvent('pointerup', { pointerId: 1, clientY: 70, pointerType: 'mouse' }),
     );
 
     expect(component.getUnitValue('minutes')).toBeGreaterThan(10);

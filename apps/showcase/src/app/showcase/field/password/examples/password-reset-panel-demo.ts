@@ -56,28 +56,28 @@ import { ButtonComponent, PasswordComponent } from 'ui';
         </ui-button>
       </div>
     </form>
-  `
+  `,
 })
 export class PasswordResetPanelDemoComponent {
   protected readonly defaults = {
     currentPassword: '',
     newPassword: '',
-    confirmPassword: ''
+    confirmPassword: '',
   };
 
   protected readonly resetForm = new FormGroup({
     currentPassword: new FormControl(this.defaults.currentPassword, {
       nonNullable: true,
-      validators: [Validators.required]
+      validators: [Validators.required],
     }),
     newPassword: new FormControl(this.defaults.newPassword, {
       nonNullable: true,
-      validators: [Validators.required, Validators.minLength(8)]
+      validators: [Validators.required, Validators.minLength(8)],
     }),
     confirmPassword: new FormControl(this.defaults.confirmPassword, {
       nonNullable: true,
-      validators: [Validators.required]
-    })
+      validators: [Validators.required],
+    }),
   });
 
   protected get confirmError(): string {

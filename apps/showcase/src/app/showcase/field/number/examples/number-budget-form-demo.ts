@@ -40,19 +40,18 @@ import { NumberComponent } from 'ui';
       <div
         style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;padding:0.875rem 1rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background2-rest)"
       >
-        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          Monthly total:
-          <strong>{{ total() }}</strong>
-        </span>
+        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
+          >Monthly total: <strong>{{ total() }}</strong></span
+        >
       </div>
     </div>
-  `
+  `,
 })
 export class NumberBudgetFormDemoComponent {
   protected readonly budgetForm = new FormGroup({
     seats: new FormControl(12, { nonNullable: true }),
     costPerSeat: new FormControl(24.5, { nonNullable: true }),
-    reserve: new FormControl(50, { nonNullable: true })
+    reserve: new FormControl(50, { nonNullable: true }),
   });
 
   protected readonly total = computed(() => {

@@ -13,25 +13,25 @@ import { NodeComponent, type Node } from 'ui';
       <ui-node [node]="fileNode" appearance="subtle" />
       <ui-node [node]="selectedNode" appearance="filled" variant="secondary" [showSelectionIndicator]="true" />
     </div>
-  `
+  `,
 })
 export class NodeBasicDemoComponent {
   protected readonly folderNode: Node = {
     id: 'folder',
     label: 'Design system',
-    icon: 'folder'
+    icon: 'folder',
   };
 
   protected readonly fileNode: Node = {
     id: 'file',
     label: 'Release-notes.md',
-    icon: 'document'
+    icon: 'document',
   };
 
   protected readonly selectedNode: Node = {
     id: 'selected',
     label: 'Current sprint board',
     icon: 'apps',
-    selected: true
+    selected: true,
   };
 }

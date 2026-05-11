@@ -5,8 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { of } from 'rxjs';
 import { QueryParams } from '../../../api';
 
-const flush = () => new Promise((r) => setTimeout(r, 0));
-const tick = (ms = 0) => new Promise((r) => setTimeout(r, ms));
+const flush = () => new Promise(r => setTimeout(r, 0));
+const tick = (ms = 0) => new Promise(r => setTimeout(r, ms));
 
 describe('DropdownComponent - Keyboard Navigation', () => {
   let component: DropdownComponent;
@@ -17,12 +17,12 @@ describe('DropdownComponent - Keyboard Navigation', () => {
     { value: 2, label: 'Option 2' },
     { value: 3, label: 'Option 3', disabled: true },
     { value: 4, label: 'Apple' },
-    { value: 5, label: 'Banana' }
+    { value: 5, label: 'Banana' },
   ];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DropdownComponent, NoopAnimationsModule, FormsModule]
+      imports: [DropdownComponent, NoopAnimationsModule, FormsModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DropdownComponent);
@@ -121,7 +121,7 @@ describe('DropdownComponent - Keyboard Navigation', () => {
       const items = component.selectableItems();
 
       // Verify disabled item (value 3) is not in selectable items
-      expect(items.find((item) => item.value === 3)).toBeUndefined();
+      expect(items.find(item => item.value === 3)).toBeUndefined();
       expect(items.length).toBe(4); // 5 total - 1 disabled
 
       // Navigate through all items - should never land on disabled
@@ -129,7 +129,7 @@ describe('DropdownComponent - Keyboard Navigation', () => {
         component.onKeyDown(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
         fixture.detectChanges();
 
-        const activeItem = items.find((item) => component.getItemId(item) === component.activeDescendant());
+        const activeItem = items.find(item => component.getItemId(item) === component.activeDescendant());
         expect(activeItem?.disabled).toBeFalsy();
       }
     });
@@ -180,7 +180,7 @@ describe('DropdownComponent - Keyboard Navigation', () => {
       // Create more items for paging
       const manyItems: DropdownItem[] = Array.from({ length: 30 }, (_, i) => ({
         value: i + 1,
-        label: `Item ${i + 1}`
+        label: `Item ${i + 1}`,
       }));
 
       fixture.componentRef.setInput('items', manyItems);
@@ -208,7 +208,7 @@ describe('DropdownComponent - Keyboard Navigation', () => {
     it('should navigate by page with PageUp', async () => {
       const manyItems: DropdownItem[] = Array.from({ length: 30 }, (_, i) => ({
         value: i + 1,
-        label: `Item ${i + 1}`
+        label: `Item ${i + 1}`,
       }));
 
       fixture.componentRef.setInput('items', manyItems);
@@ -318,7 +318,7 @@ describe('DropdownComponent - Keyboard Navigation', () => {
       await tick(100);
       fixture.detectChanges();
 
-      const appleItem = items.find((item) => item.label === 'Apple');
+      const appleItem = items.find(item => item.label === 'Apple');
       expect(component.activeDescendant()).toBe(component.getItemId(appleItem!));
     });
 
@@ -335,7 +335,7 @@ describe('DropdownComponent - Keyboard Navigation', () => {
       await tick(100);
       fixture.detectChanges();
 
-      const bananaItem = items.find((item) => item.label === 'Banana');
+      const bananaItem = items.find(item => item.label === 'Banana');
       expect(component.activeDescendant()).toBe(component.getItemId(bananaItem!));
 
       await tick(1000); // Clear typeahead
@@ -352,7 +352,7 @@ describe('DropdownComponent - Keyboard Navigation', () => {
       await tick(100);
       fixture.detectChanges();
 
-      const bananaItem = items.find((item) => item.label === 'Banana');
+      const bananaItem = items.find(item => item.label === 'Banana');
       expect(component.activeDescendant()).toBe(component.getItemId(bananaItem!));
 
       // Wait for timeout
@@ -363,7 +363,7 @@ describe('DropdownComponent - Keyboard Navigation', () => {
       await tick(100);
       fixture.detectChanges();
 
-      const appleItem = items.find((item) => item.label === 'Apple');
+      const appleItem = items.find(item => item.label === 'Apple');
       expect(component.activeDescendant()).toBe(component.getItemId(appleItem!));
 
       await tick(1000);
@@ -380,7 +380,7 @@ describe('DropdownComponent - Keyboard Navigation', () => {
       await tick(100);
       fixture.detectChanges();
 
-      const option1 = items.find((item) => item.label === 'Option 1');
+      const option1 = items.find(item => item.label === 'Option 1');
       expect(component.activeDescendant()).toBe(component.getItemId(option1!));
 
       await tick(1100); // Reset typeahead
@@ -390,7 +390,7 @@ describe('DropdownComponent - Keyboard Navigation', () => {
       await tick(100);
       fixture.detectChanges();
 
-      const option2 = items.find((item) => item.label === 'Option 2');
+      const option2 = items.find(item => item.label === 'Option 2');
       expect(component.activeDescendant()).toBe(component.getItemId(option2!));
 
       await tick(1000);
@@ -401,7 +401,7 @@ describe('DropdownComponent - Keyboard Navigation', () => {
     it('should navigate through items when dataSource is configured', async () => {
       const mockItems: DropdownItem[] = Array.from({ length: 10 }, (_, i) => ({
         value: i + 1,
-        label: `Dynamic Item ${i + 1}`
+        label: `Dynamic Item ${i + 1}`,
       }));
 
       const mockDataSource = (params: QueryParams<any>) => {
@@ -409,7 +409,7 @@ describe('DropdownComponent - Keyboard Navigation', () => {
           items: mockItems,
           hasNextPage: false,
           hasPreviousPage: false,
-          totalCount: mockItems.length
+          totalCount: mockItems.length,
         });
       };
 
@@ -437,8 +437,8 @@ describe('DropdownComponent - Keyboard Navigation', () => {
           items: [],
           hasNextPage: false,
           hasPreviousPage: false,
-          totalCount: 0
-        })
+          totalCount: 0,
+        }),
       );
       fixture.detectChanges();
 

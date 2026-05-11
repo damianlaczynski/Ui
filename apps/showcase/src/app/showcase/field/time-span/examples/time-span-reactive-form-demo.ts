@@ -40,19 +40,19 @@ import { ButtonComponent, MessageBarComponent, TimeSpanComponent } from 'ui';
       <div
         style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
       >
-        <ui-button type="button" variant="primary" [disabled]="timeSpanControl.invalid">Save policy</ui-button>
+        <ui-button type="button" variant="primary" [disabled]="timeSpanControl.invalid"> Save policy </ui-button>
         <ui-button type="button" appearance="subtle" (click)="reset()">Reset</ui-button>
         <span style="font-size:0.75rem;color:var(--color-neutral-foreground2-rest)">
           {{ summary() }}
         </span>
       </div>
     </div>
-  `
+  `,
 })
 export class TimeSpanReactiveFormDemoComponent {
   protected readonly timeSpanControl = new FormControl<string | null>('P7DT12H', {
     nonNullable: false,
-    validators: [Validators.required]
+    validators: [Validators.required],
   });
 
   protected readonly summary = computed(() => this.timeSpanControl.value || 'No duration selected.');

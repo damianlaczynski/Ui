@@ -11,7 +11,7 @@ import {
   ChangeDetectionStrategy,
   effect,
   AfterViewInit,
-  forwardRef
+  forwardRef,
 } from '@angular/core';
 
 import { A11yModule } from '@angular/cdk/a11y';
@@ -52,14 +52,14 @@ import { Variant, Size, Appearance } from '../../utils';
           }
         }
       }
-    `
+    `,
   ],
   host: {
     '[style.max-height]': 'maxHeight()',
     '[style.overflow-y]': 'maxHeight() !== "auto" ? "auto" : "visible"',
-    '[style.overflow-x]': 'maxHeight() !== "auto" ? "hidden" : "visible"'
+    '[style.overflow-x]': 'maxHeight() !== "auto" ? "hidden" : "visible"',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MenuListComponent implements AfterViewInit {
   @ViewChildren(MenuComponent) menuComponents!: QueryList<MenuComponent>;

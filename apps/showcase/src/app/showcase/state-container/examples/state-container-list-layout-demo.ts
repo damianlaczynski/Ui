@@ -38,17 +38,17 @@ interface ActivityItem {
         </ui-state-container>
       </div>
     </div>
-  `
+  `,
 })
 export class StateContainerListLayoutDemoComponent {
   protected readonly state: State<ActivityItem[]> = errorState<ActivityItem[]>(
-    'The activity feed could not be refreshed.'
+    'The activity feed could not be refreshed.',
   );
 
   protected readonly retryAction = {
     label: 'Retry',
     variant: 'primary' as const,
     icon: 'arrow_sync' as const,
-    action: () => {}
+    action: () => {},
   };
 }

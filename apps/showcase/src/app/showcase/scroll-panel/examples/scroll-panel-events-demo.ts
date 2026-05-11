@@ -11,14 +11,12 @@ import { ButtonComponent, ScrollPanelComponent } from 'ui';
         style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background2-rest)"
       >
         <ui-button variant="secondary" appearance="outline" (click)="reset()">Reset counters</ui-button>
-        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          Top:
-          <strong>{{ scrollTop() }}px</strong>
-        </span>
-        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          Ended:
-          <strong>{{ scrollEndCount() }}</strong>
-        </span>
+        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
+          >Top: <strong>{{ scrollTop() }}px</strong></span
+        >
+        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
+          >Ended: <strong>{{ scrollEndCount() }}</strong></span
+        >
       </div>
 
       <div
@@ -45,7 +43,7 @@ import { ButtonComponent, ScrollPanelComponent } from 'ui';
         </ui-scroll-panel>
       </div>
     </div>
-  `
+  `,
 })
 export class ScrollPanelEventsDemoComponent {
   protected readonly scrollTop = signal(0);
@@ -54,7 +52,7 @@ export class ScrollPanelEventsDemoComponent {
   protected readonly items = Array.from({ length: 16 }, (_, index) => ({
     id: index + 1,
     title: `Event row ${index + 1}`,
-    body: 'Listening to scroll and scrollEnd is useful for analytics, sticky shell logic, or lazy UI reactions.'
+    body: 'Listening to scroll and scrollEnd is useful for analytics, sticky shell logic, or lazy UI reactions.',
   }));
 
   protected onScroll(event: Event): void {
@@ -63,7 +61,7 @@ export class ScrollPanelEventsDemoComponent {
   }
 
   protected onScrollEnd(): void {
-    this.scrollEndCount.update((count) => count + 1);
+    this.scrollEndCount.update(count => count + 1);
   }
 
   protected reset(): void {

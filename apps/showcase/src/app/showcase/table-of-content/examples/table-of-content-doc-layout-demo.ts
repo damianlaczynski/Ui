@@ -39,6 +39,6 @@ import { DividerComponent, MessageBarComponent, TableOfContentComponent } from '
         <p style="margin:0">Reference-heavy pages benefit from a stable, always-visible contents rail.</p>
       </div>
     </div>
-  `
+  `,
 })
 export class TableOfContentDocLayoutDemoComponent {}

@@ -8,7 +8,7 @@ import {
   OnDestroy,
   afterNextRender,
   computed,
-  DOCUMENT
+  DOCUMENT,
 } from '@angular/core';
 
 import { TreeNodeComponent, TreeNode } from '../tree-node/tree-node.component';
@@ -26,7 +26,7 @@ export interface TocItem {
 @Component({
   selector: 'ui-table-of-content',
   imports: [TreeNodeComponent],
-  templateUrl: './table-of-content.component.html'
+  templateUrl: './table-of-content.component.html',
 })
 export class TableOfContentComponent implements OnDestroy {
   //Services
@@ -101,7 +101,7 @@ export class TableOfContentComponent implements OnDestroy {
   private findHeadings(container: Element): HTMLElement[] {
     const ignoreWithinSelector = this.ignoreWithinSelector().trim();
 
-    return Array.from(container.querySelectorAll<HTMLElement>(this.headingSelector())).filter((heading) => {
+    return Array.from(container.querySelectorAll<HTMLElement>(this.headingSelector())).filter(heading => {
       if (ignoreWithinSelector && heading.closest(ignoreWithinSelector)) {
         return false;
       }
@@ -154,13 +154,13 @@ export class TableOfContentComponent implements OnDestroy {
     const result: TocItem[] = [];
     const stack: TocItem[] = [];
 
-    headings.forEach((heading) => {
+    headings.forEach(heading => {
       const level = parseInt(heading.tagName.charAt(1));
       const item: TocItem = {
         id: heading.id,
         label: heading.textContent?.trim() || '',
         level,
-        element: heading
+        element: heading,
       };
 
       while (stack.length > 0 && stack[stack.length - 1].level >= level) {
@@ -190,7 +190,7 @@ export class TableOfContentComponent implements OnDestroy {
     const options: IntersectionObserverInit = {
       root: null,
       rootMargin: `-${threshold}px 0px -80% 0px`,
-      threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+      threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
     };
 
     this.scrollObserver = new IntersectionObserver(() => {
@@ -200,7 +200,7 @@ export class TableOfContentComponent implements OnDestroy {
       this.updateActiveHeading(threshold);
     }, options);
 
-    headings.forEach((heading) => {
+    headings.forEach(heading => {
       this.scrollObserver?.observe(heading);
     });
 
@@ -226,8 +226,8 @@ export class TableOfContentComponent implements OnDestroy {
 
   private updateActiveHeading(threshold: number): void {
     const allHeadings = this.items()
-      .flatMap((item) => this.getAllHeadings(item))
-      .map((tocItem) => tocItem.element);
+      .flatMap(item => this.getAllHeadings(item))
+      .map(tocItem => tocItem.element);
 
     if (allHeadings.length === 0) {
       return;
@@ -245,7 +245,7 @@ export class TableOfContentComponent implements OnDestroy {
     }
 
     // Znajdź wszystkie nagłówki z ich pozycjami
-    const headingPositions = headings.map((heading) => {
+    const headingPositions = headings.map(heading => {
       const rect = heading.getBoundingClientRect();
       const top = rect.top;
       const bottom = rect.bottom;
@@ -259,18 +259,18 @@ export class TableOfContentComponent implements OnDestroy {
         bottom,
         isVisible,
         isAboveThreshold,
-        distanceFromThreshold
+        distanceFromThreshold,
       };
     });
 
     // Filtruj nagłówki, które są powyżej progu lub bardzo blisko niego
     const candidates = headingPositions.filter(
-      (h) => h.isAboveThreshold || (h.isVisible && h.distanceFromThreshold < 200)
+      h => h.isAboveThreshold || (h.isVisible && h.distanceFromThreshold < 200),
     );
 
     if (candidates.length === 0) {
       // Jeśli nie ma kandydatów, wybierz ostatni nagłówek, który przeszedł przez próg
-      const pastHeadings = headingPositions.filter((h) => h.top < threshold);
+      const pastHeadings = headingPositions.filter(h => h.top < threshold);
       if (pastHeadings.length > 0) {
         return pastHeadings.sort((a, b) => b.top - a.top)[0].element;
       }
@@ -354,7 +354,7 @@ export class TableOfContentComponent implements OnDestroy {
     // Scroll do elementu
     element.scrollIntoView({
       behavior: 'smooth',
-      block: 'start'
+      block: 'start',
     });
 
     // Odblokuj automatyczne wykrywanie po zakończeniu scrollowania
@@ -375,7 +375,7 @@ export class TableOfContentComponent implements OnDestroy {
   private getAllHeadings(item: TocItem): TocItem[] {
     const result: TocItem[] = [item];
     if (item.children) {
-      item.children.forEach((child) => {
+      item.children.forEach(child => {
         result.push(...this.getAllHeadings(child));
       });
     }
@@ -385,7 +385,7 @@ export class TableOfContentComponent implements OnDestroy {
   private isItemOrChildActive(item: TocItem, activeId: string | null): boolean {
     if (!activeId) return false;
     if (item.id === activeId) return true;
-    return item.children?.some((child) => this.isItemOrChildActive(child, activeId)) || false;
+    return item.children?.some(child => this.isItemOrChildActive(child, activeId)) || false;
   }
 
   convertToTreeNode(item: TocItem, parentPath: string = ''): TreeNode {
@@ -400,12 +400,12 @@ export class TableOfContentComponent implements OnDestroy {
       onClick: () => this.onItemClick(item),
       hasChildren,
       expanded: hasChildren,
-      children: item.children?.map((child) => this.convertToTreeNode(child, fullPath)),
-      data: item
+      children: item.children?.map(child => this.convertToTreeNode(child, fullPath)),
+      data: item,
     };
   }
 
-  treeNodes = computed<TreeNode[]>(() => this.items().map((item) => this.convertToTreeNode(item)));
+  treeNodes = computed<TreeNode[]>(() => this.items().map(item => this.convertToTreeNode(item)));
 
   navigationAriaLabel = computed(() => this.i18n.t('tableOfContent.navAriaLabel', 'Table of contents'));
 }

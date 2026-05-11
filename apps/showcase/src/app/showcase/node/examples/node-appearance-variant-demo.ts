@@ -26,36 +26,36 @@ import { NodeComponent, type Node } from 'ui';
         <ui-node [node]="dangerNode" variant="danger" appearance="filled" />
       </div>
     </div>
-  `
+  `,
 })
 export class NodeAppearanceVariantDemoComponent {
   protected readonly primaryNode: Node = {
     id: 'recent',
     label: 'Recent files',
-    icon: 'clock'
+    icon: 'clock',
   };
 
   protected readonly secondaryNode: Node = {
     id: 'shared',
     label: 'Shared with team',
-    icon: 'people'
+    icon: 'people',
   };
 
   protected readonly successNode: Node = {
     id: 'synced',
     label: 'Marketing assets synced',
-    icon: 'checkmark_circle'
+    icon: 'checkmark_circle',
   };
 
   protected readonly warningNode: Node = {
     id: 'review',
     label: 'Copy review pending',
-    icon: 'warning'
+    icon: 'warning',
   };
 
   protected readonly dangerNode: Node = {
     id: 'failed',
     label: 'Build failed on production',
-    icon: 'error_circle'
+    icon: 'error_circle',
   };
 }

@@ -366,22 +366,22 @@ $node-sizes: (
     padding: $spacing-1 $spacing-2,
     font-size: $font-size-200,
     indicator-height: 16px,
-    selector-height: 2px
+    selector-height: 2px,
   ),
   'medium': (
     min-height: 32px,
     padding: $spacing-2 $spacing-3,
     font-size: $font-size-300,
     indicator-height: 20px,
-    selector-height: 3px
+    selector-height: 3px,
   ),
   'large': (
     min-height: 40px,
     padding: $spacing-2 $spacing-3,
     font-size: $font-size-400,
     indicator-height: 24px,
-    selector-height: 4px
-  )
+    selector-height: 4px,
+  ),
 );
 
 @each $size, $props in $node-sizes {
@@ -626,7 +626,7 @@ $color-variants: (
   'success': 'green',
   'warning': 'orange',
   'danger': 'red',
-  'info': 'blue'
+  'info': 'blue',
 );
 
 @each $variant, $color in $color-variants {

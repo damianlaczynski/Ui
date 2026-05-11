@@ -41,7 +41,7 @@ import { DatetimeComponent } from 'ui';
         [ngModelOptions]="{ standalone: true }"
       />
     </div>
-  `
+  `,
 })
 export class DatetimeStatesDemoComponent {
   protected smallValue = '2026-05-12T09:00';

@@ -50,7 +50,7 @@ import { SwitchComponent } from 'ui';
         />
       </div>
     </div>
-  `
+  `,
 })
 export class SwitchLabelPositionsExampleComponent {
   protected afterValue = true;

@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig
+  ShowcaseDocPageConfig,
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { MessageBarActionsExampleComponent } from './examples/message-bar-actions-demo';
 import { MessageBarAppearanceExampleComponent } from './examples/message-bar-appearance-demo';
@@ -19,7 +19,7 @@ const componentMap = {
   appearance: MessageBarAppearanceExampleComponent,
   layout: MessageBarLayoutExampleComponent,
   actions: MessageBarActionsExampleComponent,
-  richContent: MessageBarRichContentExampleComponent
+  richContent: MessageBarRichContentExampleComponent,
 } as const;
 
 export const MESSAGE_BAR_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -27,9 +27,9 @@ export const MESSAGE_BAR_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(messageBarMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${messageBarMeta.slug}/${file}`
-    ])
-  ) as Record<string, string>)
+      `/docs/components/snippets/${messageBarMeta.slug}/${file}`,
+    ]),
+  ) as Record<string, string>),
 };
 
 export const MESSAGE_BAR_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -38,12 +38,12 @@ export const MESSAGE_BAR_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: messageBarMeta.importCode,
   containerClass: messageBarMeta.containerClass,
   accessibility: messageBarMeta.accessibility,
-  featureSections: messageBarMeta.featureSections.map((section) => ({
+  featureSections: messageBarMeta.featureSections.map(section => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap]
+    component: componentMap[section.componentKey as keyof typeof componentMap],
   })),
-  apiSections: messageBarMeta.apiSections
+  apiSections: messageBarMeta.apiSections,
 };

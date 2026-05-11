@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig
+  ShowcaseDocPageConfig,
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { FileBasicDemoComponent } from './examples/file-basic-demo';
 import { FileFiltersLimitsDemoComponent } from './examples/file-filters-limits-demo';
@@ -21,14 +21,14 @@ const componentMap = {
   multiple: FileMultipleDemoComponent,
   statesValidation: FileStatesValidationDemoComponent,
   form: FileFormDemoComponent,
-  requestPanel: FileRequestPanelDemoComponent
+  requestPanel: FileRequestPanelDemoComponent,
 } as const;
 
 export const FILE_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   markdown: `/docs/components/${fileMeta.slug}.md`,
   ...(Object.fromEntries(
-    Object.entries(fileMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${fileMeta.slug}/${file}`])
-  ) as Record<string, string>)
+    Object.entries(fileMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${fileMeta.slug}/${file}`]),
+  ) as Record<string, string>),
 };
 
 export const FILE_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -37,12 +37,12 @@ export const FILE_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: fileMeta.importCode,
   containerClass: fileMeta.containerClass,
   accessibility: fileMeta.accessibility,
-  featureSections: fileMeta.featureSections.map((section) => ({
+  featureSections: fileMeta.featureSections.map(section => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap]
+    component: componentMap[section.componentKey as keyof typeof componentMap],
   })),
-  apiSections: fileMeta.apiSections
+  apiSections: fileMeta.apiSections,
 };

@@ -34,14 +34,14 @@ import { ButtonComponent, TreeComponent, type TreeNode } from 'ui';
           </div>
         </div>
 
-        <ui-button variant="secondary" appearance="outline" size="small" (click)="resetTree()">Reset tree</ui-button>
+        <ui-button variant="secondary" appearance="outline" size="small" (click)="resetTree()"> Reset tree </ui-button>
 
         <div style="font-size:0.875rem;line-height:1.5;color:var(--color-neutral-foreground-rest)">
           {{ lastAction() || 'No move yet.' }}
         </div>
       </div>
     </div>
-  `
+  `,
 })
 export class TreeDragDropDemoComponent {
   protected readonly nodes = signal<TreeNode[]>(this.createTree());
@@ -66,8 +66,8 @@ export class TreeDragDropDemoComponent {
         expanded: true,
         children: [
           { id: 'brief', label: 'Brief.pdf', icon: 'document' },
-          { id: 'todo', label: 'Todo.md', icon: 'document' }
-        ]
+          { id: 'todo', label: 'Todo.md', icon: 'document' },
+        ],
       },
       {
         id: 'assets',
@@ -75,9 +75,9 @@ export class TreeDragDropDemoComponent {
         icon: 'image',
         hasChildren: true,
         expanded: true,
-        children: [{ id: 'logo', label: 'Logo.svg', icon: 'image' }]
+        children: [{ id: 'logo', label: 'Logo.svg', icon: 'image' }],
       },
-      { id: 'done', label: 'Done', icon: 'checkmark' }
+      { id: 'done', label: 'Done', icon: 'checkmark' },
     ];
   }
 }

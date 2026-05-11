@@ -12,7 +12,7 @@ describe('MessageBarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MessageBarComponent]
+      imports: [MessageBarComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(MessageBarComponent);
@@ -73,7 +73,7 @@ describe('MessageBarComponent', () => {
       { variant: 'danger', expected: 'error_circle' },
       { variant: 'info', expected: 'info' },
       { variant: 'primary', expected: 'info' },
-      { variant: 'secondary', expected: 'info' }
+      { variant: 'secondary', expected: 'info' },
     ];
 
     map.forEach(({ variant, expected }) => {
@@ -109,7 +109,7 @@ describe('MessageBarComponent', () => {
   it('should render actions and pass fallback button props', () => {
     const action: QuickAction = {
       label: 'Retry',
-      action: vi.fn()
+      action: vi.fn(),
     };
 
     fixture.componentRef.setInput('size', 'large');
@@ -128,7 +128,7 @@ describe('MessageBarComponent', () => {
     const actionFn = vi.fn();
     const action: QuickAction = {
       label: 'Retry',
-      action: actionFn
+      action: actionFn,
     };
     const selectSpy = vi.fn();
     component.actionSelect.subscribe(selectSpy);
@@ -144,7 +144,7 @@ describe('MessageBarComponent', () => {
     const action: QuickAction = {
       label: 'Retry',
       action: actionFn,
-      disabled: true
+      disabled: true,
     };
     const selectSpy = vi.fn();
     component.actionSelect.subscribe(selectSpy);

@@ -20,14 +20,14 @@ import { ButtonComponent, MenuComponent, MenuItem } from 'ui';
             (primaryClick)="copyMarkdown()"
           />
         } @else {
-          <ui-button icon="copy" variant="secondary" appearance="outline" (click)="copyMarkdown()">
-            Copy Markdown
-          </ui-button>
+          <ui-button icon="copy" variant="secondary" appearance="outline" (click)="copyMarkdown()"
+            >Copy Markdown</ui-button
+          >
         }
       </div>
       <p class="showcase-doc__description">{{ description() }}</p>
     </header>
-  `
+  `,
 })
 export class ShowcaseDocHeaderComponent {
   title = input.required<string>();
@@ -42,8 +42,8 @@ export class ShowcaseDocHeaderComponent {
         id: 'copy-markdown-static-link',
         label: 'Copy Markdown link to static file',
         icon: 'link',
-        action: () => void this.copyMarkdownLinkToStaticFile()
-      }
+        action: () => void this.copyMarkdownLinkToStaticFile(),
+      },
     ];
   });
 

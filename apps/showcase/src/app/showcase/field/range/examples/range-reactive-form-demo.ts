@@ -4,7 +4,7 @@ import { JsonPipe } from '@angular/common';
 import { RangeComponent, NumericRange } from 'ui';
 
 function minimumGapValidator(gap: number): ValidatorFn {
-  return (control) => {
+  return control => {
     const value = control.value as NumericRange | null;
     if (!value) {
       return null;
@@ -38,7 +38,7 @@ function minimumGapValidator(gap: number): ValidatorFn {
         <div>{{ form.value | json }}</div>
       </div>
     </div>
-  `
+  `,
 })
 export class RangeReactiveFormDemoComponent {
   private readonly fb = inject(FormBuilder);
@@ -46,8 +46,8 @@ export class RangeReactiveFormDemoComponent {
   protected readonly form = this.fb.group({
     budget: this.fb.nonNullable.control<NumericRange>({ min: 2000, max: 6000 }, [
       Validators.required,
-      minimumGapValidator(1000)
-    ])
+      minimumGapValidator(1000),
+    ]),
   });
 
   protected readonly formatCurrency = (value: number) => `$${value.toLocaleString()}`;

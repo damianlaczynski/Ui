@@ -32,12 +32,12 @@ interface Metric {
         </ng-template>
       </ui-state-container>
     </div>
-  `
+  `,
 })
 export class StateContainerDataTemplateDemoComponent {
   protected readonly state: State<Metric[]> = loadedState<Metric[]>([
     { id: 1, label: 'Open tasks', value: '24' },
     { id: 2, label: 'Blocked items', value: '3' },
-    { id: 3, label: 'Approvals', value: '7' }
+    { id: 3, label: 'Approvals', value: '7' },
   ]);
 }

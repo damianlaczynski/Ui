@@ -6,7 +6,7 @@ import {
   contentChild,
   model,
   signal,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TreeNodeComponent } from '../tree-node/tree-node.component';
@@ -22,8 +22,8 @@ import { IconName } from '../icon';
   host: {
     '[style.display]': '"block"',
     '[style.width]': '"100%"',
-    '[style.minWidth]': '"0"'
-  }
+    '[style.minWidth]': '"0"',
+  },
 })
 export class TreeComponent {
   // Inputs - Tree Data
@@ -146,7 +146,7 @@ export class TreeComponent {
       this.nodeMoved.emit({
         node: draggedNode,
         target: targetNode,
-        position: event.position
+        position: event.position,
       });
     } catch (error) {
       console.error('Error handling drop:', error);
@@ -162,7 +162,7 @@ export class TreeComponent {
     event.event.stopPropagation();
     event.event.dataTransfer!.dropEffect = 'move';
 
-    const isRoot = this.nodes().some((n) => n.id === event.node.id);
+    const isRoot = this.nodes().some(n => n.id === event.node.id);
 
     if (event.position === 'inside') {
       this.dragOverNodeId.set(null);
@@ -230,8 +230,8 @@ export class TreeComponent {
     // Don't render drop indicator before/after if the target is next to the dragged node
     if (draggedId !== null) {
       const nodes = this.nodes();
-      const draggedIndex = nodes.findIndex((n) => n.id === draggedId);
-      const targetIndex = nodes.findIndex((n) => n.id === nodeId);
+      const draggedIndex = nodes.findIndex(n => n.id === draggedId);
+      const targetIndex = nodes.findIndex(n => n.id === nodeId);
 
       if (draggedIndex !== -1 && targetIndex !== -1) {
         // Hide "after" indicator on node before dragged node
@@ -275,14 +275,14 @@ export class TreeComponent {
     if (!ancestor.children) {
       return false;
     }
-    if (ancestor.children.some((child) => child.id === descendant.id)) {
+    if (ancestor.children.some(child => child.id === descendant.id)) {
       return true;
     }
-    return ancestor.children.some((child) => this.isDescendant(child, descendant));
+    return ancestor.children.some(child => this.isDescendant(child, descendant));
   }
 
   private removeNode(nodes: TreeNode[], id: string | number): boolean {
-    const index = nodes.findIndex((node) => node.id === id);
+    const index = nodes.findIndex(node => node.id === id);
     if (index !== -1) {
       nodes.splice(index, 1);
       return true;
@@ -299,7 +299,7 @@ export class TreeComponent {
     nodes: TreeNode[],
     nodeToInsert: TreeNode,
     targetNode: TreeNode,
-    position: 'before' | 'after' | 'inside'
+    position: 'before' | 'after' | 'inside',
   ): void {
     if (position === 'inside') {
       // Insert as child of target node
@@ -313,7 +313,7 @@ export class TreeComponent {
       targetNode.expanded = true;
     } else {
       // Insert before or after target node
-      const targetIndex = nodes.findIndex((node) => node.id === targetNode.id);
+      const targetIndex = nodes.findIndex(node => node.id === targetNode.id);
       if (targetIndex !== -1) {
         const insertIndex = position === 'before' ? targetIndex : targetIndex + 1;
         nodes.splice(insertIndex, 0, nodeToInsert);
@@ -333,9 +333,9 @@ export class TreeComponent {
     children: TreeNode[],
     nodeToInsert: TreeNode,
     targetNode: TreeNode,
-    position: 'before' | 'after' | 'inside'
+    position: 'before' | 'after' | 'inside',
   ): boolean {
-    const targetIndex = children.findIndex((node) => node.id === targetNode.id);
+    const targetIndex = children.findIndex(node => node.id === targetNode.id);
     if (targetIndex !== -1) {
       if (position === 'inside') {
         if (!targetNode.children) {
@@ -361,7 +361,7 @@ export class TreeComponent {
   }
 
   private updateTreeStructure(nodes: TreeNode[], parent: TreeNode | null = null, level: number = 0): void {
-    nodes.forEach((node) => {
+    nodes.forEach(node => {
       node.parent = parent || undefined;
       node.level = level;
       if (node.children && node.children.length > 0) {
@@ -374,7 +374,7 @@ export class TreeComponent {
   }
 
   private clearSelection(nodes: TreeNode[]): void {
-    nodes.forEach((node) => {
+    nodes.forEach(node => {
       node.selected = false;
       if (node.children && node.children.length > 0) {
         this.clearSelection(node.children);

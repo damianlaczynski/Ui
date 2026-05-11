@@ -24,7 +24,7 @@ import { ButtonComponent, DatetimeComponent } from 'ui';
         </span>
       </div>
     </div>
-  `
+  `,
 })
 export class DatetimeBasicDemoComponent {
   protected value = '2026-05-12T09:30';

@@ -11,6 +11,6 @@ import { ButtonComponent } from 'ui';
       <ui-button variant="primary" shape="square">Square</ui-button>
       <ui-button variant="primary" shape="circular" icon="heart" ariaLabel="Like" />
     </div>
-  `
+  `,
 })
 export class ButtonShapesExampleComponent {}

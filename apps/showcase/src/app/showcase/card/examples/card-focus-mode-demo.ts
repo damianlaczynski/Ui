@@ -18,9 +18,9 @@ import { ButtonComponent, CardComponent } from 'ui';
         <ui-card [interactive]="true" focusMode="off" ariaLabel="Card with focus mode off">
           <div uiCardHeader style="display:grid;gap:0.25rem;">
             <strong style="font-size:0.9375rem;">focusMode="off"</strong>
-            <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);">
-              Card acts as a surface; inner buttons use normal tab order
-            </span>
+            <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);"
+              >Card acts as a surface; inner buttons use normal tab order</span
+            >
           </div>
           <div uiCardFooter style="display:flex;gap:0.5rem;flex-wrap:wrap;">
             <ui-button variant="primary" appearance="outline">Open</ui-button>
@@ -31,9 +31,9 @@ import { ButtonComponent, CardComponent } from 'ui';
         <ui-card [interactive]="true" focusMode="tab-only" ariaLabel="Card with focus mode tab only">
           <div uiCardHeader style="display:grid;gap:0.25rem;">
             <strong style="font-size:0.9375rem;">focusMode="tab-only"</strong>
-            <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);">
-              Tab from the card root moves directly into the first embedded control
-            </span>
+            <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);"
+              >Tab from the card root moves directly into the first embedded control</span
+            >
           </div>
           <div uiCardFooter style="display:flex;gap:0.5rem;flex-wrap:wrap;">
             <ui-button variant="primary" appearance="outline">Inspect</ui-button>
@@ -44,9 +44,9 @@ import { ButtonComponent, CardComponent } from 'ui';
         <ui-card [interactive]="true" focusMode="no-tab" ariaLabel="Card with focus mode no tab">
           <div uiCardHeader style="display:grid;gap:0.25rem;">
             <strong style="font-size:0.9375rem;">focusMode="no-tab"</strong>
-            <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);">
-              Tab loops inside the card actions until Escape returns focus to the root
-            </span>
+            <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);"
+              >Tab loops inside the card actions until Escape returns focus to the root</span
+            >
           </div>
           <div uiCardFooter style="display:flex;gap:0.5rem;flex-wrap:wrap;">
             <ui-button variant="primary" appearance="outline">Review</ui-button>
@@ -57,9 +57,9 @@ import { ButtonComponent, CardComponent } from 'ui';
         <ui-card [interactive]="true" focusMode="tab-exit" ariaLabel="Card with focus mode tab exit">
           <div uiCardHeader style="display:grid;gap:0.25rem;">
             <strong style="font-size:0.9375rem;">focusMode="tab-exit"</strong>
-            <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);">
-              Tab can leave the card after the last action; Shift+Tab returns to the root
-            </span>
+            <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);"
+              >Tab can leave the card after the last action; Shift+Tab returns to the root</span
+            >
           </div>
           <div uiCardFooter style="display:flex;gap:0.5rem;flex-wrap:wrap;">
             <ui-button variant="primary" appearance="outline">Resolve</ui-button>
@@ -68,6 +68,6 @@ import { ButtonComponent, CardComponent } from 'ui';
         </ui-card>
       </div>
     </div>
-  `
+  `,
 })
 export class CardFocusModeDemoComponent {}

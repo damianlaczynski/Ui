@@ -9,7 +9,7 @@ import { Step, StepperComponent } from 'ui';
     <div style="width:100%;max-width:52rem">
       <ui-stepper [steps]="steps" [activeStepIndex]="1" [clickable]="false" />
     </div>
-  `
+  `,
 })
 export class StepperStepStatesExampleComponent {
   protected readonly steps: Step[] = [
@@ -17,6 +17,6 @@ export class StepperStepStatesExampleComponent {
     { id: 2, label: 'Active', completed: false },
     { id: 3, label: 'Blocked', error: true, completed: false },
     { id: 4, label: 'Review', warning: true, completed: false },
-    { id: 5, label: 'Later', disabled: true, completed: false }
+    { id: 5, label: 'Later', disabled: true, completed: false },
   ];
 }

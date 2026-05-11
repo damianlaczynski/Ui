@@ -38,6 +38,6 @@ import { TableOfContentComponent } from 'ui';
         <p style="margin:0">A good TOC reduces scanning cost without overwhelming the page.</p>
       </div>
     </div>
-  `
+  `,
 })
 export class TableOfContentStickyDemoComponent {}

@@ -5,7 +5,7 @@ const ITEMS: Breadcrumb[] = [
   { id: 'home', label: 'Home', icon: 'home' },
   { id: 'design-system', label: 'Design system', icon: 'grid' },
   { id: 'navigation', label: 'Navigation', icon: 'navigation' },
-  { id: 'breadcrumb', label: 'Breadcrumb', icon: 'chevron_right', selected: true }
+  { id: 'breadcrumb', label: 'Breadcrumb', icon: 'chevron_right', selected: true },
 ];
 
 @Component({
@@ -41,7 +41,7 @@ const ITEMS: Breadcrumb[] = [
         [responsiveOverflow]="false"
       />
     </div>
-  `
+  `,
 })
 export class BreadcrumbStylesExampleComponent {
   protected readonly items = ITEMS;

@@ -78,14 +78,11 @@
   <div class="date-panel" [attr.data-size]="size()" cdkTrapFocus>
     <div class="date-calendar">
       <div class="date-calendar__header">
-        <ui-button
-          [size]="size()"
-          appearance="outline"
-          icon="chevron_left"
-          (click)="onCalendarPreviousYear()"
-        ></ui-button>
+        <ui-button [size]="size()" appearance="outline" icon="chevron_left" (click)="onCalendarPreviousYear()">
+        </ui-button>
         <span class="date-calendar__title">{{ currentMonth().getFullYear() }}</span>
-        <ui-button [size]="size()" appearance="outline" icon="chevron_right" (click)="onCalendarNextYear()"></ui-button>
+        <ui-button [size]="size()" appearance="outline" icon="chevron_right" (click)="onCalendarNextYear()">
+        </ui-button>
       </div>
 
       <div class="date-calendar__weeks">
@@ -101,8 +98,7 @@
             <div class="date-calendar__week">
               <div class="date-calendar__week-number">Week {{ week.weekNumber }}</div>
               <div class="date-calendar__week-range">
-                {{ week.startDate | date: 'MMM d' }} -
-                {{ week.endDate | date: 'MMM d' }}
+                {{ week.startDate | date: 'MMM d' }} - {{ week.endDate | date: 'MMM d' }}
               </div>
             </div>
           </ui-button>

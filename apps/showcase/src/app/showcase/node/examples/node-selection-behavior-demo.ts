@@ -12,8 +12,7 @@ import { ButtonComponent, NodeComponent, type Node } from 'ui';
       >
         <ui-button variant="secondary" appearance="outline" (click)="reset()">Reset</ui-button>
         <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          Selected:
-          <strong>{{ selectedLabel() || 'none' }}</strong>
+          Selected: <strong>{{ selectedLabel() || 'none' }}</strong>
         </span>
       </div>
 
@@ -49,7 +48,7 @@ import { ButtonComponent, NodeComponent, type Node } from 'ui';
         />
       </div>
     </div>
-  `
+  `,
 })
 export class NodeSelectionBehaviorDemoComponent {
   protected readonly selectedId = signal<string | null>(null);
@@ -79,7 +78,7 @@ export class NodeSelectionBehaviorDemoComponent {
     this.inboxNode.set(this.buildNode('inbox', 'Inbox', 'mail', this.selectedId() === 'inbox'));
     this.mentionsNode.set(this.buildNode('mentions', 'Mentions', 'person_accounts', this.selectedId() === 'mentions'));
     this.archiveNode.set(
-      this.buildNode('archive', 'Archive only click action', 'archive', this.selectedId() === 'archive')
+      this.buildNode('archive', 'Archive only click action', 'archive', this.selectedId() === 'archive'),
     );
   }
 

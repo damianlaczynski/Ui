@@ -13,7 +13,7 @@ import { BadgeComponent, ToolbarComponent, type ToolbarItem } from 'ui';
         <ui-badge text="Draft" size="small" appearance="outline" variant="secondary" shape="rounded" />
       </ui-toolbar>
     </div>
-  `
+  `,
 })
 export class ToolbarAllTypesDemoComponent {
   protected readonly items: ToolbarItem[] = [
@@ -27,10 +27,10 @@ export class ToolbarAllTypesDemoComponent {
       icon: 'save',
       menuItems: [
         { id: 'save-as', label: 'Save as copy' },
-        { id: 'save-all', label: 'Save all' }
-      ]
+        { id: 'save-all', label: 'Save all' },
+      ],
     },
     { id: 'divider-b', type: 'divider' },
-    { id: 'custom-slot', type: 'custom' }
+    { id: 'custom-slot', type: 'custom' },
   ];
 }

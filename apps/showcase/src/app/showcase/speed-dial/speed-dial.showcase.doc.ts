@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig
+  ShowcaseDocPageConfig,
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { SpeedDialArcDemoComponent } from './examples/speed-dial-arc-demo';
 import { SpeedDialBehaviorDemoComponent } from './examples/speed-dial-behavior-demo';
@@ -19,7 +19,7 @@ const componentMap = {
   arc: SpeedDialArcDemoComponent,
   behavior: SpeedDialBehaviorDemoComponent,
   coordination: SpeedDialCoordinationDemoComponent,
-  workspace: SpeedDialWorkspaceDemoComponent
+  workspace: SpeedDialWorkspaceDemoComponent,
 } as const;
 
 export const SPEED_DIAL_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -27,9 +27,9 @@ export const SPEED_DIAL_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(speedDialMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${speedDialMeta.slug}/${file}`
-    ])
-  ) as Record<string, string>)
+      `/docs/components/snippets/${speedDialMeta.slug}/${file}`,
+    ]),
+  ) as Record<string, string>),
 };
 
 export const SPEED_DIAL_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -38,12 +38,12 @@ export const SPEED_DIAL_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: speedDialMeta.importCode,
   containerClass: speedDialMeta.containerClass,
   accessibility: speedDialMeta.accessibility,
-  featureSections: speedDialMeta.featureSections.map((section) => ({
+  featureSections: speedDialMeta.featureSections.map(section => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap]
+    component: componentMap[section.componentKey as keyof typeof componentMap],
   })),
-  apiSections: speedDialMeta.apiSections
+  apiSections: speedDialMeta.apiSections,
 };

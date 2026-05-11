@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig
+  ShowcaseDocPageConfig,
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { AccordionAppearanceShapeExampleComponent } from './examples/accordion-appearance-shape-demo';
 import { AccordionBasicExampleComponent } from './examples/accordion-basic-demo';
@@ -19,7 +19,7 @@ const componentMap = {
   chevronsIcons: AccordionChevronIconsExampleComponent,
   indicators: AccordionIndicatorsExampleComponent,
   quickActions: AccordionQuickActionsExampleComponent,
-  settingsForm: AccordionSettingsFormExampleComponent
+  settingsForm: AccordionSettingsFormExampleComponent,
 } as const;
 
 export const ACCORDION_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -27,9 +27,9 @@ export const ACCORDION_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(accordionMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${accordionMeta.slug}/${file}`
-    ])
-  ) as Record<string, string>)
+      `/docs/components/snippets/${accordionMeta.slug}/${file}`,
+    ]),
+  ) as Record<string, string>),
 };
 
 export const ACCORDION_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -38,12 +38,12 @@ export const ACCORDION_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: accordionMeta.importCode,
   containerClass: accordionMeta.containerClass,
   accessibility: accordionMeta.accessibility,
-  featureSections: accordionMeta.featureSections.map((section) => ({
+  featureSections: accordionMeta.featureSections.map(section => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap]
+    component: componentMap[section.componentKey as keyof typeof componentMap],
   })),
-  apiSections: accordionMeta.apiSections
+  apiSections: accordionMeta.apiSections,
 };

@@ -38,7 +38,7 @@ export class TextFilterDefinition extends BaseFilterDefinition {
       { value: 'equals', label: 'Equals', icon: 'equal_circle' },
       { value: 'doesNotEqual', label: 'Does not equal', icon: 'equal_off' },
       { value: 'isNull', label: 'Is null', icon: 'dismiss_circle' },
-      { value: 'isNotNull', label: 'Is not null', icon: 'checkmark_circle' }
+      { value: 'isNotNull', label: 'Is not null', icon: 'checkmark_circle' },
     ];
   }
 
@@ -49,7 +49,7 @@ export class TextFilterDefinition extends BaseFilterDefinition {
   override getDisplayText(
     column: DataGridColumn<any>,
     filter: DataGridFilterValue,
-    config: DataGridFilterConfig
+    config: DataGridFilterConfig,
   ): string {
     const operator = filter.operator || this.getDefaultOperator().value;
     const operatorText = this.getOperatorText(operator);

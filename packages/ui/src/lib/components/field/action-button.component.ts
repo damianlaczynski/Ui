@@ -27,9 +27,9 @@ import { IconName } from '../icon';
         align-items: center;
         justify-content: center;
       }
-    `
+    `,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ActionButtonComponent {
   size = input<Size>('medium');

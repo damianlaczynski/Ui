@@ -40,7 +40,7 @@ import { TextareaComponent } from 'ui';
         />
       </div>
     </div>
-  `
+  `,
 })
 export class TextareaStatesDemoComponent {
   protected readonlyValue =

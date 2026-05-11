@@ -12,18 +12,15 @@ import { ButtonComponent, NumberComponent } from 'ui';
         style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background2-rest)"
       >
         <ui-button variant="secondary" appearance="outline" (click)="reset()">Reset</ui-button>
-        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          Qty:
-          <strong>{{ quantity }}</strong>
-        </span>
-        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          Price:
-          <strong>{{ price }}</strong>
-        </span>
-        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          Temp:
-          <strong>{{ temperature }}</strong>
-        </span>
+        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
+          >Qty: <strong>{{ quantity }}</strong></span
+        >
+        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
+          >Price: <strong>{{ price }}</strong></span
+        >
+        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
+          >Temp: <strong>{{ temperature }}</strong></span
+        >
       </div>
 
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:1rem;width:100%">
@@ -60,7 +57,7 @@ import { ButtonComponent, NumberComponent } from 'ui';
         />
       </div>
     </div>
-  `
+  `,
 })
 export class NumberStepRangesDemoComponent {
   protected quantity = 10;
@@ -72,6 +69,6 @@ export class NumberStepRangesDemoComponent {
     this.quantity = 10;
     this.price = 9.5;
     this.temperature = 20;
-    this.resetTick.update((value) => value + 1);
+    this.resetTick.update(value => value + 1);
   }
 }

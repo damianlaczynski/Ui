@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig
+  ShowcaseDocPageConfig,
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { NodeAppearanceVariantDemoComponent } from './examples/node-appearance-variant-demo';
 import { NodeBasicDemoComponent } from './examples/node-basic-demo';
@@ -21,14 +21,14 @@ const componentMap = {
   selectionBehavior: NodeSelectionBehaviorDemoComponent,
   customContent: NodeCustomContentDemoComponent,
   quickActions: NodeQuickActionsDemoComponent,
-  dragDrop: NodeDragDropDemoComponent
+  dragDrop: NodeDragDropDemoComponent,
 } as const;
 
 export const NODE_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   markdown: `/docs/components/${nodeMeta.slug}.md`,
   ...(Object.fromEntries(
-    Object.entries(nodeMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${nodeMeta.slug}/${file}`])
-  ) as Record<string, string>)
+    Object.entries(nodeMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${nodeMeta.slug}/${file}`]),
+  ) as Record<string, string>),
 };
 
 export const NODE_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -37,12 +37,12 @@ export const NODE_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: nodeMeta.importCode,
   containerClass: nodeMeta.containerClass,
   accessibility: nodeMeta.accessibility,
-  featureSections: nodeMeta.featureSections.map((section) => ({
+  featureSections: nodeMeta.featureSections.map(section => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap]
+    component: componentMap[section.componentKey as keyof typeof componentMap],
   })),
-  apiSections: nodeMeta.apiSections
+  apiSections: nodeMeta.apiSections,
 };

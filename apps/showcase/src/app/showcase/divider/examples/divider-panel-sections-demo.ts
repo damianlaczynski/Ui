@@ -24,6 +24,6 @@ import { DividerComponent } from 'ui';
         Book a procurement follow-up with finance and legal before the Friday checkpoint.
       </div>
     </div>
-  `
+  `,
 })
 export class DividerPanelSectionsExampleComponent {}

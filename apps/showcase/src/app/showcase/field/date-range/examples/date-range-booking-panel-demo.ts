@@ -60,11 +60,11 @@ import { ButtonComponent, DateRange, DateRangeComponent, MessageBarComponent, Ta
         </div>
       </div>
     </div>
-  `
+  `,
 })
 export class DateRangeBookingPanelDemoComponent {
   protected value: DateRange | null = {
     startDate: '2026-07-08',
-    endDate: '2026-07-15'
+    endDate: '2026-07-15',
   };
 }

@@ -37,7 +37,7 @@ import { UrlComponent } from 'ui';
         />
       </div>
     </div>
-  `
+  `,
 })
 export class UrlStatesDemoComponent {
   protected readonlyUrl = 'https://contoso.com/support/status';

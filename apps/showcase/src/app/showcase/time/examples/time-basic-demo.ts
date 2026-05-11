@@ -19,7 +19,7 @@ import { ButtonComponent, TimeComponent } from 'ui';
         </span>
       </div>
     </div>
-  `
+  `,
 })
 export class TimeBasicDemoComponent {
   protected value = '09:30';

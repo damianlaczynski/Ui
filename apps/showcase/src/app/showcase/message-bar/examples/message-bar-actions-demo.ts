@@ -31,11 +31,10 @@ import { MessageBarComponent, QuickAction } from 'ui';
       <div
         style="display:flex;flex-wrap:wrap;align-items:center;gap:0.5rem;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest);font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
       >
-        Last action:
-        <strong>{{ lastAction() || 'none' }}</strong>
+        Last action: <strong>{{ lastAction() || 'none' }}</strong>
       </div>
     </div>
-  `
+  `,
 })
 export class MessageBarActionsExampleComponent {
   protected readonly dismissed = signal(false);
@@ -46,13 +45,13 @@ export class MessageBarActionsExampleComponent {
       label: 'Review errors',
       variant: 'danger',
       appearance: 'outline',
-      action: () => this.lastAction.set('Review errors')
+      action: () => this.lastAction.set('Review errors'),
     },
     {
       label: 'Retry sync',
       variant: 'secondary',
       appearance: 'outline',
-      action: () => this.lastAction.set('Retry sync')
-    }
+      action: () => this.lastAction.set('Retry sync'),
+    },
   ];
 }

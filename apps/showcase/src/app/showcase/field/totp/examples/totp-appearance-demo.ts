@@ -36,6 +36,6 @@ import { TotpComponent } from 'ui';
         </div>
       </div>
     </div>
-  `
+  `,
 })
 export class TotpAppearanceDemoComponent {}

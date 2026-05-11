@@ -15,7 +15,7 @@ import { FilterFactory } from '../filters/filter-factory';
  */
 export function getCurrentFilterOperator(
   currentOperator: string | undefined,
-  config: DataGridFilterConfig | null
+  config: DataGridFilterConfig | null,
 ): string {
   if (currentOperator) return currentOperator;
   if (config?.defaultOperator) return config.defaultOperator;
@@ -38,7 +38,7 @@ export function getCurrentFilterOperator(
 export function getBooleanFilterOptions(): DropdownItem[] {
   return [
     { value: 'true', label: 'Yes' },
-    { value: 'false', label: 'No' }
+    { value: 'false', label: 'No' },
   ];
 }
 

@@ -27,7 +27,7 @@ export interface CommandPaletteGroup {
 @Component({
   selector: 'ui-command-palette',
   templateUrl: './command-palette.component.html',
-  imports: [A11yModule, FormsModule, SearchComponent, EmptyStateComponent, IconComponent]
+  imports: [A11yModule, FormsModule, SearchComponent, EmptyStateComponent, IconComponent],
 })
 export class CommandPaletteComponent {
   private static readonly CLOSE_FALLBACK_MS = 320;
@@ -63,7 +63,7 @@ export class CommandPaletteComponent {
       return allItems.slice(0, this.maxResults());
     }
 
-    const scored = allItems.map((item) => {
+    const scored = allItems.map(item => {
       const label = item.label.toLowerCase();
       const description = item.description?.toLowerCase() || '';
       const keywords = item.keywords?.join(' ').toLowerCase() || '';
@@ -91,10 +91,10 @@ export class CommandPaletteComponent {
     });
 
     return scored
-      .filter((result) => result.score > 0)
+      .filter(result => result.score > 0)
       .sort((a, b) => b.score - a.score)
       .slice(0, this.maxResults())
-      .map((result) => result.item);
+      .map(result => result.item);
   });
 
   groupedItems = computed<CommandPaletteGroup[]>(() => {
@@ -102,7 +102,7 @@ export class CommandPaletteComponent {
     const groups: { [key: string]: CommandPaletteItem[] } = {};
 
     // Group items by group property or 'default'
-    filtered.forEach((item) => {
+    filtered.forEach(item => {
       const groupId = item.group || 'default';
       if (!groups[groupId]) {
         groups[groupId] = [];
@@ -114,18 +114,18 @@ export class CommandPaletteComponent {
     return Object.entries(groups).map(([groupId, items]) => ({
       id: groupId,
       label: groupId === 'default' ? '' : groupId,
-      items
+      items,
     }));
   });
 
   shouldRender = computed(() => this.rendered());
 
   backdropClasses = computed(() =>
-    ['command-palette__backdrop', this.isClosing() ? 'command-palette__backdrop--closing' : ''].join(' ')
+    ['command-palette__backdrop', this.isClosing() ? 'command-palette__backdrop--closing' : ''].join(' '),
   );
 
   frameClasses = computed(() =>
-    ['command-palette__frame', this.isClosing() ? 'command-palette__frame--closing' : ''].join(' ')
+    ['command-palette__frame', this.isClosing() ? 'command-palette__frame--closing' : ''].join(' '),
   );
 
   surfaceClasses = computed(() => 'command-palette__surface');
@@ -247,7 +247,7 @@ export class CommandPaletteComponent {
     if (item.disabled) {
       return;
     }
-    const idx = this.filteredItems().findIndex((i) => i.id === item.id);
+    const idx = this.filteredItems().findIndex(i => i.id === item.id);
     if (idx >= 0) {
       this._selectedIndex.set(idx);
     }
@@ -294,14 +294,14 @@ export class CommandPaletteComponent {
   }
 
   private setFirstSelectableIndex(): void {
-    const firstSelectableIndex = this.filteredItems().findIndex((item) => !item.disabled);
+    const firstSelectableIndex = this.filteredItems().findIndex(item => !item.disabled);
     this._selectedIndex.set(firstSelectableIndex >= 0 ? firstSelectableIndex : 0);
   }
 
   private moveSelection(direction: 1 | -1): void {
     const enabledIndices = this.filteredItems()
       .map((item, index) => (!item.disabled ? index : -1))
-      .filter((index) => index >= 0);
+      .filter(index => index >= 0);
 
     if (enabledIndices.length === 0) {
       this._selectedIndex.set(0);
@@ -311,10 +311,10 @@ export class CommandPaletteComponent {
     const currentIndex = this._selectedIndex();
 
     if (direction > 0) {
-      const nextIndex = enabledIndices.find((index) => index > currentIndex);
+      const nextIndex = enabledIndices.find(index => index > currentIndex);
       this._selectedIndex.set(nextIndex ?? enabledIndices[0]);
     } else {
-      const previousIndex = [...enabledIndices].reverse().find((index) => index < currentIndex);
+      const previousIndex = [...enabledIndices].reverse().find(index => index < currentIndex);
       this._selectedIndex.set(previousIndex ?? enabledIndices[enabledIndices.length - 1]);
     }
 

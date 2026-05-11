@@ -12,7 +12,7 @@ describe('NodeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NodeComponent, IconComponent]
+      imports: [NodeComponent, IconComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(NodeComponent<any>);
@@ -23,7 +23,7 @@ describe('NodeComponent', () => {
       label: 'Test Node',
       icon: 'folder' as IconName,
       disabled: false,
-      selected: false
+      selected: false,
     };
   });
 
@@ -87,7 +87,7 @@ describe('NodeComponent', () => {
   describe('Size Input', () => {
     const sizes: Size[] = ['small', 'medium', 'large'];
 
-    sizes.forEach((size) => {
+    sizes.forEach(size => {
       it(`should apply ${size} size class`, () => {
         fixture.componentRef.setInput('node', testNode);
         fixture.componentRef.setInput('size', size);
@@ -102,7 +102,7 @@ describe('NodeComponent', () => {
   describe('Variant Input', () => {
     const variants: Variant[] = ['primary', 'secondary', 'success', 'warning', 'danger', 'info'];
 
-    variants.forEach((variant) => {
+    variants.forEach(variant => {
       it(`should apply ${variant} variant class`, () => {
         fixture.componentRef.setInput('node', testNode);
         fixture.componentRef.setInput('variant', variant);
@@ -117,7 +117,7 @@ describe('NodeComponent', () => {
   describe('Appearance Input', () => {
     const appearances: Appearance[] = ['filled', 'tint', 'outline', 'subtle', 'transparent'];
 
-    appearances.forEach((appearance) => {
+    appearances.forEach(appearance => {
       it(`should apply ${appearance} appearance class`, () => {
         fixture.componentRef.setInput('node', testNode);
         fixture.componentRef.setInput('appearance', appearance);
@@ -132,7 +132,7 @@ describe('NodeComponent', () => {
   describe('Shape Input', () => {
     const shapes: Shape[] = ['rounded', 'circular', 'square'];
 
-    shapes.forEach((shape) => {
+    shapes.forEach(shape => {
       it(`should apply ${shape} shape class`, () => {
         fixture.componentRef.setInput('node', testNode);
         fixture.componentRef.setInput('shape', shape);
@@ -459,7 +459,7 @@ describe('NodeComponent', () => {
       fixture.detectChanges();
 
       const event = new DragEvent('dragstart', {
-        dataTransfer: new DataTransfer()
+        dataTransfer: new DataTransfer(),
       });
 
       component.onDragStart(event);
@@ -474,7 +474,7 @@ describe('NodeComponent', () => {
       fixture.detectChanges();
 
       const event = new DragEvent('dragstart', {
-        dataTransfer: new DataTransfer()
+        dataTransfer: new DataTransfer(),
       });
       vi.spyOn(event, 'preventDefault');
 
@@ -528,7 +528,7 @@ describe('NodeComponent', () => {
       fixture.detectChanges();
 
       const event = new DragEvent('dragover', {
-        dataTransfer: new DataTransfer()
+        dataTransfer: new DataTransfer(),
       });
       vi.spyOn(event, 'preventDefault');
       vi.spyOn(event, 'stopPropagation');
@@ -579,7 +579,7 @@ describe('NodeComponent', () => {
       fixture.detectChanges();
 
       const event = new DragEvent('drop', {
-        dataTransfer: new DataTransfer()
+        dataTransfer: new DataTransfer(),
       });
       vi.spyOn(event, 'preventDefault');
       vi.spyOn(event, 'stopPropagation');
@@ -606,11 +606,11 @@ describe('NodeComponent', () => {
       component.isDragOver.set(true);
 
       const event = new DragEvent('dragleave', {
-        relatedTarget: null
+        relatedTarget: null,
       });
       Object.defineProperty(event, 'currentTarget', {
         value: { contains: () => false },
-        writable: false
+        writable: false,
       });
 
       component.onDragLeave(event);
@@ -773,7 +773,7 @@ describe('NodeComponent', () => {
         icon: 'folder' as IconName,
         selected: true,
         disabled: false,
-        closable: true
+        closable: true,
       };
 
       fixture.componentRef.setInput('node', complexNode);
@@ -891,7 +891,7 @@ describe('NodeComponent', () => {
     it('should handle very long label', () => {
       const longLabelNode = {
         ...testNode,
-        label: 'This is a very long node label that might overflow the container'
+        label: 'This is a very long node label that might overflow the container',
       };
       fixture.componentRef.setInput('node', longLabelNode);
       fixture.detectChanges();
@@ -934,7 +934,7 @@ describe('NodeComponent', () => {
       fixture.detectChanges();
 
       const event = new DragEvent('dragstart', {
-        dataTransfer: new DataTransfer()
+        dataTransfer: new DataTransfer(),
       });
 
       expect(() => component.onDragStart(event)).not.toThrow();

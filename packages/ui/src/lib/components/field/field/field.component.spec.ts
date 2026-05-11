@@ -8,7 +8,7 @@ describe('FieldComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FieldComponent]
+      imports: [FieldComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(FieldComponent);
@@ -112,7 +112,7 @@ describe('FieldComponent', () => {
 
     const beforeLabel = fixture.nativeElement.querySelector('.input-label--before');
     const aboveLabel = fixture.nativeElement.querySelector(
-      '.input-container > .input-label:not(.input-label--before):not(.input-label--after):not(.input-label--below)'
+      '.input-container > .input-label:not(.input-label--before):not(.input-label--after):not(.input-label--below)',
     );
 
     expect(beforeLabel?.textContent?.trim()).toBe('Before label');

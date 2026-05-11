@@ -15,15 +15,15 @@ import { IconName } from '../../icon/generated/icon-name.type';
       :host {
         display: flex;
       }
-    `
+    `,
   ],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CheckboxComponent),
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class CheckboxComponent extends FieldComponent implements ControlValueAccessor, OnInit {
   // Unified Design System
@@ -53,7 +53,7 @@ export class CheckboxComponent extends FieldComponent implements ControlValueAcc
       'checkbox',
       `checkbox--${this.shape()}`,
       `checkbox--${this.size()}`,
-      `checkbox--label-${this.labelPosition()}`
+      `checkbox--label-${this.labelPosition()}`,
     ];
 
     if (this.isChecked()) {

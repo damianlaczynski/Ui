@@ -41,7 +41,7 @@ import { RadioButtonGroupComponent, type RadioButtonItem } from 'ui';
         [ngModelOptions]="{ standalone: true }"
       />
     </div>
-  `
+  `,
 })
 export class RadioButtonGroupShapesDemoComponent {
   protected roundedValue = 'board';
@@ -51,12 +51,12 @@ export class RadioButtonGroupShapesDemoComponent {
   protected readonly viewItems: RadioButtonItem[] = [
     { id: 'board', label: 'Board', value: 'board' },
     { id: 'list', label: 'List', value: 'list' },
-    { id: 'timeline', label: 'Timeline', value: 'timeline' }
+    { id: 'timeline', label: 'Timeline', value: 'timeline' },
   ];
 
   protected readonly toolItems: RadioButtonItem[] = [
     { id: 'mail', label: 'Mail', value: 'mail', icon: 'mail' },
     { id: 'chat', label: 'Chat', value: 'chat', icon: 'chat' },
-    { id: 'call', label: 'Call', value: 'call', icon: 'call' }
+    { id: 'call', label: 'Call', value: 'call', icon: 'call' },
   ];
 }

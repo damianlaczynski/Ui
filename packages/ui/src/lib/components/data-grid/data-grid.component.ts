@@ -10,7 +10,7 @@ import {
   inject,
   DestroyRef,
   effect,
-  afterNextRender
+  afterNextRender,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -36,7 +36,7 @@ import {
   getDataGridClasses,
   getHeaderCellClasses,
   getRowClasses,
-  getCellClasses
+  getCellClasses,
 } from './helpers/data-grid-styling-helpers';
 import { mapToDataGridRows } from './helpers/data-grid-mapping-helpers';
 import { map, switchMap, tap } from 'rxjs/operators';
@@ -54,7 +54,7 @@ import { Subject, of } from 'rxjs';
     PaginationComponent,
     ButtonComponent,
     DataGridHeaderComponent,
-    DataGridFilterRowComponent
+    DataGridFilterRowComponent,
   ],
   providers: [DataGridFilterService, DataGridSelectionService, DataGridSortService],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -66,8 +66,8 @@ import { Subject, of } from 'rxjs';
         flex: 1 1 auto;
         min-height: 0;
       }
-    `
-  ]
+    `,
+  ],
 })
 export class DataGridComponent<T = any> {
   // Main configuration input
@@ -120,7 +120,7 @@ export class DataGridComponent<T = any> {
     if (widths.size === 0) {
       return configColumns;
     }
-    return configColumns.map((col) => {
+    return configColumns.map(col => {
       const resizedWidth = widths.get(col.id);
       if (resizedWidth) {
         return { ...col, width: resizedWidth };
@@ -170,7 +170,7 @@ export class DataGridComponent<T = any> {
       isLoading,
       isError,
       data: rows,
-      error: errorMessage || undefined
+      error: errorMessage || undefined,
     };
   });
 
@@ -195,7 +195,7 @@ export class DataGridComponent<T = any> {
       showPageNumbers: pagination.showPageNumbers ?? true,
       maxVisiblePages: 3,
       showFirstLast: pagination.showFirstLast ?? false,
-      showInfo: pagination.showInfo ?? false
+      showInfo: pagination.showInfo ?? false,
     };
   });
 
@@ -214,7 +214,7 @@ export class DataGridComponent<T = any> {
       return false;
     }
     // Use config().columns instead of columns() to avoid dependency on columnWidths
-    return this.config().columns.some((col) => this.filterService.isColumnFilterable(col));
+    return this.config().columns.some(col => this.filterService.isColumnFilterable(col));
   });
 
   // Loading/Empty/Error state computed
@@ -234,7 +234,7 @@ export class DataGridComponent<T = any> {
       ? {
           label: action.label,
           variant: action.variant,
-          action: action.action
+          action: action.action,
         }
       : null;
   });
@@ -244,7 +244,7 @@ export class DataGridComponent<T = any> {
       ? {
           label: action.label,
           variant: action.variant,
-          action: action.action
+          action: action.action,
         }
       : null;
   });
@@ -261,7 +261,7 @@ export class DataGridComponent<T = any> {
       ? {
           label: action.label,
           variant: action.variant,
-          action: action.action
+          action: action.action,
         }
       : null;
   });
@@ -271,7 +271,7 @@ export class DataGridComponent<T = any> {
       ? {
           label: action.label,
           variant: action.variant,
-          action: action.action
+          action: action.action,
         }
       : null;
   });
@@ -328,27 +328,27 @@ export class DataGridComponent<T = any> {
           this.loading.set(true);
           this.error.set(null);
         }),
-        switchMap((queryParams) => {
+        switchMap(queryParams => {
           const dataSourceFn = this.dataSource$();
           if (!dataSourceFn) {
             return of({ items: [], totalCount: 0 });
           }
-          return dataSourceFn(queryParams).pipe(map((result) => mapToDataGridRows(result)));
+          return dataSourceFn(queryParams).pipe(map(result => mapToDataGridRows(result)));
         }),
-        takeUntilDestroyed(this.destroyRef)
+        takeUntilDestroyed(this.destroyRef),
       )
       .subscribe({
-        next: (data) => {
+        next: data => {
           this.rows.set(data.items);
           this.totalCount.set(data.totalCount);
           this.loading.set(false);
           this.error.set(null);
         },
-        error: (error) => {
+        error: error => {
           console.error('DataGrid data source error:', error);
           this.error.set(error?.message || 'Failed to load data');
           this.loading.set(false);
-        }
+        },
       });
 
     // Effect to emit query params when dependencies change
@@ -365,7 +365,7 @@ export class DataGridComponent<T = any> {
       const pagination = this.paginationConfig();
 
       // Filter out empty filters (filters with empty string values)
-      const validFilters = filters.filter((f) => {
+      const validFilters = filters.filter(f => {
         if (!f.filter || f.filter.value === null || f.filter.value === undefined) {
           return false;
         }
@@ -376,10 +376,10 @@ export class DataGridComponent<T = any> {
         return true;
       });
 
-      const dataGridFilters = validFilters.map((f) => ({
+      const dataGridFilters = validFilters.map(f => ({
         columnName: f.field || f.columnId,
         filterType: f.filter?.operator || 'equals',
-        value: f.filter?.value
+        value: f.filter?.value,
       }));
 
       // Build query params
@@ -390,15 +390,15 @@ export class DataGridComponent<T = any> {
           ? [
               {
                 columnName: sort.field as keyof T,
-                order: sort.direction
-              }
+                order: sort.direction,
+              },
             ]
           : undefined,
-        filters: dataGridFilters.map((f) => ({
+        filters: dataGridFilters.map(f => ({
           columnName: f.columnName as keyof T,
           filterType: f.filterType,
-          value: f.value
-        }))
+          value: f.value,
+        })),
       };
 
       // Only emit if query params actually changed
@@ -429,7 +429,7 @@ export class DataGridComponent<T = any> {
       row,
       this.selectionService.isRowSelected(row),
       this.hoveredRowId() === row.id,
-      this.isRowExpanded(row)
+      this.isRowExpanded(row),
     );
   }
 
@@ -518,15 +518,15 @@ export class DataGridComponent<T = any> {
     if (sortState) {
       this.currentSort.set({
         field: sortState.field!,
-        direction: sortState.direction
+        direction: sortState.direction,
       });
       this.sortChange.emit({
         field: sortState.field!,
-        direction: sortState.direction
+        direction: sortState.direction,
       });
       this.callbacks()?.onSortChange?.({
         field: sortState.field!,
-        direction: sortState.direction
+        direction: sortState.direction,
       });
     }
   }
@@ -601,7 +601,7 @@ export class DataGridComponent<T = any> {
 
   // Unified filter methods
   onFilterValueChange(column: DataGridColumn<T>, value: any): void {
-    this.filterService.handleFilterChange(column, value, (filter) => {
+    this.filterService.handleFilterChange(column, value, filter => {
       this.filterService.updateFilter(column.id, column, filter);
       this.emitFilterChange();
     });
@@ -724,7 +724,7 @@ export class DataGridComponent<T = any> {
 
       // Find data columns (skip selection and expand columns)
       const dataColumnCells: HTMLElement[] = [];
-      allHeaderCells.forEach((cell) => {
+      allHeaderCells.forEach(cell => {
         const htmlCell = cell as HTMLElement;
         if (
           !htmlCell.classList.contains('data-grid__header-cell--selection') &&

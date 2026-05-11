@@ -45,6 +45,6 @@ import { CardComponent, EmptyStateComponent } from 'ui';
         />
       </ui-card>
     </div>
-  `
+  `,
 })
 export class EmptyStateIconsSizesDemoComponent {}

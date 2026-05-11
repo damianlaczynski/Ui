@@ -8,7 +8,7 @@ const SEARCH_ITEMS: CommandPaletteItem[] = [
     description: 'Auto-format the current document',
     icon: 'text_align_justify',
     keywords: ['format', 'beautify', 'code', 'document'],
-    action: () => {}
+    action: () => {},
   },
   {
     id: 'build-project',
@@ -16,7 +16,7 @@ const SEARCH_ITEMS: CommandPaletteItem[] = [
     description: 'Compile and validate the current project',
     icon: 'wrench',
     keywords: ['build', 'compile', 'validate', 'project'],
-    action: () => {}
+    action: () => {},
   },
   {
     id: 'run-tests',
@@ -24,7 +24,7 @@ const SEARCH_ITEMS: CommandPaletteItem[] = [
     description: 'Execute all available test suites',
     icon: 'beaker',
     keywords: ['test', 'qa', 'verify', 'checks'],
-    action: () => {}
+    action: () => {},
   },
   {
     id: 'deploy-preview',
@@ -32,7 +32,7 @@ const SEARCH_ITEMS: CommandPaletteItem[] = [
     description: 'Publish a preview build to the review environment',
     icon: 'arrow_upload',
     keywords: ['deploy', 'preview', 'publish', 'release'],
-    action: () => {}
+    action: () => {},
   },
   {
     id: 'save-all',
@@ -40,8 +40,8 @@ const SEARCH_ITEMS: CommandPaletteItem[] = [
     description: 'Persist all open changes',
     icon: 'save',
     keywords: ['save', 'store', 'persist'],
-    action: () => {}
-  }
+    action: () => {},
+  },
 ];
 
 const DISABLED_ITEMS: CommandPaletteItem[] = [
@@ -52,7 +52,7 @@ const DISABLED_ITEMS: CommandPaletteItem[] = [
     icon: 'arrow_sync',
     group: 'Actions',
     keywords: ['sync', 'refresh'],
-    action: () => {}
+    action: () => {},
   },
   {
     id: 'premium-export',
@@ -62,7 +62,7 @@ const DISABLED_ITEMS: CommandPaletteItem[] = [
     group: 'Actions',
     keywords: ['export', 'analytics', 'premium'],
     disabled: true,
-    action: () => {}
+    action: () => {},
   },
   {
     id: 'locked-admin',
@@ -72,7 +72,7 @@ const DISABLED_ITEMS: CommandPaletteItem[] = [
     group: 'Navigation',
     keywords: ['admin', 'console', 'permissions'],
     disabled: true,
-    action: () => {}
+    action: () => {},
   },
   {
     id: 'open-billing',
@@ -81,8 +81,8 @@ const DISABLED_ITEMS: CommandPaletteItem[] = [
     icon: 'wallet',
     group: 'Navigation',
     keywords: ['billing', 'invoices', 'payments'],
-    action: () => {}
-  }
+    action: () => {},
+  },
 ];
 
 @Component({
@@ -118,7 +118,7 @@ const DISABLED_ITEMS: CommandPaletteItem[] = [
         [maxResults]="8"
       />
     </div>
-  `
+  `,
 })
 export class CommandPaletteOptionsDemoComponent {
   protected readonly searchVisible = signal(false);

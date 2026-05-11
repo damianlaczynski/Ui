@@ -45,6 +45,6 @@ import { ErrorStateComponent } from 'ui';
         />
       </div>
     </div>
-  `
+  `,
 })
 export class ErrorStateIconsSizesDemoComponent {}

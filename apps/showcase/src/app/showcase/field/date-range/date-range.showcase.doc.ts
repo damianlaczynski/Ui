@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig
+  ShowcaseDocPageConfig,
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { DateRangeBasicDemoComponent } from './examples/date-range-basic-demo';
 import { DateRangeBookingPanelDemoComponent } from './examples/date-range-booking-panel-demo';
@@ -19,7 +19,7 @@ const componentMap = {
   constraints: DateRangeConstraintsDemoComponent,
   states: DateRangeStatesDemoComponent,
   reactiveForm: DateRangeReactiveFormDemoComponent,
-  bookingPanel: DateRangeBookingPanelDemoComponent
+  bookingPanel: DateRangeBookingPanelDemoComponent,
 } as const;
 
 export const DATE_RANGE_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -27,9 +27,9 @@ export const DATE_RANGE_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(dateRangeMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${dateRangeMeta.slug}/${file}`
-    ])
-  ) as Record<string, string>)
+      `/docs/components/snippets/${dateRangeMeta.slug}/${file}`,
+    ]),
+  ) as Record<string, string>),
 };
 
 export const DATE_RANGE_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -38,12 +38,12 @@ export const DATE_RANGE_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: dateRangeMeta.importCode,
   containerClass: dateRangeMeta.containerClass,
   accessibility: dateRangeMeta.accessibility,
-  featureSections: dateRangeMeta.featureSections.map((section) => ({
+  featureSections: dateRangeMeta.featureSections.map(section => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap]
+    component: componentMap[section.componentKey as keyof typeof componentMap],
   })),
-  apiSections: dateRangeMeta.apiSections
+  apiSections: dateRangeMeta.apiSections,
 };

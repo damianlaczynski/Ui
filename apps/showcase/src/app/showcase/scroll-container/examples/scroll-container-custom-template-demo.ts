@@ -46,7 +46,7 @@ interface TemplateItem {
         </ui-scroll-container>
       </div>
     </div>
-  `
+  `,
 })
 export class ScrollContainerCustomTemplateDemoComponent {
   protected readonly dataSource: ScrollContainerDataSource<TemplateItem> = (page, pageSize) => {
@@ -55,14 +55,14 @@ export class ScrollContainerCustomTemplateDemoComponent {
       id: start + index,
       label: `Deployment note ${start + index}`,
       description: 'Short contextual metadata fits well in a denser audit or activity stream.',
-      status: index % 2 === 0 ? 'Updated' : 'Review'
+      status: index % 2 === 0 ? 'Updated' : 'Review',
     }));
 
     return of({
       items,
       hasNextPage: page < 3,
       hasPreviousPage: page > 1,
-      totalCount: 24
+      totalCount: 24,
     }).pipe(delay(260));
   };
 }

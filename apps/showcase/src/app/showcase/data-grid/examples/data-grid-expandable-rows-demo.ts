@@ -33,7 +33,7 @@ interface ReleaseRow {
         </div>
       </ng-template>
     </ui-data-grid>
-  `
+  `,
 })
 export class DataGridExpandableRowsDemoComponent {
   private rows: ReleaseRow[] = [
@@ -42,22 +42,22 @@ export class DataGridExpandableRowsDemoComponent {
       feature: 'Approvals workflow',
       owner: 'Marta Lee',
       status: 'Ready for QA',
-      summary: 'Adds staged approvals and audit history for finance requests.'
+      summary: 'Adds staged approvals and audit history for finance requests.',
     },
     {
       id: '2',
       feature: 'Bulk invite',
       owner: 'Nolan Price',
       status: 'In progress',
-      summary: 'Lets admins upload CSV files to invite and map new members.'
+      summary: 'Lets admins upload CSV files to invite and map new members.',
     },
     {
       id: '3',
       feature: 'Retention dashboard',
       owner: 'Iris Cole',
       status: 'Planned',
-      summary: 'Introduces weekly churn snapshots and cohort trend cards.'
-    }
+      summary: 'Introduces weekly churn snapshots and cohort trend cards.',
+    },
   ];
 
   config = computed(() =>
@@ -65,25 +65,25 @@ export class DataGridExpandableRowsDemoComponent {
       columns: [
         DataGridColumnFactory.text('feature', 'Feature', 'feature'),
         DataGridColumnFactory.text('owner', 'Owner', 'owner'),
-        DataGridColumnFactory.text('status', 'Status', 'status')
+        DataGridColumnFactory.text('status', 'Status', 'status'),
       ],
       dataSource: this.createStaticDataSource(this.rows),
       expandable: true,
       styling: {
-        hoverable: true
-      }
-    })
+        hoverable: true,
+      },
+    }),
   );
 
   private createStaticDataSource<T extends { id?: string }>(
-    data: T[]
+    data: T[],
   ): (params: QueryParams<T>) => Observable<QueryResult<T>> {
     return () =>
       of({
         items: [...data],
         totalCount: data.length,
         hasNextPage: false,
-        hasPreviousPage: false
+        hasPreviousPage: false,
       });
   }
 }

@@ -31,7 +31,7 @@ import { RadioButtonGroupComponent, type RadioButtonItem } from 'ui';
         [ngModelOptions]="{ standalone: true }"
       />
     </div>
-  `
+  `,
 })
 export class RadioButtonGroupIconsDemoComponent {
   protected channel = 'email';
@@ -40,12 +40,12 @@ export class RadioButtonGroupIconsDemoComponent {
   protected readonly channelItems: RadioButtonItem[] = [
     { id: 'email', label: 'Email', value: 'email', icon: 'mail' },
     { id: 'chat', label: 'Chat', value: 'chat', icon: 'chat' },
-    { id: 'teams', label: 'Call', value: 'call', icon: 'call' }
+    { id: 'teams', label: 'Call', value: 'call', icon: 'call' },
   ];
 
   protected readonly themeItems: RadioButtonItem[] = [
     { id: 'balanced', label: 'Balanced', value: 'balanced', icon: 'apps' },
     { id: 'focus', label: 'Focus', value: 'focus', icon: 'panel_left' },
-    { id: 'review', label: 'Review', value: 'review', icon: 'comment' }
+    { id: 'review', label: 'Review', value: 'review', icon: 'comment' },
   ];
 }

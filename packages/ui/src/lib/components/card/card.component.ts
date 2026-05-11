@@ -12,7 +12,7 @@ import {
   model,
   output,
   signal,
-  viewChild
+  viewChild,
 } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
@@ -44,14 +44,14 @@ interface CardProjectedSlots {
 const EMPTY_PROJECTED_SLOTS: CardProjectedSlots = {
   preview: false,
   floatingAction: false,
-  checkbox: false
+  checkbox: false,
 };
 
 @Component({
   selector: 'ui-card',
   templateUrl: './card.component.html',
   imports: [CommonModule, FormsModule, CheckboxComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardComponent {
   private readonly destroyRef = inject(DestroyRef);
@@ -99,7 +99,7 @@ export class CardComponent {
   hasCheckboxSlot = computed(() => this.projectedSlots().checkbox);
 
   isSelectionEnabled = computed(
-    () => this.selectable() || this.checkbox() || this.hasCheckboxSlot() || this.selected() || this.defaultSelected()
+    () => this.selectable() || this.checkbox() || this.hasCheckboxSlot() || this.selected() || this.defaultSelected(),
   );
 
   hasFloatingAction = computed(() => this.hasFloatingActionSlot());
@@ -277,8 +277,8 @@ export class CardComponent {
     this.selectionChange.emit({
       event,
       data: {
-        selected
-      }
+        selected,
+      },
     });
   }
 
@@ -372,7 +372,7 @@ export class CardComponent {
     }
 
     const activeElement = document.activeElement;
-    let currentIndex = focusables.findIndex((element) => element === activeElement);
+    let currentIndex = focusables.findIndex(element => element === activeElement);
 
     if (currentIndex === -1) {
       currentIndex = event.shiftKey ? 0 : -1;
@@ -436,7 +436,7 @@ export class CardComponent {
 
     const elements = Array.from(cardElement.querySelectorAll<HTMLElement>(this.focusableSelector));
 
-    return elements.filter((element) => element !== cardElement && this.isVisible(element));
+    return elements.filter(element => element !== cardElement && this.isVisible(element));
   }
 
   private isVisible(element: HTMLElement): boolean {
@@ -474,7 +474,7 @@ export class CardComponent {
 
     this.slotObserver.observe(cardElement, {
       childList: true,
-      subtree: true
+      subtree: true,
     });
   }
 
@@ -488,7 +488,7 @@ export class CardComponent {
     const nextState: CardProjectedSlots = {
       preview: this.hasProjectedSlot(cardElement, '[uiCardPreview]'),
       floatingAction: this.hasProjectedSlot(cardElement, '[uiCardFloatingAction]'),
-      checkbox: this.hasProjectedSlot(cardElement, '[uiCardCheckbox]')
+      checkbox: this.hasProjectedSlot(cardElement, '[uiCardCheckbox]'),
     };
 
     const previousState = this.projectedSlots();

@@ -51,7 +51,7 @@ import { AccordionComponent, ButtonComponent } from 'ui';
         </div>
       </ng-template>
     </div>
-  `
+  `,
 })
 export class AccordionQuickActionsExampleComponent {
   protected lastAction = 'None';

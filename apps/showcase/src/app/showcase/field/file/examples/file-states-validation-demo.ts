@@ -40,21 +40,23 @@ import { ButtonComponent, FileComponent } from 'ui';
       <div
         style="display:flex;gap:0.75rem;flex-wrap:wrap;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
       >
-        <ui-button type="button" variant="primary" (click)="validateRequiredFile()">Validate required upload</ui-button>
+        <ui-button type="button" variant="primary" (click)="validateRequiredFile()">
+          Validate required upload
+        </ui-button>
         <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
           Readonly keeps the current file visible. Disabled removes interaction entirely.
         </span>
       </div>
     </div>
-  `
+  `,
 })
 export class FileStatesValidationDemoComponent {
   protected readonly requiredFileControl = new FormControl<File | null>(null, {
-    validators: [Validators.required]
+    validators: [Validators.required],
   });
 
   protected readonly readonlyFile = new File(['copy'], 'archived-brief.pdf', {
-    type: 'application/pdf'
+    type: 'application/pdf',
   });
 
   protected validateRequiredFile(): void {

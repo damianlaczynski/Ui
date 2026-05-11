@@ -11,10 +11,10 @@ import { UiI18nService } from '../../i18n';
       :host {
         display: flex;
       }
-    `
+    `,
   ],
   imports: [],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpinnerComponent {
   //Service

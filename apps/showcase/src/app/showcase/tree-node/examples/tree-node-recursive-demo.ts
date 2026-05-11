@@ -22,20 +22,13 @@ import { TreeNodeComponent, type TreeNode } from 'ui';
           Recursive use
         </p>
         <div style="display:grid;gap:0.5rem;font-size:0.875rem;line-height:1.5">
-          <div>
-            <code>ui-tree-node</code>
-            can render nested children on its own.
-          </div>
+          <div><code>ui-tree-node</code> can render nested children on its own.</div>
           <div>Use it directly when you need a single expandable branch, not a full tree container.</div>
-          <div>
-            For full collections of roots, prefer
-            <code>ui-tree</code>
-            .
-          </div>
+          <div>For full collections of roots, prefer <code>ui-tree</code>.</div>
         </div>
       </div>
     </div>
-  `
+  `,
 })
 export class TreeNodeRecursiveDemoComponent {
   protected readonly node: TreeNode = {
@@ -53,22 +46,16 @@ export class TreeNodeRecursiveDemoComponent {
         expanded: true,
         children: [
           { id: 'brief', label: 'Brief.docx', icon: 'document', hasChildren: false },
-          {
-            id: 'board',
-            label: 'Board.url',
-            icon: 'link',
-            hasChildren: false,
-            selected: true
-          }
-        ]
+          { id: 'board', label: 'Board.url', icon: 'link', hasChildren: false, selected: true },
+        ],
       },
       {
         id: 'project-b',
         label: 'Project B',
         icon: 'folder',
         hasChildren: true,
-        children: [{ id: 'notes', label: 'Notes.md', icon: 'document', hasChildren: false }]
-      }
-    ]
+        children: [{ id: 'notes', label: 'Notes.md', icon: 'document', hasChildren: false }],
+      },
+    ],
   };
 }

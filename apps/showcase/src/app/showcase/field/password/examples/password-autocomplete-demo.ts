@@ -36,7 +36,7 @@ import { PasswordComponent } from 'ui';
         />
       </div>
     </div>
-  `
+  `,
 })
 export class PasswordAutocompleteDemoComponent {
   protected recoveryKey = 'VaultKey-48F2-Delta';

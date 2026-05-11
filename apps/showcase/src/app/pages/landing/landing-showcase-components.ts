@@ -45,11 +45,7 @@ export const ALL_SHOWCASE_COMPONENTS: ShowcaseComponent[] = [
   { id: 'progress-bar', name: 'Progress Bar', icon: 'spacebar' },
   { id: 'radio-button-group', name: 'Radio Group', icon: 'checkmark_circle' },
   { id: 'rating', name: 'Rating', icon: 'star' },
-  {
-    id: 'scroll-container',
-    name: 'Scroll Container',
-    icon: 'dual_screen_vertical_scroll'
-  },
+  { id: 'scroll-container', name: 'Scroll Container', icon: 'dual_screen_vertical_scroll' },
   { id: 'scroll-panel', name: 'Scroll Panel', icon: 'dual_screen_vertical_scroll' },
   { id: 'search', name: 'Search', icon: 'search' },
   { id: 'skeleton', name: 'Skeleton', icon: 'checkbox_indeterminate' },
@@ -76,5 +72,5 @@ export const ALL_SHOWCASE_COMPONENTS: ShowcaseComponent[] = [
   { id: 'totp', name: 'TOTP', icon: 'lock_closed' },
   { id: 'tree', name: 'Tree', icon: 'text_bullet_list_tree' },
   { id: 'tree-node', name: 'Tree Node', icon: 'rectangle_landscape' },
-  { id: 'url', name: 'URL', icon: 'link' }
+  { id: 'url', name: 'URL', icon: 'link' },
 ];

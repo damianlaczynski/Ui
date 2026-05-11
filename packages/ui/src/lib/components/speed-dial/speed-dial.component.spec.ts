@@ -7,7 +7,7 @@ import { SpeedDialComponent } from './speed-dial.component';
 
 const sampleItems: MenuItem[] = [
   { id: 'a', label: 'One', icon: 'star' },
-  { id: 'b', label: 'Two', icon: 'heart' }
+  { id: 'b', label: 'Two', icon: 'heart' },
 ];
 
 function getTriggerNativeButton(fixture: ComponentFixture<unknown>): HTMLButtonElement {
@@ -25,7 +25,7 @@ describe('SpeedDialComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [SpeedDialComponent],
-      providers: [provideNoopAnimations()]
+      providers: [provideNoopAnimations()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SpeedDialComponent);

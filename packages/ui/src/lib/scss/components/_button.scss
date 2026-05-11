@@ -274,7 +274,7 @@ $button-sizes: (
     line-height: $line-height-200,
     border-radius: $border-radius-200,
     icon-only-padding: 3px,
-    icon-only-size: 24px
+    icon-only-size: 24px,
   ),
   'medium': (
     min-height: 32px,
@@ -283,7 +283,7 @@ $button-sizes: (
     line-height: $line-height-300,
     border-radius: $border-radius-400,
     icon-only-padding: 5px,
-    icon-only-size: 32px
+    icon-only-size: 32px,
   ),
   'large': (
     min-height: 40px,
@@ -292,8 +292,8 @@ $button-sizes: (
     line-height: $line-height-400,
     border-radius: $border-radius-600,
     icon-only-padding: 8px,
-    icon-only-size: 40px
-  )
+    icon-only-size: 40px,
+  ),
 );
 
 @each $size, $props in $button-sizes {
@@ -495,7 +495,7 @@ $color-variants: (
   'success': 'green',
   'warning': 'orange',
   'danger': 'red',
-  'info': 'blue'
+  'info': 'blue',
 );
 
 @each $variant, $color in $color-variants {

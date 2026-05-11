@@ -35,9 +35,9 @@ import { AvatarComponent, ButtonComponent, CardComponent } from 'ui';
           <ui-avatar name="Adriana Nowak" variant="primary" appearance="filled" />
           <div style="display:grid;gap:0.25rem;min-width:0;flex:1;">
             <strong style="font-size:1rem;line-height:1.35;">Adriana Nowak</strong>
-            <span style="font-size:0.8125rem;color:var(--color-neutral-foreground3-rest);">
-              Senior Product Designer
-            </span>
+            <span style="font-size:0.8125rem;color:var(--color-neutral-foreground3-rest);"
+              >Senior Product Designer</span
+            >
           </div>
         </div>
 
@@ -65,6 +65,6 @@ import { AvatarComponent, ButtonComponent, CardComponent } from 'ui';
         </div>
       </ui-card>
     </div>
-  `
+  `,
 })
 export class CardCompositionDemoComponent {}

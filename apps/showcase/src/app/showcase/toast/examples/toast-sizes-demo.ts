@@ -16,7 +16,7 @@ import { ButtonComponent, ToastComponent } from 'ui';
       <ui-toast size="medium" variant="primary" title="Medium" message="Default density." [(visible)]="vMedium" />
       <ui-toast size="large" variant="primary" title="Large" message="Prominent feedback." [(visible)]="vLarge" />
     </div>
-  `
+  `,
 })
 export class ToastSizesExampleComponent {
   vSmall = true;

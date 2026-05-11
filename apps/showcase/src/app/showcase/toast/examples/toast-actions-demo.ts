@@ -15,8 +15,10 @@ import { ButtonComponent, ToastService } from 'ui';
           <span style="opacity:0.85">Teams link was copied—paste into chat if guests join late.</span>
         </div>
         <div style="display:flex;gap:0.5rem">
-          <ui-button slot="actions" type="button" variant="primary" appearance="outline">Accept</ui-button>
-          <ui-button slot="actions" type="button" variant="secondary" appearance="outline">Propose new time</ui-button>
+          <ui-button slot="actions" type="button" variant="primary" appearance="outline"> Accept </ui-button>
+          <ui-button slot="actions" type="button" variant="secondary" appearance="outline">
+            Propose new time
+          </ui-button>
         </div>
       </ng-template>
 
@@ -35,19 +37,19 @@ import { ButtonComponent, ToastService } from 'ui';
           </div>
         </div>
         <div style="display:flex;gap:0.5rem">
-          <ui-button slot="actions" type="button" variant="warning" appearance="tint">Manage storage</ui-button>
+          <ui-button slot="actions" type="button" variant="warning" appearance="tint"> Manage storage </ui-button>
         </div>
       </ng-template>
 
       <ng-template #payment>
         <div style="margin-top:0.35rem;font-size:0.8125rem;line-height:1.45;opacity:0.9">
-          <span style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:0.75rem;opacity:0.85">
-            card_···4196 · declined (insufficient funds)
-          </span>
+          <span style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:0.75rem;opacity:0.85"
+            >card_···4196 · declined (insufficient funds)</span
+          >
         </div>
         <div style="display:flex;gap:0.5rem">
-          <ui-button slot="actions" type="button" variant="danger" appearance="outline">Retry payment</ui-button>
-          <ui-button slot="actions" type="button" variant="secondary" appearance="outline">Update card</ui-button>
+          <ui-button slot="actions" type="button" variant="danger" appearance="outline"> Retry payment </ui-button>
+          <ui-button slot="actions" type="button" variant="secondary" appearance="outline"> Update card </ui-button>
         </div>
       </ng-template>
 
@@ -70,7 +72,7 @@ import { ButtonComponent, ToastService } from 'ui';
         <ui-button type="button" variant="success" (click)="pushBackup()">Backup summary</ui-button>
       </div>
     </div>
-  `
+  `,
 })
 export class ToastActionsExampleComponent {
   private readonly inviteTpl = viewChild.required<TemplateRef<unknown>>('invite');
@@ -86,7 +88,7 @@ export class ToastActionsExampleComponent {
       variant: 'info',
       appearance: 'filled',
       contentTemplate: this.inviteTpl(),
-      duration: 12000
+      duration: 12000,
     });
   }
 
@@ -97,7 +99,7 @@ export class ToastActionsExampleComponent {
       variant: 'warning',
       appearance: 'filled',
       contentTemplate: this.quotaTpl(),
-      duration: 15000
+      duration: 15000,
     });
   }
 
@@ -109,7 +111,7 @@ export class ToastActionsExampleComponent {
       appearance: 'filled',
       contentTemplate: this.paymentTpl(),
       duration: 12000,
-      showProgress: false
+      showProgress: false,
     });
   }
 
@@ -120,7 +122,7 @@ export class ToastActionsExampleComponent {
       variant: 'success',
       appearance: 'filled',
       contentTemplate: this.backupTpl(),
-      duration: 9000
+      duration: 9000,
     });
   }
 

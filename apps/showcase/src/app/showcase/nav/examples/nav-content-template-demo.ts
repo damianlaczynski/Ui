@@ -23,14 +23,14 @@ import { NavComponent, type NavNode } from 'ui';
         </span>
       </div>
     </ng-template>
-  `
+  `,
 })
 export class NavContentTemplateDemoComponent {
   protected readonly items: NavNode[] = [
     { id: 'inbox', label: 'Inbox', icon: 'mail', selected: true },
     { id: 'mentions', label: 'Mentions', icon: 'person_accounts' },
     { id: 'drafts', label: 'Drafts', icon: 'document' },
-    { id: 'archive', label: 'Archive', icon: 'archive' }
+    { id: 'archive', label: 'Archive', icon: 'archive' },
   ];
 
   protected contentTemplateRef = viewChild<TemplateRef<any>>('navContentTemplate');
@@ -40,7 +40,7 @@ export class NavContentTemplateDemoComponent {
       inbox: 12,
       mentions: 4,
       drafts: 2,
-      archive: 31
+      archive: 31,
     };
     return counts[id] ?? 0;
   }

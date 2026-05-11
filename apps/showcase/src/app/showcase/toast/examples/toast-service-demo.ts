@@ -20,7 +20,7 @@ import { ButtonComponent, ToastContainerComponent, ToastService } from 'ui';
       </div>
     </div>
     <ui-toast-container position="top-right" />
-  `
+  `,
 })
 export class ToastServiceExampleComponent {
   private readonly toast = inject(ToastService);
@@ -31,7 +31,7 @@ export class ToastServiceExampleComponent {
       appearance: 'filled',
       title: 'Primary',
       message: 'Queued with variant primary.',
-      duration: 5000
+      duration: 5000,
     });
   }
 
@@ -41,7 +41,7 @@ export class ToastServiceExampleComponent {
       appearance: 'filled',
       title: 'Secondary',
       message: 'Queued with variant secondary.',
-      duration: 5000
+      duration: 5000,
     });
   }
 

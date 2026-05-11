@@ -8,7 +8,7 @@ describe('FileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FileComponent]
+      imports: [FileComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(FileComponent);
@@ -91,7 +91,7 @@ describe('FileComponent', () => {
     fixture.detectChanges();
 
     const removeButtons: HTMLButtonElement[] = Array.from(
-      fixture.nativeElement.querySelectorAll('.file-list .button[aria-label^="Remove "]')
+      fixture.nativeElement.querySelectorAll('.file-list .button[aria-label^="Remove "]'),
     );
     expect(removeButtons.length).toBe(1);
   });

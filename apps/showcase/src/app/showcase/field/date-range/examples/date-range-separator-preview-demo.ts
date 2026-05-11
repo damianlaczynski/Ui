@@ -31,21 +31,21 @@ import { DateRange, DateRangeComponent } from 'ui';
         [ngModelOptions]="{ standalone: true }"
       />
     </div>
-  `
+  `,
 })
 export class DateRangeSeparatorPreviewDemoComponent {
   protected defaultRange: DateRange | null = {
     startDate: '2026-06-02',
-    endDate: '2026-06-06'
+    endDate: '2026-06-06',
   };
 
   protected customSeparatorRange: DateRange | null = {
     startDate: '2026-06-10',
-    endDate: '2026-06-14'
+    endDate: '2026-06-14',
   };
 
   protected pickerRange: DateRange | null = {
     startDate: '2026-07-01',
-    endDate: '2026-07-09'
+    endDate: '2026-07-09',
   };
 }

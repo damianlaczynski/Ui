@@ -30,12 +30,12 @@ import { ButtonComponent, CardComponent, LoadingStateComponent } from 'ui';
         </ui-card>
       </ui-loading-state>
     </div>
-  `
+  `,
 })
 export class LoadingStateCardOverlayDemoComponent {
   protected readonly isLoading = signal(true);
 
   protected toggleLoading(): void {
-    this.isLoading.update((value) => !value);
+    this.isLoading.update(value => !value);
   }
 }

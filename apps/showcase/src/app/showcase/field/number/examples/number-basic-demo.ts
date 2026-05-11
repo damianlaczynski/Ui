@@ -27,7 +27,7 @@ import { NumberComponent } from 'ui';
         helpText="Decimal input is useful for money-like values."
       />
     </div>
-  `
+  `,
 })
 export class NumberBasicDemoComponent {
   protected seats = 12;

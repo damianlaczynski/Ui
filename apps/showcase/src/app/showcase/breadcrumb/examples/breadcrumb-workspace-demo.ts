@@ -6,7 +6,7 @@ const FULL_WORKSPACE_PATH: Breadcrumb[] = [
   { id: 'teams', label: 'Engineering', icon: 'people' },
   { id: 'platform', label: 'Platform', icon: 'folder' },
   { id: 'release', label: 'Release coordination', icon: 'calendar' },
-  { id: 'docs', label: 'Runbooks', icon: 'book', selected: true }
+  { id: 'docs', label: 'Runbooks', icon: 'book', selected: true },
 ];
 
 @Component({
@@ -32,18 +32,18 @@ const FULL_WORKSPACE_PATH: Breadcrumb[] = [
         </div>
       </div>
     </div>
-  `
+  `,
 })
 export class BreadcrumbWorkspaceExampleComponent {
   protected readonly path = signal<Breadcrumb[]>(FULL_WORKSPACE_PATH);
 
   protected navigate(item: Breadcrumb): void {
-    const index = FULL_WORKSPACE_PATH.findIndex((entry) => entry.id === item.id);
+    const index = FULL_WORKSPACE_PATH.findIndex(entry => entry.id === item.id);
     this.path.set(
       FULL_WORKSPACE_PATH.slice(0, index + 1).map((entry, currentIndex, arr) => ({
         ...entry,
-        selected: currentIndex === arr.length - 1
-      }))
+        selected: currentIndex === arr.length - 1,
+      })),
     );
   }
 }

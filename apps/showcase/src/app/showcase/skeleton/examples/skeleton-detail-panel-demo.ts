@@ -92,7 +92,7 @@ import { ButtonComponent, SkeletonComponent } from 'ui';
         }
       </div>
     </div>
-  `
+  `,
 })
 export class SkeletonDetailPanelExampleComponent {
   protected readonly loading = signal(true);

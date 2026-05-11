@@ -58,7 +58,7 @@ import { ButtonComponent, SliderComponent, SwitchComponent } from 'ui';
         <ui-button type="button" variant="secondary" appearance="outline">Preview digest</ui-button>
       </div>
     </div>
-  `
+  `,
 })
 export class SwitchNotificationPanelExampleComponent {
   protected smartAlerts = true;

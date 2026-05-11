@@ -12,8 +12,7 @@ import { ButtonComponent, MenuListComponent, type MenuItem, type MenuSection } f
       >
         <ui-button variant="secondary" appearance="outline" (click)="reset()">Reset</ui-button>
         <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          Last action:
-          <strong>{{ lastAction() || 'none' }}</strong>
+          Last action: <strong>{{ lastAction() || 'none' }}</strong>
         </span>
       </div>
 
@@ -30,7 +29,7 @@ import { ButtonComponent, MenuListComponent, type MenuItem, type MenuSection } f
         />
       </div>
     </div>
-  `
+  `,
 })
 export class MenuSectionsShortcutsDemoComponent {
   protected readonly lastAction = signal('');
@@ -42,31 +41,25 @@ export class MenuSectionsShortcutsDemoComponent {
       items: [
         { id: 'new', label: 'New file', icon: 'document', shortcut: 'Ctrl+N' },
         { id: 'open', label: 'Open', icon: 'folder', shortcut: 'Ctrl+O' },
-        { id: 'save', label: 'Save', icon: 'save', shortcut: 'Ctrl+S' }
-      ]
+        { id: 'save', label: 'Save', icon: 'save', shortcut: 'Ctrl+S' },
+      ],
     },
     {
       header: 'Edit',
       divider: true,
       items: [
         { id: 'undo', label: 'Undo', icon: 'arrow_undo', shortcut: 'Ctrl+Z' },
-        {
-          id: 'redo',
-          label: 'Redo',
-          icon: 'arrow_redo',
-          shortcut: 'Ctrl+Shift+Z',
-          disabled: true
-        },
-        { id: 'find', label: 'Find', icon: 'search', shortcut: 'Ctrl+F' }
-      ]
+        { id: 'redo', label: 'Redo', icon: 'arrow_redo', shortcut: 'Ctrl+Shift+Z', disabled: true },
+        { id: 'find', label: 'Find', icon: 'search', shortcut: 'Ctrl+F' },
+      ],
     },
     {
       header: 'View',
       items: [
         { id: 'outline', label: 'Outline', icon: 'panel_left', selected: true },
-        { id: 'comments', label: 'Comments', icon: 'comment' }
-      ]
-    }
+        { id: 'comments', label: 'Comments', icon: 'comment' },
+      ],
+    },
   ];
 
   protected onItemClick(item: MenuItem): void {

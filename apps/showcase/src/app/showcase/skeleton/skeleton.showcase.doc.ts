@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig
+  ShowcaseDocPageConfig,
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { SkeletonAnimationExampleComponent } from './examples/skeleton-animation-demo';
 import { SkeletonBasicExampleComponent } from './examples/skeleton-basic-demo';
@@ -19,7 +19,7 @@ const componentMap = {
   animation: SkeletonAnimationExampleComponent,
   cardShell: SkeletonCardShellExampleComponent,
   listShell: SkeletonListShellExampleComponent,
-  detailPanel: SkeletonDetailPanelExampleComponent
+  detailPanel: SkeletonDetailPanelExampleComponent,
 } as const;
 
 export const SKELETON_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -27,9 +27,9 @@ export const SKELETON_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(skeletonMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${skeletonMeta.slug}/${file}`
-    ])
-  ) as Record<string, string>)
+      `/docs/components/snippets/${skeletonMeta.slug}/${file}`,
+    ]),
+  ) as Record<string, string>),
 };
 
 export const SKELETON_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -38,12 +38,12 @@ export const SKELETON_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: skeletonMeta.importCode,
   containerClass: skeletonMeta.containerClass,
   accessibility: skeletonMeta.accessibility,
-  featureSections: skeletonMeta.featureSections.map((section) => ({
+  featureSections: skeletonMeta.featureSections.map(section => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap]
+    component: componentMap[section.componentKey as keyof typeof componentMap],
   })),
-  apiSections: skeletonMeta.apiSections
+  apiSections: skeletonMeta.apiSections,
 };

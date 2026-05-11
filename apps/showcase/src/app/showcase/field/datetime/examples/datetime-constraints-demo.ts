@@ -25,7 +25,7 @@ import { DatetimeComponent } from 'ui';
         <span>Selected: {{ value || 'None' }}</span>
       </div>
     </div>
-  `
+  `,
 })
 export class DatetimeConstraintsDemoComponent {
   protected value = '2026-05-12T10:00';

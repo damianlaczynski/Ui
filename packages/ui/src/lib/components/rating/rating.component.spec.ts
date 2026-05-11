@@ -11,7 +11,7 @@ describe('RatingComponent', () => {
     originalDir = document.documentElement.dir;
 
     await TestBed.configureTestingModule({
-      imports: [RatingComponent]
+      imports: [RatingComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(RatingComponent);
@@ -37,7 +37,7 @@ describe('RatingComponent', () => {
 
   it('should emit valueChange on star click when interactive', () => {
     let emitted: number | null = null;
-    component.valueChange.subscribe((value) => (emitted = value));
+    component.valueChange.subscribe(value => (emitted = value));
 
     const star: HTMLButtonElement = fixture.nativeElement.querySelector('.rating__star[data-star="4"]');
     star.click();
@@ -70,7 +70,7 @@ describe('RatingComponent', () => {
 
   it('should emit next value on ArrowRight in LTR', () => {
     let emitted: number | null = null;
-    component.valueChange.subscribe((value) => (emitted = value));
+    component.valueChange.subscribe(value => (emitted = value));
 
     const thirdStar: HTMLButtonElement = fixture.nativeElement.querySelector('.rating__star[data-star="3"]');
     thirdStar.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
@@ -83,7 +83,7 @@ describe('RatingComponent', () => {
     fixture.detectChanges();
 
     let emitted: number | null = null;
-    component.valueChange.subscribe((value) => (emitted = value));
+    component.valueChange.subscribe(value => (emitted = value));
 
     const thirdStar: HTMLButtonElement = fixture.nativeElement.querySelector('.rating__star[data-star="3"]');
     thirdStar.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
@@ -96,7 +96,7 @@ describe('RatingComponent', () => {
     fixture.detectChanges();
 
     let emitted: number | null = null;
-    component.valueChange.subscribe((value) => (emitted = value));
+    component.valueChange.subscribe(value => (emitted = value));
 
     const firstStar: HTMLButtonElement = fixture.nativeElement.querySelector('.rating__star[data-star="1"]');
     firstStar.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));

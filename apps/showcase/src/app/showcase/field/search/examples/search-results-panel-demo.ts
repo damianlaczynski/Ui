@@ -53,7 +53,7 @@ type SearchResult = {
         }
       </div>
     </div>
-  `
+  `,
 })
 export class SearchResultsPanelDemoComponent {
   protected query = 'release';
@@ -62,7 +62,7 @@ export class SearchResultsPanelDemoComponent {
     { title: 'Release handoff checklist', meta: 'Document | Updated 2 hours ago' },
     { title: 'Q3 release plan', meta: 'Project | Owned by Nina Woods' },
     { title: 'Release notes template', meta: 'Template | Shared with Product Ops' },
-    { title: 'Design review board', meta: 'Channel | Last active yesterday' }
+    { title: 'Design review board', meta: 'Channel | Last active yesterday' },
   ];
 
   protected get filteredResults(): SearchResult[] {
@@ -71,6 +71,6 @@ export class SearchResultsPanelDemoComponent {
       return this.results;
     }
 
-    return this.results.filter((result) => `${result.title} ${result.meta}`.toLowerCase().includes(query));
+    return this.results.filter(result => `${result.title} ${result.meta}`.toLowerCase().includes(query));
   }
 }

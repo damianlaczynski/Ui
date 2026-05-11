@@ -27,7 +27,7 @@ import { ButtonComponent, CalendarComponent, CalendarDay } from 'ui';
         </span>
       </div>
     </div>
-  `
+  `,
 })
 export class CalendarBasicDemoComponent {
   protected readonly currentMonth = signal(new Date(2026, 4, 1));
@@ -36,7 +36,7 @@ export class CalendarBasicDemoComponent {
   protected readonly summary = computed(() =>
     this.selectedDate()
       ? `Selected date: ${this.selectedDate()!.toLocaleDateString('en-US', { dateStyle: 'medium' })}`
-      : 'No date selected.'
+      : 'No date selected.',
   );
 
   protected onDateSelect(day: CalendarDay): void {

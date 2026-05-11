@@ -26,6 +26,6 @@ import { AccordionComponent } from 'ui';
         </p>
       </ui-accordion>
     </div>
-  `
+  `,
 })
 export class AccordionChevronIconsExampleComponent {}

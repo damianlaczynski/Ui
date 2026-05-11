@@ -9,7 +9,7 @@ const GROUPED_ITEMS: CommandPaletteItem[] = [
     icon: 'apps',
     group: 'Navigation',
     keywords: ['home', 'overview', 'dashboard'],
-    action: () => {}
+    action: () => {},
   },
   {
     id: 'go-projects',
@@ -18,7 +18,7 @@ const GROUPED_ITEMS: CommandPaletteItem[] = [
     icon: 'folder',
     group: 'Navigation',
     keywords: ['projects', 'workspaces', 'files'],
-    action: () => {}
+    action: () => {},
   },
   {
     id: 'new-project',
@@ -27,7 +27,7 @@ const GROUPED_ITEMS: CommandPaletteItem[] = [
     icon: 'document_add',
     group: 'Actions',
     keywords: ['new', 'create', 'project'],
-    action: () => {}
+    action: () => {},
   },
   {
     id: 'invite-user',
@@ -36,7 +36,7 @@ const GROUPED_ITEMS: CommandPaletteItem[] = [
     icon: 'person_add',
     group: 'Actions',
     keywords: ['invite', 'user', 'teammate'],
-    action: () => {}
+    action: () => {},
   },
   {
     id: 'open-shortcuts',
@@ -45,8 +45,8 @@ const GROUPED_ITEMS: CommandPaletteItem[] = [
     icon: 'keyboard',
     group: 'Help',
     keywords: ['shortcuts', 'help', 'keyboard'],
-    action: () => {}
-  }
+    action: () => {},
+  },
 ];
 
 @Component({
@@ -91,7 +91,7 @@ const GROUPED_ITEMS: CommandPaletteItem[] = [
         />
       </div>
     </div>
-  `
+  `,
 })
 export class CommandPaletteGroupingDemoComponent {
   protected readonly groupedVisible = signal(false);

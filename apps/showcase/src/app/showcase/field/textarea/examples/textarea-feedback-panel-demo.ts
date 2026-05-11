@@ -34,7 +34,7 @@ import { ButtonComponent, TextareaComponent } from 'ui';
         <ui-button type="button" variant="secondary" appearance="outline">Save draft</ui-button>
       </div>
     </div>
-  `
+  `,
 })
 export class TextareaFeedbackPanelDemoComponent {
   protected feedback =

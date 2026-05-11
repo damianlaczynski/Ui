@@ -25,14 +25,14 @@ import { ButtonComponent, TotpComponent } from 'ui';
         <ui-button type="button" appearance="outline" (click)="fillExample()">Use example</ui-button>
       </div>
     </form>
-  `
+  `,
 })
 export class TotpValidationDemoComponent {
   protected readonly verifyForm = new FormGroup({
     code: new FormControl('', {
       nonNullable: true,
-      validators: [Validators.required, Validators.minLength(6), Validators.maxLength(6)]
-    })
+      validators: [Validators.required, Validators.minLength(6), Validators.maxLength(6)],
+    }),
   });
 
   protected get codeError(): string {

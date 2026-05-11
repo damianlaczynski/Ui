@@ -5,7 +5,7 @@ import { DropdownComponent, type DropdownItem } from 'ui';
 const densityItems: DropdownItem[] = [
   { value: 'daily', label: 'Daily' },
   { value: 'weekly', label: 'Weekly' },
-  { value: 'monthly', label: 'Monthly' }
+  { value: 'monthly', label: 'Monthly' },
 ];
 
 @Component({
@@ -72,7 +72,7 @@ const densityItems: DropdownItem[] = [
         />
       </div>
     </div>
-  `
+  `,
 })
 export class DropdownVariantsStatesExampleComponent {
   protected readonly densityItems = densityItems;

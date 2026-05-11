@@ -34,7 +34,7 @@ import { ToastService } from './services/toast.service';
         </ui-toast>
       }
     </div>
-  `
+  `,
 })
 export class ToastContainerComponent {
   private toastService = inject(ToastService);

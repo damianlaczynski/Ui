@@ -36,14 +36,14 @@ import { TreeNodeComponent, type TreeNode } from 'ui';
         <ui-tree-node [node]="disabledNode" />
       </div>
     </div>
-  `
+  `,
 })
 export class TreeNodeStatesDemoComponent {
   protected readonly defaultNode: TreeNode = {
     id: 'default',
     label: 'Design tokens.json',
     icon: 'document',
-    hasChildren: false
+    hasChildren: false,
   };
 
   protected readonly selectedNode: TreeNode = {
@@ -53,7 +53,7 @@ export class TreeNodeStatesDemoComponent {
     selected: true,
     hasChildren: true,
     expanded: true,
-    children: [{ id: 'logo', label: 'Logo.svg', icon: 'image', hasChildren: false }]
+    children: [{ id: 'logo', label: 'Logo.svg', icon: 'image', hasChildren: false }],
   };
 
   protected readonly disabledNode: TreeNode = {
@@ -61,6 +61,6 @@ export class TreeNodeStatesDemoComponent {
     label: 'Archived release',
     icon: 'archive',
     disabled: true,
-    hasChildren: false
+    hasChildren: false,
   };
 }

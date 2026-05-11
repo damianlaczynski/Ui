@@ -23,8 +23,8 @@ export interface TreeNode<T extends TreeNode<T> = TreeNode<any>> extends Node<T[
   host: {
     '[style.display]': '"block"',
     '[style.width]': '"100%"',
-    '[style.minWidth]': '"0"'
-  }
+    '[style.minWidth]': '"0"',
+  },
 })
 export class TreeNodeComponent<T extends TreeNode<T>> {
   private readonly i18n = inject(UiI18nService);
@@ -65,11 +65,7 @@ export class TreeNodeComponent<T extends TreeNode<T>> {
   nodeSelect = output<T>();
   dragStart = output<{ node: T; event: DragEvent }>();
   dragEnd = output<{ node: T; event: DragEvent }>();
-  drop = output<{
-    node: T;
-    event: DragEvent;
-    position: 'before' | 'after' | 'inside';
-  }>();
+  drop = output<{ node: T; event: DragEvent; position: 'before' | 'after' | 'inside' }>();
   dragOver = output<{
     node: T;
     event: DragEvent;
@@ -150,13 +146,9 @@ export class TreeNodeComponent<T extends TreeNode<T>> {
   getChevronAriaLabel(): string {
     const label = this.node().label?.trim();
     if (this.expanded()) {
-      return this.i18n.t('treeNode.collapseAriaLabel', `Collapse ${label || 'node'}`, {
-        label
-      });
+      return this.i18n.t('treeNode.collapseAriaLabel', `Collapse ${label || 'node'}`, { label });
     }
-    return this.i18n.t('treeNode.expandAriaLabel', `Expand ${label || 'node'}`, {
-      label
-    });
+    return this.i18n.t('treeNode.expandAriaLabel', `Expand ${label || 'node'}`, { label });
   }
 
   onNodeSelect(node: T): void {
@@ -207,7 +199,7 @@ export class TreeNodeComponent<T extends TreeNode<T>> {
         event.preventDefault();
         // Expand all siblings at the same level
         if (node.parent && node.parent.children) {
-          node.parent.children.forEach((sibling) => {
+          node.parent.children.forEach(sibling => {
             if (sibling.hasChildren) {
               sibling.expanded = true;
             }
@@ -258,7 +250,7 @@ export class TreeNodeComponent<T extends TreeNode<T>> {
 
   onDragOver(event: { node: T; event: DragEvent; position: 'before' | 'after' | 'inside' }): void {
     const children = this.node().children;
-    const isHoverOverChild = !!children?.some((c) => c.id === event.node.id);
+    const isHoverOverChild = !!children?.some(c => c.id === event.node.id);
 
     if (isHoverOverChild) {
       if (event.position === 'inside') {
@@ -270,11 +262,7 @@ export class TreeNodeComponent<T extends TreeNode<T>> {
       }
     }
 
-    this.dragOver.emit({
-      node: event.node,
-      event: event.event,
-      position: event.position
-    });
+    this.dragOver.emit({ node: event.node, event: event.event, position: event.position });
   }
 
   onBetweenElementsDragOver(event: DragEvent, node: T, position: 'before' | 'after'): void {
@@ -330,8 +318,8 @@ export class TreeNodeComponent<T extends TreeNode<T>> {
     if (draggedId !== null) {
       const children = this.node().children;
       if (children && children.length > 0) {
-        const draggedIndex = children.findIndex((n) => n.id === draggedId);
-        const targetIndex = children.findIndex((n) => n.id === nodeId);
+        const draggedIndex = children.findIndex(n => n.id === draggedId);
+        const targetIndex = children.findIndex(n => n.id === nodeId);
 
         if (draggedIndex !== -1 && targetIndex !== -1) {
           // Hide "after" indicator on node before dragged node

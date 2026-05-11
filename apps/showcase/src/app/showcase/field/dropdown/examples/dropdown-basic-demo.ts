@@ -7,7 +7,7 @@ const statusItems: DropdownItem[] = [
   { value: 'ready', label: 'Ready for review' },
   { value: 'active', label: 'In progress' },
   { value: 'blocked', label: 'Blocked' },
-  { value: 'done', label: 'Done' }
+  { value: 'done', label: 'Done' },
 ];
 
 @Component({
@@ -39,13 +39,13 @@ const statusItems: DropdownItem[] = [
         </strong>
       </div>
     </div>
-  `
+  `,
 })
 export class DropdownBasicExampleComponent {
   protected readonly statusItems = statusItems;
   protected selectedStatus = 'active';
 
   protected get selectedStatusLabel(): string {
-    return this.statusItems.find((item) => item.value === this.selectedStatus)?.label ?? 'None';
+    return this.statusItems.find(item => item.value === this.selectedStatus)?.label ?? 'None';
   }
 }

@@ -20,7 +20,7 @@ import { RatingComponent } from 'ui';
         Group and star labels override defaults for product copy or i18n.
       </span>
     </div>
-  `
+  `,
 })
 export class RatingLabelsExampleComponent {
   protected readonly value = signal(0);

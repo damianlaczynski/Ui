@@ -22,7 +22,7 @@ interface QueueRow {
       <div style="font-weight:600;">Selected rows</div>
       <div>{{ selectedCount() }}</div>
     </div>
-  `
+  `,
 })
 export class DataGridSelectionDemoComponent {
   selectedCount = signal(0);
@@ -31,7 +31,7 @@ export class DataGridSelectionDemoComponent {
     { id: '1', ticket: 'INC-2411', priority: 'High', owner: 'Mia Chen' },
     { id: '2', ticket: 'INC-2412', priority: 'Medium', owner: 'Luca Rossi' },
     { id: '3', ticket: 'INC-2413', priority: 'Low', owner: 'Sofia Reed' },
-    { id: '4', ticket: 'INC-2414', priority: 'High', owner: 'Ethan Hall' }
+    { id: '4', ticket: 'INC-2414', priority: 'High', owner: 'Ethan Hall' },
   ];
 
   config = computed(() =>
@@ -39,29 +39,29 @@ export class DataGridSelectionDemoComponent {
       columns: [
         DataGridColumnFactory.text('ticket', 'Ticket', 'ticket'),
         DataGridColumnFactory.text('priority', 'Priority', 'priority'),
-        DataGridColumnFactory.text('owner', 'Owner', 'owner')
+        DataGridColumnFactory.text('owner', 'Owner', 'owner'),
       ],
       dataSource: this.createStaticDataSource(this.rows),
       selection: 'multi',
       styling: {
         striped: true,
-        hoverable: true
+        hoverable: true,
       },
       callbacks: {
-        onSelectionChange: (rows: DataGridRow<QueueRow>[]) => this.selectedCount.set(rows.length)
-      }
-    })
+        onSelectionChange: (rows: DataGridRow<QueueRow>[]) => this.selectedCount.set(rows.length),
+      },
+    }),
   );
 
   private createStaticDataSource<T extends { id?: string }>(
-    data: T[]
+    data: T[],
   ): (params: QueryParams<T>) => Observable<QueryResult<T>> {
     return () =>
       of({
         items: [...data],
         totalCount: data.length,
         hasNextPage: false,
-        hasPreviousPage: false
+        hasPreviousPage: false,
       });
   }
 }

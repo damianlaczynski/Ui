@@ -8,7 +8,7 @@ describe('EmailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EmailComponent]
+      imports: [EmailComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(EmailComponent);
@@ -55,9 +55,9 @@ describe('EmailComponent', () => {
 
   it('should render email action button with aria-label', () => {
     const actionButtons: HTMLButtonElement[] = Array.from(
-      fixture.nativeElement.querySelectorAll('.field__actions .field__action')
+      fixture.nativeElement.querySelectorAll('.field__actions .field__action'),
     );
-    expect(actionButtons.some((btn) => btn.getAttribute('aria-label') === 'Email')).toBe(true);
+    expect(actionButtons.some(btn => btn.getAttribute('aria-label') === 'Email')).toBe(true);
   });
 
   it('should select full value on focus', () => {

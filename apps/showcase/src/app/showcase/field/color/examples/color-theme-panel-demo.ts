@@ -58,7 +58,7 @@ import { ButtonComponent, ColorComponent } from 'ui';
         <ui-button type="button" variant="secondary" appearance="outline">Reset to defaults</ui-button>
       </div>
     </div>
-  `
+  `,
 })
 export class ColorThemePanelExampleComponent {
   protected headerAccent = '#0F6CBD';

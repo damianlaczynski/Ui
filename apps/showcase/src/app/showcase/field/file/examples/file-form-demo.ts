@@ -60,15 +60,15 @@ import { ButtonComponent, FileComponent } from 'ui';
         <div style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.875rem;line-height:1.4">
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Cover image</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">
-              {{ uploadForm.controls.coverImage.value?.name ?? 'None' }}
-            </strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
+              uploadForm.controls.coverImage.value?.name ?? 'None'
+            }}</strong>
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Attachments</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">
-              {{ uploadForm.controls.attachments.value?.length ?? 0 }}
-            </strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
+              uploadForm.controls.attachments.value?.length ?? 0
+            }}</strong>
           </div>
           <div
             style="margin-top:0.25rem;padding-top:0.5rem;font-size:0.75rem;color:var(--color-neutral-foreground2-rest);border-top:1px solid color-mix(in srgb,var(--color-neutral-stroke-rest) 65%,transparent)"
@@ -78,20 +78,20 @@ import { ButtonComponent, FileComponent } from 'ui';
         </div>
       </div>
     </form>
-  `
+  `,
 })
 export class FileFormDemoComponent {
   protected readonly uploadForm = new FormGroup({
     coverImage: new FormControl<File | null>(new File(['cover'], 'cover-image.png', { type: 'image/png' })),
     attachments: new FormControl<File[] | null>([
-      new File(['brief'], 'campaign-brief.pdf', { type: 'application/pdf' })
-    ])
+      new File(['brief'], 'campaign-brief.pdf', { type: 'application/pdf' }),
+    ]),
   });
 
   protected resetForm(): void {
     this.uploadForm.reset({
       coverImage: null,
-      attachments: []
+      attachments: [],
     });
   }
 }

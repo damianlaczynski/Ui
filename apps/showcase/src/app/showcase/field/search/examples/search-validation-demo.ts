@@ -25,14 +25,14 @@ import { ButtonComponent, SearchComponent } from 'ui';
         <ui-button type="button" appearance="outline" (click)="fillExample()">Use example</ui-button>
       </div>
     </form>
-  `
+  `,
 })
 export class SearchValidationDemoComponent {
   protected readonly searchForm = new FormGroup({
     query: new FormControl('', {
       nonNullable: true,
-      validators: [Validators.required, Validators.minLength(3)]
-    })
+      validators: [Validators.required, Validators.minLength(3)],
+    }),
   });
 
   protected get queryError(): string {

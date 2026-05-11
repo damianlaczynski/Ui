@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig
+  ShowcaseDocPageConfig,
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { DropdownAsyncDataExampleComponent } from './examples/dropdown-async-data-demo';
 import { DropdownBasicExampleComponent } from './examples/dropdown-basic-demo';
@@ -23,7 +23,7 @@ const componentMap = {
   compactPanel: DropdownCompactPanelExampleComponent,
   asyncData: DropdownAsyncDataExampleComponent,
   customTemplate: DropdownCustomTemplateExampleComponent,
-  formPattern: DropdownFormPatternExampleComponent
+  formPattern: DropdownFormPatternExampleComponent,
 } as const;
 
 export const DROPDOWN_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -31,9 +31,9 @@ export const DROPDOWN_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(dropdownMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${dropdownMeta.slug}/${file}`
-    ])
-  ) as Record<string, string>)
+      `/docs/components/snippets/${dropdownMeta.slug}/${file}`,
+    ]),
+  ) as Record<string, string>),
 };
 
 export const DROPDOWN_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -42,12 +42,12 @@ export const DROPDOWN_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: dropdownMeta.importCode,
   containerClass: dropdownMeta.containerClass,
   accessibility: dropdownMeta.accessibility,
-  featureSections: dropdownMeta.featureSections.map((section) => ({
+  featureSections: dropdownMeta.featureSections.map(section => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap]
+    component: componentMap[section.componentKey as keyof typeof componentMap],
   })),
-  apiSections: dropdownMeta.apiSections
+  apiSections: dropdownMeta.apiSections,
 };

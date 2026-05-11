@@ -11,7 +11,7 @@ import { TreeComponent, type TreeNode } from 'ui';
     >
       <ui-tree [nodes]="nodes" [showSelectionIndicator]="true" />
     </div>
-  `
+  `,
 })
 export class TreeBasicDemoComponent {
   protected readonly nodes: TreeNode[] = [
@@ -23,16 +23,16 @@ export class TreeBasicDemoComponent {
       expanded: true,
       children: [
         { id: 'brief', label: 'Project brief.docx', icon: 'document' },
-        { id: 'notes', label: 'Meeting notes.md', icon: 'document', selected: true }
-      ]
+        { id: 'notes', label: 'Meeting notes.md', icon: 'document', selected: true },
+      ],
     },
     {
       id: 'assets',
       label: 'Assets',
       icon: 'image',
       hasChildren: true,
-      children: [{ id: 'hero', label: 'Hero banner.png', icon: 'image' }]
+      children: [{ id: 'hero', label: 'Hero banner.png', icon: 'image' }],
     },
-    { id: 'archive', label: 'Archive', icon: 'archive' }
+    { id: 'archive', label: 'Archive', icon: 'archive' },
   ];
 }

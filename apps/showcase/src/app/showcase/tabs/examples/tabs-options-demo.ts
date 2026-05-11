@@ -30,31 +30,29 @@ import { TabsComponent, type Tab } from 'ui';
         <div style="display:flex;flex-direction:column;gap:0.45rem;font-size:0.875rem;line-height:1.4">
           @for (tab of editableTabs; track tab.id) {
             <div style="display:flex;justify-content:space-between;gap:1rem">
-              <span style="color:var(--color-neutral-foreground2-rest)">
-                {{ tab.label }}
-              </span>
-              <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">
-                {{ tab.disabled ? 'Disabled' : tab.closable ? 'Closable' : 'Pinned' }}
-              </strong>
+              <span style="color:var(--color-neutral-foreground2-rest)">{{ tab.label }}</span>
+              <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
+                tab.disabled ? 'Disabled' : tab.closable ? 'Closable' : 'Pinned'
+              }}</strong>
             </div>
           }
         </div>
       </div>
     </div>
-  `
+  `,
 })
 export class TabsOptionsDemoComponent {
   protected editableTabs: Tab[] = [
     { id: 'summary', label: 'Summary', icon: 'book' },
     { id: 'draft', label: 'Draft', icon: 'document', closable: true },
     { id: 'review', label: 'Needs review', icon: 'edit', closable: true },
-    { id: 'archive', label: 'Archive', icon: 'archive', disabled: true }
+    { id: 'archive', label: 'Archive', icon: 'archive', disabled: true },
   ];
 
   protected selectedTabId: string | number = this.editableTabs[0].id;
 
   protected closeTab(tab: Tab): void {
-    this.editableTabs = this.editableTabs.filter((current) => current.id !== tab.id);
+    this.editableTabs = this.editableTabs.filter(current => current.id !== tab.id);
 
     if (this.selectedTabId === tab.id && this.editableTabs.length > 0) {
       this.selectedTabId = this.editableTabs[0].id;

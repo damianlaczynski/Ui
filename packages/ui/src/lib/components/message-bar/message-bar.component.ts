@@ -9,7 +9,7 @@ import { Appearance, Shape, QuickAction, Size, Variant } from '../utils';
   selector: 'ui-message-bar',
   templateUrl: './message-bar.component.html',
   imports: [IconComponent, ButtonComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MessageBarComponent {
   private readonly i18n = inject(UiI18nService);

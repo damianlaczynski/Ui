@@ -37,7 +37,7 @@ import { TelComponent } from 'ui';
         />
       </div>
     </div>
-  `
+  `,
 })
 export class TelStatesDemoComponent {
   protected readonlyNumber = '+1 (555) 830-2040';

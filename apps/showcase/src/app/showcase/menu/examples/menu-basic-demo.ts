@@ -12,8 +12,7 @@ import { ButtonComponent, MenuComponent, type MenuItem } from 'ui';
       >
         <ui-button variant="secondary" appearance="outline" (click)="reset()">Reset</ui-button>
         <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          Last action:
-          <strong>{{ lastAction() || 'none' }}</strong>
+          Last action: <strong>{{ lastAction() || 'none' }}</strong>
         </span>
       </div>
 
@@ -41,7 +40,7 @@ import { ButtonComponent, MenuComponent, type MenuItem } from 'ui';
         />
       </div>
     </div>
-  `
+  `,
 })
 export class MenuBasicDemoComponent {
   protected readonly lastAction = signal('');
@@ -49,7 +48,7 @@ export class MenuBasicDemoComponent {
   protected readonly viewItems: MenuItem[] = [
     { id: 'board', label: 'Board', icon: 'board' },
     { id: 'calendar', label: 'Calendar', icon: 'calendar' },
-    { id: 'timeline', label: 'Timeline', icon: 'clock' }
+    { id: 'timeline', label: 'Timeline', icon: 'clock' },
   ];
 
   protected onItemClick(item: MenuItem): void {

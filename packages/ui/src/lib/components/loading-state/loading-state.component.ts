@@ -7,17 +7,17 @@ import { Size } from '../utils';
   selector: 'ui-loading-state',
   templateUrl: './loading-state.component.html',
   imports: [CommonModule, SpinnerComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoadingStateComponent {
   // Inputs
   title = input<string>('');
   description = input<string>('');
   size = input<Size, Size | undefined>('medium', {
-    transform: (value: Size | undefined) => value ?? 'medium'
+    transform: (value: Size | undefined) => value ?? 'medium',
   });
   spinnerSize = input<Size, Size | undefined>('medium', {
-    transform: (value: Size | undefined) => value ?? 'medium'
+    transform: (value: Size | undefined) => value ?? 'medium',
   });
   overlay = input<boolean>(false);
   blurContent = input<boolean>(true);

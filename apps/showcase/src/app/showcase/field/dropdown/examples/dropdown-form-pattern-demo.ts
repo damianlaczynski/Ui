@@ -6,20 +6,20 @@ const ownerItems: DropdownItem[] = [
   { value: 'ava', label: 'Ava Lopez' },
   { value: 'nina', label: 'Nina Woods' },
   { value: 'zoe', label: 'Zoe Patel' },
-  { value: 'theo', label: 'Theo Murphy' }
+  { value: 'theo', label: 'Theo Murphy' },
 ];
 
 const reviewerItems: DropdownItem[] = [
   { value: 'legal', label: 'Legal' },
   { value: 'ops', label: 'Operations' },
   { value: 'security', label: 'Security' },
-  { value: 'support', label: 'Support' }
+  { value: 'support', label: 'Support' },
 ];
 
 const releaseItems: DropdownItem[] = [
   { value: 'patch', label: 'Patch release' },
   { value: 'minor', label: 'Minor release' },
-  { value: 'major', label: 'Major release' }
+  { value: 'major', label: 'Major release' },
 ];
 
 @Component({
@@ -108,10 +108,10 @@ const releaseItems: DropdownItem[] = [
         style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:0.875rem;background:var(--color-neutral-background-rest)"
       >
         <ui-button type="submit" variant="primary">Save handoff</ui-button>
-        <ui-button type="button" variant="secondary" appearance="outline" (click)="reset()">Reset</ui-button>
+        <ui-button type="button" variant="secondary" appearance="outline" (click)="reset()"> Reset </ui-button>
       </div>
     </form>
-  `
+  `,
 })
 export class DropdownFormPatternExampleComponent {
   protected readonly ownerItems = ownerItems;
@@ -122,20 +122,20 @@ export class DropdownFormPatternExampleComponent {
   protected readonly form = new FormGroup({
     owner: new FormControl<string | number>('', {
       nonNullable: true,
-      validators: [Validators.required]
+      validators: [Validators.required],
     }),
     releaseType: new FormControl<string | number>('minor', { nonNullable: true }),
-    reviewers: new FormControl<Array<string | number>>(['ops'], { nonNullable: true })
+    reviewers: new FormControl<Array<string | number>>(['ops'], { nonNullable: true }),
   });
 
   protected get ownerLabel(): string {
-    return ownerItems.find((item) => item.value === this.form.controls.owner.value)?.label ?? 'None';
+    return ownerItems.find(item => item.value === this.form.controls.owner.value)?.label ?? 'None';
   }
 
   protected get reviewerLabels(): string {
     const selected = reviewerItems
-      .filter((item) => this.form.controls.reviewers.value.includes(item.value))
-      .map((item) => item.label);
+      .filter(item => this.form.controls.reviewers.value.includes(item.value))
+      .map(item => item.label);
 
     return selected.length > 0 ? selected.join(', ') : 'None';
   }
@@ -154,7 +154,7 @@ export class DropdownFormPatternExampleComponent {
     this.form.reset({
       owner: '',
       releaseType: 'minor',
-      reviewers: ['ops']
+      reviewers: ['ops'],
     });
     this.submitState = 'Not submitted';
   }

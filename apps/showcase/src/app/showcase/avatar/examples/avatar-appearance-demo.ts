@@ -12,6 +12,6 @@ import { AvatarComponent } from 'ui';
       <ui-avatar variant="success" appearance="tint" name="Verified bot" />
       <ui-avatar variant="warning" appearance="subtle" name="Trial seat" />
     </div>
-  `
+  `,
 })
 export class AvatarAppearanceExampleComponent {}

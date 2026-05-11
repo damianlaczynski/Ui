@@ -9,7 +9,7 @@ import { IconName } from '../icon';
   selector: 'ui-error-state',
   templateUrl: './error-state.component.html',
   imports: [CommonModule, ButtonComponent, IconComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ErrorStateComponent {
   // Inputs
@@ -17,7 +17,7 @@ export class ErrorStateComponent {
   description = input<string>('');
   icon = input<IconName>('error_circle');
   size = input<Size, Size | undefined>('medium', {
-    transform: (value: Size | undefined) => value ?? 'medium'
+    transform: (value: Size | undefined) => value ?? 'medium',
   });
 
   // Actions

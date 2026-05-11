@@ -10,7 +10,7 @@ import type { DrawerType, QuickAction } from 'ui';
   standalone: true,
   imports: [FormsModule, ColorComponent, SliderComponent, DrawerComponent, IconComponent],
   templateUrl: './theme-drawer.component.html',
-  styleUrls: ['./theme-drawer.component.scss']
+  styleUrls: ['./theme-drawer.component.scss'],
 })
 export class ThemeDrawerComponent {
   readonly appearanceInDrawer = input<boolean>(false);
@@ -32,14 +32,14 @@ export class ThemeDrawerComponent {
       label: 'Import',
       icon: 'arrow_upload',
       appearance: 'outline',
-      action: () => this.triggerImport()
+      action: () => this.triggerImport(),
     },
     {
       label: 'Export',
       icon: 'arrow_download',
       appearance: 'outline',
-      action: () => this.exportTheme()
-    }
+      action: () => this.exportTheme(),
+    },
   ]);
 
   constructor() {

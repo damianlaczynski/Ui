@@ -5,7 +5,7 @@ export type Direction = 'ltr' | 'rtl';
 const DIRECTION_KEY = 'direction';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DirectionService {
   private _direction = signal<Direction>(this.getInitialDirection());

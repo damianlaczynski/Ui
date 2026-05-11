@@ -8,7 +8,7 @@ const WORKSPACE_ITEMS: Omit<CommandPaletteItem, 'action'>[] = [
     description: 'Open the main workspace dashboard',
     icon: 'apps',
     group: 'Navigation',
-    keywords: ['home', 'overview', 'dashboard']
+    keywords: ['home', 'overview', 'dashboard'],
   },
   {
     id: 'go-projects',
@@ -16,7 +16,7 @@ const WORKSPACE_ITEMS: Omit<CommandPaletteItem, 'action'>[] = [
     description: 'Browse active and archived projects',
     icon: 'folder',
     group: 'Navigation',
-    keywords: ['projects', 'workspaces', 'files']
+    keywords: ['projects', 'workspaces', 'files'],
   },
   {
     id: 'new-project',
@@ -24,7 +24,7 @@ const WORKSPACE_ITEMS: Omit<CommandPaletteItem, 'action'>[] = [
     description: 'Start a new project from a template',
     icon: 'document_add',
     group: 'Actions',
-    keywords: ['new', 'create', 'project']
+    keywords: ['new', 'create', 'project'],
   },
   {
     id: 'invite-user',
@@ -32,7 +32,7 @@ const WORKSPACE_ITEMS: Omit<CommandPaletteItem, 'action'>[] = [
     description: 'Send an invite to a new collaborator',
     icon: 'person_add',
     group: 'Actions',
-    keywords: ['invite', 'user', 'teammate']
+    keywords: ['invite', 'user', 'teammate'],
   },
   {
     id: 'open-shortcuts',
@@ -40,8 +40,8 @@ const WORKSPACE_ITEMS: Omit<CommandPaletteItem, 'action'>[] = [
     description: 'Open the keyboard shortcuts reference',
     icon: 'keyboard',
     group: 'Help',
-    keywords: ['shortcuts', 'help', 'keyboard']
-  }
+    keywords: ['shortcuts', 'help', 'keyboard'],
+  },
 ];
 
 @Component({
@@ -56,8 +56,7 @@ const WORKSPACE_ITEMS: Omit<CommandPaletteItem, 'action'>[] = [
         <ui-button variant="primary" (click)="visible.set(true)">Open command palette</ui-button>
         <ui-button variant="secondary" appearance="outline" (click)="reset()">Reset</ui-button>
         <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          Last action:
-          <strong>{{ lastAction() || 'none' }}</strong>
+          Last action: <strong>{{ lastAction() || 'none' }}</strong>
         </span>
       </div>
 
@@ -71,15 +70,15 @@ const WORKSPACE_ITEMS: Omit<CommandPaletteItem, 'action'>[] = [
         (closed)="onClosed()"
       />
     </div>
-  `
+  `,
 })
 export class CommandPaletteBasicDemoComponent {
   protected readonly visible = signal(false);
   protected readonly lastAction = signal('');
 
-  protected readonly items = WORKSPACE_ITEMS.map((item) => ({
+  protected readonly items = WORKSPACE_ITEMS.map(item => ({
     ...item,
-    action: () => this.lastAction.set(item.label)
+    action: () => this.lastAction.set(item.label),
   }));
 
   protected onExecuted(item: CommandPaletteItem): void {

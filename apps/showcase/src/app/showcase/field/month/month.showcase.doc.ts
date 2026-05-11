@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig
+  ShowcaseDocPageConfig,
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { MonthBasicDemoComponent } from './examples/month-basic-demo';
 import { MonthConstraintsDemoComponent } from './examples/month-constraints-demo';
@@ -19,7 +19,7 @@ const componentMap = {
   constraints: MonthConstraintsDemoComponent,
   states: MonthStatesDemoComponent,
   reactiveForm: MonthReactiveFormDemoComponent,
-  reportingPanel: MonthReportingPanelDemoComponent
+  reportingPanel: MonthReportingPanelDemoComponent,
 } as const;
 
 export const MONTH_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -27,9 +27,9 @@ export const MONTH_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(monthMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${monthMeta.slug}/${file}`
-    ])
-  ) as Record<string, string>)
+      `/docs/components/snippets/${monthMeta.slug}/${file}`,
+    ]),
+  ) as Record<string, string>),
 };
 
 export const MONTH_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -38,12 +38,12 @@ export const MONTH_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: monthMeta.importCode,
   containerClass: monthMeta.containerClass,
   accessibility: monthMeta.accessibility,
-  featureSections: monthMeta.featureSections.map((section) => ({
+  featureSections: monthMeta.featureSections.map(section => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap]
+    component: componentMap[section.componentKey as keyof typeof componentMap],
   })),
-  apiSections: monthMeta.apiSections
+  apiSections: monthMeta.apiSections,
 };

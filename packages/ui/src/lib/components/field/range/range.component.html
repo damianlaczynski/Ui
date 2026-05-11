@@ -16,9 +16,7 @@
   <div class="range-wrapper" [ngClass]="rangeClasses()" role="group" [attr.aria-label]="rangeGroupAriaLabel()">
     <div class="range-container" [class.range-container--with-minmax]="showMinMax()">
       @if (showMinMax()) {
-        <span class="range-minmax range-minmax--min" [attr.aria-hidden]="true">
-          {{ formatValue()(min()) }}
-        </span>
+        <span class="range-minmax range-minmax--min" [attr.aria-hidden]="true">{{ formatValue()(min()) }}</span>
       }
       <div
         #trackWrapper
@@ -98,9 +96,7 @@
         </div>
       </div>
       @if (showMinMax()) {
-        <span class="range-minmax range-minmax--max" [attr.aria-hidden]="true">
-          {{ formatValue()(max()) }}
-        </span>
+        <span class="range-minmax range-minmax--max" [attr.aria-hidden]="true">{{ formatValue()(max()) }}</span>
       }
     </div>
   </div>

@@ -24,18 +24,18 @@ import { BreadcrumbComponent, type Breadcrumb } from 'ui';
         [responsiveOverflow]="false"
       />
     </div>
-  `
+  `,
 })
 export class BreadcrumbStatesExampleComponent {
   protected readonly selectedItems: Breadcrumb[] = [
     { id: 'home', label: 'Home', icon: 'home' },
     { id: 'account', label: 'Account', icon: 'person' },
-    { id: 'security', label: 'Security', icon: 'shield', selected: true }
+    { id: 'security', label: 'Security', icon: 'shield', selected: true },
   ];
 
   protected readonly disabledItems: Breadcrumb[] = [
     { id: 'home', label: 'Home', icon: 'home' },
     { id: 'region', label: 'Restricted region', icon: 'globe', disabled: true },
-    { id: 'details', label: 'Details', icon: 'info', selected: true }
+    { id: 'details', label: 'Details', icon: 'info', selected: true },
   ];
 }

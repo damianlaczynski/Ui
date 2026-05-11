@@ -33,7 +33,7 @@ import { ButtonComponent, CalendarComponent, CalendarDay } from 'ui';
         </span>
       </div>
     </div>
-  `
+  `,
 })
 export class CalendarConstraintsDemoComponent {
   protected readonly minDate = '2026-05-12';
@@ -44,7 +44,7 @@ export class CalendarConstraintsDemoComponent {
   protected readonly summary = computed(() =>
     this.selectedDate()
       ? `Chosen date: ${this.selectedDate()!.toLocaleDateString('en-US', { dateStyle: 'medium' })}`
-      : 'Select any available date inside the allowed window.'
+      : 'Select any available date inside the allowed window.',
   );
 
   protected onDateSelect(day: CalendarDay): void {

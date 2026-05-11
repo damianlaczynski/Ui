@@ -15,8 +15,8 @@ export type TooltipSize = 'small' | 'medium' | 'large';
     '(mouseenter)': 'onMouseEnter()',
     '(mouseleave)': 'onMouseLeave()',
     '(focus)': 'onFocus()',
-    '(blur)': 'onBlur()'
-  }
+    '(blur)': 'onBlur()',
+  },
 })
 export class TooltipDirective implements OnDestroy {
   private overlay = inject(Overlay);
@@ -95,12 +95,12 @@ export class TooltipDirective implements OnDestroy {
       size: this.uiTooltipSize(),
       withArrow: this.uiTooltipWithArrow(),
       position: this.uiTooltipPosition(),
-      id: this.tooltipId
+      id: this.tooltipId,
     };
 
     const injector = Injector.create({
       parent: this.injector,
-      providers: [{ provide: TOOLTIP_DATA, useValue: tooltipData }]
+      providers: [{ provide: TOOLTIP_DATA, useValue: tooltipData }],
     });
 
     this.overlayRef = this.overlay.create({
@@ -108,15 +108,13 @@ export class TooltipDirective implements OnDestroy {
       scrollStrategy: this.overlay.scrollStrategies.close(),
       panelClass: ['ui-tooltip-overlay-pane'],
       width: 'max-content',
-      maxWidth: 'min(400px, 90vw)'
+      maxWidth: 'min(400px, 90vw)',
     });
 
     const portal = new ComponentPortal(TooltipOverlayComponent, null, injector);
     this.overlayRef.attach(portal);
 
-    afterNextRender(() => this.overlayRef?.updatePosition(), {
-      injector: this.injector
-    });
+    afterNextRender(() => this.overlayRef?.updatePosition(), { injector: this.injector });
 
     const trigger = this.elementRef.nativeElement;
     const relationship = this.uiTooltipRelationship();

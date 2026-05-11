@@ -23,6 +23,6 @@ import { TagComponent } from 'ui';
         <ui-tag text="Square" shape="square" appearance="outline" variant="secondary" />
       </div>
     </div>
-  `
+  `,
 })
 export class TagSizeShapeDemoComponent {}

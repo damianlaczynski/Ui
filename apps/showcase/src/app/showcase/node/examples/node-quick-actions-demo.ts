@@ -12,8 +12,7 @@ import { ButtonComponent, MenuComponent, NodeComponent, type MenuItem, type Node
       >
         <ui-button variant="secondary" appearance="outline" (click)="reset()">Reset</ui-button>
         <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          Last action:
-          <strong>{{ lastAction() || 'none' }}</strong>
+          Last action: <strong>{{ lastAction() || 'none' }}</strong>
         </span>
       </div>
 
@@ -42,7 +41,7 @@ import { ButtonComponent, MenuComponent, NodeComponent, type MenuItem, type Node
         />
       </ng-template>
     </div>
-  `
+  `,
 })
 export class NodeQuickActionsDemoComponent {
   protected readonly lastAction = signal('');
@@ -50,14 +49,14 @@ export class NodeQuickActionsDemoComponent {
   protected readonly nodes: Node[] = [
     { id: 'brief', label: 'Creative brief', icon: 'document_text' },
     { id: 'assets', label: 'Campaign assets', icon: 'folder' },
-    { id: 'launch', label: 'Launch checklist', icon: 'clipboard_task' }
+    { id: 'launch', label: 'Launch checklist', icon: 'clipboard_task' },
   ];
 
   protected readonly menuItems: MenuItem[] = [
     { id: 'open', label: 'Open', icon: 'open' },
     { id: 'rename', label: 'Rename', icon: 'rename' },
     { id: 'archive', label: 'Archive', icon: 'archive' },
-    { id: 'delete', label: 'Delete', icon: 'delete', variant: 'danger' }
+    { id: 'delete', label: 'Delete', icon: 'delete', variant: 'danger' },
   ];
 
   protected onMenuAction(item: MenuItem, node: Node): void {

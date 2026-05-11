@@ -66,17 +66,17 @@ import { SplitterComponent, SplitterPanelDirective, type SplitterPanel } from 'u
         </ui-splitter>
       </div>
     </div>
-  `
+  `,
 })
 export class SplitterNestedWorkspaceDemoComponent {
   protected readonly outerPanels: SplitterPanel[] = [
     { id: 'sidebar', size: 22, minSize: 180, maxSize: 320 },
-    { id: 'main', size: 78, minSize: 540 }
+    { id: 'main', size: 78, minSize: 540 },
   ];
 
   protected readonly innerPanels: SplitterPanel[] = [
     { id: 'header', size: 18, minSize: 90, maxSize: 160 },
     { id: 'canvas', size: 60, minSize: 240 },
-    { id: 'footer', size: 22, minSize: 100, maxSize: 180 }
+    { id: 'footer', size: 22, minSize: 100, maxSize: 180 },
   ];
 }

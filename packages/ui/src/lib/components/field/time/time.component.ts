@@ -11,7 +11,7 @@ import {
   inject,
   input,
   signal,
-  NgZone
+  NgZone,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -26,7 +26,7 @@ import {
   DEFAULT_CONNECTED_POSITIONS,
   DEFAULT_VIEWPORT_MARGIN,
   OverlayHandle,
-  openConnectedOverlay
+  openConnectedOverlay,
 } from '../../overlay/open-connected-overlay';
 import { Subscription } from 'rxjs';
 
@@ -38,22 +38,22 @@ const MOBILE_BREAKPOINT = '(max-width: 768px)';
   imports: [CommonModule, A11yModule, OverlayModule, FieldComponent, ActionButtonComponent, TimePickerComponent],
   templateUrl: './time.component.html',
   host: {
-    '[style.display]': '"block"'
+    '[style.display]': '"block"',
   },
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => TimeComponent),
-      multi: true
-    }
+      multi: true,
+    },
   ],
   styles: [
     `
       :host {
         width: 100%;
       }
-    `
-  ]
+    `,
+  ],
 })
 export class TimeComponent extends FieldComponent implements OnDestroy {
   private overlay = inject(Overlay);
@@ -80,7 +80,7 @@ export class TimeComponent extends FieldComponent implements OnDestroy {
   constructor() {
     super();
 
-    this.breakpointSub = this.breakpointObserver.observe(MOBILE_BREAKPOINT).subscribe((result) => {
+    this.breakpointSub = this.breakpointObserver.observe(MOBILE_BREAKPOINT).subscribe(result => {
       this.isMobile.set(result.matches);
     });
 
@@ -196,15 +196,15 @@ export class TimeComponent extends FieldComponent implements OnDestroy {
         positions: DEFAULT_CONNECTED_POSITIONS,
         viewportMargin: DEFAULT_VIEWPORT_MARGIN,
         width: this.panelWidth(),
-        hasBackdrop: false
+        hasBackdrop: false,
       },
-      onClose: (focusTrigger) => {
+      onClose: focusTrigger => {
         if (focusTrigger) {
           this.closePanel(true);
         } else {
           setTimeout(() => this.closePanel(false), 0);
         }
-      }
+      },
     });
 
     this.isOpen.set(true);

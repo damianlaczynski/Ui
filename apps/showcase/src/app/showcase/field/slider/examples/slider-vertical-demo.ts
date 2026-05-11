@@ -54,26 +54,20 @@ const dashedCardStyle =
         <div style="display:flex;flex-direction:column;gap:0.45rem;font-size:0.875rem;line-height:1.4">
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Mic gain</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">
-              {{ gain }}
-            </strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{ gain }}</strong>
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Readonly</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">
-              {{ readonlyValue }}
-            </strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{ readonlyValue }}</strong>
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Disabled</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground2-rest)">
-              {{ disabledValue }}
-            </strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground2-rest)">{{ disabledValue }}</strong>
           </div>
         </div>
       </div>
     </div>
-  `
+  `,
 })
 export class SliderVerticalExampleComponent {
   readonly dashedCardStyle = dashedCardStyle;

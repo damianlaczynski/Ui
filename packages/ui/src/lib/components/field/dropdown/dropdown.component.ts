@@ -16,7 +16,7 @@ import {
   DestroyRef,
   TemplateRef,
   contentChild,
-  NgZone
+  NgZone,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { A11yModule } from '@angular/cdk/a11y';
@@ -40,7 +40,7 @@ import {
   openConnectedOverlay,
   OverlayHandle,
   DEFAULT_CONNECTED_POSITIONS,
-  DEFAULT_VIEWPORT_MARGIN
+  DEFAULT_VIEWPORT_MARGIN,
 } from '../../overlay/open-connected-overlay';
 import { EmptyStateComponent } from '../../empty-state/empty-state.component';
 
@@ -73,7 +73,7 @@ export type DropdownMode = 'single' | 'multi';
     SearchComponent,
     TagComponent,
     ScrollContainerComponent,
-    EmptyStateComponent
+    EmptyStateComponent,
   ],
   templateUrl: './dropdown.component.html',
   styles: [
@@ -81,19 +81,19 @@ export type DropdownMode = 'single' | 'multi';
       .dropdown-trigger-wrapper {
         display: inline-block;
       }
-    `
+    `,
   ],
   host: {
     '[style.display]': '"block"',
-    '[class.dropdown--focus-within]': 'isOpen() && isNavigating()'
+    '[class.dropdown--focus-within]': 'isOpen() && isNavigating()',
   },
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => DropdownComponent),
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class DropdownComponent extends FieldComponent implements OnDestroy {
   //Service
@@ -157,8 +157,7 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
   itemTemplate = contentChild<TemplateRef<any>>('itemTemplate');
   dropdownPanelEmptyTpl = viewChild<TemplateRef<unknown>>('dropdownPanelEmpty');
   @ViewChild('scrollItemTemplate') scrollItemTemplate?: TemplateRef<any>;
-  @ViewChild('scrollContainer')
-  scrollContainer?: ScrollContainerComponent<DropdownItem>;
+  @ViewChild('scrollContainer') scrollContainer?: ScrollContainerComponent<DropdownItem>;
   @ViewChild('triggerElement', { read: ElementRef }) triggerElement!: ElementRef;
   @ViewChild('panelTemplate') panelTemplate!: TemplateRef<any>;
 
@@ -174,7 +173,7 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
     }
 
     // Client-side filtering for static items
-    return items.filter((item) => item.label.toLowerCase().includes(query));
+    return items.filter(item => item.label.toLowerCase().includes(query));
   });
 
   // === COMPUTED - Selected items ===
@@ -184,7 +183,7 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
     const items = this.dataSource() ? this.loadedItems() : this.items();
 
     return Array.from(selectedValues)
-      .map((value) => items.find((item) => item.value === value))
+      .map(value => items.find(item => item.value === value))
       .filter((item): item is DropdownItem => item !== undefined);
   });
 
@@ -215,11 +214,11 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
   panelEmptyDescription = computed(() =>
     this.searchable() && this.searchQuery().trim().length > 0
       ? this.panelNoMatchingItemsText()
-      : this.panelEmptyItemsText()
+      : this.panelEmptyItemsText(),
   );
 
   panelEmptyIcon = computed<IconName | undefined>(() =>
-    this.searchable() && this.searchQuery().trim().length > 0 ? 'search' : undefined
+    this.searchable() && this.searchQuery().trim().length > 0 ? 'search' : undefined,
   );
 
   // === COMPUTED - Scroll container data source ===
@@ -233,7 +232,7 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
         const params: QueryParams<DropdownItem> = {
           page,
           pageSize,
-          searchTerm: currentSearchQuery || undefined
+          searchTerm: currentSearchQuery || undefined,
         };
         return dataSourceFn(params);
       };
@@ -250,20 +249,20 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
         items: pageItems,
         hasNextPage: endIndex < allItems.length,
         hasPreviousPage: page > 1,
-        totalCount: allItems.length
+        totalCount: allItems.length,
       });
     };
   });
 
   selectableItems = computed(() => {
-    return this.availableItems().filter((item) => !item.disabled);
+    return this.availableItems().filter(item => !item.disabled);
   });
 
   activeItemIndex = computed(() => {
     const activeId = this.activeDescendant();
     if (!activeId) return -1;
     const selectable = this.selectableItems();
-    return selectable.findIndex((item) => this.getItemId(item) === activeId);
+    return selectable.findIndex(item => this.getItemId(item) === activeId);
   });
 
   constructor() {
@@ -334,7 +333,7 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
     // Setup search debounce
     this.searchSubject
       .pipe(debounceTime(this.searchDebounceMs()), distinctUntilChanged(), takeUntilDestroyed(this.destroyRef))
-      .subscribe((search) => {
+      .subscribe(search => {
         this.searchQuery.set(search);
         // Note: refresh is called by Effect 3 when searchQuery changes
         // No need to call it here to avoid double refresh
@@ -418,15 +417,15 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
         viewportMargin: DEFAULT_VIEWPORT_MARGIN,
         minWidth,
         maxWidth,
-        width
+        width,
       },
-      onClose: (focusTrigger) => {
+      onClose: focusTrigger => {
         if (focusTrigger) {
           this.closeDropdown(true);
         } else {
           this.scheduleCloseDropdown(false);
         }
-      }
+      },
     });
 
     this.isOpen.set(true);
@@ -551,8 +550,8 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
   onScrollContainerLoadMore(event: { page: number; items: DropdownItem[] }): void {
     if (this.dataSource()) {
       const currentItems = this.loadedItems();
-      const existingIds = new Set(currentItems.map((item) => item.value));
-      const newItems = event.items.filter((item) => !existingIds.has(item.value));
+      const existingIds = new Set(currentItems.map(item => item.value));
+      const newItems = event.items.filter(item => !existingIds.has(item.value));
 
       if (newItems.length > 0 || event.page === 1) {
         const mergedItems = event.page === 1 ? event.items : [...currentItems, ...newItems];
@@ -592,7 +591,7 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
       disabled: item.disabled || false,
       selected: false,
       data: item,
-      onClick: () => this.selectItem(item)
+      onClick: () => this.selectItem(item),
     };
   }
 
@@ -630,7 +629,7 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
     if (activeElement && typeof activeElement.scrollIntoView === 'function') {
       activeElement.scrollIntoView({
         block: 'nearest',
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
     }
   }
@@ -654,7 +653,7 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
         if (!this.isOpen()) {
           this.openDropdown(true);
           const selected = Array.from(this.selectedValues());
-          const selectedItem = selected.length > 0 ? selectable.find((item) => selected.includes(item.value)) : null;
+          const selectedItem = selected.length > 0 ? selectable.find(item => selected.includes(item.value)) : null;
           const targetItem = selectedItem || selectable[0];
           this.activeDescendant.set(this.getItemId(targetItem));
           if (this.mode() === 'single' && targetItem) {
@@ -685,7 +684,7 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
         if (!this.isOpen()) {
           this.openDropdown(true);
           const selected = Array.from(this.selectedValues());
-          const selectedItem = selected.length > 0 ? selectable.find((item) => selected.includes(item.value)) : null;
+          const selectedItem = selected.length > 0 ? selectable.find(item => selected.includes(item.value)) : null;
           const targetItem = selectedItem || selectable[selectable.length - 1];
           this.activeDescendant.set(this.getItemId(targetItem));
           if (this.mode() === 'single' && targetItem) {
@@ -878,7 +877,7 @@ export class DropdownComponent extends FieldComponent implements OnDestroy {
   private ts(
     key: string,
     fallback: string | (() => string),
-    params?: Record<string, unknown> | (() => Record<string, unknown> | undefined)
+    params?: Record<string, unknown> | (() => Record<string, unknown> | undefined),
   ) {
     return this.i18n.tSignal(`field.dropdown.${key}`, fallback, params);
   }

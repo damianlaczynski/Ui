@@ -51,21 +51,21 @@ import { EmailComponent } from 'ui';
         </div>
       </div>
     </div>
-  `
+  `,
 })
 export class EmailFormDemoComponent {
   protected readonly settingsForm = new FormGroup({
     primary: new FormControl('owner@contoso.com', {
       nonNullable: true,
-      validators: [Validators.required, Validators.email]
+      validators: [Validators.required, Validators.email],
     }),
     billing: new FormControl('billing@contoso.com', {
       nonNullable: true,
-      validators: [Validators.email]
+      validators: [Validators.email],
     }),
     alerts: new FormControl('', {
       nonNullable: true,
-      validators: [Validators.email]
-    })
+      validators: [Validators.email],
+    }),
   });
 }

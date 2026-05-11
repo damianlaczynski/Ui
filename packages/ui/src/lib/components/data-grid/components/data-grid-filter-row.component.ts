@@ -23,7 +23,7 @@ import { DataGridFilterService } from '../services/data-grid-filter.service';
       :host {
         display: contents;
       }
-    `
+    `,
   ],
   template: `
     <div class="data-grid__filter-row">
@@ -68,7 +68,7 @@ import { DataGridFilterService } from '../services/data-grid-filter.service';
         </div>
       }
     </div>
-  `
+  `,
 })
 export class DataGridFilterRowComponent<T = any> {
   private filterService = inject(DataGridFilterService);
@@ -83,7 +83,7 @@ export class DataGridFilterRowComponent<T = any> {
   // Filter data - computed values passed as inputs
   filterConfigs = computed(() => {
     const map = new Map<string, DataGridFilterConfig>();
-    this.columns().forEach((column) => {
+    this.columns().forEach(column => {
       const config = this.filterService.getFilterConfig(column);
       if (config) {
         map.set(column.id, config);
@@ -98,7 +98,7 @@ export class DataGridFilterRowComponent<T = any> {
 
   filterableColumnIds = computed(() => {
     const set = new Set<string>();
-    this.columns().forEach((column) => {
+    this.columns().forEach(column => {
       if (this.filterService.isColumnFilterable(column)) {
         set.add(column.id);
       }
@@ -120,7 +120,7 @@ export class DataGridFilterRowComponent<T = any> {
   getFilterCellClasses(
     column: DataGridColumn<T> | null,
     isSelection: boolean = false,
-    isExpand: boolean = false
+    isExpand: boolean = false,
   ): string {
     const classes = ['data-grid__filter-cell'];
 
@@ -170,7 +170,7 @@ export class DataGridFilterRowComponent<T = any> {
     const context = this.getFilterTemplateContext(column);
     return {
       context: context,
-      size: this.size()
+      size: this.size(),
     };
   }
 
@@ -194,15 +194,15 @@ export class DataGridFilterRowComponent<T = any> {
       throw new Error(`Filter definition not found for column ${column.id}`);
     }
     const defaultOperator = filter?.getDefaultOperator();
-    const operator = filter?.getOperators().find((op) => op.value === filterValue?.operator) ?? defaultOperator;
+    const operator = filter?.getOperators().find(op => op.value === filterValue?.operator) ?? defaultOperator;
     const value = filterValue?.value ?? null;
 
     const definition = FilterFactory.getDefinition(config.type);
     const operators = definition
-      ? definition.getOperators().map((op) => ({
+      ? definition.getOperators().map(op => ({
           value: op.value,
           label: op.label,
-          icon: op.icon
+          icon: op.icon,
         }))
       : [];
 
@@ -223,7 +223,7 @@ export class DataGridFilterRowComponent<T = any> {
 
       onClear: () => {
         this.filterValueChange.emit({ column, value: null });
-      }
+      },
     };
   }
 }

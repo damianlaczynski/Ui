@@ -11,7 +11,7 @@ import { ToolbarComponent, type ToolbarGroup } from 'ui';
     >
       <ui-toolbar [groups]="groups" />
     </div>
-  `
+  `,
 })
 export class ToolbarGroupsDemoComponent {
   protected readonly groups: ToolbarGroup[] = [
@@ -20,34 +20,23 @@ export class ToolbarGroupsDemoComponent {
       items: [
         { id: 'cut', icon: 'cut', tooltip: 'Cut' },
         { id: 'copy', icon: 'copy', tooltip: 'Copy' },
-        { id: 'paste', icon: 'clipboard_paste', tooltip: 'Paste' }
-      ]
+        { id: 'paste', icon: 'clipboard_paste', tooltip: 'Paste' },
+      ],
     },
     {
       id: 'format',
       items: [
-        {
-          id: 'bold',
-          icon: 'text_bold',
-          tooltip: 'Bold',
-          type: 'toggle',
-          selected: true
-        },
+        { id: 'bold', icon: 'text_bold', tooltip: 'Bold', type: 'toggle', selected: true },
         { id: 'italic', icon: 'text_italic', tooltip: 'Italic', type: 'toggle' },
-        {
-          id: 'underline',
-          icon: 'text_underline',
-          tooltip: 'Underline',
-          type: 'toggle'
-        }
-      ]
+        { id: 'underline', icon: 'text_underline', tooltip: 'Underline', type: 'toggle' },
+      ],
     },
     {
       id: 'insert',
       items: [
         { id: 'link', icon: 'link', tooltip: 'Insert link' },
-        { id: 'image', icon: 'image', tooltip: 'Insert image' }
-      ]
-    }
+        { id: 'image', icon: 'image', tooltip: 'Insert image' },
+      ],
+    },
   ];
 }

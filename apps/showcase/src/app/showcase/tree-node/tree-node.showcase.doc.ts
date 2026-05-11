@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig
+  ShowcaseDocPageConfig,
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { TreeNodeBasicDemoComponent } from './examples/tree-node-basic-demo';
 import { TreeNodeBehaviorDemoComponent } from './examples/tree-node-behavior-demo';
@@ -21,7 +21,7 @@ const componentMap = {
   contentTemplate: TreeNodeContentTemplateDemoComponent,
   quickActions: TreeNodeQuickActionsDemoComponent,
   recursive: TreeNodeRecursiveDemoComponent,
-  dragDrop: TreeNodeDragDropDemoComponent
+  dragDrop: TreeNodeDragDropDemoComponent,
 } as const;
 
 export const TREE_NODE_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -29,9 +29,9 @@ export const TREE_NODE_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(treeNodeMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${treeNodeMeta.slug}/${file}`
-    ])
-  ) as Record<string, string>)
+      `/docs/components/snippets/${treeNodeMeta.slug}/${file}`,
+    ]),
+  ) as Record<string, string>),
 };
 
 export const TREE_NODE_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -40,12 +40,12 @@ export const TREE_NODE_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: treeNodeMeta.importCode,
   containerClass: treeNodeMeta.containerClass,
   accessibility: treeNodeMeta.accessibility,
-  featureSections: treeNodeMeta.featureSections.map((section) => ({
+  featureSections: treeNodeMeta.featureSections.map(section => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap]
+    component: componentMap[section.componentKey as keyof typeof componentMap],
   })),
-  apiSections: treeNodeMeta.apiSections
+  apiSections: treeNodeMeta.apiSections,
 };

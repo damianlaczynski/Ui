@@ -39,18 +39,11 @@ import { NumericRange, RangeComponent, CheckboxComponent, ButtonComponent } from
       >
         <div style="display:grid;gap:0.375rem;font-size:0.875rem;">
           <div>
-            <strong>Revenue:</strong>
-            {{ formatCurrency(revenueRange.min) }} to
+            <strong>Revenue:</strong> {{ formatCurrency(revenueRange.min) }} to
             {{ formatCurrency(revenueRange.max) }}
           </div>
-          <div>
-            <strong>Active only:</strong>
-            {{ onlyActive ? 'Yes' : 'No' }}
-          </div>
-          <div>
-            <strong>Trials:</strong>
-            {{ includeTrials ? 'Included' : 'Hidden' }}
-          </div>
+          <div><strong>Active only:</strong> {{ onlyActive ? 'Yes' : 'No' }}</div>
+          <div><strong>Trials:</strong> {{ includeTrials ? 'Included' : 'Hidden' }}</div>
         </div>
         <div style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:flex-start;">
           <ui-button text="Reset" appearance="subtle" (click)="reset()" />
@@ -58,7 +51,7 @@ import { NumericRange, RangeComponent, CheckboxComponent, ButtonComponent } from
         </div>
       </div>
     </section>
-  `
+  `,
 })
 export class RangeFilterPanelDemoComponent {
   protected revenueRange: NumericRange = { min: 20000, max: 70000 };

@@ -45,7 +45,7 @@ import { RadioButtonGroupComponent, type RadioButtonItem } from 'ui';
         [ngModelOptions]="{ standalone: true }"
       />
     </div>
-  `
+  `,
 })
 export class RadioButtonGroupStatesDemoComponent {
   protected plan = 'team';
@@ -56,18 +56,18 @@ export class RadioButtonGroupStatesDemoComponent {
   protected readonly planItems: RadioButtonItem[] = [
     { id: 'solo', label: 'Solo', value: 'solo' },
     { id: 'team', label: 'Team', value: 'team' },
-    { id: 'enterprise', label: 'Enterprise', value: 'enterprise', disabled: true }
+    { id: 'enterprise', label: 'Enterprise', value: 'enterprise', disabled: true },
   ];
 
   protected readonly decisionItems: RadioButtonItem[] = [
     { id: 'approved', label: 'Approved', value: 'approved' },
     { id: 'changes', label: 'Needs changes', value: 'changes' },
-    { id: 'blocked', label: 'Blocked', value: 'blocked' }
+    { id: 'blocked', label: 'Blocked', value: 'blocked' },
   ];
 
   protected readonly approvalItems: RadioButtonItem[] = [
     { id: 'owner', label: 'Owner', value: 'owner' },
     { id: 'legal', label: 'Legal', value: 'legal' },
-    { id: 'finance', label: 'Finance', value: 'finance' }
+    { id: 'finance', label: 'Finance', value: 'finance' },
   ];
 }

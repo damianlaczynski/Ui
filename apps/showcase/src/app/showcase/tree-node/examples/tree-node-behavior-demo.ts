@@ -39,7 +39,7 @@ import { TreeNodeComponent, type TreeNode } from 'ui';
         />
       </div>
     </div>
-  `
+  `,
 })
 export class TreeNodeBehaviorDemoComponent {
   protected readonly browserNode: TreeNode = {
@@ -51,8 +51,8 @@ export class TreeNodeBehaviorDemoComponent {
     expanded: true,
     children: [
       { id: 'app', label: 'app', icon: 'folder', hasChildren: false },
-      { id: 'styles', label: 'styles.scss', icon: 'document', hasChildren: false }
-    ]
+      { id: 'styles', label: 'styles.scss', icon: 'document', hasChildren: false },
+    ],
   };
 
   protected readonly actionNode: TreeNode = {
@@ -64,7 +64,7 @@ export class TreeNodeBehaviorDemoComponent {
     expanded: true,
     children: [
       { id: 'overview', label: 'Overview', icon: 'home', hasChildren: false },
-      { id: 'activity', label: 'Activity', icon: 'pulse', hasChildren: false }
-    ]
+      { id: 'activity', label: 'Activity', icon: 'pulse', hasChildren: false },
+    ],
   };
 }

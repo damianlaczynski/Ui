@@ -65,15 +65,15 @@ const dashedCardStyle =
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Reminder</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">
-              {{ formatDays(reminderDays) }}
-            </strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
+              formatDays(reminderDays)
+            }}</strong>
           </div>
           <div style="display:flex;justify-content:space-between;gap:1rem">
             <span style="color:var(--color-neutral-foreground2-rest)">Sponsors</span>
-            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">
-              {{ notifySponsors ? 'On' : 'Off' }}
-            </strong>
+            <strong style="font-weight:600;color:var(--color-neutral-foreground-rest)">{{
+              notifySponsors ? 'On' : 'Off'
+            }}</strong>
           </div>
           <div
             style="margin-top:0.25rem;padding-top:0.5rem;font-size:0.75rem;color:var(--color-neutral-foreground2-rest);border-top:1px solid color-mix(in srgb,var(--color-neutral-stroke-rest) 65%,transparent)"
@@ -83,7 +83,7 @@ const dashedCardStyle =
         </div>
       </div>
     </div>
-  `
+  `,
 })
 export class SliderSettingsPanelExampleComponent {
   readonly dashedCardStyle = dashedCardStyle;

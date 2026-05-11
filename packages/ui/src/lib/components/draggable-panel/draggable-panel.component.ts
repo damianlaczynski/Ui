@@ -127,9 +127,9 @@ export interface PanelPosition {
           overflow: auto;
         }
       }
-    `
+    `,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DraggablePanelComponent implements OnInit {
   private readonly i18n = inject(UiI18nService);
@@ -162,7 +162,7 @@ export class DraggablePanelComponent implements OnInit {
   }
 
   toggleCollapse(): void {
-    this.collapsed.update((v) => !v);
+    this.collapsed.update(v => !v);
     this.collapsedChange.emit(this.collapsed());
   }
 
@@ -184,7 +184,7 @@ export class DraggablePanelComponent implements OnInit {
 
     const newPosition = {
       x: Math.max(0, this.positionStart.x + dx),
-      y: Math.max(0, this.positionStart.y + dy)
+      y: Math.max(0, this.positionStart.y + dy),
     };
 
     this.position.set(newPosition);

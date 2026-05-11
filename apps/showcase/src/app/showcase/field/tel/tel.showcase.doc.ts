@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig
+  ShowcaseDocPageConfig,
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { TelBasicDemoComponent } from './examples/tel-basic-demo';
 import { TelContactFormDemoComponent } from './examples/tel-contact-form-demo';
@@ -19,14 +19,14 @@ const componentMap = {
   states: TelStatesDemoComponent,
   validation: TelValidationDemoComponent,
   contactForm: TelContactFormDemoComponent,
-  supportPanel: TelSupportPanelDemoComponent
+  supportPanel: TelSupportPanelDemoComponent,
 } as const;
 
 export const TEL_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   markdown: `/docs/components/${telMeta.slug}.md`,
   ...(Object.fromEntries(
-    Object.entries(telMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${telMeta.slug}/${file}`])
-  ) as Record<string, string>)
+    Object.entries(telMeta.snippets).map(([key, file]) => [key, `/docs/components/snippets/${telMeta.slug}/${file}`]),
+  ) as Record<string, string>),
 };
 
 export const TEL_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -35,12 +35,12 @@ export const TEL_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: telMeta.importCode,
   containerClass: telMeta.containerClass,
   accessibility: telMeta.accessibility,
-  featureSections: telMeta.featureSections.map((section) => ({
+  featureSections: telMeta.featureSections.map(section => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap]
+    component: componentMap[section.componentKey as keyof typeof componentMap],
   })),
-  apiSections: telMeta.apiSections
+  apiSections: telMeta.apiSections,
 };

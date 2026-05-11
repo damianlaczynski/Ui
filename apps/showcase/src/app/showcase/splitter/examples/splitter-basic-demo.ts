@@ -10,18 +10,15 @@ import { SplitterComponent, SplitterPanelDirective, type SplitterPanel, type Spl
       <div
         style="display:flex;flex-wrap:wrap;gap:1rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background2-rest)"
       >
-        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          Sidebar:
-          <strong>{{ sizes()[0].toFixed(0) }}%</strong>
-        </span>
-        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          Canvas:
-          <strong>{{ sizes()[1].toFixed(0) }}%</strong>
-        </span>
-        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          Inspector:
-          <strong>{{ sizes()[2].toFixed(0) }}%</strong>
-        </span>
+        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
+          >Sidebar: <strong>{{ sizes()[0].toFixed(0) }}%</strong></span
+        >
+        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
+          >Canvas: <strong>{{ sizes()[1].toFixed(0) }}%</strong></span
+        >
+        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
+          >Inspector: <strong>{{ sizes()[2].toFixed(0) }}%</strong></span
+        >
       </div>
 
       <div
@@ -63,13 +60,13 @@ import { SplitterComponent, SplitterPanelDirective, type SplitterPanel, type Spl
         </ui-splitter>
       </div>
     </div>
-  `
+  `,
 })
 export class SplitterBasicDemoComponent {
   protected readonly panels = signal<SplitterPanel[]>([
     { id: 'sidebar', size: 22, minSize: 180, maxSize: 320 },
     { id: 'canvas', size: 53, minSize: 320 },
-    { id: 'inspector', size: 25, minSize: 220, maxSize: 420 }
+    { id: 'inspector', size: 25, minSize: 220, maxSize: 420 },
   ]);
 
   protected readonly sizes = signal([22, 53, 25]);

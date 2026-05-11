@@ -32,6 +32,6 @@ import { BadgeComponent } from 'ui';
         <ui-badge text="Inline emphasis" variant="warning" appearance="outline" />
       </div>
     </div>
-  `
+  `,
 })
 export class BadgeAppearanceVariantDemoComponent {}

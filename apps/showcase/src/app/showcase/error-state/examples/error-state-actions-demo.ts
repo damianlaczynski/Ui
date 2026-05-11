@@ -32,7 +32,7 @@ import { ErrorStateComponent, type QuickAction } from 'ui';
         </div>
       </div>
     </div>
-  `
+  `,
 })
 export class ErrorStateActionsDemoComponent {
   protected readonly lastAction = signal('');
@@ -41,13 +41,13 @@ export class ErrorStateActionsDemoComponent {
     label: 'Try again',
     variant: 'primary',
     icon: 'arrow_sync',
-    action: () => this.lastAction.set('Try again')
+    action: () => this.lastAction.set('Try again'),
   };
 
   protected readonly supportAction: QuickAction = {
     label: 'Contact support',
     variant: 'secondary',
     icon: 'person_support',
-    action: () => this.lastAction.set('Contact support')
+    action: () => this.lastAction.set('Contact support'),
   };
 }

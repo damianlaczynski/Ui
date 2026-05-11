@@ -49,7 +49,7 @@ import { ButtonComponent, DialogComponent, QuickAction } from 'ui';
         </div>
       </ui-dialog>
     </div>
-  `
+  `,
 })
 export class DialogSizesExampleComponent {
   protected readonly smallVisible = model(false);
@@ -63,18 +63,18 @@ export class DialogSizesExampleComponent {
       this.smallVisible.set(false);
       this.mediumVisible.set(false);
       this.fullVisible.set(false);
-    }
+    },
   });
 
   protected readonly publishAction = signal<QuickAction>({
     label: 'Publish draft',
     variant: 'primary',
-    action: () => this.fullVisible.set(false)
+    action: () => this.fullVisible.set(false),
   });
 
   protected readonly cancelAction = signal<QuickAction>({
     label: 'Cancel',
     variant: 'secondary',
-    action: () => this.fullVisible.set(false)
+    action: () => this.fullVisible.set(false),
   });
 }

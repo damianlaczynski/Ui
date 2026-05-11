@@ -25,7 +25,7 @@ import { FilterFactory } from '../filters/filter-factory';
       :host {
         display: contents;
       }
-    `
+    `,
   ],
   template: `
     <div class="data-grid__header">
@@ -112,7 +112,7 @@ import { FilterFactory } from '../filters/filter-factory';
       </div>
     </div>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DataGridHeaderComponent<T = any> {
   private filterService = inject(DataGridFilterService<T>);
@@ -130,14 +130,14 @@ export class DataGridHeaderComponent<T = any> {
     const columns = this.columns();
     const map = new Map<string, DropdownItem[]>();
 
-    columns.forEach((column) => {
+    columns.forEach(column => {
       if (this.isColumnFilterable(column) && column.filterable) {
         const definition = FilterFactory.getDefinition(column.filterable.type);
         if (definition) {
-          const operators = definition.getOperators().map((op) => ({
+          const operators = definition.getOperators().map(op => ({
             value: op.value,
             label: op.label,
-            icon: op.icon as IconName
+            icon: op.icon as IconName,
           }));
           map.set(column.id, operators);
         }
@@ -153,21 +153,20 @@ export class DataGridHeaderComponent<T = any> {
     const activeFilters = this.filterService.activeFilters();
     const map = new Map<string, DropdownItem | null>();
 
-    columns.forEach((column) => {
+    columns.forEach(column => {
       if (this.isColumnFilterable(column) && column.filterable) {
         const filterValue = activeFilters.get(column.id);
         const definition = FilterFactory.getDefinition(column.filterable.type);
 
         if (definition) {
           const defaultOperator = definition.getDefaultOperator();
-          const operator =
-            definition.getOperators().find((op) => op.value === filterValue?.operator) ?? defaultOperator;
+          const operator = definition.getOperators().find(op => op.value === filterValue?.operator) ?? defaultOperator;
 
           const result = operator
             ? {
                 value: operator.value,
                 label: operator.label,
-                icon: operator.icon as IconName
+                icon: operator.icon as IconName,
               }
             : null;
 
@@ -294,7 +293,7 @@ export class DataGridHeaderComponent<T = any> {
         ) {
           nextColumnStartWidth = nextCell.getBoundingClientRect().width;
 
-          const dataCells = allCells.filter((cell) => {
+          const dataCells = allCells.filter(cell => {
             const htmlCell = cell as HTMLElement;
             return (
               !htmlCell.classList.contains('data-grid__header-cell--selection') &&
@@ -330,7 +329,7 @@ export class DataGridHeaderComponent<T = any> {
     const deltaX = event.clientX - this.resizeStartX();
     const newWidth = Math.max(0, this.resizeStartWidth() + deltaX);
 
-    const column = this.columns().find((col) => col.id === columnId);
+    const column = this.columns().find(col => col.id === columnId);
     if (!column) return;
 
     const minWidth = column.minWidth ? parseFloat(column.minWidth) : 0;
@@ -341,7 +340,7 @@ export class DataGridHeaderComponent<T = any> {
     let nextColumnWidth: string | undefined;
 
     if (nextColumnId) {
-      const nextColumn = this.columns().find((col) => col.id === nextColumnId);
+      const nextColumn = this.columns().find(col => col.id === nextColumnId);
       if (nextColumn) {
         const widthDelta = this.resizeStartWidth() - constrainedWidth;
         const nextNewWidth = Math.max(0, this.resizeNextColumnStartWidth() + widthDelta);
@@ -358,7 +357,7 @@ export class DataGridHeaderComponent<T = any> {
             columnId,
             width: `${finalConstrainedWidth}px`,
             nextColumnId,
-            nextColumnWidth
+            nextColumnWidth,
           });
           return;
         }
@@ -371,7 +370,7 @@ export class DataGridHeaderComponent<T = any> {
       columnId,
       width: `${constrainedWidth}px`,
       nextColumnId: nextColumnId || undefined,
-      nextColumnWidth
+      nextColumnWidth,
     });
   };
 

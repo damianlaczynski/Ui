@@ -35,7 +35,7 @@ export function getHeaderCellClasses<T>(
   column: DataGridColumn<T> | null,
   isSelection: boolean = false,
   isSorted: boolean = false,
-  sortDirection?: 'asc' | 'desc'
+  sortDirection?: 'asc' | 'desc',
 ): string {
   const classes = ['data-grid__header-cell'];
 
@@ -61,7 +61,7 @@ export function getRowClasses<T>(
   row: DataGridRow<T>,
   isSelected: boolean,
   isHovered: boolean,
-  isExpanded: boolean
+  isExpanded: boolean,
 ): string {
   const classes = ['data-grid__row'];
 

@@ -15,11 +15,11 @@ export class ShowcaseDocAssetService {
     }
 
     const request$ = this.http.get(path, { responseType: 'text' }).pipe(
-      catchError((error) => {
+      catchError(error => {
         console.error(`Failed to load showcase doc asset: ${path}`, error);
         return of('');
       }),
-      shareReplay({ bufferSize: 1, refCount: false })
+      shareReplay({ bufferSize: 1, refCount: false }),
     );
 
     this.cache.set(path, request$);

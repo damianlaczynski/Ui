@@ -32,7 +32,7 @@ function compareUnknownValues(aVal: unknown, bVal: unknown): number {
       <div style="font-weight:600;">Last callback</div>
       <div>{{ info() }}</div>
     </div>
-  `
+  `,
 })
 export class DataGridServerSideFeaturesDemoComponent {
   info = signal('Waiting for pagination, sort, or filter changes.');
@@ -43,23 +43,19 @@ export class DataGridServerSideFeaturesDemoComponent {
     { id: '3', endpoint: '/billing', region: 'EU', latency: 164 },
     { id: '4', endpoint: '/events', region: 'APAC', latency: 248 },
     { id: '5', endpoint: '/search', region: 'US', latency: 186 },
-    { id: '6', endpoint: '/health', region: 'EU', latency: 95 }
+    { id: '6', endpoint: '/health', region: 'EU', latency: 95 },
   ];
 
   config = computed(() =>
     createDataGridConfig<ApiRow>({
       columns: [
-        DataGridColumnFactory.text('endpoint', 'Endpoint', 'endpoint', {
-          sortable: true
-        }),
+        DataGridColumnFactory.text('endpoint', 'Endpoint', 'endpoint', { sortable: true }),
         DataGridColumnFactory.select('region', 'Region', 'region', [
           { label: 'EU', value: 'EU' },
           { label: 'US', value: 'US' },
-          { label: 'APAC', value: 'APAC' }
+          { label: 'APAC', value: 'APAC' },
         ]),
-        DataGridColumnFactory.number('latency', 'Latency', 'latency', {
-          sortable: true
-        })
+        DataGridColumnFactory.number('latency', 'Latency', 'latency', { sortable: true }),
       ],
       dataSource: this.createStaticDataSource(this.rows),
       pagination: {
@@ -67,30 +63,30 @@ export class DataGridServerSideFeaturesDemoComponent {
         pageSize: 2,
         pageSizeOptions: [2, 4, 6],
         showPageSizeSelector: true,
-        showPageNumbers: true
+        showPageNumbers: true,
       },
       sorting: { enabled: true },
       filtering: { enabled: true, debounceMs: 250 },
       styling: {
         striped: true,
-        stickyHeaders: true
+        stickyHeaders: true,
       },
       callbacks: {
-        onPageChange: (page) => this.info.set(`Page changed to ${page}.`),
-        onSortChange: (sort) => this.info.set(`Sorted by ${sort.field} (${sort.direction}).`)
-      }
-    })
+        onPageChange: page => this.info.set(`Page changed to ${page}.`),
+        onSortChange: sort => this.info.set(`Sorted by ${sort.field} (${sort.direction}).`),
+      },
+    }),
   );
 
   private createStaticDataSource<T extends { id?: string }>(
-    data: T[]
+    data: T[],
   ): (params: QueryParams<T>) => Observable<QueryResult<T>> {
-    return (params) => {
+    return params => {
       let items: T[] = [...data];
 
       if (params.filters?.length) {
-        items = items.filter((item) =>
-          params.filters!.every((filter) => {
+        items = items.filter(item =>
+          params.filters!.every(filter => {
             const value = (item as Record<string, unknown>)[filter.columnName as string];
             const filterValue = filter.value;
             switch (filter.filterType) {
@@ -103,7 +99,7 @@ export class DataGridServerSideFeaturesDemoComponent {
               default:
                 return true;
             }
-          })
+          }),
         );
       }
 
@@ -127,7 +123,7 @@ export class DataGridServerSideFeaturesDemoComponent {
         items,
         totalCount,
         hasNextPage: !!(params.page && params.pageSize && params.page * params.pageSize < totalCount),
-        hasPreviousPage: !!(params.page && params.page > 1)
+        hasPreviousPage: !!(params.page && params.page > 1),
       });
     };
   }

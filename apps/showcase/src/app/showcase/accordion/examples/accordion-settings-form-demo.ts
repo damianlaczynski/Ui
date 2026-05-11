@@ -52,7 +52,7 @@ import { AccordionComponent, ButtonComponent, CheckboxComponent, SwitchComponent
         </span>
       </div>
     </div>
-  `
+  `,
 })
 export class AccordionSettingsFormExampleComponent {
   protected emailUpdates = true;

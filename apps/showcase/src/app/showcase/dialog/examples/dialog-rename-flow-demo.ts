@@ -10,8 +10,7 @@ import { ButtonComponent, DialogComponent, QuickAction, TextComponent } from 'ui
     <div style="display:flex;flex-direction:column;gap:0.75rem;width:100%;max-width:24rem">
       <ui-button variant="primary" (click)="visible.set(true)">Rename workspace</ui-button>
       <div style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-        Current name:
-        <strong>{{ currentName() }}</strong>
+        Current name: <strong>{{ currentName() }}</strong>
       </div>
 
       <ui-dialog
@@ -48,7 +47,7 @@ import { ButtonComponent, DialogComponent, QuickAction, TextComponent } from 'ui
         </div>
       </ui-dialog>
     </div>
-  `
+  `,
 })
 export class DialogRenameFlowExampleComponent {
   protected readonly visible = model(false);
@@ -62,7 +61,7 @@ export class DialogRenameFlowExampleComponent {
       const next = this.draftName.trim();
       this.currentName.set(next || this.currentName());
       this.visible.set(false);
-    }
+    },
   });
 
   protected readonly cancelAction = signal<QuickAction>({
@@ -71,6 +70,6 @@ export class DialogRenameFlowExampleComponent {
     action: () => {
       this.draftName = this.currentName();
       this.visible.set(false);
-    }
+    },
   });
 }

@@ -24,6 +24,6 @@ import { SkeletonComponent } from 'ui';
         <ui-skeleton width="88%" height="0.875rem" [animated]="false" />
       </div>
     </div>
-  `
+  `,
 })
 export class SkeletonAnimationExampleComponent {}

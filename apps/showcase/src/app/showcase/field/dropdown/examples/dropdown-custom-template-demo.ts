@@ -14,26 +14,26 @@ const environmentItems: EnvironmentItem[] = [
     value: 'prod-eu',
     label: 'Production EU',
     icon: 'globe',
-    data: { region: 'Frankfurt', note: 'Customer-facing traffic' }
+    data: { region: 'Frankfurt', note: 'Customer-facing traffic' },
   },
   {
     value: 'prod-us',
     label: 'Production US',
     icon: 'globe',
-    data: { region: 'Virginia', note: 'Low-latency API edge' }
+    data: { region: 'Virginia', note: 'Low-latency API edge' },
   },
   {
     value: 'stage',
     label: 'Staging',
     icon: 'beaker',
-    data: { region: 'Shared cluster', note: 'Pre-release validation' }
+    data: { region: 'Shared cluster', note: 'Pre-release validation' },
   },
   {
     value: 'sandbox',
     label: 'Sandbox',
     icon: 'code',
-    data: { region: 'Ephemeral', note: 'Safe experimentation' }
-  }
+    data: { region: 'Ephemeral', note: 'Safe experimentation' },
+  },
 ];
 
 @Component({
@@ -91,13 +91,13 @@ const environmentItems: EnvironmentItem[] = [
         </p>
       </div>
     </div>
-  `
+  `,
 })
 export class DropdownCustomTemplateExampleComponent {
   protected readonly environmentItems = environmentItems;
   protected selectedEnvironment: string | number = 'prod-eu';
 
   protected get selectedEnvironmentItem(): EnvironmentItem | undefined {
-    return this.environmentItems.find((item) => item.value === this.selectedEnvironment);
+    return this.environmentItems.find(item => item.value === this.selectedEnvironment);
   }
 }

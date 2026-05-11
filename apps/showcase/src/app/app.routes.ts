@@ -6,16 +6,16 @@ import { LandingComponent } from './pages/landing/landing.component';
 export const routes: Routes = [
   {
     path: '',
-    component: LandingComponent
+    component: LandingComponent,
   },
   {
     path: 'docs',
     component: DsComponent,
-    children: dsRoutes
+    children: dsRoutes,
   },
   {
     path: '**',
     redirectTo: '',
-    pathMatch: 'full'
-  }
+    pathMatch: 'full',
+  },
 ];

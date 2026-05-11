@@ -12,7 +12,7 @@ export type DialogBackdrop = 'static' | 'dynamic';
   selector: 'ui-dialog',
   templateUrl: './dialog.component.html',
 
-  imports: [CommonModule, A11yModule, ButtonComponent, IconComponent]
+  imports: [CommonModule, A11yModule, ButtonComponent, IconComponent],
 })
 export class DialogComponent {
   private static readonly CLOSE_FALLBACK_MS = 320;
@@ -63,7 +63,7 @@ export class DialogComponent {
     return [
       'dialog__backdrop',
       this.isClosing() ? 'dialog__backdrop--closing' : '',
-      this.fullscreen() ? 'dialog__backdrop--fullscreen' : ''
+      this.fullscreen() ? 'dialog__backdrop--fullscreen' : '',
     ]
       .filter(Boolean)
       .join(' ');

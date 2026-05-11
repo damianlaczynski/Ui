@@ -18,18 +18,18 @@ import { CardComponent } from 'ui';
         <ui-card appearance="filled-alternative" ariaLabel="Filled alternative card">
           <div uiCardHeader style="display:grid;gap:0.25rem;">
             <strong style="font-size:0.9375rem;">Filled alternative</strong>
-            <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);">
-              Slightly richer surface for nested modules
-            </span>
+            <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);"
+              >Slightly richer surface for nested modules</span
+            >
           </div>
         </ui-card>
 
         <ui-card appearance="subtle" ariaLabel="Subtle card">
           <div uiCardHeader style="display:grid;gap:0.25rem;">
             <strong style="font-size:0.9375rem;">Subtle</strong>
-            <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);">
-              Low-chrome shell for already structured layouts
-            </span>
+            <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);"
+              >Low-chrome shell for already structured layouts</span
+            >
           </div>
         </ui-card>
       </div>
@@ -38,27 +38,27 @@ import { CardComponent } from 'ui';
         <ui-card appearance="outline" ariaLabel="Outline card">
           <div uiCardHeader style="display:grid;gap:0.25rem;">
             <strong style="font-size:0.9375rem;">Outline</strong>
-            <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);">
-              Good when the surrounding page already supplies elevation and grouping
-            </span>
+            <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);"
+              >Good when the surrounding page already supplies elevation and grouping</span
+            >
           </div>
         </ui-card>
 
         <ui-card appearance="filled-alternative" borderStyle="none" ariaLabel="Soft card without border">
           <div uiCardHeader style="display:grid;gap:0.25rem;">
             <strong style="font-size:0.9375rem;">Soft shell</strong>
-            <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);">
-              Remove the border when cards should feel more like quiet content sections
-            </span>
+            <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);"
+              >Remove the border when cards should feel more like quiet content sections</span
+            >
           </div>
         </ui-card>
 
         <ui-card appearance="outline" borderStyle="dashed" ariaLabel="Dashed border card">
           <div uiCardHeader style="display:grid;gap:0.25rem;">
             <strong style="font-size:0.9375rem;">Dashed border</strong>
-            <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);">
-              Use border style when the shell should feel more editorial, draft-like, or utility-oriented
-            </span>
+            <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);"
+              >Use border style when the shell should feel more editorial, draft-like, or utility-oriented</span
+            >
           </div>
         </ui-card>
       </div>
@@ -83,6 +83,6 @@ import { CardComponent } from 'ui';
         </div>
       </ui-card>
     </div>
-  `
+  `,
 })
 export class CardSurfacesDemoComponent {}

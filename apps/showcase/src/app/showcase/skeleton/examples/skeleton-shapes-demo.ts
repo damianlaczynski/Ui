@@ -24,6 +24,6 @@ import { SkeletonComponent } from 'ui';
         <ui-skeleton width="100%" height="4.5rem" borderRadius="1.25rem" />
       </div>
     </div>
-  `
+  `,
 })
 export class SkeletonShapesExampleComponent {}

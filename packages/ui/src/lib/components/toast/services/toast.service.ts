@@ -2,7 +2,7 @@ import { Injectable, signal } from '@angular/core';
 import { ToastMessage } from '../models/toast.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ToastService {
   toasts = signal<ToastMessage[]>([]);
@@ -19,7 +19,7 @@ export class ToastService {
       message: message || '',
       duration: options?.duration || 5000,
       sticky: options?.sticky || false,
-      ...options
+      ...options,
     });
   }
 
@@ -33,7 +33,7 @@ export class ToastService {
       message: message || '',
       duration: options?.duration || 5000,
       sticky: options?.sticky || false,
-      ...options
+      ...options,
     });
   }
 
@@ -47,7 +47,7 @@ export class ToastService {
       message: message || '',
       duration: options?.duration || 5000,
       sticky: options?.sticky || false,
-      ...options
+      ...options,
     });
   }
 
@@ -61,7 +61,7 @@ export class ToastService {
       message: message || '',
       duration: options?.duration || 5000,
       sticky: options?.sticky || false,
-      ...options
+      ...options,
     });
   }
 
@@ -71,10 +71,10 @@ export class ToastService {
   add(toast: ToastMessage): string {
     const toastWithId = {
       ...toast,
-      id: toast.id || this.generateId()
+      id: toast.id || this.generateId(),
     };
 
-    this.toasts.update((list) => [toastWithId, ...list]);
+    this.toasts.update(list => [toastWithId, ...list]);
     if (toast.duration && !toast.sticky) {
       setTimeout(() => {
         this.beginExit(toastWithId.id!);
@@ -88,18 +88,18 @@ export class ToastService {
    * Start exit animation; DOM removal happens after `finishExit` (called from toast animation end).
    */
   beginExit(id: string): void {
-    if (!this.toasts().some((t) => t.id === id)) {
+    if (!this.toasts().some(t => t.id === id)) {
       return;
     }
-    this.exitingToastIds.update((ids) => new Set(ids).add(id));
+    this.exitingToastIds.update(ids => new Set(ids).add(id));
   }
 
   finishExit(id: string): void {
-    if (!this.toasts().some((t) => t.id === id)) {
+    if (!this.toasts().some(t => t.id === id)) {
       return;
     }
-    this.toasts.update((list) => list.filter((t) => t.id !== id));
-    this.exitingToastIds.update((ids) => {
+    this.toasts.update(list => list.filter(t => t.id !== id));
+    this.exitingToastIds.update(ids => {
       const next = new Set(ids);
       next.delete(id);
       return next;
@@ -110,8 +110,8 @@ export class ToastService {
    * Remove a specific toast by ID (immediate, no animation)
    */
   remove(id: string): void {
-    this.toasts.update((list) => list.filter((t) => t.id !== id));
-    this.exitingToastIds.update((ids) => {
+    this.toasts.update(list => list.filter(t => t.id !== id));
+    this.exitingToastIds.update(ids => {
       const next = new Set(ids);
       next.delete(id);
       return next;

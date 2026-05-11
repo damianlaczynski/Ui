@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig
+  ShowcaseDocPageConfig,
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { LoadingStateBasicDemoComponent } from './examples/loading-state-basic-demo';
 import { LoadingStateCardOverlayDemoComponent } from './examples/loading-state-card-overlay-demo';
@@ -21,7 +21,7 @@ const componentMap = {
   cardOverlay: LoadingStateCardOverlayDemoComponent,
   listOverlay: LoadingStateListOverlayDemoComponent,
   fullscreen: LoadingStateFullscreenDemoComponent,
-  panelLayout: LoadingStatePanelLayoutDemoComponent
+  panelLayout: LoadingStatePanelLayoutDemoComponent,
 } as const;
 
 export const LOADING_STATE_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -29,9 +29,9 @@ export const LOADING_STATE_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(loadingStateMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${loadingStateMeta.slug}/${file}`
-    ])
-  ) as Record<string, string>)
+      `/docs/components/snippets/${loadingStateMeta.slug}/${file}`,
+    ]),
+  ) as Record<string, string>),
 };
 
 export const LOADING_STATE_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -40,12 +40,12 @@ export const LOADING_STATE_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: loadingStateMeta.importCode,
   containerClass: loadingStateMeta.containerClass,
   accessibility: loadingStateMeta.accessibility,
-  featureSections: loadingStateMeta.featureSections.map((section) => ({
+  featureSections: loadingStateMeta.featureSections.map(section => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap]
+    component: componentMap[section.componentKey as keyof typeof componentMap],
   })),
-  apiSections: loadingStateMeta.apiSections
+  apiSections: loadingStateMeta.apiSections,
 };

@@ -44,10 +44,10 @@ export class DataGridColumnFactory {
         type: 'text',
         placeholder: `Filter ${header}...`,
         debounceMs: 300,
-        operators: filter?.getOperators().map((op) => op.value),
-        defaultOperator: filter?.getDefaultOperator().value
+        operators: filter?.getOperators().map(op => op.value),
+        defaultOperator: filter?.getDefaultOperator().value,
       },
-      ...options
+      ...options,
     };
   }
 
@@ -70,7 +70,7 @@ export class DataGridColumnFactory {
     id: string,
     header: string,
     field: keyof T,
-    options?: Partial<DataGridColumn<T>>
+    options?: Partial<DataGridColumn<T>>,
   ): DataGridColumn<T> {
     const filter = FilterFactory.getDefinition('number');
 
@@ -83,10 +83,10 @@ export class DataGridColumnFactory {
       filterable: {
         type: 'number',
         placeholder: `Filter ${header}...`,
-        operators: filter?.getOperators().map((op) => op.value),
-        defaultOperator: filter?.getDefaultOperator().value
+        operators: filter?.getOperators().map(op => op.value),
+        defaultOperator: filter?.getDefaultOperator().value,
       },
-      ...options
+      ...options,
     };
   }
 
@@ -117,10 +117,10 @@ export class DataGridColumnFactory {
       filterable: {
         type: 'date',
         placeholder: `Filter ${header}...`,
-        operators: filter?.getOperators().map((op) => op.value),
-        defaultOperator: filter?.getDefaultOperator().value
+        operators: filter?.getOperators().map(op => op.value),
+        defaultOperator: filter?.getDefaultOperator().value,
       },
-      ...options
+      ...options,
     };
   }
 
@@ -153,7 +153,7 @@ export class DataGridColumnFactory {
     header: string,
     field: keyof T,
     options: { value: any; label: string; disabled?: boolean }[],
-    columnOptions?: Partial<DataGridColumn<T>>
+    columnOptions?: Partial<DataGridColumn<T>>,
   ): DataGridColumn<T> {
     const filter = FilterFactory.getDefinition('select');
 
@@ -166,11 +166,11 @@ export class DataGridColumnFactory {
       filterable: {
         type: 'select',
         placeholder: `Select ${header}...`,
-        operators: filter?.getOperators().map((op) => op.value),
+        operators: filter?.getOperators().map(op => op.value),
         defaultOperator: filter?.getDefaultOperator().value,
-        parameters: options
+        parameters: options,
       },
-      ...columnOptions
+      ...columnOptions,
     };
   }
 
@@ -203,7 +203,7 @@ export class DataGridColumnFactory {
     header: string,
     field: keyof T,
     options: Array<{ label: string; value: any; disabled?: boolean }>,
-    columnOptions?: Partial<DataGridColumn<T>>
+    columnOptions?: Partial<DataGridColumn<T>>,
   ): DataGridColumn<T> {
     const filter = FilterFactory.getDefinition('multi-select');
 
@@ -216,15 +216,15 @@ export class DataGridColumnFactory {
       filterable: {
         type: 'multi-select',
         placeholder: `Select ${header}...`,
-        operators: filter?.getOperators().map((op) => op.value),
+        operators: filter?.getOperators().map(op => op.value),
         defaultOperator: filter?.getDefaultOperator().value,
-        parameters: options.map((opt) => ({
+        parameters: options.map(opt => ({
           label: opt.label,
           value: opt.value,
-          disabled: opt.disabled || false
-        }))
+          disabled: opt.disabled || false,
+        })),
       },
-      ...columnOptions
+      ...columnOptions,
     };
   }
 
@@ -247,7 +247,7 @@ export class DataGridColumnFactory {
     id: string,
     header: string,
     field: keyof T,
-    options?: Partial<DataGridColumn<T>>
+    options?: Partial<DataGridColumn<T>>,
   ): DataGridColumn<T> {
     const filter = FilterFactory.getDefinition('boolean');
     return {
@@ -259,10 +259,10 @@ export class DataGridColumnFactory {
       filterable: {
         type: 'boolean',
         placeholder: `Filter ${header}...`,
-        operators: filter?.getOperators().map((op) => op.value),
-        defaultOperator: filter?.getDefaultOperator().value
+        operators: filter?.getOperators().map(op => op.value),
+        defaultOperator: filter?.getDefaultOperator().value,
       },
-      ...options
+      ...options,
     };
   }
 
@@ -294,7 +294,7 @@ export class DataGridColumnFactory {
       disabled?: boolean;
       action: (row: T) => void;
     }>,
-    options?: Partial<DataGridColumn<T>>
+    options?: Partial<DataGridColumn<T>>,
   ): DataGridColumn<T> {
     return {
       id,
@@ -303,7 +303,7 @@ export class DataGridColumnFactory {
       resizable: true,
       width: '120px',
       actions,
-      ...options
+      ...options,
     };
   }
 

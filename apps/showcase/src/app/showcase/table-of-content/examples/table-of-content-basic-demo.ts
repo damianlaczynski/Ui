@@ -29,6 +29,6 @@ import { TableOfContentComponent } from 'ui';
         <p style="margin:0">Keep heading depth intentional instead of generating long noisy trees.</p>
       </div>
     </div>
-  `
+  `,
 })
 export class TableOfContentBasicDemoComponent {}

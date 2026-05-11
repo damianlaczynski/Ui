@@ -9,7 +9,7 @@ describe('RangeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RangeComponent, FormsModule]
+      imports: [RangeComponent, FormsModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(RangeComponent);
@@ -27,7 +27,7 @@ describe('RangeComponent', () => {
       height: 24,
       x: 0,
       y: 0,
-      toJSON: () => ({})
+      toJSON: () => ({}),
     } as DOMRect);
   }
 
@@ -148,7 +148,7 @@ describe('RangeComponent', () => {
       pointerId: 1,
       pointerType: 'mouse',
       button: 0,
-      isPrimary: true
+      isPrimary: true,
     });
     component.onTrackPointerDownCapture(down);
     fixture.detectChanges();
@@ -158,7 +158,7 @@ describe('RangeComponent', () => {
       cancelable: true,
       pointerId: 1,
       pointerType: 'mouse',
-      button: 0
+      button: 0,
     });
     component.onTrackPointerUp(up);
     fixture.detectChanges();
@@ -177,7 +177,7 @@ describe('RangeComponent', () => {
       pointerId: 2,
       pointerType: 'touch',
       button: 0,
-      isPrimary: true
+      isPrimary: true,
     });
     component.onTrackPointerDownCapture(down);
     fixture.detectChanges();
@@ -187,7 +187,7 @@ describe('RangeComponent', () => {
       cancelable: true,
       pointerId: 2,
       pointerType: 'touch',
-      button: 0
+      button: 0,
     });
     component.onTrackPointerCancel(cancel);
     fixture.detectChanges();
@@ -208,7 +208,7 @@ describe('RangeComponent', () => {
       pointerId: 3,
       pointerType: 'mouse',
       button: 0,
-      isPrimary: true
+      isPrimary: true,
     });
     component.onTrackPointerDownCapture(down);
     fixture.detectChanges();
@@ -230,7 +230,7 @@ describe('RangeComponent', () => {
       pointerId: 4,
       pointerType: 'mouse',
       button: 0,
-      isPrimary: true
+      isPrimary: true,
     });
     component.onTrackPointerDownCapture(down);
     fixture.detectChanges();

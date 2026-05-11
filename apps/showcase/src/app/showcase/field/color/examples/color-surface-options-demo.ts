@@ -32,7 +32,7 @@ import { ColorComponent } from 'ui';
         [ngModelOptions]="{ standalone: true }"
       />
     </div>
-  `
+  `,
 })
 export class ColorSurfaceOptionsExampleComponent {
   protected filledValue = '#0F6CBD';

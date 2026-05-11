@@ -22,7 +22,7 @@ interface ActivityRow {
     <div style="margin-top:12px; color:var(--color-neutral-foreground-3, #605e5c);">
       Dataset size: {{ rows.length }} rows
     </div>
-  `
+  `,
 })
 export class DataGridVirtualizationDemoComponent {
   rows: ActivityRow[] = Array.from({ length: 1000 }, (_, index) => ({
@@ -30,7 +30,7 @@ export class DataGridVirtualizationDemoComponent {
     user: `User ${index + 1}`,
     action: index % 2 === 0 ? 'Updated file' : 'Shared link',
     timestamp: `2026-04-${String((index % 28) + 1).padStart(2, '0')}`,
-    target: `Record ${index + 1}`
+    target: `Record ${index + 1}`,
   }));
 
   config = computed(() =>
@@ -39,33 +39,31 @@ export class DataGridVirtualizationDemoComponent {
         DataGridColumnFactory.text('user', 'User', 'user', { sortable: true }),
         DataGridColumnFactory.text('action', 'Action', 'action'),
         DataGridColumnFactory.text('target', 'Target', 'target'),
-        DataGridColumnFactory.text('timestamp', 'Timestamp', 'timestamp', {
-          sortable: true
-        })
+        DataGridColumnFactory.text('timestamp', 'Timestamp', 'timestamp', { sortable: true }),
       ],
       dataSource: this.createStaticDataSource(this.rows),
       pagination: { enabled: false },
       virtualization: {
         enabled: true,
         itemHeight: 48,
-        bufferSize: 3
+        bufferSize: 3,
       },
       styling: {
         hoverable: true,
-        stickyHeaders: true
-      }
-    })
+        stickyHeaders: true,
+      },
+    }),
   );
 
   private createStaticDataSource<T extends { id?: string }>(
-    data: T[]
+    data: T[],
   ): (params: QueryParams<T>) => Observable<QueryResult<T>> {
     return () =>
       of({
         items: [...data],
         totalCount: data.length,
         hasNextPage: false,
-        hasPreviousPage: false
+        hasPreviousPage: false,
       });
   }
 }

@@ -34,7 +34,7 @@ import { StateContainerComponent, type State, initialState, loadedState, loading
         </ng-template>
       </ui-state-container>
     </div>
-  `
+  `,
 })
 export class StateContainerCustomTemplatesDemoComponent {
   protected readonly state = signal<State<string[]>>(loadingState(initialState<string[]>()));

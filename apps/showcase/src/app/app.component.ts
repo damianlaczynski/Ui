@@ -46,8 +46,8 @@ import { ScrollService } from '@shared/scroll/scroll.service';
         opacity: 0;
         pointer-events: none;
       }
-    `
-  ]
+    `,
+  ],
 })
 export class AppComponent {
   private readonly scrollService = inject(ScrollService);

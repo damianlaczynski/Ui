@@ -33,7 +33,7 @@ import { DateComponent } from 'ui';
         [ngModelOptions]="{ standalone: true }"
       />
     </div>
-  `
+  `,
 })
 export class DateStatesDemoComponent {
   protected readonlyValue = '2026-05-18';

@@ -54,6 +54,6 @@ import { TableOfContentComponent } from 'ui';
         <p style="margin:0">Indicators should remain visible without overpowering the reading surface.</p>
       </div>
     </div>
-  `
+  `,
 })
 export class TableOfContentAppearanceDemoComponent {}

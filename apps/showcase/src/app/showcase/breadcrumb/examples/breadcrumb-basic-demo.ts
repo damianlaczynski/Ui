@@ -5,7 +5,7 @@ const FULL_PATH: Breadcrumb[] = [
   { id: 'home', label: 'Home', icon: 'home' },
   { id: 'workspace', label: 'Workspace', icon: 'folder' },
   { id: 'product', label: 'Product', icon: 'folder' },
-  { id: 'settings', label: 'Settings', icon: 'settings', selected: true }
+  { id: 'settings', label: 'Settings', icon: 'settings', selected: true },
 ];
 
 @Component({
@@ -22,18 +22,18 @@ const FULL_PATH: Breadcrumb[] = [
         Click an ancestor item to jump back to that level.
       </div>
     </div>
-  `
+  `,
 })
 export class BreadcrumbBasicExampleComponent {
   protected readonly path = signal<Breadcrumb[]>(FULL_PATH);
 
   protected navigate(item: Breadcrumb): void {
-    const index = FULL_PATH.findIndex((entry) => entry.id === item.id);
+    const index = FULL_PATH.findIndex(entry => entry.id === item.id);
     this.path.set(
       FULL_PATH.slice(0, index + 1).map((entry, currentIndex, arr) => ({
         ...entry,
-        selected: currentIndex === arr.length - 1
-      }))
+        selected: currentIndex === arr.length - 1,
+      })),
     );
   }
 }

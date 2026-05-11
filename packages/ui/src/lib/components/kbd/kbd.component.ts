@@ -7,7 +7,7 @@ import { UiI18nService } from '../../i18n';
   selector: 'ui-kbd',
   standalone: true,
   imports: [],
-  templateUrl: './kbd.component.html'
+  templateUrl: './kbd.component.html',
 })
 export class KbdComponent {
   //Services

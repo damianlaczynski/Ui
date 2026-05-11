@@ -34,10 +34,10 @@ export class DropdownHelper {
   static loadSelectedItems<T = any>(
     dataSource: (params: QueryParams<T>) => Observable<QueryResult<DropdownItem>>,
     selectedValues: (string | number)[],
-    idField: keyof T = 'id' as keyof T
+    idField: keyof T = 'id' as keyof T,
   ): Observable<DropdownItem[]> {
     if (!selectedValues || selectedValues.length === 0) {
-      return new Observable((subscriber) => {
+      return new Observable(subscriber => {
         subscriber.next([]);
         subscriber.complete();
       });
@@ -50,11 +50,11 @@ export class DropdownHelper {
         {
           columnName: idField,
           filterType: 'in',
-          value: selectedValues
-        }
-      ]
+          value: selectedValues,
+        },
+      ],
     };
 
-    return dataSource(params).pipe(map((result) => result.items));
+    return dataSource(params).pipe(map(result => result.items));
   }
 }

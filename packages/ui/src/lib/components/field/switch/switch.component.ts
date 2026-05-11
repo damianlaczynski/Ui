@@ -11,9 +11,9 @@ import { FieldComponent } from '../field/field.component';
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => SwitchComponent),
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class SwitchComponent extends FieldComponent implements ControlValueAccessor, OnInit {
   private checked = signal(false);
@@ -39,11 +39,11 @@ export class SwitchComponent extends FieldComponent implements ControlValueAcces
   });
 
   readonly trackClasses = computed(() =>
-    this.checked() ? 'switch-track switch-track--checked' : 'switch-track switch-track--unchecked'
+    this.checked() ? 'switch-track switch-track--checked' : 'switch-track switch-track--unchecked',
   );
 
   readonly thumbClasses = computed(() =>
-    this.checked() ? 'switch-thumb switch-thumb--checked' : 'switch-thumb switch-thumb--unchecked'
+    this.checked() ? 'switch-thumb switch-thumb--checked' : 'switch-thumb switch-thumb--unchecked',
   );
 
   readonly computedAriaLabel = computed(() => {

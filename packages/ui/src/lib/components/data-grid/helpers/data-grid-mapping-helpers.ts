@@ -12,10 +12,10 @@ export function mapToDataGridRows<T>(result: QueryResult<T>): QueryResult<DataGr
   return {
     items: (result.items || []).map((item: T) => ({
       id: (item as any).id || String(Math.random()),
-      data: item
+      data: item,
     })) as DataGridRow<T>[],
     totalCount: result.totalCount || 0,
     hasNextPage: result.hasNextPage ?? false,
-    hasPreviousPage: result.hasPreviousPage ?? false
+    hasPreviousPage: result.hasPreviousPage ?? false,
   };
 }

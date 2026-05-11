@@ -10,7 +10,7 @@ describe('IconComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [IconComponent]
+      imports: [IconComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(IconComponent);
@@ -136,7 +136,7 @@ describe('IconComponent locale variants', () => {
     await TestBed.resetTestingModule();
     await TestBed.configureTestingModule({
       imports: [IconComponent],
-      providers: [{ provide: LOCALE_ID, useValue: 'ar' }]
+      providers: [{ provide: LOCALE_ID, useValue: 'ar' }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(IconComponent);

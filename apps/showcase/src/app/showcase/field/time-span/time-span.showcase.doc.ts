@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig
+  ShowcaseDocPageConfig,
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { TimeSpanBasicDemoComponent } from './examples/time-span-basic-demo';
 import { TimeSpanPolicyPanelDemoComponent } from './examples/time-span-policy-panel-demo';
@@ -19,7 +19,7 @@ const componentMap = {
   sizeVariant: TimeSpanSizeVariantDemoComponent,
   states: TimeSpanStatesDemoComponent,
   reactiveForm: TimeSpanReactiveFormDemoComponent,
-  policyPanel: TimeSpanPolicyPanelDemoComponent
+  policyPanel: TimeSpanPolicyPanelDemoComponent,
 } as const;
 
 export const TIME_SPAN_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -27,9 +27,9 @@ export const TIME_SPAN_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(timeSpanMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${timeSpanMeta.slug}/${file}`
-    ])
-  ) as Record<string, string>)
+      `/docs/components/snippets/${timeSpanMeta.slug}/${file}`,
+    ]),
+  ) as Record<string, string>),
 };
 
 export const TIME_SPAN_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -38,12 +38,12 @@ export const TIME_SPAN_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: timeSpanMeta.importCode,
   containerClass: timeSpanMeta.containerClass,
   accessibility: timeSpanMeta.accessibility,
-  featureSections: timeSpanMeta.featureSections.map((section) => ({
+  featureSections: timeSpanMeta.featureSections.map(section => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap]
+    component: componentMap[section.componentKey as keyof typeof componentMap],
   })),
-  apiSections: timeSpanMeta.apiSections
+  apiSections: timeSpanMeta.apiSections,
 };

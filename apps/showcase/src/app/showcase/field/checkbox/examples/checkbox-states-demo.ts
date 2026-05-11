@@ -48,7 +48,7 @@ import { CheckboxComponent } from 'ui';
         </div>
       </div>
     </div>
-  `
+  `,
 })
 export class CheckboxStatesExampleComponent {
   protected requiredValue = false;

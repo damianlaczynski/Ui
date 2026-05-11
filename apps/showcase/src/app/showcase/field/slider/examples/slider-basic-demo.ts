@@ -28,7 +28,7 @@ const dashedCardStyle =
         </p>
       </div>
     </div>
-  `
+  `,
 })
 export class SliderBasicExampleComponent {
   readonly dashedCardStyle = dashedCardStyle;

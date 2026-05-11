@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig
+  ShowcaseDocPageConfig,
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { SplitterBasicDemoComponent } from './examples/splitter-basic-demo';
 import { SplitterConstraintsDemoComponent } from './examples/splitter-constraints-demo';
@@ -19,7 +19,7 @@ const componentMap = {
   vertical: SplitterVerticalDemoComponent,
   fixedPanel: SplitterFixedPanelDemoComponent,
   nestedWorkspace: SplitterNestedWorkspaceDemoComponent,
-  keyboard: SplitterKeyboardDemoComponent
+  keyboard: SplitterKeyboardDemoComponent,
 } as const;
 
 export const SPLITTER_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -27,9 +27,9 @@ export const SPLITTER_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(splitterMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${splitterMeta.slug}/${file}`
-    ])
-  ) as Record<string, string>)
+      `/docs/components/snippets/${splitterMeta.slug}/${file}`,
+    ]),
+  ) as Record<string, string>),
 };
 
 export const SPLITTER_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -38,12 +38,12 @@ export const SPLITTER_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: splitterMeta.importCode,
   containerClass: splitterMeta.containerClass,
   accessibility: splitterMeta.accessibility,
-  featureSections: splitterMeta.featureSections.map((section) => ({
+  featureSections: splitterMeta.featureSections.map(section => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap]
+    component: componentMap[section.componentKey as keyof typeof componentMap],
   })),
-  apiSections: splitterMeta.apiSections
+  apiSections: splitterMeta.apiSections,
 };

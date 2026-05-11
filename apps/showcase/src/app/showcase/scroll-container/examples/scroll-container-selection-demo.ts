@@ -19,10 +19,9 @@ interface SelectionItem {
         style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background2-rest)"
       >
         <ui-button variant="secondary" appearance="outline" (click)="clear()">Clear selection</ui-button>
-        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          Selected:
-          <strong>{{ selectedLabel() || 'none' }}</strong>
-        </span>
+        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
+          >Selected: <strong>{{ selectedLabel() || 'none' }}</strong></span
+        >
       </div>
 
       <div
@@ -41,7 +40,7 @@ interface SelectionItem {
         />
       </div>
     </div>
-  `
+  `,
 })
 export class ScrollContainerSelectionDemoComponent {
   protected readonly selectedLabel = signal('');
@@ -52,14 +51,14 @@ export class ScrollContainerSelectionDemoComponent {
       id: start + index,
       label: `Inbox thread ${start + index}`,
       icon: (index % 3 === 0 ? 'mail' : 'chat') as Node['icon'],
-      meta: index % 2 === 0 ? 'Unread' : 'Updated today'
+      meta: index % 2 === 0 ? 'Unread' : 'Updated today',
     }));
 
     return of({
       items,
       hasNextPage: page < 4,
       hasPreviousPage: page > 1,
-      totalCount: 48
+      totalCount: 48,
     }).pipe(delay(220));
   };
 

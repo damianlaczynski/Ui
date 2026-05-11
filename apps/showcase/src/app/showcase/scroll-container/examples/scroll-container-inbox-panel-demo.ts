@@ -6,7 +6,7 @@ import {
   ScrollContainerComponent,
   SearchComponent,
   type Node,
-  type ScrollContainerDataSource
+  type ScrollContainerDataSource,
 } from 'ui';
 
 interface InboxItem {
@@ -62,13 +62,12 @@ interface InboxItem {
       <div
         style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center;padding:0.75rem 0.875rem;border:1px dashed var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background2-rest)"
       >
-        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          Last action:
-          <strong>{{ lastAction() || 'none' }}</strong>
-        </span>
+        <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)"
+          >Last action: <strong>{{ lastAction() || 'none' }}</strong></span
+        >
       </div>
     </div>
-  `
+  `,
 })
 export class ScrollContainerInboxPanelDemoComponent {
   protected readonly lastAction = signal('');
@@ -78,14 +77,14 @@ export class ScrollContainerInboxPanelDemoComponent {
     const items = Array.from({ length: pageSize }, (_, index) => ({
       id: start + index,
       label: index % 2 === 0 ? `Review request ${start + index}` : `Mention from design ${start + index}`,
-      icon: (index % 2 === 0 ? 'document' : 'mail') as Node['icon']
+      icon: (index % 2 === 0 ? 'document' : 'mail') as Node['icon'],
     }));
 
     return of({
       items,
       hasNextPage: page < 4,
       hasPreviousPage: page > 1,
-      totalCount: 32
+      totalCount: 32,
     }).pipe(delay(220));
   };
 }

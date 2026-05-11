@@ -39,7 +39,7 @@ import { PaginationComponent, PaginationConfig } from 'ui';
         </div>
       </div>
     </div>
-  `
+  `,
 })
 export class PaginationPageSizeExampleComponent {
   protected readonly currentPage = signal(1);
@@ -58,7 +58,7 @@ export class PaginationPageSizeExampleComponent {
     showFirstLast: true,
     showInfo: true,
     showPageSizeSelector: true,
-    pageSizeOptions: [10, 20, 50, 100]
+    pageSizeOptions: [10, 20, 50, 100],
   }));
 
   protected onPageSizeChange(size: number): void {

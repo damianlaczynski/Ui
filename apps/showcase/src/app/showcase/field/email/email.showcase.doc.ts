@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig
+  ShowcaseDocPageConfig,
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { EmailBasicDemoComponent } from './examples/email-basic-demo';
 import { EmailFormDemoComponent } from './examples/email-form-demo';
@@ -19,7 +19,7 @@ const componentMap = {
   validation: EmailValidationDemoComponent,
   states: EmailStatesDemoComponent,
   form: EmailFormDemoComponent,
-  invitePanel: EmailInvitePanelDemoComponent
+  invitePanel: EmailInvitePanelDemoComponent,
 } as const;
 
 export const EMAIL_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -27,9 +27,9 @@ export const EMAIL_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(emailMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${emailMeta.slug}/${file}`
-    ])
-  ) as Record<string, string>)
+      `/docs/components/snippets/${emailMeta.slug}/${file}`,
+    ]),
+  ) as Record<string, string>),
 };
 
 export const EMAIL_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -38,12 +38,12 @@ export const EMAIL_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: emailMeta.importCode,
   containerClass: emailMeta.containerClass,
   accessibility: emailMeta.accessibility,
-  featureSections: emailMeta.featureSections.map((section) => ({
+  featureSections: emailMeta.featureSections.map(section => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap]
+    component: componentMap[section.componentKey as keyof typeof componentMap],
   })),
-  apiSections: emailMeta.apiSections
+  apiSections: emailMeta.apiSections,
 };

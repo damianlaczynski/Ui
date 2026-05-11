@@ -12,8 +12,7 @@ import { ButtonComponent, MenuComponent, type MenuItem } from 'ui';
       >
         <ui-button variant="secondary" appearance="outline" (click)="reset()">Reset</ui-button>
         <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest)">
-          Last action:
-          <strong>{{ lastAction() || 'none' }}</strong>
+          Last action: <strong>{{ lastAction() || 'none' }}</strong>
         </span>
       </div>
 
@@ -44,7 +43,7 @@ import { ButtonComponent, MenuComponent, type MenuItem } from 'ui';
         }
       </div>
     </div>
-  `
+  `,
 })
 export class MenuContextActionsDemoComponent {
   protected readonly lastAction = signal('');
@@ -57,8 +56,8 @@ export class MenuContextActionsDemoComponent {
       menuItems: [
         { id: 'open-brief', label: 'Open', icon: 'open' },
         { id: 'duplicate-brief', label: 'Duplicate', icon: 'document_copy' },
-        { id: 'archive-brief', label: 'Archive', icon: 'archive' }
-      ] as MenuItem[]
+        { id: 'archive-brief', label: 'Archive', icon: 'archive' },
+      ] as MenuItem[],
     },
     {
       id: 'assets',
@@ -67,9 +66,9 @@ export class MenuContextActionsDemoComponent {
       menuItems: [
         { id: 'open-assets', label: 'Open', icon: 'open' },
         { id: 'share-assets', label: 'Share', icon: 'share' },
-        { id: 'delete-assets', label: 'Delete', icon: 'delete', disabled: true }
-      ] as MenuItem[]
-    }
+        { id: 'delete-assets', label: 'Delete', icon: 'delete', disabled: true },
+      ] as MenuItem[],
+    },
   ];
 
   protected onMenuAction(item: MenuItem, label: string): void {

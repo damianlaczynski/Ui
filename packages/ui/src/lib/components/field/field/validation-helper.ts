@@ -6,7 +6,7 @@ import { AbstractControl, ValidationErrors } from '@angular/forms';
 export function getValidationErrorMessage(
   errors: ValidationErrors | null,
   control: AbstractControl | null,
-  label?: string
+  label?: string,
 ): string {
   if (!errors || !control) {
     return '';

@@ -23,9 +23,9 @@ export interface RadioButtonItem {
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => RadioButtonGroupComponent),
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class RadioButtonGroupComponent extends FieldComponent implements ControlValueAccessor {
   @ViewChildren(ButtonComponent) private buttonComponents!: QueryList<ButtonComponent>;
@@ -99,14 +99,14 @@ export class RadioButtonGroupComponent extends FieldComponent implements Control
   }
 
   private getSelectedIndex(): number {
-    const idx = this.items().findIndex((it) => it.value === this.value);
+    const idx = this.items().findIndex(it => it.value === this.value);
     return idx >= 0 ? idx : 0;
   }
 
   private getFocusableIndices(): number[] {
     return this.items()
       .map((item, i) => (this.disabled() || item.disabled ? -1 : i))
-      .filter((i) => i >= 0);
+      .filter(i => i >= 0);
   }
 
   onKeydown(event: KeyboardEvent): void {

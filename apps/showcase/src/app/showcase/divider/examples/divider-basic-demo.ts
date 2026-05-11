@@ -13,6 +13,6 @@ import { DividerComponent } from 'ui';
       <ui-divider text="Section break" />
       <div style="font-size:0.875rem">Follow-up section</div>
     </div>
-  `
+  `,
 })
 export class DividerBasicExampleComponent {}

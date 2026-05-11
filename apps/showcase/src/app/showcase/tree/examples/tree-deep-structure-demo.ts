@@ -28,7 +28,7 @@ import { TreeComponent, type TreeNode } from 'ui';
         </div>
       </div>
     </div>
-  `
+  `,
 })
 export class TreeDeepStructureDemoComponent {
   protected readonly nodes: TreeNode[] = [
@@ -62,27 +62,22 @@ export class TreeDeepStructureDemoComponent {
                   expanded: true,
                   children: [
                     { id: 'header', label: 'showcase-doc-header.ts', icon: 'document' },
-                    {
-                      id: 'page',
-                      label: 'showcase-doc-page.ts',
-                      icon: 'document',
-                      selected: true
-                    }
-                  ]
-                }
-              ]
+                    { id: 'page', label: 'showcase-doc-page.ts', icon: 'document', selected: true },
+                  ],
+                },
+              ],
             },
-            { id: 'landing', label: 'landing', icon: 'folder' }
-          ]
+            { id: 'landing', label: 'landing', icon: 'folder' },
+          ],
         },
         {
           id: 'packages',
           label: 'Packages',
           icon: 'box',
           hasChildren: true,
-          children: [{ id: 'ui', label: 'ui', icon: 'folder' }]
-        }
-      ]
-    }
+          children: [{ id: 'ui', label: 'ui', icon: 'folder' }],
+        },
+      ],
+    },
   ];
 }

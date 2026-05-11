@@ -5,8 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { of } from 'rxjs';
 import { QueryParams } from '../../../api';
 
-const flush = () => new Promise((r) => setTimeout(r, 0));
-const tick = (ms = 0) => new Promise((r) => setTimeout(r, ms));
+const flush = () => new Promise(r => setTimeout(r, 0));
+const tick = (ms = 0) => new Promise(r => setTimeout(r, ms));
 
 describe('DropdownComponent', () => {
   let component: DropdownComponent;
@@ -17,12 +17,12 @@ describe('DropdownComponent', () => {
     { value: 2, label: 'Option 2' },
     { value: 3, label: 'Option 3', disabled: true },
     { value: 4, label: 'Apple' },
-    { value: 5, label: 'Banana' }
+    { value: 5, label: 'Banana' },
   ];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DropdownComponent, NoopAnimationsModule, FormsModule]
+      imports: [DropdownComponent, NoopAnimationsModule, FormsModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DropdownComponent);
@@ -96,7 +96,7 @@ describe('DropdownComponent', () => {
 
     it('should emit selectionChange with single value', () => {
       let emittedValue: any;
-      component.selectionChange.subscribe((value) => (emittedValue = value));
+      component.selectionChange.subscribe(value => (emittedValue = value));
 
       const item = createMockItems()[0];
       component.selectItem(item);
@@ -144,7 +144,7 @@ describe('DropdownComponent', () => {
 
     it('should emit selectionChange with array of values', () => {
       let emittedValue: any;
-      component.selectionChange.subscribe((value) => (emittedValue = value));
+      component.selectionChange.subscribe(value => (emittedValue = value));
 
       const items = createMockItems();
       component.selectItem(items[0]);
@@ -342,7 +342,7 @@ describe('DropdownComponent', () => {
 
     it('should emit selectionChange with empty array on clear', () => {
       let emittedValue: any;
-      component.selectionChange.subscribe((value) => (emittedValue = value));
+      component.selectionChange.subscribe(value => (emittedValue = value));
 
       const item = createMockItems()[0];
       component.selectItem(item);
@@ -609,14 +609,14 @@ describe('DropdownComponent', () => {
       const selectableItems = component.selectableItems();
 
       // Disabled item (Option 3) should not be in selectable items
-      expect(selectableItems.find((item) => item.value === 3)).toBeUndefined();
+      expect(selectableItems.find(item => item.value === 3)).toBeUndefined();
 
       // Navigation should only go through selectable items
       const event = new KeyboardEvent('keydown', { key: 'ArrowDown' });
       component.onKeyDown(event);
       fixture.detectChanges();
 
-      const activeItem = selectableItems.find((item) => component.getItemId(item) === component.activeDescendant());
+      const activeItem = selectableItems.find(item => component.getItemId(item) === component.activeDescendant());
       expect(activeItem?.disabled).toBeFalsy();
     });
   });
@@ -638,7 +638,7 @@ describe('DropdownComponent', () => {
 
       const activeItem = component
         .selectableItems()
-        .find((item) => component.getItemId(item) === component.activeDescendant());
+        .find(item => component.getItemId(item) === component.activeDescendant());
       expect(activeItem?.label).toBe('Apple');
     });
 
@@ -657,7 +657,7 @@ describe('DropdownComponent', () => {
 
       const activeItem = component
         .selectableItems()
-        .find((item) => component.getItemId(item) === component.activeDescendant());
+        .find(item => component.getItemId(item) === component.activeDescendant());
       expect(activeItem?.label).toBe('Banana');
 
       await tick(1000); // Clear typeahead
@@ -680,7 +680,7 @@ describe('DropdownComponent', () => {
 
       const activeItem = component
         .selectableItems()
-        .find((item) => component.getItemId(item) === component.activeDescendant());
+        .find(item => component.getItemId(item) === component.activeDescendant());
       expect(activeItem?.label).toBe('Apple');
 
       await tick(1000);
@@ -698,7 +698,7 @@ describe('DropdownComponent', () => {
 
       let activeItem = component
         .selectableItems()
-        .find((item) => component.getItemId(item) === component.activeDescendant());
+        .find(item => component.getItemId(item) === component.activeDescendant());
       expect(activeItem?.label).toBe('Option 1');
 
       await tick(1100); // Reset typeahead
@@ -709,9 +709,7 @@ describe('DropdownComponent', () => {
       await tick(100);
       fixture.detectChanges();
 
-      activeItem = component
-        .selectableItems()
-        .find((item) => component.getItemId(item) === component.activeDescendant());
+      activeItem = component.selectableItems().find(item => component.getItemId(item) === component.activeDescendant());
       expect(activeItem?.label).toBe('Option 2');
 
       await tick(1000);
@@ -823,11 +821,11 @@ describe('DropdownComponent', () => {
         return of({
           items: [
             { value: 1, label: 'Dynamic 1' },
-            { value: 2, label: 'Dynamic 2' }
+            { value: 2, label: 'Dynamic 2' },
           ],
           hasNextPage: false,
           hasPreviousPage: false,
-          totalCount: 2
+          totalCount: 2,
         });
       };
 
@@ -837,7 +835,7 @@ describe('DropdownComponent', () => {
       const dataSourceFn = component.scrollContainerDataSource();
       expect(dataSourceFn).toBeDefined();
 
-      dataSourceFn(1, 20).subscribe((result) => {
+      dataSourceFn(1, 20).subscribe(result => {
         expect(result.items.length).toBe(2);
         expect(result.items[0].label).toBe('Dynamic 1');
       });
@@ -854,7 +852,7 @@ describe('DropdownComponent', () => {
           items: [],
           hasNextPage: false,
           hasPreviousPage: false,
-          totalCount: 0
+          totalCount: 0,
         });
       };
 
@@ -879,7 +877,7 @@ describe('DropdownComponent', () => {
           items: createMockItems(),
           hasNextPage: false,
           hasPreviousPage: false,
-          totalCount: 5
+          totalCount: 5,
         });
       };
 
@@ -909,7 +907,7 @@ describe('DropdownComponent', () => {
 
       const dataSourceFn = component.scrollContainerDataSource();
 
-      dataSourceFn(1, 2).subscribe((result) => {
+      dataSourceFn(1, 2).subscribe(result => {
         expect(result.items.length).toBe(2);
         expect(result.items[0].label).toBe('Option 1');
         expect(result.items[1].label).toBe('Option 2');
@@ -928,7 +926,7 @@ describe('DropdownComponent', () => {
 
       const dataSourceFn = component.scrollContainerDataSource();
 
-      dataSourceFn(2, 2).subscribe((result) => {
+      dataSourceFn(2, 2).subscribe(result => {
         expect(result.items.length).toBe(2);
         expect(result.items[0].label).toBe('Option 3');
         expect(result.items[1].label).toBe('Apple');
@@ -947,7 +945,7 @@ describe('DropdownComponent', () => {
 
       const dataSourceFn = component.scrollContainerDataSource();
 
-      dataSourceFn(3, 2).subscribe((result) => {
+      dataSourceFn(3, 2).subscribe(result => {
         expect(result.items.length).toBe(1);
         expect(result.items[0].label).toBe('Banana');
         expect(result.hasNextPage).toBe(false);
@@ -1138,7 +1136,7 @@ describe('DropdownComponent', () => {
     it('should handle all disabled items', () => {
       const allDisabled: DropdownItem[] = [
         { value: 1, label: 'Disabled 1', disabled: true },
-        { value: 2, label: 'Disabled 2', disabled: true }
+        { value: 2, label: 'Disabled 2', disabled: true },
       ];
       fixture.componentRef.setInput('items', allDisabled);
       fixture.detectChanges();
@@ -1161,7 +1159,7 @@ describe('DropdownComponent', () => {
     it('should handle items with duplicate values', () => {
       const duplicateItems: DropdownItem[] = [
         { value: 1, label: 'Item 1' },
-        { value: 1, label: 'Item 1 Duplicate' }
+        { value: 1, label: 'Item 1 Duplicate' },
       ];
       fixture.componentRef.setInput('items', duplicateItems);
       fixture.detectChanges();
@@ -1190,7 +1188,7 @@ describe('DropdownComponent', () => {
       const items: DropdownItem[] = [
         { value: 1, label: '<script>alert("xss")</script>' },
         { value: 2, label: 'Item & Co.' },
-        { value: 3, label: 'Item "quoted"' }
+        { value: 3, label: 'Item "quoted"' },
       ];
       fixture.componentRef.setInput('items', items);
       fixture.detectChanges();
@@ -1204,7 +1202,7 @@ describe('DropdownComponent', () => {
     it('should handle numeric and string values', () => {
       const mixedItems: DropdownItem[] = [
         { value: 1, label: 'Numeric 1' },
-        { value: '2', label: 'String 2' }
+        { value: '2', label: 'String 2' },
       ];
       fixture.componentRef.setInput('items', mixedItems);
       fixture.detectChanges();
@@ -1272,7 +1270,7 @@ describe('DropdownComponent', () => {
       // Change items but keep item with value 1
       const newItems: DropdownItem[] = [
         { value: 1, label: 'Updated Option 1' },
-        { value: 6, label: 'New Option' }
+        { value: 6, label: 'New Option' },
       ];
       fixture.componentRef.setInput('items', newItems);
       fixture.detectChanges();

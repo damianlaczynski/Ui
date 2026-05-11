@@ -11,7 +11,7 @@ import { NavComponent, type NavNode } from 'ui';
     >
       <ui-nav [items]="items" />
     </div>
-  `
+  `,
 })
 export class NavSectionsDemoComponent {
   protected readonly items: NavNode[] = [
@@ -28,8 +28,8 @@ export class NavSectionsDemoComponent {
       expanded: true,
       children: [
         { id: 'components', label: 'Components' },
-        { id: 'guidelines', label: 'Guidelines' }
-      ]
+        { id: 'guidelines', label: 'Guidelines' },
+      ],
     },
     {
       id: 'platform',
@@ -38,12 +38,12 @@ export class NavSectionsDemoComponent {
       hasChildren: true,
       children: [
         { id: 'deployments', label: 'Deployments' },
-        { id: 'feature-flags', label: 'Feature flags' }
-      ]
+        { id: 'feature-flags', label: 'Feature flags' },
+      ],
     },
     { id: 'divider-2', label: 'divider', isDivider: true },
     { id: 'admin-header', label: 'Administration', isSectionHeader: true },
     { id: 'billing', label: 'Billing', icon: 'wallet' },
-    { id: 'security', label: 'Security', icon: 'shield', disabled: true }
+    { id: 'security', label: 'Security', icon: 'shield', disabled: true },
   ];
 }

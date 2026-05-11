@@ -15,8 +15,8 @@ import { IconName } from '../icon';
         width: 100%;
         min-width: 0;
       }
-    `
-  ]
+    `,
+  ],
 })
 export class AccordionComponent {
   label = input.required<string>();
@@ -48,7 +48,7 @@ export class AccordionComponent {
     disabled: this.disabled(),
     hasChildren: true,
     expanded: this.expanded(),
-    children: []
+    children: [],
   }));
 
   // Computed chevron icons based on position if not explicitly provided

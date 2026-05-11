@@ -5,7 +5,7 @@ import {
   TextComponent,
   ToolbarComponent,
   type DropdownItem,
-  type ToolbarGroup
+  type ToolbarGroup,
 } from 'ui';
 
 @Component({
@@ -22,7 +22,7 @@ import {
       <ui-dropdown [items]="fontFamilyItems" placeholder="Font" style="width:10rem" />
       <ui-text placeholder="Find in document..." style="width:12rem" />
     </div>
-  `
+  `,
 })
 export class ToolbarEditorHeaderDemoComponent {
   protected readonly groups: ToolbarGroup[] = [
@@ -30,40 +30,29 @@ export class ToolbarEditorHeaderDemoComponent {
       id: 'file',
       items: [
         { id: 'save', icon: 'save', tooltip: 'Save' },
-        { id: 'share', icon: 'share', tooltip: 'Share' }
-      ]
+        { id: 'share', icon: 'share', tooltip: 'Share' },
+      ],
     },
     {
       id: 'format',
       items: [
-        {
-          id: 'bold',
-          icon: 'text_bold',
-          tooltip: 'Bold',
-          type: 'toggle',
-          selected: true
-        },
+        { id: 'bold', icon: 'text_bold', tooltip: 'Bold', type: 'toggle', selected: true },
         { id: 'italic', icon: 'text_italic', tooltip: 'Italic', type: 'toggle' },
-        {
-          id: 'underline',
-          icon: 'text_underline',
-          tooltip: 'Underline',
-          type: 'toggle'
-        }
-      ]
-    }
+        { id: 'underline', icon: 'text_underline', tooltip: 'Underline', type: 'toggle' },
+      ],
+    },
   ];
 
   protected readonly fontSizeItems: DropdownItem[] = [
     { value: '12', label: '12' },
     { value: '14', label: '14' },
     { value: '16', label: '16' },
-    { value: '20', label: '20' }
+    { value: '20', label: '20' },
   ];
 
   protected readonly fontFamilyItems: DropdownItem[] = [
     { value: 'segoe', label: 'Segoe UI' },
     { value: 'calibri', label: 'Calibri' },
-    { value: 'georgia', label: 'Georgia' }
+    { value: 'georgia', label: 'Georgia' },
   ];
 }

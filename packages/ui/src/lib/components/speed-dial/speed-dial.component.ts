@@ -9,7 +9,7 @@ import {
   inject,
   input,
   model,
-  output
+  output,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID } from '@angular/core';
@@ -58,8 +58,8 @@ function closeOtherSpeedDials(exceptId: string): void {
   templateUrl: './speed-dial.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'speed-dial'
-  }
+    class: 'speed-dial',
+  },
 })
 export class SpeedDialComponent {
   private readonly elementRef = inject(ElementRef<HTMLElement>);
@@ -199,7 +199,7 @@ export class SpeedDialComponent {
             break;
         }
         const angles = arcAngles(n, start, end);
-        return angles.map((θ) => {
+        return angles.map(θ => {
           const x = r * Math.cos(θ);
           const y = r * Math.sin(θ);
           return `translate(-50%, -50%) translate(${x}px, ${y}px)`;
@@ -228,7 +228,7 @@ export class SpeedDialComponent {
             break;
         }
         const angles = arcAngles(n, start, end);
-        return angles.map((θ) => {
+        return angles.map(θ => {
           const x = r * Math.cos(θ);
           const y = r * Math.sin(θ);
           return `translate(-50%, -50%) translate(${x}px, ${y}px)`;
@@ -257,7 +257,7 @@ export class SpeedDialComponent {
       up: 'up',
       down: 'down',
       left: 'left',
-      right: 'right'
+      right: 'right',
     };
     return map[dir] ?? 'up';
   }
@@ -267,7 +267,7 @@ export class SpeedDialComponent {
       up: 'up',
       down: 'down',
       left: 'left',
-      right: 'right'
+      right: 'right',
     };
     return map[dir] ?? 'up';
   }
@@ -277,7 +277,7 @@ export class SpeedDialComponent {
       'up-left': 'up-left',
       'up-right': 'up-right',
       'down-left': 'down-left',
-      'down-right': 'down-right'
+      'down-right': 'down-right',
     };
     return map[dir] ?? 'up-left';
   }

@@ -12,7 +12,7 @@ import {
   OnDestroy,
   inject,
   PLATFORM_ID,
-  NgZone
+  NgZone,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Overlay, OverlayModule } from '@angular/cdk/overlay';
@@ -28,7 +28,7 @@ import {
   MENU_OVERLAY_VIEWPORT_MARGIN,
   MENU_SUBMENU_POSITIONS,
   MENU_SUBMENU_MIN_WIDTH,
-  MENU_SUBMENU_VIEWPORT_MARGIN
+  MENU_SUBMENU_VIEWPORT_MARGIN,
 } from './menu-overlay.config';
 import { openConnectedOverlay, OverlayHandle } from '../overlay/open-connected-overlay';
 import { UiI18nService } from '../../i18n';
@@ -44,8 +44,8 @@ export type MenuTriggerVariant = 'dropdown' | 'split' | 'button';
     '[class.menu-trigger-host]':
       'triggerVariant() === "dropdown" || triggerVariant() === "split" || triggerVariant() === "button"',
     '[class.menu-trigger-host--split]': 'triggerVariant() === "split"',
-    '[class.menu-trigger-host--menu]': 'triggerVariant() === "dropdown" || triggerVariant() === "button"'
-  }
+    '[class.menu-trigger-host--menu]': 'triggerVariant() === "dropdown" || triggerVariant() === "button"',
+  },
 })
 export class MenuComponent implements OnDestroy {
   private i18n = inject(UiI18nService);
@@ -101,7 +101,7 @@ export class MenuComponent implements OnDestroy {
       `button--${this.variant()}`,
       `button--${this.appearance()}`,
       `button--${this.size()}`,
-      `button--${this.shape()}`
+      `button--${this.shape()}`,
     ];
     if (this.disabled()) c.push('button--disabled');
     if (this.selected()) c.push('button--selected');
@@ -126,7 +126,7 @@ export class MenuComponent implements OnDestroy {
       `menu-trigger-split--${this.variant()}`,
       `menu-trigger-split--${this.appearance()}`,
       `menu-trigger-split--${this.size()}`,
-      `menu-trigger-split--${this.shape()}`
+      `menu-trigger-split--${this.shape()}`,
     ];
     if (this.disabled()) c.push('menu-trigger-split--disabled');
     return c.join(' ');
@@ -218,10 +218,10 @@ export class MenuComponent implements OnDestroy {
         flexibleDimensions: true,
         minWidth,
         maxWidth: MENU_OVERLAY_MAX_WIDTH,
-        maxHeight
+        maxHeight,
       },
-      onClose: (focusTrigger) => this.closeMenu(focusTrigger ? 'escape' : 'outside'),
-      onDetach: () => this.syncStateAfterDetach()
+      onClose: focusTrigger => this.closeMenu(focusTrigger ? 'escape' : 'outside'),
+      onDetach: () => this.syncStateAfterDetach(),
     });
 
     this.isMenuOpen.set(true);

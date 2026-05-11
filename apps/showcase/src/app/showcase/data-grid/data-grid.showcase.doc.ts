@@ -1,7 +1,7 @@
 ﻿import { ShowcaseDocMeta } from '@shared/components/showcase-doc-page/showcase-doc-page.meta';
 import {
   ShowcaseDocAssetPaths,
-  ShowcaseDocPageConfig
+  ShowcaseDocPageConfig,
 } from '@shared/components/showcase-doc-page/showcase-doc-page.models';
 import { DataGridAdvancedConfigurationDemoComponent } from './examples/data-grid-advanced-configuration-demo';
 import { DataGridBasicPresetDemoComponent } from './examples/data-grid-basic-preset-demo';
@@ -25,7 +25,7 @@ const componentMap = {
   filtering: DataGridFilteringDemoComponent,
   expandableRows: DataGridExpandableRowsDemoComponent,
   fullFeatured: DataGridFullFeaturedDemoComponent,
-  advancedConfiguration: DataGridAdvancedConfigurationDemoComponent
+  advancedConfiguration: DataGridAdvancedConfigurationDemoComponent,
 } as const;
 
 export const DATA_GRID_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
@@ -33,9 +33,9 @@ export const DATA_GRID_DOC_ASSET_PATHS: ShowcaseDocAssetPaths = {
   ...(Object.fromEntries(
     Object.entries(dataGridMeta.snippets).map(([key, file]) => [
       key,
-      `/docs/components/snippets/${dataGridMeta.slug}/${file}`
-    ])
-  ) as Record<string, string>)
+      `/docs/components/snippets/${dataGridMeta.slug}/${file}`,
+    ]),
+  ) as Record<string, string>),
 };
 
 export const DATA_GRID_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
@@ -44,12 +44,12 @@ export const DATA_GRID_DOC_PAGE_CONFIG: ShowcaseDocPageConfig = {
   importCode: dataGridMeta.importCode,
   containerClass: dataGridMeta.containerClass,
   accessibility: dataGridMeta.accessibility,
-  featureSections: dataGridMeta.featureSections.map((section) => ({
+  featureSections: dataGridMeta.featureSections.map(section => ({
     id: section.id,
     title: section.title,
     description: section.description,
     codeKey: section.codeKey,
-    component: componentMap[section.componentKey as keyof typeof componentMap]
+    component: componentMap[section.componentKey as keyof typeof componentMap],
   })),
-  apiSections: dataGridMeta.apiSections
+  apiSections: dataGridMeta.apiSections,
 };

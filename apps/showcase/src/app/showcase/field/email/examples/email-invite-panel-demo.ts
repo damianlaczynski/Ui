@@ -39,7 +39,7 @@ import { BadgeComponent, ButtonComponent, EmailComponent } from 'ui';
         </div>
       </div>
     </div>
-  `
+  `,
 })
 export class EmailInvitePanelDemoComponent {
   protected inviteEmail = '';

@@ -19,9 +19,9 @@ import { ButtonComponent, CardComponent, CardOnSelectionChangeEvent, CheckboxCom
         >
           <div uiCardHeader style="display:grid;gap:0.25rem;">
             <strong style="font-size:0.9375rem;">Click-anywhere selection</strong>
-            <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);">
-              Useful for galleries or bulk management where the whole tile represents one choice
-            </span>
+            <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);"
+              >Useful for galleries or bulk management where the whole tile represents one choice</span
+            >
           </div>
         </ui-card>
 
@@ -43,9 +43,9 @@ import { ButtonComponent, CardComponent, CardOnSelectionChangeEvent, CheckboxCom
 
           <div uiCardHeader style="display:grid;gap:0.25rem;">
             <strong style="font-size:0.9375rem;">Projected checkbox</strong>
-            <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);">
-              Better when users expect an explicit selection affordance instead of a surface click
-            </span>
+            <span style="font-size:0.75rem;color:var(--color-neutral-foreground3-rest);"
+              >Better when users expect an explicit selection affordance instead of a surface click</span
+            >
           </div>
         </ui-card>
       </div>
@@ -58,15 +58,15 @@ import { ButtonComponent, CardComponent, CardOnSelectionChangeEvent, CheckboxCom
           <div style="display:flex;flex-wrap:wrap;gap:1rem 1.5rem;align-items:center;">
             <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest);">
               Surface card:
-              <strong style="color:var(--color-neutral-foreground-rest);">
-                {{ surfaceSelected() ? 'selected' : 'not selected' }}
-              </strong>
+              <strong style="color:var(--color-neutral-foreground-rest);">{{
+                surfaceSelected() ? 'selected' : 'not selected'
+              }}</strong>
             </span>
             <span style="font-size:0.8125rem;color:var(--color-neutral-foreground2-rest);">
               Checkbox card:
-              <strong style="color:var(--color-neutral-foreground-rest);">
-                {{ checkboxSelected() ? 'selected' : 'not selected' }}
-              </strong>
+              <strong style="color:var(--color-neutral-foreground-rest);">{{
+                checkboxSelected() ? 'selected' : 'not selected'
+              }}</strong>
             </span>
           </div>
 
@@ -74,7 +74,7 @@ import { ButtonComponent, CardComponent, CardOnSelectionChangeEvent, CheckboxCom
         </div>
       </ui-card>
     </div>
-  `
+  `,
 })
 export class CardSelectionDemoComponent {
   protected readonly surfaceSelected = signal(true);

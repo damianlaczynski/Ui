@@ -44,7 +44,7 @@ import { UrlComponent } from 'ui';
         />
       </div>
     </div>
-  `
+  `,
 })
 export class UrlBasicDemoComponent {
   protected docsUrl = 'https://docs.example.com/guides/getting-started';

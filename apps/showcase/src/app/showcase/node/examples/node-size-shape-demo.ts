@@ -27,38 +27,18 @@ import { NodeComponent, type Node } from 'ui';
         <ui-node [node]="circularNode" shape="circular" appearance="subtle" />
       </div>
     </div>
-  `
+  `,
 })
 export class NodeSizeShapeDemoComponent {
-  protected readonly smallNode: Node = {
-    id: 'small',
-    label: 'Compact row',
-    icon: 'document'
-  };
-  protected readonly mediumNode: Node = {
-    id: 'medium',
-    label: 'Default row',
-    icon: 'document'
-  };
-  protected readonly largeNode: Node = {
-    id: 'large',
-    label: 'Comfortable row',
-    icon: 'document'
-  };
+  protected readonly smallNode: Node = { id: 'small', label: 'Compact row', icon: 'document' };
+  protected readonly mediumNode: Node = { id: 'medium', label: 'Default row', icon: 'document' };
+  protected readonly largeNode: Node = { id: 'large', label: 'Comfortable row', icon: 'document' };
 
-  protected readonly roundedNode: Node = {
-    id: 'rounded',
-    label: 'Rounded item',
-    icon: 'folder'
-  };
-  protected readonly squareNode: Node = {
-    id: 'square',
-    label: 'Square item',
-    icon: 'folder'
-  };
+  protected readonly roundedNode: Node = { id: 'rounded', label: 'Rounded item', icon: 'folder' };
+  protected readonly squareNode: Node = { id: 'square', label: 'Square item', icon: 'folder' };
   protected readonly circularNode: Node = {
     id: 'circular',
     label: 'Circular item',
-    icon: 'folder'
+    icon: 'folder',
   };
 }
