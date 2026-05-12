@@ -34,19 +34,6 @@ export function getDataGridClasses(
 }
 
 /**
- * Get header CSS classes
- */
-export function getHeaderClasses(stickyHeaders: boolean): string {
-  const classes = ['data-grid__header'];
-
-  if (stickyHeaders) {
-    classes.push('data-grid__header--sticky');
-  }
-
-  return classes.join(' ');
-}
-
-/**
  * Get header cell CSS classes
  */
 export function getHeaderCellClasses<T>(

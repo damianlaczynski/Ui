@@ -333,8 +333,11 @@
   }
 
   &__drop-indicator {
-    height: 6px;
-    margin: -2px 0;
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+    height: 8px;
+    margin: -3px 0;
     opacity: 0;
 
     &::before {

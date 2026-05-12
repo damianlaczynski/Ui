@@ -1,5 +1,6 @@
 // ==========================================================================
 // State Base Styles - Common styles for empty-state, error-state, loading-state
+// Aligned with showcase-doc guide cards & section typography (Fluent tokens)
 // ==========================================================================
 
 @use '../utils/variables' as *;
@@ -21,81 +22,96 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: $spacing-2;
+    gap: $spacing-3;
     max-width: 100%;
   }
 
   &__title {
     margin: 0;
     font-weight: $font-weight-semibold;
-    line-height: $line-height-500;
+    font-size: $font-size-500;
+    line-height: 1.3;
   }
 
   &__description {
     margin: 0;
     font-weight: $font-weight-regular;
+    font-size: $font-size-300;
+    line-height: 1.55;
     color: var(--color-neutral-foreground2-rest);
-    line-height: $line-height-400;
-    max-width: 500px;
+    max-width: 560px;
   }
 
   &__custom-content {
-    margin-top: $spacing-2;
     width: 100%;
     max-width: 100%;
+    color: var(--color-neutral-foreground2-rest);
+    font-size: $font-size-300;
+    line-height: 1.55;
   }
 
   &--small {
     padding: $spacing-6 $spacing-3;
+  }
 
-    &__title {
-      font-size: $font-size-500;
-      line-height: $line-height-500;
-    }
+  &--small &__content {
+    gap: $spacing-2;
+  }
 
-    &__description {
-      font-size: $font-size-300;
-      line-height: $line-height-300;
-    }
+  &--small &__title {
+    font-size: $font-size-400;
+    line-height: $line-height-400;
+  }
+
+  &--small &__description {
+    font-size: $font-size-300;
+    line-height: $line-height-300;
+    max-width: 480px;
   }
 
   &--medium {
     padding: $spacing-8 $spacing-4;
-
-    &__title {
-      font-size: $font-size-600;
-      line-height: $line-height-600;
-    }
-
-    &__description {
-      font-size: $font-size-400;
-      line-height: $line-height-400;
-    }
   }
 
   &--large {
     padding: $spacing-12 $spacing-6;
+  }
 
-    &__title {
-      font-size: $font-size-700;
-      line-height: $line-height-700;
-    }
+  &--large &__title {
+    font-size: $font-size-600;
+    line-height: $line-height-600;
+  }
 
-    &__description {
-      font-size: $font-size-500;
-      line-height: $line-height-500;
-    }
+  &--large &__description {
+    font-size: $font-size-400;
+    line-height: 1.6;
+    max-width: 640px;
+  }
+
+  &--large &__custom-content {
+    font-size: $font-size-400;
+    line-height: 1.6;
   }
 
   @include respond-to(small) {
     padding: $spacing-6 $spacing-3;
 
+    &__content {
+      gap: $spacing-2;
+    }
+
     &__title {
-      font-size: $font-size-500;
-      line-height: $line-height-500;
+      font-size: $font-size-300;
+      line-height: 1.35;
     }
 
     &__description {
+      font-size: $font-size-300;
+      line-height: $line-height-300;
+      max-width: 100%;
+    }
+
+    &__custom-content {
       font-size: $font-size-300;
       line-height: $line-height-300;
     }
@@ -111,26 +127,20 @@
     color: var(--color-neutral-foreground2-rest, #{$icon-color});
   }
 
-  &--small {
-    &__icon {
-      margin-bottom: $spacing-3;
-    }
+  &--small &__icon {
+    margin-bottom: $spacing-3;
   }
 
-  &--medium {
-    &__icon {
-      margin-bottom: $spacing-4;
-    }
+  &--medium &__icon {
+    margin-bottom: $spacing-4;
   }
 
-  &--large {
-    &__icon {
-      margin-bottom: $spacing-6;
+  &--large &__icon {
+    margin-bottom: $spacing-6;
 
-      ui-icon {
-        width: 80px;
-        height: 80px;
-      }
+    ui-icon {
+      width: 80px;
+      height: 80px;
     }
   }
 
@@ -150,22 +160,16 @@
     color: var(--color-neutral-foreground2-rest);
   }
 
-  &--small {
-    &__spinner {
-      margin-bottom: $spacing-3;
-    }
+  &--small &__spinner {
+    margin-bottom: $spacing-3;
   }
 
-  &--medium {
-    &__spinner {
-      margin-bottom: $spacing-4;
-    }
+  &--medium &__spinner {
+    margin-bottom: $spacing-4;
   }
 
-  &--large {
-    &__spinner {
-      margin-bottom: $spacing-6;
-    }
+  &--large &__spinner {
+    margin-bottom: $spacing-6;
   }
 
   @include respond-to(small) {
@@ -185,28 +189,26 @@
     flex-wrap: wrap;
   }
 
-  &--small {
-    &__actions {
-      margin-top: $spacing-4;
-    }
+  &--small &__actions {
+    margin-top: $spacing-4;
+    gap: $spacing-2;
   }
 
-  &--medium {
-    &__actions {
-      margin-top: $spacing-6;
-    }
+  &--medium &__actions {
+    margin-top: $spacing-6;
   }
 
-  &--large {
-    &__actions {
-      margin-top: $spacing-8;
-    }
+  &--large &__actions {
+    margin-top: $spacing-8;
+    gap: $spacing-3;
   }
 
   @include respond-to(small) {
     &__actions {
       flex-direction: column;
       width: 100%;
+      margin-top: $spacing-4;
+      gap: $spacing-2;
 
       ui-button {
         width: 100%;

@@ -3,46 +3,48 @@
   <div class="data-grid__scroll-container">
     <div class="data-grid__horizontal-track">
       <div class="data-grid__vertical-track">
-        <!-- Column Headers -->
-        <ui-data-grid-header
-          [columns]="columns()"
-          [size]="size()"
-          [stickyHeaders]="stickyHeaders()"
-          [selectable]="isSelectable()"
-          [multiSelect]="isMultiSelect()"
-          [expandable]="expandable()"
-          [allRowsSelected]="allRowsSelected()"
-          [someRowsSelected]="someRowsSelected()"
-          [sortField]="sortField()"
-          [sortDirection]="sortDirection()"
-          [getSortIcon]="getSortIcon.bind(this)"
-          [isColumnResizable]="isColumnResizable.bind(this)"
-          [filteringEnabled]="filteringConfig().enabled"
-          (headerClick)="onHeaderClick($event.column, $event.event)"
-          (toggleAllRows)="toggleAllRows()"
-          (filterOperatorChange)="onFilterOperatorChange($event.column, $event.operator)"
-          (columnResize)="
-            onColumnResize(
-              $event.columnId,
-              $event.width,
-              $event.nextColumnId,
-              $event.nextColumnWidth
-            )
-          "
-        />
-
-        <!-- Filter Row -->
-        @if (hasFilterableColumns()) {
-          <ui-data-grid-filter-row
+        <div
+          class="data-grid__sticky-head"
+          [class.data-grid__sticky-head--sticky]="stickyHeaders()"
+        >
+          <ui-data-grid-header
             [columns]="columns()"
             [size]="size()"
             [selectable]="isSelectable()"
             [multiSelect]="isMultiSelect()"
             [expandable]="expandable()"
-            (filterValueChange)="onFilterValueChange($event.column, $event.value)"
+            [allRowsSelected]="allRowsSelected()"
+            [someRowsSelected]="someRowsSelected()"
+            [sortField]="sortField()"
+            [sortDirection]="sortDirection()"
+            [getSortIcon]="getSortIcon.bind(this)"
+            [isColumnResizable]="isColumnResizable.bind(this)"
+            [filteringEnabled]="filteringConfig().enabled"
+            (headerClick)="onHeaderClick($event.column, $event.event)"
+            (toggleAllRows)="toggleAllRows()"
             (filterOperatorChange)="onFilterOperatorChange($event.column, $event.operator)"
+            (columnResize)="
+              onColumnResize(
+                $event.columnId,
+                $event.width,
+                $event.nextColumnId,
+                $event.nextColumnWidth
+              )
+            "
           />
-        }
+
+          @if (hasFilterableColumns()) {
+            <ui-data-grid-filter-row
+              [columns]="columns()"
+              [size]="size()"
+              [selectable]="isSelectable()"
+              [multiSelect]="isMultiSelect()"
+              [expandable]="expandable()"
+              (filterValueChange)="onFilterValueChange($event.column, $event.value)"
+              (filterOperatorChange)="onFilterOperatorChange($event.column, $event.operator)"
+            />
+          }
+        </div>
 
         <!-- Data Rows -->
         <ui-state-container
@@ -171,16 +173,19 @@
                     }
                   </div>
 
-                  <!-- Row Details (Expanded Content) -->
-                  @if (expandable() && isRowExpanded(row) && rowDetailsTemplate()) {
+                  @if (hasRowDetails(row)) {
                     <div
                       class="data-grid__row-details"
+                      [class.data-grid__row-details--expanded]="isRowExpanded(row)"
+                      [attr.aria-hidden]="isRowExpanded(row) ? null : true"
                       [attr.aria-label]="'Details for row ' + row.id"
                     >
-                      <div class="data-grid__row-details-content">
-                        <ng-container
-                          *ngTemplateOutlet="rowDetailsTemplate()!; context: { $implicit: row }"
-                        ></ng-container>
+                      <div class="data-grid__row-details-inner">
+                        <div class="data-grid__row-details-content">
+                          <ng-container
+                            *ngTemplateOutlet="rowDetailsTemplate()!; context: { $implicit: row }"
+                          ></ng-container>
+                        </div>
                       </div>
                     </div>
                   }
@@ -193,13 +198,14 @@
     </div>
   </div>
 
-  <!-- Pagination - only show when enabled and not loading or error -->
   @if (paginationConfigComputed() && !gridState().isError) {
-    <ui-pagination
-      [config]="paginationConfigComputed()!"
-      [size]="size()"
-      (pageChange)="onPaginationPageChange($event)"
-      (pageSizeChange)="onPaginationPageSizeChange($event)"
-    />
+    <div class="data-grid__footer">
+      <ui-pagination
+        [config]="paginationConfigComputed()!"
+        [size]="size()"
+        (pageChange)="onPaginationPageChange($event)"
+        (pageSizeChange)="onPaginationPageSizeChange($event)"
+      />
+    </div>
   }
 </div>

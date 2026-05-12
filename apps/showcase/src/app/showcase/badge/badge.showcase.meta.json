@@ -1,0 +1,137 @@
+{
+  "slug": "badge",
+  "title": "Badge",
+  "description": "Badge is a compact non-interactive status surface for counts, semantic state, or short metadata. Variant and appearance mirror other Fluent primitives, while size, shape, and optional icons help the same component fit dense lists, cards, and workspace chrome.",
+  "intro": "Use badge for short status, count, or category metadata that should stay lightweight. It is best for labels like draft, live, unread, or 99+. For anything clickable or dismissible, use tag or button instead.",
+  "importCode": "import { BadgeComponent } from 'ui';",
+  "containerClass": "badge-doc",
+  "snippets": {
+    "basicCode": "badge-basic-demo.ts",
+    "appearanceVariantCode": "badge-appearance-variant-demo.ts",
+    "sizeShapeCode": "badge-size-shape-demo.ts",
+    "iconsCode": "badge-icons-demo.ts",
+    "countsCode": "badge-counts-demo.ts",
+    "compositionCode": "badge-composition-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Status and metadata",
+      "description": "Badge works best when it compresses meaning into one or two words: live, draft, blocked, or new. Keep the label short enough to scan alongside primary content.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "appearance-variant",
+      "title": "Appearance and variant",
+      "description": "Variant picks semantic color while appearance controls visual weight. Use filled for stronger emphasis, tint or outline for supportive context, and subtle when the surrounding layout is already heavy.",
+      "codeKey": "appearanceVariantCode",
+      "componentKey": "appearanceVariant"
+    },
+    {
+      "id": "size-shape",
+      "title": "Size and shape",
+      "description": "Size helps the same badge work in dense tables or roomier cards. Circular shape is especially useful for short counts, while square or rounded better suit text labels.",
+      "codeKey": "sizeShapeCode",
+      "componentKey": "sizeShape"
+    },
+    {
+      "id": "icons",
+      "title": "Icons and position",
+      "description": "Add an icon when it helps recognition at a glance, not just decoration. Icon position lets the badge match the surrounding reading flow or metadata rhythm.",
+      "codeKey": "iconsCode",
+      "componentKey": "icons"
+    },
+    {
+      "id": "counts",
+      "title": "Counts and overflow labels",
+      "description": "Count badges should stay compact and legible. Use a circular shape for pure numbers and switch to condensed text such as 99+ when the exact value no longer helps.",
+      "codeKey": "countsCode",
+      "componentKey": "counts"
+    },
+    {
+      "id": "composition",
+      "title": "Composition patterns",
+      "description": "Badges become more useful when paired as a small metadata system inside cards, task rows, or inbox surfaces. Group only the labels users actually need to compare quickly.",
+      "codeKey": "compositionCode",
+      "componentKey": "composition"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Accessible name",
+      "body": "`BadgeComponent` uses the visible `text` as its default accessible name. Set `ariaLabel` when the badge text is abbreviated, numeric, or otherwise not descriptive enough on its own, such as `99+` or `3`."
+    },
+    {
+      "title": "Semantics",
+      "body": "The host renders with `role=\"status\"`. This is appropriate for short status metadata, but badge itself is not interactive and is not keyboard focusable. If users must click, dismiss, or toggle it, use a more suitable component such as `TagComponent` or `ButtonComponent`.\n\n| Aspect | Behavior |\n| --- | --- |\n| Role | `status` |\n| Focus | not focusable |\n| Name source | `ariaLabel` or visible `text` |\n| Interaction | none; display-only surface |"
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "BadgeComponent - <code>ui-badge</code>",
+      "lead": "Small standalone status surface for counts, category labels, and semantic metadata. It is intentionally display-only and should not be used as an action target.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "variant",
+              "InputSignal<Variant>",
+              "'primary'",
+              "Semantic color palette such as primary, success, warning, danger, or info."
+            ],
+            [
+              "appearance",
+              "InputSignal<Appearance>",
+              "'filled'",
+              "Visual weight of the badge surface: filled, tint, outline, subtle, or transparent."
+            ],
+            [
+              "size",
+              "InputSignal<Size>",
+              "'medium'",
+              "Controls height, padding, text size, and icon sizing."
+            ],
+            [
+              "shape",
+              "InputSignal<Shape>",
+              "'rounded'",
+              "Corner treatment including rounded, circular, and square."
+            ],
+            ["text", "InputSignal<string>", "required", "Visible badge label or count."],
+            [
+              "icon",
+              "InputSignal<IconName | undefined>",
+              "undefined",
+              "Optional Fluent icon shown before or after the text."
+            ],
+            [
+              "iconPosition",
+              "InputSignal<'before' | 'after'>",
+              "'before'",
+              "Changes whether the optional icon appears before or after the text."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "''",
+              "Accessible name override when visible text is abbreviated or numeric."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "Badge has no outputs and no built-in interaction states. Treat it as static metadata rather than a chip, filter, or button.",
+            "Circular shape is best when the content is very short, especially counts such as `3` or `99+`."
+          ],
+          "title": "Notes"
+        }
+      ]
+    }
+  ]
+}

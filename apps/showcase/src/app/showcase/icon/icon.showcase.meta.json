@@ -1,0 +1,141 @@
+{
+  "slug": "icon",
+  "title": "Icon",
+  "description": "Icon renders Fluent SVG symbols from the generated sprite with size, variant, rotation, and accessibility options. Use it for decorative chrome, semantic status glyphs, and compositional UI elements such as buttons, badges, nav items, and menus.",
+  "intro": "The icon component resolves symbols from the generated sprite and falls back across size and variant combinations when needed. For most product UI, icons stay decorative and inherit color from surrounding content. The key practical need in this showcase is the browser with search, because the icon catalog is large enough that static previews alone are not useful.",
+  "importCode": "import { IconComponent, type IconName, ALL_ICON_NAMES } from 'ui';",
+  "containerClass": "icon-doc",
+  "snippets": {
+    "overviewCode": "icon-overview-demo.ts",
+    "sizeCode": "icon-size-demo.ts",
+    "variantCode": "icon-variant-demo.ts",
+    "semanticCode": "icon-semantic-demo.ts",
+    "browserCode": "icon-browser-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "overview",
+      "title": "Overview",
+      "description": "A compact matrix helps compare common icons across variants and preset sizes without scanning the full catalog.",
+      "codeKey": "overviewCode",
+      "componentKey": "overview"
+    },
+    {
+      "id": "size",
+      "title": "Sizes and custom pixels",
+      "description": "Preset sizes cover most interface cases, while `sizePx` is reserved for occasional custom fit requirements.",
+      "codeKey": "sizeCode",
+      "componentKey": "size"
+    },
+    {
+      "id": "variant",
+      "title": "Variants and rotation",
+      "description": "Regular and filled variants carry different visual weight. Rotation is available for special cases but should stay the exception.",
+      "codeKey": "variantCode",
+      "componentKey": "variant"
+    },
+    {
+      "id": "semantic",
+      "title": "Decorative and semantic usage",
+      "description": "Most icons stay decorative inside larger controls. Add `ariaLabel` only when the icon itself needs to be announced as meaningful content.",
+      "codeKey": "semanticCode",
+      "componentKey": "semantic"
+    },
+    {
+      "id": "browser",
+      "title": "Icon browser with search",
+      "description": "A searchable browser is essential for a large icon sprite. It should let users search, scan, and copy icon names directly from the showcase.",
+      "codeKey": "browserCode",
+      "componentKey": "browser"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Decorative versus semantic icons",
+      "body": "By default the icon stays decorative and is hidden from assistive technology. Add `ariaLabel` only when the icon itself carries meaning that is not already present in surrounding text.\n\n| Mode | Accessibility behavior |\n| --- | --- |\n| decorative icon | `aria-hidden=\"true\"` |\n| semantic icon | `role=\"img\"` with `aria-label` |\n| icon inside a labeled control | usually remains decorative because the parent control already exposes the label |"
+    },
+    {
+      "title": "Direction and locale fallback",
+      "body": "The component can resolve locale-specific or direction-aware symbols and also allows explicit `direction` or `locale` overrides. In most app usage this stays automatic rather than manually configured."
+    },
+    {
+      "title": "Usage guidance",
+      "body": "Do not rely on icons alone to communicate critical meaning. Pair important status or action meaning with text, tooltip content, or an already labeled parent control."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "IconComponent - <code>ui-icon</code>",
+      "lead": "Sprite-backed Fluent icon renderer with size, variant, rotation, locale, direction, and accessibility support.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "icon",
+              "InputSignal<IconName>",
+              "required for rendering",
+              "Icon name resolved from the generated sprite manifest."
+            ],
+            [
+              "size",
+              "InputSignal<'small' | 'medium' | 'large'>",
+              "'medium'",
+              "Preset icon size mapped to sprite size fallbacks."
+            ],
+            [
+              "sizePx",
+              "InputSignal<number | undefined>",
+              "undefined",
+              "Optional custom pixel override."
+            ],
+            ["variant", "InputSignal<'regular' | 'filled'>", "'regular'", "Icon style variant."],
+            [
+              "rotate",
+              "InputSignal<number | undefined>",
+              "undefined",
+              "Optional rotation in degrees."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string | undefined>",
+              "undefined",
+              "Turns the icon into a semantic image when provided."
+            ],
+            [
+              "direction",
+              "InputSignal<'ltr' | 'rtl' | undefined>",
+              "undefined",
+              "Optional explicit direction override for directional symbols."
+            ],
+            [
+              "locale",
+              "InputSignal<string | undefined>",
+              "undefined",
+              "Optional locale override for locale-specific symbols."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "Icons inherit color from surrounding text through `currentColor`, so they usually fit naturally inside buttons, badges, menu items, nav nodes, and status surfaces.",
+            "The component resolves the best matching symbol by checking locale-specific and directional variants first, then falling back across size and regular/filled combinations."
+          ]
+        },
+        {
+          "type": "list",
+          "title": "Related mechanisms",
+          "items": [
+            "`ALL_ICON_NAMES` - generated catalog used for icon browsing and validation.",
+            "Generated sprite manifest - runtime lookup map for sizes, directional icons, and locale folders.",
+            "Shared `currentColor` styling - lets icons follow parent foreground tokens without manual color wiring."
+          ]
+        }
+      ]
+    }
+  ]
+}

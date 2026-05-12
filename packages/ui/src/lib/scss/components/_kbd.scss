@@ -4,83 +4,73 @@
 
 @use '../utils/variables' as *;
 @use '../utils/mixins' as *;
-@use '../utils/functions' as *;
 
 .kbd {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-family: $font-family-mono;
-  font-weight: $font-weight-regular;
+  font-weight: $font-weight-medium;
   line-height: 1;
   text-align: center;
+  letter-spacing: 0.02em;
   white-space: nowrap;
-  vertical-align: middle;
+  vertical-align: text-bottom;
   user-select: none;
   box-sizing: border-box;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: $border-radius-400;
 
-  // Size variants
   &--small {
-    min-width: 18px;
-    height: 18px;
-    padding: $spacing-0_5 $spacing-1;
+    min-height: 20px;
+    padding-block: $spacing-0_5;
+    padding-inline: $spacing-1;
     font-size: $font-size-100;
-    border-radius: $border-radius-200;
   }
 
   &--medium {
-    min-width: 20px;
-    height: 20px;
-    padding: $spacing-0_5 $spacing-1;
-    font-size: $font-size-100;
-    border-radius: $border-radius-200;
+    min-height: 22px;
+    padding-block: $spacing-0_5;
+    padding-inline: $spacing-1;
+    font-size: $font-size-200;
   }
 
   &--large {
-    min-width: 24px;
-    height: 24px;
-    padding: $spacing-1 $spacing-2;
-    font-size: $font-size-200;
-    border-radius: $border-radius-200;
+    min-height: 26px;
+    padding-block: $spacing-1;
+    padding-inline: $spacing-1_5;
+    font-size: $font-size-300;
   }
 
-  // Appearance variants
   &--default {
     background: var(--color-neutral-background-rest);
-    border: 1px solid var(--color-neutral-stroke-rest);
+    border-color: var(--color-neutral-stroke-rest);
     color: var(--color-neutral-foreground2-rest);
-    box-shadow:
-      0 1px 0 0 rgba(0, 0, 0, 0.1),
-      inset 0 -1px 0 0 rgba(0, 0, 0, 0.05);
   }
 
   &--filled {
-    background: var(--color-neutral-background-hover);
-    border: 1px solid var(--color-neutral-stroke-rest);
+    background: var(--color-neutral-background2-rest);
+    border-color: var(--color-neutral-stroke-rest);
     color: var(--color-neutral-foreground2-rest);
-    box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
   }
 
-  // Responsive adjustments for small screens
   @include respond-to(small) {
     &.kbd--small {
-      min-width: 16px;
-      height: 16px;
-      padding: $spacing-0_5 $spacing-0_5;
+      min-height: 18px;
+      padding-block: $spacing-0_5;
+      padding-inline: $spacing-0_5;
       font-size: $font-size-100;
     }
 
     &.kbd--medium {
-      min-width: 18px;
-      height: 18px;
-      padding: $spacing-0_5 $spacing-1;
+      min-height: 20px;
       font-size: $font-size-100;
     }
 
     &.kbd--large {
-      min-width: 22px;
-      height: 22px;
-      padding: $spacing-0_5 $spacing-2;
+      min-height: 24px;
+      padding-inline: $spacing-1_5;
       font-size: $font-size-200;
     }
   }

@@ -937,7 +937,7 @@ describe('TreeNodeComponent', () => {
       expect(dragEvent.preventDefault).not.toHaveBeenCalled();
     });
 
-    it('should handle drag leave between elements', () => {
+    it('should not clear drag state on dragleave when relatedTarget is null', () => {
       const mockNode = createMockNode();
       fixture.componentRef.setInput('node', mockNode);
       fixture.detectChanges();
@@ -948,6 +948,26 @@ describe('TreeNodeComponent', () => {
       const dragEvent = new DragEvent('dragleave');
       Object.defineProperty(dragEvent, 'relatedTarget', { value: null });
       Object.defineProperty(dragEvent, 'currentTarget', { value: document.createElement('div') });
+
+      component.onBetweenElementsDragLeave(dragEvent);
+
+      expect(component.dragOverNodeId()).toBe(mockNode.id);
+      expect(component.dragOverPosition()).toBe('before');
+    });
+
+    it('should clear drag state on dragleave when pointer leaves to outside', () => {
+      const mockNode = createMockNode();
+      fixture.componentRef.setInput('node', mockNode);
+      fixture.detectChanges();
+
+      component.dragOverNodeId.set(mockNode.id);
+      component.dragOverPosition.set('before');
+
+      const outer = document.createElement('div');
+      const inner = document.createElement('div');
+      const dragEvent = new DragEvent('dragleave');
+      Object.defineProperty(dragEvent, 'relatedTarget', { value: outer });
+      Object.defineProperty(dragEvent, 'currentTarget', { value: inner });
 
       component.onBetweenElementsDragLeave(dragEvent);
 

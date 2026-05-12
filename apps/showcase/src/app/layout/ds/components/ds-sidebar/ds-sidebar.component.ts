@@ -19,6 +19,7 @@ export class DsSidebarComponent {
     'installation',
     'i18n',
     'roadmap',
+    'llms',
   ] as const;
 
   private readonly router = inject(Router);
@@ -38,6 +39,7 @@ export class DsSidebarComponent {
     { id: 'installation', label: 'Installation', icon: 'arrow_download' },
     { id: 'i18n', label: 'i18n', icon: 'location' },
     { id: 'roadmap', label: 'Roadmap', icon: 'timeline' },
+    { id: 'llms', label: 'LLMs', icon: 'bot' },
     { id: 'accordion', label: 'Accordion', icon: 'slide_text' },
     { id: 'avatar', label: 'Avatar', icon: 'person' },
     { id: 'badge', label: 'Badge', icon: 'badge' },
@@ -89,6 +91,8 @@ export class DsSidebarComponent {
     { id: 'search', label: 'Search', icon: 'search' },
     { id: 'skeleton', label: 'Skeleton', icon: 'checkbox_indeterminate' },
     { id: 'slider', label: 'Slider', icon: 'arrow_maximize' },
+    { id: 'speed-dial', label: 'Speed dial', icon: 'add_circle' },
+    { id: 'range', label: 'Range', icon: 'arrow_bidirectional_left_right' },
     { id: 'spinner', label: 'Spinner', icon: 'replay' },
     { id: 'splitter', label: 'Splitter', icon: 'split_vertical' },
     {
@@ -118,7 +122,6 @@ export class DsSidebarComponent {
     { id: 'tree-node', label: 'Tree Node', icon: 'rectangle_landscape' },
     { id: 'tooltip', label: 'Tooltip', icon: 'info' },
     { id: 'url', label: 'URL', icon: 'link' },
-    { id: 'video', label: 'Video', icon: 'video' },
   ];
 
   private readonly groupedNavSource = this.buildGroupedNav();

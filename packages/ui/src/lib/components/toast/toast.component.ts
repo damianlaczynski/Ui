@@ -1,4 +1,4 @@
-import { Component, input, output, model } from '@angular/core';
+import { Component, effect, input, model, output } from '@angular/core';
 import { Variant, Appearance, Size } from '../utils';
 import { ToastPosition } from './models/toast.model';
 import { IconComponent } from '../icon/icon.component';
@@ -14,6 +14,8 @@ export class ToastComponent {
   title = input<string>('');
   message = input<string>('');
 
+  toastId = input<string | undefined>();
+
   // Unified Design System
   variant = input<Variant>('info');
   appearance = input<Appearance>('filled');
@@ -26,8 +28,28 @@ export class ToastComponent {
   position = input<ToastPosition>('top-right');
   visible = model<boolean>(true);
 
+  stackFrom = input<'top' | 'bottom'>('top');
+  isExiting = input<boolean>(false);
+
   dismiss = output<void>();
+  exitAnimationComplete = output<string>();
   actionClick = output<void>();
+
+  constructor() {
+    effect(onCleanup => {
+      if (!this.isExiting() || !this.toastId()) {
+        return;
+      }
+      const reduced =
+        typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reduced) {
+        return;
+      }
+      const id = this.toastId()!;
+      const timer = window.setTimeout(() => this.exitAnimationComplete.emit(id), 32);
+      onCleanup(() => clearTimeout(timer));
+    });
+  }
 
   toastClasses(): string {
     const classes = ['toast'];
@@ -35,9 +57,11 @@ export class ToastComponent {
     classes.push(`toast--${this.variant()}`);
     classes.push(`toast--${this.appearance()}`);
     classes.push(`toast--${this.size()}`);
+    classes.push(`toast--stack-from-${this.stackFrom()}`);
 
     if (!this.visible()) {
       classes.push('toast--hidden');
+      classes.push(`toast--hidden-from-${this.stackFrom()}`);
     }
 
     if (!this.dismissible()) {
@@ -77,8 +101,25 @@ export class ToastComponent {
   }
 
   onDismiss(): void {
+    if (this.toastId()) {
+      this.dismiss.emit();
+      return;
+    }
     this.visible.set(false);
     this.dismiss.emit();
+  }
+
+  onHostAnimationEnd(event: AnimationEvent): void {
+    if (!this.isExiting() || !this.toastId()) {
+      return;
+    }
+    if (event.target !== event.currentTarget) {
+      return;
+    }
+    if (!event.animationName || !event.animationName.includes('toast-exit')) {
+      return;
+    }
+    this.exitAnimationComplete.emit(this.toastId()!);
   }
 
   onActionClick(): void {

@@ -38,7 +38,6 @@
 @use 'components/kbd';
 @use 'components/rating';
 @use 'components/tooltip';
-@use 'components/video';
 @use 'components/dialog';
 @use 'components/divider';
 @use 'components/dropdown';
@@ -62,7 +61,9 @@
 @use 'components/scroll-panel';
 @use 'components/scroll-container';
 @use 'components/skeleton';
+@use 'components/speed-dial';
 @use 'components/slider';
+@use 'components/range';
 @use 'components/spinner';
 @use 'components/splitter';
 @use 'components/stepper';

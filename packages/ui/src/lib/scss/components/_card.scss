@@ -23,7 +23,6 @@
   border-radius: var(--card-radius);
   border: 1px solid var(--color-neutral-stroke-rest);
   background: var(--color-neutral-background-rest);
-  box-shadow: $elevation-2;
   color: var(--color-neutral-foreground-rest);
   transition:
     background-color $duration-faster $easing-decelerate-min,
@@ -114,45 +113,38 @@
     display: none;
   }
 
-  // Sizes
-  &--small {
-    --card-padding: #{$spacing-2};
-    --card-radius: #{$border-radius-200};
-  }
-
-  &--medium {
-    --card-padding: #{$spacing-3};
-    --card-radius: #{$border-radius-400};
-  }
-
-  &--large {
-    --card-padding: #{$spacing-4};
-    --card-radius: #{$border-radius-600};
-  }
-
   // Appearances
   &--filled {
     background: var(--color-neutral-background-rest);
     border-color: var(--color-neutral-stroke-rest);
-    box-shadow: $elevation-2;
   }
 
   &--filled-alternative {
     background: var(--color-neutral-background2-rest);
     border-color: var(--color-neutral-stroke-rest);
-    box-shadow: $elevation-2;
   }
 
   &--outline {
     background: transparent;
     border-color: var(--color-neutral-stroke-rest);
-    box-shadow: none;
   }
 
   &--subtle {
     background: transparent;
     border-color: transparent;
-    box-shadow: none;
+  }
+
+  // Border style
+  &--border-solid {
+    border-style: solid;
+  }
+
+  &--border-dashed {
+    border-style: dashed;
+  }
+
+  &--border-none {
+    border-style: none;
   }
 
   // Orientation
@@ -188,39 +180,29 @@
   // Selection
   &--selected {
     border-color: var(--color-brand-stroke-rest);
-    box-shadow:
-      0 0 0 1px var(--color-brand-stroke-rest),
-      $elevation-2;
-  }
-
-  &--selected.card--outline {
-    box-shadow: 0 0 0 1px var(--color-brand-stroke-rest);
   }
 
   &--selected.card--subtle {
     background: var(--color-neutral-background-brand-selected);
     border-color: var(--color-brand-stroke-rest);
-    box-shadow: 0 0 0 1px var(--color-brand-stroke-rest);
   }
 
   // Interactive states
   &--interactive {
     cursor: pointer;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
   }
 
   &--interactive:not(.card--disabled):hover {
     border-color: var(--color-neutral-stroke-hover);
-    box-shadow: $elevation-4;
   }
 
   &--interactive:not(.card--disabled):active {
     border-color: var(--color-neutral-stroke-pressed);
-    box-shadow: $elevation-2;
   }
 
   &--interactive.card--outline:not(.card--disabled):hover {
     background: var(--color-neutral-background-hover);
-    box-shadow: none;
   }
 
   &--interactive.card--outline:not(.card--disabled):active {
@@ -230,7 +212,6 @@
   &--interactive.card--subtle:not(.card--disabled):hover {
     background: var(--color-subtle-background-hover);
     border-color: transparent;
-    box-shadow: none;
   }
 
   &--interactive.card--subtle:not(.card--disabled):active {
@@ -239,16 +220,12 @@
 
   &--interactive.card--selected:not(.card--disabled):hover {
     border-color: var(--color-brand-stroke-rest);
-    box-shadow:
-      0 0 0 1px var(--color-brand-stroke-rest),
-      $elevation-4;
   }
 
   // Disabled
   &--disabled {
     background: var(--color-neutral-background-disabled);
     border-color: var(--color-neutral-stroke-disabled);
-    box-shadow: none;
     color: var(--color-neutral-foreground-disabled);
     cursor: not-allowed;
   }

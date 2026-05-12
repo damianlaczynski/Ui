@@ -1,0 +1,197 @@
+{
+  "slug": "accordion",
+  "title": "Accordion",
+  "description": "Accordion reveals and hides related content under a compact header. Use it for FAQs, grouped settings, inspection panels, and places where users need progressive disclosure without leaving the current page.",
+  "intro": "Accordion builds on the design-system `tree-node` header, so it inherits structured header chrome such as icons, chevron placement, selection indicators, quick actions, and tree-style expansion semantics. It is best for grouped content that should stay scannable when collapsed and readable when expanded.",
+  "importCode": "import { AccordionComponent } from 'ui';",
+  "containerClass": "accordion-doc",
+  "snippets": {
+    "basicCode": "accordion-basic-demo.ts",
+    "appearanceShapeCode": "accordion-appearance-shape-demo.ts",
+    "chevronIconsCode": "accordion-chevron-icons-demo.ts",
+    "indicatorsCode": "accordion-indicators-demo.ts",
+    "quickActionsCode": "accordion-quick-actions-demo.ts",
+    "settingsFormCode": "accordion-settings-form-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic disclosure",
+      "description": "Use short, scannable headers that help users decide which section to open before they read the content inside.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "appearance-shape",
+      "title": "Appearance and shape",
+      "description": "Visual treatment should stay secondary to the disclosure behavior itself. Use stronger filled styles only when the accordion header needs more surface presence.",
+      "codeKey": "appearanceShapeCode",
+      "componentKey": "appearanceShape"
+    },
+    {
+      "id": "chevrons-icons",
+      "title": "Chevron placement and icons",
+      "description": "Leading icons and custom chevrons can help scanning, but they should stay consistent across one surface so the disclosure pattern remains easy to parse.",
+      "codeKey": "chevronIconsCode",
+      "componentKey": "chevronsIcons"
+    },
+    {
+      "id": "indicators",
+      "title": "Selection indicators",
+      "description": "Indicators are useful when the accordion also needs to communicate an active or selected section rather than acting as neutral content disclosure.",
+      "codeKey": "indicatorsCode",
+      "componentKey": "indicators"
+    },
+    {
+      "id": "quick-actions",
+      "title": "Header quick actions",
+      "description": "Quick actions belong in the header only when users genuinely need commands like edit or remove before opening the section content.",
+      "codeKey": "quickActionsCode",
+      "componentKey": "quickActions"
+    },
+    {
+      "id": "settings-form",
+      "title": "Form composition",
+      "description": "A realistic accordion often groups settings or small task flows. Show it with actual controls so users can copy a reusable pattern instead of a bare shell.",
+      "codeKey": "settingsFormCode",
+      "componentKey": "settingsForm"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Header semantics",
+      "body": "Accordion uses a `tree-node` based header, so the outer interactive structure exposes tree-style semantics instead of the typical heading plus button pattern.\n\n| Element / state | Accessibility behavior |\n| --- | --- |\n| accordion header root | `role=\"treeitem\"` |\n| expandable section | `aria-expanded` on the header root |\n| disabled section | `aria-disabled=\"true\"` |\n| chevron control | separate `role=\"button\"` with expand or collapse label |"
+    },
+    {
+      "title": "Keyboard",
+      "body": "Keyboard behavior comes from the tree-node foundation used by the header.\n\n| Key | Action |\n| --- | --- |\n| `Enter` / `Space` | toggles the accordion through the header interaction |\n| `ArrowRight` | expands a collapsed accordion |\n| `ArrowLeft` | collapses an expanded accordion |\n| chevron `Enter` / `Space` | toggles through the dedicated chevron control |"
+    },
+    {
+      "title": "Content and quick actions",
+      "body": "Projected panel content stays out of the accessibility tree until the accordion is expanded because the panel is conditionally rendered. If you add quick actions, keep their labels explicit and stop them from hijacking the main toggle intent."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "AccordionComponent - <code>ui-accordion</code>",
+      "lead": "Standalone disclosure surface built on a `TreeNodeComponent` header. It manages an internal expanded state, projects arbitrary panel content, and emits toggle events when the open state changes.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "label",
+              "InputSignal<string>",
+              "required",
+              "Header label shown in the accordion trigger area."
+            ],
+            [
+              "size",
+              "InputSignal<Size>",
+              "'medium'",
+              "Controls header density and projected header icon sizing."
+            ],
+            [
+              "chevronPosition",
+              "InputSignal<ChevronPosition>",
+              "'before'",
+              "Places the expand or collapse chevron before or after the header label."
+            ],
+            [
+              "disabled",
+              "InputSignal<boolean>",
+              "false",
+              "Prevents toggle interaction and marks the accordion as disabled."
+            ],
+            [
+              "icon",
+              "InputSignal<IconName | undefined>",
+              "undefined",
+              "Optional leading header icon."
+            ],
+            [
+              "showSelectionIndicator",
+              "InputSignal<boolean>",
+              "false",
+              "Shows the selection indicator borrowed from the node and tree patterns."
+            ],
+            [
+              "indicatorPosition",
+              "InputSignal<Orientation>",
+              "'vertical'",
+              "Controls whether the selection indicator is vertical or horizontal."
+            ],
+            [
+              "appearance",
+              "InputSignal<Appearance>",
+              "'subtle'",
+              "Header surface style inherited from the node styling system."
+            ],
+            [
+              "shape",
+              "InputSignal<Shape>",
+              "'rounded'",
+              "Header corner treatment inherited from the node styling system."
+            ],
+            [
+              "chevronIconCollapsed",
+              "InputSignal<IconName | undefined>",
+              "undefined",
+              "Optional custom icon for the collapsed state."
+            ],
+            [
+              "chevronIconExpanded",
+              "InputSignal<IconName | undefined>",
+              "undefined",
+              "Optional custom icon for the expanded state."
+            ],
+            [
+              "showQuickActions",
+              "InputSignal<boolean>",
+              "false",
+              "Shows an auxiliary quick-action area in the header."
+            ],
+            [
+              "quickActionsTemplate",
+              "InputSignal<TemplateRef<any> | null>",
+              "null",
+              "Template projected into the header quick-actions area."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "toggle",
+              "OutputRef<boolean>",
+              "Emitted after the internal expanded state changes. The payload is the new expanded value."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "The expanded state is stored internally as a signal rather than accepted as a public input, so the component behaves as a self-managed disclosure control.",
+            "Panel content is projected with standard Angular content projection and is rendered only while the accordion is expanded."
+          ],
+          "title": "Notes"
+        },
+        {
+          "type": "list",
+          "title": "Related mechanisms",
+          "items": [
+            "<code>TreeNodeComponent</code> - powers the header interaction model, chevrons, and quick actions.",
+            "<code>NodeComponent</code> - provides the visual surface, appearance, shape, and indicator styling used by the header."
+          ]
+        }
+      ]
+    }
+  ]
+}

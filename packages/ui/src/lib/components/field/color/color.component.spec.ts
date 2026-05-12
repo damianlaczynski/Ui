@@ -22,7 +22,7 @@ describe('ColorComponent', () => {
   });
 
   it('should render text input for custom picker mode by default', () => {
-    const input: HTMLInputElement = fixture.nativeElement.querySelector('input.input');
+    const input: HTMLInputElement = fixture.nativeElement.querySelector('input.input[type="text"]');
     expect(input).toBeTruthy();
     expect(input.type).toBe('text');
   });
@@ -42,7 +42,7 @@ describe('ColorComponent', () => {
     fixture.componentRef.setInput('helpText', 'Pick a brand color');
     fixture.detectChanges();
 
-    const input: HTMLInputElement = fixture.nativeElement.querySelector('input.input');
+    const input: HTMLInputElement = fixture.nativeElement.querySelector('input.input[type="text"]');
     expect(input.getAttribute('aria-describedby')).toBe('color-help-help');
   });
 
@@ -50,7 +50,7 @@ describe('ColorComponent', () => {
     fixture.componentRef.setInput('id', 'color-panel');
     fixture.detectChanges();
 
-    const input: HTMLInputElement = fixture.nativeElement.querySelector('input.input');
+    const input: HTMLInputElement = fixture.nativeElement.querySelector('input.input[type="text"]');
     expect(input.getAttribute('aria-controls')).toBe('color-panel-color-panel');
   });
 
@@ -58,7 +58,7 @@ describe('ColorComponent', () => {
     fixture.componentRef.setInput('readonly', true);
     fixture.detectChanges();
 
-    const input: HTMLInputElement = fixture.nativeElement.querySelector('input.input');
+    const input: HTMLInputElement = fixture.nativeElement.querySelector('input.input[type="text"]');
     expect(input.tabIndex).toBe(-1);
   });
 

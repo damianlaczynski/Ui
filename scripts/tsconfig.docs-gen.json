@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "paths": {
+      "@shared/*": ["apps/showcase/src/app/shared/*"],
+      "@layout/*": ["apps/showcase/src/app/layout/*"],
+      "@showcase/*": ["apps/showcase/src/app/showcase/*"],
+      "@environments/*": ["apps/showcase/src/environments/*"],
+      "ui": ["packages/ui/src/public-api.ts"],
+      "ui/ngx-translate": ["packages/ui/ngx-translate/public-api.ts"]
+    }
+  },
+  "include": [
+    "scripts/generate-docs-metadata.ts",
+    "apps/showcase/src/app/pages/docs/**/*.page.ts",
+    "apps/showcase/src/app/shared/components/guide-doc-page/guide-doc-markdown.util.ts",
+    "apps/showcase/src/app/shared/components/guide-doc-page/guide-doc-page.models.ts"
+  ]
+}

@@ -7,12 +7,19 @@ import { IconComponent, IconName } from '../icon';
   templateUrl: './badge.component.html',
   imports: [IconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  styles: [
+    `
+      :host {
+        height: min-content;
+      }
+    `,
+  ],
 })
 export class BadgeComponent {
   variant = input<Variant>('primary');
   size = input<Size>('medium');
   appearance = input<Appearance>('filled');
-  shape = input<Shape>('rounded');
+  shape = input<Shape>('circular');
   iconPosition = input<ContentPosition>('before');
   text = input.required<string>();
   icon = input<IconName | undefined>(undefined);

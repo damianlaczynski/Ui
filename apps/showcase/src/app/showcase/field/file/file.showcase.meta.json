@@ -1,0 +1,289 @@
+{
+  "slug": "file",
+  "title": "File",
+  "description": "File wraps the shared field foundation around native file selection with inline and drag-and-drop area modes, built-in file lists, accept filters, and simple limits for count and size.",
+  "intro": "Use `ui-file` when users need to attach documents, images, or bundles without building a custom upload shell. It supports compact inline selection, larger drop zones, selected-file lists, multiple uploads, and shared field inputs like label, help text, size, variant, readonly, disabled, and validation messaging.",
+  "importCode": "import { FileComponent } from 'ui';",
+  "containerClass": "file-doc",
+  "snippets": {
+    "basicCode": "file-basic-demo.ts",
+    "layoutCode": "file-layout-demo.ts",
+    "filtersLimitsCode": "file-filters-limits-demo.ts",
+    "multipleCode": "file-multiple-demo.ts",
+    "statesValidationCode": "file-states-validation-demo.ts",
+    "formCode": "file-form-demo.ts",
+    "requestPanelCode": "file-request-panel-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic upload patterns",
+      "description": "Start with a clear label and choose the surface size based on importance. Area mode works for primary upload steps, while inline mode fits compact forms and smaller edits.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "layout",
+      "title": "Layout, size, and label position",
+      "description": "The component inherits shared field density and label placement, so it can live comfortably in dense tables, sidebar forms, or roomier task panels without a separate upload implementation.",
+      "codeKey": "layoutCode",
+      "componentKey": "layout"
+    },
+    {
+      "id": "filters-and-limits",
+      "title": "Accept filters and limits",
+      "description": "Use `accept`, `maxSize`, and `maxFiles` to narrow what the user can add before your backend workflow starts. This keeps the upload affordance aligned with real product constraints.",
+      "codeKey": "filtersLimitsCode",
+      "componentKey": "filtersLimits"
+    },
+    {
+      "id": "multiple",
+      "title": "Multiple files and built-in list",
+      "description": "When upload is a bundle instead of a single asset, let the component manage the visible file list and removal actions rather than building separate list UI beside the field.",
+      "codeKey": "multipleCode",
+      "componentKey": "multiple"
+    },
+    {
+      "id": "states-validation",
+      "title": "Validation, readonly, and disabled",
+      "description": "Required uploads should validate like any other field. Readonly keeps an already attached file visible, while disabled communicates that the upload step is unavailable.",
+      "codeKey": "statesValidationCode",
+      "componentKey": "statesValidation"
+    },
+    {
+      "id": "form",
+      "title": "Reactive form integration",
+      "description": "A practical pattern for settings or creation flows: combine a single-file field with a multi-file field inside one form group, then keep summary actions and current values nearby.",
+      "codeKey": "formCode",
+      "componentKey": "form"
+    },
+    {
+      "id": "request-panel",
+      "title": "Document request panel",
+      "description": "A stronger product-facing example: one panel that collects the main delivery files, an optional note, and direct actions to send or save the package.",
+      "codeKey": "requestPanelCode",
+      "componentKey": "requestPanel"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Label and description",
+      "body": "Prefer a visible `label` so the upload purpose is explicit. Help and error text are linked through `aria-describedby`, and `ariaLabel` can provide the trigger name when there is no visible label."
+    },
+    {
+      "title": "Trigger semantics",
+      "body": "Both modes are driven by a native file input that stays out of the tab order while the visible trigger exposes button-like interaction. Inline mode uses a readonly text field with `role=\"button\"`; area mode uses the drop zone surface with `role=\"button\"`."
+    },
+    {
+      "title": "Keyboard",
+      "body": "| Key | Action |\n| --- | --- |\n| Tab | Moves focus to the visible file trigger and, when files are present in area mode, to remove actions. |\n| Enter / Space | Opens the native file picker from the visible trigger. |\n| Shift+Tab | Returns focus to the previous control in the form flow. |"
+    },
+    {
+      "title": "File list actions",
+      "body": "When area mode shows selected files, each remove button gets a file-specific accessible name such as `Remove contract.pdf`. The hidden native input remains `tabindex=\"-1\"`, so users do not encounter duplicate focus stops."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "FileComponent - <code>ui-file</code>",
+      "lead": "Standalone file-selection field built on the shared field base. It supports both compact inline selection and larger drop-zone presentation without changing how the rest of your form is wired.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "mode",
+              "InputSignal<'inline' | 'area'>",
+              "'area'",
+              "Upload surface style. `inline` behaves like a compact picker; `area` renders a drag-and-drop zone."
+            ],
+            [
+              "accept",
+              "InputSignal<string>",
+              "''",
+              "Comma-separated native file filters such as `image/*` or `.pdf,.docx`."
+            ],
+            ["multiple", "InputSignal<boolean>", "false", "Allows more than one selected file."],
+            [
+              "maxFiles",
+              "InputSignal<number | null>",
+              "null",
+              "Caps how many files can be added when `multiple` is enabled."
+            ],
+            ["maxSize", "InputSignal<number | null>", "null", "Per-file size limit in bytes."],
+            [
+              "uploadText",
+              "InputSignal<string>",
+              "'Click to upload or drag and drop'",
+              "Primary message inside area mode when no file is selected."
+            ],
+            [
+              "uploadHint",
+              "InputSignal<string>",
+              "''",
+              "Secondary guidance below the main upload message."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "inputVariant",
+              "InputSignal<InputVariant>",
+              "'filled'",
+              "Shared field surface token inherited from `FieldComponent`."
+            ],
+            [
+              "label",
+              "InputSignal<string>",
+              "''",
+              "Visible field label inherited from `FieldComponent`."
+            ],
+            [
+              "labelPosition",
+              "InputSignal<ContentPosition>",
+              "'above'",
+              "Controls where the field label is placed relative to the control."
+            ],
+            [
+              "placeholder",
+              "InputSignal<string>",
+              "''",
+              "Inherited shared-field placeholder input."
+            ],
+            [
+              "helpText",
+              "InputSignal<string>",
+              "''",
+              "Supporting helper text rendered below the field when there is no active error."
+            ],
+            [
+              "errorText",
+              "ModelSignal<string>",
+              "''",
+              "Validation or manual error message managed by the shared field base."
+            ],
+            ["required", "InputSignal<boolean>", "false", "Marks the field as required."],
+            [
+              "disabled",
+              "ModelSignal<boolean>",
+              "false",
+              "Disables the field and its interactive affordances."
+            ],
+            [
+              "readonly",
+              "ModelSignal<boolean>",
+              "false",
+              "Keeps the value visible while preventing user changes."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Shared field density token."],
+            [
+              "name",
+              "InputSignal<string>",
+              "''",
+              "HTML form name used by the field wrapper and native control wiring."
+            ],
+            [
+              "id",
+              "ModelSignal<string | number>",
+              "auto-generated",
+              "Control id used to connect label, help text, and error messaging."
+            ],
+            [
+              "autocomplete",
+              "InputSignal<string | null>",
+              "null",
+              "Inherited autocomplete hint for native form compatibility."
+            ],
+            [
+              "showClearButton",
+              "InputSignal<boolean>",
+              "true",
+              "Inherited shared-field clear-button flag when supported by the concrete control."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "''",
+              "Overrides the accessible name when no visible label is appropriate."
+            ],
+            [
+              "ariaDescribedBy",
+              "InputSignal<string>",
+              "''",
+              "Appends extra descriptive ids to the computed `aria-describedby` value."
+            ],
+            [
+              "autoValidation",
+              "InputSignal<boolean>",
+              "true",
+              "Enables inherited automatic validation error handling from `FieldComponent`."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs and models",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "fileSelect",
+              "OutputEmitterRef<File[]>",
+              "Emits after new files are accepted by filters and limits."
+            ],
+            [
+              "fileRemove",
+              "OutputEmitterRef<File>",
+              "Emits when a selected file is removed or cleared."
+            ],
+            [
+              "value",
+              "File | File[] | null",
+              "Single file for default mode, file array for `multiple`, or `null` when empty."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "focus",
+              "OutputEmitterRef<FocusEvent>",
+              "Inherited focus event from `FieldComponent`."
+            ],
+            ["blur", "OutputEmitterRef<FocusEvent>", "Inherited blur event from `FieldComponent`."],
+            [
+              "keyup",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-up event from `FieldComponent`."
+            ],
+            [
+              "keydown",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-down event from `FieldComponent`."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "The component extends the shared `FieldComponent`, so help text, error handling, CVA integration, and described-by wiring follow the same model as the rest of the field family.",
+            "Area mode includes a built-in selected-file list with remove actions, which is usually preferable to composing a separate preview list for standard document upload flows."
+          ],
+          "title": "Notes"
+        }
+      ]
+    }
+  ]
+}

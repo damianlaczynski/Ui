@@ -34,7 +34,6 @@ import { DataGridHeaderComponent } from './components/data-grid-header.component
 import { DataGridFilterRowComponent } from './components/data-grid-filter-row.component';
 import {
   getDataGridClasses,
-  getHeaderClasses,
   getHeaderCellClasses,
   getRowClasses,
   getCellClasses,
@@ -63,7 +62,8 @@ import { Subject, of } from 'rxjs';
     `
       :host {
         display: flex;
-        flex: 1;
+        flex-direction: column;
+        flex: 1 1 auto;
         min-height: 0;
       }
     `,
@@ -415,10 +415,6 @@ export class DataGridComponent<T = any> {
   // Methods
   getDataGridClasses(): string {
     return getDataGridClasses(this.size(), this.striped(), this.bordered(), this.hoverable());
-  }
-
-  getHeaderClasses(): string {
-    return getHeaderClasses(this.stickyHeaders());
   }
 
   getHeaderCellClasses(column: DataGridColumn<T> | null, isSelection: boolean = false): string {

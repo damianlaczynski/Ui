@@ -170,15 +170,19 @@ export class TreeComponent {
     event.event.stopPropagation();
     event.event.dataTransfer!.dropEffect = 'move';
 
-    // Handle different positions
+    const isRoot = this.nodes().some(n => n.id === event.node.id);
+
     if (event.position === 'inside') {
-      // Clear between-elements indicators when dragging over node itself
       this.dragOverNodeId.set(null);
       this.dragOverPosition.set(null);
     } else if (event.position === 'before' || event.position === 'after') {
-      // Update indicators for between-elements positions
-      this.dragOverNodeId.set(event.node.id);
-      this.dragOverPosition.set(event.position);
+      if (isRoot) {
+        this.dragOverNodeId.set(event.node.id);
+        this.dragOverPosition.set(event.position);
+      } else {
+        this.dragOverNodeId.set(null);
+        this.dragOverPosition.set(null);
+      }
     }
   }
 
@@ -198,7 +202,9 @@ export class TreeComponent {
   }
 
   onBetweenElementsDragLeave(event: DragEvent): void {
-    // Only clear if we're actually leaving the drop indicator
+    if (event.relatedTarget === null) {
+      return;
+    }
     const relatedTarget = event.relatedTarget as HTMLElement;
     const currentTarget = event.currentTarget as HTMLElement;
     if (!currentTarget.contains(relatedTarget)) {

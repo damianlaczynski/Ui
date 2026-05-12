@@ -33,21 +33,20 @@
 
   &__text-offset {
     display: inline-flex;
-    flex-direction: column;
-    justify-content: flex-end;
     align-items: center;
+    justify-content: center;
     padding-left: 2px;
     padding-right: 2px;
   }
 
   &__text {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
     text-align: center;
     word-wrap: break-word;
     color: inherit;
+    white-space: nowrap;
   }
 
   .badge__icon {
@@ -60,53 +59,50 @@
 // ==========================================================================
 
 .badge--small {
-  height: 16px;
-  min-width: 16px;
-  padding: 0 2px;
-  gap: 0;
-
-  .badge__text-offset {
-    height: 14px;
-    padding-bottom: 0.5px;
-  }
-
-  .badge__text {
-    font-size: $font-size-100;
-    line-height: $line-height-100;
-  }
-}
-
-.badge--medium {
-  height: 20px;
-  min-width: 20px;
-  padding: 0 $spacing-1;
-  gap: 0;
-
-  .badge__text-offset {
-    height: 14px;
-    padding-bottom: 0.5px;
-  }
-
-  .badge__text {
-    font-size: $font-size-100;
-    line-height: $line-height-100;
-  }
-}
-
-.badge--large {
   height: 24px;
   min-width: 24px;
   padding: 0 $spacing-1;
-  gap: 2px;
+  gap: 0;
 
   .badge__text-offset {
-    height: 16px;
-    padding-bottom: 1px;
+    min-height: 100%;
   }
 
   .badge__text {
     font-size: $font-size-200;
     line-height: $line-height-200;
+  }
+}
+
+.badge--medium {
+  height: 28px;
+  min-width: 28px;
+  padding: 0 $spacing-1_5;
+  gap: 0;
+
+  .badge__text-offset {
+    min-height: 100%;
+  }
+
+  .badge__text {
+    font-size: $font-size-200;
+    line-height: $line-height-200;
+  }
+}
+
+.badge--large {
+  height: 32px;
+  min-width: 32px;
+  padding: 0 $spacing-2;
+  gap: 2px;
+
+  .badge__text-offset {
+    min-height: 100%;
+  }
+
+  .badge__text {
+    font-size: $font-size-300;
+    line-height: $line-height-300;
   }
 }
 

@@ -37,7 +37,7 @@ export class ButtonComponent {
   selectable = input<boolean>(false);
   type = input<ButtonType>('button');
   fullWidth = input<boolean>(false);
-  role = input<'button' | 'radio'>('button');
+  role = input<'button' | 'radio' | 'menuitem'>('button');
   ariaChecked = input<boolean | undefined>(undefined);
   tabIndex = input<number | undefined>(undefined);
 

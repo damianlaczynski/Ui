@@ -29,8 +29,15 @@ import { FilterFactory } from '../filters/filter-factory';
   selector: 'ui-data-grid-header',
 
   imports: [CommonModule, FormsModule, CheckboxComponent, ButtonComponent, DropdownComponent],
+  styles: [
+    `
+      :host {
+        display: contents;
+      }
+    `,
+  ],
   template: `
-    <div [class]="headerClasses()">
+    <div class="data-grid__header">
       <!-- Header Label Row -->
       <div class="data-grid__header-row">
         <!-- Expand Column Header -->
@@ -201,7 +208,6 @@ export class DataGridHeaderComponent<T = any> {
   // Inputs
   columns = input<DataGridColumn<T>[]>([]);
   size = input<'small' | 'medium' | 'large'>('medium');
-  stickyHeaders = input<boolean>(false);
   selectable = input<boolean>(false);
   multiSelect = input<boolean>(false);
   expandable = input<boolean>(false);
@@ -225,19 +231,16 @@ export class DataGridHeaderComponent<T = any> {
   }>();
 
   // Methods
-  headerClasses(): string {
-    const classes = ['data-grid__header'];
-    if (this.stickyHeaders()) {
-      classes.push('data-grid__header--sticky');
-    }
-    return classes.join(' ');
-  }
 
   getHeaderCellClasses(column: DataGridColumn<T> | null, isSelection: boolean = false): string {
     const classes = ['data-grid__header-cell'];
 
     if (isSelection) {
       classes.push('data-grid__header-cell--selection');
+    }
+
+    if (column?.sortable) {
+      classes.push('data-grid__header-cell--sortable');
     }
 
     // Keep sorted classes for styling the sort indicator color

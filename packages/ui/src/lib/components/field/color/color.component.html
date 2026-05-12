@@ -15,96 +15,83 @@
 >
   <div class="input-wrapper" [class]="wrapperClasses">
     @if (useNativeOnMobile() && isMobile()) {
-      <input
-        class="input input--color-native"
-        type="color"
-        [id]="id()"
-        [name]="name()"
-        [required]="required()"
-        [disabled]="disabled()"
-        [readonly]="readonly()"
-        [value]="currentColor().hex"
-        [attr.tabindex]="getTabIndex()"
-        [attr.aria-label]="getColorInputAriaLabel()"
-        [attr.aria-describedby]="getComputedAriaDescribedBy()"
-        [attr.aria-invalid]="!!errorText()"
-        (input)="onNativeColorChange($event)"
-        (blur)="onBlur($event)"
-        (focus)="onFocus($event)"
-      />
-      @if (!disabled() && !readonly() && value) {
-        <div class="field__actions">
+      <span class="color-native-frame">
+        <input
+          class="input input--color-native"
+          type="color"
+          [id]="id() + '-native'"
+          [disabled]="disabled() || readonly()"
+          [value]="currentColor().hex"
+          [attr.tabindex]="getTabIndex()"
+          [attr.aria-label]="getOpenColorPickerAriaLabel()"
+          [attr.aria-describedby]="getComputedAriaDescribedBy()"
+          [attr.aria-invalid]="!!errorText()"
+          (input)="onNativeColorChange($event)"
+          (blur)="onBlur($event)"
+          (focus)="onFocus($event)"
+        />
+      </span>
+    } @else if (value) {
+      <ui-icon
+        [icon]="'square'"
+        [size]="size()"
+        variant="filled"
+        [style.color]="value ? colorDisplayValue() : 'inherit'"
+        class="color-preview"
+        (click)="togglePanel()"
+      ></ui-icon>
+    }
+
+    <input
+      #triggerElement
+      class="input"
+      type="text"
+      [id]="id()"
+      [name]="name()"
+      [placeholder]="placeholder()"
+      [required]="required()"
+      [disabled]="disabled()"
+      [readonly]="readonly()"
+      [value]="value || ''"
+      [attr.tabindex]="getTabIndex()"
+      [attr.aria-label]="getColorInputAriaLabel()"
+      [attr.aria-describedby]="getComputedAriaDescribedBy()"
+      [attr.aria-invalid]="!!errorText()"
+      [attr.aria-expanded]="isExpanded()"
+      [attr.aria-haspopup]="'dialog'"
+      [attr.aria-controls]="id() + '-color-panel'"
+      (click)="!disabled() && !readonly() ? togglePanel() : null"
+      (input)="onColorInputChange($event)"
+      (blur)="onBlur($event)"
+      (focus)="onFocus($event)"
+      (keydown)="onKeyDown($event)"
+    />
+
+    @if (!disabled() && !readonly()) {
+      <div class="field__actions">
+        @if (showEyeDropper() && isEyeDropperSupported()) {
+          <ui-action-button
+            [icon]="'eyedropper'"
+            [size]="size()"
+            [ariaLabel]="getPickColorFromScreenAriaLabel()"
+            (click)="openEyeDropper()"
+          ></ui-action-button>
+        }
+        <ui-action-button
+          [icon]="'color'"
+          [size]="size()"
+          [ariaLabel]="getOpenColorPickerAriaLabel()"
+          (click)="togglePanel()"
+        ></ui-action-button>
+        @if (value) {
           <ui-action-button
             [icon]="'dismiss'"
             [size]="size()"
             [ariaLabel]="getClearColorAriaLabel()"
             (click)="clear()"
           ></ui-action-button>
-        </div>
-      }
-    } @else {
-      @if (value) {
-        <ui-icon
-          [icon]="'square'"
-          [size]="size()"
-          variant="filled"
-          [style.color]="value ? colorDisplayValue() : 'inherit'"
-          class="color-preview"
-          (click)="togglePanel()"
-        ></ui-icon>
-      }
-
-      <input
-        #triggerElement
-        class="input"
-        type="text"
-        [id]="id()"
-        [name]="name()"
-        [placeholder]="placeholder()"
-        [required]="required()"
-        [disabled]="disabled()"
-        [readonly]="readonly()"
-        [value]="value || ''"
-        [attr.tabindex]="getTabIndex()"
-        [attr.aria-label]="getColorInputAriaLabel()"
-        [attr.aria-describedby]="getComputedAriaDescribedBy()"
-        [attr.aria-invalid]="!!errorText()"
-        [attr.aria-expanded]="isExpanded()"
-        [attr.aria-haspopup]="'dialog'"
-        [attr.aria-controls]="id() + '-color-panel'"
-        (click)="!disabled() && !readonly() ? togglePanel() : null"
-        (input)="onColorInputChange($event)"
-        (blur)="onBlur($event)"
-        (focus)="onFocus($event)"
-        (keydown)="onKeyDown($event)"
-      />
-
-      @if (!disabled() && !readonly()) {
-        <div class="field__actions">
-          @if (showEyeDropper() && isEyeDropperSupported()) {
-            <ui-action-button
-              [icon]="'eyedropper'"
-              [size]="size()"
-              [ariaLabel]="getPickColorFromScreenAriaLabel()"
-              (click)="openEyeDropper()"
-            ></ui-action-button>
-          }
-          <ui-action-button
-            [icon]="'color'"
-            [size]="size()"
-            [ariaLabel]="getOpenColorPickerAriaLabel()"
-            (click)="togglePanel()"
-          ></ui-action-button>
-          @if (value) {
-            <ui-action-button
-              [icon]="'dismiss'"
-              [size]="size()"
-              [ariaLabel]="getClearColorAriaLabel()"
-              (click)="clear()"
-            ></ui-action-button>
-          }
-        </div>
-      }
+        }
+      </div>
     }
   </div>
 </ui-field>

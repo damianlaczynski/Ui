@@ -41,7 +41,7 @@ describe('BadgeComponent', () => {
       expect(component.variant()).toBe('primary');
       expect(component.size()).toBe('medium');
       expect(component.appearance()).toBe('filled');
-      expect(component.shape()).toBe('rounded');
+      expect(component.shape()).toBe('circular');
       expect(component.iconPosition()).toBe('before');
       expect(component.icon()).toBeUndefined();
       expect(component.ariaLabel()).toBe('');
@@ -254,7 +254,7 @@ describe('BadgeComponent', () => {
       expect(classes).toContain('badge--primary');
       expect(classes).toContain('badge--medium');
       expect(classes).toContain('badge--filled');
-      expect(classes).toContain('badge--rounded');
+      expect(classes).toContain('badge--circular');
     });
 
     it('should return space-separated string of classes', () => {

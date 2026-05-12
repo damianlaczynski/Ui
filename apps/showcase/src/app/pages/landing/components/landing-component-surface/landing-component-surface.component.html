@@ -1,0 +1,119 @@
+<div class="landing-surface">
+  <div class="landing-surface__header">
+    <div>
+      <h2 class="landing-surface__title">Component Surface</h2>
+      <p class="landing-surface__description">
+        A broad cross-section of the system in one irregular composition, with every showcase
+        represented directly in the grid.
+      </p>
+    </div>
+    <ui-button variant="secondary" appearance="subtle" size="medium" routerLink="/docs">
+      Browse all showcases
+    </ui-button>
+  </div>
+
+  <div class="landing-surface__canvas">
+    <div
+      class="landing-surface__viewport"
+      [class.landing-surface__viewport--collapsed]="!surfaceExpanded()"
+    >
+      <div class="landing-surface__grid">
+        @for (component of orderedNonFieldShowcase(); track component.id) {
+          <section
+            class="landing-surface__tile"
+            [style.grid-column]="gridColumnStyle(component.id)"
+            [style.grid-row]="gridRowStyle(component.id)"
+          >
+            <a class="landing-surface__tile-title" [routerLink]="['/docs', component.id]">
+              {{ component.name }}
+              <ui-icon
+                icon="arrow_square_up_right"
+                size="small"
+                class="landing-surface__title-go-icon"
+              />
+            </a>
+            @if (getCompactPreview(component.id); as previewComponent) {
+              <div
+                class="landing-surface__tile-shell"
+                [class.landing-surface__tile-shell--micro]="isMicroTile(component.id)"
+              >
+                <div class="landing-surface__compact-demo">
+                  <ng-container *ngComponentOutlet="previewComponent" />
+                </div>
+              </div>
+            } @else {
+              <div
+                class="landing-surface__tile-shell"
+                [class.landing-surface__tile-shell--micro]="isMicroTile(component.id)"
+              >
+                <div class="landing-surface__compact-preview">
+                  <ui-icon [icon]="component.icon" size="medium" />
+                  <span>{{ component.id }}</span>
+                </div>
+              </div>
+            }
+          </section>
+        }
+
+        @if (orderedFieldShowcase().length > 0) {
+          <section
+            class="landing-surface__tile landing-surface__tile--inputs"
+            [style.grid-column]="inputsGridColumnStyle()"
+            [style.grid-row]="inputsGridRowStyle()"
+          >
+            <span class="landing-surface__tile-heading">Inputs</span>
+            <div class="landing-surface__inputs-wrap">
+              <div class="landing-surface__inputs-shell">
+                @for (component of orderedFieldShowcase(); track component.id) {
+                  <div
+                    class="landing-surface__input-slot"
+                    [style.grid-column]="inputSlotGridColumnStyle(component.id)"
+                    [style.grid-row]="inputSlotGridRowStyle(component.id)"
+                  >
+                    <a
+                      class="landing-surface__input-slot-title"
+                      [routerLink]="['/docs', component.id]"
+                    >
+                      {{ component.name }}
+                      <ui-icon
+                        icon="arrow_square_up_right"
+                        size="small"
+                        class="landing-surface__title-go-icon"
+                      />
+                    </a>
+                    @if (getCompactPreview(component.id); as previewComponent) {
+                      <div
+                        class="landing-surface__compact-demo landing-surface__compact-demo--field"
+                      >
+                        <div class="landing-surface__field-shell">
+                          <ng-container *ngComponentOutlet="previewComponent" />
+                        </div>
+                      </div>
+                    } @else {
+                      <div class="landing-surface__compact-preview">
+                        <ui-icon [icon]="component.icon" size="medium" />
+                        <span>{{ component.id }}</span>
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
+            </div>
+          </section>
+        }
+      </div>
+    </div>
+    <div class="landing-surface__expand">
+      <ui-button
+        variant="secondary"
+        appearance="subtle"
+        size="medium"
+        [icon]="surfaceExpanded() ? 'chevron_up' : 'chevron_down'"
+        [attr.aria-expanded]="surfaceExpanded()"
+        (click)="toggleSurfaceExpanded()"
+      >
+        {{ surfaceExpanded() ? 'Show less' : 'Show full surface' }}
+      </ui-button>
+    </div>
+  </div>
+</div>

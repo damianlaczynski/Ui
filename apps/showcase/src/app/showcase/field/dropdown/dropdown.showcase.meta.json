@@ -1,0 +1,341 @@
+{
+  "slug": "dropdown",
+  "title": "Dropdown",
+  "description": "Dropdown handles single and multi-select choices from predefined options. It supports searchable lists, clear actions, compact trigger mode, async data sources, custom item templates, and shared field states for denser form and filter workflows.",
+  "intro": "Dropdown is appropriate when users choose from a bounded set rather than entering freeform text. In addition to standard field variants and validation, it covers multi-select tags, compact filter triggers, server-backed search, and custom item presentation without forcing consumers to build the overlay behavior themselves.",
+  "importCode": "import { DropdownComponent } from 'ui';",
+  "containerClass": "dropdown-doc",
+  "snippets": {
+    "basicCode": "dropdown-basic-demo.ts",
+    "variantsStatesCode": "dropdown-variants-states-demo.ts",
+    "multiTagsCode": "dropdown-multi-tags-demo.ts",
+    "searchClearCode": "dropdown-search-clear-demo.ts",
+    "compactPanelCode": "dropdown-compact-panel-demo.ts",
+    "asyncDataCode": "dropdown-async-data-demo.ts",
+    "customTemplateCode": "dropdown-custom-template-demo.ts",
+    "formPatternCode": "dropdown-form-pattern-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic single select",
+      "description": "Start with a stable option set, a clear label, and helpful placeholder or helper text only when they reduce ambiguity rather than repeat the label.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "variants-states",
+      "title": "Variants, sizes, and field states",
+      "description": "Dropdown inherits the shared field shell, so visual variants, density, required styling, readonly, and disabled states should look consistent with the rest of the form system.",
+      "codeKey": "variantsStatesCode",
+      "componentKey": "variantsStates"
+    },
+    {
+      "id": "multi-tags",
+      "title": "Multi-select with tags",
+      "description": "Use multi mode when the list represents a set of filters or recipients. Selected items stay visible as tags and can be removed without reopening the panel.",
+      "codeKey": "multiTagsCode",
+      "componentKey": "multiTags"
+    },
+    {
+      "id": "search-clear",
+      "title": "Search, clear, and disabled options",
+      "description": "Searchable and clearable affordances matter most when the option set is long enough to justify them. Disabled items stay visible for context but are skipped by keyboard and selection logic.",
+      "codeKey": "searchClearCode",
+      "componentKey": "searchClear"
+    },
+    {
+      "id": "compact-panel",
+      "title": "Compact trigger and panel sizing",
+      "description": "Compact mode turns the control into a lightweight toolbar or table filter trigger. Fixed or bounded panel widths keep dense filter UI predictable instead of stretching to arbitrary content.",
+      "codeKey": "compactPanelCode",
+      "componentKey": "compactPanel"
+    },
+    {
+      "id": "async-data",
+      "title": "Async data source and paged search",
+      "description": "When the option set is large or remote, bind a data source so filtering and paging happen outside the component. Search then behaves like a query input instead of an in-memory filter.",
+      "codeKey": "asyncDataCode",
+      "componentKey": "asyncData"
+    },
+    {
+      "id": "custom-template",
+      "title": "Custom item template",
+      "description": "Some dropdown choices need more than a single label. A projected item template can add secondary metadata or richer layout while the component still owns keyboard, focus, and selection behavior.",
+      "codeKey": "customTemplateCode",
+      "componentKey": "customTemplate"
+    },
+    {
+      "id": "form-pattern",
+      "title": "Form composition",
+      "description": "Show dropdown as part of a real workflow, mixing single and multi-select fields with actions and a compact state summary so the example is reusable instead of purely illustrative.",
+      "codeKey": "formPatternCode",
+      "componentKey": "formPattern"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Accessible name and role",
+      "body": "The standard trigger uses `ariaLabel` when provided and otherwise falls back to the visible `label`. Compact mode also needs an explicit accessible name because the trigger is just an icon button.\n\n| Mode / input | Exposed semantics |\n| --- | --- |\n| `single` | `combobox` trigger controlling a `listbox` |\n| `multi` | `listbox` trigger with `aria-multiselectable=\"true\"` |\n| `ariaLabel` | explicit accessible name override |\n| visible `label` | default accessible name fallback |"
+    },
+    {
+      "title": "Keyboard model",
+      "body": "Disabled items are skipped during navigation, and typeahead moves focus to the next matching option.\n\n| Key | Action |\n| --- | --- |\n| `ArrowDown` / `ArrowUp` | opens the panel and moves through selectable items |\n| `Home` / `End` | jumps to the first or last selectable item |\n| `PageUp` / `PageDown` | moves through longer lists in larger steps |\n| `Enter` / `Space` | selects the active option |\n| `Escape` | closes the panel and returns focus to the trigger |\n| `Tab` | leaves the control and closes the panel |\n| printable characters | runs typeahead search against option labels |"
+    },
+    {
+      "title": "Active descendant and selection state",
+      "body": "The component tracks the active option through `aria-activedescendant`. In multi-select mode, the visible tags are only a sighted summary; the authoritative accessibility state remains on the trigger and list options.\n\n| Input / state | Attribute |\n| --- | --- |\n| active option | `aria-activedescendant` |\n| open state | `aria-expanded` |\n| controlled panel | `aria-controls` |\n| selected option | `aria-selected` on each option |\n| disabled option | `aria-disabled` on each option |"
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "DropdownComponent - <code>ui-dropdown</code>",
+      "lead": "Standalone dropdown field built on the shared <code class=\"showcase-doc__api-code\">FieldComponent</code>. It supports single and multi-select flows, projected item templates, compact filter mode, and async option loading while integrating with Angular forms through <code class=\"showcase-doc__api-code\">ControlValueAccessor</code>.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "items",
+              "InputSignal<DropdownItem[]>",
+              "[]",
+              "Static option list used for local filtering and as the base item set when no async data source is supplied."
+            ],
+            [
+              "dataSource",
+              "InputSignal<(params) => Observable<QueryResult<DropdownItem>>>",
+              "undefined",
+              "Optional async source used for paged loading and server-side search."
+            ],
+            [
+              "mode",
+              "InputSignal<'single' | 'multi'>",
+              "'single'",
+              "Controls whether the component stores one value or a selectable set with tags and checkboxes."
+            ],
+            [
+              "searchable",
+              "InputSignal<boolean>",
+              "false",
+              "Adds a search field at the top of the panel."
+            ],
+            [
+              "clearable",
+              "InputSignal<boolean>",
+              "false",
+              "Shows a clear action when a selection exists and the field is editable."
+            ],
+            [
+              "maxHeight",
+              "InputSignal<string>",
+              "'300px'",
+              "Maximum panel height before the internal scroll container takes over."
+            ],
+            [
+              "compact",
+              "InputSignal<boolean>",
+              "false",
+              "Renders the trigger as a compact button instead of the full field shell."
+            ],
+            [
+              "compactIcon",
+              "InputSignal<IconName>",
+              "'filter'",
+              "Default icon for compact mode when no selected item icon overrides it."
+            ],
+            [
+              "pageSize",
+              "InputSignal<number>",
+              "20",
+              "Page size used by the internal scroll container for static and async loading."
+            ],
+            [
+              "searchDebounceMs",
+              "InputSignal<number>",
+              "300",
+              "Debounce applied before forwarding search text to the async data source."
+            ],
+            [
+              "minPanelWidth",
+              "InputSignal<number | undefined>",
+              "undefined",
+              "Optional lower bound for the overlay panel width when `panelWidth` is not fixed."
+            ],
+            [
+              "maxPanelWidth",
+              "InputSignal<number>",
+              "400",
+              "Upper bound for the overlay panel width when sizing from the trigger."
+            ],
+            [
+              "panelWidth",
+              "InputSignal<number | undefined>",
+              "undefined",
+              "Fixed overlay width. When set, it overrides the adaptive min/max sizing behavior."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "inputVariant",
+              "InputSignal<InputVariant>",
+              "'filled'",
+              "Shared field surface token inherited from `FieldComponent`."
+            ],
+            [
+              "label",
+              "InputSignal<string>",
+              "''",
+              "Visible field label inherited from `FieldComponent`."
+            ],
+            [
+              "labelPosition",
+              "InputSignal<ContentPosition>",
+              "'above'",
+              "Controls where the field label is placed relative to the control."
+            ],
+            [
+              "placeholder",
+              "InputSignal<string>",
+              "''",
+              "Inherited shared-field placeholder input."
+            ],
+            [
+              "helpText",
+              "InputSignal<string>",
+              "''",
+              "Supporting helper text rendered below the field when there is no active error."
+            ],
+            [
+              "errorText",
+              "ModelSignal<string>",
+              "''",
+              "Validation or manual error message managed by the shared field base."
+            ],
+            ["required", "InputSignal<boolean>", "false", "Marks the field as required."],
+            [
+              "disabled",
+              "ModelSignal<boolean>",
+              "false",
+              "Disables the field and its interactive affordances."
+            ],
+            [
+              "readonly",
+              "ModelSignal<boolean>",
+              "false",
+              "Keeps the value visible while preventing user changes."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Shared field density token."],
+            [
+              "name",
+              "InputSignal<string>",
+              "''",
+              "HTML form name used by the field wrapper and native control wiring."
+            ],
+            [
+              "id",
+              "ModelSignal<string | number>",
+              "auto-generated",
+              "Control id used to connect label, help text, and error messaging."
+            ],
+            [
+              "autocomplete",
+              "InputSignal<string | null>",
+              "null",
+              "Inherited autocomplete hint for native form compatibility."
+            ],
+            [
+              "showClearButton",
+              "InputSignal<boolean>",
+              "true",
+              "Inherited shared-field clear-button flag when supported by the concrete control."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "''",
+              "Overrides the accessible name when no visible label is appropriate."
+            ],
+            [
+              "ariaDescribedBy",
+              "InputSignal<string>",
+              "''",
+              "Appends extra descriptive ids to the computed `aria-describedby` value."
+            ],
+            [
+              "autoValidation",
+              "InputSignal<boolean>",
+              "true",
+              "Enables inherited automatic validation error handling from `FieldComponent`."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "selectionChange",
+              "OutputRef<any>",
+              "Emitted when the selected value or selected value array changes."
+            ],
+            ["opened", "OutputRef<void>", "Emitted after the overlay panel opens."],
+            ["closed", "OutputRef<void>", "Emitted after the overlay panel closes."]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "focus",
+              "OutputEmitterRef<FocusEvent>",
+              "Inherited focus event from `FieldComponent`."
+            ],
+            ["blur", "OutputEmitterRef<FocusEvent>", "Inherited blur event from `FieldComponent`."],
+            [
+              "keyup",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-up event from `FieldComponent`."
+            ],
+            [
+              "keydown",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-down event from `FieldComponent`."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "Projected item content is supported through an <code class=\"showcase-doc__api-code\">ng-template</code> named <code class=\"showcase-doc__api-code\">itemTemplate</code>.",
+            "Multi-select uses tags in the trigger and checkboxes in the panel; single-select uses a checkmark in the panel and plain text in the trigger.",
+            "The component implements <code class=\"showcase-doc__api-code\">ControlValueAccessor</code>, so it works with <code class=\"showcase-doc__api-code\">ngModel</code> and reactive forms."
+          ],
+          "title": "Notes"
+        },
+        {
+          "type": "list",
+          "title": "Related mechanisms",
+          "items": [
+            "<code>DropdownHelper.loadSelectedItems()</code> - utility for preloading selected async items when you only start with value ids.",
+            "<code>ScrollContainerComponent</code> - powers paging and lazy loading inside the dropdown panel.",
+            "<code>FieldComponent</code> - shared base for labels, helper text, error text, validation sync, and aria wiring."
+          ]
+        }
+      ]
+    }
+  ]
+}

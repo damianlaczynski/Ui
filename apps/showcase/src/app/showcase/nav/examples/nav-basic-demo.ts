@@ -1,0 +1,23 @@
+import { Component } from '@angular/core';
+import { NavComponent, type NavNode } from 'ui';
+
+@Component({
+  selector: 'app-nav-basic-demo',
+  standalone: true,
+  imports: [NavComponent],
+  template: `
+    <div
+      style="width:100%;max-width:18rem;padding:1rem;border:1px solid var(--color-neutral-stroke-rest);border-radius:1rem;background:var(--color-neutral-background-rest)"
+    >
+      <ui-nav [items]="items" />
+    </div>
+  `,
+})
+export class NavBasicDemoComponent {
+  protected readonly items: NavNode[] = [
+    { id: 'home', label: 'Home', icon: 'home' },
+    { id: 'activity', label: 'Activity', icon: 'history', selected: true },
+    { id: 'files', label: 'Files', icon: 'folder' },
+    { id: 'settings', label: 'Settings', icon: 'settings' },
+  ];
+}

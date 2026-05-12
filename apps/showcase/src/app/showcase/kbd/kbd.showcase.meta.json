@@ -1,0 +1,99 @@
+{
+  "slug": "kbd",
+  "title": "Kbd",
+  "description": "Kbd displays one keyboard key or token in a compact visual shell. It supports size and a lightweight filled appearance for shortcut documentation and inline guidance.",
+  "intro": "Use `ui-kbd` to present keyboard keys inside help copy, shortcut lists, command hints, and documentation. It is not an interactive control by itself. Its job is to make keyboard tokens readable, scannable, and visually consistent.",
+  "importCode": "import { KbdComponent } from 'ui';",
+  "containerClass": "kbd-doc",
+  "snippets": {
+    "basicCode": "kbd-basic-demo.ts",
+    "sizeAppearanceCode": "kbd-size-appearance-demo.ts",
+    "commonShortcutsCode": "kbd-common-shortcuts-demo.ts",
+    "navigationCode": "kbd-navigation-demo.ts",
+    "commandHelpCode": "kbd-command-help-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic keys",
+      "description": "Show single keys when the surface needs simple keyboard hints such as confirm, cancel, tab navigation, or modifier references.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "size-appearance",
+      "title": "Size and appearance",
+      "description": "Size controls how dense the token feels in running text or larger shortcut panels, while the filled appearance gives slightly stronger visual emphasis.",
+      "codeKey": "sizeAppearanceCode",
+      "componentKey": "sizeAppearance"
+    },
+    {
+      "id": "common-shortcuts",
+      "title": "Common shortcut rows",
+      "description": "The component becomes more useful when it is shown in real shortcut rows instead of as an isolated visual sample.",
+      "codeKey": "commonShortcutsCode",
+      "componentKey": "commonShortcuts"
+    },
+    {
+      "id": "navigation",
+      "title": "Navigation keys",
+      "description": "Navigation clusters such as arrows, Home, End, and Page keys are common in grids, editors, and document-style layouts.",
+      "codeKey": "navigationCode",
+      "componentKey": "navigation"
+    },
+    {
+      "id": "command-help",
+      "title": "Command help composition",
+      "description": "A practical `kbd` example should show shortcut help in context with surrounding copy and supporting UI, not only a naked matrix of keycaps.",
+      "codeKey": "commandHelpCode",
+      "componentKey": "commandHelp"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Semantics",
+      "body": "`ui-kbd` renders a native `kbd` element with an `aria-label` that expands to a readable key description.\n\n| Element | Behavior |\n| --- | --- |\n| root | native `kbd` semantics |\n| aria label | localized `Keyboard key: {text}` pattern |\n| interactive behavior | none, it is purely presentational content |"
+    },
+    {
+      "title": "Usage guidance",
+      "body": "Because the component is not interactive, use it only as supporting content next to the action or instruction it describes. Shortcut hints should reflect real product behavior instead of speculative or decorative keyboard tokens."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "KbdComponent - <code>ui-kbd</code>",
+      "lead": "Standalone keycap presentation component for inline or block shortcut documentation. It renders one token such as `Ctrl`, `Enter`, or `Esc` with consistent key styling.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "text",
+              "InputSignal<string>",
+              "required",
+              "Visible keyboard token shown inside the keycap."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Controls the visual density of the keycap."],
+            [
+              "appearance",
+              "InputSignal<'default' | 'filled'>",
+              "'default'",
+              "Switches between the plain and filled keycap styles."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "The component is presentational only. Combine multiple `ui-kbd` instances when you need chord shortcuts such as `Ctrl` + `S`.",
+            "Use concise key text. If the token is longer, make sure the surrounding layout still reads clearly."
+          ],
+          "title": "Notes"
+        }
+      ]
+    }
+  ]
+}

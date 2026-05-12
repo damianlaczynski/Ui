@@ -1,0 +1,228 @@
+{
+  "slug": "card",
+  "title": "Card",
+  "description": "Card groups related content, metadata, and actions inside one bounded surface. It supports preview media, header and footer slots, selection, focus modes, and floating actions so the same primitive can cover dashboards, catalogs, and workspace lists.",
+  "intro": "Use card when several pieces of related information should stay together as one scanable unit. Good cards have a clear hierarchy, concise actions, and only enough chrome to separate one record from another. Prefer focused layouts over generic content dumping.",
+  "importCode": "import { CardComponent } from 'ui';",
+  "containerClass": "card-doc",
+  "snippets": {
+    "basicCode": "card-basic-demo.ts",
+    "surfacesCode": "card-surfaces-demo.ts",
+    "focusModeCode": "card-focus-mode-demo.ts",
+    "selectionCode": "card-selection-demo.ts",
+    "floatingActionsCode": "card-floating-actions-demo.ts",
+    "compositionCode": "card-composition-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic content grouping",
+      "description": "A basic card should establish a primary title, supporting detail, and one or two obvious actions. Start from a vertical layout unless the preview or surrounding list strongly suggests otherwise.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "surfaces",
+      "title": "Appearance, border, and orientation",
+      "description": "Appearance controls emphasis, border style adjusts the edge character, and orientation changes how preview and content sit together. Use outline or subtle when cards live inside already elevated shells; use horizontal when media or metadata should read side-by-side.",
+      "codeKey": "surfacesCode",
+      "componentKey": "surfaces"
+    },
+    {
+      "id": "focus-mode",
+      "title": "Focus modes for embedded actions",
+      "description": "Cards with buttons, links, or menus need deliberate keyboard behavior. Focus mode determines whether the card acts as a shell only, enters a trapped action sequence, or allows tabbing through embedded controls more directly.",
+      "codeKey": "focusModeCode",
+      "componentKey": "focusMode"
+    },
+    {
+      "id": "selection",
+      "title": "Selection and checkbox patterns",
+      "description": "Selectable cards are useful in galleries, bulk management, and choice layouts. Keep the selected state obvious and provide a checkbox when users need an explicit affordance instead of a click-anywhere surface.",
+      "codeKey": "selectionCode",
+      "componentKey": "selection"
+    },
+    {
+      "id": "floating-actions",
+      "title": "Floating actions and projected slots",
+      "description": "Floating controls help with row-level actions that should stay discoverable without stealing body space. Projected preview, floating action, and checkbox slots let the same card adapt to richer record layouts.",
+      "codeKey": "floatingActionsCode",
+      "componentKey": "floatingActions"
+    },
+    {
+      "id": "composition",
+      "title": "Composition patterns",
+      "description": "Card becomes more useful when it represents a real product surface: a product tile, profile summary, or dashboard module. These examples keep actions and metadata purposeful rather than showing card as a blank container.",
+      "codeKey": "compositionCode",
+      "componentKey": "composition"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Accessible name",
+      "body": "`CardComponent` should expose a meaningful name when it is interactive, selectable, or focusable. Use `ariaLabel`, `ariaLabelledBy`, and `ariaDescribedBy` to tie the surface to visible title and supporting text instead of leaving screen readers with a generic group."
+    },
+    {
+      "title": "Keyboard",
+      "body": "Keyboard behavior depends on `focusMode`, `interactive`, and selection settings.\n\n| Key | Action |\n| --- | --- |\n| Tab | Moves to the card when it is focusable, or through inner controls according to `focusMode`. |\n| Enter / Space | Activates selection or `cardClick` when focus is on the card root. |\n| Enter | In `no-tab` and `tab-exit`, enters inner action navigation when focus is on the card root. |\n| Escape | Leaves active focus mode and returns focus to the card root. |\n| Tab / Shift+Tab | Cycles or exits inner controls depending on `focusMode`. |"
+    },
+    {
+      "title": "Semantics",
+      "body": "Card uses `role=\"group\"` by default and can expose `aria-selected` when selection is enabled. This is appropriate for grouped content surfaces, but card is not a replacement for semantic list markup, links, or buttons.\n\n| Aspect | Behavior |\n| --- | --- |\n| Default role | `group` |\n| Selection state | `aria-selected` when selection is enabled |\n| Disabled state | `aria-disabled=\"true\"` when disabled |\n| Focus target | the card root when focusable; inner controls depend on `focusMode` |\n| Name source | `ariaLabel`, `ariaLabelledBy`, or visible projected content |"
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "CardComponent - <code>ui-card</code>",
+      "lead": "Structured container for related content, preview media, metadata, and actions. It supports slot-based composition, optional selection, and keyboard focus management for embedded controls.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "appearance",
+              "InputSignal<CardAppearance>",
+              "'filled'",
+              "Visual treatment: `filled`, `filled-alternative`, `outline`, or `subtle`."
+            ],
+            [
+              "orientation",
+              "InputSignal<Orientation>",
+              "'vertical'",
+              "Switches between vertical and horizontal layout."
+            ],
+            [
+              "borderStyle",
+              "InputSignal<CardBorderStyle>",
+              "'solid'",
+              "Border stroke style: `solid`, `dashed`, or `none`."
+            ],
+            [
+              "focusMode",
+              "InputSignal<CardFocusMode>",
+              "'off'",
+              "Keyboard strategy for embedded controls: `off`, `no-tab`, `tab-exit`, or `tab-only`."
+            ],
+            [
+              "interactive",
+              "InputSignal<boolean>",
+              "false",
+              "Enables `cardClick` behavior and interactive surface styling."
+            ],
+            ["role", "InputSignal<string>", "'group'", "ARIA role applied to the root element."],
+            [
+              "ariaLabel",
+              "InputSignal<string | null>",
+              "null",
+              "Accessible name override for the card root."
+            ],
+            [
+              "ariaLabelledBy",
+              "InputSignal<string | null>",
+              "null",
+              "References external or projected label content."
+            ],
+            [
+              "ariaDescribedBy",
+              "InputSignal<string | null>",
+              "null",
+              "References descriptive content announced with the card."
+            ],
+            [
+              "selectable",
+              "InputSignal<boolean>",
+              "false",
+              "Enables selected state changes from card-surface interaction."
+            ],
+            [
+              "checkbox",
+              "InputSignal<boolean>",
+              "false",
+              "Renders the built-in floating checkbox when no projected checkbox slot is provided."
+            ],
+            [
+              "checkboxAriaLabel",
+              "InputSignal<string | null>",
+              "null",
+              "Accessible label for the built-in checkbox."
+            ],
+            [
+              "defaultSelected",
+              "InputSignal<boolean>",
+              "false",
+              "Initial selected state used on first render."
+            ],
+            [
+              "selected",
+              "ModelSignal<boolean>",
+              "false",
+              "Current selected state for controlled selection patterns."
+            ],
+            [
+              "disabled",
+              "ModelSignal<boolean>",
+              "false",
+              "Disables interaction, focus behavior, and selection changes."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "cardClick",
+              "OutputEmitterRef<MouseEvent | KeyboardEvent>",
+              "Emitted when an interactive card surface is activated."
+            ],
+            [
+              "selectionChange",
+              "OutputEmitterRef<CardOnSelectionChangeEvent>",
+              "Emitted when selected state changes through card or checkbox interaction."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Projected slots",
+          "columns": ["Slot", "Description"],
+          "columnKinds": ["code", "text"],
+          "rows": [
+            [
+              "[uiCardPreview]",
+              "Preview area rendered before content, useful for media, thumbnails, or decorative surfaces."
+            ],
+            [
+              "[uiCardHeader]",
+              "Header block, typically title, subtitle, avatar, or top-level metadata."
+            ],
+            ["[uiCardBody]", "Primary supporting content."],
+            ["[uiCardFooter]", "Actions, secondary metadata, or summary controls."],
+            [
+              "[uiCardFloatingAction]",
+              "Projected floating action area, usually top-right utility actions."
+            ],
+            [
+              "[uiCardCheckbox]",
+              "Projected checkbox slot that replaces the built-in checkbox placement."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "title": "Notes",
+          "paragraphs": [
+            "Use `interactive` only when the card surface itself should behave like a control. If only footer buttons are actionable, keep the card non-interactive.",
+            "For selectable cards, decide whether selection should come from the full surface, an explicit checkbox, or both. Mixing too many patterns in one surface quickly becomes noisy.",
+            "Focus modes matter most when the card contains multiple embedded actions. `tab-exit` is usually the safest choice for dense action cards."
+          ]
+        }
+      ]
+    }
+  ]
+}

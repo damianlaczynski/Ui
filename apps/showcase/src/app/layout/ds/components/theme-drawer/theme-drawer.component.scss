@@ -2,15 +2,28 @@
 
 :host {
   display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  align-self: stretch;
+  min-height: 100%;
   height: 100%;
 }
 
-.theme-drawer__body {
-  flex: 1;
+ui-drawer {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
   min-height: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding: $spacing-2;
+}
+
+.theme-drawer__body {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-1;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .theme-drawer__section {
@@ -88,6 +101,10 @@
   display: flex;
   flex-direction: column;
   gap: $spacing-4;
+
+  &:not(:first-child) {
+    margin-top: $spacing-2;
+  }
 }
 
 .theme-drawer__field {
@@ -97,23 +114,34 @@
 }
 
 .theme-drawer__usage {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-3;
   margin-top: $spacing-6;
   padding-top: $spacing-4;
   border-top: 1px solid var(--color-neutral-stroke-rest);
 }
 
 .theme-drawer__usage-text {
-  margin: 0 0 $spacing-3;
+  margin: 0;
+  font-family: $font-family-base;
   font-size: $font-size-300;
+  font-weight: $font-weight-regular;
   color: var(--color-neutral-foreground2-rest);
   line-height: $line-height-400;
 
   code {
     font-family: $font-family-mono;
-    font-size: 0.9em;
-    padding: 2px 6px;
+    font-size: $font-size-300;
+    line-height: $line-height-400;
+    font-weight: $font-weight-regular;
+    color: var(--color-neutral-foreground-rest);
     background: var(--color-neutral-background2-rest);
+    border: 1px solid var(--color-neutral-stroke-rest);
     border-radius: $border-radius-200;
+    padding: $spacing-0_5 $spacing-2;
+    vertical-align: baseline;
+    box-decoration-break: clone;
   }
 }
 
@@ -121,15 +149,25 @@
   margin: 0;
   padding: $spacing-3;
   font-family: $font-family-mono;
-  font-size: $font-size-200;
+  font-size: $font-size-300;
+  font-weight: $font-weight-regular;
   line-height: $line-height-400;
   color: var(--color-neutral-foreground-rest);
   background: var(--color-neutral-background2-rest);
+  border: 1px solid var(--color-neutral-stroke-rest);
   border-radius: $border-radius-200;
   overflow-x: auto;
 
   code {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
     white-space: pre;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
+    color: inherit;
   }
 }
 

@@ -1,0 +1,163 @@
+{
+  "slug": "table-of-content",
+  "title": "Table of Content",
+  "description": "Table of Content scans a target container, builds hierarchical in-page navigation, tracks the active section, and supports sticky placement, heading filtering, and custom heading selectors.",
+  "intro": "Use `ui-table-of-content` in documentation pages, long settings panels, knowledge content, or any reading surface where users benefit from quick in-page navigation. The real quality of the result depends more on content structure than on visual styling.",
+  "importCode": "import { TableOfContentComponent } from 'ui';",
+  "containerClass": "table-of-content-doc",
+  "snippets": {
+    "basicCode": "table-of-content-basic-demo.ts",
+    "levelsCode": "table-of-content-levels-demo.ts",
+    "stickyCode": "table-of-content-sticky-demo.ts",
+    "appearanceCode": "table-of-content-appearance-demo.ts",
+    "headingSelectorCode": "table-of-content-heading-selector-demo.ts",
+    "docLayoutCode": "table-of-content-doc-layout-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic in-page navigation",
+      "description": "The baseline pattern is a TOC rail beside a content area with semantic headings. This is the main use case and should stay simple.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "levels",
+      "title": "Heading level filtering",
+      "description": "Min and max heading levels help limit noise. Use them when the content has deeper internal structure than the navigation should expose.",
+      "codeKey": "levelsCode",
+      "componentKey": "levels"
+    },
+    {
+      "id": "sticky",
+      "title": "Sticky behavior and offset",
+      "description": "Sticky placement keeps the current outline visible while the content scrolls. Offset is important when the page has a fixed header or another sticky shell.",
+      "codeKey": "stickyCode",
+      "componentKey": "sticky"
+    },
+    {
+      "id": "appearance",
+      "title": "Appearance and indicator style",
+      "description": "Appearance changes how strong the navigation feels. Keep the TOC quieter than the content unless it is a primary side rail.",
+      "codeKey": "appearanceCode",
+      "componentKey": "appearance"
+    },
+    {
+      "id": "heading-selector",
+      "title": "Custom heading selectors",
+      "description": "You can build the outline from custom markers instead of heading tags. Use this when content is rendered from richer CMS or component-driven structures.",
+      "codeKey": "headingSelectorCode",
+      "componentKey": "headingSelector"
+    },
+    {
+      "id": "doc-layout",
+      "title": "Documentation layout composition",
+      "description": "TOC usually lives inside a broader documentation layout with callouts, dividers, and richer section content. This pattern is what users actually consume.",
+      "codeKey": "docLayoutCode",
+      "componentKey": "docLayout"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Navigation semantics",
+      "body": "`ui-table-of-content` renders a navigation region and internally maps its entries to tree-node based navigation items. The content area it indexes should still use meaningful heading structure."
+    },
+    {
+      "title": "Keyboard behavior",
+      "body": "Keyboard interaction follows the tree-node based row model used inside the component.\n\n| Key | Action |\n| --- | --- |\n| Tab / Shift+Tab | Move focus into, through, and out of the table of contents. |\n| Enter / Space | Activate the focused entry and scroll to the linked section. |\n| ArrowRight / ArrowLeft | Expand or collapse nested TOC groups when deeper levels are present. |"
+    },
+    {
+      "title": "Heading structure",
+      "body": "The TOC can only be as accessible and understandable as the source content. Use clear heading text, avoid skipping levels without reason, and prefer semantic headings over custom selectors when possible."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "TableOfContentComponent - <code>ui-table-of-content</code>",
+      "lead": "Standalone component that scans a target container, builds a hierarchical outline from headings, tracks the active section while scrolling, and renders it as a navigable in-page tree.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "containerSelector",
+              "InputSignal<string>",
+              "'.showcase-doc'",
+              "CSS selector for the content container to scan."
+            ],
+            [
+              "headingSelector",
+              "InputSignal<string>",
+              "'h2, h3, h4, h5, h6'",
+              "Selector used to collect source headings or custom markers."
+            ],
+            [
+              "ignoreWithinSelector",
+              "InputSignal<string>",
+              "''",
+              "Optional ancestor selector used to ignore headings inside nested previews, widgets, or embedded examples."
+            ],
+            ["minLevel", "InputSignal<number>", "1", "Minimum heading level to include."],
+            ["maxLevel", "InputSignal<number>", "6", "Maximum heading level to include."],
+            ["size", "InputSignal<Size>", "'medium'", "Density of TOC rows."],
+            ["appearance", "InputSignal<Appearance>", "'subtle'", "Visual emphasis of TOC rows."],
+            ["shape", "InputSignal<Shape>", "'rounded'", "Corner treatment of TOC rows."],
+            [
+              "showSelectionIndicator",
+              "InputSignal<boolean>",
+              "true",
+              "Shows the active-section indicator."
+            ],
+            [
+              "indicatorPosition",
+              "InputSignal<'horizontal' | 'vertical'>",
+              "'vertical'",
+              "Placement of the active indicator."
+            ],
+            [
+              "sticky",
+              "InputSignal<boolean>",
+              "false",
+              "Makes the TOC stick within its layout column."
+            ],
+            [
+              "offsetTop",
+              "InputSignal<number>",
+              "0",
+              "Top offset used for sticky positioning and scroll targeting."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Models",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "TocItem",
+              "{ id, label, level, element, children? }",
+              "Internal outline item generated from source headings."
+            ],
+            [
+              "treeNodes",
+              "ComputedSignal<TreeNode[]>",
+              "Derived recursive structure rendered through `ui-tree-node`."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "Prefer semantic headings as the source of truth. Custom selectors are useful, but they should be the exception rather than the default pattern.",
+            "If the page has many deeply nested headings, do not expose all of them automatically. Constrain the visible levels so the navigation stays readable."
+          ],
+          "title": "Notes"
+        }
+      ]
+    }
+  ]
+}
