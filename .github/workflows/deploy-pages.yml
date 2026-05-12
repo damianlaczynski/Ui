@@ -32,6 +32,9 @@ jobs:
       - name: Build library
         run: npm run build:lib
 
+      - name: Generate docs static assets (public/docs/, llms.txt)
+        run: npm run docs:build
+
       - name: Build showcase for GitHub Pages
         run: npx ng build ui-showcase --configuration=production --base-href=/
 
