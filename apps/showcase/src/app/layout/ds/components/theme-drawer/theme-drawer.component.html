@@ -1,13 +1,14 @@
 <ui-drawer
   title="Theme Builder"
-  type="inline"
+  [type]="drawerType()"
+  [size]="drawerSize()"
   position="right"
   [(visible)]="drawerVisible"
   (close)="onDrawerClose()"
   [additionalActions]="additionalActions()"
 >
   <div class="theme-drawer__body">
-    @if (isMobile()) {
+    @if (appearanceInDrawer()) {
       <div class="theme-drawer__section">
         <span class="theme-drawer__section-label">Mode</span>
         <button

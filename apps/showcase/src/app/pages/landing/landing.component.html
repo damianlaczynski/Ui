@@ -1,498 +1,209 @@
 <div class="landing">
-  <button
-    type="button"
-    class="landing__theme-fab"
-    (click)="toggleTheme()"
-    [attr.aria-label]="themeLabel()"
-  >
-    <ui-icon [icon]="themeIcon()" size="small"></ui-icon>
-  </button>
-  <!-- Hero Section -->
-  <div class="landing__hero">
-    <div class="landing__hero__glow"></div>
-    <div class="landing__hero__content">
-      <span class="landing__hero__badge">
-        <ui-icon icon="design_ideas" size="small"></ui-icon>
-        Fluent Design System
-      </span>
-
-      <h1 class="landing__hero__title">@laczynski/ui</h1>
-      <p class="landing__hero__tagline">
-        Enterprise-grade components built with Fluent 2 Design System for modern Angular
-        applications
-      </p>
-
-      <div class="landing__hero__actions">
-        <ui-button
-          variant="primary"
-          size="large"
-          icon="rocket"
-          (click)="navigateToGettingStarted()"
-        >
-          Get Started
-        </ui-button>
-        <ui-button variant="secondary" size="large" icon="apps" (click)="navigateToComponents()">
-          View Components
-        </ui-button>
-      </div>
-
-      <div class="landing__hero__meta">
-        <span class="landing__hero__meta-item">
-          <ui-icon icon="box" size="small"></ui-icon>
-          <span>v{{ version }}</span>
-        </span>
-        <a
-          [href]="githubUrl"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="landing__hero__meta-item landing__hero__meta-item--link"
-        >
-          <ui-icon icon="open" size="small"></ui-icon>
-          <span>GitHub</span>
-        </a>
-        <a
-          [href]="npmUrl"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="landing__hero__meta-item landing__hero__meta-item--link"
-        >
-          <ui-icon icon="arrow_download" size="small"></ui-icon>
-          <span>npm install</span>
-        </a>
-      </div>
-    </div>
+  <div class="landing__theme-fabs">
+    <button
+      type="button"
+      class="landing__theme-fab"
+      (click)="toggleTheme()"
+      [attr.aria-label]="themeLabel()"
+    >
+      <ui-icon [icon]="themeIcon()" size="small"></ui-icon>
+    </button>
+    <button
+      type="button"
+      class="landing__theme-fab"
+      (click)="toggleThemeBuilder()"
+      [attr.aria-label]="themeBuilderAriaLabel()"
+    >
+      <ui-icon icon="color" size="small"></ui-icon>
+    </button>
   </div>
-
-  <!-- Stats Section -->
-  <div class="landing__stats">
-    <div class="landing__stats__grid">
-      <div class="landing__stat">
-        <ui-icon icon="apps" class="landing__stat__icon"></ui-icon>
-        <div class="landing__stat__value">50+</div>
-        <div class="landing__stat__label">Components</div>
-      </div>
-      <div class="landing__stat">
-        <ui-icon icon="color" class="landing__stat__icon"></ui-icon>
-        <div class="landing__stat__value">Theme</div>
-        <div class="landing__stat__label">Light & Dark</div>
-      </div>
-      <div class="landing__stat">
-        <ui-icon icon="code" class="landing__stat__icon"></ui-icon>
-        <div class="landing__stat__value">TypeScript</div>
-        <div class="landing__stat__label">Type Safe</div>
-      </div>
-      <div class="landing__stat">
-        <ui-icon icon="accessibility" class="landing__stat__icon"></ui-icon>
-        <div class="landing__stat__value">A11y</div>
-        <div class="landing__stat__label">WCAG Compliant</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Carousel Section -->
-  <div class="landing__carousel">
-    <div class="landing__carousel__header">
-      <div class="landing__carousel__header__text">
-        <h2 class="landing__carousel__title">Component Preview</h2>
-        <p class="landing__carousel__description">
-          Browse through live component examples in the carousel
-        </p>
-      </div>
-      <ui-button
-        variant="secondary"
-        appearance="subtle"
-        size="medium"
-        [icon]="carouselAutoPlay ? 'pause' : 'play'"
-        [text]="carouselAutoPlay ? 'Pause' : 'Play'"
-        (click)="carouselAutoPlay = !carouselAutoPlay"
-      />
-    </div>
-    <div class="landing__carousel__wrapper">
-      <ng-template #componentSlide let-item let-index="index">
-        <div class="landing__carousel__slide">
-          <h3 class="landing__carousel__slide__title">{{ item.title }}</h3>
-          @switch (item.componentType) {
-            @case ('button') {
-              <div class="landing__carousel__slide__content">
-                <ui-button variant="primary" appearance="filled" text="Primary" />
-                <ui-button variant="secondary" appearance="filled" text="Secondary" />
-                <ui-button variant="success" appearance="filled" text="Success" />
-                <ui-button variant="warning" appearance="filled" text="Warning" />
-                <ui-button variant="danger" appearance="filled" text="Danger" />
-                <ui-button variant="info" appearance="filled" text="Info" />
-              </div>
-            }
-            @case ('inputs') {
-              <div
-                class="landing__carousel__slide__content landing__carousel__slide__content--grid"
-              >
-                <ui-text label="Name" placeholder="Enter name" />
-                <ui-email label="Email" placeholder="email&#64;example.com" />
-                <ui-date label="Date" />
-                <ui-number label="Number" placeholder="0" />
-              </div>
-            }
-            @case ('slider') {
-              <div
-                class="landing__carousel__slide__content landing__carousel__slide__content--wide"
-              >
-                <ui-slider label="Slider" [min]="0" [max]="100" />
-              </div>
-            }
-            @case ('totp') {
-              <div class="landing__carousel__slide__content">
-                <ui-totp label="TOTP" />
-              </div>
-            }
-            @case ('tabs') {
-              <div class="landing__carousel__slide__content" style="width: 100%; max-width: 360px">
-                <ui-tabs
-                  [tabs]="carouselTabs"
-                  [selectedTabId]="carouselSelectedTabId()"
-                  (tabChange)="onCarouselTabChange($event)"
-                />
-              </div>
-            }
-            @case ('avatar') {
-              <div class="landing__carousel__slide__content">
-                <ui-avatar name="John Doe" />
-                <ui-avatar initials="AB" />
-                <ui-avatar image="https://picsum.photos/64?random=1" />
-                <ui-avatar icon="person" />
-              </div>
-            }
-            @case ('menu') {
-              <div class="landing__carousel__slide__content">
-                <ui-menu
-                  triggerVariant="dropdown"
-                  text="Dropdown"
-                  [menuItems]="carouselMenuItems"
-                  size="medium"
-                />
-                <ui-menu
-                  triggerVariant="split"
-                  text="Split"
-                  [menuItems]="carouselMenuItems"
-                  size="medium"
-                />
-                <ui-menu
-                  triggerVariant="button"
-                  text="Button"
-                  [menuItems]="carouselMenuItems"
-                  size="medium"
-                />
-              </div>
-            }
-            @case ('tag') {
-              <div class="landing__carousel__slide__content">
-                <ui-tag text="Tag 1" />
-                <ui-tag text="Tag 2" variant="primary" />
-                <ui-tag text="Remove" [dismissible]="true" (dismiss)="onTagDismiss()" />
-              </div>
-            }
-            @case ('checkbox') {
-              <div class="landing__carousel__slide__content">
-                <ui-checkbox
-                  label="Option 1"
-                  [(ngModel)]="carouselCheckbox1"
-                  [ngModelOptions]="{ standalone: true }"
-                />
-                <ui-checkbox
-                  label="Option 2"
-                  [(ngModel)]="carouselCheckbox2"
-                  [ngModelOptions]="{ standalone: true }"
-                />
-                <ui-checkbox label="Option 3" [disabled]="true" />
-              </div>
-            }
-            @case ('switch') {
-              <div class="landing__carousel__slide__content">
-                <ui-switch
-                  label="Enable"
-                  [(ngModel)]="carouselSwitch1"
-                  [ngModelOptions]="{ standalone: true }"
-                />
-                <ui-switch label="Disabled" [disabled]="true" />
-              </div>
-            }
-            @case ('badge') {
-              <div class="landing__carousel__slide__content">
-                <ui-badge text="Primary" variant="primary" />
-                <ui-badge text="Success" variant="success" />
-                <ui-badge text="Warning" variant="warning" />
-                <ui-badge text="Danger" variant="danger" />
-              </div>
-            }
-            @case ('spinner') {
-              <div class="landing__carousel__slide__content">
-                <ui-spinner size="small" />
-                <ui-spinner size="medium" />
-                <ui-spinner size="large" />
-              </div>
-            }
-            @case ('breadcrumb') {
-              <div
-                class="landing__carousel__slide__content landing__carousel__slide__content--wide"
-              >
-                <ui-breadcrumb [items]="carouselBreadcrumbItems" />
-              </div>
-            }
-            @case ('search') {
-              <div class="landing__carousel__slide__content">
-                <ui-search
-                  variant="filled-gray"
-                  placeholder="Search..."
-                  size="medium"
-                  [(ngModel)]="carouselSearchQuery"
-                  [ngModelOptions]="{ standalone: true }"
-                />
-              </div>
-            }
-            @case ('textarea') {
-              <div
-                class="landing__carousel__slide__content landing__carousel__slide__content--wide"
-              >
-                <ui-textarea label="Comments" placeholder="Enter your feedback..." [rows]="3" />
-              </div>
-            }
-            @case ('radio') {
-              <div class="landing__carousel__slide__content">
-                <ui-radio-group
-                  label="Choose option"
-                  [items]="carouselRadioItems"
-                  [(ngModel)]="carouselRadioValue"
-                  [ngModelOptions]="{ standalone: true }"
-                />
-              </div>
-            }
-            @case ('rating') {
-              <div class="landing__carousel__slide__content">
-                <ui-rating
-                  [value]="carouselRating"
-                  (valueChange)="carouselRating = $event"
-                  [showValue]="true"
-                />
-              </div>
-            }
-            @case ('pagination') {
-              <div class="landing__carousel__slide__content">
-                <ui-pagination
-                  [config]="carouselPaginationConfig"
-                  (pageChange)="onCarouselPageChange($event)"
-                />
-              </div>
-            }
-            @case ('skeleton') {
-              <div
-                class="landing__carousel__slide__content landing__carousel__slide__content--wide"
-              >
-                <div class="landing__skeleton-list">
-                  @for (item of carouselSkeletonListItems; track item) {
-                    <div class="landing__skeleton-list__item">
-                      <ui-skeleton shape="circular" width="40px" height="40px" />
-                      <div class="landing__skeleton-list__item-content">
-                        <ui-skeleton width="40%" height="16px" />
-                        <ui-skeleton width="80%" height="12px" />
-                      </div>
-                    </div>
-                  }
-                </div>
-              </div>
-            }
-            @case ('card') {
-              <div
-                class="landing__carousel__slide__content landing__carousel__slide__content--card-examples"
-              >
-                <ui-card
-                  ariaLabel="User profile preview"
-                  class="landing__card-demo landing__card-demo--compact"
-                >
-                  <div uiCardBody class="landing__card-demo__compact-body">
-                    <div class="landing__card-demo__user">
-                      <ui-avatar name="Anna Kowalska" size="small" />
-                      <div class="landing__card-demo__user-info">
-                        <strong>Anna Kowalska</strong>
-                        <span>Product Designer</span>
-                      </div>
-                    </div>
-                  </div>
-                </ui-card>
-
-                <ui-card
-                  ariaLabel="Product card preview"
-                  class="landing__card-demo landing__card-demo--product"
-                  [selectable]="true"
-                  [checkbox]="true"
-                >
-                  <div uiCardHeader class="landing__card-demo__product-header">
-                    <strong>Wireless Headphones X2</strong>
-                    <span>Adaptive ANC, 40h battery, Bluetooth 5.3</span>
-                  </div>
-                  <div uiCardBody class="landing__card-demo__product-media">
-                    <img
-                      src="https://picsum.photos/560/320?random=42"
-                      alt="Wireless headphones on a desk"
-                    />
-                  </div>
-                  <div uiCardFooter class="landing__card-demo__product-footer">
-                    <ui-button variant="primary" size="small">View details</ui-button>
-                  </div>
-                </ui-card>
-              </div>
-            }
-            @case ('accordion') {
-              <div
-                class="landing__carousel__slide__content landing__carousel__slide__content--wide"
-                style="max-width: 320px"
-              >
-                <ui-accordion label="Section 1">
-                  <p>Content for section 1</p>
-                </ui-accordion>
-                <ui-accordion label="Section 2">
-                  <p>Content for section 2</p>
-                </ui-accordion>
-                <ui-accordion label="Section 3">
-                  <p>Content for section 3</p>
-                </ui-accordion>
-              </div>
-            }
-          }
-          <ui-button
-            class="landing__carousel__slide__action"
-            variant="primary"
-            appearance="subtle"
-            size="medium"
-            icon="chevron_right"
-            text="View Showcase"
-            (click)="navigateToComponent(getShowcaseId(item)); $event.stopPropagation()"
-          />
-        </div>
-      </ng-template>
-      <ui-carousel
-        [items]="carouselItems()"
-        [slideTemplate]="componentSlide"
-        [showControls]="true"
-        [showIndicators]="true"
-        [loop]="true"
-        [autoPlay]="carouselAutoPlay"
-        [autoPlayInterval]="5500"
-      />
-    </div>
-  </div>
-
-  <!-- Components Showcase -->
-  <div class="landing__showcase">
-    <div class="landing__showcase__header">
-      <h2 class="landing__showcase__title">Explore Components</h2>
-      <p class="landing__showcase__description">
-        A comprehensive library of UI components for every use case
-      </p>
-      <div class="landing__showcase__search">
-        <ui-search
-          variant="filled-gray"
-          placeholder="Search components..."
-          size="medium"
-          [ngModel]="searchQuery()"
-          (ngModelChange)="searchQuery.set($event)"
-          [ngModelOptions]="{ standalone: true }"
-        ></ui-search>
-      </div>
-    </div>
-
-    <div class="landing__showcase__grid">
-      @for (component of filteredComponents(); track component.id) {
-        <div class="landing__showcase__card" (click)="navigateToComponent(component.id)">
-          <ui-icon [icon]="component.icon" class="landing__showcase__card__icon"></ui-icon>
-          <span class="landing__showcase__card__name">{{ component.name }}</span>
-          <ui-icon
-            icon="chevron_right"
-            size="small"
-            class="landing__showcase__card__arrow"
-          ></ui-icon>
-        </div>
-      } @empty {
-        <div class="landing__showcase__empty">
-          <ui-icon icon="search" class="landing__showcase__empty__icon"></ui-icon>
-          <p class="landing__showcase__empty__text">No components match "{{ searchQuery() }}"</p>
-        </div>
-      }
-    </div>
-  </div>
-  <!-- Roadmap Preview -->
-  <div class="landing__roadmap">
-    <div class="landing__showcase__header">
-      <h2 class="landing__showcase__title">Roadmap</h2>
-      <p class="landing__showcase__description">
-        See what is already shipped, what is being built, and what comes next.
-      </p>
-    </div>
-    <div class="landing__showcase__grid landing__roadmap__grid">
-      @for (item of roadmapPreview; track item.id) {
-        <article class="landing__showcase__card landing__roadmap__card">
-          <p class="landing__roadmap__card__time">Target: {{ item.timeframe }}</p>
-          <span
-            class="landing__roadmap__card__status"
-            [class]="
-              'landing__roadmap__card__status landing__roadmap__card__status--' + item.status
-            "
-          >
-            {{ getRoadmapStatusLabel(item.status) }}
+  <div class="landing__shell">
+    <div class="landing__main">
+      <!-- Hero Section -->
+      <div class="landing__hero">
+        <div class="landing__hero__glow"></div>
+        <div class="landing__hero__content">
+          <span class="landing__hero__badge">
+            <ui-icon icon="design_ideas" size="small"></ui-icon>
+            Fluent Design System
           </span>
-          <h3 class="landing__roadmap__card__title">{{ item.title }}</h3>
-          <p class="landing__roadmap__card__summary">{{ item.summary }}</p>
-        </article>
-      }
+
+          <h1 class="landing__hero__title">@laczynski/ui</h1>
+          <p class="landing__hero__tagline">
+            Enterprise-grade components built with Fluent 2 Design System for modern Angular
+            applications
+          </p>
+
+          <div class="landing__hero__actions">
+            <ui-button
+              variant="primary"
+              size="large"
+              icon="rocket"
+              (click)="navigateToGettingStarted()"
+            >
+              Get Started
+            </ui-button>
+            <ui-button
+              variant="secondary"
+              size="large"
+              icon="apps"
+              (click)="navigateToComponents()"
+            >
+              View Components
+            </ui-button>
+          </div>
+
+          <div class="landing__hero__meta">
+            <span class="landing__hero__meta-item">
+              <ui-icon icon="box" size="small"></ui-icon>
+              <span>v{{ version }}</span>
+            </span>
+
+            <a
+              [href]="githubUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="landing__hero__meta-item landing__hero__meta-item--link"
+            >
+              <ui-icon icon="open" size="small"></ui-icon>
+              <span>GitHub</span>
+            </a>
+            <a
+              [href]="npmUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="landing__hero__meta-item landing__hero__meta-item--link"
+            >
+              <ui-icon icon="arrow_download" size="small"></ui-icon>
+              <span>npm install</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Section -->
+      <div class="landing__stats">
+        <div class="landing__stats__grid">
+          <div class="landing__stat">
+            <ui-icon icon="apps" class="landing__stat__icon"></ui-icon>
+            <div class="landing__stat__value">{{ showcaseComponentCount() }}</div>
+            <div class="landing__stat__label">Components</div>
+          </div>
+          <div class="landing__stat">
+            <ui-icon icon="color" class="landing__stat__icon"></ui-icon>
+            <div class="landing__stat__value">Theme</div>
+            <div class="landing__stat__label">Light & Dark</div>
+          </div>
+          <div class="landing__stat">
+            <ui-icon icon="code" class="landing__stat__icon"></ui-icon>
+            <div class="landing__stat__value">TypeScript</div>
+            <div class="landing__stat__label">Type Safe</div>
+          </div>
+          <div class="landing__stat">
+            <ui-icon icon="accessibility" class="landing__stat__icon"></ui-icon>
+            <div class="landing__stat__value">A11y</div>
+            <div class="landing__stat__label">WCAG Compliant</div>
+          </div>
+        </div>
+      </div>
+
+      <app-landing-component-surface [showcaseComponents]="showcaseComponents()" />
+      <!-- Roadmap Preview -->
+      <div class="landing__roadmap">
+        <div class="landing__showcase__header">
+          <h2 class="landing__showcase__title">Roadmap</h2>
+          <p class="landing__showcase__description">
+            See what is already shipped, what is being built, and what comes next.
+          </p>
+        </div>
+        <div
+          class="landing__roadmap__grid showcase-doc__guide-grid showcase-doc__guide-grid--large"
+        >
+          @for (item of roadmapPreview; track item.id) {
+            <article class="showcase-doc__guide-card">
+              <div class="showcase-doc__guide-item-head">
+                <p class="showcase-doc__guide-meta">{{ item.timeframe }}</p>
+                <span class="showcase-doc__guide-status-wrap">
+                  <ui-badge
+                    [text]="getRoadmapStatusLabel(item.status)"
+                    [variant]="roadmapBadgeVariant(item.status)"
+                    appearance="tint"
+                    size="small"
+                    shape="circular"
+                  />
+                </span>
+              </div>
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.summary }}</p>
+            </article>
+          }
+        </div>
+        <div class="landing__roadmap__actions">
+          <ui-button variant="secondary" size="large" icon="timeline" (click)="navigateToRoadmap()">
+            View Full Roadmap
+          </ui-button>
+        </div>
+      </div>
+
+      <!-- CTA Section -->
+      <div class="landing__cta">
+        <div class="landing__cta__content">
+          <ui-icon icon="rocket" size="large" [sizePx]="64" class="landing__cta__icon"></ui-icon>
+          <h2 class="landing__cta__title">Ready to build?</h2>
+          <p class="landing__cta__description">
+            Start using @laczynski/ui components in your project today
+          </p>
+          <div class="landing__cta__actions">
+            <ui-button
+              variant="secondary"
+              size="large"
+              icon="document"
+              (click)="navigateToGettingStarted()"
+            >
+              Read Documentation
+            </ui-button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="landing__footer">
+        <div class="landing__footer__content">
+          <div class="landing__footer__links">
+            <a routerLink="/docs/getting-started" class="landing__footer__link">Getting Started</a>
+            <a routerLink="/docs/roadmap" class="landing__footer__link">Roadmap</a>
+            <a routerLink="/docs" class="landing__footer__link">Components</a>
+            <a
+              [href]="githubUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="landing__footer__link"
+              >GitHub</a
+            >
+            <a
+              [href]="npmUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="landing__footer__link"
+              >npm</a
+            >
+          </div>
+          <div class="landing__footer__meta">
+            <span class="landing__footer__copyright">&copy; {{ currentYear }} @laczynski/ui</span>
+            <span class="landing__footer__version">v{{ version }}</span>
+          </div>
+        </div>
+      </footer>
     </div>
-    <div class="landing__roadmap__actions">
-      <ui-button variant="secondary" size="large" icon="timeline" (click)="navigateToRoadmap()">
-        View Full Roadmap
-      </ui-button>
+    <div
+      class="landing__theme-drawer-host"
+      [class.landing__theme-drawer-host--overlay]="themeDrawerOverlayLayout()"
+    >
+      <app-theme-drawer
+        [appearanceInDrawer]="true"
+        [drawerType]="themeDrawerOverlayLayout() ? 'overlay' : 'inline'"
+        [drawerSize]="'large'"
+      />
     </div>
   </div>
-
-  <!-- CTA Section -->
-  <div class="landing__cta">
-    <div class="landing__cta__content">
-      <ui-icon icon="rocket" size="large" [sizePx]="64" class="landing__cta__icon"></ui-icon>
-      <h2 class="landing__cta__title">Ready to build?</h2>
-      <p class="landing__cta__description">
-        Start using @laczynski/ui components in your project today
-      </p>
-      <div class="landing__cta__actions">
-        <ui-button
-          variant="secondary"
-          size="large"
-          icon="document"
-          (click)="navigateToGettingStarted()"
-        >
-          Read Documentation
-        </ui-button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer class="landing__footer">
-    <div class="landing__footer__content">
-      <div class="landing__footer__links">
-        <a routerLink="/docs/getting-started" class="landing__footer__link">Getting Started</a>
-        <a routerLink="/docs/roadmap" class="landing__footer__link">Roadmap</a>
-        <a routerLink="/docs" class="landing__footer__link">Components</a>
-        <a
-          [href]="githubUrl"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="landing__footer__link"
-          >GitHub</a
-        >
-        <a [href]="npmUrl" target="_blank" rel="noopener noreferrer" class="landing__footer__link"
-          >npm</a
-        >
-      </div>
-      <div class="landing__footer__meta">
-        <span class="landing__footer__copyright">&copy; {{ currentYear }} @laczynski/ui</span>
-        <span class="landing__footer__version">v{{ version }}</span>
-      </div>
-    </div>
-  </footer>
 </div>

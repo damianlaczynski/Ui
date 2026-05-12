@@ -1,0 +1,160 @@
+{
+  "slug": "speed-dial",
+  "title": "Speed Dial",
+  "description": "Speed Dial is a floating action trigger that reveals a compact set of related actions in linear, radial, or arc layouts. Use it when the UI needs a persistent shortcut cluster without permanently dedicating space to every action.",
+  "intro": "Speed Dial works best for high-value secondary actions that should stay nearby but hidden until needed. It supports linear, circle, semi-circle, and quarter-circle layouts, optional masking, idle close behavior, tooltip labels, and coordination so only one dial stays open at a time.",
+  "importCode": "import { SpeedDialComponent, type MenuItem } from 'ui';",
+  "containerClass": "speed-dial-doc",
+  "snippets": {
+    "linearCode": "speed-dial-linear-demo.ts",
+    "circleCode": "speed-dial-circle-demo.ts",
+    "arcCode": "speed-dial-arc-demo.ts",
+    "behaviorCode": "speed-dial-behavior-demo.ts",
+    "coordinationCode": "speed-dial-coordination-demo.ts",
+    "workspaceCode": "speed-dial-workspace-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "linear",
+      "title": "Linear directions",
+      "description": "Linear layouts are the safest starting point because the expansion path stays obvious near screen edges and panels.",
+      "codeKey": "linearCode",
+      "componentKey": "linear"
+    },
+    {
+      "id": "circle",
+      "title": "Circle layout",
+      "description": "Use a full radial layout only when the trigger owns enough surrounding space and the dial is itself a focal interaction.",
+      "codeKey": "circleCode",
+      "componentKey": "circle"
+    },
+    {
+      "id": "arc",
+      "title": "Semi and quarter arcs",
+      "description": "Arc layouts fit side edges and corners where actions should expand inward rather than covering the trigger's surroundings evenly.",
+      "codeKey": "arcCode",
+      "componentKey": "arc"
+    },
+    {
+      "id": "behavior",
+      "title": "Mask, idle close, and tooltips",
+      "description": "Masking, auto-close, and tooltip labels change how assertive or discoverable the control feels in dense interfaces.",
+      "codeKey": "behaviorCode",
+      "componentKey": "behavior"
+    },
+    {
+      "id": "coordination",
+      "title": "Coordination between dials",
+      "description": "When several floating triggers exist in one surface, coordination keeps the screen calmer by preventing multiple menus from staying open at once.",
+      "codeKey": "coordinationCode",
+      "componentKey": "coordination"
+    },
+    {
+      "id": "workspace",
+      "title": "Workspace composition",
+      "description": "A practical speed dial usually lives in a real work panel where it complements existing actions instead of floating on an empty board.",
+      "codeKey": "workspaceCode",
+      "componentKey": "workspace"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Trigger and menu semantics",
+      "body": "The trigger exposes menu semantics and controls a menu-like action list.\n\n| Element | Accessibility behavior |\n| --- | --- |\n| trigger button | exposes `aria-haspopup`, `aria-expanded`, and `aria-controls` |\n| action list | uses `role=\"menu\"` |\n| action buttons | use `role=\"menuitem\"` with an accessible label |"
+    },
+    {
+      "title": "Keyboard and dismissal",
+      "body": "The trigger itself follows normal button keyboard behavior. Once open, users should still be able to move through the revealed actions with normal focus navigation, and `Escape` dismisses the dial.\n\n| Key | Action |\n| --- | --- |\n| `Enter` / `Space` on trigger | opens or closes the dial |\n| `Tab` | moves between the trigger and visible actions |\n| `Escape` | closes the open dial |\n| click outside | closes the dial when `hideOnClickOutside` is enabled |"
+    },
+    {
+      "title": "Usage guidance",
+      "body": "Only put a small set of meaningful actions in a speed dial. If the actions need long labels, dense grouping, or deep hierarchy, a menu, toolbar, or command palette is usually a better fit."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "SpeedDialComponent - <code>ui-speed-dial</code>",
+      "lead": "Floating action cluster that reveals related actions in configurable layouts such as linear, circle, semi-circle, and quarter-circle.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Key inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["items", "InputSignal<MenuItem[]>", "[]", "Actions rendered by the dial."],
+            [
+              "dialType",
+              "InputSignal<'linear' | 'circle' | 'semi-circle' | 'quarter-circle'>",
+              "'linear'",
+              "Controls the geometric layout of actions."
+            ],
+            [
+              "direction",
+              "InputSignal<SpeedDialDirection>",
+              "'up'",
+              "Controls the expansion direction for linear and arc layouts."
+            ],
+            ["radius", "InputSignal<number>", "56", "Distance used by radial and arc layouts."],
+            ["gap", "InputSignal<number>", "8", "Spacing between revealed actions."],
+            ["itemSizePx", "InputSignal<number>", "48", "Size of each revealed action button."],
+            ["mask", "InputSignal<boolean>", "false", "Shows a screen mask behind the open dial."],
+            [
+              "hideOnClickOutside",
+              "InputSignal<boolean>",
+              "true",
+              "Closes the dial when users click outside."
+            ],
+            [
+              "coordinateWithOthers",
+              "InputSignal<boolean>",
+              "true",
+              "Keeps only one dial open at a time by default."
+            ],
+            [
+              "autoCloseIdleMs",
+              "InputSignal<number | null>",
+              "null",
+              "Closes the dial after an idle timeout when provided."
+            ],
+            [
+              "showTooltips",
+              "InputSignal<boolean>",
+              "false",
+              "Shows tooltip labels for action items."
+            ],
+            [
+              "triggerButtonProps / actionButtonProps",
+              "InputSignal<{ variant?: Variant; appearance?: Appearance; size?: Size; shape?: Shape }>",
+              "{}",
+              "Overrides button presentation for the trigger and revealed actions."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Model and outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            ["visible", "ModelSignal<boolean>", "Two-way open state model."],
+            ["click", "OutputRef<MouseEvent>", "Emitted when the trigger button is clicked."],
+            ["show", "OutputRef<Event>", "Emitted when the dial opens."],
+            [
+              "hide",
+              "OutputRef<Event>",
+              "Emitted when the dial closes, including timeout and outside-click cases."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "Each item is driven by the shared `MenuItem` model and can execute its own `action` callback.",
+            "Tooltip labels are especially useful when actions are icon-only and the surrounding surface does not already explain them."
+          ]
+        }
+      ]
+    }
+  ]
+}

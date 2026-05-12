@@ -1,0 +1,264 @@
+{
+  "slug": "totp",
+  "title": "TOTP",
+  "description": "TOTP is a field-specialized multi-input verification component for one-time codes. It manages digit-level focus, paste handling, keyboard navigation, and configurable code length while following the shared field state model.",
+  "intro": "Use `ui-totp` for two-factor authentication, device verification, SMS codes, and short PIN-style confirmation flows. It inherits the shared field API for labels, help text, size, variant, readonly, disabled, and validation messaging while adding grouped digit inputs and verification-specific interaction behavior.",
+  "importCode": "import { TotpComponent } from 'ui';",
+  "containerClass": "totp-doc",
+  "snippets": {
+    "basicCode": "totp-basic-demo.ts",
+    "digitsCode": "totp-digits-demo.ts",
+    "appearanceCode": "totp-appearance-demo.ts",
+    "statesCode": "totp-states-demo.ts",
+    "validationCode": "totp-validation-demo.ts",
+    "verificationPanelCode": "totp-verification-panel-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic verification input",
+      "description": "The default 6-digit setup covers the common authenticator and SMS verification case, with paste support and digit-by-digit entry built in.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "digits",
+      "title": "Digit count and scale",
+      "description": "Shorter and longer code lengths fit different verification contexts. Size and digit count should be chosen together so the code stays easy to scan and enter.",
+      "codeKey": "digitsCode",
+      "componentKey": "digits"
+    },
+    {
+      "id": "appearance",
+      "title": "Appearance and size",
+      "description": "TOTP inputs inherit the shared field visual treatments, so they can match compact auth dialogs or roomier account-verification surfaces.",
+      "codeKey": "appearanceCode",
+      "componentKey": "appearance"
+    },
+    {
+      "id": "states",
+      "title": "Readonly, disabled, and error states",
+      "description": "Readonly is useful for displaying generated or restored codes, disabled removes interaction entirely, and inline error text should communicate failed verification clearly.",
+      "codeKey": "statesCode",
+      "componentKey": "states"
+    },
+    {
+      "id": "validation",
+      "title": "Validation with reactive forms",
+      "description": "When a full code is required before continuing the flow, use reactive-form validation so incomplete input behaves consistently with the rest of the form.",
+      "codeKey": "validationCode",
+      "componentKey": "validation"
+    },
+    {
+      "id": "verification-panel",
+      "title": "Verification panel composition",
+      "description": "A stronger end-to-end example: verification context, grouped code input, and the next available actions inside a focused auth surface.",
+      "codeKey": "verificationPanelCode",
+      "componentKey": "verificationPanel"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Grouped input semantics",
+      "body": "`ui-totp` exposes the digit inputs inside a container with `role=\"group\"`. The component uses either the visible label or a fallback group label so assistive technologies announce the code entry context once and then each digit position individually."
+    },
+    {
+      "title": "Keyboard and paste behavior",
+      "body": "| Key / action | Behavior |\n| --- | --- |\n| Typing a digit | Fills the current input and moves focus to the next digit. |\n| Backspace | Clears the current digit or moves back and clears the previous one when current is empty. |\n| Arrow Left / Right | Moves between digits according to text direction. |\n| Paste | Splits pasted numeric content across the remaining digit inputs. |\n| Home / End | Not used; standard field navigation is digit-to-digit instead. |"
+    },
+    {
+      "title": "Labels and descriptions",
+      "body": "Each digit input gets its own accessible label such as `Digit 1 of 6`, while help and error text are linked through `aria-describedby`. This keeps the grouped code understandable without forcing the user to infer position from visual layout alone."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "TotpComponent - <code>ui-totp</code>",
+      "lead": "Standalone grouped verification-code component built on the shared field base. It manages digit-level state and navigation while exposing a single combined string value to forms and consumers.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["digitsCount", "InputSignal<number>", "6", "Number of digit inputs to render."],
+            [
+              "groupAriaLabel",
+              "InputSignal<string>",
+              "''",
+              "Optional accessible group label when no visible label is present."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "inputVariant",
+              "InputSignal<InputVariant>",
+              "'filled'",
+              "Shared field surface token inherited from `FieldComponent`."
+            ],
+            [
+              "label",
+              "InputSignal<string>",
+              "''",
+              "Visible field label inherited from `FieldComponent`."
+            ],
+            [
+              "labelPosition",
+              "InputSignal<ContentPosition>",
+              "'above'",
+              "Controls where the field label is placed relative to the control."
+            ],
+            [
+              "placeholder",
+              "InputSignal<string>",
+              "''",
+              "Inherited shared-field placeholder input."
+            ],
+            [
+              "helpText",
+              "InputSignal<string>",
+              "''",
+              "Supporting helper text rendered below the field when there is no active error."
+            ],
+            [
+              "errorText",
+              "ModelSignal<string>",
+              "''",
+              "Validation or manual error message managed by the shared field base."
+            ],
+            ["required", "InputSignal<boolean>", "false", "Marks the field as required."],
+            [
+              "disabled",
+              "ModelSignal<boolean>",
+              "false",
+              "Disables the field and its interactive affordances."
+            ],
+            [
+              "readonly",
+              "ModelSignal<boolean>",
+              "false",
+              "Keeps the value visible while preventing user changes."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Shared field density token."],
+            [
+              "name",
+              "InputSignal<string>",
+              "''",
+              "HTML form name used by the field wrapper and native control wiring."
+            ],
+            [
+              "id",
+              "ModelSignal<string | number>",
+              "auto-generated",
+              "Control id used to connect label, help text, and error messaging."
+            ],
+            [
+              "autocomplete",
+              "InputSignal<string | null>",
+              "null",
+              "Inherited autocomplete hint for native form compatibility."
+            ],
+            [
+              "showClearButton",
+              "InputSignal<boolean>",
+              "true",
+              "Inherited shared-field clear-button flag when supported by the concrete control."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "''",
+              "Overrides the accessible name when no visible label is appropriate."
+            ],
+            [
+              "ariaDescribedBy",
+              "InputSignal<string>",
+              "''",
+              "Appends extra descriptive ids to the computed `aria-describedby` value."
+            ],
+            [
+              "autoValidation",
+              "InputSignal<boolean>",
+              "true",
+              "Enables inherited automatic validation error handling from `FieldComponent`."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "change",
+              "OutputEmitterRef<string>",
+              "Emits the current combined code whenever a digit changes."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Methods",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "writeValue()",
+              "method",
+              "Splits an incoming string value across the rendered digit inputs."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Models",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            ["value", "string", "Combined code value exposed through CVA and change output."]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "focus",
+              "OutputEmitterRef<FocusEvent>",
+              "Inherited focus event from `FieldComponent`."
+            ],
+            ["blur", "OutputEmitterRef<FocusEvent>", "Inherited blur event from `FieldComponent`."],
+            [
+              "keyup",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-up event from `FieldComponent`."
+            ],
+            [
+              "keydown",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-down event from `FieldComponent`."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "The component extends the shared `FieldComponent`, so focus and validation messaging integrate with the rest of the field family even though the rendered UI is a group of inputs.",
+            "Use `digitsCount` to match the backend verification contract. The component does not validate whether the entered code is correct; it only handles grouped input behavior and exposes the combined string."
+          ],
+          "title": "Notes"
+        }
+      ]
+    }
+  ]
+}

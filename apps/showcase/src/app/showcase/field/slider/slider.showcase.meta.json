@@ -1,0 +1,293 @@
+{
+  "slug": "slider",
+  "title": "Slider",
+  "description": "Slider lets users choose a numeric value within a range through direct manipulation. Use it for volume, thresholds, scales, and any setting where scrubbing is more natural than typing.",
+  "intro": "Slider builds on the shared field system, so it supports labels, helper and error text, validation, disabled and readonly states, plus slider-specific features such as min/max ranges, step markers, vertical orientation, and formatted value text.",
+  "importCode": "import { SliderComponent } from 'ui';",
+  "containerClass": "slider-doc",
+  "snippets": {
+    "basicCode": "slider-basic-demo.ts",
+    "sizesCode": "slider-sizes-demo.ts",
+    "rangesCode": "slider-ranges-demo.ts",
+    "stepsCode": "slider-steps-demo.ts",
+    "verticalCode": "slider-vertical-demo.ts",
+    "settingsPanelCode": "slider-settings-panel-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic range selection",
+      "description": "Use a slider when users benefit from scrubbing through a continuous or semi-continuous range instead of entering exact values manually.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "sizes",
+      "title": "Sizes and density",
+      "description": "Size changes the rail and thumb treatment so the control can fit compact tool panels or more prominent settings surfaces.",
+      "codeKey": "sizesCode",
+      "componentKey": "sizes"
+    },
+    {
+      "id": "ranges",
+      "title": "Custom ranges and formatting",
+      "description": "Different ranges, steps, and formatted labels help adapt the slider to ratings, percentages, prices, and domain-specific scales.",
+      "codeKey": "rangesCode",
+      "componentKey": "ranges"
+    },
+    {
+      "id": "steps",
+      "title": "Discrete steps and min/max labels",
+      "description": "Show step markers when values are intentionally discrete, and show min/max labels when the scale needs visible anchors for interpretation.",
+      "codeKey": "stepsCode",
+      "componentKey": "steps"
+    },
+    {
+      "id": "vertical",
+      "title": "Vertical and readonly variants",
+      "description": "Vertical sliders work in dense side panels or media-style controls. Readonly is useful when the value should stay visible but not be changed in the current state.",
+      "codeKey": "verticalCode",
+      "componentKey": "vertical"
+    },
+    {
+      "id": "settings-panel",
+      "title": "Settings panel pattern",
+      "description": "A realistic slider usually lives next to related settings, helper text, and feedback. This is more useful than showing isolated rails alone.",
+      "codeKey": "settingsPanelCode",
+      "componentKey": "settingsPanel"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Accessible name and value text",
+      "body": "The slider uses `ariaLabel` when provided and otherwise falls back to the visible field label. Keep the label specific to the controlled setting, such as `Volume` or `Approval threshold`.\n\nUse `ariaValueText` when the raw number is not descriptive enough, for example ratings, percentages, or formatted currency."
+    },
+    {
+      "title": "Keyboard",
+      "body": "| Key | Action |\n| --- | --- |\n| `ArrowLeft` / `ArrowDown` | decreases value by one step |\n| `ArrowRight` / `ArrowUp` | increases value by one step |\n| `Home` | jumps to minimum |\n| `End` | jumps to maximum |\n| `Tab` | moves focus to or from the slider |"
+    },
+    {
+      "title": "Range semantics and state",
+      "body": "The input exposes `aria-valuemin`, `aria-valuemax`, and `aria-valuenow`. Readonly sliders leave the value visible without allowing edits; disabled sliders are removed from normal interaction.\n\n| State | Attribute |\n| --- | --- |\n| current value | `aria-valuenow` |\n| min / max | `aria-valuemin` and `aria-valuemax` |\n| richer wording | `aria-valuetext` when provided |\n| readonly | `aria-readonly=\"true\"` |"
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "SliderComponent - <code>ui-slider</code>",
+      "lead": "Standalone range input built on the shared <code class=\"showcase-doc__api-code\">FieldComponent</code>. It integrates with Angular forms through <code class=\"showcase-doc__api-code\">ControlValueAccessor</code> and adds slider-specific features such as vertical mode, step markers, formatted labels, and value semantics.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["min", "InputSignal<number>", "0", "Lower bound of the range."],
+            ["max", "InputSignal<number>", "100", "Upper bound of the range."],
+            [
+              "step",
+              "InputSignal<number>",
+              "1",
+              "Discrete increment used for keyboard changes and snapping."
+            ],
+            [
+              "unit",
+              "InputSignal<string>",
+              "''",
+              "Optional unit string available for custom formatting scenarios."
+            ],
+            [
+              "formatValue",
+              "InputSignal<(value: number) => string>",
+              "value => value.toString()",
+              "Formats visible min and max labels when `showMinMax` is enabled."
+            ],
+            [
+              "vertical",
+              "InputSignal<boolean>",
+              "false",
+              "Switches the slider to vertical orientation."
+            ],
+            [
+              "ariaValueText",
+              "InputSignal<string | ((value: number) => string) | null>",
+              "null",
+              "Provides a richer spoken value description than the raw number."
+            ],
+            [
+              "showStepMarkers",
+              "InputSignal<boolean>",
+              "false",
+              "Displays visual notches for discrete steps."
+            ],
+            [
+              "showMinMax",
+              "InputSignal<boolean>",
+              "false",
+              "Displays formatted min and max labels beside the rail."
+            ],
+            [
+              "valueModel",
+              "ModelSignal<number | undefined>",
+              "undefined",
+              "Two-way slider value model used alongside ControlValueAccessor integration."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "inputVariant",
+              "InputSignal<InputVariant>",
+              "'filled'",
+              "Shared field surface token inherited from `FieldComponent`."
+            ],
+            [
+              "label",
+              "InputSignal<string>",
+              "''",
+              "Visible field label inherited from `FieldComponent`."
+            ],
+            [
+              "labelPosition",
+              "InputSignal<ContentPosition>",
+              "'above'",
+              "Controls where the field label is placed relative to the control."
+            ],
+            [
+              "placeholder",
+              "InputSignal<string>",
+              "''",
+              "Inherited shared-field placeholder input."
+            ],
+            [
+              "helpText",
+              "InputSignal<string>",
+              "''",
+              "Supporting helper text rendered below the field when there is no active error."
+            ],
+            [
+              "errorText",
+              "ModelSignal<string>",
+              "''",
+              "Validation or manual error message managed by the shared field base."
+            ],
+            ["required", "InputSignal<boolean>", "false", "Marks the field as required."],
+            [
+              "disabled",
+              "ModelSignal<boolean>",
+              "false",
+              "Disables the field and its interactive affordances."
+            ],
+            [
+              "readonly",
+              "ModelSignal<boolean>",
+              "false",
+              "Keeps the value visible while preventing user changes."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Shared field density token."],
+            [
+              "name",
+              "InputSignal<string>",
+              "''",
+              "HTML form name used by the field wrapper and native control wiring."
+            ],
+            [
+              "id",
+              "ModelSignal<string | number>",
+              "auto-generated",
+              "Control id used to connect label, help text, and error messaging."
+            ],
+            [
+              "autocomplete",
+              "InputSignal<string | null>",
+              "null",
+              "Inherited autocomplete hint for native form compatibility."
+            ],
+            [
+              "showClearButton",
+              "InputSignal<boolean>",
+              "true",
+              "Inherited shared-field clear-button flag when supported by the concrete control."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "''",
+              "Overrides the accessible name when no visible label is appropriate."
+            ],
+            [
+              "ariaDescribedBy",
+              "InputSignal<string>",
+              "''",
+              "Appends extra descriptive ids to the computed `aria-describedby` value."
+            ],
+            [
+              "autoValidation",
+              "InputSignal<boolean>",
+              "true",
+              "Enables inherited automatic validation error handling from `FieldComponent`."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "change",
+              "OutputRef<any>",
+              "Emitted after committed value changes, including keyboard and pointer updates."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "focus",
+              "OutputEmitterRef<FocusEvent>",
+              "Inherited focus event from `FieldComponent`."
+            ],
+            ["blur", "OutputEmitterRef<FocusEvent>", "Inherited blur event from `FieldComponent`."],
+            [
+              "keyup",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-up event from `FieldComponent`."
+            ],
+            [
+              "keydown",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-down event from `FieldComponent`."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "The component implements <code class=\"showcase-doc__api-code\">ControlValueAccessor</code>, so it works with <code class=\"showcase-doc__api-code\">ngModel</code> and Angular reactive forms.",
+            "Keyboard support includes arrow keys for step changes, Page Up and Page Down for larger jumps, and Home and End for min and max."
+          ],
+          "title": "Notes"
+        },
+        {
+          "type": "list",
+          "title": "Related mechanisms",
+          "items": [
+            "<code>FieldComponent</code> - shared base handling labels, helper and error text, aria wiring, and validation synchronization.",
+            "Native range input - provides the underlying interaction model and keyboard semantics."
+          ]
+        }
+      ]
+    }
+  ]
+}

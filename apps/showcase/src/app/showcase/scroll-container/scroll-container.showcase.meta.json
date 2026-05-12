@@ -1,0 +1,243 @@
+{
+  "slug": "scroll-container",
+  "title": "Scroll Container",
+  "description": "Scroll Container renders progressively loaded lists with built-in infinite scrolling, optional node-based rows, custom templates, selection, load events, and programmatic control.",
+  "intro": "Use `ui-scroll-container` for activity feeds, inboxes, logs, lists inside drawers, and any surface where users should be able to scroll through progressively loaded items without paging away.",
+  "importCode": "import { ScrollContainerComponent, type ScrollContainerDataSource } from 'ui';",
+  "containerClass": "scroll-container-doc",
+  "snippets": {
+    "basicCode": "scroll-container-basic-demo.ts",
+    "selectionCode": "scroll-container-selection-demo.ts",
+    "customTemplateCode": "scroll-container-custom-template-demo.ts",
+    "programmaticCode": "scroll-container-programmatic-demo.ts",
+    "eventsCode": "scroll-container-events-demo.ts",
+    "inboxPanelCode": "scroll-container-inbox-panel-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic infinite list",
+      "description": "The baseline pattern is a progressively loaded list of rows backed by a data source function. This is the main reason the component exists.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "selection",
+      "title": "Selectable rows",
+      "description": "Selection indicators work well for inboxes, task queues, and side lists where the current row should remain visually obvious.",
+      "codeKey": "selectionCode",
+      "componentKey": "selection"
+    },
+    {
+      "id": "custom-template",
+      "title": "Custom row template",
+      "description": "Switch to a custom template when each list item needs richer metadata than a plain node row, but keep the row compact enough to preserve scan speed.",
+      "codeKey": "customTemplateCode",
+      "componentKey": "customTemplate"
+    },
+    {
+      "id": "programmatic",
+      "title": "Programmatic control",
+      "description": "Imperative methods such as refresh and scroll-to-edge are useful when the list responds to toolbar actions, shell state changes, or external filters.",
+      "codeKey": "programmaticCode",
+      "componentKey": "programmatic"
+    },
+    {
+      "id": "events",
+      "title": "Load lifecycle events",
+      "description": "Load events help coordinate analytics, completion feedback, or outer-shell state when the container reaches the end of available data.",
+      "codeKey": "eventsCode",
+      "componentKey": "events"
+    },
+    {
+      "id": "inbox-panel",
+      "title": "Inbox or activity panel composition",
+      "description": "A realistic scroll container usually lives inside a denser panel with search, status, and compact actions rather than as an isolated list.",
+      "codeKey": "inboxPanelCode",
+      "componentKey": "inboxPanel"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Scrollable region semantics",
+      "body": "`ui-scroll-container` delegates the scrollable shell to `ui-scroll-panel` and exposes an accessible label for the scroll region through `ariaLabel`. Provide a more specific label when the default text is not enough for the surrounding screen."
+    },
+    {
+      "title": "Keyboard behavior",
+      "body": "Keyboard behavior depends on the rendered row content.\n\n| Key | Action |\n| --- | --- |\n| Tab / Shift+Tab | Move focus into interactive rows or controls inside the scroll region. |\n| Arrow keys / Page keys | Follow the browser and inner control behavior for scrolling and focused rows. |\n| Enter / Space | Activate the focused row when rows are rendered as interactive `ui-node` buttons or custom controls. |"
+    },
+    {
+      "title": "Custom templates and row meaning",
+      "body": "When you replace the default node rendering with a custom template, preserve a clear row structure and accessible interactive targets. If a custom row becomes clickable, make sure that behavior remains discoverable and keyboard reachable."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "ScrollContainerComponent - <code>ui-scroll-container</code>",
+      "lead": "Standalone progressively loaded list component built on top of `ui-scroll-panel`. It can render items as `ui-node` rows or through a custom template and exposes load lifecycle events plus imperative scrolling methods.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "dataSource",
+              "InputSignal<ScrollContainerDataSource<T>>",
+              "-",
+              "Paged data source function returning a query result observable."
+            ],
+            ["pageSize", "InputSignal<number>", "20", "Number of items requested per page."],
+            [
+              "initialPage",
+              "InputSignal<number>",
+              "1",
+              "Initial page index used during first load."
+            ],
+            [
+              "itemTemplate",
+              "InputSignal<TemplateRef<unknown> | null>",
+              "null",
+              "Optional custom row template."
+            ],
+            [
+              "emptyTemplate",
+              "InputSignal<TemplateRef<unknown> | null>",
+              "null",
+              "Optional custom empty state template."
+            ],
+            [
+              "useNodeComponent",
+              "InputSignal<boolean>",
+              "true",
+              "Whether rows should render as `ui-node` by default."
+            ],
+            [
+              "nodeMapper",
+              "InputSignal<((item: T) => Node | null) | null>",
+              "null",
+              "Maps a raw item to a node row definition."
+            ],
+            [
+              "orientation",
+              "InputSignal<ScrollPanelOrientation>",
+              "'vertical'",
+              "Scroll direction passed to the underlying scroll panel."
+            ],
+            [
+              "scrollbarBehavior",
+              "InputSignal<ScrollPanelBehavior>",
+              "'auto'",
+              "Scrollbar visibility behavior."
+            ],
+            [
+              "maxHeight / maxWidth",
+              "InputSignal<string>",
+              "'100%'",
+              "Size constraints of the scroll region."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "''",
+              "Accessible label for the scrollable region."
+            ],
+            ["nodeSize", "InputSignal<Size>", "'medium'", "Size passed to rendered node rows."],
+            [
+              "showSelectionIndicator",
+              "InputSignal<boolean>",
+              "false",
+              "Whether selected rows show a selection indicator."
+            ],
+            [
+              "indicatorPosition",
+              "InputSignal<'horizontal' | 'vertical'>",
+              "'horizontal'",
+              "Selection indicator placement for node rows."
+            ],
+            [
+              "appearance",
+              "InputSignal<Appearance>",
+              "'subtle'",
+              "Appearance passed to node rows."
+            ],
+            ["shape", "InputSignal<Shape>", "'rounded'", "Shape passed to node rows."],
+            [
+              "asButton",
+              "InputSignal<boolean>",
+              "false",
+              "Renders node rows with button semantics."
+            ],
+            [
+              "selectOnClick",
+              "InputSignal<boolean>",
+              "true",
+              "Whether node rows emit selection on click."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "itemClick",
+              "OutputEmitterRef<{ item, node }>",
+              "Emits when a rendered node row is clicked."
+            ],
+            [
+              "itemSelect",
+              "OutputEmitterRef<{ item, node }>",
+              "Emits when a rendered node row becomes selected."
+            ],
+            [
+              "loadMore",
+              "OutputEmitterRef<{ page, items }>",
+              "Emits after each successful page load."
+            ],
+            [
+              "loadComplete",
+              "OutputEmitterRef<void>",
+              "Emits when the container reaches the last page."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Methods",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            ["scrollToTop()", "method", "Scrolls the inner panel to the top."],
+            ["scrollToBottom()", "method", "Scrolls the inner panel to the bottom."],
+            ["refresh()", "method", "Clears current items and reloads from the initial page."]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Models",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "ScrollContainerDataSource<T>",
+              "(page, pageSize) => Observable<QueryResult<T>>",
+              "Paged data source contract used by the component."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "Keep custom row templates dense and scannable. If a row turns into a complex card, users lose the benefit of smooth progressive scrolling.",
+            "Use imperative methods sparingly. Most list refreshes should still come from data changes or surrounding shell actions, not from arbitrary manual resets."
+          ],
+          "title": "Notes"
+        }
+      ]
+    }
+  ]
+}

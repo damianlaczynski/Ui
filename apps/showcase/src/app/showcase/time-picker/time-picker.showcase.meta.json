@@ -1,0 +1,179 @@
+{
+  "slug": "time-picker",
+  "title": "Time Picker",
+  "description": "Time Picker is a standalone wheel-based selector for hours and minutes. It supports 24 hour and 12 hour presentation, minute step intervals, size variants, inline layout, labels, and disabled state.",
+  "intro": "Use `ui-time-picker` when you need the time selection primitive directly, outside of the shared field wrapper. It works well in drawers, scheduling panels, compact operational rows, and custom overlays where a full `ui-time` field would add unnecessary chrome.",
+  "importCode": "import { TimePickerComponent } from 'ui';",
+  "containerClass": "time-picker-doc",
+  "snippets": {
+    "basicCode": "time-picker-basic-demo.ts",
+    "formatStepCode": "time-picker-format-step-demo.ts",
+    "sizeLayoutCode": "time-picker-size-layout-demo.ts",
+    "statesCode": "time-picker-states-demo.ts",
+    "inlineScheduleCode": "time-picker-inline-schedule-demo.ts",
+    "schedulingPanelCode": "time-picker-scheduling-panel-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic wheel selection",
+      "description": "The basic picker exposes two wheels and emits a normalized `HH:mm` string. This is the right baseline when the surrounding layout already provides context for what the time means.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "format-step",
+      "title": "Minute step and 12h or 24h format",
+      "description": "Step intervals control how operational the picker feels, while 12 hour mode adds explicit AM or PM choice. Show both together because they are usually configured as one product decision.",
+      "codeKey": "formatStepCode",
+      "componentKey": "formatStep"
+    },
+    {
+      "id": "size-layout",
+      "title": "Size and inline layout",
+      "description": "Use size to match surrounding density and inline mode when the picker has to live inside tighter rows, tool panels, or compact embedded surfaces.",
+      "codeKey": "sizeLayoutCode",
+      "componentKey": "sizeLayout"
+    },
+    {
+      "id": "states",
+      "title": "Disabled and preset states",
+      "description": "State handling matters more than chrome in real use. Show disabled and prefilled variants clearly so teams understand how the picker behaves when a slot is locked or inherited from workflow defaults.",
+      "codeKey": "statesCode",
+      "componentKey": "states"
+    },
+    {
+      "id": "inline-schedule",
+      "title": "Inline schedule row",
+      "description": "A good standalone picker example should show it in a compact operational row rather than only as an isolated widget. Inline start and end slots are a common real pattern.",
+      "codeKey": "inlineScheduleCode",
+      "componentKey": "inlineSchedule"
+    },
+    {
+      "id": "scheduling-panel",
+      "title": "Scheduling panel composition",
+      "description": "More advanced examples should combine the picker with status context, actions, and supporting details. This is closer to how product teams actually embed standalone time selection.",
+      "codeKey": "schedulingPanelCode",
+      "componentKey": "schedulingPanel"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Wheel and option semantics",
+      "body": "`ui-time-picker` renders separate hour and minute listboxes with option buttons, plus an AM or PM radio group in 12 hour mode.\n\n| Part | Semantics |\n| --- | --- |\n| hour wheel | `role=\"listbox\"` with option buttons |\n| minute wheel | `role=\"listbox\"` with option buttons |\n| 12 hour selector | radio button group for `AM` or `PM` |\n| disabled state | wheels and meridiem controls become non-interactive |"
+    },
+    {
+      "title": "Keyboard",
+      "body": "Keyboard support follows the wheel interaction model.\n\n| Key | Action |\n| --- | --- |\n| `Tab` / `Shift+Tab` | moves between hour wheel, minute wheel, and AM or PM group when present |\n| `ArrowUp` / `ArrowDown` | moves by one option in the focused wheel |\n| `PageUp` / `PageDown` | jumps by larger increments in the focused wheel |\n| click or button activation | selects a visible option from the wheel |"
+    },
+    {
+      "title": "Labels and context",
+      "body": "Because this component is often embedded directly into custom panels, give it surrounding context. Use `showLabel` and `label` when the picker stands on its own, or place it near explicit section text so screen reader users understand whether the slot controls a start time, end time, handoff, or deadline."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "TimePickerComponent - <code>ui-time-picker</code>",
+      "lead": "Standalone wheel-based time selector for direct embedding inside custom layouts, drawers, dialogs, and composite scheduling surfaces.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "value",
+              "InputSignal<string>",
+              "''",
+              "Normalized selected time string such as `09:30`."
+            ],
+            [
+              "step",
+              "InputSignal<number | string>",
+              "''",
+              "Minute or second step used to build the minute wheel cadence."
+            ],
+            [
+              "size",
+              "InputSignal<'small' | 'medium' | 'large'>",
+              "'medium'",
+              "Density token for wheel height and option size."
+            ],
+            [
+              "use24HourFormat",
+              "InputSignal<boolean>",
+              "true",
+              "Switches between 24 hour and 12 hour presentation."
+            ],
+            [
+              "inline",
+              "InputSignal<boolean>",
+              "false",
+              "Reduces surrounding chrome for denser embedded layouts."
+            ],
+            [
+              "showLabel",
+              "InputSignal<boolean>",
+              "false",
+              "Shows a visible label above or beside the picker layout."
+            ],
+            [
+              "label",
+              "InputSignal<string>",
+              "'Time'",
+              "Visible label text when `showLabel` is enabled."
+            ],
+            [
+              "disabled",
+              "InputSignal<boolean>",
+              "false",
+              "Disables wheel and meridiem interaction."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "timeChange",
+              "OutputEmitterRef<string>",
+              "Emits the normalized `HH:mm` value after wheel or meridiem selection."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Behavior notes",
+          "columns": ["Topic", "Description"],
+          "columnKinds": ["code", "text"],
+          "rows": [
+            [
+              "minute wheel",
+              "Generated from the resolved step cadence, normalized to the nearest available option."
+            ],
+            [
+              "12 hour mode",
+              "Keeps stored values normalized as 24 hour `HH:mm` while presenting `AM` or `PM` in the UI."
+            ],
+            [
+              "drag and wheel input",
+              "Supports pointer dragging, mouse wheel, click selection, and keyboard navigation on each wheel."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "title": "Notes",
+          "paragraphs": [
+            "Use `ui-time-picker` directly when the page already provides its own form framing or when a wheel-based embedded picker is the intended interaction.",
+            "If you need a shared field shell, validation, helper text, and mobile-native fallback, prefer `ui-time` instead of wiring those pieces manually around this primitive."
+          ]
+        }
+      ]
+    }
+  ]
+}

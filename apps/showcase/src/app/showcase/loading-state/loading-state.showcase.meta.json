@@ -1,0 +1,142 @@
+{
+  "slug": "loading-state",
+  "title": "Loading State",
+  "description": "Loading State communicates ongoing work during asynchronous operations. It supports inline loading, richer messaging, overlay modes, fullscreen blocking states, and projected custom content.",
+  "intro": "Use `ui-loading-state` when users need feedback that work is in progress. Choose the lightest pattern that still explains the delay: inline when content is not yet present, overlay when existing content is being refreshed, and fullscreen only for blocking transitions.",
+  "importCode": "import { LoadingStateComponent } from 'ui';",
+  "containerClass": "loading-state-doc",
+  "snippets": {
+    "basicCode": "loading-state-basic-demo.ts",
+    "messagingCode": "loading-state-messaging-demo.ts",
+    "customContentCode": "loading-state-custom-content-demo.ts",
+    "cardOverlayCode": "loading-state-card-overlay-demo.ts",
+    "listOverlayCode": "loading-state-list-overlay-demo.ts",
+    "fullscreenCode": "loading-state-fullscreen-demo.ts",
+    "panelLayoutCode": "loading-state-panel-layout-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic inline loading",
+      "description": "The simplest pattern is an inline loading state used before content exists or when a small section waits on data.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "messaging",
+      "title": "Loading messages and scale",
+      "description": "Titles, descriptions, and size changes help match the tone of short refreshes versus more substantial waits.",
+      "codeKey": "messagingCode",
+      "componentKey": "messaging"
+    },
+    {
+      "id": "custom-content",
+      "title": "Custom projected progress content",
+      "description": "Projected content is useful for richer setup flows or multi-step initialization where a plain spinner is not enough.",
+      "codeKey": "customContentCode",
+      "componentKey": "customContent"
+    },
+    {
+      "id": "card-overlay",
+      "title": "Overlay on existing card content",
+      "description": "Overlay mode works well when content already exists but is temporarily refreshing. Blur helps shift attention to the loading message.",
+      "codeKey": "cardOverlayCode",
+      "componentKey": "cardOverlay"
+    },
+    {
+      "id": "list-overlay",
+      "title": "Overlay on dense lists or records",
+      "description": "For tables and lists, a lighter overlay can preserve context while still communicating that the section is updating.",
+      "codeKey": "listOverlayCode",
+      "componentKey": "listOverlay"
+    },
+    {
+      "id": "fullscreen",
+      "title": "Fullscreen blocking transitions",
+      "description": "Fullscreen loading should be reserved for app-level or route-level transitions where the whole interface is temporarily unavailable.",
+      "codeKey": "fullscreenCode",
+      "componentKey": "fullscreen"
+    },
+    {
+      "id": "panel-layout",
+      "title": "Embedded panel or dashboard layout",
+      "description": "In real products, loading states usually sit inside richer shells with search, messages, and content blocks rather than on a blank surface.",
+      "codeKey": "panelLayoutCode",
+      "componentKey": "panelLayout"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Status communication",
+      "body": "A loading state should clearly communicate that work is in progress and, when possible, what is being loaded or updated. Short messages are usually better than generic filler."
+    },
+    {
+      "title": "Overlay behavior",
+      "body": "When overlay mode is used, ensure the surrounding experience still makes sense for keyboard and screen-reader users.\n\n| Mode | Guidance |\n| --- | --- |\n| Inline loading | Use when content has not appeared yet. |\n| Container overlay | Use when existing content is refreshing and context should remain visible. |\n| Fullscreen overlay | Reserve for blocking transitions that truly affect the whole page. |"
+    },
+    {
+      "title": "Custom projected content",
+      "body": "Projected content should add useful status context such as setup steps or progress, not duplicate the same message with more noise."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "LoadingStateComponent - <code>ui-loading-state</code>",
+      "lead": "Standalone loading feedback component for inline, overlay, and fullscreen loading scenarios. It supports messaging, spinner scaling, optional blur, and projected custom content.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            ["title", "InputSignal<string>", "''", "Optional loading title."],
+            ["description", "InputSignal<string>", "''", "Optional supporting loading message."],
+            ["size", "InputSignal<Size>", "'medium'", "Overall scale of the loading state."],
+            ["spinnerSize", "InputSignal<Size>", "'medium'", "Spinner scale."],
+            ["overlay", "InputSignal<boolean>", "false", "Enables overlay mode."],
+            [
+              "blurContent",
+              "InputSignal<boolean>",
+              "true",
+              "Blurs underlying content while overlaying."
+            ],
+            [
+              "fullScreen",
+              "InputSignal<boolean>",
+              "false",
+              "Expands overlay mode to the full viewport."
+            ],
+            [
+              "isLoading",
+              "InputSignal<boolean>",
+              "false",
+              "Controls whether a non-fullscreen overlay is currently shown."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Projected content",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "content",
+              "content child `TemplateRef<any>`",
+              "Optional projected content rendered under the main loading message."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "Choose the lightest possible loading pattern. Inline and container overlays are usually preferable to fullscreen loading.",
+            "If the wait is frequent or long, refine the loading copy and surrounding experience rather than relying on a generic spinner alone."
+          ],
+          "title": "Notes"
+        }
+      ]
+    }
+  ]
+}

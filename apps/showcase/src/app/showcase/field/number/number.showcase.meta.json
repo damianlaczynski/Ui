@@ -1,0 +1,264 @@
+{
+  "slug": "number",
+  "title": "Number",
+  "description": "Number provides numeric text entry with min, max, and step constraints on top of the shared field system, making it suitable for quantities, pricing, bounded values, and small calculation flows.",
+  "intro": "Use `ui-number` for quantities, currency-like inputs, percentages, rates, and other numeric values that benefit from browser-native number input behavior plus your shared field styling and validation patterns.",
+  "importCode": "import { NumberComponent } from 'ui';",
+  "containerClass": "number-doc",
+  "snippets": {
+    "basicCode": "number-basic-demo.ts",
+    "stepRangesCode": "number-step-ranges-demo.ts",
+    "sizeVariantCode": "number-size-variant-demo.ts",
+    "statesValidationCode": "number-states-validation-demo.ts",
+    "budgetFormCode": "number-budget-form-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic numeric inputs",
+      "description": "The simplest use cases are counts and decimal values. This is the right baseline for seats, quantities, totals, or pricing fields.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "step-ranges",
+      "title": "Min, max, and step ranges",
+      "description": "Range constraints and step increments are the most important behavior differences between a plain text field and a dedicated number field.",
+      "codeKey": "stepRangesCode",
+      "componentKey": "stepRanges"
+    },
+    {
+      "id": "size-variant",
+      "title": "Size and input variant",
+      "description": "Size and visual variant help the same numeric field fit dense tables, standard forms, or more prominent pricing and configuration surfaces.",
+      "codeKey": "sizeVariantCode",
+      "componentKey": "sizeVariant"
+    },
+    {
+      "id": "states-validation",
+      "title": "States and validation",
+      "description": "Readonly, disabled, required, and error states matter just as much as numeric constraints when the field participates in real forms.",
+      "codeKey": "statesValidationCode",
+      "componentKey": "statesValidation"
+    },
+    {
+      "id": "budget-form",
+      "title": "Budget or estimate form",
+      "description": "A realistic numeric form usually combines multiple fields that contribute to a derived total, estimate, or threshold rather than standing alone.",
+      "codeKey": "budgetFormCode",
+      "componentKey": "budgetForm"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Label and description",
+      "body": "`ui-number` inherits the shared field labeling model. Use the visible label as the primary accessible name and reserve `ariaLabel` for exceptional cases where no visible label exists."
+    },
+    {
+      "title": "Keyboard behavior",
+      "body": "Keyboard behavior largely follows the native number input.\n\n| Key | Action |\n| --- | --- |\n| Tab / Shift+Tab | Moves focus to or from the input. |\n| ArrowUp / ArrowDown | May increment or decrement the native number input depending on browser behavior. |\n| Enter | Follows the surrounding form behavior rather than a custom component action. |"
+    },
+    {
+      "title": "Validation and constraints",
+      "body": "When you use `min`, `max`, and `step`, keep the visible help text or validation feedback aligned with those constraints so users understand why a value was clamped or rejected."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "NumberComponent - <code>ui-number</code>",
+      "lead": "Standalone numeric field component built on top of the shared field primitive. It adds numeric parsing plus `step`, `min`, and `max` constraints while keeping the same form and validation integration as other field components.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "name / id / autocomplete",
+              "InputSignal<string | null>",
+              "'' / generated / null",
+              "Native form and browser autofill wiring."
+            ],
+            [
+              "step",
+              "InputSignal<number | string>",
+              "1",
+              "Numeric increment size exposed through the native `step` attribute."
+            ],
+            [
+              "min",
+              "InputSignal<number | undefined>",
+              "undefined",
+              "Minimum allowed numeric value."
+            ],
+            [
+              "max",
+              "InputSignal<number | undefined>",
+              "undefined",
+              "Maximum allowed numeric value."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "inputVariant",
+              "InputSignal<InputVariant>",
+              "'filled'",
+              "Shared field surface token inherited from `FieldComponent`."
+            ],
+            [
+              "label",
+              "InputSignal<string>",
+              "''",
+              "Visible field label inherited from `FieldComponent`."
+            ],
+            [
+              "labelPosition",
+              "InputSignal<ContentPosition>",
+              "'above'",
+              "Controls where the field label is placed relative to the control."
+            ],
+            [
+              "placeholder",
+              "InputSignal<string>",
+              "''",
+              "Inherited shared-field placeholder input."
+            ],
+            [
+              "helpText",
+              "InputSignal<string>",
+              "''",
+              "Supporting helper text rendered below the field when there is no active error."
+            ],
+            [
+              "errorText",
+              "ModelSignal<string>",
+              "''",
+              "Validation or manual error message managed by the shared field base."
+            ],
+            ["required", "InputSignal<boolean>", "false", "Marks the field as required."],
+            [
+              "disabled",
+              "ModelSignal<boolean>",
+              "false",
+              "Disables the field and its interactive affordances."
+            ],
+            [
+              "readonly",
+              "ModelSignal<boolean>",
+              "false",
+              "Keeps the value visible while preventing user changes."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Shared field density token."],
+            [
+              "name",
+              "InputSignal<string>",
+              "''",
+              "HTML form name used by the field wrapper and native control wiring."
+            ],
+            [
+              "id",
+              "ModelSignal<string | number>",
+              "auto-generated",
+              "Control id used to connect label, help text, and error messaging."
+            ],
+            [
+              "autocomplete",
+              "InputSignal<string | null>",
+              "null",
+              "Inherited autocomplete hint for native form compatibility."
+            ],
+            [
+              "showClearButton",
+              "InputSignal<boolean>",
+              "true",
+              "Inherited shared-field clear-button flag when supported by the concrete control."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "''",
+              "Overrides the accessible name when no visible label is appropriate."
+            ],
+            [
+              "ariaDescribedBy",
+              "InputSignal<string>",
+              "''",
+              "Appends extra descriptive ids to the computed `aria-describedby` value."
+            ],
+            [
+              "autoValidation",
+              "InputSignal<boolean>",
+              "true",
+              "Enables inherited automatic validation error handling from `FieldComponent`."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [["change", "OutputEmitterRef<any>", "Emits when the numeric value changes."]]
+        },
+        {
+          "type": "table",
+          "title": "Methods",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "increment()",
+              "method",
+              "Increases the current value by `step` while respecting `max` and readonly/disabled state."
+            ],
+            [
+              "decrement()",
+              "method",
+              "Decreases the current value by `step` while respecting `min` and readonly/disabled state."
+            ],
+            ["clear()", "method", "Clears the current value through the shared field behavior."]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "focus",
+              "OutputEmitterRef<FocusEvent>",
+              "Inherited focus event from `FieldComponent`."
+            ],
+            ["blur", "OutputEmitterRef<FocusEvent>", "Inherited blur event from `FieldComponent`."],
+            [
+              "keyup",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-up event from `FieldComponent`."
+            ],
+            [
+              "keydown",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-down event from `FieldComponent`."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "The component inherits its general field behavior from the shared field base, so form integration, validation, and common field styling work the same way as for text, email, or password.",
+            "Use `ui-number` only for real numeric values. If the value is an identifier such as an account number or phone-like string, a text-oriented field is usually safer."
+          ],
+          "title": "Notes"
+        }
+      ]
+    }
+  ]
+}

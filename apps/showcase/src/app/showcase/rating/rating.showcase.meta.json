@@ -1,0 +1,155 @@
+{
+  "slug": "rating",
+  "title": "Rating",
+  "description": "Star control for collecting or displaying a score on a fixed scale. Use it for reviews, satisfaction steps, and read-only aggregates such as catalog averages.",
+  "intro": "Bind `value` and listen to `valueChange`, cap the scale with `max`, toggle `readOnly` when the score is informational, and use `showValue` when the numeric ratio should stay visible beside the stars. `ariaLabel` and the two formatter inputs localize copy without reimplementing the control.",
+  "importCode": "import { RatingComponent } from 'ui';",
+  "containerClass": "rating-doc",
+  "snippets": {
+    "basicCode": "rating-basic-demo.ts",
+    "sizesCode": "rating-sizes-states-demo.ts",
+    "scaleCode": "rating-scale-demo.ts",
+    "labelsCode": "rating-labels-demo.ts",
+    "listingCode": "rating-listing-snapshot-demo.ts",
+    "reviewCode": "rating-review-feedback-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Controlled value",
+      "description": "Treat the rating as a single choice on a fixed max. Keep `showValue` on when the denominator is not obvious from context.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "sizes-states",
+      "title": "Density and modes",
+      "description": "`size` aligns the star control with surrounding text. Read-only turns the group into non-interactive presentation; disabled blocks input but preserves layout.",
+      "codeKey": "sizesCode",
+      "componentKey": "sizes"
+    },
+    {
+      "id": "scale",
+      "title": "Scale and published scores",
+      "description": "Raise `max` for longer scales. Pair interactive tuning with a read-only row when you need both editing and aggregate display in one screen.",
+      "codeKey": "scaleCode",
+      "componentKey": "scale"
+    },
+    {
+      "id": "labels",
+      "title": "Names and formatters",
+      "description": "`ariaLabel` names the whole group for assistive tech. Override `starAriaLabelFormatter` and `currentValueAriaLabelFormatter` when defaults do not match your strings.",
+      "codeKey": "labelsCode",
+      "componentKey": "labels"
+    },
+    {
+      "id": "listing",
+      "title": "Listing row",
+      "description": "Compact read-only stars next to metadata and a primary action mirror how ratings appear in catalogs and templates.",
+      "codeKey": "listingCode",
+      "componentKey": "listing"
+    },
+    {
+      "id": "review",
+      "title": "Feedback form",
+      "description": "Combine stars with a textarea and actions so teams can paste a finished pattern instead of wiring isolated demos.",
+      "codeKey": "reviewCode",
+      "componentKey": "review"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Roles and states",
+      "body": "Interactive ratings expose `role=\"radiogroup\"` on the root with `aria-disabled` when needed. Stars are `role=\"radio\"` with `aria-checked` reflecting the filled state. Read-only mode uses `role=\"img\"` on the root with `aria-readonly=\"true\"` and static star nodes instead of buttons."
+    },
+    {
+      "title": "Names",
+      "body": "Set `ariaLabel` for the group when the visible heading alone is insufficient. Per-star labels come from `starAriaLabelFormatter` or i18n defaults. The group label uses `currentValueAriaLabelFormatter` or i18n unless `ariaLabel` is set."
+    },
+    {
+      "title": "Keyboard and focus",
+      "body": "Arrow keys move between stars, Home selects the first star, End the last, Space and Enter commit the focused star. A single star stays in the tab order at a time via `tabindex` so focus does not walk every glyph."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "RatingComponent - <code>ui-rating</code>",
+      "lead": "Standalone star rating. Binds with <code class=\"showcase-doc__api-code\">value</code> and <code class=\"showcase-doc__api-code\">valueChange</code>; defaults integrate with <code class=\"showcase-doc__api-code\">UiI18nService</code> for star and summary strings when you do not pass custom formatters.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "value",
+              "InputSignal<number>",
+              "0",
+              "Current rating; clamped between zero and <code class=\"showcase-doc__api-code\">max()</code>."
+            ],
+            ["max", "InputSignal<number>", "5", "Inclusive upper bound; length of the star strip."],
+            ["size", "InputSignal<Size>", "'medium'", "Visual scale of stars and hit targets."],
+            [
+              "readOnly",
+              "InputSignal<boolean>",
+              "false",
+              "Presentation-only; no hover commit or clicks."
+            ],
+            [
+              "disabled",
+              "InputSignal<boolean>",
+              "false",
+              "Disables buttons; keeps structure for layout."
+            ],
+            [
+              "showValue",
+              "InputSignal<boolean>",
+              "false",
+              "Shows <code class=\"showcase-doc__api-code\">displayValue / max</code> beside the stars."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "''",
+              "Explicit accessible name for the group; overrides formatter-based group label when non-empty."
+            ],
+            [
+              "starAriaLabelFormatter",
+              "InputSignal<(star: number, max: number) => string>",
+              "built-in",
+              "Per-star accessible name; defaults route through i18n when unchanged."
+            ],
+            [
+              "currentValueAriaLabelFormatter",
+              "InputSignal<(value: number, max: number) => string>",
+              "built-in",
+              "Group summary when <code class=\"showcase-doc__api-code\">ariaLabel</code> is empty; defaults route through i18n when unchanged."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "valueChange",
+              "OutputRef<number>",
+              "Emitted with the committed value after click or keyboard activation."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "Hover previews the prospective value in interactive mode; leaving the control restores the bound <code class=\"showcase-doc__api-code\">value</code>.",
+            "Values outside <code class=\"showcase-doc__api-code\">[0, max]</code> are normalized; non-finite numbers fall back to safe defaults."
+          ],
+          "title": "Notes"
+        }
+      ]
+    }
+  ]
+}

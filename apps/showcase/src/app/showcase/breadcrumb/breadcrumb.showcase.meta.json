@@ -1,0 +1,210 @@
+{
+  "slug": "breadcrumb",
+  "title": "Breadcrumb",
+  "description": "Breadcrumb shows the current location inside a hierarchy and lets users jump back to earlier levels. Use it for deep structures such as settings areas, content libraries, project workspaces, and nested admin tools.",
+  "intro": "Breadcrumb is a standalone navigation component driven by an array of items. It supports icons, semantic variant and appearance tokens, selected and disabled items, optional selection indicators, truncation for long labels, arrow-key focus mode, and overflow compression through an inline menu.",
+  "importCode": "import { BreadcrumbComponent } from 'ui';",
+  "containerClass": "breadcrumb-doc",
+  "snippets": {
+    "basicCode": "breadcrumb-basic-demo.ts",
+    "stylesCode": "breadcrumb-styles-demo.ts",
+    "statesCode": "breadcrumb-states-demo.ts",
+    "overflowCode": "breadcrumb-overflow-demo.ts",
+    "workspaceCode": "breadcrumb-workspace-demo.ts",
+    "headerCode": "breadcrumb-project-header-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic path navigation",
+      "description": "Breadcrumb should expose the current location with a short, readable path. The last item represents the current page, while earlier items stay actionable so users can move upward quickly.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "styles",
+      "title": "Appearance, variant, and icons",
+      "description": "Use subtle styling for most page chrome, then adjust variant or appearance only when the breadcrumb sits in a colored or elevated surface. Icons can help scanning, but they are optional and should not replace meaningful labels.",
+      "codeKey": "stylesCode",
+      "componentKey": "styles"
+    },
+    {
+      "id": "states",
+      "title": "Selected, disabled, and indicators",
+      "description": "Selected items identify the current location and disabled items communicate unavailable jumps. Optional indicators can reinforce the current step when the breadcrumb is visually prominent.",
+      "codeKey": "statesCode",
+      "componentKey": "states"
+    },
+    {
+      "id": "overflow",
+      "title": "Overflow menu, truncation, and focus mode",
+      "description": "At least one breadcrumb pattern should show how middle items collapse into an overflow menu. Then layer truncation and arrow focus mode on top for tighter containers where labels also need shortening.",
+      "codeKey": "overflowCode",
+      "componentKey": "overflow"
+    },
+    {
+      "id": "workspace",
+      "title": "Workspace navigation pattern",
+      "description": "A realistic breadcrumb usually lives inside a product shell with deeper information architecture. This pattern shows how it works in a file or workspace context rather than as a loose row of links.",
+      "codeKey": "workspaceCode",
+      "componentKey": "workspace"
+    },
+    {
+      "id": "header",
+      "title": "Project header composition",
+      "description": "More advanced examples should combine multiple components into a ready-to-adapt header. This pairs breadcrumb navigation with metadata and primary actions so the pattern is directly reusable.",
+      "codeKey": "headerCode",
+      "componentKey": "header"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Navigation landmark",
+      "body": "The component renders a `nav` with an aria label. Keep that label specific when several navigation landmarks exist on the same page.\n\n| Element | Behavior |\n| --- | --- |\n| root container | `nav` landmark |\n| `ariaLabel` | labels the landmark |\n| current item | exposed within the same navigation path |"
+    },
+    {
+      "title": "Keyboard",
+      "body": "Use the default tab model unless roving arrow focus solves a real product need.\n\n| Focus mode | Keys |\n| --- | --- |\n| `tab` | normal `Tab` order across interactive items |\n| `arrow` | `ArrowLeft`, `ArrowRight`, `Home`, `End` |\n| overflow menu | follows the menu component keyboard model |"
+    },
+    {
+      "title": "Current page, disabled items, and overflow",
+      "body": "Selected items render with `aria-current=\"page\"` so assistive technology can identify the current location in the path. Disabled items stay visible for orientation but should not behave like active navigation targets.\n\n| State | Attribute / behavior |\n| --- | --- |\n| current page | `aria-current=\"page\"` |\n| disabled item | non-interactive presentation |\n| overflowed middle items | moved into an inline menu |"
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "BreadcrumbComponent - <code>ui-breadcrumb</code>",
+      "lead": "Standalone hierarchical navigation surface. It renders breadcrumb items, handles current and disabled states, compresses long paths into an overflow menu, and optionally truncates long labels with tooltips.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "items",
+              "InputSignal<Breadcrumb[]>",
+              "required",
+              "Ordered path items from root to current location."
+            ],
+            [
+              "showIcons",
+              "InputSignal<boolean>",
+              "true",
+              "Shows item icons when an item provides `icon`."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "'Breadcrumb'",
+              "Accessible label for the navigation landmark."
+            ],
+            [
+              "size",
+              "InputSignal<Size>",
+              "'medium'",
+              "Density token for item spacing and icon sizing."
+            ],
+            [
+              "variant",
+              "InputSignal<Variant>",
+              "'primary'",
+              "Semantic token used when an item does not override its own variant."
+            ],
+            [
+              "appearance",
+              "InputSignal<Appearance>",
+              "'transparent'",
+              "Surface style used when an item does not override its own appearance."
+            ],
+            ["shape", "InputSignal<Shape>", "'rounded'", "Shape token for breadcrumb item chrome."],
+            [
+              "showSelectionIndicator",
+              "InputSignal<boolean>",
+              "false",
+              "Shows an indicator on selected items."
+            ],
+            [
+              "indicatorPosition",
+              "InputSignal<Orientation>",
+              "'horizontal'",
+              "Controls whether the selected indicator is horizontal or vertical."
+            ],
+            [
+              "selectOnClick",
+              "InputSignal<boolean>",
+              "false",
+              "Reserved selection behavior flag exposed by the component API."
+            ],
+            [
+              "showQuickActions",
+              "InputSignal<boolean>",
+              "false",
+              "Reserved quick-action visibility flag exposed by the component API."
+            ],
+            [
+              "quickActionsTemplate",
+              "InputSignal<TemplateRef<any> | null>",
+              "null",
+              "Reserved quick-actions template hook."
+            ],
+            [
+              "focusMode",
+              "InputSignal<'tab' | 'arrow'>",
+              "'tab'",
+              "Uses normal tab stops or roving arrow-key navigation."
+            ],
+            [
+              "truncateLength",
+              "InputSignal<number | null>",
+              "null",
+              "Truncates long labels and exposes the full text through a tooltip when set."
+            ],
+            [
+              "maxDisplayedItems",
+              "InputSignal<number | null>",
+              "null",
+              "Upper bound for visible items before overflow compression is applied."
+            ],
+            [
+              "responsiveOverflow",
+              "InputSignal<boolean>",
+              "true",
+              "Automatically computes how many items fit in the available width."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "itemClick",
+              "OutputRef<Breadcrumb>",
+              "Emitted when an interactive breadcrumb item or overflow menu item is activated."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "When overflow is active, middle items move into an inline menu while the start and end of the path remain visible.",
+            "Selected and disabled items are rendered as non-button text nodes, while regular ancestors are rendered as buttons."
+          ],
+          "title": "Notes"
+        },
+        {
+          "type": "list",
+          "title": "Related mechanisms",
+          "items": [
+            "<code>TooltipDirective</code> - used internally to expose full truncated labels.",
+            "<code>MenuComponent</code> - powers the overflow menu for compressed paths."
+          ]
+        }
+      ]
+    }
+  ]
+}

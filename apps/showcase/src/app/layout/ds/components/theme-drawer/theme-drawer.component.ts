@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { ThemeBuilderService } from '@shared/theme/theme-builder.service';
 import { ThemeService, ThemeVariant } from '@shared/theme/theme.service';
 import { ColorComponent, SliderComponent, DrawerComponent, IconComponent } from 'ui';
-import type { QuickAction } from 'ui';
+import type { DrawerType, QuickAction } from 'ui';
 
 @Component({
   selector: 'app-theme-drawer',
@@ -22,7 +22,9 @@ import type { QuickAction } from 'ui';
   styleUrls: ['./theme-drawer.component.scss'],
 })
 export class ThemeDrawerComponent {
-  readonly isMobile = input<boolean>(false);
+  readonly appearanceInDrawer = input<boolean>(false);
+  readonly drawerType = input<DrawerType>('inline');
+  readonly drawerSize = input<'small' | 'medium' | 'large'>('medium');
   @ViewChild('fileInput') fileInput?: ElementRef<HTMLInputElement>;
 
   private themeBuilder = inject(ThemeBuilderService);

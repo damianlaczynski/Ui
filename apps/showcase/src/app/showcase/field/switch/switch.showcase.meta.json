@@ -1,0 +1,235 @@
+{
+  "slug": "switch",
+  "title": "Switch",
+  "description": "Switch is a binary control for immediate on and off decisions such as notifications, feature flags, and account preferences. Use it for settings that take effect as a single boolean choice rather than multi-step selection.",
+  "intro": "Switch builds on the shared field foundation, so it supports labels, helper and error text, validation hooks, disabled and readonly states, and Angular forms integration. It keeps the interaction model close to a native checkbox while presenting a Fluent-style toggle surface.",
+  "importCode": "import { SwitchComponent } from 'ui';",
+  "containerClass": "switch-doc",
+  "snippets": {
+    "basicCode": "switch-basic-demo.ts",
+    "positionsCode": "switch-label-positions-demo.ts",
+    "sizesStatesCode": "switch-sizes-states-demo.ts",
+    "validationCode": "switch-helper-validation-demo.ts",
+    "preferencesCode": "switch-preferences-form-demo.ts",
+    "notificationPanelCode": "switch-notification-panel-demo.ts"
+  },
+  "featureSections": [
+    {
+      "id": "basic",
+      "title": "Basic toggles",
+      "description": "Use switches for simple binary settings with labels that clearly communicate the enabled state. Users should understand the effect without opening extra help or confirmation flows.",
+      "codeKey": "basicCode",
+      "componentKey": "basic"
+    },
+    {
+      "id": "label-positions",
+      "title": "Label positions",
+      "description": "The shared field wrapper supports labels around the control or no visible label at all. When the label is hidden, provide `ariaLabel` so the switch still has an accessible name.",
+      "codeKey": "positionsCode",
+      "componentKey": "positions"
+    },
+    {
+      "id": "sizes-states",
+      "title": "Sizes and states",
+      "description": "Use size to match the surrounding density, then apply disabled or readonly only when the distinction is meaningful. The control should still read as a calm setting, not as a call to action.",
+      "codeKey": "sizesStatesCode",
+      "componentKey": "sizesStates"
+    },
+    {
+      "id": "helper-validation",
+      "title": "Helper text and validation",
+      "description": "Helper text can explain the consequence of enabling a setting, while error text is appropriate only when the switch is part of a requirement or gating flow.",
+      "codeKey": "validationCode",
+      "componentKey": "validation"
+    },
+    {
+      "id": "preferences-form",
+      "title": "Preferences form",
+      "description": "Switches often appear as a grouped settings form rather than isolated toggles. Show them in realistic combinations so users can copy a complete pattern instead of reconstructing one later.",
+      "codeKey": "preferencesCode",
+      "componentKey": "preferences"
+    },
+    {
+      "id": "notification-panel",
+      "title": "Notification control panel",
+      "description": "More advanced examples should combine multiple components and reflect actual product surfaces. This pattern mixes switches with a slider and actions to form a ready-to-adapt settings panel.",
+      "codeKey": "notificationPanelCode",
+      "componentKey": "notificationPanel"
+    }
+  ],
+  "accessibility": [
+    {
+      "title": "Accessible name",
+      "body": "The inner checkbox uses `ariaLabel` when provided and otherwise falls back to the visible `label`. If you render the switch with `labelPosition=\"none\"`, provide an explicit accessible name.\n\n| Source | Accessible name |\n| --- | --- |\n| `ariaLabel` | explicit accessible name |\n| visible `label` | default fallback |\n| no label + no `ariaLabel` | avoid this state |"
+    },
+    {
+      "title": "Keyboard and role",
+      "body": "Because the control is backed by a native checkbox input, standard keyboard behavior applies while the UI stays visually switch-like.\n\n| Key | Action |\n| --- | --- |\n| `Tab` | moves focus to or from the switch |\n| `Space` | toggles checked state when interactive |\n\n| State | Attribute |\n| --- | --- |\n| on / off | native checkbox checked state |\n| disabled | native `disabled` |\n| required | native `required` |"
+    },
+    {
+      "title": "Descriptions and errors",
+      "body": "Helper text and error text are wired into `aria-describedby` through the shared field wrapper. When an error is present, it becomes the active description and helper text is suppressed."
+    }
+  ],
+  "apiSections": [
+    {
+      "title": "SwitchComponent - <code>ui-switch</code>",
+      "lead": "Standalone binary toggle built on the shared <code class=\"showcase-doc__api-code\">FieldComponent</code>. It integrates with Angular forms through <code class=\"showcase-doc__api-code\">ControlValueAccessor</code> and renders a native checkbox input behind the visual switch.",
+      "blocks": [
+        {
+          "type": "table",
+          "title": "Inherited field inputs",
+          "columns": ["Name", "Type", "Default", "Description"],
+          "columnKinds": ["code", "type", "default", "text"],
+          "rows": [
+            [
+              "inputVariant",
+              "InputSignal<InputVariant>",
+              "'filled'",
+              "Shared field surface token inherited from `FieldComponent`."
+            ],
+            [
+              "label",
+              "InputSignal<string>",
+              "''",
+              "Visible field label inherited from `FieldComponent`."
+            ],
+            [
+              "labelPosition",
+              "InputSignal<ContentPosition>",
+              "'above'",
+              "Controls where the field label is placed relative to the control."
+            ],
+            [
+              "placeholder",
+              "InputSignal<string>",
+              "''",
+              "Inherited shared-field placeholder input."
+            ],
+            [
+              "helpText",
+              "InputSignal<string>",
+              "''",
+              "Supporting helper text rendered below the field when there is no active error."
+            ],
+            [
+              "errorText",
+              "ModelSignal<string>",
+              "''",
+              "Validation or manual error message managed by the shared field base."
+            ],
+            ["required", "InputSignal<boolean>", "false", "Marks the field as required."],
+            [
+              "disabled",
+              "ModelSignal<boolean>",
+              "false",
+              "Disables the field and its interactive affordances."
+            ],
+            [
+              "readonly",
+              "ModelSignal<boolean>",
+              "false",
+              "Keeps the value visible while preventing user changes."
+            ],
+            ["size", "InputSignal<Size>", "'medium'", "Shared field density token."],
+            [
+              "name",
+              "InputSignal<string>",
+              "''",
+              "HTML form name used by the field wrapper and native control wiring."
+            ],
+            [
+              "id",
+              "ModelSignal<string | number>",
+              "auto-generated",
+              "Control id used to connect label, help text, and error messaging."
+            ],
+            [
+              "autocomplete",
+              "InputSignal<string | null>",
+              "null",
+              "Inherited autocomplete hint for native form compatibility."
+            ],
+            [
+              "showClearButton",
+              "InputSignal<boolean>",
+              "true",
+              "Inherited shared-field clear-button flag when supported by the concrete control."
+            ],
+            [
+              "ariaLabel",
+              "InputSignal<string>",
+              "''",
+              "Overrides the accessible name when no visible label is appropriate."
+            ],
+            [
+              "ariaDescribedBy",
+              "InputSignal<string>",
+              "''",
+              "Appends extra descriptive ids to the computed `aria-describedby` value."
+            ],
+            [
+              "autoValidation",
+              "InputSignal<boolean>",
+              "true",
+              "Enables inherited automatic validation error handling from `FieldComponent`."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "change",
+              "OutputRef<boolean>",
+              "Emitted when the checked value changes from user interaction."
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Inherited field outputs",
+          "columns": ["Name", "Type", "Description"],
+          "columnKinds": ["code", "type", "text"],
+          "rows": [
+            [
+              "focus",
+              "OutputEmitterRef<FocusEvent>",
+              "Inherited focus event from `FieldComponent`."
+            ],
+            ["blur", "OutputEmitterRef<FocusEvent>", "Inherited blur event from `FieldComponent`."],
+            [
+              "keyup",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-up event from `FieldComponent`."
+            ],
+            [
+              "keydown",
+              "OutputEmitterRef<KeyboardEvent>",
+              "Inherited keyboard-down event from `FieldComponent`."
+            ]
+          ]
+        },
+        {
+          "type": "notes",
+          "paragraphs": [
+            "The component implements <code class=\"showcase-doc__api-code\">ControlValueAccessor</code>, so it works with <code class=\"showcase-doc__api-code\">ngModel</code>, reactive forms, and Angular validators.",
+            "The checked state is stored as a boolean. Non-true values written through the form API resolve to the unchecked state."
+          ],
+          "title": "Notes"
+        },
+        {
+          "type": "list",
+          "title": "Related mechanisms",
+          "items": [
+            "<code>FieldComponent</code> - shared base handling labels, helper and error text, aria wiring, and validation synchronization.",
+            "Native checkbox input - provides the underlying focus, form, and keyboard semantics."
+          ]
+        }
+      ]
+    }
+  ]
+}
